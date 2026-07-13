@@ -1,6 +1,22 @@
 import { createFileRoute } from "@tanstack/react-router";
 import { useMemo, useState } from "react";
 import logoAsset from "@/assets/dipistav-logo-transparent.png.asset.json";
+import tramyAsset from "@/assets/tramy.png.asset.json";
+import fosnyAsset from "@/assets/fosny.png.asset.json";
+import prknaAsset from "@/assets/prkna.png.asset.json";
+import lateAsset from "@/assets/late.png.asset.json";
+import kvhAsset from "@/assets/kvh.png.asset.json";
+import rezakAsset from "@/assets/rezak.png.asset.json";
+
+const ART: Record<string, string> = {
+  tram: tramyAsset.url,
+  fosna: fosnyAsset.url,
+  prkno: prknaAsset.url,
+  lat: lateAsset.url,
+  kvh: kvhAsset.url,
+  rezak: rezakAsset.url,
+};
+
 
 export const Route = createFileRoute("/")({
   head: () => ({
