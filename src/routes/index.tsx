@@ -778,10 +778,7 @@ function Index() {
       <section id="doprava" className="mx-auto max-w-7xl px-4 py-12 sm:py-16">
         <div className="grid gap-6 rounded-3xl border border-border bg-white p-6 shadow-sm sm:p-10 lg:grid-cols-[1.1fr_1fr] lg:items-center">
           <div>
-            <div className="inline-flex rounded-full bg-[color:var(--timber)]/10 px-3 py-1 text-xs font-semibold uppercase tracking-wide text-[color:var(--timber-dark)]">
-              Doprava
-            </div>
-            <h2 className="mt-2 text-2xl font-black tracking-tight sm:text-3xl">
+            <h2 className="text-2xl font-black tracking-tight text-[#1E293B] sm:text-3xl">
               Doprava podle PSČ
             </h2>
             <p className="mt-2 text-sm text-muted-foreground">
@@ -793,31 +790,31 @@ function Index() {
                 placeholder="Zadejte vaše PSČ"
                 value={psc}
                 onChange={(e) => setPsc(e.target.value)}
-                className="w-full rounded-lg border border-border bg-white px-4 py-3 text-sm font-semibold text-foreground focus:border-primary focus:outline-none focus:ring-2 focus:ring-primary/20 sm:w-56"
+                className="w-full rounded-lg border border-amber-200 bg-white px-4 py-3 text-sm font-semibold text-[#1E293B] focus:border-[#A86D38] focus:outline-none focus:ring-2 focus:ring-[#A86D38]/20 sm:flex-1"
               />
               <button
                 onClick={calcShipping}
-                className="rounded-lg bg-[color:var(--forest)] px-5 py-3 text-sm font-semibold text-white transition hover:bg-[color:var(--forest-dark)]"
+                className="rounded-lg bg-[#A86D38] px-5 py-3 text-sm font-bold text-white shadow-sm transition hover:bg-[#8F5927]"
               >
                 Spočítat dopravu
               </button>
             </div>
             {pscQuote && (
-              <div className="mt-4 rounded-lg bg-[color:var(--sand)] px-4 py-3 text-sm font-bold text-[color:var(--forest)]">
+              <div className="mt-4 rounded-lg bg-[#F5F2E9] px-4 py-3 text-sm font-bold text-[#234A33]">
                 {pscQuote}
               </div>
             )}
           </div>
-          <div className="grid grid-cols-1 gap-3 sm:grid-cols-3">
+          <div className="flex flex-col gap-3">
             {["Platba kartou online", "Dobírka při převzetí", "Hotově na prodejně"].map(
               (b) => (
                 <div
                   key={b}
-                  className="rounded-2xl border border-border bg-[color:var(--sand)] p-4 text-sm font-bold text-foreground"
+                  className="flex items-center gap-3 whitespace-nowrap rounded-xl border border-amber-200/60 bg-[#F5F2E9] px-4 py-3 text-sm font-semibold text-[#1E293B]"
                 >
-                  <div className="mb-2 inline-flex h-8 w-8 items-center justify-center rounded-full bg-[color:var(--forest)] text-white">
+                  <span className="inline-flex h-8 w-8 shrink-0 items-center justify-center rounded-full bg-white text-[#A86D38]">
                     <IconCheck />
-                  </div>
+                  </span>
                   {b}
                 </div>
               )
