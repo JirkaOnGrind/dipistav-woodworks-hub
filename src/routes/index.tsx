@@ -620,18 +620,18 @@ function Index() {
         </div>
       </section>
 
-      <section id="produkty" className="mx-auto max-w-7xl px-4 py-12 sm:py-16">
-        <div className="mb-6">
-          <h2 className="text-2xl font-black tracking-tight sm:text-3xl">
+      <section id="produkty" className="mx-auto max-w-7xl px-4 py-6 sm:py-16">
+        <div className="mb-4 sm:mb-6">
+          <h2 className="text-xl font-black tracking-tight sm:text-3xl">
             Stavební řezivo – standardní profily
           </h2>
-          <p className="mt-2 text-sm text-muted-foreground">
+          <p className="mt-1 hidden text-sm text-muted-foreground sm:block">
             Vyberte profil a délku. Cena se přepočítá okamžitě a položku můžete hned přidat do
             košíku.
           </p>
         </div>
 
-        <div className="grid gap-4 sm:gap-5 md:grid-cols-2 xl:grid-cols-4">
+        <div className="grid gap-3 sm:gap-5 md:grid-cols-2 xl:grid-cols-4">
           <TramyCard onAdd={addStandardItem} />
           <FosnyCard onAdd={addStandardItem} />
           <PrknaCard onAdd={addStandardItem} />
@@ -639,9 +639,10 @@ function Index() {
         </div>
       </section>
 
-      <section id="konfigurator" className="mx-auto max-w-7xl px-4 pb-12 sm:pb-16">
+      <section id="konfigurator" className="mx-auto max-w-7xl px-4 pb-8 sm:pb-16">
         <Configurator onAdd={addCustomItem} />
       </section>
+
 
       <section className="bg-white">
         <div className="mx-auto max-w-7xl px-4 py-12 sm:py-16">
