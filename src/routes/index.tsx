@@ -555,36 +555,36 @@ function Index() {
           className="pointer-events-none absolute inset-x-0 bottom-0 h-48 bg-gradient-to-b from-transparent via-[#F5F2E9]/72 to-[#F5F2E9]"
         />
 
-        <div className="relative mx-auto max-w-5xl px-4 py-16 sm:py-20 lg:py-28">
+        <div className="relative mx-auto max-w-5xl px-4 py-10 sm:py-20 lg:py-28">
           <div className="text-center">
-            <h1 className="text-4xl font-black leading-[1.05] tracking-tight text-[#1E293B] sm:text-5xl lg:text-6xl">
+            <h1 className="text-[26px] font-bold leading-tight tracking-tight text-[#1E293B] sm:text-5xl sm:font-black sm:leading-[1.05] lg:text-6xl">
               Kvalitní stavební <span className="text-[#A86D38]">řezivo a paliva</span> přímo z pily
             </h1>
-            <p className="mx-auto mt-5 max-w-2xl text-base text-[#1E293B]/75 sm:text-lg">
+            <p className="mx-auto mt-3 line-clamp-2 max-w-sm text-xs text-[#1E293B]/70 sm:mt-5 sm:line-clamp-none sm:max-w-2xl sm:text-lg">
               Standardní profily skladem. Atypická výroba na míru do délky 8 metrů a vlastní doprava
               s hydraulickou rukou.
             </p>
 
-            <div className="mt-8 flex flex-col items-center justify-center gap-3 sm:flex-row">
+            <div className="mx-auto mt-5 grid w-full max-w-xs grid-cols-2 gap-2 sm:mt-8 sm:flex sm:max-w-none sm:flex-row sm:items-center sm:justify-center sm:gap-3">
               <a
                 href="/#produkty"
-                className="inline-flex items-center justify-center rounded-lg bg-[#A86D38] px-7 py-3.5 text-sm font-bold text-white shadow-md transition hover:bg-[#8F5927]"
+                className="inline-flex items-center justify-center rounded-lg bg-[#A86D38] px-3 py-2.5 text-xs font-bold text-white shadow-md transition hover:bg-[#8F5927] sm:px-7 sm:py-3.5 sm:text-sm"
               >
                 Prohlédnout obchod
               </a>
               <a
                 href="/#konfigurator"
-                className="inline-flex items-center justify-center rounded-lg bg-[#234A33] px-7 py-3.5 text-sm font-bold text-white shadow-md transition hover:bg-[#1a3826]"
+                className="inline-flex items-center justify-center rounded-lg bg-[#234A33] px-3 py-2.5 text-xs font-bold text-white shadow-md transition hover:bg-[#1a3826] sm:px-7 sm:py-3.5 sm:text-sm"
               >
                 Konfigurátor na míru
               </a>
             </div>
 
-            <div className="mt-8 flex flex-wrap justify-center gap-2">
+            <div className="no-scrollbar mt-5 flex snap-x gap-2 overflow-x-auto px-4 py-1 sm:mt-8 sm:flex-wrap sm:justify-center sm:overflow-visible sm:px-0">
               {["Délky až do 8 m", "Platba kartou i dobírka", "Vlastní doprava"].map((item) => (
                 <span
                   key={item}
-                  className="inline-flex items-center gap-1.5 rounded-full border border-[#A86D38]/30 bg-white/90 px-3.5 py-1.5 text-xs font-semibold text-[#1E293B] shadow-sm"
+                  className="inline-flex shrink-0 snap-center items-center gap-1.5 whitespace-nowrap rounded-full border border-[#A86D38]/30 bg-white/85 px-3 py-1 text-[11px] font-semibold text-[#1E293B] shadow-sm sm:px-3.5 sm:py-1.5 sm:text-xs"
                 >
                   <span className="text-[#234A33]">
                     <IconCheck />
@@ -595,6 +595,7 @@ function Index() {
             </div>
           </div>
         </div>
+
       </section>
 
       <section className="relative mx-auto max-w-7xl px-4 pb-4">
