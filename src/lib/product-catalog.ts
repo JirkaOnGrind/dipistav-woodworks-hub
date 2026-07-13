@@ -12,7 +12,6 @@ type BaseCategory = {
   imageSrc: string;
   thumbnailAlt: string;
   priceUnitLabel: string;
-  previewNotes: string[];
   ctaLabel: string;
 };
 
@@ -62,7 +61,6 @@ const tramy: DimensionedCategory = {
   imageSrc: "/images/tramy-dipi.png",
   thumbnailAlt: "Stavební trámy DIPISTAV",
   priceUnitLabel: "Cena / ks",
-  previewNotes: ["Profily 8 × 8 až 20 × 20 cm", "Délky 4 m a 5 m", "Vhodné pro nosné konstrukce"],
   ctaLabel: "Přidat trámy do košíku",
   dimensionLabel: "Profil (cm)",
   lengthLabel: "Délka (cm)",
@@ -99,11 +97,6 @@ const fosny: DimensionedCategory = {
   imageSrc: "/images/fosny-dipi.png",
   thumbnailAlt: "Stavební fošny DIPISTAV",
   priceUnitLabel: "Cena / ks",
-  previewNotes: [
-    "Profily 4 × 14 až 5 × 20 cm",
-    "Délky 4 m a 5 m",
-    "Pevné řešení pro bednění a stavbu",
-  ],
   ctaLabel: "Přidat fošny do košíku",
   dimensionLabel: "Profil (cm)",
   lengthLabel: "Délka (cm)",
@@ -141,7 +134,6 @@ const prkna: DimensionedCategory = {
   imageSrc: "/images/prkna-dipi.png",
   thumbnailAlt: "Stavební prkna DIPISTAV",
   priceUnitLabel: "Cena / ks",
-  previewNotes: ["Coulová prkna", "Šířky 8 až 14 cm", "Délky 3 m až 5 m"],
   ctaLabel: "Přidat prkna do košíku",
   dimensionLabel: "Šířka (cm)",
   lengthLabel: "Délka (cm)",
@@ -176,11 +168,6 @@ const late: LengthOnlyCategory = {
   imageSrc: "/images/late-dipi.png",
   thumbnailAlt: "Střešní latě DIPISTAV",
   priceUnitLabel: "Cena / ks",
-  previewNotes: [
-    "Pevný profil 60 × 40 mm",
-    "Délky 3 m, 4 m a 5 m",
-    "Praktické pro střechy a podkladní rošty",
-  ],
   ctaLabel: "Přidat latě do košíku",
   fixedDimensionLabel: "60 × 40 mm",
   lengthLabel: "Délka",
