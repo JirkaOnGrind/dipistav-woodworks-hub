@@ -6,7 +6,7 @@ import tramyAsset from "@/assets/tramy.png.asset.json";
 import fosnyAsset from "@/assets/fosny.png.asset.json";
 import prknaAsset from "@/assets/prkna.png.asset.json";
 import lateAsset from "@/assets/late.png.asset.json";
-import kvhAsset from "@/assets/kvh.png.asset.json";
+
 import rezakAsset from "@/assets/rezak.png.asset.json";
 
 const ART: Record<string, string> = {
@@ -14,7 +14,7 @@ const ART: Record<string, string> = {
   fosna: fosnyAsset.url,
   prkno: prknaAsset.url,
   lat: lateAsset.url,
-  kvh: kvhAsset.url,
+  
   rezak: rezakAsset.url,
 };
 
@@ -274,7 +274,7 @@ function IsoWood({
   variant,
   className = "h-24 w-auto",
 }: {
-  variant: "tram" | "fosna" | "prkno" | "lat" | "kvh" | "rezak";
+  variant: "tram" | "fosna" | "prkno" | "lat" | "rezak";
   className?: string;
 }) {
   return (
@@ -489,7 +489,7 @@ function Index() {
 
   const nav = [
     { l: "Obchod", h: "#produkty" },
-    { l: "KVH Hranoly", h: "#kvh" },
+    
     { l: "Paliva", h: "#produkty" },
     { l: "Řezivo na míru", h: "#konfigurator" },
     { l: "Doprava", h: "#doprava" },
