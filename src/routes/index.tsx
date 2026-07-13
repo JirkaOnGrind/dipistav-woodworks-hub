@@ -545,12 +545,12 @@ function Index() {
       <section className="relative overflow-hidden">
         <div
           aria-hidden
-          className="absolute inset-0 scale-[1.22] bg-cover bg-center opacity-34 blur-[5px]"
+          className="absolute inset-0 scale-[1.18] bg-cover bg-center opacity-50 blur-[3px]"
           style={{ backgroundImage: "url('/images/woodpatern.jpg')" }}
         />
         <div
           aria-hidden
-          className="absolute inset-0 bg-[linear-gradient(180deg,rgba(245,242,233,0.72),rgba(245,242,233,0.83)_50%,rgba(245,242,233,0.96))]"
+          className="absolute inset-0 bg-[linear-gradient(180deg,rgba(245,242,233,0.66),rgba(245,242,233,0.78)_50%,rgba(245,242,233,0.92))]"
         />
         <div
           aria-hidden
