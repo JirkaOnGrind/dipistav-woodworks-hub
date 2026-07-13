@@ -355,7 +355,7 @@ function ConfRow({
           step={step}
           value={value}
           onChange={(e) => onChange(Number(e.target.value))}
-          className="flex-1 accent-[#A86D38]"
+          className="flex-1 accent-[#234A33]"
         />
         <input
           type="number"
@@ -364,7 +364,7 @@ function ConfRow({
           step={step}
           value={value}
           onChange={(e) => onChange(Number(e.target.value))}
-          className="w-20 rounded-md border border-amber-200 bg-white px-2 py-1.5 text-sm font-semibold text-[#1E293B] focus:border-[#A86D38] focus:outline-none focus:ring-2 focus:ring-[#A86D38]/20"
+          className="w-20 rounded-md border border-[#234A33]/25 bg-white px-2 py-1.5 text-sm font-semibold text-[#1E293B] focus:border-[#234A33] focus:outline-none focus:ring-2 focus:ring-[#234A33]/20"
         />
       </div>
     </div>
@@ -384,7 +384,7 @@ function Configurator({ onAdd }: { onAdd: (n: string) => void }) {
   }, [width, height, length, qty]);
 
   return (
-    <div className="rounded-3xl border border-amber-200 bg-card p-6 shadow-sm sm:p-8">
+    <div className="rounded-3xl border border-[#234A33]/20 bg-[#F1F5EE] p-6 shadow-sm sm:p-8">
       <div className="mb-6">
         <h2 className="text-2xl font-black tracking-tight text-[#1E293B] sm:text-3xl">
           Řezivo na míru do 8 m
@@ -401,15 +401,15 @@ function Configurator({ onAdd }: { onAdd: (n: string) => void }) {
             <span className="mb-1.5 block text-xs font-semibold uppercase tracking-wide text-muted-foreground">
               Dřevina
             </span>
-            <div className="grid grid-cols-3 gap-2 rounded-xl bg-[#F5F2E9] p-1">
+            <div className="grid grid-cols-3 gap-2 rounded-xl bg-white/70 p-1">
               {["Smrk", "Borovice", "Modřín"].map((s) => (
                 <button
                   key={s}
                   onClick={() => setSpecies(s)}
                   className={`rounded-lg px-3 py-2 text-sm font-semibold transition ${
                     species === s
-                      ? "bg-[#A86D38] text-white shadow"
-                      : "bg-transparent text-[#1E293B] hover:bg-white/60"
+                      ? "bg-[#234A33] text-white shadow"
+                      : "bg-transparent text-[#1E293B] hover:bg-white"
                   }`}
                 >
                   {s}
@@ -419,7 +419,7 @@ function Configurator({ onAdd }: { onAdd: (n: string) => void }) {
           </div>
         </div>
 
-        <div className="flex flex-col justify-between rounded-2xl border border-amber-200 bg-white p-6 shadow-md">
+        <div className="flex flex-col justify-between rounded-2xl border border-[#234A33]/20 bg-white p-6 shadow-md">
           <div className="space-y-4">
             <div>
               <div className="text-xs font-semibold uppercase tracking-wide text-muted-foreground">
@@ -437,11 +437,11 @@ function Configurator({ onAdd }: { onAdd: (n: string) => void }) {
                 8 500 Kč / m³ · {species}
               </div>
             </div>
-            <div className="rounded-xl bg-[#F5F2E9] p-4">
+            <div className="rounded-xl bg-[#EAF0E4] p-4">
               <div className="text-xs font-semibold uppercase tracking-wide text-muted-foreground">
                 Celková cena
               </div>
-              <div className="mt-1 text-4xl font-black tracking-tight text-[#A86D38]">
+              <div className="mt-1 text-4xl font-black tracking-tight text-[#234A33]">
                 {new Intl.NumberFormat("cs-CZ").format(total)} Kč
               </div>
               <div className="text-xs text-muted-foreground">s DPH</div>
