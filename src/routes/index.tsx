@@ -541,7 +541,7 @@ function Index() {
               <a
                 key={n.l}
                 href={n.h}
-                className="text-sm font-semibold text-foreground/80 transition hover:text-[color:var(--forest)]"
+                className="text-sm font-semibold text-foreground/80 transition hover:text-[color:var(--timber)]"
               >
                 {n.l}
               </a>
@@ -551,7 +551,7 @@ function Index() {
           <div className="flex items-center gap-2">
             <button
               aria-label="Košík"
-              className="relative inline-flex h-11 w-11 items-center justify-center rounded-full bg-[color:var(--forest)] text-white shadow-sm transition hover:bg-[color:var(--forest-dark)]"
+              className="relative inline-flex h-11 w-11 items-center justify-center rounded-full bg-[color:var(--timber)] text-white shadow-sm transition hover:bg-[color:var(--timber-dark)]"
             >
               <svg viewBox="0 0 24 24" fill="none" className="h-5 w-5" stroke="currentColor" strokeWidth="2">
                 <path d="M3 4h2l2.4 12.5a2 2 0 0 0 2 1.5h8.2a2 2 0 0 0 2-1.6L21 8H6" strokeLinecap="round" strokeLinejoin="round" />
@@ -559,7 +559,7 @@ function Index() {
                 <circle cx="18" cy="21" r="1.4" fill="currentColor" />
               </svg>
               {cart.length > 0 && (
-                <span className="absolute -right-1 -top-1 grid h-5 min-w-5 place-items-center rounded-full bg-[color:var(--timber)] px-1 text-[10px] font-black text-white">
+                <span className="absolute -right-1 -top-1 grid h-5 min-w-5 place-items-center rounded-full bg-[color:var(--forest)] px-1 text-[10px] font-black text-white">
                   {cart.length}
                 </span>
               )}
