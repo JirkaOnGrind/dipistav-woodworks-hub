@@ -401,15 +401,15 @@ function Configurator({ onAdd }: { onAdd: (n: string) => void }) {
             <span className="mb-1.5 block text-xs font-semibold uppercase tracking-wide text-muted-foreground">
               Dřevina
             </span>
-            <div className="grid grid-cols-3 gap-2">
+            <div className="grid grid-cols-3 gap-2 rounded-xl bg-[#F5F2E9] p-1">
               {["Smrk", "Borovice", "Modřín"].map((s) => (
                 <button
                   key={s}
                   onClick={() => setSpecies(s)}
-                  className={`rounded-lg border px-3 py-2 text-sm font-semibold transition ${
+                  className={`rounded-lg px-3 py-2 text-sm font-semibold transition ${
                     species === s
-                      ? "border-[color:var(--forest)] bg-[color:var(--forest)] text-white"
-                      : "border-border bg-white text-foreground hover:border-[color:var(--forest)]"
+                      ? "bg-[#A86D38] text-white shadow"
+                      : "bg-transparent text-[#1E293B] hover:bg-white/60"
                   }`}
                 >
                   {s}
@@ -419,13 +419,13 @@ function Configurator({ onAdd }: { onAdd: (n: string) => void }) {
           </div>
         </div>
 
-        <div className="flex flex-col justify-between rounded-2xl bg-[color:var(--sand)] p-6">
+        <div className="flex flex-col justify-between rounded-2xl border border-amber-200 bg-white p-6 shadow-md">
           <div className="space-y-4">
             <div>
               <div className="text-xs font-semibold uppercase tracking-wide text-muted-foreground">
                 Objem
               </div>
-              <div className="text-2xl font-black tracking-tight text-foreground">
+              <div className="text-2xl font-black tracking-tight text-[#1E293B]">
                 {volume.toFixed(3)} m³
               </div>
             </div>
@@ -433,15 +433,15 @@ function Configurator({ onAdd }: { onAdd: (n: string) => void }) {
               <div className="text-xs font-semibold uppercase tracking-wide text-muted-foreground">
                 Sazba
               </div>
-              <div className="text-sm font-semibold text-foreground">
+              <div className="text-sm font-semibold text-[#1E293B]">
                 8 500 Kč / m³ · {species}
               </div>
             </div>
-            <div className="rounded-xl bg-white p-4">
+            <div className="rounded-xl bg-[#F5F2E9] p-4">
               <div className="text-xs font-semibold uppercase tracking-wide text-muted-foreground">
                 Celková cena
               </div>
-              <div className="mt-1 text-4xl font-black tracking-tight text-[color:var(--timber)]">
+              <div className="mt-1 text-4xl font-black tracking-tight text-[#A86D38]">
                 {new Intl.NumberFormat("cs-CZ").format(total)} Kč
               </div>
               <div className="text-xs text-muted-foreground">s DPH</div>
@@ -453,9 +453,14 @@ function Configurator({ onAdd }: { onAdd: (n: string) => void }) {
                 `Atypické řezivo ${width}×${height} mm × ${length} m · ${qty} ks · ${species}`
               )
             }
-            className="mt-6 w-full rounded-lg bg-[color:var(--forest)] px-4 py-3 text-sm font-semibold text-white shadow-sm transition hover:bg-[color:var(--forest-dark)]"
+            className="mt-6 inline-flex w-full items-center justify-center gap-2 rounded-lg bg-[#A86D38] px-4 py-3.5 text-sm font-bold text-white shadow-sm transition hover:bg-[#8F5927]"
           >
-            Přidat do poptávky
+            <svg viewBox="0 0 24 24" className="h-4 w-4" fill="none" stroke="currentColor" strokeWidth="2.2">
+              <path d="M3 4h2l2.4 12.5a2 2 0 0 0 2 1.5h8.2a2 2 0 0 0 2-1.6L21 8H6" strokeLinecap="round" strokeLinejoin="round" />
+              <circle cx="10" cy="21" r="1.4" fill="currentColor" />
+              <circle cx="18" cy="21" r="1.4" fill="currentColor" />
+            </svg>
+            Přidat do poptávky / košíku
           </button>
         </div>
       </div>
