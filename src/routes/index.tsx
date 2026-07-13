@@ -745,7 +745,7 @@ function Index() {
       <section id="kvh" className="bg-white">
         <div className="mx-auto max-w-7xl px-4 py-12 sm:py-16">
           <div className="mb-8 max-w-2xl">
-            <div className="inline-flex rounded-full bg-[color:var(--forest)]/10 px-3 py-1 text-xs font-semibold uppercase tracking-wide text-[color:var(--forest)]">
+            <div className="inline-flex rounded-full bg-[color:var(--timber)]/15 px-3 py-1 text-xs font-semibold uppercase tracking-wide text-[color:var(--timber-dark)]">
               KVH Hranoly
             </div>
             <h2 className="mt-2 text-2xl font-black tracking-tight sm:text-3xl">
