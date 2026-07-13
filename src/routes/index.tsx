@@ -391,15 +391,16 @@ function Configurator({ onAdd }: { onAdd: ConfigAddHandler }) {
   }, [height, length, quantity, width]);
 
   return (
-    <div className="rounded-3xl border border-[#234A33]/20 bg-[#F1F5EE] p-6 shadow-sm sm:p-8">
-      <div className="mb-6">
-        <h2 className="text-2xl font-black tracking-tight text-[#1E293B] sm:text-3xl">
+    <div className="rounded-3xl border border-[#234A33]/20 bg-[#F1F5EE] p-4 shadow-sm sm:p-8">
+      <div className="mb-4 sm:mb-6">
+        <h2 className="text-xl font-black tracking-tight text-[#1E293B] sm:text-3xl">
           Řezivo na míru do 8 m
         </h2>
       </div>
 
-      <div className="grid gap-5 lg:grid-cols-2">
-        <div className="space-y-4">
+      <div className="grid gap-4 sm:gap-5 lg:grid-cols-2">
+        <div className="space-y-3 sm:space-y-5">
+
           <ConfRow
             label="Šířka"
             value={width}
