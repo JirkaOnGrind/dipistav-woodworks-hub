@@ -582,19 +582,6 @@ function Index() {
               </a>
             </div>
 
-            <div className="no-scrollbar mt-5 flex snap-x gap-2 overflow-x-auto px-4 py-1 sm:mt-8 sm:flex-wrap sm:justify-center sm:overflow-visible sm:px-0">
-              {["Délky až do 8 m", "Platba kartou i dobírka", "Vlastní doprava"].map((item) => (
-                <span
-                  key={item}
-                  className="inline-flex shrink-0 snap-center items-center gap-1.5 whitespace-nowrap rounded-full border border-[#A86D38]/30 bg-white/85 px-3 py-1 text-[11px] font-semibold text-[#1E293B] shadow-sm sm:px-3.5 sm:py-1.5 sm:text-xs"
-                >
-                  <span className="text-[#234A33]">
-                    <IconCheck />
-                  </span>
-                  {item}
-                </span>
-              ))}
-            </div>
           </div>
         </div>
 
