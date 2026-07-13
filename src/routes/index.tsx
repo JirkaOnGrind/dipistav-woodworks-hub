@@ -85,7 +85,7 @@ function Select({
       <select
         value={value}
         onChange={(event) => onChange(event.target.value)}
-        className="w-full rounded-lg border border-border bg-white px-3 py-2.5 text-sm font-medium text-foreground shadow-sm focus:border-primary focus:outline-none focus:ring-2 focus:ring-primary/20"
+        className="h-9 w-full rounded-lg border border-border bg-white px-2 py-1 text-xs font-medium text-foreground shadow-sm focus:border-primary focus:outline-none focus:ring-2 focus:ring-primary/20 sm:h-auto sm:px-3 sm:py-2.5 sm:text-sm"
       >
         {options.map((option) => (
           <option key={option.value} value={option.value}>
