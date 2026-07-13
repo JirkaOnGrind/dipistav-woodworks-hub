@@ -384,12 +384,9 @@ function Configurator({ onAdd }: { onAdd: (n: string) => void }) {
   }, [width, height, length, qty]);
 
   return (
-    <div className="rounded-3xl border border-border bg-card p-6 shadow-sm sm:p-8">
+    <div className="rounded-3xl border border-amber-200 bg-card p-6 shadow-sm sm:p-8">
       <div className="mb-6">
-        <div className="inline-flex rounded-full bg-[color:var(--timber)]/15 px-3 py-1 text-xs font-semibold uppercase tracking-wide text-[color:var(--timber-dark)]">
-          Konfigurátor
-        </div>
-        <h2 className="mt-2 text-2xl font-black tracking-tight text-foreground sm:text-3xl">
+        <h2 className="text-2xl font-black tracking-tight text-[#1E293B] sm:text-3xl">
           Řezivo na míru do 8 m
         </h2>
       </div>
