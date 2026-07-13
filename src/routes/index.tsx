@@ -303,9 +303,10 @@ function CategoryCard({
       href="#produkty"
       className="group flex flex-col items-start gap-3 rounded-2xl border border-border bg-white p-4 transition hover:-translate-y-0.5 hover:border-[color:var(--timber)] hover:shadow-lg sm:p-5"
     >
-      <div className="flex h-28 w-full items-center justify-center rounded-xl bg-[color:var(--sand)] sm:h-32">
-        <IsoWood variant={variant} />
+      <div className="flex h-32 w-full items-center justify-center rounded-xl bg-[color:var(--sand)] p-3 sm:h-40">
+        <IsoWood variant={variant} className="max-h-full w-auto" />
       </div>
+
       <div>
         <div className="text-sm font-black tracking-tight text-[color:var(--forest)] sm:text-base">
           {title}
