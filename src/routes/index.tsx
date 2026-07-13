@@ -549,7 +549,7 @@ function Index() {
         />
         <div
           aria-hidden
-          className="absolute inset-0 bg-[linear-gradient(180deg,rgba(245,242,233,0.66),rgba(245,242,233,0.78)_50%,rgba(245,242,233,0.92))]"
+          className="absolute inset-0 bg-[linear-gradient(180deg,rgba(245,242,233,0.66),rgba(245,242,233,0.78)_50%,rgba(245,242,233,1))]"
         />
         <div
           aria-hidden
