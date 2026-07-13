@@ -569,13 +569,13 @@ function Index() {
             <div className="mx-auto mt-5 grid w-full max-w-xs grid-cols-2 gap-2 sm:mt-8 sm:flex sm:max-w-none sm:flex-row sm:items-center sm:justify-center sm:gap-3">
               <a
                 href="/#produkty"
-                className="inline-flex items-center justify-center rounded-lg bg-[#A86D38] px-3 py-2.5 text-xs font-bold text-white shadow-md transition hover:bg-[#8F5927] sm:px-7 sm:py-3.5 sm:text-sm"
+                className="inline-flex items-center justify-center rounded-lg bg-[#A86D38] px-3 py-2.5 text-xs font-bold text-white transition hover:bg-[#8F5927] sm:px-7 sm:py-3.5 sm:text-sm"
               >
                 Prohlédnout obchod
               </a>
               <a
                 href="/#konfigurator"
-                className="inline-flex items-center justify-center rounded-lg bg-[#234A33] px-3 py-2.5 text-xs font-bold text-white shadow-md transition hover:bg-[#1a3826] sm:px-7 sm:py-3.5 sm:text-sm"
+                className="inline-flex items-center justify-center rounded-lg bg-[#234A33] px-3 py-2.5 text-xs font-bold text-white transition hover:bg-[#1a3826] sm:px-7 sm:py-3.5 sm:text-sm"
               >
                 Konfigurátor na míru
               </a>
