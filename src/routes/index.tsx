@@ -459,7 +459,7 @@ function Configurator({ onAdd }: { onAdd: ConfigAddHandler }) {
           </div>
         </div>
 
-        <div className="flex flex-col justify-between rounded-2xl border border-[#234A33]/20 bg-white p-6 shadow-md">
+        <div className="flex flex-col justify-between rounded-2xl border border-[#234A33]/20 bg-white p-3 shadow-md sm:p-5">
           <div className="space-y-4">
             <div>
               <div className="text-xs font-semibold uppercase tracking-wide text-muted-foreground">
