@@ -530,7 +530,7 @@ function Index() {
 
       {/* Header */}
       <header className="sticky top-0 z-40 border-b border-border bg-white/95 backdrop-blur">
-        <div className="mx-auto flex max-w-7xl items-center justify-between gap-4 px-4 py-3 sm:py-4">
+        <div className="mx-auto flex max-w-7xl items-center justify-between gap-4 px-4 py-2">
           <a href="/" className="flex min-w-0 items-center gap-2">
             <img
               src={logoAsset.url}
