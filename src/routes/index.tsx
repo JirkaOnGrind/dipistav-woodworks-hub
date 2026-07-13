@@ -721,13 +721,14 @@ function Index() {
       {/* Products */}
       <section id="produkty" className="mx-auto max-w-7xl px-4 py-12 sm:py-16">
         <div className="mb-6">
-          <div className="inline-flex rounded-full bg-[color:var(--timber)]/10 px-3 py-1 text-xs font-semibold uppercase tracking-wide text-[color:var(--timber-dark)]">
-            Skladem
-          </div>
-          <h2 className="mt-2 text-2xl font-black tracking-tight sm:text-3xl">
-            Stavební řezivo skladem
+          <h2 className="text-2xl font-black tracking-tight sm:text-3xl">
+            Stavební řezivo – standardní profily
           </h2>
+          <p className="mt-2 text-sm text-muted-foreground">
+            Vyberte profil a délku. Cena se přepočítá okamžitě.
+          </p>
         </div>
+
         <div className="grid gap-4 sm:gap-5 md:grid-cols-2 xl:grid-cols-4">
           <TramyCard onAdd={add} />
           <FosnyCard onAdd={add} />
