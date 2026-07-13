@@ -736,48 +736,6 @@ function Index() {
         <Configurator onAdd={add} />
       </section>
 
-      {/* KVH */}
-      <section id="kvh" className="bg-white">
-        <div className="mx-auto max-w-7xl px-4 py-12 sm:py-16">
-          <div className="mb-8 max-w-2xl">
-            <div className="inline-flex rounded-full bg-[color:var(--timber)]/15 px-3 py-1 text-xs font-semibold uppercase tracking-wide text-[color:var(--timber-dark)]">
-              KVH Hranoly
-            </div>
-            <h2 className="mt-2 text-2xl font-black tracking-tight sm:text-3xl">
-              Proč zvolit KVH hranoly?
-            </h2>
-          </div>
-          <div className="grid gap-4 md:grid-cols-3">
-            {[
-              {
-                t: "Vysušeno na 15 %",
-                d: "Tvarová stálost a minimální kroucení – ideální pro nosné konstrukce.",
-              },
-              {
-                t: "Hoblovaný povrch",
-                d: "Hladké hrany a stěny, bez nutnosti dalšího opracování.",
-              },
-              {
-                t: "Certifikované dřevo",
-                d: "Ideální pro pergoly, garážová stání a dřevostavby.",
-              },
-            ].map((f) => (
-              <div
-                key={f.t}
-                className="rounded-2xl border border-border bg-[color:var(--sand)] p-6"
-              >
-                <div className="inline-flex h-10 w-10 items-center justify-center rounded-full bg-[color:var(--timber)] text-white">
-                  <IconCheck />
-                </div>
-                <h3 className="mt-4 text-lg font-black tracking-tight text-foreground">
-                  {f.t}
-                </h3>
-                <p className="mt-1 text-sm text-muted-foreground">{f.d}</p>
-              </div>
-            ))}
-          </div>
-        </div>
-      </section>
 
       {/* Shipping */}
       <section id="doprava" className="mx-auto max-w-7xl px-4 py-12 sm:py-16">
