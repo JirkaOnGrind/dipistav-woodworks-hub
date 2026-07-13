@@ -532,8 +532,7 @@ function Index() {
             <img
               src={logoAsset.url}
               alt="DIPISTAV"
-              style={{ background: "transparent !important" as unknown as string }}
-              className="h-11 w-auto shrink-0 object-contain md:h-14"
+              className="h-11 w-auto shrink-0 bg-transparent object-contain md:h-14"
             />
           </a>
 
