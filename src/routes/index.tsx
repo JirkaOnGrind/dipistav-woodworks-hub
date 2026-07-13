@@ -113,7 +113,7 @@ function AddToCartButton({ onClick }: { onClick: () => void }) {
   return (
     <button
       onClick={onClick}
-      className="mt-4 w-full rounded-lg bg-[color:var(--forest)] px-4 py-3 text-sm font-semibold text-white shadow-sm transition hover:bg-[color:var(--forest-dark)] active:scale-[0.99]"
+      className="mt-4 w-full rounded-lg bg-[#A86D38] px-4 py-3 text-sm font-semibold text-white shadow-sm transition hover:bg-[#8F5927] active:scale-[0.99]"
     >
       Do košíku
     </button>
@@ -453,7 +453,7 @@ function Configurator({ onAdd }: { onAdd: (n: string) => void }) {
                 `Atypické řezivo ${width}×${height} mm × ${length} m · ${qty} ks · ${species}`
               )
             }
-            className="mt-6 inline-flex w-full items-center justify-center gap-2 rounded-lg bg-[#A86D38] px-4 py-3.5 text-sm font-bold text-white shadow-sm transition hover:bg-[#8F5927]"
+            className="mt-6 inline-flex w-full items-center justify-center gap-2 rounded-lg bg-[#234A33] px-4 py-3.5 text-sm font-bold text-white shadow-sm transition hover:bg-[#1A3826]"
           >
             <svg viewBox="0 0 24 24" className="h-4 w-4" fill="none" stroke="currentColor" strokeWidth="2.2">
               <path d="M3 4h2l2.4 12.5a2 2 0 0 0 2 1.5h8.2a2 2 0 0 0 2-1.6L21 8H6" strokeLinecap="round" strokeLinejoin="round" />
@@ -536,7 +536,7 @@ function Index() {
               src={logoAsset.url}
               alt="DIPISTAV"
               style={{ background: "transparent" }}
-              className="h-12 md:h-16 w-auto shrink-0 object-contain"
+              className="h-14 md:h-20 w-auto shrink-0 object-contain"
             />
           </a>
 
@@ -640,13 +640,18 @@ function Index() {
         {/* Zoomed & blurred wood pattern */}
         <div
           aria-hidden
-          className="absolute inset-0 scale-125 blur-md opacity-40 bg-cover bg-center"
+          className="absolute inset-0 scale-110 blur-[2px] opacity-30 bg-cover bg-center"
           style={{ backgroundImage: `url(${woodPattern.url})` }}
         />
         {/* Warm sand gradient overlay for readability */}
         <div
           aria-hidden
-          className="absolute inset-0 bg-gradient-to-b from-[#F5F2E9]/80 via-[#F5F2E9]/90 to-[#F5F2E9]"
+          className="absolute inset-0 bg-gradient-to-b from-[#F5F2E9]/70 via-[#F5F2E9]/80 to-[#F5F2E9]/90"
+        />
+        {/* Seamless fade into Categories sand background */}
+        <div
+          aria-hidden
+          className="pointer-events-none absolute inset-x-0 bottom-0 h-40 bg-gradient-to-b from-transparent via-[#F5F2E9]/60 to-[#F5F2E9]"
         />
 
         <div className="relative mx-auto max-w-5xl px-4 py-16 sm:py-20 lg:py-28">
