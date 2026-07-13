@@ -355,7 +355,7 @@ function ConfRow({
           step={step}
           value={value}
           onChange={(e) => onChange(Number(e.target.value))}
-          className="flex-1 accent-[color:var(--forest)]"
+          className="flex-1 accent-[#A86D38]"
         />
         <input
           type="number"
@@ -364,7 +364,7 @@ function ConfRow({
           step={step}
           value={value}
           onChange={(e) => onChange(Number(e.target.value))}
-          className="w-20 rounded-md border border-border bg-white px-2 py-1.5 text-sm font-semibold text-foreground focus:border-primary focus:outline-none"
+          className="w-20 rounded-md border border-amber-200 bg-white px-2 py-1.5 text-sm font-semibold text-[#1E293B] focus:border-[#A86D38] focus:outline-none focus:ring-2 focus:ring-[#A86D38]/20"
         />
       </div>
     </div>
