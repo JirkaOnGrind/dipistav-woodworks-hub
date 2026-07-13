@@ -553,7 +553,7 @@ function Index() {
         />
         <div
           aria-hidden
-          className="pointer-events-none absolute inset-x-0 bottom-0 h-48 bg-gradient-to-b from-transparent via-[#F5F2E9]/92 via-40% to-[#F5F2E9]"
+          className="pointer-events-none absolute inset-x-0 bottom-0 h-48 bg-gradient-to-b from-transparent via-[#F5F2E9] via-35% to-[#F5F2E9]"
         />
 
         <div className="relative mx-auto max-w-5xl px-4 py-10 sm:py-20 lg:py-28">
