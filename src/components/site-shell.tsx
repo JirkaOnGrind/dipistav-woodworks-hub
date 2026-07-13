@@ -76,21 +76,6 @@ export function SiteShell({ children }: { children: ReactNode }) {
 
   return (
     <div className="min-h-screen bg-background text-foreground">
-      <div className="bg-[#1E293B] text-white">
-        <div className="mx-auto flex max-w-7xl flex-col gap-1 px-4 py-2 text-xs sm:flex-row sm:items-center sm:justify-between">
-          <div className="flex flex-wrap items-center gap-x-4 gap-y-1">
-            <a href={COMPANY_PHONE_HREF} className="hover:text-[#D9B48A]">
-              Tel: {COMPANY_PHONE}
-            </a>
-            <span className="hidden text-white/30 sm:inline">|</span>
-            <a href={COMPANY_EMAIL_HREF} className="hover:text-[#D9B48A]">
-              {COMPANY_EMAIL}
-            </a>
-          </div>
-          <div className="text-white/80">Osobní odběr i vlastní doprava s autojeřábem</div>
-        </div>
-      </div>
-
       <header className="sticky top-0 z-40 border-b border-border bg-white/95 backdrop-blur">
         <div className="mx-auto flex max-w-7xl items-center justify-between gap-4 px-4 py-2">
           <a href="/" className="flex min-w-0 items-center gap-2">
