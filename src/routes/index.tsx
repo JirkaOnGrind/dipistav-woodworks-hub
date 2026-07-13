@@ -677,37 +677,30 @@ function Index() {
           </div>
 
           <div className="relative">
-            <div className="absolute -inset-4 rounded-3xl bg-[color:var(--forest)]/5 blur-2xl" />
-            <div className="relative rounded-3xl border border-border bg-white p-6 shadow-lg">
-              <div className="flex items-center justify-between">
-                <div className="text-xs font-semibold uppercase tracking-wide text-muted-foreground">
-                  Nejprodávanější
+            <div className="absolute -inset-6 rounded-[2rem] bg-[color:var(--forest)]/5 blur-3xl" />
+            <div className="relative overflow-hidden rounded-[2rem] border border-border bg-[color:var(--sand)] p-6 shadow-lg sm:p-8">
+              <div className="relative grid grid-cols-2 gap-4">
+                <div className="col-span-2 flex items-center justify-center rounded-2xl bg-white p-4">
+                  <IsoWood variant="tram" className="h-40 w-auto sm:h-48" />
                 </div>
-                <div className="text-xs font-semibold text-[color:var(--timber)]">Skladem</div>
+                <div className="flex items-center justify-center rounded-2xl bg-white p-3">
+                  <IsoWood variant="prkno" className="h-24 w-auto" />
+                </div>
+                <div className="flex items-center justify-center rounded-2xl bg-white p-3">
+                  <IsoWood variant="rezak" className="h-24 w-auto" />
+                </div>
               </div>
-              <div className="mt-4 grid grid-cols-2 gap-3">
-                {[
-                  { t: "Trám 10×10×400", p: "450 Kč", v: "tram" as const },
-                  { t: "Fošna 5×12×400", p: "247 Kč", v: "fosna" as const },
-                  { t: "Prkno 12×400", p: "102,60 Kč", v: "prkno" as const },
-                  { t: "Lať 60×40 / 4 m", p: "76 Kč", v: "lat" as const },
-                ].map((x) => (
-                  <div
-                    key={x.t}
-                    className="rounded-xl border border-border bg-[color:var(--sand)] p-3"
-                  >
-                    <div className="flex h-16 items-center justify-center">
-                      <IsoWood variant={x.v} />
-                    </div>
-                    <div className="mt-2 text-sm font-bold text-foreground">{x.t}</div>
-                    <div className="text-sm font-black text-[color:var(--timber)]">{x.p}</div>
-                  </div>
-                ))}
+              <div className="mt-5 flex items-center justify-between rounded-2xl bg-[color:var(--forest)] px-5 py-3 text-white">
+                <div className="text-xs font-semibold uppercase tracking-wide text-white/70">
+                  Výroba na míru
+                </div>
+                <div className="text-lg font-black tracking-tight">Do 8 m délky</div>
               </div>
             </div>
           </div>
         </div>
       </section>
+
 
       {/* Categories */}
       <section className="mx-auto max-w-7xl px-4 pb-4">
