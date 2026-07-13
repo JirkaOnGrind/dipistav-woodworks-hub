@@ -1,7 +1,7 @@
 export type SiteNavigationItem = {
   href: string;
   label: string;
-  route: "/" | "/doprava" | "/o-nas";
+  route: string;
 };
 
 export const COMPANY_NAME = "DIPISTAV";
@@ -17,8 +17,7 @@ export const COMPANY_MAPS_URL =
 export const OPENING_HOURS = ["Po–Pá: 7:00 – 16:00", "Nakládka vysokozdvižným vozíkem zdarma"];
 
 export const SITE_NAVIGATION: SiteNavigationItem[] = [
-  { label: "Obchod", href: "/#produkty", route: "/" },
-  { label: "Řezivo na míru", href: "/#konfigurator", route: "/" },
+  { label: "Kategorie", href: "/#kategorie", route: "/" },
   { label: "Doprava", href: "/doprava", route: "/doprava" },
   { label: "O nás", href: "/o-nas", route: "/o-nas" },
   { label: "Kontakt", href: "/#kontakt", route: "/" },

@@ -12,6 +12,7 @@ import { Route as rootRouteImport } from './routes/__root'
 import { Route as ONasRouteImport } from './routes/o-nas'
 import { Route as DopravaRouteImport } from './routes/doprava'
 import { Route as IndexRouteImport } from './routes/index'
+import { Route as CategoryIdRouteImport } from './routes/category.$id'
 
 const ONasRoute = ONasRouteImport.update({
   id: '/o-nas',
@@ -28,35 +29,44 @@ const IndexRoute = IndexRouteImport.update({
   path: '/',
   getParentRoute: () => rootRouteImport,
 } as any)
+const CategoryIdRoute = CategoryIdRouteImport.update({
+  id: '/category/$id',
+  path: '/category/$id',
+  getParentRoute: () => rootRouteImport,
+} as any)
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
   '/doprava': typeof DopravaRoute
   '/o-nas': typeof ONasRoute
+  '/category/$id': typeof CategoryIdRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
   '/doprava': typeof DopravaRoute
   '/o-nas': typeof ONasRoute
+  '/category/$id': typeof CategoryIdRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
   '/': typeof IndexRoute
   '/doprava': typeof DopravaRoute
   '/o-nas': typeof ONasRoute
+  '/category/$id': typeof CategoryIdRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
-  fullPaths: '/' | '/doprava' | '/o-nas'
+  fullPaths: '/' | '/doprava' | '/o-nas' | '/category/$id'
   fileRoutesByTo: FileRoutesByTo
-  to: '/' | '/doprava' | '/o-nas'
-  id: '__root__' | '/' | '/doprava' | '/o-nas'
+  to: '/' | '/doprava' | '/o-nas' | '/category/$id'
+  id: '__root__' | '/' | '/doprava' | '/o-nas' | '/category/$id'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
   DopravaRoute: typeof DopravaRoute
   ONasRoute: typeof ONasRoute
+  CategoryIdRoute: typeof CategoryIdRoute
 }
 
 declare module '@tanstack/react-router' {
@@ -82,6 +92,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof IndexRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/category/$id': {
+      id: '/category/$id'
+      path: '/category/$id'
+      fullPath: '/category/$id'
+      preLoaderRoute: typeof CategoryIdRouteImport
+      parentRoute: typeof rootRouteImport
+    }
   }
 }
 
@@ -89,6 +106,7 @@ const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
   DopravaRoute: DopravaRoute,
   ONasRoute: ONasRoute,
+  CategoryIdRoute: CategoryIdRoute,
 }
 export const routeTree = rootRouteImport
   ._addFileChildren(rootRouteChildren)

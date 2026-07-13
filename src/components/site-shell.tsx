@@ -23,11 +23,14 @@ function SiteNavLink({
   href: string;
   label: string;
   currentPath: string;
-  route: "/" | "/doprava" | "/o-nas";
+  route: string;
   onClick?: () => void;
   mobile?: boolean;
 }) {
-  const isActive = !href.includes("#") && route === currentPath;
+  const isCategoryRoute = currentPath.startsWith("/category/");
+  const isActive = href.includes("#")
+    ? route === "/" && (currentPath === "/" || isCategoryRoute)
+    : route === currentPath;
 
   return (
     <a
