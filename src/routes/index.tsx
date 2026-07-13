@@ -1,6 +1,7 @@
 import { createFileRoute } from "@tanstack/react-router";
 import { useMemo, useState } from "react";
-import logoAsset from "@/assets/dipistav-logo-transparent.png.asset.json";
+import logoAsset from "@/assets/dipistav-logo-2.png.asset.json";
+import woodPattern from "@/assets/woodpatern.jpg.asset.json";
 import tramyAsset from "@/assets/tramy.png.asset.json";
 import fosnyAsset from "@/assets/fosny.png.asset.json";
 import prknaAsset from "@/assets/prkna.png.asset.json";
