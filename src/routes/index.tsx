@@ -681,7 +681,7 @@ function Index() {
             </div>
 
             <div className="mt-8 flex flex-wrap justify-center gap-2">
-              {["Délky až do 8 m", "Platba kartou & dobírka", "Vlastní doprava"].map((b) => (
+              {["Délky až do 8 m", "Platba kartou i dobírka", "Vlastní doprava"].map((b) => (
                 <span
                   key={b}
                   className="inline-flex items-center gap-1.5 rounded-full border border-[#A86D38]/30 bg-white/90 px-3.5 py-1.5 text-xs font-semibold text-[#1E293B] shadow-sm"
