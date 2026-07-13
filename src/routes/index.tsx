@@ -589,8 +589,7 @@ function Index() {
               <img
                 src={logoAsset.url}
                 alt="DIPISTAV"
-                style={{ background: "transparent" }}
-                className="h-9 w-auto object-contain"
+                className="h-11 w-auto bg-transparent object-contain"
               />
               <button
                 aria-label="Zavřít"
