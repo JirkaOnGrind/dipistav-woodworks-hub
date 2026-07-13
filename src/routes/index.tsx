@@ -1,23 +1,16 @@
 import { createFileRoute } from "@tanstack/react-router";
 import { useMemo, useState } from "react";
-import logoAsset from "@/assets/dipistav-logo-2.png.asset.json";
-import woodPattern from "@/assets/woodpatern.jpg.asset.json";
-import tramyAsset from "@/assets/tramy.png.asset.json";
-import fosnyAsset from "@/assets/fosny.png.asset.json";
-import prknaAsset from "@/assets/prkna.png.asset.json";
-import lateAsset from "@/assets/late.png.asset.json";
-import kvhAsset from "@/assets/kvh.png.asset.json";
-import rezakAsset from "@/assets/rezak.png.asset.json";
+import { ShippingCalculator } from "@/components/shipping-calculator";
+import { SiteShell } from "@/components/site-shell";
+import { type CustomCartInput, type StandardCartInput, useCart } from "@/lib/cart";
+import { COMPANY_EMAIL_HREF, COMPANY_PHONE, COMPANY_PHONE_HREF, formatCurrency } from "@/lib/site";
 
 const ART: Record<string, string> = {
-  tram: tramyAsset.url,
-  fosna: fosnyAsset.url,
-  prkno: prknaAsset.url,
-  lat: lateAsset.url,
-  kvh: kvhAsset.url,
-  rezak: rezakAsset.url,
+  tram: "/images/tramy-dipi.png",
+  fosna: "/images/fosny-dipi.png",
+  prkno: "/images/prkna-dipi.png",
+  lat: "/images/late-dipi.png",
 };
-
 
 export const Route = createFileRoute("/")({
   head: () => ({
@@ -41,12 +34,9 @@ export const Route = createFileRoute("/")({
   component: Index,
 });
 
-/* ---------- data ---------- */
-
-const fmtCZK = (n: number) =>
-  new Intl.NumberFormat("cs-CZ", { maximumFractionDigits: 2 }).format(n) + " Kč";
-
 type PriceMap = Record<string, Record<string, number>>;
+type ProductAddHandler = (item: StandardCartInput) => void;
+type ConfigAddHandler = (item: CustomCartInput) => void;
 
 const TRAMY: PriceMap = {
   "8x8": { "400": 272, "500": 290 },
@@ -76,8 +66,6 @@ const PRKNA: PriceMap = {
 
 const LATE: Record<string, number> = { "3000": 57, "4000": 76, "5000": 95 };
 
-/* ---------- UI primitives ---------- */
-
 function Select({
   value,
   onChange,
@@ -85,7 +73,7 @@ function Select({
   label,
 }: {
   value: string;
-  onChange: (v: string) => void;
+  onChange: (value: string) => void;
   options: { value: string; label: string }[];
   label: string;
 }) {
@@ -96,12 +84,12 @@ function Select({
       </span>
       <select
         value={value}
-        onChange={(e) => onChange(e.target.value)}
+        onChange={(event) => onChange(event.target.value)}
         className="w-full rounded-lg border border-border bg-white px-3 py-2.5 text-sm font-medium text-foreground shadow-sm focus:border-primary focus:outline-none focus:ring-2 focus:ring-primary/20"
       >
-        {options.map((o) => (
-          <option key={o.value} value={o.value}>
-            {o.label}
+        {options.map((option) => (
+          <option key={option.value} value={option.value}>
+            {option.label}
           </option>
         ))}
       </select>
@@ -126,9 +114,7 @@ function PriceOut({ value }: { value: string }) {
       <span className="text-xs font-semibold uppercase tracking-wide text-muted-foreground">
         Cena / ks
       </span>
-      <span className="text-2xl font-black tracking-tight text-[color:var(--timber)]">
-        {value}
-      </span>
+      <span className="text-2xl font-black tracking-tight text-[color:var(--timber)]">{value}</span>
     </div>
   );
 }
@@ -153,14 +139,12 @@ function CardShell({
   );
 }
 
-/* ---------- Product cards ---------- */
-
-function TramyCard({ onAdd }: { onAdd: (n: string) => void }) {
+function TramyCard({ onAdd }: { onAdd: ProductAddHandler }) {
   const profiles = Object.keys(TRAMY);
   const [profile, setProfile] = useState(profiles[0]);
   const [length, setLength] = useState("400");
-  const activeLen = TRAMY[profile][length] ? length : Object.keys(TRAMY[profile])[0];
-  const price = TRAMY[profile][activeLen];
+  const activeLength = TRAMY[profile][length] ? length : Object.keys(TRAMY[profile])[0];
+  const price = TRAMY[profile][activeLength];
 
   return (
     <CardShell title="Stavební trámy" subtitle="8×8 až 20×20 cm · 4 m / 5 m">
@@ -169,29 +153,35 @@ function TramyCard({ onAdd }: { onAdd: (n: string) => void }) {
           label="Profil (cm)"
           value={profile}
           onChange={setProfile}
-          options={profiles.map((p) => ({ value: p, label: p.replace("x", " × ") }))}
+          options={profiles.map((item) => ({ value: item, label: item.replace("x", " × ") }))}
         />
         <Select
           label="Délka (cm)"
-          value={activeLen}
+          value={activeLength}
           onChange={setLength}
-          options={Object.keys(TRAMY[profile]).map((l) => ({ value: l, label: l }))}
+          options={Object.keys(TRAMY[profile]).map((item) => ({ value: item, label: item }))}
         />
       </div>
-      <PriceOut value={fmtCZK(price)} />
+      <PriceOut value={formatCurrency(price)} />
       <AddToCartButton
-        onClick={() => onAdd(`Trám ${profile.replace("x", "×")}×${activeLen} cm`)}
+        onClick={() =>
+          onAdd({
+            title: `Trám ${profile.replace("x", "×")}×${activeLength} cm`,
+            unitPrice: price,
+            details: [`Profil: ${profile.replace("x", " × ")} cm`, `Délka: ${activeLength} cm`],
+          })
+        }
       />
     </CardShell>
   );
 }
 
-function FosnyCard({ onAdd }: { onAdd: (n: string) => void }) {
+function FosnyCard({ onAdd }: { onAdd: ProductAddHandler }) {
   const profiles = Object.keys(FOSNY);
   const [profile, setProfile] = useState(profiles[0]);
   const [length, setLength] = useState("400");
-  const activeLen = FOSNY[profile][length] ? length : Object.keys(FOSNY[profile])[0];
-  const price = FOSNY[profile][activeLen];
+  const activeLength = FOSNY[profile][length] ? length : Object.keys(FOSNY[profile])[0];
+  const price = FOSNY[profile][activeLength];
 
   return (
     <CardShell title="Stavební fošny" subtitle="4×14 až 5×25 cm · 4 m / 5 m">
@@ -200,29 +190,35 @@ function FosnyCard({ onAdd }: { onAdd: (n: string) => void }) {
           label="Profil (cm)"
           value={profile}
           onChange={setProfile}
-          options={profiles.map((p) => ({ value: p, label: p.replace("x", " × ") }))}
+          options={profiles.map((item) => ({ value: item, label: item.replace("x", " × ") }))}
         />
         <Select
           label="Délka (cm)"
-          value={activeLen}
+          value={activeLength}
           onChange={setLength}
-          options={Object.keys(FOSNY[profile]).map((l) => ({ value: l, label: l }))}
+          options={Object.keys(FOSNY[profile]).map((item) => ({ value: item, label: item }))}
         />
       </div>
-      <PriceOut value={fmtCZK(price)} />
+      <PriceOut value={formatCurrency(price)} />
       <AddToCartButton
-        onClick={() => onAdd(`Fošna ${profile.replace("x", "×")}×${activeLen} cm`)}
+        onClick={() =>
+          onAdd({
+            title: `Fošna ${profile.replace("x", "×")}×${activeLength} cm`,
+            unitPrice: price,
+            details: [`Profil: ${profile.replace("x", " × ")} cm`, `Délka: ${activeLength} cm`],
+          })
+        }
       />
     </CardShell>
   );
 }
 
-function PrknaCard({ onAdd }: { onAdd: (n: string) => void }) {
+function PrknaCard({ onAdd }: { onAdd: ProductAddHandler }) {
   const widths = Object.keys(PRKNA);
   const [width, setWidth] = useState(widths[0]);
   const [length, setLength] = useState("300");
-  const activeLen = PRKNA[width][length] ? length : Object.keys(PRKNA[width])[0];
-  const price = PRKNA[width][activeLen];
+  const activeLength = PRKNA[width][length] ? length : Object.keys(PRKNA[width])[0];
+  const price = PRKNA[width][activeLength];
 
   return (
     <CardShell title="Stavební prkna" subtitle="Coulová · 8 až 20 cm × 300–500 cm">
@@ -231,22 +227,30 @@ function PrknaCard({ onAdd }: { onAdd: (n: string) => void }) {
           label="Šířka (cm)"
           value={width}
           onChange={setWidth}
-          options={widths.map((w) => ({ value: w, label: w + " cm" }))}
+          options={widths.map((item) => ({ value: item, label: `${item} cm` }))}
         />
         <Select
           label="Délka (cm)"
-          value={activeLen}
+          value={activeLength}
           onChange={setLength}
-          options={Object.keys(PRKNA[width]).map((l) => ({ value: l, label: l }))}
+          options={Object.keys(PRKNA[width]).map((item) => ({ value: item, label: item }))}
         />
       </div>
-      <PriceOut value={fmtCZK(price)} />
-      <AddToCartButton onClick={() => onAdd(`Prkno ${width}×${activeLen} cm`)} />
+      <PriceOut value={formatCurrency(price)} />
+      <AddToCartButton
+        onClick={() =>
+          onAdd({
+            title: `Prkno ${width}×${activeLength} cm`,
+            unitPrice: price,
+            details: [`Šířka: ${width} cm`, `Délka: ${activeLength} cm`],
+          })
+        }
+      />
     </CardShell>
   );
 }
 
-function LateCard({ onAdd }: { onAdd: (n: string) => void }) {
+function LateCard({ onAdd }: { onAdd: ProductAddHandler }) {
   const [length, setLength] = useState("3000");
   const price = LATE[length];
 
@@ -262,19 +266,25 @@ function LateCard({ onAdd }: { onAdd: (n: string) => void }) {
           { value: "5000", label: "5 m" },
         ]}
       />
-      <PriceOut value={fmtCZK(price)} />
-      <AddToCartButton onClick={() => onAdd(`Lať 60×40 mm / ${Number(length) / 1000} m`)} />
+      <PriceOut value={formatCurrency(price)} />
+      <AddToCartButton
+        onClick={() =>
+          onAdd({
+            title: `Lať 60×40 mm / ${Number(length) / 1000} m`,
+            unitPrice: price,
+            details: [`Profil: 60 × 40 mm`, `Délka: ${Number(length) / 1000} m`],
+          })
+        }
+      />
     </CardShell>
   );
 }
-
-/* ---------- Cartoon linocut wood illustrations (transparent PNGs) ---------- */
 
 function IsoWood({
   variant,
   className = "h-24 w-auto",
 }: {
-  variant: "tram" | "fosna" | "prkno" | "lat" | "kvh" | "rezak";
+  variant: "tram" | "fosna" | "prkno" | "lat";
   className?: string;
 }) {
   return (
@@ -289,7 +299,6 @@ function IsoWood({
   );
 }
 
-
 function CategoryCard({
   variant,
   title,
@@ -301,11 +310,11 @@ function CategoryCard({
 }) {
   return (
     <a
-      href="#produkty"
+      href="/#produkty"
       className="group flex flex-col items-start gap-3 rounded-2xl border border-border bg-white p-4 transition hover:-translate-y-0.5 hover:border-[color:var(--timber)] hover:shadow-lg sm:p-5"
     >
-      <div className="flex h-32 w-full items-center justify-center rounded-xl bg-[color:var(--sand)] p-3 sm:h-40">
-        <IsoWood variant={variant} className="max-h-full w-auto" />
+      <div className="flex h-32 w-full items-center justify-center rounded-xl bg-[color:var(--sand)]/80 p-3 sm:h-40">
+        <IsoWood variant={variant} className="max-h-[90%] w-auto" />
       </div>
 
       <div>
@@ -317,8 +326,6 @@ function CategoryCard({
     </a>
   );
 }
-
-/* ---------- Configurator ---------- */
 
 function ConfRow({
   label,
@@ -334,7 +341,7 @@ function ConfRow({
   min: number;
   max: number;
   step: number;
-  onChange: (v: number) => void;
+  onChange: (value: number) => void;
   suffix: string;
 }) {
   return (
@@ -354,7 +361,7 @@ function ConfRow({
           max={max}
           step={step}
           value={value}
-          onChange={(e) => onChange(Number(e.target.value))}
+          onChange={(event) => onChange(Number(event.target.value))}
           className="flex-1 accent-[#234A33]"
         />
         <input
@@ -363,7 +370,7 @@ function ConfRow({
           max={max}
           step={step}
           value={value}
-          onChange={(e) => onChange(Number(e.target.value))}
+          onChange={(event) => onChange(Number(event.target.value))}
           className="w-20 rounded-md border border-[#234A33]/25 bg-white px-2 py-1.5 text-sm font-semibold text-[#1E293B] focus:border-[#234A33] focus:outline-none focus:ring-2 focus:ring-[#234A33]/20"
         />
       </div>
@@ -371,17 +378,17 @@ function ConfRow({
   );
 }
 
-function Configurator({ onAdd }: { onAdd: (n: string) => void }) {
+function Configurator({ onAdd }: { onAdd: ConfigAddHandler }) {
   const [width, setWidth] = useState(100);
   const [height, setHeight] = useState(100);
   const [length, setLength] = useState(4);
-  const [qty, setQty] = useState(10);
+  const [quantity, setQuantity] = useState(10);
   const [species, setSpecies] = useState("Smrk");
 
   const { volume, total } = useMemo(() => {
-    const v = (width / 1000) * (height / 1000) * length * qty;
-    return { volume: v, total: Math.round(v * 8500) };
-  }, [width, height, length, qty]);
+    const calculatedVolume = (width / 1000) * (height / 1000) * length * quantity;
+    return { volume: calculatedVolume, total: Math.round(calculatedVolume * 8500) };
+  }, [height, length, quantity, width]);
 
   return (
     <div className="rounded-3xl border border-[#234A33]/20 bg-[#F1F5EE] p-6 shadow-sm sm:p-8">
@@ -393,26 +400,58 @@ function Configurator({ onAdd }: { onAdd: (n: string) => void }) {
 
       <div className="grid gap-5 lg:grid-cols-2">
         <div className="space-y-4">
-          <ConfRow label="Šířka" value={width} min={20} max={300} step={5} onChange={setWidth} suffix="mm" />
-          <ConfRow label="Výška" value={height} min={20} max={300} step={5} onChange={setHeight} suffix="mm" />
-          <ConfRow label="Délka" value={length} min={1} max={8} step={0.1} onChange={setLength} suffix="m" />
-          <ConfRow label="Počet kusů" value={qty} min={1} max={500} step={1} onChange={setQty} suffix="ks" />
+          <ConfRow
+            label="Šířka"
+            value={width}
+            min={20}
+            max={300}
+            step={5}
+            onChange={setWidth}
+            suffix="mm"
+          />
+          <ConfRow
+            label="Výška"
+            value={height}
+            min={20}
+            max={300}
+            step={5}
+            onChange={setHeight}
+            suffix="mm"
+          />
+          <ConfRow
+            label="Délka"
+            value={length}
+            min={1}
+            max={8}
+            step={0.1}
+            onChange={setLength}
+            suffix="m"
+          />
+          <ConfRow
+            label="Počet kusů"
+            value={quantity}
+            min={1}
+            max={500}
+            step={1}
+            onChange={setQuantity}
+            suffix="ks"
+          />
           <div>
             <span className="mb-1.5 block text-xs font-semibold uppercase tracking-wide text-muted-foreground">
               Dřevina
             </span>
             <div className="grid grid-cols-3 gap-2 rounded-xl bg-white/70 p-1">
-              {["Smrk", "Borovice", "Modřín"].map((s) => (
+              {["Smrk", "Borovice", "Modřín"].map((option) => (
                 <button
-                  key={s}
-                  onClick={() => setSpecies(s)}
+                  key={option}
+                  onClick={() => setSpecies(option)}
                   className={`rounded-lg px-3 py-2 text-sm font-semibold transition ${
-                    species === s
+                    species === option
                       ? "bg-[#234A33] text-white shadow"
                       : "bg-transparent text-[#1E293B] hover:bg-white"
                   }`}
                 >
-                  {s}
+                  {option}
                 </button>
               ))}
             </div>
@@ -426,41 +465,55 @@ function Configurator({ onAdd }: { onAdd: (n: string) => void }) {
                 Objem
               </div>
               <div className="text-2xl font-black tracking-tight text-[#1E293B]">
-                {volume.toFixed(3)} m³
+                {volume.toFixed(3).replace(".", ",")} m³
               </div>
             </div>
             <div>
               <div className="text-xs font-semibold uppercase tracking-wide text-muted-foreground">
                 Sazba
               </div>
-              <div className="text-sm font-semibold text-[#1E293B]">
-                8 500 Kč / m³ · {species}
-              </div>
+              <div className="text-sm font-semibold text-[#1E293B]">8 500 Kč / m³ · {species}</div>
             </div>
             <div className="rounded-xl bg-[#EAF0E4] p-4">
               <div className="text-xs font-semibold uppercase tracking-wide text-muted-foreground">
                 Celková cena
               </div>
               <div className="mt-1 text-4xl font-black tracking-tight text-[#234A33]">
-                {new Intl.NumberFormat("cs-CZ").format(total)} Kč
+                {formatCurrency(total)}
               </div>
               <div className="text-xs text-muted-foreground">s DPH</div>
             </div>
           </div>
           <button
             onClick={() =>
-              onAdd(
-                `Atypické řezivo ${width}×${height} mm × ${length} m · ${qty} ks · ${species}`
-              )
+              onAdd({
+                widthMm: width,
+                heightMm: height,
+                lengthM: length,
+                quantity,
+                species,
+                volumeM3: volume,
+                totalPrice: total,
+              })
             }
             className="mt-6 inline-flex w-full items-center justify-center gap-2 rounded-lg bg-[#234A33] px-4 py-3.5 text-sm font-bold text-white shadow-sm transition hover:bg-[#1A3826]"
           >
-            <svg viewBox="0 0 24 24" className="h-4 w-4" fill="none" stroke="currentColor" strokeWidth="2.2">
-              <path d="M3 4h2l2.4 12.5a2 2 0 0 0 2 1.5h8.2a2 2 0 0 0 2-1.6L21 8H6" strokeLinecap="round" strokeLinejoin="round" />
+            <svg
+              viewBox="0 0 24 24"
+              className="h-4 w-4"
+              fill="none"
+              stroke="currentColor"
+              strokeWidth="2.2"
+            >
+              <path
+                d="M3 4h2l2.4 12.5a2 2 0 0 0 2 1.5h8.2a2 2 0 0 0 2-1.6L21 8H6"
+                strokeLinecap="round"
+                strokeLinejoin="round"
+              />
               <circle cx="10" cy="21" r="1.4" fill="currentColor" />
               <circle cx="18" cy="21" r="1.4" fill="currentColor" />
             </svg>
-            Přidat do poptávky / košíku
+            Přidat do poptávky
           </button>
         </div>
       </div>
@@ -468,212 +521,59 @@ function Configurator({ onAdd }: { onAdd: (n: string) => void }) {
   );
 }
 
-/* ---------- Icons ---------- */
-
 function IconCheck() {
   return (
-    <svg viewBox="0 0 24 24" className="h-5 w-5" fill="none" stroke="currentColor" strokeWidth="2.5">
+    <svg
+      viewBox="0 0 24 24"
+      className="h-5 w-5"
+      fill="none"
+      stroke="currentColor"
+      strokeWidth="2.5"
+    >
       <path d="M4 12l5 5L20 6" strokeLinecap="round" strokeLinejoin="round" />
     </svg>
   );
 }
 
-/* ---------- Page ---------- */
-
 function Index() {
-  const [cart, setCart] = useState<string[]>([]);
-  const [menuOpen, setMenuOpen] = useState(false);
-  const [psc, setPsc] = useState("");
-  const [pscQuote, setPscQuote] = useState<string | null>(null);
-  const add = (name: string) => setCart((c) => [...c, name]);
-
-  const nav = [
-    { l: "Obchod", h: "#produkty" },
-    { l: "KVH Hranoly", h: "#kvh" },
-    { l: "Paliva", h: "#produkty" },
-    { l: "Řezivo na míru", h: "#konfigurator" },
-    { l: "Doprava", h: "#doprava" },
-    { l: "O nás", h: "#footer" },
-    { l: "Kontakt", h: "#kontakt" },
-  ];
-
-  const calcShipping = () => {
-    const p = psc.replace(/\s/g, "");
-    if (!/^\d{5}$/.test(p)) {
-      setPscQuote("Zadejte platné PSČ (5 číslic).");
-      return;
-    }
-    const first = Number(p[0]);
-    const price = 800 + first * 180;
-    setPscQuote(`Orientační cena dopravy: ${new Intl.NumberFormat("cs-CZ").format(price)} Kč`);
-  };
+  const { addStandardItem, addCustomItem } = useCart();
 
   return (
-    <div className="min-h-screen bg-background text-foreground">
-      {/* Topbar */}
-      <div className="bg-[color:var(--slate-ink)] text-white">
-        <div className="mx-auto flex max-w-7xl flex-col gap-1 px-4 py-2 text-xs sm:flex-row sm:items-center sm:justify-between">
-          <div className="flex flex-wrap items-center gap-x-4 gap-y-1">
-            <a href="tel:+420736697480" className="hover:text-[color:var(--timber)]">
-              Tel: +420 736 697 480
-            </a>
-            <span className="hidden text-white/30 sm:inline">|</span>
-            <a href="mailto:info@dipistav.cz" className="hover:text-[color:var(--timber)]">
-              info@dipistav.cz
-            </a>
-          </div>
-          <div className="text-white/80">
-            Osobní odběr &amp; Vlastní doprava s autojeřábem
-          </div>
-        </div>
-      </div>
-
-      {/* Header */}
-      <header className="sticky top-0 z-40 border-b border-border bg-white/95 backdrop-blur">
-        <div className="mx-auto flex max-w-7xl items-center justify-between gap-4 px-4 py-2">
-          <a href="/" className="flex min-w-0 items-center gap-2">
-            <img
-              src={logoAsset.url}
-              alt="DIPISTAV"
-              style={{ background: "transparent" }}
-              className="h-16 md:h-24 w-auto shrink-0 object-contain"
-            />
-          </a>
-
-          <nav className="hidden xl:flex items-center gap-6">
-            {nav.map((n) => (
-              <a
-                key={n.l}
-                href={n.h}
-                className="text-sm font-semibold text-foreground/80 transition hover:text-[color:var(--timber)]"
-              >
-                {n.l}
-              </a>
-            ))}
-          </nav>
-
-          <div className="flex items-center gap-2">
-            <button
-              aria-label="Košík"
-              className="relative inline-flex h-11 w-11 items-center justify-center rounded-full bg-[color:var(--timber)] text-white shadow-sm transition hover:bg-[color:var(--timber-dark)]"
-            >
-              <svg viewBox="0 0 24 24" fill="none" className="h-5 w-5" stroke="currentColor" strokeWidth="2">
-                <path d="M3 4h2l2.4 12.5a2 2 0 0 0 2 1.5h8.2a2 2 0 0 0 2-1.6L21 8H6" strokeLinecap="round" strokeLinejoin="round" />
-                <circle cx="10" cy="21" r="1.4" fill="currentColor" />
-                <circle cx="18" cy="21" r="1.4" fill="currentColor" />
-              </svg>
-              {cart.length > 0 && (
-                <span className="absolute -right-1 -top-1 grid h-5 min-w-5 place-items-center rounded-full bg-[color:var(--forest)] px-1 text-[10px] font-black text-white">
-                  {cart.length}
-                </span>
-              )}
-            </button>
-            <button
-              aria-label="Menu"
-              onClick={() => setMenuOpen(true)}
-              className="inline-flex h-11 w-11 items-center justify-center rounded-full border border-border bg-white text-foreground xl:hidden"
-            >
-              <svg viewBox="0 0 24 24" className="h-5 w-5" fill="none" stroke="currentColor" strokeWidth="2">
-                <path d="M4 7h16M4 12h16M4 17h16" strokeLinecap="round" />
-              </svg>
-            </button>
-          </div>
-        </div>
-      </header>
-
-      {/* Mobile drawer */}
-      {menuOpen && (
-        <div className="fixed inset-0 z-50 xl:hidden" role="dialog">
-          <div
-            className="absolute inset-0 bg-black/50 backdrop-blur-sm"
-            onClick={() => setMenuOpen(false)}
-          />
-          <aside className="absolute right-0 top-0 flex h-full w-[86%] max-w-sm flex-col bg-white shadow-2xl">
-            <div className="flex items-center justify-between border-b border-border px-5 py-4">
-              <img
-                src={logoAsset.url}
-                alt="DIPISTAV"
-                className="h-11 w-auto bg-transparent object-contain"
-              />
-              <button
-                aria-label="Zavřít"
-                onClick={() => setMenuOpen(false)}
-                className="inline-flex h-10 w-10 items-center justify-center rounded-full border border-border text-foreground"
-              >
-                <svg viewBox="0 0 24 24" className="h-5 w-5" fill="none" stroke="currentColor" strokeWidth="2">
-                  <path d="M6 6l12 12M18 6l-12 12" strokeLinecap="round" />
-                </svg>
-              </button>
-            </div>
-            <nav className="flex-1 overflow-y-auto px-3 py-4">
-              {nav.map((n) => (
-                <a
-                  key={n.l}
-                  href={n.h}
-                  onClick={() => setMenuOpen(false)}
-                  className="block rounded-lg px-4 py-3 text-base font-semibold text-foreground hover:bg-[color:var(--sand)] hover:text-[color:var(--forest)]"
-                >
-                  {n.l}
-                </a>
-              ))}
-            </nav>
-            <div className="border-t border-border p-5">
-              <a
-                href="tel:+420736697480"
-                className="flex w-full items-center justify-center rounded-lg bg-[color:var(--forest)] px-4 py-3 text-sm font-bold text-white"
-              >
-                Volejte +420 736 697 480
-              </a>
-              <a
-                href="mailto:info@dipistav.cz"
-                className="mt-2 block text-center text-sm font-semibold text-[color:var(--forest)]"
-              >
-                info@dipistav.cz
-              </a>
-            </div>
-          </aside>
-        </div>
-      )}
-
-      {/* Hero */}
+    <SiteShell>
       <section className="relative overflow-hidden">
-        {/* Zoomed & blurred wood pattern */}
         <div
           aria-hidden
-          className="absolute inset-0 scale-110 blur-[2px] opacity-30 bg-cover bg-center"
-          style={{ backgroundImage: `url(${woodPattern.url})` }}
+          className="absolute inset-0 scale-[1.22] bg-cover bg-center opacity-34 blur-[5px]"
+          style={{ backgroundImage: "url('/images/woodpatern.jpg')" }}
         />
-        {/* Warm sand gradient overlay for readability */}
         <div
           aria-hidden
-          className="absolute inset-0 bg-gradient-to-b from-[#F5F2E9]/70 via-[#F5F2E9]/80 to-[#F5F2E9]/90"
+          className="absolute inset-0 bg-[linear-gradient(180deg,rgba(245,242,233,0.72),rgba(245,242,233,0.83)_50%,rgba(245,242,233,0.96))]"
         />
-        {/* Seamless fade into Categories sand background */}
         <div
           aria-hidden
-          className="pointer-events-none absolute inset-x-0 bottom-0 h-40 bg-gradient-to-b from-transparent via-[#F5F2E9]/60 to-[#F5F2E9]"
+          className="pointer-events-none absolute inset-x-0 bottom-0 h-48 bg-gradient-to-b from-transparent via-[#F5F2E9]/72 to-[#F5F2E9]"
         />
 
         <div className="relative mx-auto max-w-5xl px-4 py-16 sm:py-20 lg:py-28">
           <div className="text-center">
             <h1 className="text-4xl font-black leading-[1.05] tracking-tight text-[#1E293B] sm:text-5xl lg:text-6xl">
-              Kvalitní stavební{" "}
-              <span className="text-[#A86D38]">řezivo a paliva</span>{" "}
-              přímo z pily
+              Kvalitní stavební <span className="text-[#A86D38]">řezivo a paliva</span> přímo z pily
             </h1>
             <p className="mx-auto mt-5 max-w-2xl text-base text-[#1E293B]/75 sm:text-lg">
-              Standardní profily skladem. Atypická výroba na míru do délky 8 metrů.
+              Standardní profily skladem. Atypická výroba na míru do délky 8 metrů a vlastní doprava
+              s hydraulickou rukou.
             </p>
 
             <div className="mt-8 flex flex-col items-center justify-center gap-3 sm:flex-row">
               <a
-                href="#produkty"
+                href="/#produkty"
                 className="inline-flex items-center justify-center rounded-lg bg-[#A86D38] px-7 py-3.5 text-sm font-bold text-white shadow-md transition hover:bg-[#8F5927]"
               >
                 Prohlédnout obchod
               </a>
               <a
-                href="#konfigurator"
+                href="/#konfigurator"
                 className="inline-flex items-center justify-center rounded-lg bg-[#234A33] px-7 py-3.5 text-sm font-bold text-white shadow-md transition hover:bg-[#1a3826]"
               >
                 Konfigurátor na míru
@@ -681,13 +581,15 @@ function Index() {
             </div>
 
             <div className="mt-8 flex flex-wrap justify-center gap-2">
-              {["Délky až do 8 m", "Platba kartou i dobírka", "Vlastní doprava"].map((b) => (
+              {["Délky až do 8 m", "Platba kartou i dobírka", "Vlastní doprava"].map((item) => (
                 <span
-                  key={b}
+                  key={item}
                   className="inline-flex items-center gap-1.5 rounded-full border border-[#A86D38]/30 bg-white/90 px-3.5 py-1.5 text-xs font-semibold text-[#1E293B] shadow-sm"
                 >
-                  <span className="text-[#234A33]"><IconCheck /></span>
-                  {b}
+                  <span className="text-[#234A33]">
+                    <IconCheck />
+                  </span>
+                  {item}
                 </span>
               ))}
             </div>
@@ -695,12 +597,17 @@ function Index() {
         </div>
       </section>
 
-
-      {/* Categories */}
-      <section className="mx-auto max-w-7xl px-4 pb-4">
+      <section className="relative mx-auto max-w-7xl px-4 pb-4">
+        <div
+          aria-hidden
+          className="pointer-events-none absolute inset-x-4 -top-14 h-20 rounded-full bg-[#F5F2E9] blur-2xl"
+        />
         <div className="mb-5 flex items-end justify-between">
           <h2 className="text-2xl font-black tracking-tight sm:text-3xl">Kategorie</h2>
-          <a href="#produkty" className="text-sm font-semibold text-[color:var(--forest)] hover:underline">
+          <a
+            href="/#produkty"
+            className="text-sm font-semibold text-[color:var(--forest)] hover:underline"
+          >
             Sortiment →
           </a>
         </div>
@@ -712,32 +619,30 @@ function Index() {
         </div>
       </section>
 
-      {/* Products */}
       <section id="produkty" className="mx-auto max-w-7xl px-4 py-12 sm:py-16">
         <div className="mb-6">
           <h2 className="text-2xl font-black tracking-tight sm:text-3xl">
             Stavební řezivo – standardní profily
           </h2>
           <p className="mt-2 text-sm text-muted-foreground">
-            Vyberte profil a délku. Cena se přepočítá okamžitě.
+            Vyberte profil a délku. Cena se přepočítá okamžitě a položku můžete hned přidat do
+            košíku.
           </p>
         </div>
 
         <div className="grid gap-4 sm:gap-5 md:grid-cols-2 xl:grid-cols-4">
-          <TramyCard onAdd={add} />
-          <FosnyCard onAdd={add} />
-          <PrknaCard onAdd={add} />
-          <LateCard onAdd={add} />
+          <TramyCard onAdd={addStandardItem} />
+          <FosnyCard onAdd={addStandardItem} />
+          <PrknaCard onAdd={addStandardItem} />
+          <LateCard onAdd={addStandardItem} />
         </div>
       </section>
 
-      {/* Configurator */}
       <section id="konfigurator" className="mx-auto max-w-7xl px-4 pb-12 sm:pb-16">
-        <Configurator onAdd={add} />
+        <Configurator onAdd={addCustomItem} />
       </section>
 
-      {/* KVH */}
-      <section id="kvh" className="bg-white">
+      <section className="bg-white">
         <div className="mx-auto max-w-7xl px-4 py-12 sm:py-16">
           <div className="mb-8 max-w-2xl">
             <h2 className="text-2xl font-black tracking-tight sm:text-3xl">
@@ -747,85 +652,90 @@ function Index() {
           <div className="grid gap-4 md:grid-cols-3">
             {[
               {
-                t: "Vysušeno na 15 %",
-                d: "Tvarová stálost a minimální kroucení – ideální pro nosné konstrukce.",
+                title: "Vysušeno na 15 %",
+                description: "Tvarová stálost a minimální kroucení – ideální pro nosné konstrukce.",
               },
               {
-                t: "Hoblovaný povrch",
-                d: "Hladké hrany a stěny, bez nutnosti dalšího opracování.",
+                title: "Hoblovaný povrch",
+                description: "Hladké hrany a stěny bez nutnosti dalšího opracování.",
               },
               {
-                t: "Certifikované dřevo",
-                d: "Ideální pro pergoly, garážová stání a dřevostavby.",
+                title: "Certifikované dřevo",
+                description: "Vhodné pro pergoly, garážová stání i moderní dřevostavby.",
               },
-            ].map((f) => (
+            ].map((item) => (
               <div
-                key={f.t}
+                key={item.title}
                 className="rounded-2xl border border-border bg-[color:var(--sand)] p-6"
               >
                 <div className="inline-flex h-10 w-10 items-center justify-center rounded-full bg-[color:var(--timber)] text-white">
                   <IconCheck />
                 </div>
                 <h3 className="mt-4 text-lg font-black tracking-tight text-foreground">
-                  {f.t}
+                  {item.title}
                 </h3>
-                <p className="mt-1 text-sm text-muted-foreground">{f.d}</p>
+                <p className="mt-1 text-sm text-muted-foreground">{item.description}</p>
               </div>
             ))}
           </div>
         </div>
       </section>
 
-      {/* Shipping */}
       <section id="doprava" className="mx-auto max-w-7xl px-4 py-12 sm:py-16">
-        <div className="grid gap-6 rounded-3xl border border-border bg-white p-6 shadow-sm sm:p-10 lg:grid-cols-[1.1fr_1fr] lg:items-center">
-          <div>
-            <h2 className="text-2xl font-black tracking-tight text-[#1E293B] sm:text-3xl">
-              Doprava podle PSČ
-            </h2>
-            <p className="mt-2 text-sm text-muted-foreground">
-              Vlastní doprava pro pohodlnou vykládku přímo na stavbě.
-            </p>
-            <div className="mt-5 flex flex-col gap-2 sm:flex-row">
-              <input
-                inputMode="numeric"
-                placeholder="Zadejte vaše PSČ"
-                value={psc}
-                onChange={(e) => setPsc(e.target.value)}
-                className="w-full rounded-lg border border-amber-200 bg-white px-4 py-3 text-sm font-semibold text-[#1E293B] focus:border-[#A86D38] focus:outline-none focus:ring-2 focus:ring-[#A86D38]/20 sm:flex-1"
-              />
-              <button
-                onClick={calcShipping}
-                className="rounded-lg bg-[#A86D38] px-5 py-3 text-sm font-bold text-white shadow-sm transition hover:bg-[#8F5927]"
-              >
-                Spočítat dopravu
-              </button>
-            </div>
-            {pscQuote && (
-              <div className="mt-4 rounded-lg bg-[#F5F2E9] px-4 py-3 text-sm font-bold text-[#234A33]">
-                {pscQuote}
+        <div className="grid gap-6 rounded-[2rem] border border-[#A86D38]/15 bg-white p-6 shadow-sm sm:p-10 lg:grid-cols-[1.05fr_0.95fr]">
+          <div className="space-y-5">
+            <div>
+              <div className="inline-flex rounded-full bg-[#F5F2E9] px-3 py-1 text-[11px] font-bold uppercase tracking-[0.18em] text-[#A86D38]">
+                Doprava a vykládka
               </div>
-            )}
-          </div>
-          <div className="flex flex-col gap-3">
-            {["Platba kartou online", "Dobírka při převzetí", "Hotově na prodejně"].map(
-              (b) => (
+              <h2 className="mt-3 text-2xl font-black tracking-tight text-[#1E293B] sm:text-3xl">
+                Doručíme řezivo až na stavbu
+              </h2>
+              <p className="mt-2 text-sm text-[#1E293B]/70 sm:text-base">
+                Vlastní autojeřáb DIPISTAV zvládne pohodlnou vykládku i tam, kde je potřeba
+                přesnost, rychlost a jistota.
+              </p>
+            </div>
+
+            <div className="grid gap-3 sm:grid-cols-2">
+              {[
+                "Složení hydraulickou rukou přímo na místě",
+                "Objednávky skladového i atypického řeziva",
+                "Osobní odběr zdarma přímo na pile",
+                "Rychlá domluva termínu po telefonu",
+              ].map((item) => (
                 <div
-                  key={b}
-                  className="flex items-center gap-3 whitespace-nowrap rounded-xl border border-amber-200/60 bg-[#F5F2E9] px-4 py-3 text-sm font-semibold text-[#1E293B]"
+                  key={item}
+                  className="flex items-center gap-3 rounded-2xl border border-[#A86D38]/10 bg-[#F5F2E9]/70 px-4 py-3 text-sm font-semibold text-[#1E293B]"
                 >
                   <span className="inline-flex h-8 w-8 shrink-0 items-center justify-center rounded-full bg-white text-[#A86D38]">
                     <IconCheck />
                   </span>
-                  {b}
+                  {item}
                 </div>
-              )
-            )}
+              ))}
+            </div>
+
+            <div className="flex flex-col gap-3 sm:flex-row">
+              <a
+                href="/doprava"
+                className="inline-flex items-center justify-center rounded-2xl bg-[#234A33] px-6 py-3 text-sm font-bold text-white transition hover:bg-[#1A3826]"
+              >
+                Zobrazit možnosti dopravy
+              </a>
+              <a
+                href={COMPANY_PHONE_HREF}
+                className="inline-flex items-center justify-center rounded-2xl border border-[#234A33]/15 px-6 py-3 text-sm font-bold text-[#234A33] transition hover:bg-[#F1F5EE]"
+              >
+                Zavolat pro termín
+              </a>
+            </div>
           </div>
+
+          <ShippingCalculator />
         </div>
       </section>
 
-      {/* Contact banner */}
       <section id="kontakt" className="bg-[color:var(--forest)] text-white">
         <div className="mx-auto grid max-w-7xl gap-6 px-4 py-10 sm:py-14 md:grid-cols-[1fr_auto] md:items-center">
           <div>
@@ -833,83 +743,25 @@ function Index() {
               Potřebujete poradit s výpočtem nebo dopravou?
             </h2>
             <p className="mt-2 text-white/80">
-              Ozvěte se – pomůžeme s výběrem řeziva i s naceněním dopravy.
+              Ozvěte se – pomůžeme s výběrem řeziva, spočítáme orientační objem i naceníme rozvoz.
             </p>
           </div>
           <div className="flex flex-col gap-3 sm:flex-row md:flex-col lg:flex-row">
             <a
-              href="tel:+420736697480"
-              className="inline-flex items-center justify-center rounded-lg bg-[color:var(--timber)] px-6 py-3.5 text-sm font-bold text-white shadow-sm transition hover:bg-[color:var(--timber-dark)]"
+              href={COMPANY_PHONE_HREF}
+              className="inline-flex items-center justify-center rounded-lg bg-[color:var(--timber)] px-6 py-3.5 text-sm font-bold text-white shadow-sm transition hover:bg-[#8a5528]"
             >
-              Volejte +420 736 697 480
+              Volejte {COMPANY_PHONE}
             </a>
             <a
-              href="mailto:info@dipistav.cz"
+              href={COMPANY_EMAIL_HREF}
               className="inline-flex items-center justify-center rounded-lg border-2 border-white/40 px-6 py-3 text-sm font-semibold text-white transition hover:bg-white/10"
             >
-              E-mail info@dipistav.cz
+              Napsat e-mail
             </a>
           </div>
         </div>
       </section>
-
-      {/* Footer */}
-      <footer id="footer" className="bg-[color:var(--slate-ink)] text-white/80">
-        <div className="mx-auto grid max-w-7xl gap-8 px-4 py-12 sm:grid-cols-2 lg:grid-cols-4">
-          <div>
-            <img
-              src={logoAsset.url}
-              alt="DIPISTAV"
-              style={{ background: "transparent" }}
-              className="h-12 w-auto object-contain"
-            />
-            <p className="mt-3 text-sm text-white/70">
-              Pila a prodej dřeva. Stavební řezivo, KVH hranoly, paliva a řezivo
-              na míru přímo z pily.
-            </p>
-          </div>
-          <div>
-            <div className="mb-3 text-sm font-black uppercase tracking-wide text-white">
-              Kontakt
-            </div>
-            <ul className="space-y-1.5 text-sm">
-              <li>Tel: +420 736 697 480</li>
-              <li>info@dipistav.cz</li>
-              <li>IČO: 00000000</li>
-              <li>DIČ: CZ00000000</li>
-            </ul>
-          </div>
-          <div>
-            <div className="mb-3 text-sm font-black uppercase tracking-wide text-white">
-              Otevírací doba
-            </div>
-            <ul className="space-y-1.5 text-sm">
-              <li>Po–Pá: 7:00 – 16:00</li>
-              <li>So: 8:00 – 12:00</li>
-              <li>Ne: zavřeno</li>
-            </ul>
-          </div>
-          <div>
-            <div className="mb-3 text-sm font-black uppercase tracking-wide text-white">
-              Navigace
-            </div>
-            <ul className="space-y-1.5 text-sm">
-              {nav.map((n) => (
-                <li key={n.l}>
-                  <a href={n.h} className="hover:text-[color:var(--timber)]">
-                    {n.l}
-                  </a>
-                </li>
-              ))}
-            </ul>
-          </div>
-        </div>
-        <div className="border-t border-white/10">
-          <div className="mx-auto max-w-7xl px-4 py-4 text-xs text-white/50">
-            © {new Date().getFullYear()} DIPISTAV – Pila a prodej dřeva. Všechna práva vyhrazena.
-          </div>
-        </div>
-      </footer>
-    </div>
+    </SiteShell>
   );
 }
