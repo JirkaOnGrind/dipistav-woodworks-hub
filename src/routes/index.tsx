@@ -549,11 +549,11 @@ function Index() {
         />
         <div
           aria-hidden
-          className="absolute inset-0 bg-[linear-gradient(180deg,rgba(245,242,233,0.66),rgba(245,242,233,0.78)_50%,rgba(245,242,233,0.92))]"
+          className="absolute inset-0 bg-[linear-gradient(180deg,rgba(245,242,233,0.66),rgba(245,242,233,0.78)_50%,rgba(245,242,233,1))]"
         />
         <div
           aria-hidden
-          className="pointer-events-none absolute inset-x-0 bottom-0 h-48 bg-gradient-to-b from-transparent via-[#F5F2E9]/72 to-[#F5F2E9]"
+          className="pointer-events-none absolute inset-x-0 bottom-0 h-48 bg-gradient-to-b from-transparent via-[#F5F2E9] via-35% to-[#F5F2E9]"
         />
 
         <div className="relative mx-auto max-w-5xl px-4 py-10 sm:py-20 lg:py-28">
@@ -569,13 +569,13 @@ function Index() {
             <div className="mx-auto mt-5 grid w-full max-w-xs grid-cols-2 gap-2 sm:mt-8 sm:flex sm:max-w-none sm:flex-row sm:items-center sm:justify-center sm:gap-3">
               <a
                 href="/#produkty"
-                className="inline-flex items-center justify-center rounded-lg bg-[#A86D38] px-3 py-2.5 text-xs font-bold text-white shadow-md transition hover:bg-[#8F5927] sm:px-7 sm:py-3.5 sm:text-sm"
+                className="inline-flex items-center justify-center rounded-lg bg-[#A86D38] px-3 py-2.5 text-xs font-bold text-white transition hover:bg-[#8F5927] sm:px-7 sm:py-3.5 sm:text-sm"
               >
                 Prohlédnout obchod
               </a>
               <a
                 href="/#konfigurator"
-                className="inline-flex items-center justify-center rounded-lg bg-[#234A33] px-3 py-2.5 text-xs font-bold text-white shadow-md transition hover:bg-[#1a3826] sm:px-7 sm:py-3.5 sm:text-sm"
+                className="inline-flex items-center justify-center rounded-lg bg-[#234A33] px-3 py-2.5 text-xs font-bold text-white transition hover:bg-[#1a3826] sm:px-7 sm:py-3.5 sm:text-sm"
               >
                 Konfigurátor na míru
               </a>
@@ -587,10 +587,6 @@ function Index() {
       </section>
 
       <section className="relative mx-auto max-w-7xl px-4 pb-4">
-        <div
-          aria-hidden
-          className="pointer-events-none absolute inset-x-4 -top-14 h-20 rounded-full bg-[#F5F2E9] blur-2xl"
-        />
         <div className="mb-5 flex items-end justify-between">
           <h2 className="text-2xl font-black tracking-tight sm:text-3xl">Kategorie</h2>
           <a
