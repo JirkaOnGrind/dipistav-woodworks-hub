@@ -385,7 +385,7 @@ function Configurator({ onAdd }: { onAdd: (n: string) => void }) {
   return (
     <div className="rounded-3xl border border-border bg-card p-6 shadow-sm sm:p-8">
       <div className="mb-6">
-        <div className="inline-flex rounded-full bg-[color:var(--forest)]/10 px-3 py-1 text-xs font-semibold uppercase tracking-wide text-[color:var(--forest)]">
+        <div className="inline-flex rounded-full bg-[color:var(--timber)]/15 px-3 py-1 text-xs font-semibold uppercase tracking-wide text-[color:var(--timber-dark)]">
           Konfigurátor
         </div>
         <h2 className="mt-2 text-2xl font-black tracking-tight text-foreground sm:text-3xl">
@@ -532,8 +532,7 @@ function Index() {
             <img
               src={logoAsset.url}
               alt="DIPISTAV"
-              style={{ background: "transparent" }}
-              className="h-10 w-auto shrink-0 object-contain sm:h-12"
+              className="h-11 w-auto shrink-0 bg-transparent object-contain md:h-14"
             />
           </a>
 
@@ -542,7 +541,7 @@ function Index() {
               <a
                 key={n.l}
                 href={n.h}
-                className="text-sm font-semibold text-foreground/80 transition hover:text-[color:var(--forest)]"
+                className="text-sm font-semibold text-foreground/80 transition hover:text-[color:var(--timber)]"
               >
                 {n.l}
               </a>
@@ -552,7 +551,7 @@ function Index() {
           <div className="flex items-center gap-2">
             <button
               aria-label="Košík"
-              className="relative inline-flex h-11 w-11 items-center justify-center rounded-full bg-[color:var(--forest)] text-white shadow-sm transition hover:bg-[color:var(--forest-dark)]"
+              className="relative inline-flex h-11 w-11 items-center justify-center rounded-full bg-[color:var(--timber)] text-white shadow-sm transition hover:bg-[color:var(--timber-dark)]"
             >
               <svg viewBox="0 0 24 24" fill="none" className="h-5 w-5" stroke="currentColor" strokeWidth="2">
                 <path d="M3 4h2l2.4 12.5a2 2 0 0 0 2 1.5h8.2a2 2 0 0 0 2-1.6L21 8H6" strokeLinecap="round" strokeLinejoin="round" />
@@ -560,7 +559,7 @@ function Index() {
                 <circle cx="18" cy="21" r="1.4" fill="currentColor" />
               </svg>
               {cart.length > 0 && (
-                <span className="absolute -right-1 -top-1 grid h-5 min-w-5 place-items-center rounded-full bg-[color:var(--timber)] px-1 text-[10px] font-black text-white">
+                <span className="absolute -right-1 -top-1 grid h-5 min-w-5 place-items-center rounded-full bg-[color:var(--forest)] px-1 text-[10px] font-black text-white">
                   {cart.length}
                 </span>
               )}
@@ -590,8 +589,7 @@ function Index() {
               <img
                 src={logoAsset.url}
                 alt="DIPISTAV"
-                style={{ background: "transparent" }}
-                className="h-9 w-auto object-contain"
+                className="h-11 w-auto bg-transparent object-contain"
               />
               <button
                 aria-label="Zavřít"
@@ -635,67 +633,68 @@ function Index() {
 
       {/* Hero */}
       <section className="relative overflow-hidden">
-        <div className="mx-auto grid max-w-7xl gap-10 px-4 py-12 sm:py-16 lg:grid-cols-2 lg:items-center lg:py-20">
-          <div>
-            <div className="inline-flex items-center gap-2 rounded-full border border-[color:var(--forest)]/20 bg-white px-3 py-1 text-xs font-semibold text-[color:var(--forest)]">
-              <span className="h-1.5 w-1.5 rounded-full bg-[color:var(--forest)]" />
+        {/* Wood grain background */}
+        <div
+          aria-hidden
+          className="absolute inset-0"
+          style={{
+            backgroundColor: "#C48B47",
+            backgroundImage: `
+              repeating-linear-gradient(92deg, rgba(74,42,15,0.18) 0 2px, rgba(74,42,15,0) 2px 14px),
+              repeating-linear-gradient(88deg, rgba(255,240,210,0.10) 0 1px, rgba(255,240,210,0) 1px 9px),
+              radial-gradient(1200px 400px at 20% 30%, rgba(168,109,56,0.85), rgba(168,109,56,0) 60%),
+              radial-gradient(900px 500px at 85% 70%, rgba(139,80,35,0.75), rgba(139,80,35,0) 65%),
+              linear-gradient(135deg, #B57A3E 0%, #A86D38 50%, #8F5927 100%)
+            `,
+            filter: "blur(0.3px)",
+          }}
+        />
+        <div
+          aria-hidden
+          className="absolute inset-0 backdrop-blur-md"
+          style={{ backgroundColor: "rgba(245, 242, 233, 0.78)" }}
+        />
+
+        <div className="relative mx-auto max-w-5xl px-4 py-16 sm:py-20 lg:py-28">
+          <div className="text-center">
+            <div className="inline-flex items-center gap-2 rounded-full bg-[color:var(--timber)] px-4 py-1.5 text-xs font-bold uppercase tracking-wider text-white shadow-sm">
+              <span className="h-1.5 w-1.5 rounded-full bg-white" />
               Pila &amp; prodej dřeva
             </div>
-            <h1 className="mt-4 text-4xl font-black leading-[1.05] tracking-tight text-foreground sm:text-5xl lg:text-6xl">
-              Kvalitní stavební řezivo a paliva{" "}
-              <span className="text-[color:var(--forest)]">přímo z pily</span>
+            <h1 className="mt-6 text-4xl font-black leading-[1.05] tracking-tight text-[color:var(--slate-ink)] sm:text-5xl lg:text-6xl">
+              Kvalitní stavební{" "}
+              <span className="text-[color:var(--timber-dark)]">řezivo a paliva</span>{" "}
+              přímo z pily
             </h1>
-            <p className="mt-5 max-w-xl text-base text-muted-foreground sm:text-lg">
+            <p className="mx-auto mt-5 max-w-2xl text-base text-[color:var(--slate-ink)]/75 sm:text-lg">
               Standardní profily skladem. Atypická výroba na míru do délky 8 metrů.
             </p>
-            <div className="mt-7 flex flex-col gap-3 sm:flex-row">
+
+            <div className="mt-8 flex flex-col items-center justify-center gap-3 sm:flex-row">
               <a
                 href="#produkty"
-                className="inline-flex items-center justify-center rounded-lg bg-[color:var(--forest)] px-6 py-3.5 text-sm font-semibold text-white shadow-sm transition hover:bg-[color:var(--forest-dark)]"
+                className="inline-flex items-center justify-center rounded-lg bg-[color:var(--timber)] px-7 py-3.5 text-sm font-bold text-white shadow-md transition hover:bg-[color:var(--timber-dark)]"
               >
                 Prohlédnout obchod
               </a>
               <a
                 href="#konfigurator"
-                className="inline-flex items-center justify-center rounded-lg border-2 border-[color:var(--forest)] bg-white px-6 py-3 text-sm font-semibold text-[color:var(--forest)] transition hover:bg-[color:var(--sand)]"
+                className="inline-flex items-center justify-center rounded-lg bg-[color:var(--forest)] px-7 py-3.5 text-sm font-bold text-white shadow-md transition hover:bg-[color:var(--forest-dark)]"
               >
                 Konfigurátor na míru
               </a>
             </div>
 
-            <div className="mt-8 flex flex-wrap gap-2">
-              {["Do 8 m délky", "Platba kartou & dobírka", "Vlastní autojeřáb"].map((b) => (
+            <div className="mt-8 flex flex-wrap justify-center gap-2">
+              {["Délky až do 8 m", "Platba kartou & dobírka", "Vlastní autojeřáb"].map((b) => (
                 <span
                   key={b}
-                  className="inline-flex items-center gap-1.5 rounded-full border border-border bg-white px-3 py-1.5 text-xs font-semibold text-foreground"
+                  className="inline-flex items-center gap-1.5 rounded-full border border-[color:var(--timber)]/30 bg-white/90 px-3.5 py-1.5 text-xs font-semibold text-[color:var(--slate-ink)] shadow-sm"
                 >
                   <span className="text-[color:var(--forest)]"><IconCheck /></span>
                   {b}
                 </span>
               ))}
-            </div>
-          </div>
-
-          <div className="relative">
-            <div className="absolute -inset-6 rounded-[2rem] bg-[color:var(--forest)]/5 blur-3xl" />
-            <div className="relative overflow-hidden rounded-[2rem] border border-border bg-[color:var(--sand)] p-6 shadow-lg sm:p-8">
-              <div className="relative grid grid-cols-2 gap-4">
-                <div className="col-span-2 flex items-center justify-center rounded-2xl bg-white p-4">
-                  <IsoWood variant="tram" className="h-40 w-auto sm:h-48" />
-                </div>
-                <div className="flex items-center justify-center rounded-2xl bg-white p-3">
-                  <IsoWood variant="prkno" className="h-24 w-auto" />
-                </div>
-                <div className="flex items-center justify-center rounded-2xl bg-white p-3">
-                  <IsoWood variant="rezak" className="h-24 w-auto" />
-                </div>
-              </div>
-              <div className="mt-5 flex items-center justify-between rounded-2xl bg-[color:var(--forest)] px-5 py-3 text-white">
-                <div className="text-xs font-semibold uppercase tracking-wide text-white/70">
-                  Výroba na míru
-                </div>
-                <div className="text-lg font-black tracking-tight">Do 8 m délky</div>
-              </div>
             </div>
           </div>
         </div>
@@ -746,7 +745,7 @@ function Index() {
       <section id="kvh" className="bg-white">
         <div className="mx-auto max-w-7xl px-4 py-12 sm:py-16">
           <div className="mb-8 max-w-2xl">
-            <div className="inline-flex rounded-full bg-[color:var(--forest)]/10 px-3 py-1 text-xs font-semibold uppercase tracking-wide text-[color:var(--forest)]">
+            <div className="inline-flex rounded-full bg-[color:var(--timber)]/15 px-3 py-1 text-xs font-semibold uppercase tracking-wide text-[color:var(--timber-dark)]">
               KVH Hranoly
             </div>
             <h2 className="mt-2 text-2xl font-black tracking-tight sm:text-3xl">
@@ -772,7 +771,7 @@ function Index() {
                 key={f.t}
                 className="rounded-2xl border border-border bg-[color:var(--sand)] p-6"
               >
-                <div className="inline-flex h-10 w-10 items-center justify-center rounded-full bg-[color:var(--forest)] text-white">
+                <div className="inline-flex h-10 w-10 items-center justify-center rounded-full bg-[color:var(--timber)] text-white">
                   <IconCheck />
                 </div>
                 <h3 className="mt-4 text-lg font-black tracking-tight text-foreground">
