@@ -85,7 +85,7 @@ function Select({
       <select
         value={value}
         onChange={(event) => onChange(event.target.value)}
-        className="w-full rounded-lg border border-border bg-white px-3 py-2.5 text-sm font-medium text-foreground shadow-sm focus:border-primary focus:outline-none focus:ring-2 focus:ring-primary/20"
+        className="h-9 w-full rounded-lg border border-border bg-white px-2 py-1 text-xs font-medium text-foreground shadow-sm focus:border-primary focus:outline-none focus:ring-2 focus:ring-primary/20 sm:h-auto sm:px-3 sm:py-2.5 sm:text-sm"
       >
         {options.map((option) => (
           <option key={option.value} value={option.value}>
@@ -391,15 +391,16 @@ function Configurator({ onAdd }: { onAdd: ConfigAddHandler }) {
   }, [height, length, quantity, width]);
 
   return (
-    <div className="rounded-3xl border border-[#234A33]/20 bg-[#F1F5EE] p-6 shadow-sm sm:p-8">
-      <div className="mb-6">
-        <h2 className="text-2xl font-black tracking-tight text-[#1E293B] sm:text-3xl">
+    <div className="rounded-3xl border border-[#234A33]/20 bg-[#F1F5EE] p-4 shadow-sm sm:p-8">
+      <div className="mb-4 sm:mb-6">
+        <h2 className="text-xl font-black tracking-tight text-[#1E293B] sm:text-3xl">
           Řezivo na míru do 8 m
         </h2>
       </div>
 
-      <div className="grid gap-5 lg:grid-cols-2">
-        <div className="space-y-4">
+      <div className="grid gap-4 sm:gap-5 lg:grid-cols-2">
+        <div className="space-y-3 sm:space-y-5">
+
           <ConfRow
             label="Šířka"
             value={width}
@@ -458,7 +459,7 @@ function Configurator({ onAdd }: { onAdd: ConfigAddHandler }) {
           </div>
         </div>
 
-        <div className="flex flex-col justify-between rounded-2xl border border-[#234A33]/20 bg-white p-6 shadow-md">
+        <div className="flex flex-col justify-between rounded-2xl border border-[#234A33]/20 bg-white p-3 shadow-md sm:p-5">
           <div className="space-y-4">
             <div>
               <div className="text-xs font-semibold uppercase tracking-wide text-muted-foreground">
@@ -555,36 +556,36 @@ function Index() {
           className="pointer-events-none absolute inset-x-0 bottom-0 h-48 bg-gradient-to-b from-transparent via-[#F5F2E9]/72 to-[#F5F2E9]"
         />
 
-        <div className="relative mx-auto max-w-5xl px-4 py-16 sm:py-20 lg:py-28">
+        <div className="relative mx-auto max-w-5xl px-4 py-10 sm:py-20 lg:py-28">
           <div className="text-center">
-            <h1 className="text-4xl font-black leading-[1.05] tracking-tight text-[#1E293B] sm:text-5xl lg:text-6xl">
+            <h1 className="text-[26px] font-bold leading-tight tracking-tight text-[#1E293B] sm:text-5xl sm:font-black sm:leading-[1.05] lg:text-6xl">
               Kvalitní stavební <span className="text-[#A86D38]">řezivo a paliva</span> přímo z pily
             </h1>
-            <p className="mx-auto mt-5 max-w-2xl text-base text-[#1E293B]/75 sm:text-lg">
+            <p className="mx-auto mt-3 line-clamp-2 max-w-sm text-xs text-[#1E293B]/70 sm:mt-5 sm:line-clamp-none sm:max-w-2xl sm:text-lg">
               Standardní profily skladem. Atypická výroba na míru do délky 8 metrů a vlastní doprava
               s hydraulickou rukou.
             </p>
 
-            <div className="mt-8 flex flex-col items-center justify-center gap-3 sm:flex-row">
+            <div className="mx-auto mt-5 grid w-full max-w-xs grid-cols-2 gap-2 sm:mt-8 sm:flex sm:max-w-none sm:flex-row sm:items-center sm:justify-center sm:gap-3">
               <a
                 href="/#produkty"
-                className="inline-flex items-center justify-center rounded-lg bg-[#A86D38] px-7 py-3.5 text-sm font-bold text-white shadow-md transition hover:bg-[#8F5927]"
+                className="inline-flex items-center justify-center rounded-lg bg-[#A86D38] px-3 py-2.5 text-xs font-bold text-white shadow-md transition hover:bg-[#8F5927] sm:px-7 sm:py-3.5 sm:text-sm"
               >
                 Prohlédnout obchod
               </a>
               <a
                 href="/#konfigurator"
-                className="inline-flex items-center justify-center rounded-lg bg-[#234A33] px-7 py-3.5 text-sm font-bold text-white shadow-md transition hover:bg-[#1a3826]"
+                className="inline-flex items-center justify-center rounded-lg bg-[#234A33] px-3 py-2.5 text-xs font-bold text-white shadow-md transition hover:bg-[#1a3826] sm:px-7 sm:py-3.5 sm:text-sm"
               >
                 Konfigurátor na míru
               </a>
             </div>
 
-            <div className="mt-8 flex flex-wrap justify-center gap-2">
+            <div className="no-scrollbar mt-5 flex snap-x gap-2 overflow-x-auto px-4 py-1 sm:mt-8 sm:flex-wrap sm:justify-center sm:overflow-visible sm:px-0">
               {["Délky až do 8 m", "Platba kartou i dobírka", "Vlastní doprava"].map((item) => (
                 <span
                   key={item}
-                  className="inline-flex items-center gap-1.5 rounded-full border border-[#A86D38]/30 bg-white/90 px-3.5 py-1.5 text-xs font-semibold text-[#1E293B] shadow-sm"
+                  className="inline-flex shrink-0 snap-center items-center gap-1.5 whitespace-nowrap rounded-full border border-[#A86D38]/30 bg-white/85 px-3 py-1 text-[11px] font-semibold text-[#1E293B] shadow-sm sm:px-3.5 sm:py-1.5 sm:text-xs"
                 >
                   <span className="text-[#234A33]">
                     <IconCheck />
@@ -595,6 +596,7 @@ function Index() {
             </div>
           </div>
         </div>
+
       </section>
 
       <section className="relative mx-auto max-w-7xl px-4 pb-4">
@@ -619,18 +621,18 @@ function Index() {
         </div>
       </section>
 
-      <section id="produkty" className="mx-auto max-w-7xl px-4 py-12 sm:py-16">
-        <div className="mb-6">
-          <h2 className="text-2xl font-black tracking-tight sm:text-3xl">
+      <section id="produkty" className="mx-auto max-w-7xl px-4 py-6 sm:py-16">
+        <div className="mb-4 sm:mb-6">
+          <h2 className="text-xl font-black tracking-tight sm:text-3xl">
             Stavební řezivo – standardní profily
           </h2>
-          <p className="mt-2 text-sm text-muted-foreground">
+          <p className="mt-1 hidden text-sm text-muted-foreground sm:block">
             Vyberte profil a délku. Cena se přepočítá okamžitě a položku můžete hned přidat do
             košíku.
           </p>
         </div>
 
-        <div className="grid gap-4 sm:gap-5 md:grid-cols-2 xl:grid-cols-4">
+        <div className="grid gap-3 sm:gap-5 md:grid-cols-2 xl:grid-cols-4">
           <TramyCard onAdd={addStandardItem} />
           <FosnyCard onAdd={addStandardItem} />
           <PrknaCard onAdd={addStandardItem} />
@@ -638,9 +640,10 @@ function Index() {
         </div>
       </section>
 
-      <section id="konfigurator" className="mx-auto max-w-7xl px-4 pb-12 sm:pb-16">
+      <section id="konfigurator" className="mx-auto max-w-7xl px-4 pb-8 sm:pb-16">
         <Configurator onAdd={addCustomItem} />
       </section>
+
 
       <section className="bg-white">
         <div className="mx-auto max-w-7xl px-4 py-12 sm:py-16">
@@ -681,23 +684,20 @@ function Index() {
         </div>
       </section>
 
-      <section id="doprava" className="mx-auto max-w-7xl px-4 py-12 sm:py-16">
-        <div className="grid gap-6 rounded-[2rem] border border-[#A86D38]/15 bg-white p-6 shadow-sm sm:p-10 lg:grid-cols-[1.05fr_0.95fr]">
-          <div className="space-y-5">
+      <section id="doprava" className="mx-auto max-w-7xl px-3 py-6 sm:px-6 sm:py-16">
+        <div className="grid gap-5 rounded-[2rem] border border-[#A86D38]/15 bg-white p-4 shadow-sm sm:gap-6 sm:p-10 lg:grid-cols-[1.05fr_0.95fr]">
+          <div className="space-y-4 sm:space-y-5">
             <div>
-              <div className="inline-flex rounded-full bg-[#F5F2E9] px-3 py-1 text-[11px] font-bold uppercase tracking-[0.18em] text-[#A86D38]">
-                Doprava a vykládka
-              </div>
-              <h2 className="mt-3 text-2xl font-black tracking-tight text-[#1E293B] sm:text-3xl">
+              <h2 className="text-xl font-black tracking-tight text-[#1E293B] sm:text-3xl">
                 Doručíme řezivo až na stavbu
               </h2>
-              <p className="mt-2 text-sm text-[#1E293B]/70 sm:text-base">
+              <p className="mt-2 hidden text-sm text-[#1E293B]/70 sm:block sm:text-base">
                 Vlastní autojeřáb DIPISTAV zvládne pohodlnou vykládku i tam, kde je potřeba
                 přesnost, rychlost a jistota.
               </p>
             </div>
 
-            <div className="grid gap-3 sm:grid-cols-2">
+            <div className="my-1 grid grid-cols-2 gap-2 sm:my-0 sm:gap-3">
               {[
                 "Složení hydraulickou rukou přímo na místě",
                 "Objednávky skladového i atypického řeziva",
@@ -706,26 +706,26 @@ function Index() {
               ].map((item) => (
                 <div
                   key={item}
-                  className="flex items-center gap-3 rounded-2xl border border-[#A86D38]/10 bg-[#F5F2E9]/70 px-4 py-3 text-sm font-semibold text-[#1E293B]"
+                  className="flex items-start gap-2 rounded-xl border border-[#A86D38]/10 bg-[#F5F2E9]/70 p-2.5 text-[11px] font-medium leading-tight text-foreground/90 sm:items-center sm:gap-3 sm:rounded-2xl sm:px-4 sm:py-3 sm:text-sm sm:font-semibold"
                 >
-                  <span className="inline-flex h-8 w-8 shrink-0 items-center justify-center rounded-full bg-white text-[#A86D38]">
+                  <span className="mt-0.5 inline-flex h-4 w-4 shrink-0 items-center justify-center text-[#A86D38] sm:mt-0 sm:h-8 sm:w-8 sm:rounded-full sm:bg-white">
                     <IconCheck />
                   </span>
-                  {item}
+                  <span className="min-w-0">{item}</span>
                 </div>
               ))}
             </div>
 
-            <div className="flex flex-col gap-3 sm:flex-row">
+            <div className="mt-3 grid grid-cols-2 gap-2 sm:mt-0 sm:flex sm:flex-row sm:gap-3">
               <a
                 href="/doprava"
-                className="inline-flex items-center justify-center rounded-2xl bg-[#234A33] px-6 py-3 text-sm font-bold text-white transition hover:bg-[#1A3826]"
+                className="inline-flex items-center justify-center rounded-xl bg-[#234A33] px-3 py-2.5 text-xs font-bold text-white transition hover:bg-[#1A3826] sm:rounded-2xl sm:px-6 sm:py-3 sm:text-sm"
               >
                 Zobrazit možnosti dopravy
               </a>
               <a
                 href={COMPANY_PHONE_HREF}
-                className="inline-flex items-center justify-center rounded-2xl border border-[#234A33]/15 px-6 py-3 text-sm font-bold text-[#234A33] transition hover:bg-[#F1F5EE]"
+                className="inline-flex items-center justify-center rounded-xl border border-[#A86D38]/40 px-3 py-2.5 text-xs font-bold text-[#A86D38] transition hover:bg-[#F5F2E9] sm:rounded-2xl sm:px-6 sm:py-3 sm:text-sm"
               >
                 Zavolat pro termín
               </a>
@@ -735,6 +735,7 @@ function Index() {
           <ShippingCalculator />
         </div>
       </section>
+
 
       <section id="kontakt" className="bg-[color:var(--forest)] text-white">
         <div className="mx-auto grid max-w-7xl gap-6 px-4 py-10 sm:py-14 md:grid-cols-[1fr_auto] md:items-center">
