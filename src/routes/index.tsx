@@ -1,12 +1,13 @@
 import { createFileRoute } from "@tanstack/react-router";
 import { useMemo, useState } from "react";
+import tramyFinalAsset from "@/assets/tramy-final.png.asset.json";
 import { ShippingCalculator } from "@/components/shipping-calculator";
 import { SiteShell } from "@/components/site-shell";
 import { type CustomCartInput, type StandardCartInput, useCart } from "@/lib/cart";
 import { COMPANY_EMAIL_HREF, COMPANY_PHONE, COMPANY_PHONE_HREF, formatCurrency } from "@/lib/site";
 
 const ART: Record<string, string> = {
-  tram: "/images/tramy-dipi.png",
+  tram: tramyFinalAsset.url,
   fosna: "/images/fosny-dipi.png",
   prkno: "/images/prkna-dipi.png",
   lat: "/images/late-dipi.png",
