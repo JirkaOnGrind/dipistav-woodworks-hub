@@ -1,6 +1,7 @@
 import { createFileRoute } from "@tanstack/react-router";
 import { useMemo, useState } from "react";
-import logoAsset from "@/assets/dipistav-logo-transparent.png.asset.json";
+import logoAsset from "@/assets/dipistav-logo-2.png.asset.json";
+import woodPattern from "@/assets/woodpatern.jpg.asset.json";
 import tramyAsset from "@/assets/tramy.png.asset.json";
 import fosnyAsset from "@/assets/fosny.png.asset.json";
 import prknaAsset from "@/assets/prkna.png.asset.json";
@@ -354,7 +355,7 @@ function ConfRow({
           step={step}
           value={value}
           onChange={(e) => onChange(Number(e.target.value))}
-          className="flex-1 accent-[color:var(--forest)]"
+          className="flex-1 accent-[#A86D38]"
         />
         <input
           type="number"
@@ -363,7 +364,7 @@ function ConfRow({
           step={step}
           value={value}
           onChange={(e) => onChange(Number(e.target.value))}
-          className="w-20 rounded-md border border-border bg-white px-2 py-1.5 text-sm font-semibold text-foreground focus:border-primary focus:outline-none"
+          className="w-20 rounded-md border border-amber-200 bg-white px-2 py-1.5 text-sm font-semibold text-[#1E293B] focus:border-[#A86D38] focus:outline-none focus:ring-2 focus:ring-[#A86D38]/20"
         />
       </div>
     </div>
@@ -383,12 +384,9 @@ function Configurator({ onAdd }: { onAdd: (n: string) => void }) {
   }, [width, height, length, qty]);
 
   return (
-    <div className="rounded-3xl border border-border bg-card p-6 shadow-sm sm:p-8">
+    <div className="rounded-3xl border border-amber-200 bg-card p-6 shadow-sm sm:p-8">
       <div className="mb-6">
-        <div className="inline-flex rounded-full bg-[color:var(--timber)]/15 px-3 py-1 text-xs font-semibold uppercase tracking-wide text-[color:var(--timber-dark)]">
-          Konfigurátor
-        </div>
-        <h2 className="mt-2 text-2xl font-black tracking-tight text-foreground sm:text-3xl">
+        <h2 className="text-2xl font-black tracking-tight text-[#1E293B] sm:text-3xl">
           Řezivo na míru do 8 m
         </h2>
       </div>
@@ -403,15 +401,15 @@ function Configurator({ onAdd }: { onAdd: (n: string) => void }) {
             <span className="mb-1.5 block text-xs font-semibold uppercase tracking-wide text-muted-foreground">
               Dřevina
             </span>
-            <div className="grid grid-cols-3 gap-2">
+            <div className="grid grid-cols-3 gap-2 rounded-xl bg-[#F5F2E9] p-1">
               {["Smrk", "Borovice", "Modřín"].map((s) => (
                 <button
                   key={s}
                   onClick={() => setSpecies(s)}
-                  className={`rounded-lg border px-3 py-2 text-sm font-semibold transition ${
+                  className={`rounded-lg px-3 py-2 text-sm font-semibold transition ${
                     species === s
-                      ? "border-[color:var(--forest)] bg-[color:var(--forest)] text-white"
-                      : "border-border bg-white text-foreground hover:border-[color:var(--forest)]"
+                      ? "bg-[#A86D38] text-white shadow"
+                      : "bg-transparent text-[#1E293B] hover:bg-white/60"
                   }`}
                 >
                   {s}
@@ -421,13 +419,13 @@ function Configurator({ onAdd }: { onAdd: (n: string) => void }) {
           </div>
         </div>
 
-        <div className="flex flex-col justify-between rounded-2xl bg-[color:var(--sand)] p-6">
+        <div className="flex flex-col justify-between rounded-2xl border border-amber-200 bg-white p-6 shadow-md">
           <div className="space-y-4">
             <div>
               <div className="text-xs font-semibold uppercase tracking-wide text-muted-foreground">
                 Objem
               </div>
-              <div className="text-2xl font-black tracking-tight text-foreground">
+              <div className="text-2xl font-black tracking-tight text-[#1E293B]">
                 {volume.toFixed(3)} m³
               </div>
             </div>
@@ -435,15 +433,15 @@ function Configurator({ onAdd }: { onAdd: (n: string) => void }) {
               <div className="text-xs font-semibold uppercase tracking-wide text-muted-foreground">
                 Sazba
               </div>
-              <div className="text-sm font-semibold text-foreground">
+              <div className="text-sm font-semibold text-[#1E293B]">
                 8 500 Kč / m³ · {species}
               </div>
             </div>
-            <div className="rounded-xl bg-white p-4">
+            <div className="rounded-xl bg-[#F5F2E9] p-4">
               <div className="text-xs font-semibold uppercase tracking-wide text-muted-foreground">
                 Celková cena
               </div>
-              <div className="mt-1 text-4xl font-black tracking-tight text-[color:var(--timber)]">
+              <div className="mt-1 text-4xl font-black tracking-tight text-[#A86D38]">
                 {new Intl.NumberFormat("cs-CZ").format(total)} Kč
               </div>
               <div className="text-xs text-muted-foreground">s DPH</div>
@@ -455,9 +453,14 @@ function Configurator({ onAdd }: { onAdd: (n: string) => void }) {
                 `Atypické řezivo ${width}×${height} mm × ${length} m · ${qty} ks · ${species}`
               )
             }
-            className="mt-6 w-full rounded-lg bg-[color:var(--forest)] px-4 py-3 text-sm font-semibold text-white shadow-sm transition hover:bg-[color:var(--forest-dark)]"
+            className="mt-6 inline-flex w-full items-center justify-center gap-2 rounded-lg bg-[#A86D38] px-4 py-3.5 text-sm font-bold text-white shadow-sm transition hover:bg-[#8F5927]"
           >
-            Přidat do poptávky
+            <svg viewBox="0 0 24 24" className="h-4 w-4" fill="none" stroke="currentColor" strokeWidth="2.2">
+              <path d="M3 4h2l2.4 12.5a2 2 0 0 0 2 1.5h8.2a2 2 0 0 0 2-1.6L21 8H6" strokeLinecap="round" strokeLinejoin="round" />
+              <circle cx="10" cy="21" r="1.4" fill="currentColor" />
+              <circle cx="18" cy="21" r="1.4" fill="currentColor" />
+            </svg>
+            Přidat do poptávky / košíku
           </button>
         </div>
       </div>
@@ -532,7 +535,8 @@ function Index() {
             <img
               src={logoAsset.url}
               alt="DIPISTAV"
-              className="h-11 w-auto shrink-0 bg-transparent object-contain md:h-14"
+              style={{ background: "transparent" }}
+              className="h-12 md:h-16 w-auto shrink-0 object-contain"
             />
           </a>
 
@@ -633,53 +637,39 @@ function Index() {
 
       {/* Hero */}
       <section className="relative overflow-hidden">
-        {/* Wood grain background */}
+        {/* Zoomed & blurred wood pattern */}
         <div
           aria-hidden
-          className="absolute inset-0"
-          style={{
-            backgroundColor: "#C48B47",
-            backgroundImage: `
-              repeating-linear-gradient(92deg, rgba(74,42,15,0.18) 0 2px, rgba(74,42,15,0) 2px 14px),
-              repeating-linear-gradient(88deg, rgba(255,240,210,0.10) 0 1px, rgba(255,240,210,0) 1px 9px),
-              radial-gradient(1200px 400px at 20% 30%, rgba(168,109,56,0.85), rgba(168,109,56,0) 60%),
-              radial-gradient(900px 500px at 85% 70%, rgba(139,80,35,0.75), rgba(139,80,35,0) 65%),
-              linear-gradient(135deg, #B57A3E 0%, #A86D38 50%, #8F5927 100%)
-            `,
-            filter: "blur(0.3px)",
-          }}
+          className="absolute inset-0 scale-125 blur-md opacity-40 bg-cover bg-center"
+          style={{ backgroundImage: `url(${woodPattern.url})` }}
         />
+        {/* Warm sand gradient overlay for readability */}
         <div
           aria-hidden
-          className="absolute inset-0 backdrop-blur-md"
-          style={{ backgroundColor: "rgba(245, 242, 233, 0.78)" }}
+          className="absolute inset-0 bg-gradient-to-b from-[#F5F2E9]/80 via-[#F5F2E9]/90 to-[#F5F2E9]"
         />
 
         <div className="relative mx-auto max-w-5xl px-4 py-16 sm:py-20 lg:py-28">
           <div className="text-center">
-            <div className="inline-flex items-center gap-2 rounded-full bg-[color:var(--timber)] px-4 py-1.5 text-xs font-bold uppercase tracking-wider text-white shadow-sm">
-              <span className="h-1.5 w-1.5 rounded-full bg-white" />
-              Pila &amp; prodej dřeva
-            </div>
-            <h1 className="mt-6 text-4xl font-black leading-[1.05] tracking-tight text-[color:var(--slate-ink)] sm:text-5xl lg:text-6xl">
+            <h1 className="text-4xl font-black leading-[1.05] tracking-tight text-[#1E293B] sm:text-5xl lg:text-6xl">
               Kvalitní stavební{" "}
-              <span className="text-[color:var(--timber-dark)]">řezivo a paliva</span>{" "}
+              <span className="text-[#A86D38]">řezivo a paliva</span>{" "}
               přímo z pily
             </h1>
-            <p className="mx-auto mt-5 max-w-2xl text-base text-[color:var(--slate-ink)]/75 sm:text-lg">
+            <p className="mx-auto mt-5 max-w-2xl text-base text-[#1E293B]/75 sm:text-lg">
               Standardní profily skladem. Atypická výroba na míru do délky 8 metrů.
             </p>
 
             <div className="mt-8 flex flex-col items-center justify-center gap-3 sm:flex-row">
               <a
                 href="#produkty"
-                className="inline-flex items-center justify-center rounded-lg bg-[color:var(--timber)] px-7 py-3.5 text-sm font-bold text-white shadow-md transition hover:bg-[color:var(--timber-dark)]"
+                className="inline-flex items-center justify-center rounded-lg bg-[#A86D38] px-7 py-3.5 text-sm font-bold text-white shadow-md transition hover:bg-[#8F5927]"
               >
                 Prohlédnout obchod
               </a>
               <a
                 href="#konfigurator"
-                className="inline-flex items-center justify-center rounded-lg bg-[color:var(--forest)] px-7 py-3.5 text-sm font-bold text-white shadow-md transition hover:bg-[color:var(--forest-dark)]"
+                className="inline-flex items-center justify-center rounded-lg bg-[#234A33] px-7 py-3.5 text-sm font-bold text-white shadow-md transition hover:bg-[#1a3826]"
               >
                 Konfigurátor na míru
               </a>
@@ -689,9 +679,9 @@ function Index() {
               {["Délky až do 8 m", "Platba kartou & dobírka", "Vlastní autojeřáb"].map((b) => (
                 <span
                   key={b}
-                  className="inline-flex items-center gap-1.5 rounded-full border border-[color:var(--timber)]/30 bg-white/90 px-3.5 py-1.5 text-xs font-semibold text-[color:var(--slate-ink)] shadow-sm"
+                  className="inline-flex items-center gap-1.5 rounded-full border border-[#A86D38]/30 bg-white/90 px-3.5 py-1.5 text-xs font-semibold text-[#1E293B] shadow-sm"
                 >
-                  <span className="text-[color:var(--forest)]"><IconCheck /></span>
+                  <span className="text-[#234A33]"><IconCheck /></span>
                   {b}
                 </span>
               ))}
@@ -788,10 +778,7 @@ function Index() {
       <section id="doprava" className="mx-auto max-w-7xl px-4 py-12 sm:py-16">
         <div className="grid gap-6 rounded-3xl border border-border bg-white p-6 shadow-sm sm:p-10 lg:grid-cols-[1.1fr_1fr] lg:items-center">
           <div>
-            <div className="inline-flex rounded-full bg-[color:var(--timber)]/10 px-3 py-1 text-xs font-semibold uppercase tracking-wide text-[color:var(--timber-dark)]">
-              Doprava
-            </div>
-            <h2 className="mt-2 text-2xl font-black tracking-tight sm:text-3xl">
+            <h2 className="text-2xl font-black tracking-tight text-[#1E293B] sm:text-3xl">
               Doprava podle PSČ
             </h2>
             <p className="mt-2 text-sm text-muted-foreground">
@@ -803,31 +790,31 @@ function Index() {
                 placeholder="Zadejte vaše PSČ"
                 value={psc}
                 onChange={(e) => setPsc(e.target.value)}
-                className="w-full rounded-lg border border-border bg-white px-4 py-3 text-sm font-semibold text-foreground focus:border-primary focus:outline-none focus:ring-2 focus:ring-primary/20 sm:w-56"
+                className="w-full rounded-lg border border-amber-200 bg-white px-4 py-3 text-sm font-semibold text-[#1E293B] focus:border-[#A86D38] focus:outline-none focus:ring-2 focus:ring-[#A86D38]/20 sm:flex-1"
               />
               <button
                 onClick={calcShipping}
-                className="rounded-lg bg-[color:var(--forest)] px-5 py-3 text-sm font-semibold text-white transition hover:bg-[color:var(--forest-dark)]"
+                className="rounded-lg bg-[#A86D38] px-5 py-3 text-sm font-bold text-white shadow-sm transition hover:bg-[#8F5927]"
               >
                 Spočítat dopravu
               </button>
             </div>
             {pscQuote && (
-              <div className="mt-4 rounded-lg bg-[color:var(--sand)] px-4 py-3 text-sm font-bold text-[color:var(--forest)]">
+              <div className="mt-4 rounded-lg bg-[#F5F2E9] px-4 py-3 text-sm font-bold text-[#234A33]">
                 {pscQuote}
               </div>
             )}
           </div>
-          <div className="grid grid-cols-1 gap-3 sm:grid-cols-3">
+          <div className="flex flex-col gap-3">
             {["Platba kartou online", "Dobírka při převzetí", "Hotově na prodejně"].map(
               (b) => (
                 <div
                   key={b}
-                  className="rounded-2xl border border-border bg-[color:var(--sand)] p-4 text-sm font-bold text-foreground"
+                  className="flex items-center gap-3 whitespace-nowrap rounded-xl border border-amber-200/60 bg-[#F5F2E9] px-4 py-3 text-sm font-semibold text-[#1E293B]"
                 >
-                  <div className="mb-2 inline-flex h-8 w-8 items-center justify-center rounded-full bg-[color:var(--forest)] text-white">
+                  <span className="inline-flex h-8 w-8 shrink-0 items-center justify-center rounded-full bg-white text-[#A86D38]">
                     <IconCheck />
-                  </div>
+                  </span>
                   {b}
                 </div>
               )
