@@ -267,79 +267,27 @@ function LateCard({ onAdd }: { onAdd: (n: string) => void }) {
   );
 }
 
-/* ---------- 3D isometric wood illustrations ---------- */
+/* ---------- Cartoon linocut wood illustrations (transparent PNGs) ---------- */
 
-function IsoWood({ variant }: { variant: "tram" | "fosna" | "prkno" | "lat" }) {
-  // Warm timber palette
-  const top = "#C4874A";
-  const front = "#A86D38";
-  const side = "#7A4E24";
-  const grain = "#8A5528";
-  const stroke = "#3A2412";
-
-  if (variant === "tram") {
-    // Stack of 3 heavy beams
-    return (
-      <svg viewBox="0 0 160 120" className="h-24 w-36 drop-shadow-md">
-        <defs>
-          <pattern id="g-tram" width="10" height="4" patternUnits="userSpaceOnUse">
-            <path d="M0 2 Q 2.5 0 5 2 T 10 2" stroke={grain} strokeWidth="0.6" fill="none" opacity="0.6" />
-          </pattern>
-        </defs>
-        {[0, 22, 44].map((dy, i) => (
-          <g key={i} transform={`translate(0 ${-dy})`}>
-            <polygon points="30,80 100,80 130,60 60,60" fill={top} stroke={stroke} strokeWidth="1.5" />
-            <polygon points="30,80 100,80 100,105 30,105" fill={front} stroke={stroke} strokeWidth="1.5" />
-            <polygon points="100,80 130,60 130,85 100,105" fill={side} stroke={stroke} strokeWidth="1.5" />
-            <polygon points="30,80 100,80 100,105 30,105" fill="url(#g-tram)" />
-          </g>
-        ))}
-      </svg>
-    );
-  }
-  if (variant === "fosna") {
-    // Stack of thick planks
-    return (
-      <svg viewBox="0 0 160 120" className="h-24 w-36 drop-shadow-md">
-        {[0, 14, 28, 42].map((dy, i) => (
-          <g key={i} transform={`translate(0 ${-dy})`}>
-            <polygon points="16,88 118,88 148,72 46,72" fill={top} stroke={stroke} strokeWidth="1.3" />
-            <polygon points="16,88 118,88 118,100 16,100" fill={front} stroke={stroke} strokeWidth="1.3" />
-            <polygon points="118,88 148,72 148,84 118,100" fill={side} stroke={stroke} strokeWidth="1.3" />
-            <line x1="30" y1="94" x2="112" y2="94" stroke={grain} strokeWidth="0.6" opacity="0.7" />
-          </g>
-        ))}
-      </svg>
-    );
-  }
-  if (variant === "prkno") {
-    return (
-      <svg viewBox="0 0 160 120" className="h-24 w-36 drop-shadow-md">
-        {[0, 8, 16, 24, 32, 40].map((dy, i) => (
-          <g key={i} transform={`translate(0 ${-dy})`}>
-            <polygon points="10,90 130,90 152,78 32,78" fill={top} stroke={stroke} strokeWidth="1" />
-            <polygon points="10,90 130,90 130,97 10,97" fill={front} stroke={stroke} strokeWidth="1" />
-            <polygon points="130,90 152,78 152,85 130,97" fill={side} stroke={stroke} strokeWidth="1" />
-          </g>
-        ))}
-      </svg>
-    );
-  }
-  // lat – bundle of thin battens tied
+function IsoWood({
+  variant,
+  className = "h-24 w-auto",
+}: {
+  variant: "tram" | "fosna" | "prkno" | "lat" | "kvh" | "rezak";
+  className?: string;
+}) {
   return (
-    <svg viewBox="0 0 160 120" className="h-24 w-36 drop-shadow-md">
-      {[0, 6, 12, 18, 24, 30, 36].map((dy, i) => (
-        <g key={i} transform={`translate(0 ${-dy})`}>
-          <polygon points="20,92 128,92 146,84 38,84" fill={top} stroke={stroke} strokeWidth="0.9" />
-          <polygon points="20,92 128,92 128,97 20,97" fill={front} stroke={stroke} strokeWidth="0.9" />
-          <polygon points="128,92 146,84 146,89 128,97" fill={side} stroke={stroke} strokeWidth="0.9" />
-        </g>
-      ))}
-      <rect x="55" y="30" width="6" height="70" fill="#234A33" opacity="0.75" />
-      <rect x="105" y="30" width="6" height="70" fill="#234A33" opacity="0.75" />
-    </svg>
+    <img
+      src={ART[variant]}
+      alt=""
+      loading="lazy"
+      draggable={false}
+      style={{ background: "transparent" }}
+      className={`${className} select-none object-contain drop-shadow-[0_6px_10px_rgba(122,78,36,0.25)]`}
+    />
   );
 }
+
 
 function CategoryCard({
   variant,
