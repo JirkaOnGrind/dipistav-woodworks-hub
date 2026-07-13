@@ -771,7 +771,7 @@ function Index() {
                 key={f.t}
                 className="rounded-2xl border border-border bg-[color:var(--sand)] p-6"
               >
-                <div className="inline-flex h-10 w-10 items-center justify-center rounded-full bg-[color:var(--forest)] text-white">
+                <div className="inline-flex h-10 w-10 items-center justify-center rounded-full bg-[color:var(--timber)] text-white">
                   <IconCheck />
                 </div>
                 <h3 className="mt-4 text-lg font-black tracking-tight text-foreground">
