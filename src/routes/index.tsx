@@ -1,6 +1,22 @@
 import { createFileRoute } from "@tanstack/react-router";
 import { useMemo, useState } from "react";
 import logoAsset from "@/assets/dipistav-logo-transparent.png.asset.json";
+import tramyAsset from "@/assets/tramy.png.asset.json";
+import fosnyAsset from "@/assets/fosny.png.asset.json";
+import prknaAsset from "@/assets/prkna.png.asset.json";
+import lateAsset from "@/assets/late.png.asset.json";
+import kvhAsset from "@/assets/kvh.png.asset.json";
+import rezakAsset from "@/assets/rezak.png.asset.json";
+
+const ART: Record<string, string> = {
+  tram: tramyAsset.url,
+  fosna: fosnyAsset.url,
+  prkno: prknaAsset.url,
+  lat: lateAsset.url,
+  kvh: kvhAsset.url,
+  rezak: rezakAsset.url,
+};
+
 
 export const Route = createFileRoute("/")({
   head: () => ({
@@ -251,79 +267,27 @@ function LateCard({ onAdd }: { onAdd: (n: string) => void }) {
   );
 }
 
-/* ---------- 3D isometric wood illustrations ---------- */
+/* ---------- Cartoon linocut wood illustrations (transparent PNGs) ---------- */
 
-function IsoWood({ variant }: { variant: "tram" | "fosna" | "prkno" | "lat" }) {
-  // Warm timber palette
-  const top = "#C4874A";
-  const front = "#A86D38";
-  const side = "#7A4E24";
-  const grain = "#8A5528";
-  const stroke = "#3A2412";
-
-  if (variant === "tram") {
-    // Stack of 3 heavy beams
-    return (
-      <svg viewBox="0 0 160 120" className="h-24 w-36 drop-shadow-md">
-        <defs>
-          <pattern id="g-tram" width="10" height="4" patternUnits="userSpaceOnUse">
-            <path d="M0 2 Q 2.5 0 5 2 T 10 2" stroke={grain} strokeWidth="0.6" fill="none" opacity="0.6" />
-          </pattern>
-        </defs>
-        {[0, 22, 44].map((dy, i) => (
-          <g key={i} transform={`translate(0 ${-dy})`}>
-            <polygon points="30,80 100,80 130,60 60,60" fill={top} stroke={stroke} strokeWidth="1.5" />
-            <polygon points="30,80 100,80 100,105 30,105" fill={front} stroke={stroke} strokeWidth="1.5" />
-            <polygon points="100,80 130,60 130,85 100,105" fill={side} stroke={stroke} strokeWidth="1.5" />
-            <polygon points="30,80 100,80 100,105 30,105" fill="url(#g-tram)" />
-          </g>
-        ))}
-      </svg>
-    );
-  }
-  if (variant === "fosna") {
-    // Stack of thick planks
-    return (
-      <svg viewBox="0 0 160 120" className="h-24 w-36 drop-shadow-md">
-        {[0, 14, 28, 42].map((dy, i) => (
-          <g key={i} transform={`translate(0 ${-dy})`}>
-            <polygon points="16,88 118,88 148,72 46,72" fill={top} stroke={stroke} strokeWidth="1.3" />
-            <polygon points="16,88 118,88 118,100 16,100" fill={front} stroke={stroke} strokeWidth="1.3" />
-            <polygon points="118,88 148,72 148,84 118,100" fill={side} stroke={stroke} strokeWidth="1.3" />
-            <line x1="30" y1="94" x2="112" y2="94" stroke={grain} strokeWidth="0.6" opacity="0.7" />
-          </g>
-        ))}
-      </svg>
-    );
-  }
-  if (variant === "prkno") {
-    return (
-      <svg viewBox="0 0 160 120" className="h-24 w-36 drop-shadow-md">
-        {[0, 8, 16, 24, 32, 40].map((dy, i) => (
-          <g key={i} transform={`translate(0 ${-dy})`}>
-            <polygon points="10,90 130,90 152,78 32,78" fill={top} stroke={stroke} strokeWidth="1" />
-            <polygon points="10,90 130,90 130,97 10,97" fill={front} stroke={stroke} strokeWidth="1" />
-            <polygon points="130,90 152,78 152,85 130,97" fill={side} stroke={stroke} strokeWidth="1" />
-          </g>
-        ))}
-      </svg>
-    );
-  }
-  // lat – bundle of thin battens tied
+function IsoWood({
+  variant,
+  className = "h-24 w-auto",
+}: {
+  variant: "tram" | "fosna" | "prkno" | "lat" | "kvh" | "rezak";
+  className?: string;
+}) {
   return (
-    <svg viewBox="0 0 160 120" className="h-24 w-36 drop-shadow-md">
-      {[0, 6, 12, 18, 24, 30, 36].map((dy, i) => (
-        <g key={i} transform={`translate(0 ${-dy})`}>
-          <polygon points="20,92 128,92 146,84 38,84" fill={top} stroke={stroke} strokeWidth="0.9" />
-          <polygon points="20,92 128,92 128,97 20,97" fill={front} stroke={stroke} strokeWidth="0.9" />
-          <polygon points="128,92 146,84 146,89 128,97" fill={side} stroke={stroke} strokeWidth="0.9" />
-        </g>
-      ))}
-      <rect x="55" y="30" width="6" height="70" fill="#234A33" opacity="0.75" />
-      <rect x="105" y="30" width="6" height="70" fill="#234A33" opacity="0.75" />
-    </svg>
+    <img
+      src={ART[variant]}
+      alt=""
+      loading="lazy"
+      draggable={false}
+      style={{ background: "transparent" }}
+      className={`${className} select-none object-contain drop-shadow-[0_6px_10px_rgba(122,78,36,0.25)]`}
+    />
   );
 }
+
 
 function CategoryCard({
   variant,
@@ -339,9 +303,10 @@ function CategoryCard({
       href="#produkty"
       className="group flex flex-col items-start gap-3 rounded-2xl border border-border bg-white p-4 transition hover:-translate-y-0.5 hover:border-[color:var(--timber)] hover:shadow-lg sm:p-5"
     >
-      <div className="flex h-28 w-full items-center justify-center rounded-xl bg-[color:var(--sand)] sm:h-32">
-        <IsoWood variant={variant} />
+      <div className="flex h-32 w-full items-center justify-center rounded-xl bg-[color:var(--sand)] p-3 sm:h-40">
+        <IsoWood variant={variant} className="max-h-full w-auto" />
       </div>
+
       <div>
         <div className="text-sm font-black tracking-tight text-[color:var(--forest)] sm:text-base">
           {title}
@@ -712,37 +677,30 @@ function Index() {
           </div>
 
           <div className="relative">
-            <div className="absolute -inset-4 rounded-3xl bg-[color:var(--forest)]/5 blur-2xl" />
-            <div className="relative rounded-3xl border border-border bg-white p-6 shadow-lg">
-              <div className="flex items-center justify-between">
-                <div className="text-xs font-semibold uppercase tracking-wide text-muted-foreground">
-                  Nejprodávanější
+            <div className="absolute -inset-6 rounded-[2rem] bg-[color:var(--forest)]/5 blur-3xl" />
+            <div className="relative overflow-hidden rounded-[2rem] border border-border bg-[color:var(--sand)] p-6 shadow-lg sm:p-8">
+              <div className="relative grid grid-cols-2 gap-4">
+                <div className="col-span-2 flex items-center justify-center rounded-2xl bg-white p-4">
+                  <IsoWood variant="tram" className="h-40 w-auto sm:h-48" />
                 </div>
-                <div className="text-xs font-semibold text-[color:var(--timber)]">Skladem</div>
+                <div className="flex items-center justify-center rounded-2xl bg-white p-3">
+                  <IsoWood variant="prkno" className="h-24 w-auto" />
+                </div>
+                <div className="flex items-center justify-center rounded-2xl bg-white p-3">
+                  <IsoWood variant="rezak" className="h-24 w-auto" />
+                </div>
               </div>
-              <div className="mt-4 grid grid-cols-2 gap-3">
-                {[
-                  { t: "Trám 10×10×400", p: "450 Kč", v: "tram" as const },
-                  { t: "Fošna 5×12×400", p: "247 Kč", v: "fosna" as const },
-                  { t: "Prkno 12×400", p: "102,60 Kč", v: "prkno" as const },
-                  { t: "Lať 60×40 / 4 m", p: "76 Kč", v: "lat" as const },
-                ].map((x) => (
-                  <div
-                    key={x.t}
-                    className="rounded-xl border border-border bg-[color:var(--sand)] p-3"
-                  >
-                    <div className="flex h-16 items-center justify-center">
-                      <IsoWood variant={x.v} />
-                    </div>
-                    <div className="mt-2 text-sm font-bold text-foreground">{x.t}</div>
-                    <div className="text-sm font-black text-[color:var(--timber)]">{x.p}</div>
-                  </div>
-                ))}
+              <div className="mt-5 flex items-center justify-between rounded-2xl bg-[color:var(--forest)] px-5 py-3 text-white">
+                <div className="text-xs font-semibold uppercase tracking-wide text-white/70">
+                  Výroba na míru
+                </div>
+                <div className="text-lg font-black tracking-tight">Do 8 m délky</div>
               </div>
             </div>
           </div>
         </div>
       </section>
+
 
       {/* Categories */}
       <section className="mx-auto max-w-7xl px-4 pb-4">
@@ -763,13 +721,14 @@ function Index() {
       {/* Products */}
       <section id="produkty" className="mx-auto max-w-7xl px-4 py-12 sm:py-16">
         <div className="mb-6">
-          <div className="inline-flex rounded-full bg-[color:var(--timber)]/10 px-3 py-1 text-xs font-semibold uppercase tracking-wide text-[color:var(--timber-dark)]">
-            Skladem
-          </div>
-          <h2 className="mt-2 text-2xl font-black tracking-tight sm:text-3xl">
-            Stavební řezivo skladem
+          <h2 className="text-2xl font-black tracking-tight sm:text-3xl">
+            Stavební řezivo – standardní profily
           </h2>
+          <p className="mt-2 text-sm text-muted-foreground">
+            Vyberte profil a délku. Cena se přepočítá okamžitě.
+          </p>
         </div>
+
         <div className="grid gap-4 sm:gap-5 md:grid-cols-2 xl:grid-cols-4">
           <TramyCard onAdd={add} />
           <FosnyCard onAdd={add} />
