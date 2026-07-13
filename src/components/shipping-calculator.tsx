@@ -21,7 +21,7 @@ export function ShippingCalculator() {
   };
 
   return (
-    <div className="rounded-3xl border border-[#A86D38]/20 bg-white p-6 shadow-sm sm:p-7">
+    <div className="rounded-2xl border border-border/40 bg-white p-3.5 shadow-sm sm:rounded-3xl sm:border-[#A86D38]/20 sm:p-6">
       <div className="flex items-start gap-3">
         <div className="inline-flex h-11 w-11 shrink-0 items-center justify-center rounded-2xl bg-[#F5F2E9] text-[#A86D38]">
           <Truck className="h-5 w-5" />
