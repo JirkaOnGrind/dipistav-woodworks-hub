@@ -635,53 +635,39 @@ function Index() {
 
       {/* Hero */}
       <section className="relative overflow-hidden">
-        {/* Wood grain background */}
+        {/* Zoomed & blurred wood pattern */}
         <div
           aria-hidden
-          className="absolute inset-0"
-          style={{
-            backgroundColor: "#C48B47",
-            backgroundImage: `
-              repeating-linear-gradient(92deg, rgba(74,42,15,0.18) 0 2px, rgba(74,42,15,0) 2px 14px),
-              repeating-linear-gradient(88deg, rgba(255,240,210,0.10) 0 1px, rgba(255,240,210,0) 1px 9px),
-              radial-gradient(1200px 400px at 20% 30%, rgba(168,109,56,0.85), rgba(168,109,56,0) 60%),
-              radial-gradient(900px 500px at 85% 70%, rgba(139,80,35,0.75), rgba(139,80,35,0) 65%),
-              linear-gradient(135deg, #B57A3E 0%, #A86D38 50%, #8F5927 100%)
-            `,
-            filter: "blur(0.3px)",
-          }}
+          className="absolute inset-0 scale-125 blur-md opacity-40 bg-cover bg-center"
+          style={{ backgroundImage: `url(${woodPattern.url})` }}
         />
+        {/* Warm sand gradient overlay for readability */}
         <div
           aria-hidden
-          className="absolute inset-0 backdrop-blur-md"
-          style={{ backgroundColor: "rgba(245, 242, 233, 0.78)" }}
+          className="absolute inset-0 bg-gradient-to-b from-[#F5F2E9]/80 via-[#F5F2E9]/90 to-[#F5F2E9]"
         />
 
         <div className="relative mx-auto max-w-5xl px-4 py-16 sm:py-20 lg:py-28">
           <div className="text-center">
-            <div className="inline-flex items-center gap-2 rounded-full bg-[color:var(--timber)] px-4 py-1.5 text-xs font-bold uppercase tracking-wider text-white shadow-sm">
-              <span className="h-1.5 w-1.5 rounded-full bg-white" />
-              Pila &amp; prodej dřeva
-            </div>
-            <h1 className="mt-6 text-4xl font-black leading-[1.05] tracking-tight text-[color:var(--slate-ink)] sm:text-5xl lg:text-6xl">
+            <h1 className="text-4xl font-black leading-[1.05] tracking-tight text-[#1E293B] sm:text-5xl lg:text-6xl">
               Kvalitní stavební{" "}
-              <span className="text-[color:var(--timber-dark)]">řezivo a paliva</span>{" "}
+              <span className="text-[#A86D38]">řezivo a paliva</span>{" "}
               přímo z pily
             </h1>
-            <p className="mx-auto mt-5 max-w-2xl text-base text-[color:var(--slate-ink)]/75 sm:text-lg">
+            <p className="mx-auto mt-5 max-w-2xl text-base text-[#1E293B]/75 sm:text-lg">
               Standardní profily skladem. Atypická výroba na míru do délky 8 metrů.
             </p>
 
             <div className="mt-8 flex flex-col items-center justify-center gap-3 sm:flex-row">
               <a
                 href="#produkty"
-                className="inline-flex items-center justify-center rounded-lg bg-[color:var(--timber)] px-7 py-3.5 text-sm font-bold text-white shadow-md transition hover:bg-[color:var(--timber-dark)]"
+                className="inline-flex items-center justify-center rounded-lg bg-[#A86D38] px-7 py-3.5 text-sm font-bold text-white shadow-md transition hover:bg-[#8F5927]"
               >
                 Prohlédnout obchod
               </a>
               <a
                 href="#konfigurator"
-                className="inline-flex items-center justify-center rounded-lg bg-[color:var(--forest)] px-7 py-3.5 text-sm font-bold text-white shadow-md transition hover:bg-[color:var(--forest-dark)]"
+                className="inline-flex items-center justify-center rounded-lg bg-[#234A33] px-7 py-3.5 text-sm font-bold text-white shadow-md transition hover:bg-[#1a3826]"
               >
                 Konfigurátor na míru
               </a>
@@ -691,9 +677,9 @@ function Index() {
               {["Délky až do 8 m", "Platba kartou & dobírka", "Vlastní autojeřáb"].map((b) => (
                 <span
                   key={b}
-                  className="inline-flex items-center gap-1.5 rounded-full border border-[color:var(--timber)]/30 bg-white/90 px-3.5 py-1.5 text-xs font-semibold text-[color:var(--slate-ink)] shadow-sm"
+                  className="inline-flex items-center gap-1.5 rounded-full border border-[#A86D38]/30 bg-white/90 px-3.5 py-1.5 text-xs font-semibold text-[#1E293B] shadow-sm"
                 >
-                  <span className="text-[color:var(--forest)]"><IconCheck /></span>
+                  <span className="text-[#234A33]"><IconCheck /></span>
                   {b}
                 </span>
               ))}
