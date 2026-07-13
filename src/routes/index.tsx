@@ -587,10 +587,6 @@ function Index() {
       </section>
 
       <section className="relative mx-auto max-w-7xl px-4 pb-4">
-        <div
-          aria-hidden
-          className="pointer-events-none absolute inset-x-4 -top-14 h-20 rounded-full bg-[#F5F2E9] blur-2xl"
-        />
         <div className="mb-5 flex items-end justify-between">
           <h2 className="text-2xl font-black tracking-tight sm:text-3xl">Kategorie</h2>
           <a
