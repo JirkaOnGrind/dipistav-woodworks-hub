@@ -1,6 +1,5 @@
 import { useEffect, useMemo, useState } from "react";
 import { ArrowLeft } from "lucide-react";
-import { Link } from "@tanstack/react-router";
 import { SiteShell } from "@/components/site-shell";
 import { QuantitySelector } from "@/components/quantity-selector";
 import { WoodVisualizer } from "@/components/wood-visualizer";
@@ -110,17 +109,17 @@ export function ProductDetailPage({ category }: { category: ProductCategory }) {
       <section className="relative overflow-hidden border-b border-border bg-[linear-gradient(180deg,#f7f3ea_0%,#f5f2e9_100%)]">
         <div
           aria-hidden
-          className="absolute inset-0 scale-110 bg-cover bg-center opacity-25 blur-sm"
+          className="absolute inset-0 scale-110 bg-cover bg-center opacity-20 blur-sm"
           style={{ backgroundImage: "url('/images/woodpatern.jpg')" }}
         />
         <div className="relative mx-auto max-w-7xl px-4 py-10 sm:py-14">
-          <Link
-            to="/"
+          <a
+            href="/#kategorie"
             className="mb-5 inline-flex items-center gap-2 text-sm font-semibold text-[#234A33] transition hover:text-[#A86D38]"
           >
             <ArrowLeft className="h-4 w-4" />
             Zpět do obchodu
-          </Link>
+          </a>
 
           <div className="rounded-[2rem] border border-white/60 bg-white/88 p-5 shadow-sm backdrop-blur sm:p-7">
             <h1 className="text-3xl font-black tracking-tight text-[#1E293B] sm:text-5xl">
