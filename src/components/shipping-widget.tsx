@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { Crane, PhoneCall, Ruler, Store, Truck } from "lucide-react";
+import { ConstructionIcon, PhoneCall, Ruler, Store, Truck } from "lucide-react";
 import {
   COMPANY_PHONE,
   COMPANY_PHONE_HREF,
