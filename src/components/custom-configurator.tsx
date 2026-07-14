@@ -259,9 +259,13 @@ export function CustomConfigurator() {
                 >
                   {formatCurrency(totalPrice)}
                 </div>
-                <div className="mt-1 text-[11px] font-semibold uppercase tracking-[0.18em] text-muted-foreground">
-                  s DPH
+                <div className="mt-1 flex items-center justify-between gap-3 text-[11px] font-semibold uppercase tracking-[0.18em] text-muted-foreground">
+                  <span>s DPH</span>
+                  <span className="tabular-nums text-[#234A33]">
+                    Hmotnost: cca {new Intl.NumberFormat("cs-CZ").format(totalWeightKg)} kg
+                  </span>
                 </div>
+
               </div>
 
               <div className="rounded-2xl border border-dashed border-[#234A33]/20 bg-white/50 px-4 py-3 text-xs leading-5 text-[#1E293B]/70">
