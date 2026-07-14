@@ -1,5 +1,6 @@
 import { createFileRoute } from "@tanstack/react-router";
 import { ArrowRight } from "lucide-react";
+import { CustomConfigurator } from "@/components/custom-configurator";
 import { ShippingCalculator } from "@/components/shipping-calculator";
 import { SiteShell } from "@/components/site-shell";
 import { PRODUCT_CATEGORIES } from "@/lib/product-catalog";
@@ -116,10 +117,10 @@ function Index() {
               Prohlédnout sortiment
             </a>
             <a
-              href="/category/tramy"
+              href="#konfigurator"
               className="inline-flex items-center justify-center rounded-xl bg-[#234A33] px-6 py-3.5 text-sm font-bold text-white transition hover:bg-[#1a3826]"
             >
-              Začít s trámy
+              Navrhnout řezivo na míru
             </a>
           </div>
         </div>
@@ -151,6 +152,8 @@ function Index() {
           </div>
         </div>
       </section>
+
+      <CustomConfigurator />
 
       <section className="bg-white">
         <div className="mx-auto max-w-7xl px-4 py-12 sm:py-16">
