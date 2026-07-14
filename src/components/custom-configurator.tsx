@@ -9,13 +9,15 @@ type Species = {
   id: string;
   label: string;
   pricePerM3: number;
+  densityKgPerM3: number;
 };
 
 const SPECIES: Species[] = [
-  { id: "smrk", label: "Smrk", pricePerM3: 8500 },
-  { id: "borovice", label: "Borovice", pricePerM3: 9200 },
-  { id: "modrin", label: "Modřín", pricePerM3: 12500 },
+  { id: "smrk", label: "Smrk", pricePerM3: 8500, densityKgPerM3: 450 },
+  { id: "borovice", label: "Borovice", pricePerM3: 9200, densityKgPerM3: 520 },
+  { id: "modrin", label: "Modřín", pricePerM3: 12500, densityKgPerM3: 590 },
 ];
+
 
 const WIDTH_MIN = 40;
 const WIDTH_MAX = 300;
@@ -122,6 +124,11 @@ export function CustomConfigurator() {
     () => Math.round(volumeM3 * species.pricePerM3),
     [volumeM3, species],
   );
+  const totalWeightKg = useMemo(
+    () => Math.round(volumeM3 * species.densityKgPerM3),
+    [volumeM3, species],
+  );
+
 
   const handleAdd = () => {
     addCustomItem({
@@ -252,9 +259,13 @@ export function CustomConfigurator() {
                 >
                   {formatCurrency(totalPrice)}
                 </div>
-                <div className="mt-1 text-[11px] font-semibold uppercase tracking-[0.18em] text-muted-foreground">
-                  s DPH
+                <div className="mt-1 flex items-center justify-between gap-3 text-[11px] font-semibold uppercase tracking-[0.18em] text-muted-foreground">
+                  <span>s DPH</span>
+                  <span className="tabular-nums text-[#234A33]">
+                    Hmotnost: cca {new Intl.NumberFormat("cs-CZ").format(totalWeightKg)} kg
+                  </span>
                 </div>
+
               </div>
 
               <div className="rounded-2xl border border-dashed border-[#234A33]/20 bg-white/50 px-4 py-3 text-xs leading-5 text-[#1E293B]/70">
