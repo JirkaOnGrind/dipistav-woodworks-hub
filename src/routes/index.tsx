@@ -194,57 +194,8 @@ function Index() {
         </div>
       </section>
 
-      <section id="doprava" className="mx-auto max-w-7xl px-3 py-6 sm:px-6 sm:py-16">
-        <div className="grid gap-5 rounded-[2rem] border border-[#A86D38]/15 bg-white p-4 shadow-sm sm:gap-6 sm:p-10 lg:grid-cols-[1.05fr_0.95fr]">
-          <div className="space-y-4 sm:space-y-5">
-            <div>
-              <h2 className="text-xl font-black tracking-tight text-[#1E293B] sm:text-3xl">
-                Doručíme řezivo až na stavbu
-              </h2>
-              <p className="mt-2 hidden text-sm text-[#1E293B]/70 sm:block sm:text-base">
-                Vlastní autojeřáb DIPISTAV zvládne pohodlnou vykládku i tam, kde je potřeba
-                přesnost, rychlost a jistota.
-              </p>
-            </div>
+      <ShippingWidget />
 
-            <div className="my-1 grid grid-cols-2 gap-2 sm:my-0 sm:gap-3">
-              {[
-                "Složení hydraulickou rukou přímo na místě",
-                "Objednávky skladového i atypického řeziva",
-                "Osobní odběr zdarma přímo na pile",
-                "Rychlá domluva termínu po telefonu",
-              ].map((item) => (
-                <div
-                  key={item}
-                  className="flex items-start gap-2 rounded-xl border border-[#A86D38]/10 bg-[#F5F2E9]/70 p-2.5 text-[11px] font-medium leading-tight text-foreground/90 sm:items-center sm:gap-3 sm:rounded-2xl sm:px-4 sm:py-3 sm:text-sm sm:font-semibold"
-                >
-                  <span className="mt-0.5 inline-flex h-4 w-4 shrink-0 items-center justify-center text-[#A86D38] sm:mt-0 sm:h-8 sm:w-8 sm:rounded-full sm:bg-white">
-                    <IconCheck />
-                  </span>
-                  <span className="min-w-0">{item}</span>
-                </div>
-              ))}
-            </div>
-
-            <div className="mt-3 grid grid-cols-2 gap-2 sm:mt-0 sm:flex sm:flex-row sm:gap-3">
-              <a
-                href="/doprava"
-                className="inline-flex items-center justify-center rounded-xl bg-[#234A33] px-3 py-2.5 text-xs font-bold text-white transition hover:bg-[#1A3826] sm:rounded-2xl sm:px-6 sm:py-3 sm:text-sm"
-              >
-                Zobrazit možnosti dopravy
-              </a>
-              <a
-                href={COMPANY_PHONE_HREF}
-                className="inline-flex items-center justify-center rounded-xl border border-[#A86D38]/40 px-3 py-2.5 text-xs font-bold text-[#A86D38] transition hover:bg-[#F5F2E9] sm:rounded-2xl sm:px-6 sm:py-3 sm:text-sm"
-              >
-                Zavolat pro termín
-              </a>
-            </div>
-          </div>
-
-          <ShippingCalculator />
-        </div>
-      </section>
 
       <section id="kontakt" className="bg-[color:var(--forest)] text-white">
         <div className="mx-auto grid max-w-7xl gap-6 px-4 py-10 sm:py-14 md:grid-cols-[1fr_auto] md:items-center">
