@@ -117,10 +117,10 @@ function Index() {
               Prohlédnout sortiment
             </a>
             <a
-              href="/category/tramy"
+              href="#konfigurator"
               className="inline-flex items-center justify-center rounded-xl bg-[#234A33] px-6 py-3.5 text-sm font-bold text-white transition hover:bg-[#1a3826]"
             >
-              Začít s trámy
+              Navrhnout řezivo na míru
             </a>
           </div>
         </div>
