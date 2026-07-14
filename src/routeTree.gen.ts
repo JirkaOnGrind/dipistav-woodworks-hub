@@ -69,7 +69,12 @@ export interface FileRouteTypes {
   fileRoutesByTo: FileRoutesByTo
   to: '/' | '/doprava' | '/o-nas' | '/widget-tramy' | '/category/$id'
   id:
-    '__root__' | '/' | '/doprava' | '/o-nas' | '/widget-tramy' | '/category/$id'
+    | '__root__'
+    | '/'
+    | '/doprava'
+    | '/o-nas'
+    | '/widget-tramy'
+    | '/category/$id'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
