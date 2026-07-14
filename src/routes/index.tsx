@@ -153,6 +153,8 @@ function Index() {
         </div>
       </section>
 
+      <CustomConfigurator />
+
       <section className="bg-white">
         <div className="mx-auto max-w-7xl px-4 py-12 sm:py-16">
           <div className="mb-8 max-w-2xl">
