@@ -98,32 +98,32 @@ function Index() {
           className="pointer-events-none absolute inset-x-0 bottom-0 h-56 bg-gradient-to-b from-transparent via-[#F5F2E9] via-40% to-[#F5F2E9]"
         />
 
-        <div className="relative mx-auto max-w-5xl px-4 py-12 text-center sm:py-20 lg:py-28">
-          <h1 className="text-[30px] font-bold leading-tight tracking-tight text-[#1E293B] sm:text-5xl sm:font-black sm:leading-[1.05] lg:text-6xl">
-            Vítejte v obchodě DIPISTAV.
-            <span className="text-[#A86D38]"> Vyberte si řezivo snadno a bez zdržování.</span>
+        <div className="relative mx-auto max-w-5xl px-4 py-8 text-center sm:py-20 lg:py-28">
+          <h1 className="text-[28px] font-bold leading-[1.15] tracking-tight text-[#1E293B] sm:text-5xl sm:font-black sm:leading-[1.05] lg:text-6xl">
+            Stavební řezivo doručené
+            <span className="text-[#A86D38]"> až na vaši stavbu</span>
           </h1>
-          <p className="mx-auto mt-4 max-w-2xl text-sm leading-6 text-[#1E293B]/70 sm:mt-5 sm:text-lg">
-            Projděte si nabídku stavebního řeziva, zvolte rozměr, délku i množství a hned uvidíte
-            orientační cenu celé objednávky. Nakupování dřeva jsme postavili tak, aby bylo rychlé,
-            přehledné a bez zbytečných kroků.
+          <p className="mx-auto mt-3 max-w-xl text-sm leading-6 text-[#1E293B]/70 sm:mt-5 sm:text-lg">
+            Konfigurace rozměrů na míru s okamžitým výpočtem ceny.
           </p>
 
-          <div className="mx-auto mt-6 flex max-w-md flex-col gap-3 sm:mt-8 sm:max-w-none sm:flex-row sm:justify-center">
+          <div className="mx-auto mt-5 flex max-w-md flex-col items-center gap-3 sm:mt-8">
             <a
               href="#kategorie"
-              className="inline-flex items-center justify-center rounded-xl bg-[#A86D38] px-6 py-3.5 text-sm font-bold text-white transition hover:bg-[#8F5927]"
+              className="inline-flex w-full items-center justify-center rounded-xl bg-[#234A33] px-6 py-3.5 text-sm font-bold text-white transition hover:bg-[#1a3826] sm:w-auto sm:px-8"
             >
               Prohlédnout sortiment
             </a>
             <a
               href="#konfigurator"
-              className="inline-flex items-center justify-center rounded-xl bg-[#234A33] px-6 py-3.5 text-sm font-bold text-white transition hover:bg-[#1a3826]"
+              className="inline-flex items-center gap-1.5 text-sm font-semibold text-[#A86D38] underline-offset-4 hover:underline"
             >
-              Navrhnout řezivo na míru
+              nebo navrhnout řezivo na míru
+              <ArrowRight className="h-3.5 w-3.5" />
             </a>
           </div>
         </div>
+
       </section>
 
       <section id="kategorie" className="relative -mt-px bg-[#F5F2E9]">
