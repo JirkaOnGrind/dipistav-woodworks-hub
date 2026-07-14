@@ -1,12 +1,12 @@
-import { useEffect, useMemo, useState } from "react";
+import { useDeferredValue, useEffect, useMemo, useState } from "react";
 import { ArrowLeft } from "lucide-react";
-import { SiteShell } from "@/components/site-shell";
 import { QuantitySelector } from "@/components/quantity-selector";
-import { WoodVisualizer } from "@/components/wood-visualizer";
+import { SiteShell } from "@/components/site-shell";
 import { Button } from "@/components/ui/button";
+import { WoodVisualizer } from "@/components/wood-visualizer";
 import { useCart } from "@/lib/cart";
-import { formatCurrency } from "@/lib/site";
 import { type ProductCategory } from "@/lib/product-catalog";
+import { formatCurrency } from "@/lib/site";
 
 function ProductSelect({
   value,
@@ -21,13 +21,13 @@ function ProductSelect({
 }) {
   return (
     <label className="block">
-      <span className="mb-1.5 block text-xs font-semibold uppercase tracking-wide text-muted-foreground">
+      <span className="mb-1.5 block text-xs font-semibold uppercase tracking-[0.18em] text-muted-foreground">
         {label}
       </span>
       <select
         value={value}
         onChange={(event) => onChange(event.target.value)}
-        className="h-11 w-full rounded-xl border border-border bg-white px-3 text-sm font-medium text-foreground shadow-sm transition focus:border-primary focus:outline-none focus:ring-2 focus:ring-primary/20"
+        className="h-12 w-full rounded-2xl border border-border bg-white px-4 text-sm font-semibold text-foreground shadow-sm transition focus:border-primary focus:outline-none focus:ring-2 focus:ring-primary/20"
       >
         {options.map((option) => (
           <option key={option.value} value={option.value}>
@@ -42,6 +42,7 @@ function ProductSelect({
 export function ProductDetailPage({ category }: { category: ProductCategory }) {
   const { addStandardItem } = useCart();
   const [quantity, setQuantity] = useState(1);
+  const visualQuantity = useDeferredValue(quantity);
 
   const dimensionOptions = useMemo(
     () => (category.kind === "dimensioned" ? category.getDimensionOptions() : []),
@@ -78,12 +79,13 @@ export function ProductDetailPage({ category }: { category: ProductCategory }) {
   }, [category, dimension, length]);
 
   const totalPrice = unitPrice * quantity;
+  const selectedDimensionLabel =
+    category.kind === "dimensioned"
+      ? (dimensionOptions.find((option) => option.value === dimension)?.label ?? dimension)
+      : category.fixedDimensionLabel;
   const selectedLengthLabel =
     lengthOptions.find((option) => option.value === length)?.label ?? length;
-  const selectionSummary =
-    category.kind === "dimensioned"
-      ? `${dimensionOptions.find((option) => option.value === dimension)?.label ?? dimension} · ${selectedLengthLabel}`
-      : `${category.fixedDimensionLabel} · ${selectedLengthLabel}`;
+  const selectionSummary = `${selectedDimensionLabel} · ${selectedLengthLabel} | ${quantity} ks`;
 
   const handleAddToCart = () => {
     if (category.kind === "dimensioned") {
@@ -106,7 +108,10 @@ export function ProductDetailPage({ category }: { category: ProductCategory }) {
 
   return (
     <SiteShell>
-      <section className="relative overflow-hidden border-b border-border bg-[linear-gradient(180deg,#f7f3ea_0%,#f5f2e9_100%)]">
+      <section
+        data-beam-configurator
+        className="relative overflow-hidden border-b border-border bg-[linear-gradient(180deg,#f9f5ee_0%,#f3ede2_100%)]"
+      >
         <div
           aria-hidden
           className="absolute inset-0 scale-110 bg-cover bg-center opacity-20 blur-sm"
@@ -121,45 +126,43 @@ export function ProductDetailPage({ category }: { category: ProductCategory }) {
             Zpět do obchodu
           </a>
 
-          <div className="rounded-[2rem] border border-white/60 bg-white/88 p-5 shadow-sm backdrop-blur sm:p-7">
+          <div className="rounded-3xl border border-white/70 bg-white/88 p-6 shadow-sm backdrop-blur sm:p-8">
             <h1 className="text-3xl font-black tracking-tight text-[#1E293B] sm:text-5xl">
               {category.name}
             </h1>
-            <p className="mt-3 max-w-2xl text-sm leading-6 text-[#1E293B]/72 sm:text-base">
+            <p className="mt-3 max-w-2xl text-base font-semibold text-[#1E293B]/72">
+              {category.subtitle}
+            </p>
+            <p className="mt-2 max-w-3xl text-sm leading-7 text-[#1E293B]/65 sm:text-base">
               {category.description}
             </p>
           </div>
 
-          <div className="mt-6 grid gap-6 md:grid-cols-[minmax(0,1.08fr)_minmax(340px,0.92fr)] md:items-start">
-            <div className="order-2 md:order-1">
+          <div className="mt-6 grid items-stretch gap-6 lg:grid-cols-[minmax(0,1fr)_minmax(360px,460px)]">
+            <div className="order-2 h-full lg:order-1">
               <WoodVisualizer
                 categoryId={category.id}
                 imageSrc={category.imageSrc}
-                quantity={quantity}
+                quantity={visualQuantity}
               />
             </div>
 
-            <div className="order-1 rounded-[2rem] border border-[#234A33]/15 bg-white p-5 shadow-sm transition-shadow duration-300 hover:shadow-[0_20px_45px_rgba(35,74,51,0.08)] sm:p-7 md:order-2">
+            <div className="order-1 flex h-full flex-col rounded-3xl border border-[#234A33]/12 bg-white p-5 shadow-sm transition-shadow duration-300 hover:shadow-[0_20px_45px_rgba(35,74,51,0.08)] sm:p-7 lg:order-2">
               <div className="flex items-start justify-between gap-4">
-                <div>
-                  <p className="text-xs font-semibold uppercase tracking-[0.2em] text-[#A86D38]">
-                    Konfigurátor
-                  </p>
-                  <h2 className="mt-2 text-2xl font-black tracking-tight text-[#1E293B]">
-                    Nastavte si sestavu
-                  </h2>
-                </div>
-                <div className="min-w-[8.5rem] rounded-2xl bg-[color:var(--sand)] px-3 py-2 text-right">
-                  <div className="text-xs font-semibold uppercase tracking-wide text-muted-foreground">
+                <h2 className="text-2xl font-black tracking-tight text-[#1E293B]">
+                  Nastavte si sestavu
+                </h2>
+                <div className="min-w-[8.75rem] rounded-2xl bg-[#F6F4EE] px-4 py-3 text-right">
+                  <div className="text-[11px] font-semibold uppercase tracking-[0.18em] text-muted-foreground">
                     {category.priceUnitLabel}
                   </div>
-                  <div className="text-xl font-black tracking-tight text-[color:var(--timber)] tabular-nums">
+                  <div className="mt-1 text-xl font-black tracking-tight text-[color:var(--timber)] tabular-nums">
                     {formatCurrency(unitPrice)}
                   </div>
                 </div>
               </div>
 
-              <div className="mt-6 space-y-4">
+              <div className="mt-6 flex flex-1 flex-col gap-4">
                 {category.kind === "dimensioned" ? (
                   <div className="grid gap-4 sm:grid-cols-2">
                     <ProductSelect
@@ -177,8 +180,8 @@ export function ProductDetailPage({ category }: { category: ProductCategory }) {
                   </div>
                 ) : (
                   <div className="grid gap-4 sm:grid-cols-2">
-                    <div className="rounded-2xl border border-border bg-[color:var(--sand)]/70 px-4 py-3">
-                      <div className="text-xs font-semibold uppercase tracking-wide text-muted-foreground">
+                    <div className="rounded-2xl border border-border bg-[#F6F4EE] px-4 py-3">
+                      <div className="text-xs font-semibold uppercase tracking-[0.18em] text-muted-foreground">
                         Profil
                       </div>
                       <div className="mt-1 text-base font-black text-[#1E293B]">
@@ -194,26 +197,36 @@ export function ProductDetailPage({ category }: { category: ProductCategory }) {
                   </div>
                 )}
 
-                <QuantitySelector quantity={quantity} onChange={setQuantity} />
+                <QuantitySelector
+                  quantity={quantity}
+                  onChange={setQuantity}
+                  min={1}
+                  max={500}
+                  sliderMax={20}
+                />
 
-                <div className="rounded-[1.5rem] border border-[#234A33]/10 bg-[#F1F5EE] p-4">
-                  <div className="grid gap-3 sm:grid-cols-[minmax(0,1fr)_auto] sm:items-start">
-                    <div className="min-w-0">
-                      <div className="text-xs font-semibold uppercase tracking-wide text-muted-foreground">
-                        Aktuální konfigurace
-                      </div>
-                      <div className="mt-1 text-lg font-black text-[#1E293B]">
-                        {selectionSummary}
-                      </div>
-                      <div className="mt-1 text-sm text-[#1E293B]/65">{quantity} ks</div>
-                    </div>
-                    <div className="text-left sm:text-right">
-                      <div className="text-xs font-semibold uppercase tracking-wide text-muted-foreground">
+                <div className="rounded-[1.75rem] border border-[#234A33]/10 bg-[#F6F4EE] p-5">
+                  <div className="text-[11px] font-semibold uppercase tracking-[0.2em] text-muted-foreground">
+                    Konfigurace
+                  </div>
+                  <div className="mt-2 text-base font-black leading-6 text-[#1E293B]">
+                    {selectionSummary}
+                  </div>
+
+                  <div className="mt-5 flex items-end justify-between gap-4">
+                    <div>
+                      <div className="text-[11px] font-semibold uppercase tracking-[0.2em] text-muted-foreground">
                         Celkem
                       </div>
-                      <div className="mt-1 min-w-[8ch] text-3xl font-black tracking-tight text-[#234A33] tabular-nums">
+                      <div
+                        aria-live="polite"
+                        className="mt-1 min-w-[8ch] text-4xl font-black tracking-tight text-[#1E3A2B] tabular-nums"
+                      >
                         {formatCurrency(totalPrice)}
                       </div>
+                    </div>
+                    <div className="rounded-full border border-white/70 bg-white px-3 py-1.5 text-sm font-bold text-[#1E293B] tabular-nums">
+                      {quantity} ks
                     </div>
                   </div>
                 </div>
@@ -222,7 +235,7 @@ export function ProductDetailPage({ category }: { category: ProductCategory }) {
               <Button
                 type="button"
                 onClick={handleAddToCart}
-                className="mt-6 h-12 w-full rounded-xl bg-[#234A33] text-sm font-bold text-white shadow-sm transition hover:bg-[#1A3826] hover:shadow-[0_14px_30px_rgba(35,74,51,0.18)]"
+                className="mt-6 h-12 w-full rounded-2xl bg-[#1e3a2b] text-sm font-bold text-white shadow-sm transition hover:bg-[#163022] hover:shadow-[0_14px_30px_rgba(30,58,43,0.18)]"
               >
                 {category.ctaLabel}
               </Button>

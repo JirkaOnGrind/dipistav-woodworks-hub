@@ -1,24 +1,24 @@
 import { createFileRoute } from "@tanstack/react-router";
 import { ArrowRight } from "lucide-react";
-import { SiteShell } from "@/components/site-shell";
 import { ShippingCalculator } from "@/components/shipping-calculator";
-import { COMPANY_EMAIL_HREF, COMPANY_PHONE, COMPANY_PHONE_HREF } from "@/lib/site";
+import { SiteShell } from "@/components/site-shell";
 import { PRODUCT_CATEGORIES } from "@/lib/product-catalog";
+import { COMPANY_EMAIL_HREF, COMPANY_PHONE, COMPANY_PHONE_HREF } from "@/lib/site";
 
 export const Route = createFileRoute("/")({
   head: () => ({
     meta: [
-      { title: "DIPISTAV – Pila a prodej dřeva | Stavební řezivo a paliva" },
+      { title: "DIPISTAV - Pila a prodej dřeva | Stavební řezivo a paliva" },
       {
         name: "description",
         content:
           "Kvalitní stavební řezivo, KVH hranoly, palivové dřevo a řezivo na míru do 8 m přímo z pily DIPISTAV.",
       },
-      { property: "og:title", content: "DIPISTAV – Pila a prodej dřeva" },
+      { property: "og:title", content: "DIPISTAV - Pila a prodej dřeva" },
       {
         property: "og:description",
         content:
-          "Projděte si kategorie řeziva a otevřete detail produktu s přehledným konfigurátorem a vizualizací množství.",
+          "Vyberte si řezivo online, nastavte rozměr i množství a hned uvidíte orientační cenu své objednávky.",
       },
       { property: "og:type", content: "website" },
       { name: "twitter:card", content: "summary_large_image" },
@@ -82,32 +82,30 @@ function IconCheck() {
 function Index() {
   return (
     <SiteShell>
-      <section className="relative overflow-hidden">
+      <section className="relative overflow-hidden bg-[#F5F2E9]">
         <div
           aria-hidden
-          className="absolute inset-0 scale-[1.18] bg-cover bg-center opacity-50 blur-[3px]"
+          className="absolute inset-0 scale-[1.18] bg-cover bg-center opacity-40 blur-[3px]"
           style={{ backgroundImage: "url('/images/woodpatern.jpg')" }}
         />
         <div
           aria-hidden
-          className="absolute inset-0 bg-[linear-gradient(180deg,rgba(245,242,233,0.72),rgba(245,242,233,0.84)_50%,rgba(245,242,233,1))]"
+          className="absolute inset-0 bg-[linear-gradient(180deg,rgba(245,242,233,0.74),rgba(245,242,233,0.9)_56%,rgba(245,242,233,1))]"
         />
         <div
           aria-hidden
-          className="pointer-events-none absolute inset-x-0 bottom-0 h-48 bg-gradient-to-b from-transparent via-[#F5F2E9] via-35% to-[#F5F2E9]"
+          className="pointer-events-none absolute inset-x-0 bottom-0 h-56 bg-gradient-to-b from-transparent via-[#F5F2E9] via-40% to-[#F5F2E9]"
         />
 
         <div className="relative mx-auto max-w-5xl px-4 py-12 text-center sm:py-20 lg:py-28">
-          <p className="text-xs font-semibold uppercase tracking-[0.28em] text-[#A86D38]">
-            Přehled kategorií
-          </p>
-          <h1 className="mt-4 text-[30px] font-bold leading-tight tracking-tight text-[#1E293B] sm:text-5xl sm:font-black sm:leading-[1.05] lg:text-6xl">
-            Vyberte si typ řeziva a pokračujte na jeho{" "}
-            <span className="text-[#A86D38]">detail produktu</span>
+          <h1 className="text-[30px] font-bold leading-tight tracking-tight text-[#1E293B] sm:text-5xl sm:font-black sm:leading-[1.05] lg:text-6xl">
+            Vítejte v obchodě DIPISTAV.
+            <span className="text-[#A86D38]"> Vyberte si řezivo snadno a bez zdržování.</span>
           </h1>
           <p className="mx-auto mt-4 max-w-2xl text-sm leading-6 text-[#1E293B]/70 sm:mt-5 sm:text-lg">
-            Domovská stránka teď slouží jako rychlý rozcestník. Každá kategorie má vlastní
-            produktovou stránku s konfigurátorem, kalkulací ceny a vizualizací objednaného množství.
+            Projděte si nabídku stavebního řeziva, zvolte rozměr, délku i množství a hned uvidíte
+            orientační cenu celé objednávky. Nakupování dřeva jsme postavili tak, aby bylo rychlé,
+            přehledné a bez zbytečných kroků.
           </p>
 
           <div className="mx-auto mt-6 flex max-w-md flex-col gap-3 sm:mt-8 sm:max-w-none sm:flex-row sm:justify-center">
@@ -115,38 +113,42 @@ function Index() {
               href="#kategorie"
               className="inline-flex items-center justify-center rounded-xl bg-[#A86D38] px-6 py-3.5 text-sm font-bold text-white transition hover:bg-[#8F5927]"
             >
-              Projít kategorie
+              Prohlédnout sortiment
             </a>
             <a
               href="/category/tramy"
               className="inline-flex items-center justify-center rounded-xl bg-[#234A33] px-6 py-3.5 text-sm font-bold text-white transition hover:bg-[#1a3826]"
             >
-              Otevřít první PDP
+              Začít s trámy
             </a>
           </div>
         </div>
       </section>
 
-      <section id="kategorie" className="relative mx-auto max-w-7xl px-4 py-8 sm:py-14">
-        <div className="mb-6">
-          <h2 className="text-2xl font-black tracking-tight text-[#1E293B] sm:text-3xl">
-            Kategorie řeziva
-          </h2>
-          <p className="mt-2 max-w-2xl text-sm leading-6 text-muted-foreground">
-            Každá karta otevírá dedikovanou stránku produktu s výběrem profilu, délky a množství.
-          </p>
-        </div>
+      <section id="kategorie" className="relative -mt-px bg-[#F5F2E9]">
+        <div className="pointer-events-none absolute inset-x-0 top-0 h-12 bg-gradient-to-b from-[#F5F2E9] to-[#F5F2E9]/0" />
+        <div className="relative mx-auto max-w-7xl px-4 py-8 sm:py-14">
+          <div className="mb-6">
+            <h2 className="text-2xl font-black tracking-tight text-[#1E293B] sm:text-3xl">
+              Vyberte si druh řeziva
+            </h2>
+            <p className="mt-2 max-w-2xl text-sm leading-6 text-muted-foreground">
+              Otevřete detail produktu, nastavte rozměr i množství a během chvilky máte jasno v
+              ceně.
+            </p>
+          </div>
 
-        <div className="grid gap-4 sm:grid-cols-2 xl:grid-cols-4">
-          {PRODUCT_CATEGORIES.map((category) => (
-            <CategoryCard
-              key={category.id}
-              href={`/category/${category.id}`}
-              imageSrc={category.imageSrc}
-              title={category.name}
-              subtitle={category.subtitle}
-            />
-          ))}
+          <div className="grid gap-4 sm:grid-cols-2 xl:grid-cols-4">
+            {PRODUCT_CATEGORIES.map((category) => (
+              <CategoryCard
+                key={category.id}
+                href={`/category/${category.id}`}
+                imageSrc={category.imageSrc}
+                title={category.name}
+                subtitle={category.subtitle}
+              />
+            ))}
+          </div>
         </div>
       </section>
 

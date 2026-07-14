@@ -1,4 +1,4 @@
-import { useEffect, useMemo, useRef, useState } from "react";
+import { useEffect, useMemo } from "react";
 
 type WoodVisualizerProps = {
   categoryId: string;
@@ -6,155 +6,113 @@ type WoodVisualizerProps = {
   quantity: number;
 };
 
-type VisualState = {
-  flip?: boolean;
-  key: string;
-  src: string;
-};
-
-const TRANSITION_MS = 150;
-
 const BEAM_ASSETS = {
-  one: "/images/1TramDIPI_2.png",
-  two: "/images/2TramDIPI_3.png",
-  three: "/images/3TramDIPI_2.png",
-  four: "/images/4TramyDIPI-Photoroom_4.png",
-  five: "/images/5TramDIPI_3.png",
-  full: "/images/TramyDIPIFinal_3.png",
+  one: "/images/widgets/1TramDIPI_2.webp",
+  two: "/images/widgets/2TramDIPI.webp",
+  three: "/images/widgets/3TramDIPI.webp",
+  five: "/images/widgets/5TramDIPI.webp",
+  seven: "/images/widgets/7TramDIPI.webp",
+  eleven: "/images/widgets/11TramDIPI.webp",
+  eighteen: "/images/widgets/18TramDIPI.webp",
 } as const;
 
-const ALL_BEAM_ASSETS = Object.values(BEAM_ASSETS);
+const BEAM_IMAGE_STACK = [
+  { alt: "Jeden stavební trám", key: "one", src: BEAM_ASSETS.one },
+  { alt: "Dva stavební trámy", key: "two", src: BEAM_ASSETS.two },
+  { alt: "Tři až čtyři stavební trámy", key: "three", src: BEAM_ASSETS.three },
+  { alt: "Pět až šest stavebních trámů", key: "five", src: BEAM_ASSETS.five },
+  { alt: "Sedm až deset stavebních trámů", key: "seven", src: BEAM_ASSETS.seven },
+  { alt: "Jedenáct až patnáct stavebních trámů", key: "eleven", src: BEAM_ASSETS.eleven },
+  { alt: "Šestnáct a více stavebních trámů", key: "eighteen", src: BEAM_ASSETS.eighteen },
+] as const;
 
 function preloadImage(src: string) {
   const image = new Image();
+  image.decoding = "async";
   image.src = src;
 }
 
-function getBeamVisual(quantity: number): VisualState {
+function getBeamVisualKey(quantity: number) {
   if (quantity <= 1) {
-    return { key: "beam-1", src: BEAM_ASSETS.one };
+    return "one";
   }
 
   if (quantity === 2) {
-    return { key: "beam-2", src: BEAM_ASSETS.two };
+    return "two";
   }
 
-  if (quantity === 3) {
-    return { key: "beam-3", src: BEAM_ASSETS.three };
+  if (quantity <= 4) {
+    return "three";
   }
 
-  if (quantity === 4) {
-    return { key: "beam-4", src: BEAM_ASSETS.four };
+  if (quantity <= 6) {
+    return "five";
   }
 
-  if (quantity <= 9) {
-    return { key: "beam-5-9", src: BEAM_ASSETS.five };
+  if (quantity <= 10) {
+    return "seven";
   }
 
-  return { flip: true, key: "beam-10-plus", src: BEAM_ASSETS.full };
-}
-
-function getGenericVisual(imageSrc: string): VisualState {
-  return { key: `generic-${imageSrc}`, src: imageSrc };
-}
-
-function getVisual(categoryId: string, imageSrc: string, quantity: number) {
-  if (categoryId === "tramy") {
-    return getBeamVisual(quantity);
+  if (quantity <= 15) {
+    return "eleven";
   }
 
-  return getGenericVisual(imageSrc);
+  return "eighteen";
 }
 
 export function WoodVisualizer({ categoryId, imageSrc, quantity }: WoodVisualizerProps) {
-  const mappedVisual = useMemo(
-    () => getVisual(categoryId, imageSrc, quantity),
-    [categoryId, imageSrc, quantity],
-  );
-
-  const [currentVisual, setCurrentVisual] = useState<VisualState>(mappedVisual);
-  const [previousVisual, setPreviousVisual] = useState<VisualState | null>(null);
-  const [isTransitioning, setIsTransitioning] = useState(false);
-  const transitionTimerRef = useRef<number | null>(null);
+  const isBeamCategory = categoryId === "tramy";
+  const activeBeamKey = useMemo(() => getBeamVisualKey(quantity), [quantity]);
 
   useEffect(() => {
-    if (categoryId === "tramy") {
-      ALL_BEAM_ASSETS.forEach(preloadImage);
-    }
-
-    preloadImage(imageSrc);
-  }, [categoryId, imageSrc]);
-
-  useEffect(() => {
-    if (mappedVisual.key === currentVisual.key) {
+    if (!isBeamCategory) {
+      preloadImage(imageSrc);
       return;
     }
 
-    if (transitionTimerRef.current !== null) {
-      window.clearTimeout(transitionTimerRef.current);
-    }
-
-    setPreviousVisual(currentVisual);
-    setCurrentVisual(mappedVisual);
-    setIsTransitioning(true);
-
-    const frame = window.requestAnimationFrame(() => {
-      setIsTransitioning(false);
-    });
-
-    transitionTimerRef.current = window.setTimeout(() => {
-      setPreviousVisual(null);
-      transitionTimerRef.current = null;
-    }, TRANSITION_MS);
-
-    return () => {
-      window.cancelAnimationFrame(frame);
-    };
-  }, [currentVisual, mappedVisual]);
-
-  useEffect(() => {
-    return () => {
-      if (transitionTimerRef.current !== null) {
-        window.clearTimeout(transitionTimerRef.current);
-      }
-    };
-  }, []);
-
-  const visualSurfaceClass = currentVisual.flip || previousVisual?.flip ? "scale-x-[-1]" : "";
+    BEAM_IMAGE_STACK.forEach((asset) => preloadImage(asset.src));
+  }, [imageSrc, isBeamCategory]);
 
   return (
-    <div className="group rounded-[2rem] border border-[#A86D38]/15 bg-[linear-gradient(180deg,#fffdf8_0%,#f5f2e9_100%)] p-4 shadow-sm transition-all duration-300 hover:-translate-y-0.5 hover:shadow-[0_20px_45px_rgba(107,74,47,0.10)] sm:p-6">
-      <div className="relative flex h-[280px] items-center justify-center overflow-hidden rounded-[1.75rem] border border-white/80 bg-[radial-gradient(circle_at_top,#fefcf6_0%,#f3ead9_58%,#eadfce_100%)] px-5 py-8 transition-all duration-300 sm:h-[360px]">
+    <div className="group flex h-full flex-col rounded-3xl border border-[#A86D38]/15 bg-white/80 p-4 shadow-sm backdrop-blur sm:p-6">
+      <div className="mb-4 flex items-start justify-between gap-4">
+        <h2 className="text-2xl font-black tracking-tight text-[#1E293B]">Náhled objednávky</h2>
+        <div className="rounded-full bg-[#F6F4EE] px-3 py-1.5 text-sm font-bold text-[#1E293B] tabular-nums">
+          {quantity} ks
+        </div>
+      </div>
+
+      <div className="relative flex min-h-[320px] flex-1 items-center justify-center overflow-hidden rounded-[1.75rem] border border-[#E8DFD2] bg-[radial-gradient(circle_at_top,#fffdf7_0%,#f7efe0_58%,#efe4d3_100%)] px-5 py-8 transition-all duration-300 group-hover:shadow-[inset_0_1px_0_rgba(255,255,255,0.65)] sm:min-h-[420px]">
         <div
           aria-hidden
-          className="absolute inset-x-10 bottom-7 h-8 rounded-full bg-[#6B4A2F]/12 blur-2xl transition-transform duration-300 group-hover:scale-x-105"
+          className="absolute inset-x-10 bottom-8 h-8 rounded-full bg-[#6B4A2F]/10 blur-2xl transition-transform duration-300 group-hover:scale-x-110"
         />
 
-        <div
-          className={`relative flex h-full w-full items-center justify-center ${visualSurfaceClass}`}
-        >
-          {previousVisual ? (
+        <div className="relative aspect-[16/10] w-full max-w-[44rem]">
+          {isBeamCategory ? (
+            BEAM_IMAGE_STACK.map((asset) => (
+              <img
+                key={asset.key}
+                src={asset.src}
+                alt={asset.alt}
+                loading="eager"
+                decoding="async"
+                draggable={false}
+                className={`absolute inset-0 h-full w-full select-none object-contain drop-shadow-[0_20px_34px_rgba(107,74,47,0.22)] [transform:translateZ(0)] [will-change:opacity] transition-opacity duration-150 ease-out ${
+                  activeBeamKey === asset.key ? "opacity-100" : "opacity-0"
+                }`}
+              />
+            ))
+          ) : (
             <img
-              src={previousVisual.src}
+              src={imageSrc}
               alt=""
               loading="eager"
+              decoding="async"
               draggable={false}
-              className={`absolute max-h-[210px] w-auto select-none object-contain drop-shadow-[0_18px_28px_rgba(107,74,47,0.24)] transition-opacity duration-150 ease-out sm:max-h-[260px] ${
-                isTransitioning ? "opacity-100" : "opacity-0"
-              }`}
+              className="absolute inset-0 h-full w-full select-none object-contain drop-shadow-[0_20px_34px_rgba(107,74,47,0.22)]"
             />
-          ) : null}
-
-          <img
-            key={currentVisual.key}
-            src={currentVisual.src}
-            alt=""
-            loading="eager"
-            draggable={false}
-            className={`absolute max-h-[210px] w-auto select-none object-contain drop-shadow-[0_18px_28px_rgba(107,74,47,0.24)] transition-opacity duration-150 ease-out sm:max-h-[260px] ${
-              isTransitioning ? "opacity-0" : "opacity-100"
-            }`}
-          />
+          )}
         </div>
       </div>
     </div>

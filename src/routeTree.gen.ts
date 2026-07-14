@@ -9,11 +9,17 @@
 // Additionally, you should also exclude this file from your linter and/or formatter to prevent it from being checked or modified.
 
 import { Route as rootRouteImport } from './routes/__root'
+import { Route as WidgetTramyRouteImport } from './routes/widget-tramy'
 import { Route as ONasRouteImport } from './routes/o-nas'
 import { Route as DopravaRouteImport } from './routes/doprava'
 import { Route as IndexRouteImport } from './routes/index'
 import { Route as CategoryIdRouteImport } from './routes/category.$id'
 
+const WidgetTramyRoute = WidgetTramyRouteImport.update({
+  id: '/widget-tramy',
+  path: '/widget-tramy',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const ONasRoute = ONasRouteImport.update({
   id: '/o-nas',
   path: '/o-nas',
@@ -39,12 +45,14 @@ export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
   '/doprava': typeof DopravaRoute
   '/o-nas': typeof ONasRoute
+  '/widget-tramy': typeof WidgetTramyRoute
   '/category/$id': typeof CategoryIdRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
   '/doprava': typeof DopravaRoute
   '/o-nas': typeof ONasRoute
+  '/widget-tramy': typeof WidgetTramyRoute
   '/category/$id': typeof CategoryIdRoute
 }
 export interface FileRoutesById {
@@ -52,25 +60,35 @@ export interface FileRoutesById {
   '/': typeof IndexRoute
   '/doprava': typeof DopravaRoute
   '/o-nas': typeof ONasRoute
+  '/widget-tramy': typeof WidgetTramyRoute
   '/category/$id': typeof CategoryIdRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
-  fullPaths: '/' | '/doprava' | '/o-nas' | '/category/$id'
+  fullPaths: '/' | '/doprava' | '/o-nas' | '/widget-tramy' | '/category/$id'
   fileRoutesByTo: FileRoutesByTo
-  to: '/' | '/doprava' | '/o-nas' | '/category/$id'
-  id: '__root__' | '/' | '/doprava' | '/o-nas' | '/category/$id'
+  to: '/' | '/doprava' | '/o-nas' | '/widget-tramy' | '/category/$id'
+  id:
+    '__root__' | '/' | '/doprava' | '/o-nas' | '/widget-tramy' | '/category/$id'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
   DopravaRoute: typeof DopravaRoute
   ONasRoute: typeof ONasRoute
+  WidgetTramyRoute: typeof WidgetTramyRoute
   CategoryIdRoute: typeof CategoryIdRoute
 }
 
 declare module '@tanstack/react-router' {
   interface FileRoutesByPath {
+    '/widget-tramy': {
+      id: '/widget-tramy'
+      path: '/widget-tramy'
+      fullPath: '/widget-tramy'
+      preLoaderRoute: typeof WidgetTramyRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/o-nas': {
       id: '/o-nas'
       path: '/o-nas'
@@ -106,6 +124,7 @@ const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
   DopravaRoute: DopravaRoute,
   ONasRoute: ONasRoute,
+  WidgetTramyRoute: WidgetTramyRoute,
   CategoryIdRoute: CategoryIdRoute,
 }
 export const routeTree = rootRouteImport

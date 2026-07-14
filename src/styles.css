@@ -38,40 +38,138 @@
 
 :root {
   --radius: 0.625rem;
-  --background: oklch(0.968 0.012 95);   /* sand #F5F2E9 */
-  --foreground: oklch(0.24 0.03 260);    /* slate ink */
+  --background: oklch(0.968 0.012 95); /* sand #F5F2E9 */
+  --foreground: oklch(0.24 0.03 260); /* slate ink */
   --card: oklch(1 0 0);
   --card-foreground: oklch(0.24 0.03 260);
   --popover: oklch(1 0 0);
   --popover-foreground: oklch(0.24 0.03 260);
-  --primary: oklch(0.36 0.06 150);       /* forest green #234A33 */
+  --primary: oklch(0.36 0.06 150); /* forest green #234A33 */
   --primary-foreground: oklch(0.98 0.01 95);
   --secondary: oklch(0.94 0.02 90);
   --secondary-foreground: oklch(0.24 0.03 260);
   --muted: oklch(0.94 0.015 90);
   --muted-foreground: oklch(0.45 0.03 260);
-  --accent: oklch(0.62 0.11 60);         /* timber brown #A86D38 */
+  --accent: oklch(0.62 0.11 60); /* timber brown #A86D38 */
   --accent-foreground: oklch(1 0 0);
   --destructive: oklch(0.577 0.245 27.325);
   --border: oklch(0.88 0.015 90);
   --input: oklch(0.9 0.015 90);
   --ring: oklch(0.36 0.06 150);
 
-  --forest: #234A33;
+  --forest: #234a33;
   --forest-dark: #1a3826;
-  --timber: #A86D38;
+  --timber: #a86d38;
   --timber-dark: #8a5528;
-  --sand: #F5F2E9;
-  --slate-ink: #1E293B;
+  --sand: #f5f2e9;
+  --slate-ink: #1e293b;
 }
 
 @layer base {
-  * { border-color: var(--color-border); }
+  * {
+    border-color: var(--color-border);
+  }
   body {
     background-color: var(--color-background);
     color: var(--color-foreground);
     font-family: var(--font-display);
     -webkit-font-smoothing: antialiased;
+  }
+}
+
+@layer components {
+  [data-beam-configurator] [data-beam-preview] {
+    contain: layout paint style;
+  }
+
+  [data-beam-configurator] [data-beam-image] {
+    opacity: 0;
+    will-change: opacity;
+    transition: opacity 150ms ease;
+    transform: translateZ(0);
+  }
+
+  [data-beam-configurator] [data-beam-image].is-active {
+    opacity: 1;
+  }
+
+  [data-beam-configurator] [data-beam-range] {
+    --beam-range-progress: 0%;
+    appearance: none;
+    -webkit-appearance: none;
+    width: 100%;
+    height: 0.75rem;
+    border-radius: 9999px;
+    background: linear-gradient(
+      90deg,
+      #1e3a2b 0%,
+      #1e3a2b var(--beam-range-progress),
+      rgba(30, 58, 43, 0.14) var(--beam-range-progress),
+      rgba(30, 58, 43, 0.14) 100%
+    );
+    outline: none;
+    touch-action: pan-y;
+  }
+
+  [data-beam-configurator] [data-beam-range]::-webkit-slider-runnable-track {
+    height: 0.75rem;
+    border-radius: 9999px;
+    background: transparent;
+  }
+
+  [data-beam-configurator] [data-beam-range]::-moz-range-track {
+    height: 0.75rem;
+    border-radius: 9999px;
+    background: transparent;
+  }
+
+  [data-beam-configurator] [data-beam-range]::-webkit-slider-thumb {
+    appearance: none;
+    -webkit-appearance: none;
+    width: 1.4rem;
+    height: 1.4rem;
+    margin-top: -0.2rem;
+    border-radius: 9999px;
+    border: 2px solid #1e3a2b;
+    background: #fffdf8;
+    box-shadow: 0 8px 20px rgba(30, 58, 43, 0.2);
+    transition:
+      transform 150ms ease,
+      box-shadow 150ms ease,
+      background-color 150ms ease;
+    cursor: pointer;
+  }
+
+  [data-beam-configurator] [data-beam-range]::-moz-range-thumb {
+    width: 1.4rem;
+    height: 1.4rem;
+    border-radius: 9999px;
+    border: 2px solid #1e3a2b;
+    background: #fffdf8;
+    box-shadow: 0 8px 20px rgba(30, 58, 43, 0.2);
+    transition:
+      transform 150ms ease,
+      box-shadow 150ms ease,
+      background-color 150ms ease;
+    cursor: pointer;
+  }
+
+  [data-beam-configurator] [data-beam-range]:hover::-webkit-slider-thumb,
+  [data-beam-configurator] [data-beam-range]:hover::-moz-range-thumb {
+    box-shadow: 0 10px 26px rgba(30, 58, 43, 0.24);
+    transform: scale(1.04);
+  }
+
+  [data-beam-configurator] [data-beam-range]:active::-webkit-slider-thumb,
+  [data-beam-configurator] [data-beam-range]:active::-moz-range-thumb {
+    transform: scale(0.96);
+  }
+
+  [data-beam-configurator] [data-beam-range]:focus-visible::-webkit-slider-thumb,
+  [data-beam-configurator] [data-beam-range]:focus-visible::-moz-range-thumb {
+    box-shadow:
+      0 0 0 4px rgba(255, 253, 248, 0.9),
+      0 0 0 7px rgba(30, 58, 43, 0.2);
   }
 }
 
@@ -82,4 +180,3 @@
     display: none;
   }
 }
-
