@@ -19,7 +19,7 @@ type Method = {
 
 const METHODS: Method[] = [
   {
-    icon: Crane,
+    icon: ConstructionIcon,
     title: "Auto s hydraulickou rukou",
     description:
       "Složení trámů a těžkého řeziva přímo na pozemek nebo stavbu bez potřeby další techniky.",
