@@ -124,6 +124,11 @@ export function CustomConfigurator() {
     () => Math.round(volumeM3 * species.pricePerM3),
     [volumeM3, species],
   );
+  const totalWeightKg = useMemo(
+    () => Math.round(volumeM3 * species.densityKgPerM3),
+    [volumeM3, species],
+  );
+
 
   const handleAdd = () => {
     addCustomItem({
