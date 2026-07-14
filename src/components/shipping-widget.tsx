@@ -1,10 +1,9 @@
-import { useState } from "react";
-import { ConstructionIcon, PhoneCall, Ruler, Store, Truck } from "lucide-react";
+import type { ComponentType } from "react";
+import { ConstructionIcon, PhoneCall, Ruler, Store } from "lucide-react";
 import {
   COMPANY_PHONE,
   COMPANY_PHONE_HREF,
   formatCurrency,
-  getShippingQuote,
 } from "@/lib/site";
 
 const FREE_SHIPPING_THRESHOLD = 15000;
