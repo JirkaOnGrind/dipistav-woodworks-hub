@@ -9,7 +9,7 @@ import {
 const FREE_SHIPPING_THRESHOLD = 15000;
 
 type Method = {
-  icon: typeof Truck;
+  icon: ComponentType<{ className?: string }>;
   title: string;
   description: string;
   badge?: string;
@@ -57,21 +57,6 @@ function BadgePill({ tone, children }: { tone: Method["badgeTone"]; children: Re
 }
 
 export function ShippingWidget() {
-  const [postcode, setPostcode] = useState("");
-  const [error, setError] = useState<string | null>(null);
-  const [quote, setQuote] = useState<ReturnType<typeof getShippingQuote>>(null);
-
-  const handleCalculate = () => {
-    const next = getShippingQuote(postcode);
-    if (!next) {
-      setQuote(null);
-      setError("Zadejte platné PSČ ve formátu 12345.");
-      return;
-    }
-    setError(null);
-    setQuote(next);
-  };
-
   return (
     <section id="doprava" className="mx-auto max-w-7xl px-3 py-8 sm:px-6 sm:py-16">
       <div className="rounded-[2rem] border border-[#A86D38]/15 bg-white p-4 shadow-sm sm:p-10">
