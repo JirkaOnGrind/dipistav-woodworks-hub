@@ -57,7 +57,7 @@ function CategoryCard({
         <div className="text-lg font-black tracking-tight text-[#234A33]">{title}</div>
         <p className="mt-1 text-sm leading-6 text-muted-foreground">{subtitle}</p>
         <div className="mt-4 inline-flex items-center gap-2 text-sm font-bold text-[#A86D38]">
-          Otevřít detail
+          Nakoupit
           <ArrowRight className="h-4 w-4 transition group-hover:translate-x-1" />
         </div>
       </div>

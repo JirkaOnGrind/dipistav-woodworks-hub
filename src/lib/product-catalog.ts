@@ -58,7 +58,7 @@ const tramy: DimensionedCategory = {
   subtitle: "Masivní nosné profily pro krovy, stropy i pergoly.",
   description:
     "Klasické stavební trámy skladem v nejžádanějších profilech. Vyberte profil, délku a množství, orientační cena se přepočítá okamžitě.",
-  imageSrc: "/images/tramy-dipi.png",
+  imageSrc: "/images/tramy-dipi.webp",
   thumbnailAlt: "Stavební trámy DIPISTAV",
   priceUnitLabel: "Cena / ks",
   ctaLabel: "Přidat trámy do košíku",
@@ -94,7 +94,7 @@ const fosny: DimensionedCategory = {
   subtitle: "Široké stavební fošny pro bednění i konstrukční detaily.",
   description:
     "Fošny držíme v několika profilech a délkách pro rychlé objednání. Na stránce si rovnou nastavíte konfiguraci a počet kusů.",
-  imageSrc: "/images/fosny-dipi.png",
+  imageSrc: "/images/fosny-dipi.webp",
   thumbnailAlt: "Stavební fošny DIPISTAV",
   priceUnitLabel: "Cena / ks",
   ctaLabel: "Přidat fošny do košíku",
@@ -131,7 +131,7 @@ const prkna: DimensionedCategory = {
   subtitle: "Coulová prkna v oblíbených šířkách pro střechy i obklady.",
   description:
     "Stavební prkna objednáte podle šířky, délky a počtu kusů. Přehledný kalkulátor na stránce hned ukáže cenu celé sestavy.",
-  imageSrc: "/images/prkna-dipi.png",
+  imageSrc: "/images/prkna-dipi.webp",
   thumbnailAlt: "Stavební prkna DIPISTAV",
   priceUnitLabel: "Cena / ks",
   ctaLabel: "Přidat prkna do košíku",
@@ -165,7 +165,7 @@ const late: LengthOnlyCategory = {
   subtitle: "Profil 60 × 40 mm pro střechy, podbití i lehké konstrukce.",
   description:
     "Střešní latě držíme v pevném profilu 60 × 40 mm. Zvolte délku, nastavte množství a vizualizace vám ukáže výslednou sestavu.",
-  imageSrc: "/images/late-dipi.png",
+  imageSrc: "/images/late-dipi.webp",
   thumbnailAlt: "Střešní latě DIPISTAV",
   priceUnitLabel: "Cena / ks",
   ctaLabel: "Přidat latě do košíku",
