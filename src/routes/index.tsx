@@ -1,5 +1,6 @@
 import { createFileRoute } from "@tanstack/react-router";
 import { ArrowRight } from "lucide-react";
+import { CustomConfigurator } from "@/components/custom-configurator";
 import { ShippingCalculator } from "@/components/shipping-calculator";
 import { SiteShell } from "@/components/site-shell";
 import { PRODUCT_CATEGORIES } from "@/lib/product-catalog";
