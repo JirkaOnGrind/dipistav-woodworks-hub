@@ -3,6 +3,7 @@ import { useEffect, useMemo } from "react";
 type WoodVisualizerProps = {
   categoryId: string;
   imageSrc: string;
+  imageAlt: string;
   quantity: number;
 };
 
@@ -60,7 +61,7 @@ function getBeamVisualKey(quantity: number) {
   return "eighteen";
 }
 
-export function WoodVisualizer({ categoryId, imageSrc, quantity }: WoodVisualizerProps) {
+export function WoodVisualizer({ categoryId, imageSrc, imageAlt, quantity }: WoodVisualizerProps) {
   const isBeamCategory = categoryId === "tramy";
   const activeBeamKey = useMemo(() => getBeamVisualKey(quantity), [quantity]);
 
@@ -106,7 +107,7 @@ export function WoodVisualizer({ categoryId, imageSrc, quantity }: WoodVisualize
           ) : (
             <img
               src={imageSrc}
-              alt=""
+              alt={imageAlt}
               loading="eager"
               decoding="async"
               draggable={false}

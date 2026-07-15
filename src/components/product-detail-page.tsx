@@ -1,12 +1,21 @@
+import { Link } from "@tanstack/react-router";
 import { useDeferredValue, useEffect, useMemo, useState } from "react";
-import { ArrowLeft } from "lucide-react";
+import { ArrowLeft, Mail } from "lucide-react";
 import { QuantitySelector } from "@/components/quantity-selector";
 import { SiteShell } from "@/components/site-shell";
 import { Button } from "@/components/ui/button";
+import {
+  Breadcrumb,
+  BreadcrumbItem,
+  BreadcrumbLink,
+  BreadcrumbList,
+  BreadcrumbPage,
+  BreadcrumbSeparator,
+} from "@/components/ui/breadcrumb";
 import { WoodVisualizer } from "@/components/wood-visualizer";
 import { useCart } from "@/lib/cart";
 import { type ProductCategory } from "@/lib/product-catalog";
-import { formatCurrency } from "@/lib/site";
+import { COMPANY_EMAIL_HREF, formatCurrency } from "@/lib/site";
 
 function ProductSelect({
   value,
@@ -52,12 +61,25 @@ export function ProductDetailPage({ category }: { category: ProductCategory }) {
   const [length, setLength] = useState(
     category.kind === "dimensioned"
       ? (category.getLengthOptions(dimensionOptions[0]?.value ?? "")[0]?.value ?? "")
-      : (category.getLengthOptions()[0]?.value ?? ""),
+      : category.kind === "length-only"
+        ? (category.getLengthOptions()[0]?.value ?? "")
+        : "",
+  );
+  const optionOptions = useMemo(
+    () => (category.kind === "option-only" ? category.getOptionOptions() : []),
+    [category],
+  );
+  const [option, setOption] = useState(
+    category.kind === "option-only" ? (category.getOptionOptions()[0]?.value ?? "") : "",
   );
 
   const lengthOptions = useMemo(() => {
     if (category.kind === "dimensioned") {
       return category.getLengthOptions(dimension);
+    }
+
+    if (category.kind === "option-only") {
+      return [];
     }
 
     return category.getLengthOptions();
@@ -70,22 +92,57 @@ export function ProductDetailPage({ category }: { category: ProductCategory }) {
     }
   }, [length, lengthOptions]);
 
+  useEffect(() => {
+    const nextOption = optionOptions[0]?.value ?? "";
+    if (!optionOptions.some((item) => item.value === option) && nextOption) {
+      setOption(nextOption);
+    }
+  }, [option, optionOptions]);
+
   const unitPrice = useMemo(() => {
     if (category.kind === "dimensioned") {
       return category.priceMap[dimension]?.[length] ?? 0;
     }
 
+    if (category.kind === "option-only") {
+      return category.priceByOption[option] ?? 0;
+    }
+
     return category.priceByLength[length] ?? 0;
-  }, [category, dimension, length]);
+  }, [category, dimension, length, option]);
 
   const totalPrice = unitPrice * quantity;
   const selectedDimensionLabel =
     category.kind === "dimensioned"
       ? (dimensionOptions.find((option) => option.value === dimension)?.label ?? dimension)
-      : category.fixedDimensionLabel;
+      : category.kind === "length-only"
+        ? category.fixedDimensionLabel
+        : "";
   const selectedLengthLabel =
-    lengthOptions.find((option) => option.value === length)?.label ?? length;
-  const selectionSummary = `${selectedDimensionLabel} · ${selectedLengthLabel} | ${quantity} ks`;
+    category.kind === "option-only"
+      ? ""
+      : (lengthOptions.find((option) => option.value === length)?.label ?? length);
+  const selectedOptionLabel = optionOptions.find((item) => item.value === option)?.label ?? option;
+  const selectionSummary =
+    category.kind === "option-only"
+      ? `${selectedOptionLabel} | ${quantity} ks`
+      : `${selectedDimensionLabel} · ${selectedLengthLabel} | ${quantity} ks`;
+  const inquiryHref = useMemo(() => {
+    const subject = `Poptávka: ${category.shortName}`;
+    const body = [
+      "Dobrý den,",
+      "",
+      `mám zájem o produkt ${category.name}.`,
+      `Konfigurace: ${selectionSummary}`,
+      `Počet: ${quantity} ks`,
+      "",
+      "Prosím o potvrzení dostupnosti, ceny a dopravy.",
+      "",
+      "Děkuji.",
+    ].join("\n");
+
+    return `${COMPANY_EMAIL_HREF}?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
+  }, [category.name, category.shortName, quantity, selectionSummary]);
 
   const handleAddToCart = () => {
     if (category.kind === "dimensioned") {
@@ -94,6 +151,16 @@ export function ProductDetailPage({ category }: { category: ProductCategory }) {
         quantity,
         unitPrice,
         details: [...category.getCartDetails(dimension, length), `Počet: ${quantity} ks`],
+      });
+      return;
+    }
+
+    if (category.kind === "option-only") {
+      addStandardItem({
+        title: category.getCartTitle(option),
+        quantity,
+        unitPrice,
+        details: [...category.getCartDetails(option), `Počet: ${quantity} ks`],
       });
       return;
     }
@@ -118,8 +185,28 @@ export function ProductDetailPage({ category }: { category: ProductCategory }) {
           style={{ backgroundImage: "url('/images/woodpatern.jpg')" }}
         />
         <div className="relative mx-auto max-w-7xl px-4 py-10 sm:py-14">
+          <Breadcrumb className="mb-4">
+            <BreadcrumbList>
+              <BreadcrumbItem>
+                <BreadcrumbLink asChild>
+                  <Link to="/">Domů</Link>
+                </BreadcrumbLink>
+              </BreadcrumbItem>
+              <BreadcrumbSeparator />
+              <BreadcrumbItem>
+                <BreadcrumbLink href={`/#${category.sectionAnchorId}`}>
+                  {category.sectionTitle}
+                </BreadcrumbLink>
+              </BreadcrumbItem>
+              <BreadcrumbSeparator />
+              <BreadcrumbItem>
+                <BreadcrumbPage>{category.shortName}</BreadcrumbPage>
+              </BreadcrumbItem>
+            </BreadcrumbList>
+          </Breadcrumb>
+
           <a
-            href="/#kategorie"
+            href={`/#${category.sectionAnchorId}`}
             className="mb-5 inline-flex items-center gap-2 text-sm font-semibold text-[#234A33] transition hover:text-[#A86D38]"
           >
             <ArrowLeft className="h-4 w-4" />
@@ -143,6 +230,7 @@ export function ProductDetailPage({ category }: { category: ProductCategory }) {
               <WoodVisualizer
                 categoryId={category.id}
                 imageSrc={category.imageSrc}
+                imageAlt={category.thumbnailAlt}
                 quantity={visualQuantity}
               />
             </div>
@@ -176,6 +264,15 @@ export function ProductDetailPage({ category }: { category: ProductCategory }) {
                       onChange={setLength}
                       options={lengthOptions}
                       label={category.lengthLabel}
+                    />
+                  </div>
+                ) : category.kind === "option-only" ? (
+                  <div className="grid gap-4">
+                    <ProductSelect
+                      value={option}
+                      onChange={setOption}
+                      options={optionOptions}
+                      label={category.optionLabel}
                     />
                   </div>
                 ) : (
@@ -232,13 +329,25 @@ export function ProductDetailPage({ category }: { category: ProductCategory }) {
                 </div>
               </div>
 
-              <Button
-                type="button"
-                onClick={handleAddToCart}
-                className="mt-6 h-12 w-full rounded-2xl bg-[#1e3a2b] text-sm font-bold text-white shadow-sm transition hover:bg-[#163022] hover:shadow-[0_14px_30px_rgba(30,58,43,0.18)]"
-              >
-                {category.ctaLabel}
-              </Button>
+              <div className="mt-6 grid gap-3 sm:grid-cols-2">
+                <Button
+                  type="button"
+                  onClick={handleAddToCart}
+                  className="h-12 w-full rounded-2xl bg-[#1e3a2b] text-sm font-bold text-white shadow-sm transition hover:bg-[#163022] hover:shadow-[0_14px_30px_rgba(30,58,43,0.18)]"
+                >
+                  {category.ctaLabel}
+                </Button>
+                <Button
+                  asChild
+                  variant="outline"
+                  className="h-12 w-full rounded-2xl border-[#A86D38]/30 bg-[#FCFAF5] text-sm font-bold text-[#A86D38] shadow-sm transition hover:bg-[#F5ECDD] hover:text-[#8F5927]"
+                >
+                  <a href={inquiryHref}>
+                    <Mail className="h-4 w-4" />
+                    Poslat poptávku
+                  </a>
+                </Button>
+              </div>
             </div>
           </div>
         </div>
