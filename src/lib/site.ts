@@ -17,7 +17,8 @@ export const COMPANY_MAPS_URL =
 export const OPENING_HOURS = ["Po–Pá: 7:00 – 16:00", "Nakládka vysokozdvižným vozíkem zdarma"];
 
 export const SITE_NAVIGATION: SiteNavigationItem[] = [
-  { label: "Kategorie", href: "/#kategorie", route: "/" },
+  { label: "Řezivo", href: "/#kategorie", route: "/" },
+  { label: "Paliva", href: "/#paliva", route: "/" },
   { label: "Konfigurátor", href: "/#konfigurator", route: "/" },
   { label: "Doprava", href: "/doprava", route: "/doprava" },
   { label: "O nás", href: "/o-nas", route: "/o-nas" },

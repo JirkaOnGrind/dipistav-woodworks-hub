@@ -1,17 +1,8 @@
-import { Link } from "@tanstack/react-router";
 import { useDeferredValue, useEffect, useMemo, useState } from "react";
 import { ArrowLeft, Mail } from "lucide-react";
 import { QuantitySelector } from "@/components/quantity-selector";
 import { SiteShell } from "@/components/site-shell";
 import { Button } from "@/components/ui/button";
-import {
-  Breadcrumb,
-  BreadcrumbItem,
-  BreadcrumbLink,
-  BreadcrumbList,
-  BreadcrumbPage,
-  BreadcrumbSeparator,
-} from "@/components/ui/breadcrumb";
 import { WoodVisualizer } from "@/components/wood-visualizer";
 import { useCart } from "@/lib/cart";
 import { type ProductCategory } from "@/lib/product-catalog";
@@ -185,26 +176,6 @@ export function ProductDetailPage({ category }: { category: ProductCategory }) {
           style={{ backgroundImage: "url('/images/woodpatern.jpg')" }}
         />
         <div className="relative mx-auto max-w-7xl px-4 py-10 sm:py-14">
-          <Breadcrumb className="mb-4">
-            <BreadcrumbList>
-              <BreadcrumbItem>
-                <BreadcrumbLink asChild>
-                  <Link to="/">Domů</Link>
-                </BreadcrumbLink>
-              </BreadcrumbItem>
-              <BreadcrumbSeparator />
-              <BreadcrumbItem>
-                <BreadcrumbLink href={`/#${category.sectionAnchorId}`}>
-                  {category.sectionTitle}
-                </BreadcrumbLink>
-              </BreadcrumbItem>
-              <BreadcrumbSeparator />
-              <BreadcrumbItem>
-                <BreadcrumbPage>{category.shortName}</BreadcrumbPage>
-              </BreadcrumbItem>
-            </BreadcrumbList>
-          </Breadcrumb>
-
           <a
             href={`/#${category.sectionAnchorId}`}
             className="mb-5 inline-flex items-center gap-2 text-sm font-semibold text-[#234A33] transition hover:text-[#A86D38]"

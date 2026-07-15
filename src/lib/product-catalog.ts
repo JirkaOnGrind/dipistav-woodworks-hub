@@ -62,7 +62,7 @@ export type ProductCategory = DimensionedCategory | LengthOnlyCategory | OptionO
 const TIMBER_SECTION = {
   id: "rezivo",
   anchorId: "kategorie",
-  title: "Vyberte si druh řeziva",
+  title: "Řezivo",
   description:
     "Otevřete detail produktu, nastavte rozměr i množství a během chvilky máte jasno v ceně.",
 } as const;
@@ -246,7 +246,7 @@ const stipaneDrevo: OptionOnlyCategory = {
   subtitle: "Suché palivové dřevo připravené k okamžitému topení doma i na chatě.",
   description:
     "Vyberte si balení štípaného dřeva podle způsobu skladování a frekvence topení. Přehledný konfigurátor ukáže orientační cenu a položku rovnou přidáte do košíku nebo poptávky.",
-  imageSrc: "/images/paliva/stipane-drevo.svg",
+  imageSrc: "/images/paliva/stipane.webp",
   thumbnailAlt: "Minimalistická ilustrace štípaného dřeva",
   illustrationPrompt:
     "Premium, clean, minimalist hand-drawn illustration of split firewood logs tied in a neat bundle, natural oak and spruce tones, transparent background, subtle pencil linework, refined handcrafted feel.",
@@ -286,7 +286,7 @@ const pelety: OptionOnlyCategory = {
   subtitle: "Čisté dřevní pelety s pohodlným dávkováním pro kamna i kotle.",
   description:
     "Pelety nabízíme v několika praktických baleních od testovacího množství až po celou paletu. Vyberte variantu, počet balení a hned vidíte orientační cenu nákupu.",
-  imageSrc: "/images/paliva/pelety.svg",
+  imageSrc: "/images/paliva/pelety.webp",
   thumbnailAlt: "Minimalistická ilustrace pelet",
   illustrationPrompt:
     "Premium, clean, minimalist hand-drawn illustration of a pellet bag with scattered wood pellets, warm beige and timber palette, transparent background, elegant sketched premium packaging style.",
@@ -324,7 +324,7 @@ const krajinky: OptionOnlyCategory = {
   subtitle: "Úsporné palivo z omítaných boků kulatiny vhodné na topení i rychlou zásobu.",
   description:
     "Krajinky jsou oblíbené tam, kde chcete výhodný zdroj dřeva na roztápění nebo průběžné vytápění. Zvolte velikost balíku a počet kusů podle prostoru i spotřeby.",
-  imageSrc: "/images/paliva/krajinky.svg",
+  imageSrc: "/images/paliva/krajinky.webp",
   thumbnailAlt: "Minimalistická ilustrace krajiniek",
   illustrationPrompt:
     "Premium, clean, minimalist hand-drawn illustration of rustic wood slabs and edgings stacked asymmetrically, warm wood colors, transparent background, tasteful artisanal linework.",
@@ -364,7 +364,7 @@ const driviNaPaletach: OptionOnlyCategory = {
   subtitle: "Přehledně složené palety palivového dřeva pro čisté skladování a snadný rozvoz.",
   description:
     "Paletované dříví je ideální pro domácnosti, které chtějí snadné uskladnění bez přehazování. Vyberte variantu podle délky polen nebo objemu a přidejte potřebný počet palet.",
-  imageSrc: "/images/paliva/drivi-na-paletach.svg",
+  imageSrc: "/images/paliva/palety.webp",
   thumbnailAlt: "Minimalistická ilustrace paletovaného dříví",
   illustrationPrompt:
     "Premium, clean, minimalist hand-drawn illustration of palletized firewood, tidy stacked logs on a wooden pallet, transparent background, subtle luxury sketch aesthetic with soft natural shadows.",

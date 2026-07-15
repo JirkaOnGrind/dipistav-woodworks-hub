@@ -16,6 +16,7 @@ function SiteNavLink({
   href,
   label,
   currentPath,
+  currentHash,
   route,
   onClick,
   mobile = false,
@@ -23,13 +24,14 @@ function SiteNavLink({
   href: string;
   label: string;
   currentPath: string;
+  currentHash: string;
   route: string;
   onClick?: () => void;
   mobile?: boolean;
 }) {
-  const isCategoryRoute = currentPath.startsWith("/category/");
+  const targetHash = href.includes("#") ? (href.split("#")[1] ?? "") : "";
   const isActive = href.includes("#")
-    ? route === "/" && (currentPath === "/" || isCategoryRoute)
+    ? currentPath === route && currentHash === targetHash
     : route === currentPath;
 
   return (
@@ -73,9 +75,11 @@ function CartButton() {
 }
 
 export function SiteShell({ children }: { children: ReactNode }) {
-  const currentPath = useRouterState({ select: (state) => state.location.pathname });
+  const currentLocation = useRouterState({ select: (state) => state.location });
   const [menuOpen, setMenuOpen] = useState(false);
   const logoSrc = "/images/logo-dipi.png";
+  const currentPath = currentLocation.pathname;
+  const currentHash = currentLocation.hash;
 
   return (
     <div className="min-h-screen bg-background text-foreground">
@@ -91,7 +95,12 @@ export function SiteShell({ children }: { children: ReactNode }) {
 
           <nav className="hidden items-center gap-6 xl:flex">
             {SITE_NAVIGATION.map((item) => (
-              <SiteNavLink key={item.href} currentPath={currentPath} {...item} />
+              <SiteNavLink
+                key={item.href}
+                currentPath={currentPath}
+                currentHash={currentHash}
+                {...item}
+              />
             ))}
           </nav>
 
@@ -131,6 +140,7 @@ export function SiteShell({ children }: { children: ReactNode }) {
                 <SiteNavLink
                   key={item.href}
                   currentPath={currentPath}
+                  currentHash={currentHash}
                   mobile
                   onClick={() => setMenuOpen(false)}
                   {...item}
