@@ -61,7 +61,7 @@ export function ProductDetailPage({ category }: { category: ProductCategory }) {
       : "";
   const [length, setLength] = useState(
     category.kind === "dimensioned"
-      ? (preferredInitialLength || initialDimensionLengthOptions[0]?.value || "")
+      ? preferredInitialLength || initialDimensionLengthOptions[0]?.value || ""
       : category.kind === "length-only"
         ? (category.getLengthOptions()[0]?.value ?? "")
         : "",
@@ -277,13 +277,7 @@ export function ProductDetailPage({ category }: { category: ProductCategory }) {
                   </div>
                 )}
 
-                <QuantitySelector
-                  quantity={quantity}
-                  onChange={setQuantity}
-                  min={1}
-                  max={500}
-                  sliderMax={20}
-                />
+                <QuantitySelector quantity={quantity} onChange={setQuantity} min={1} max={500} />
 
                 <div className="rounded-[1.75rem] border border-[#234A33]/10 bg-[#F6F4EE] p-5">
                   <div className="text-[11px] font-semibold uppercase tracking-[0.2em] text-muted-foreground">

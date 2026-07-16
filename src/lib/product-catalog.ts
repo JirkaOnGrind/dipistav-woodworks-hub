@@ -64,7 +64,7 @@ const TIMBER_SECTION = {
   anchorId: "kategorie",
   title: "Řezivo",
   description:
-    "Otevřete detail produktu, nastavte rozměr i množství a během chvilky máte jasno v ceně.",
+    "Vyberte si přesně takové řezivo, jaké vaše stavba potřebuje, a přehledně porovnejte vhodné varianty.",
 } as const;
 
 const FUEL_SECTION = {
@@ -72,7 +72,7 @@ const FUEL_SECTION = {
   anchorId: "paliva",
   title: "Paliva",
   description:
-    "Stejně přehledně si nakonfigurujete i palivové dřevo, pelety nebo krajinky pro topení a rychlý odvoz.",
+    "Praktická paliva pro domů, na chalupu i do provozu. Vyberte si balení, které se vám bude dobře skladovat i používat.",
 } as const;
 
 function cmDimensionLabel(value: string) {
@@ -95,9 +95,9 @@ const tramy: DimensionedCategory = {
   kind: "dimensioned",
   name: "Stavební trámy",
   shortName: "Trámy",
-  subtitle: "Masivní nosné profily pro krovy, stropy i pergoly.",
+  subtitle: "Masivní nosné trámy pro krovy, stropy, pergoly i další konstrukce.",
   description:
-    "Klasické stavební trámy skladem v nejžádanějších profilech. Vyberte profil, délku a množství, orientační cena se přepočítá okamžitě.",
+    "Poctivé stavební trámy v osvědčených profilech a délkách. Snadno si vyberete variantu, která bude sedět vašemu projektu i způsobu montáže.",
   imageSrc: "/images/tramy-dipi.webp",
   thumbnailAlt: "Ilustrace stavebních trámů DIPISTAV",
   illustrationPrompt:
@@ -136,9 +136,9 @@ const fosny: DimensionedCategory = {
   kind: "dimensioned",
   name: "Stavební fošny",
   shortName: "Fošny",
-  subtitle: "Široké stavební fošny pro bednění i konstrukční detaily.",
+  subtitle: "Široké stavební fošny pro bednění, podlahy i konstrukční detaily.",
   description:
-    "Fošny držíme v několika profilech a délkách pro rychlé objednání. Na stránce si rovnou nastavíte konfiguraci a počet kusů.",
+    "Fošny, které dobře poslouží na stavbě i při truhlářském využití. Vyberete si potřebný profil, délku i množství bez zdlouhavého doptávání.",
   imageSrc: "/images/fosny-dipi.webp",
   thumbnailAlt: "Ilustrace stavebních fošen DIPISTAV",
   illustrationPrompt:
@@ -178,9 +178,9 @@ const prkna: DimensionedCategory = {
   kind: "dimensioned",
   name: "Stavební prkna",
   shortName: "Prkna",
-  subtitle: "Coulová prkna v oblíbených šířkách pro střechy i obklady.",
+  subtitle: "Coulová prkna v oblíbených šířkách pro střechy, obklady i běžnou stavbu.",
   description:
-    "Stavební prkna objednáte podle šířky, délky a počtu kusů. Přehledný kalkulátor na stránce hned ukáže cenu celé sestavy.",
+    "Praktická stavební prkna pro každodenní použití. Přehledně si zvolíte šířku, délku i počet kusů podle toho, co právě potřebujete.",
   imageSrc: "/images/prkna-dipi.webp",
   thumbnailAlt: "Ilustrace stavebních prken DIPISTAV",
   illustrationPrompt:
@@ -217,9 +217,9 @@ const late: LengthOnlyCategory = {
   kind: "length-only",
   name: "Střešní latě",
   shortName: "Latě",
-  subtitle: "Profil 60 × 40 mm pro střechy, podbití i lehké konstrukce.",
+  subtitle: "Profil 60 × 40 mm pro střechy, podbití i lehké dřevěné konstrukce.",
   description:
-    "Střešní latě držíme v pevném profilu 60 × 40 mm. Zvolte délku, nastavte množství a vizualizace vám ukáže výslednou sestavu.",
+    "Střešní latě v osvědčeném profilu pro spolehlivou montáž. Stačí zvolit délku a množství, které potřebujete na svou realizaci.",
   imageSrc: "/images/late-dipi.webp",
   thumbnailAlt: "Ilustrace střešních latí DIPISTAV",
   illustrationPrompt:
@@ -243,11 +243,11 @@ const stipaneDrevo: OptionOnlyCategory = {
   kind: "option-only",
   name: "Štípané dřevo",
   shortName: "Štípané dřevo",
-  subtitle: "Suché palivové dřevo připravené k okamžitému topení doma i na chatě.",
+  subtitle: "Poctivě štípané palivové dřevo pro pohodlné topení doma, na chatě i na chalupě.",
   description:
-    "Vyberte si balení štípaného dřeva podle způsobu skladování a frekvence topení. Přehledný konfigurátor ukáže orientační cenu a položku rovnou přidáte do košíku nebo poptávky.",
-  imageSrc: "/images/paliva/stipane.webp",
-  thumbnailAlt: "Minimalistická ilustrace štípaného dřeva",
+    "Vyberte si balení, které vám bude nejlépe vyhovovat při skladování i každodenním používání. Ideální volba pro ty, kdo chtějí mít dřevo přehledně připravené a snadno po ruce.",
+  imageSrc: "/images/paliva/stipany-novy.webp",
+  thumbnailAlt: "Ilustrace palety se štípaným dřevem",
   illustrationPrompt:
     "Premium, clean, minimalist hand-drawn illustration of split firewood logs tied in a neat bundle, natural oak and spruce tones, transparent background, subtle pencil linework, refined handcrafted feel.",
   priceUnitLabel: "Cena / balení",
@@ -283,9 +283,9 @@ const pelety: OptionOnlyCategory = {
   kind: "option-only",
   name: "Pelety",
   shortName: "Pelety",
-  subtitle: "Čisté dřevní pelety s pohodlným dávkováním pro kamna i kotle.",
+  subtitle: "Čisté dřevní pelety pro pohodlné a úsporné vytápění kamen i kotlů.",
   description:
-    "Pelety nabízíme v několika praktických baleních od testovacího množství až po celou paletu. Vyberte variantu, počet balení a hned vidíte orientační cenu nákupu.",
+    "Pelety nabízíme v praktických baleních od menší zásoby až po celou paletu. Snadno si vyberete variantu podle spotřeby i prostoru na uskladnění.",
   imageSrc: "/images/paliva/pelety.webp",
   thumbnailAlt: "Minimalistická ilustrace pelet",
   illustrationPrompt:
@@ -321,11 +321,11 @@ const krajinky: OptionOnlyCategory = {
   kind: "option-only",
   name: "Krajinky",
   shortName: "Krajinky",
-  subtitle: "Úsporné palivo z omítaných boků kulatiny vhodné na topení i rychlou zásobu.",
+  subtitle: "Úsporné palivo z omítaných boků kulatiny pro topení i rychlou zásobu dřeva.",
   description:
-    "Krajinky jsou oblíbené tam, kde chcete výhodný zdroj dřeva na roztápění nebo průběžné vytápění. Zvolte velikost balíku a počet kusů podle prostoru i spotřeby.",
-  imageSrc: "/images/paliva/krajinky.webp",
-  thumbnailAlt: "Minimalistická ilustrace krajiniek",
+    "Krajinky jsou oblíbenou volbou tam, kde hledáte výhodné dřevo na roztápění nebo běžné topení. Zvolte si velikost balíku podle prostoru i očekávané spotřeby.",
+  imageSrc: "/images/paliva/krajinky-novy.webp",
+  thumbnailAlt: "Ilustrace bedny s krajinkami",
   illustrationPrompt:
     "Premium, clean, minimalist hand-drawn illustration of rustic wood slabs and edgings stacked asymmetrically, warm wood colors, transparent background, tasteful artisanal linework.",
   priceUnitLabel: "Cena / balík",
@@ -361,9 +361,9 @@ const driviNaPaletach: OptionOnlyCategory = {
   kind: "option-only",
   name: "Dříví na paletách",
   shortName: "Dříví na paletách",
-  subtitle: "Přehledně složené palety palivového dřeva pro čisté skladování a snadný rozvoz.",
+  subtitle: "Přehledně složené palety palivového dřeva pro čisté skladování a pohodlnou manipulaci.",
   description:
-    "Paletované dříví je ideální pro domácnosti, které chtějí snadné uskladnění bez přehazování. Vyberte variantu podle délky polen nebo objemu a přidejte potřebný počet palet.",
+    "Paletované dříví ocení každý, kdo chce mít zásobu dřeva úhledně složenou a připravenou k okamžitému použití. Vyberte si variantu podle délky polen i objemu.",
   imageSrc: "/images/paliva/palety.webp",
   thumbnailAlt: "Minimalistická ilustrace paletovaného dříví",
   illustrationPrompt:

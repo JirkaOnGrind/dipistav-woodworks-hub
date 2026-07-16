@@ -36,12 +36,20 @@ function Index() {
       <section className="relative overflow-hidden bg-[#F5F2E9]">
         <div
           aria-hidden
-          className="absolute inset-0 scale-[1.18] bg-cover bg-center opacity-40 blur-[3px]"
-          style={{ backgroundImage: "url('/images/woodpatern.jpg')" }}
+          className="absolute inset-0 scale-[1.04] bg-center bg-no-repeat opacity-[0.32] sm:scale-[1.18] sm:opacity-40 sm:blur-[3px]"
+          style={{
+            backgroundImage: "url('/images/woodpatern.jpg')",
+            backgroundRepeat: "no-repeat",
+            backgroundSize: "cover",
+          }}
         />
         <div
           aria-hidden
-          className="absolute inset-0 bg-[linear-gradient(180deg,rgba(245,242,233,0.74),rgba(245,242,233,0.9)_56%,rgba(245,242,233,1))]"
+          className="absolute inset-0 bg-[linear-gradient(180deg,rgba(245,242,233,0.58),rgba(245,242,233,0.84)_58%,rgba(245,242,233,0.98))] sm:bg-[linear-gradient(180deg,rgba(245,242,233,0.74),rgba(245,242,233,0.9)_56%,rgba(245,242,233,1))]"
+        />
+        <div
+          aria-hidden
+          className="absolute inset-0 bg-[radial-gradient(circle_at_top,rgba(255,255,255,0.34),transparent_48%)] sm:bg-[radial-gradient(circle_at_top,rgba(255,255,255,0.18),transparent_54%)]"
         />
         <div
           aria-hidden
@@ -54,7 +62,7 @@ function Index() {
             <span className="text-[#A86D38]"> až na vaši stavbu</span>
           </h1>
           <p className="mx-auto mt-3 max-w-xl text-sm leading-6 text-[#1E293B]/70 sm:mt-5 sm:text-lg">
-            Konfigurace rozměrů na míru s okamžitým výpočtem ceny.
+            Vyberte si rozměr, délku i množství přesně podle své stavby a hned uvidíte, co pro vás dává smysl.
           </p>
 
           <div className="mx-auto mt-5 flex max-w-md flex-col items-center gap-3 sm:mt-8">
@@ -93,10 +101,10 @@ function Index() {
         <div className="mx-auto grid max-w-7xl gap-6 px-4 py-10 sm:py-14 md:grid-cols-[1fr_auto] md:items-center">
           <div>
             <h2 className="text-2xl font-black tracking-tight sm:text-3xl">
-              Potřebujete poradit s výpočtem nebo dopravou?
+              Potřebujete poradit s výběrem nebo dopravou?
             </h2>
             <p className="mt-2 text-white/80">
-              Ozvěte se. Pomůžeme s výběrem řeziva, spočítáme orientační objem i naceníme rozvoz.
+              Ozvěte se nám. Doporučíme vhodné řezivo, ověříme dostupnost a připravíme řešení, které bude na stavbě opravdu fungovat.
             </p>
           </div>
           <div className="flex flex-col gap-3 sm:flex-row md:flex-col lg:flex-row">

@@ -27,15 +27,11 @@ function ONasPage() {
         />
         <div className="relative mx-auto max-w-7xl px-4 py-14 sm:py-18">
           <div className="max-w-3xl">
-            <div className="inline-flex rounded-full border border-[#234A33]/15 bg-[#F1F5EE] px-4 py-1.5 text-[11px] font-bold uppercase tracking-[0.22em] text-[#234A33]">
-              O společnosti DIPISTAV
-            </div>
-            <h1 className="mt-4 text-4xl font-black tracking-tight text-[#1E293B] sm:text-5xl">
+            <h1 className="text-4xl font-black tracking-tight text-[#1E293B] sm:text-5xl">
               Poctivá česká pila a prodej dřeva DIPISTAV
             </h1>
             <p className="mt-4 text-lg text-[#1E293B]/72">
-              Specializujeme se na zpracování kvalitního smrkového, borového a modřínového dřeva z
-              lokálních lesů.
+              Dodáváme stavební řezivo a palivové dřevo, na které je spoleh od první poptávky až po vykládku na místě.
             </p>
           </div>
         </div>
@@ -83,8 +79,7 @@ function ONasPage() {
               Dřevo, které známe od původu až po expedici
             </h2>
             <p className="mt-3 text-sm leading-7 text-[#1E293B]/75 sm:text-base">
-              Každou zakázku řešíme osobně. Pomůžeme vybrat vhodný profil, doporučíme rozměry a
-              připravíme materiál tak, aby na stavbě seděl bez zbytečných kompromisů.
+              Každou zakázku řešíme osobně. Pomůžeme s výběrem profilu, doporučíme vhodné rozměry a připravíme materiál tak, aby na stavbě vše sedělo bez zbytečných kompromisů.
             </p>
           </div>
 
@@ -114,8 +109,7 @@ function ONasPage() {
                 Chcete připravit nabídku na trámy, fošny nebo atypické řezivo?
               </h2>
               <p className="mt-3 text-white/80">
-                Zavolejte nám nebo pošlete poptávku. Ozveme se s dostupností, cenou i doporučením
-                nejvhodnějšího řešení.
+                Zavolejte nám nebo pošlete poptávku. Připravíme přehlednou nabídku, ověříme dostupnost a doporučíme nejvhodnější řešení pro váš projekt.
               </p>
             </div>
             <div className="flex flex-col gap-3 sm:flex-row md:flex-col lg:flex-row">

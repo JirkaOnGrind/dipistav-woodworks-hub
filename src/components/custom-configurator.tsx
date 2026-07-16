@@ -53,6 +53,8 @@ const LENGTH_MIN = 1;
 const LENGTH_MAX = 8;
 const QTY_MIN = 1;
 const QTY_MAX = 100;
+const PREVIEW_VIEWBOX_WIDTH = 420;
+const PREVIEW_VIEWBOX_HEIGHT = 260;
 
 function clamp(value: number, min: number, max: number) {
   if (Number.isNaN(value)) {
@@ -158,8 +160,8 @@ function BeamPreview({
       maxY: rawFaceHeight + rawWidthVector.y,
     };
 
-    const availableWidth = 230;
-    const availableHeight = 136;
+    const availableWidth = 292;
+    const availableHeight = 176;
     const fitScale = Math.min(
       1,
       availableWidth / (rawBounds.maxX - rawBounds.minX),
@@ -177,8 +179,10 @@ function BeamPreview({
       y: rawLengthVector.y * fitScale,
     };
 
-    const marginLeft = 106;
-    const marginTop = 52;
+    const scaledWidth = (rawBounds.maxX - rawBounds.minX) * fitScale;
+    const scaledHeight = (rawBounds.maxY - rawBounds.minY) * fitScale;
+    const marginLeft = (PREVIEW_VIEWBOX_WIDTH - scaledWidth) / 2;
+    const marginTop = (PREVIEW_VIEWBOX_HEIGHT - scaledHeight) / 2;
     const frontTopLeft = {
       x: marginLeft - rawBounds.minX * fitScale,
       y: marginTop - rawBounds.minY * fitScale,
@@ -332,12 +336,12 @@ function BeamPreview({
   const lengthLabelY = (lengthGuideStart.y + lengthGuideEnd.y) / 2 + 18;
 
   return (
-    <div className="rounded-[1.8rem] border border-[#1E3A2B]/12 bg-[linear-gradient(180deg,rgba(255,253,248,0.98),rgba(244,238,225,0.96))] p-4 shadow-[inset_0_1px_0_rgba(255,255,255,0.72)] sm:p-5">
+    <div className="rounded-[1.8rem] border border-[#1E3A2B]/12 bg-[linear-gradient(180deg,rgba(255,253,248,0.98),rgba(244,238,225,0.96))] p-3 shadow-[inset_0_1px_0_rgba(255,255,255,0.72)] sm:p-4 lg:p-5">
       <div className="text-[11px] font-semibold uppercase tracking-[0.24em] text-[#1E3A2B]/55">
         {"N\u00e1hled"}
       </div>
 
-      <div className="relative mt-4 overflow-hidden rounded-[1.65rem] border border-[#D9D1C1] bg-[radial-gradient(circle_at_top,#fffef9_0%,#f4ebdc_62%,#ecdfcc_100%)] px-4 py-5 sm:px-6 sm:py-6">
+      <div className="relative mt-3 flex min-h-[220px] items-center justify-center overflow-hidden rounded-[1.65rem] border border-[#D9D1C1] bg-[radial-gradient(circle_at_top,#fffef9_0%,#f4ebdc_62%,#ecdfcc_100%)] px-3 py-4 sm:min-h-[260px] sm:px-5 sm:py-5 lg:min-h-[320px] lg:px-6 lg:py-6">
         <div
           aria-hidden
           className="absolute inset-x-10 bottom-5 h-6 rounded-full bg-[#6A4A2F]/8 blur-2xl"
@@ -346,120 +350,125 @@ function BeamPreview({
           }}
         />
 
-        <svg viewBox="0 0 420 260" className="relative z-10 h-auto w-full">
-          <defs>
-            <clipPath id={`${previewId}-top`}>
-              <polygon points={topFacePoints} />
-            </clipPath>
-            <clipPath id={`${previewId}-side`}>
-              <polygon points={sideFacePoints} />
-            </clipPath>
-          </defs>
-
-          <g stroke="#1E3A2B" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round">
-            <polygon points={topFacePoints} fill={species.topFill} />
-            <polygon points={sideFacePoints} fill={species.sideFill} />
-            <polygon points={frontFacePoints} fill={species.faceFill} />
-          </g>
-
-          <g
-            clipPath={`url(#${previewId}-top)`}
-            fill="none"
-            stroke="#1E3A2B"
-            strokeWidth="1.2"
-            strokeOpacity="0.15"
-            strokeLinecap="round"
+        <div className="flex h-full w-full items-center justify-center">
+          <svg
+            viewBox={`0 0 ${PREVIEW_VIEWBOX_WIDTH} ${PREVIEW_VIEWBOX_HEIGHT}`}
+            className="relative z-10 h-auto w-full max-w-[27rem] sm:max-w-[31rem] lg:max-w-[35rem]"
           >
-            {topGrain.map((path, index) => (
-              <path key={`top-grain-${index}`} d={path} />
-            ))}
-          </g>
+            <defs>
+              <clipPath id={`${previewId}-top`}>
+                <polygon points={topFacePoints} />
+              </clipPath>
+              <clipPath id={`${previewId}-side`}>
+                <polygon points={sideFacePoints} />
+              </clipPath>
+            </defs>
 
-          <g
-            clipPath={`url(#${previewId}-side)`}
-            fill="none"
-            stroke="#1E3A2B"
-            strokeWidth="1.2"
-            strokeOpacity="0.15"
-            strokeLinecap="round"
-          >
-            {sideGrain.map((path, index) => (
-              <path key={`side-grain-${index}`} d={path} />
-            ))}
-          </g>
+            <g stroke="#1E3A2B" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round">
+              <polygon points={topFacePoints} fill={species.topFill} />
+              <polygon points={sideFacePoints} fill={species.sideFill} />
+              <polygon points={frontFacePoints} fill={species.faceFill} />
+            </g>
 
-          <g
-            fill="none"
-            stroke="#1E3A2B"
-            strokeWidth="1.1"
-            strokeLinecap="round"
-            strokeOpacity="0.25"
-            transform={`rotate(${faceRotation} ${faceCenterX} ${faceCenterY})`}
-          >
-            {endGrainArcs.map((arc, index) => (
-              <path
-                key={`ring-${index}`}
-                d={`M ${faceCenterX - arc.rx} ${faceCenterY + arc.ry * 0.18} A ${arc.rx} ${arc.ry} 0 0 1 ${faceCenterX + arc.rx} ${faceCenterY - arc.ry * 0.08}`}
-              />
-            ))}
-          </g>
-
-          <g
-            fill="none"
-            stroke="#1E3A2B"
-            strokeWidth="1"
-            strokeDasharray="3,3"
-            strokeOpacity="0.4"
-            strokeLinecap="round"
-          >
-            <path
-              d={`M ${geometry.frontTopLeft.x} ${geometry.frontTopLeft.y} L ${widthGuideStart.x} ${widthGuideStart.y}`}
-            />
-            <path
-              d={`M ${geometry.frontTopRight.x} ${geometry.frontTopRight.y} L ${widthGuideEnd.x} ${widthGuideEnd.y}`}
-            />
-            <path
-              d={`M ${widthGuideStart.x} ${widthGuideStart.y} L ${widthGuideEnd.x} ${widthGuideEnd.y}`}
-            />
-
-            <path
-              d={`M ${geometry.frontTopLeft.x} ${geometry.frontTopLeft.y} L ${heightGuideX} ${geometry.frontTopLeft.y}`}
-            />
-            <path
-              d={`M ${geometry.frontBottomLeft.x} ${geometry.frontBottomLeft.y} L ${heightGuideX} ${geometry.frontBottomLeft.y}`}
-            />
-            <path
-              d={`M ${heightGuideX} ${geometry.frontTopLeft.y} L ${heightGuideX} ${geometry.frontBottomLeft.y}`}
-            />
-
-            <path
-              d={`M ${geometry.frontBottomLeft.x} ${geometry.frontBottomLeft.y} L ${lengthGuideStart.x} ${lengthGuideStart.y}`}
-            />
-            <path
-              d={`M ${geometry.backBottomLeft.x} ${geometry.backBottomLeft.y} L ${lengthGuideEnd.x} ${lengthGuideEnd.y}`}
-            />
-            <path
-              d={`M ${lengthGuideStart.x} ${lengthGuideStart.y} L ${lengthGuideEnd.x} ${lengthGuideEnd.y}`}
-            />
-          </g>
-
-          <g fill="#1E3A2B" fontSize="11" fontWeight="600">
-            <text x={widthLabelX} y={widthLabelY} textAnchor="middle">
-              {width} mm
-            </text>
-            <text
-              x={heightLabelX}
-              y={heightLabelY}
-              textAnchor="middle"
-              transform={`rotate(-90 ${heightLabelX} ${heightLabelY})`}
+            <g
+              clipPath={`url(#${previewId}-top)`}
+              fill="none"
+              stroke="#1E3A2B"
+              strokeWidth="1.2"
+              strokeOpacity="0.15"
+              strokeLinecap="round"
             >
-              {height} mm
-            </text>
-            <text x={lengthLabelX} y={lengthLabelY} textAnchor="middle">
-              {formatControlValue(length, 0.5)} m
-            </text>
-          </g>
-        </svg>
+              {topGrain.map((path, index) => (
+                <path key={`top-grain-${index}`} d={path} />
+              ))}
+            </g>
+
+            <g
+              clipPath={`url(#${previewId}-side)`}
+              fill="none"
+              stroke="#1E3A2B"
+              strokeWidth="1.2"
+              strokeOpacity="0.15"
+              strokeLinecap="round"
+            >
+              {sideGrain.map((path, index) => (
+                <path key={`side-grain-${index}`} d={path} />
+              ))}
+            </g>
+
+            <g
+              fill="none"
+              stroke="#1E3A2B"
+              strokeWidth="1.1"
+              strokeLinecap="round"
+              strokeOpacity="0.25"
+              transform={`rotate(${faceRotation} ${faceCenterX} ${faceCenterY})`}
+            >
+              {endGrainArcs.map((arc, index) => (
+                <path
+                  key={`ring-${index}`}
+                  d={`M ${faceCenterX - arc.rx} ${faceCenterY + arc.ry * 0.18} A ${arc.rx} ${arc.ry} 0 0 1 ${faceCenterX + arc.rx} ${faceCenterY - arc.ry * 0.08}`}
+                />
+              ))}
+            </g>
+
+            <g
+              fill="none"
+              stroke="#1E3A2B"
+              strokeWidth="1"
+              strokeDasharray="3,3"
+              strokeOpacity="0.4"
+              strokeLinecap="round"
+            >
+              <path
+                d={`M ${geometry.frontTopLeft.x} ${geometry.frontTopLeft.y} L ${widthGuideStart.x} ${widthGuideStart.y}`}
+              />
+              <path
+                d={`M ${geometry.frontTopRight.x} ${geometry.frontTopRight.y} L ${widthGuideEnd.x} ${widthGuideEnd.y}`}
+              />
+              <path
+                d={`M ${widthGuideStart.x} ${widthGuideStart.y} L ${widthGuideEnd.x} ${widthGuideEnd.y}`}
+              />
+
+              <path
+                d={`M ${geometry.frontTopLeft.x} ${geometry.frontTopLeft.y} L ${heightGuideX} ${geometry.frontTopLeft.y}`}
+              />
+              <path
+                d={`M ${geometry.frontBottomLeft.x} ${geometry.frontBottomLeft.y} L ${heightGuideX} ${geometry.frontBottomLeft.y}`}
+              />
+              <path
+                d={`M ${heightGuideX} ${geometry.frontTopLeft.y} L ${heightGuideX} ${geometry.frontBottomLeft.y}`}
+              />
+
+              <path
+                d={`M ${geometry.frontBottomLeft.x} ${geometry.frontBottomLeft.y} L ${lengthGuideStart.x} ${lengthGuideStart.y}`}
+              />
+              <path
+                d={`M ${geometry.backBottomLeft.x} ${geometry.backBottomLeft.y} L ${lengthGuideEnd.x} ${lengthGuideEnd.y}`}
+              />
+              <path
+                d={`M ${lengthGuideStart.x} ${lengthGuideStart.y} L ${lengthGuideEnd.x} ${lengthGuideEnd.y}`}
+              />
+            </g>
+
+            <g fill="#1E3A2B" fontSize="11" fontWeight="600">
+              <text x={widthLabelX} y={widthLabelY} textAnchor="middle">
+                {width} mm
+              </text>
+              <text
+                x={heightLabelX}
+                y={heightLabelY}
+                textAnchor="middle"
+                transform={`rotate(-90 ${heightLabelX} ${heightLabelY})`}
+              >
+                {height} mm
+              </text>
+              <text x={lengthLabelX} y={lengthLabelY} textAnchor="middle">
+                {formatControlValue(length, 0.5)} m
+              </text>
+            </g>
+          </svg>
+        </div>
       </div>
     </div>
   );
@@ -504,7 +513,7 @@ function NumericControl({ label, value, onChange, min, max, step, unit }: Numeri
   };
 
   return (
-    <div className="rounded-[1.55rem] border border-[#1E3A2B]/10 bg-white/82 p-4 shadow-[0_12px_30px_rgba(30,58,43,0.05)] backdrop-blur-sm sm:p-5">
+    <div className="rounded-[1.55rem] border border-[#1E3A2B]/10 bg-white/82 p-4 shadow-[0_12px_30px_rgba(30,58,43,0.05)] backdrop-blur-sm sm:p-5 lg:p-3.5">
       <div className="flex items-center justify-between gap-3">
         <label
           htmlFor={id}
@@ -530,7 +539,7 @@ function NumericControl({ label, value, onChange, min, max, step, unit }: Numeri
                 commitDraft();
               }
             }}
-            className="h-10 w-28 rounded-full border-[#1E3A2B]/10 bg-[#FBF9F4] px-3 text-center text-sm font-black text-[#1E293B] shadow-none tabular-nums focus-visible:ring-[#1E3A2B]/20"
+            className="h-9 w-24 rounded-full border-[#1E3A2B]/10 bg-[#FBF9F4] px-3 text-center text-sm font-black text-[#1E293B] shadow-none tabular-nums focus-visible:ring-[#1E3A2B]/20 lg:h-8 lg:w-26 lg:text-[0.95rem]"
           />
         </div>
       </div>
@@ -561,9 +570,6 @@ function NumericControl({ label, value, onChange, min, max, step, unit }: Numeri
             }}
             className="h-auto border-0 bg-transparent px-0 py-0 text-center text-lg font-black text-[#1E293B] shadow-none tabular-nums focus-visible:ring-0"
           />
-          <span className="shrink-0 text-sm font-semibold uppercase tracking-[0.18em] text-[#1E3A2B]/52">
-            {unit}
-          </span>
         </div>
 
         <button
@@ -576,7 +582,7 @@ function NumericControl({ label, value, onChange, min, max, step, unit }: Numeri
         </button>
       </div>
 
-      <div className="mt-5 hidden md:block">
+      <div className="mt-4 hidden md:block lg:mt-3">
         <input
           id={id}
           data-beam-range
@@ -645,9 +651,9 @@ export function CustomConfigurator() {
         >
           <SawBladeWatermark />
 
-          <div className="relative grid gap-6 lg:grid-cols-[minmax(0,1.02fr)_minmax(320px,0.88fr)] lg:gap-8">
-            <div className="space-y-4">
-              <div className="grid gap-4 md:grid-cols-2">
+          <div className="relative grid gap-6 lg:grid-cols-[minmax(0,0.95fr)_minmax(360px,1.05fr)] lg:items-start lg:gap-5 xl:grid-cols-[minmax(0,0.92fr)_minmax(420px,1.08fr)]">
+            <div className="space-y-3 lg:space-y-3.5">
+              <div className="grid gap-3 md:grid-cols-2 lg:grid-cols-1 lg:gap-3.5">
                 <NumericControl
                   label={"\u0160\u00ed\u0159ka"}
                   value={width}
@@ -686,8 +692,8 @@ export function CustomConfigurator() {
                 />
               </div>
 
-              <div className="rounded-[1.55rem] border border-[#1E3A2B]/10 bg-white/82 p-3 shadow-[0_12px_30px_rgba(30,58,43,0.05)] backdrop-blur-sm sm:p-4">
-                <div className="grid grid-cols-3 gap-2">
+              <div className="rounded-[1.55rem] border border-[#1E3A2B]/10 bg-white/82 p-3 shadow-[0_12px_30px_rgba(30,58,43,0.05)] backdrop-blur-sm lg:p-3.5">
+                <div className="grid grid-cols-3 gap-2 lg:gap-2.5">
                   {SPECIES.map((item) => {
                     const isActive = item.id === speciesId;
 
@@ -696,7 +702,7 @@ export function CustomConfigurator() {
                         key={item.id}
                         type="button"
                         onClick={() => setSpeciesId(item.id)}
-                        className={`rounded-full border px-4 py-3 text-sm font-bold transition ${
+                        className={`rounded-full border px-3 py-2.5 text-sm font-bold transition lg:px-4 ${
                           isActive
                             ? "border-[#1E3A2B] bg-[#1E3A2B] text-white shadow-[0_10px_24px_rgba(30,58,43,0.16)]"
                             : "border-[#1E3A2B]/10 bg-[#FBF9F4] text-[#1E293B] hover:border-[#1E3A2B]/22 hover:bg-white"
@@ -711,51 +717,78 @@ export function CustomConfigurator() {
               </div>
             </div>
 
-            <aside className="lg:sticky lg:top-24 lg:self-start">
-              <div className="space-y-4 rounded-[1.9rem] border border-[#1E3A2B]/12 bg-[#EEF3EA] p-4 shadow-[0_22px_48px_rgba(30,58,43,0.12)] sm:p-5">
+            <aside className="lg:self-start">
+              <div className="space-y-3 rounded-[1.9rem] border border-[#1E3A2B]/12 bg-[#EEF3EA] p-3 shadow-[0_22px_48px_rgba(30,58,43,0.12)] sm:p-4 lg:p-[1.05rem]">
                 <BeamPreview width={width} height={height} length={length} species={species} />
 
-                <div className="rounded-[1.8rem] border border-[#1E3A2B]/12 bg-white/88 p-5 shadow-[inset_0_1px_0_rgba(255,255,255,0.7)]">
-                  <div className="grid gap-3 sm:grid-cols-2">
-                    <div className="rounded-2xl border border-[#1E3A2B]/10 bg-[#FBF9F4] px-4 py-3">
-                      <div className="text-[11px] font-semibold uppercase tracking-[0.2em] text-[#1E3A2B]/55">
+                <div className="rounded-[1.8rem] border border-[#1E3A2B]/12 bg-white/88 p-4 shadow-[inset_0_1px_0_rgba(255,255,255,0.7)] sm:p-5 lg:p-4">
+                  <div className="grid gap-2.5 sm:grid-cols-2 sm:gap-3">
+                    <div className="rounded-2xl border border-[#1E3A2B]/10 bg-[#FBF9F4] px-3 py-2.5 sm:px-4 sm:py-3">
+                      <div className="text-[10px] font-semibold uppercase tracking-[0.18em] text-[#1E3A2B]/55 sm:text-[11px] sm:tracking-[0.2em]">
                         {"Objem celkem"}
                       </div>
-                      <div className="mt-1 text-2xl font-black text-[#1E3A2B] tabular-nums">
+                      <div className="mt-1 text-xl font-black text-[#1E3A2B] tabular-nums sm:text-2xl">
                         {formatDecimal(volumeM3)} {"m\u00b3"}
                       </div>
                     </div>
 
-                    <div className="rounded-2xl border border-[#1E3A2B]/10 bg-[#FBF9F4] px-4 py-3">
-                      <div className="text-[11px] font-semibold uppercase tracking-[0.2em] text-[#1E3A2B]/55">
+                    <div className="rounded-2xl border border-[#1E3A2B]/10 bg-[#FBF9F4] px-3 py-2.5 sm:px-4 sm:py-3">
+                      <div className="text-[10px] font-semibold uppercase tracking-[0.18em] text-[#1E3A2B]/55 sm:text-[11px] sm:tracking-[0.2em]">
                         {"Hmotnost"}
                       </div>
-                      <div className="mt-1 text-2xl font-black text-[#1E293B] tabular-nums">
+                      <div className="mt-1 text-xl font-black text-[#1E293B] tabular-nums sm:text-2xl">
                         {new Intl.NumberFormat("cs-CZ").format(totalWeightKg)} kg
                       </div>
                     </div>
                   </div>
 
-                  <div className="mt-4 rounded-[1.7rem] bg-[#1E3A2B] px-5 py-5 text-white shadow-[0_16px_38px_rgba(30,58,43,0.2)]">
-                    <div className="text-[11px] font-semibold uppercase tracking-[0.24em] text-white/72">
-                      {"Celkov\u00e1 cena s DPH"}
+                  <div className="mt-4 space-y-3 lg:hidden">
+                    <div className="rounded-[1.55rem] bg-[#1E3A2B] px-4 py-3.5 text-white shadow-[0_14px_30px_rgba(30,58,43,0.18)] sm:px-5 sm:py-4">
+                      <div className="text-[10px] font-semibold uppercase tracking-[0.2em] text-white/72 sm:text-[11px] sm:tracking-[0.22em]">
+                        {"Celkov\u00e1 cena s DPH"}
+                      </div>
+                      <div
+                        aria-live="polite"
+                        className="mt-1.5 text-[1.85rem] font-black tracking-tight text-white tabular-nums sm:mt-2 sm:text-[2.15rem]"
+                      >
+                        {formatCurrency(totalPrice)}
+                      </div>
                     </div>
-                    <div
-                      aria-live="polite"
-                      className="mt-2 text-4xl font-black tracking-tight text-white tabular-nums"
+
+                    <Button
+                      type="button"
+                      onClick={handleAdd}
+                      className="h-12 w-full rounded-[1.4rem] bg-[#1E3A2B] text-sm font-bold text-white shadow-[0_18px_40px_rgba(30,58,43,0.16)] transition hover:bg-[#173021] hover:shadow-[0_22px_46px_rgba(30,58,43,0.22)] sm:h-13 sm:text-base"
                     >
-                      {formatCurrency(totalPrice)}
-                    </div>
+                      <ShoppingCart className="mr-2 h-4 w-4" />
+                      {"P\u0159idat do popt\u00e1vky"}
+                    </Button>
                   </div>
 
-                  <Button
-                    type="button"
-                    onClick={handleAdd}
-                    className="mt-4 h-13 w-full rounded-[1.4rem] bg-[#1E3A2B] text-base font-bold text-white shadow-[0_18px_40px_rgba(30,58,43,0.16)] transition hover:bg-[#173021] hover:shadow-[0_22px_46px_rgba(30,58,43,0.22)]"
-                  >
-                    <ShoppingCart className="mr-2 h-4 w-4" />
-                    {"P\u0159idat do popt\u00e1vky"}
-                  </Button>
+                  <div className="hidden lg:block">
+                    <div className="mt-3 flex items-center gap-3">
+                      <div className="min-w-0 flex-1">
+                        <div className="text-[10px] font-semibold uppercase tracking-[0.2em] text-[#1E3A2B]/52">
+                          {"Celkov\u00e1 cena s DPH"}
+                        </div>
+                        <div
+                          aria-live="polite"
+                          className="mt-1 text-[2rem] font-black tracking-tight text-[#1E3A2B] tabular-nums"
+                        >
+                          {formatCurrency(totalPrice)}
+                        </div>
+                      </div>
+
+                      <Button
+                        type="button"
+                        onClick={handleAdd}
+                        className="h-11 min-w-[15rem] rounded-[1.2rem] bg-[#1E3A2B] px-5 text-sm font-bold text-white shadow-[0_14px_28px_rgba(30,58,43,0.16)] transition hover:bg-[#173021] hover:shadow-[0_18px_34px_rgba(30,58,43,0.2)]"
+                      >
+                        <ShoppingCart className="mr-2 h-4 w-4" />
+                        {"P\u0159idat do popt\u00e1vky"}
+                      </Button>
+                    </div>
+                  </div>
                 </div>
               </div>
             </aside>

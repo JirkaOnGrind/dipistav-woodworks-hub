@@ -33,14 +33,11 @@ function DopravaPage() {
         />
         <div className="relative mx-auto max-w-7xl px-4 py-14 sm:py-18">
           <div className="max-w-3xl">
-            <div className="inline-flex rounded-full border border-[#A86D38]/25 bg-[#F5F2E9] px-4 py-1.5 text-[11px] font-bold uppercase tracking-[0.22em] text-[#A86D38]">
-              Doprava DIPISTAV
-            </div>
-            <h1 className="mt-4 text-4xl font-black tracking-tight text-[#1E293B] sm:text-5xl">
+            <h1 className="text-4xl font-black tracking-tight text-[#1E293B] sm:text-5xl">
               Možnosti dopravy a osobního odběru
             </h1>
             <p className="mt-4 text-lg text-[#1E293B]/72">
-              Vlastní autojeřáb pro pohodlnou vykládku nebo bezplatný osobní odběr přímo na pile.
+              Řezivo vám přivezeme až na místo nebo připravíme k rychlému osobnímu odběru přímo na pile.
             </p>
           </div>
         </div>
@@ -73,15 +70,14 @@ function DopravaPage() {
                 <Truck className="h-6 w-6" />
               </div>
               <p className="mt-4 text-base leading-7 text-[#1E293B]/78">
-                Bezstarostný dovoz stavebního řeziva až na stavbu. Autojeřáb zajistí složení i na
-                těžko přístupných místech.
+                Dovezeme stavební řezivo přímo na stavbu a díky autojeřábu zajistíme pohodlné složení i tam, kde je potřeba přesná manipulace.
               </p>
 
               <div className="mt-6 grid gap-3">
                 {[
-                  "Složení materiálu hydraulickou rukou bez další techniky na místě.",
-                  "Vhodné pro trámy, fošny, prkna i atypické objednávky z konfigurátoru.",
-                  "Termín rozvozu domlouváme individuálně podle připravenosti stavby.",
+                  "Složení materiálu hydraulickou rukou bez nutnosti zajišťovat další techniku.",
+                  "Vhodné pro trámy, fošny, prkna i objemnější zakázky na míru.",
+                  "Termín rozvozu ladíme podle připravenosti stavby i vašeho harmonogramu.",
                 ].map((item) => (
                   <div
                     key={item}
@@ -111,8 +107,7 @@ function DopravaPage() {
               Osobní odběr na pile (Zdarma)
             </h2>
             <p className="mt-3 max-w-2xl text-white/80">
-              Přijeďte si pro dřevo osobně k nám na pilu. Bezplatná nakládka vysokozdvižným vozíkem
-              zdarma.
+              Přijeďte si pro dřevo osobně. Materiál vám nachystáme předem a naložení vysokozdvižným vozíkem máte bez příplatku.
             </p>
 
             <div className="mt-6 grid gap-3">
@@ -135,12 +130,10 @@ function DopravaPage() {
             <h3 className="text-xl font-black tracking-tight">Specifikace odběru</h3>
             <div className="mt-5 space-y-4 text-sm leading-7 text-[#1E293B]/78">
               <p>
-                Připravíme vám materiál předem k rychlému naložení. Stačí se ozvat telefonicky a
-                domluvit si termín odběru.
+                Materiál vám připravíme předem, aby odběr proběhl rychle a bez zbytečného čekání. Stačí nám zavolat a domluvit si termín.
               </p>
               <p>
-                Pokud chcete mít jistotu, že bude vše připraveno přesně podle rozměrů a množství,
-                doporučujeme zavolat na číslo {COMPANY_PHONE}.
+                Pokud chcete mít jistotu, že bude vše připraveno přesně podle rozměrů a množství, doporučujeme odběr potvrdit na čísle {COMPANY_PHONE}.
               </p>
             </div>
 
