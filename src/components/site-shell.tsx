@@ -179,9 +179,7 @@ export function SiteShell({ children }: { children: ReactNode }) {
           </div>
 
           <div>
-            <div className="mb-3 text-sm font-black uppercase tracking-wide text-white">
-              Kontakt
-            </div>
+            <div className="mb-3 text-sm font-black uppercase tracking-wide text-white">Kontakt</div>
             <ul className="space-y-1.5 text-sm">
               <li>{COMPANY_PHONE}</li>
               <li>{COMPANY_EMAIL}</li>
@@ -218,10 +216,36 @@ export function SiteShell({ children }: { children: ReactNode }) {
 
         <div className="border-t border-white/10">
           <div className="mx-auto max-w-7xl px-4 py-4 text-xs text-white/50">
-            © {new Date().getFullYear()} DIPISTAV – Pila a prodej dřeva. Všechna práva vyhrazena.
+            © {new Date().getFullYear()} DIPISTAV - Pila a prodej dřeva. Všechna práva vyhrazena.
           </div>
         </div>
       </footer>
+
+      <div className="pointer-events-none hidden select-none 2xl:block">
+        <svg
+          className="fixed top-[10%] -left-[8vw] z-0 h-[450px] w-[450px] text-[#3c2f1d] opacity-[0.04]"
+          viewBox="0 0 200 200"
+          fill="none"
+          stroke="currentColor"
+          strokeWidth="1"
+        >
+          <path d="M -20,100 C 20,40 80,10 140,30 C 190,50 210,110 190,160 C 170,200 100,210 50,190" />
+          <path d="M -10,100 C 25,52 75,25 125,42 C 168,58 185,108 168,150 C 152,185 92,192 48,175" />
+          <path d="M 0,100 C 30,64 70,40 110,54 C 146,66 160,106 146,140 C 134,170 84,174 46,160" />
+          <path d="M 10,100 C 35,76 65,55 95,66 C 124,74 135,104 124,130 C 116,155 76,156 44,145" />
+        </svg>
+
+        <svg
+          className="fixed bottom-[5%] -right-[5vw] z-0 h-[400px] w-[400px] text-[#3c2f1d] opacity-[0.04]"
+          viewBox="0 0 200 200"
+          fill="none"
+          stroke="currentColor"
+          strokeWidth="1"
+        >
+          <path d="M 50,200 L 200,50 M 80,200 L 200,80 M 110,200 L 200,110 M 140,200 L 200,140" />
+          <path d="M 20,150 L 150,20 M 20,180 L 180,20" />
+        </svg>
+      </div>
     </div>
   );
 }

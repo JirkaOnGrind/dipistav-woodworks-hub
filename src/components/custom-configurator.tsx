@@ -650,47 +650,46 @@ export function CustomConfigurator() {
               </div>
 
               <div className="hidden rounded-[1.65rem] border border-[#1E3A2B]/12 bg-white/88 p-4 shadow-[inset_0_1px_0_rgba(255,255,255,0.72)] lg:block">
-                <div className="grid grid-cols-2 gap-3">
-                  <div className="rounded-2xl border border-[#1E3A2B]/10 bg-[#FBF9F4] px-3.5 py-3">
-                    <div className="text-[10px] font-semibold uppercase tracking-[0.18em] text-[#1E3A2B]/55">
-                      {"Objem celkem"}
+                <div className="mt-6 grid grid-cols-2 gap-4">
+                  <div className="flex flex-col justify-between items-start space-y-4">
+                    <div className="w-full rounded-xl border border-amber-900/10 bg-white/60 p-4">
+                      <span className="block text-xs font-medium uppercase tracking-wider text-amber-900/60">
+                        {"Objem celkem"}
+                      </span>
+                      <span className="text-xl font-bold text-slate-900">
+                        {formatDecimal(volumeM3)} {"m\u00b3"}
+                      </span>
                     </div>
-                    <div className="mt-1 text-[1.7rem] font-black text-[#1E3A2B] tabular-nums">
-                      {formatDecimal(volumeM3)} {"m\u00b3"}
+
+                    <div className="pt-2">
+                      <span className="block text-xs font-medium uppercase tracking-wider text-amber-900/60">
+                        {"Celkov\u00e1 cena s DPH"}
+                      </span>
+                      <span aria-live="polite" className="text-2xl font-black text-slate-900">
+                        {formatCurrency(totalPrice)}
+                      </span>
                     </div>
                   </div>
 
-                  <div className="rounded-2xl border border-[#1E3A2B]/10 bg-[#FBF9F4] px-3.5 py-3">
-                    <div className="text-[10px] font-semibold uppercase tracking-[0.18em] text-[#1E3A2B]/55">
-                      {"Hmotnost"}
+                  <div className="flex flex-col justify-between items-end space-y-4">
+                    <div className="w-full rounded-xl border border-amber-900/10 bg-white/60 p-4">
+                      <span className="block text-xs font-medium uppercase tracking-wider text-amber-900/60">
+                        {"Hmotnost"}
+                      </span>
+                      <span className="text-xl font-bold text-slate-900">
+                        {new Intl.NumberFormat("cs-CZ").format(totalWeightKg)} kg
+                      </span>
                     </div>
-                    <div className="mt-1 text-[1.7rem] font-black text-[#1E293B] tabular-nums">
-                      {new Intl.NumberFormat("cs-CZ").format(totalWeightKg)} kg
-                    </div>
-                  </div>
-                </div>
 
-                <div className="mt-3 grid grid-cols-2 items-center gap-3">
-                  <div className="min-w-0 px-0.5">
-                    <div className="text-[10px] font-semibold uppercase tracking-[0.2em] text-[#1E3A2B]/52">
-                      {"Celkov\u00e1 cena s DPH"}
-                    </div>
-                    <div
-                      aria-live="polite"
-                      className="mt-1 text-[2rem] font-black tracking-tight text-[#1E3A2B] tabular-nums"
+                    <Button
+                      type="button"
+                      onClick={handleAdd}
+                      className="w-full rounded-full bg-[#1b3b2b] px-6 py-3 font-medium text-white transition-colors hover:bg-[#12261d]"
                     >
-                      {formatCurrency(totalPrice)}
-                    </div>
+                      <ShoppingCart className="mr-2 h-4 w-4" />
+                      {"P\u0159idat do popt\u00e1vky"}
+                    </Button>
                   </div>
-
-                  <Button
-                    type="button"
-                    onClick={handleAdd}
-                    className="h-11 w-full rounded-[1.2rem] bg-[#1E3A2B] px-5 text-sm font-bold text-white shadow-[0_14px_28px_rgba(30,58,43,0.16)] transition hover:bg-[#173021] hover:shadow-[0_18px_34px_rgba(30,58,43,0.2)]"
-                  >
-                    <ShoppingCart className="mr-2 h-4 w-4" />
-                    {"P\u0159idat do popt\u00e1vky"}
-                  </Button>
                 </div>
               </div>
             </div>
