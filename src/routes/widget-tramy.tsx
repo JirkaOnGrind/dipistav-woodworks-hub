@@ -70,7 +70,7 @@ function WidgetTramyPage() {
             className="mb-5 inline-flex items-center gap-2 text-sm font-semibold text-[#234A33] transition hover:text-[#A86D38]"
           >
             <ArrowLeft className="h-4 w-4" />
-            Zpět do obchodu
+            {"Zp\u011bt do obchodu"}
           </a>
 
           <div className="rounded-3xl border border-white/70 bg-white/88 p-6 shadow-sm backdrop-blur sm:p-8">
@@ -78,20 +78,23 @@ function WidgetTramyPage() {
               Timber Beam Configurator
             </h1>
             <p className="mt-3 max-w-2xl text-base font-semibold text-[#1E293B]/72">
-              Vanilla JS widget s nulovým flickerem, custom sliderem a okamžitou kalkulací ceny.
+              {
+                "Vanilla JS widget s nulov\u00fdm flickerem, custom sliderem a okam\u017eitou kalkulac\u00ed ceny."
+              }
             </p>
             <p className="mt-2 max-w-3xl text-sm leading-7 text-[#1E293B]/65 sm:text-base">
-              Tenhle blok je postavený tak, aby šel snadno přenést do WordPress Bricks Builderu nebo
-              propojit s WooCommerce pomocí vlastního hooku na tlačítko přidání do košíku.
+              {
+                "Tenhle blok je postaven\u00fd tak, aby \u0161el snadno p\u0159en\u00e9st do WordPress Bricks Builderu nebo propojit s WooCommerce pomoc\u00ed vlastn\u00edho hooku na tla\u010d\u00edtko p\u0159id\u00e1n\u00ed do ko\u0161\u00edku."
+              }
             </p>
           </div>
 
           <section
             data-beam-configurator
             data-default-profile="10x10"
-            data-default-length="400"
+            data-default-length="500"
             data-default-quantity="5"
-            className="mt-6"
+            className="mt-6 min-w-0"
           >
             <script
               type="application/json"
@@ -100,11 +103,11 @@ function WidgetTramyPage() {
             />
 
             <div className="grid items-stretch gap-6 lg:grid-cols-[minmax(0,1fr)_minmax(360px,430px)]">
-              <div className="rounded-3xl border border-[#A86D38]/15 bg-white/80 p-4 shadow-sm backdrop-blur sm:p-6">
+              <div className="min-w-0 rounded-3xl border border-[#A86D38]/15 bg-white/80 p-4 shadow-sm backdrop-blur sm:p-6">
                 <header className="mb-4 flex items-start justify-between gap-4">
                   <div>
                     <p className="text-xs font-semibold uppercase tracking-[0.22em] text-[#A86D38]">
-                      Stavební trámy
+                      {"Stavebn\u00ed tr\u00e1my"}
                     </p>
                     <h2 className="mt-2 text-2xl font-black tracking-tight text-[#1E293B] sm:text-3xl">
                       Vizualizace sestavy
@@ -121,84 +124,99 @@ function WidgetTramyPage() {
 
                 <div
                   data-beam-preview
-                  className="relative flex min-h-[320px] items-center justify-center overflow-hidden rounded-[1.75rem] border border-[#E8DFD2] bg-[radial-gradient(circle_at_top,#fffdf7_0%,#f7efe0_58%,#efe4d3_100%)] px-5 py-8 sm:min-h-[420px]"
+                  className="relative flex min-h-[240px] w-full min-w-0 items-center justify-center overflow-hidden rounded-[1.75rem] border border-[#E8DFD2] bg-[radial-gradient(circle_at_top,#fffdf7_0%,#f7efe0_58%,#efe4d3_100%)] px-3 py-5 sm:min-h-[420px] sm:px-5 sm:py-8"
                 >
                   <div
                     aria-hidden
                     className="absolute inset-x-10 bottom-8 h-8 rounded-full bg-[#6B4A2F]/10 blur-2xl"
                   />
 
-                  <div className="relative aspect-[16/10] w-full max-w-[44rem]">
-                    <img
-                      src="/images/widgets/1TramDIPI_2.webp"
-                      alt="Jeden stavební trám"
-                      data-beam-image
-                      data-image-key="one"
-                      className="absolute inset-0 h-full w-full object-contain select-none"
-                      loading="eager"
-                      decoding="async"
-                      draggable={false}
-                    />
-                    <img
-                      src="/images/widgets/2TramDIPI.webp"
-                      alt="Dva stavební trámy"
-                      data-beam-image
-                      data-image-key="two"
-                      className="absolute inset-0 h-full w-full object-contain select-none"
-                      loading="eager"
-                      decoding="async"
-                      draggable={false}
-                    />
-                    <img
-                      src="/images/widgets/3TramDIPI.webp"
-                      alt="Tři až čtyři stavební trámy"
-                      data-beam-image
-                      data-image-key="three"
-                      className="absolute inset-0 h-full w-full object-contain select-none"
-                      loading="eager"
-                      decoding="async"
-                      draggable={false}
-                    />
-                    <img
-                      src="/images/widgets/5TramDIPI.webp"
-                      alt="Pět až šest stavebních trámů"
-                      data-beam-image
-                      data-image-key="five"
-                      className="absolute inset-0 h-full w-full object-contain select-none"
-                      loading="eager"
-                      decoding="async"
-                      draggable={false}
-                    />
-                    <img
-                      src="/images/widgets/7TramDIPI.webp"
-                      alt="Sedm až deset stavebních trámů"
-                      data-beam-image
-                      data-image-key="seven"
-                      className="absolute inset-0 h-full w-full object-contain select-none"
-                      loading="eager"
-                      decoding="async"
-                      draggable={false}
-                    />
-                    <img
-                      src="/images/widgets/11TramDIPI.webp"
-                      alt="Jedenáct a více stavebních trámů"
-                      data-beam-image
-                      data-image-key="eleven"
-                      className="absolute inset-0 h-full w-full object-contain select-none"
-                      loading="eager"
-                      decoding="async"
-                      draggable={false}
-                    />
-                    <img
-                      src="/images/widgets/18TramDIPI.webp"
-                      alt="Sedmnáct a více stavebních trámů"
-                      data-beam-image
-                      data-image-key="eighteen"
-                      className="absolute inset-0 h-full w-full object-contain select-none"
-                      loading="eager"
-                      decoding="async"
-                      draggable={false}
-                    />
+                  <div className="relative w-full max-w-[44rem] min-w-0">
+                    <div
+                      data-beam-preview-frame
+                      className="relative aspect-[1820/1024] w-full overflow-hidden"
+                    >
+                      <div
+                        data-beam-preview-motion
+                        className="relative h-full w-full max-h-full max-w-full overflow-hidden"
+                      >
+                        <div
+                          data-beam-preview-stage
+                          className="relative h-full w-full max-h-full max-w-full overflow-hidden"
+                        >
+                          <img
+                            src="/images/widgets/1TramDIPI_2.webp"
+                            alt={"Jeden stavebn\u00ed tr\u00e1m"}
+                            data-beam-image
+                            data-image-key="one"
+                            className="absolute inset-0 h-full w-full max-h-full max-w-full object-contain select-none"
+                            loading="eager"
+                            decoding="async"
+                            draggable={false}
+                          />
+                          <img
+                            src="/images/widgets/2TramDIPI.webp"
+                            alt={"Dva stavebn\u00ed tr\u00e1my"}
+                            data-beam-image
+                            data-image-key="two"
+                            className="absolute inset-0 h-full w-full max-h-full max-w-full object-contain select-none"
+                            loading="eager"
+                            decoding="async"
+                            draggable={false}
+                          />
+                          <img
+                            src="/images/widgets/3TramDIPI.webp"
+                            alt={"T\u0159i a\u017e \u010dty\u0159i stavebn\u00ed tr\u00e1my"}
+                            data-beam-image
+                            data-image-key="three"
+                            className="absolute inset-0 h-full w-full max-h-full max-w-full object-contain select-none"
+                            loading="eager"
+                            decoding="async"
+                            draggable={false}
+                          />
+                          <img
+                            src="/images/widgets/5TramDIPI.webp"
+                            alt={"P\u011bt a\u017e \u0161est stavebn\u00edch tr\u00e1m\u016f"}
+                            data-beam-image
+                            data-image-key="five"
+                            className="absolute inset-0 h-full w-full max-h-full max-w-full object-contain select-none"
+                            loading="eager"
+                            decoding="async"
+                            draggable={false}
+                          />
+                          <img
+                            src="/images/widgets/7TramDIPI.webp"
+                            alt={"Sedm a\u017e deset stavebn\u00edch tr\u00e1m\u016f"}
+                            data-beam-image
+                            data-image-key="seven"
+                            className="absolute inset-0 h-full w-full max-h-full max-w-full object-contain select-none"
+                            loading="eager"
+                            decoding="async"
+                            draggable={false}
+                          />
+                          <img
+                            src="/images/widgets/11TramDIPI.webp"
+                            alt={"Jeden\u00e1ct a v\u00edce stavebn\u00edch tr\u00e1m\u016f"}
+                            data-beam-image
+                            data-image-key="eleven"
+                            className="absolute inset-0 h-full w-full max-h-full max-w-full object-contain select-none"
+                            loading="eager"
+                            decoding="async"
+                            draggable={false}
+                          />
+                          <img
+                            src="/images/widgets/18TramDIPI.webp"
+                            alt={"Sedmn\u00e1ct a v\u00edce stavebn\u00edch tr\u00e1m\u016f"}
+                            data-beam-image
+                            data-image-key="eighteen"
+                            className="absolute inset-0 h-full w-full max-h-full max-w-full object-contain select-none"
+                            loading="eager"
+                            decoding="async"
+                            draggable={false}
+                          />
+                        </div>
+                      </div>
+                    </div>
                   </div>
                 </div>
               </div>
@@ -207,7 +225,7 @@ function WidgetTramyPage() {
                 <header className="flex items-start justify-between gap-4">
                   <div>
                     <p className="text-xs font-semibold uppercase tracking-[0.2em] text-[#A86D38]">
-                      Konfigurátor
+                      {"Konfigur\u00e1tor"}
                     </p>
                     <h2 className="mt-2 text-2xl font-black tracking-tight text-[#1E293B]">
                       Nastavte si sestavu
@@ -222,7 +240,7 @@ function WidgetTramyPage() {
                       aria-live="polite"
                       className="mt-1 block text-xl font-black tracking-tight text-[color:var(--timber)] tabular-nums"
                     >
-                      450 Kč
+                      {"473 K\u010d"}
                     </output>
                   </div>
                 </header>
@@ -235,18 +253,18 @@ function WidgetTramyPage() {
                       </span>
                       <select
                         data-beam-profile
-                        aria-label="Vyberte profil trámu"
+                        aria-label={"Vyberte profil tr\u00e1mu"}
                         className="h-12 w-full rounded-2xl border border-border bg-white px-4 text-sm font-semibold text-foreground shadow-sm transition focus:border-primary focus:outline-none focus:ring-2 focus:ring-primary/20"
                       />
                     </label>
 
                     <label className="block">
                       <span className="mb-1.5 block text-xs font-semibold uppercase tracking-[0.18em] text-muted-foreground">
-                        Délka
+                        {"D\u00e9lka"}
                       </span>
                       <select
                         data-beam-length
-                        aria-label="Vyberte délku trámu"
+                        aria-label={"Vyberte d\u00e9lku tr\u00e1mu"}
                         className="h-12 w-full rounded-2xl border border-border bg-white px-4 text-sm font-semibold text-foreground shadow-sm transition focus:border-primary focus:outline-none focus:ring-2 focus:ring-primary/20"
                       />
                     </label>
@@ -258,7 +276,7 @@ function WidgetTramyPage() {
                         htmlFor="beam-quantity-range"
                         className="text-xs font-semibold uppercase tracking-[0.2em] text-muted-foreground"
                       >
-                        Počet kusů
+                        {"Po\u010det kus\u016f"}
                       </label>
                       <output className="rounded-full bg-[#F6F4EE] px-3 py-1 text-sm font-bold text-[#1E293B] tabular-nums">
                         1-25+
@@ -276,7 +294,7 @@ function WidgetTramyPage() {
                           max={25}
                           step={1}
                           value={5}
-                          aria-label="Počet kusů"
+                          aria-label={"Po\u010det kus\u016f"}
                           aria-valuemin={1}
                           aria-valuemax={25}
                           aria-valuenow={5}
@@ -285,7 +303,7 @@ function WidgetTramyPage() {
                       </div>
 
                       <label className="block">
-                        <span className="sr-only">Počet kusů v čísle</span>
+                        <span className="sr-only">{"Po\u010det kus\u016f v \u010d\u00edsle"}</span>
                         <input
                           data-beam-quantity-input
                           type="number"
@@ -293,7 +311,7 @@ function WidgetTramyPage() {
                           max={200}
                           value={5}
                           inputMode="numeric"
-                          aria-label="Počet kusů v čísle"
+                          aria-label={"Po\u010det kus\u016f v \u010d\u00edsle"}
                           className="h-11 w-full rounded-2xl border border-border bg-white px-3 text-base font-black text-[#1E293B] shadow-sm tabular-nums focus:border-primary focus:outline-none focus:ring-2 focus:ring-primary/20"
                         />
                       </label>
@@ -309,7 +327,7 @@ function WidgetTramyPage() {
                       aria-live="polite"
                       className="mt-2 block text-base font-black leading-6 text-[#1E293B]"
                     >
-                      10 × 10 cm · 400 cm | 5 ks
+                      {"10 \u00d7 10 cm \u00b7 500 cm | 5 ks"}
                     </output>
 
                     <div className="mt-5 flex items-end justify-between gap-4">
@@ -322,7 +340,7 @@ function WidgetTramyPage() {
                           aria-live="polite"
                           className="mt-1 block min-w-[8ch] text-4xl font-black tracking-tight text-[#1E3A2B] tabular-nums"
                         >
-                          2 250 Kč
+                          {"2 365 K\u010d"}
                         </output>
                       </div>
 
@@ -331,7 +349,7 @@ function WidgetTramyPage() {
                         data-beam-add
                         className="inline-flex items-center justify-center rounded-2xl bg-[#1e3a2b] px-4 py-2 text-sm font-bold text-white shadow-sm transition hover:bg-[#163022] hover:shadow-[0_14px_30px_rgba(30,58,43,0.18)]"
                       >
-                        Přidat trámy do košíku
+                        {"P\u0159idat tr\u00e1my do ko\u0161\u00edku"}
                       </button>
                     </div>
                   </div>

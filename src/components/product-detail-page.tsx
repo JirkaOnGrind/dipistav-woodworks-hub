@@ -49,9 +49,19 @@ export function ProductDetailPage({ category }: { category: ProductCategory }) {
     [category],
   );
   const [dimension, setDimension] = useState(dimensionOptions[0]?.value ?? "");
+  const initialDimensionLengthOptions =
+    category.kind === "dimensioned"
+      ? category.getLengthOptions(dimensionOptions[0]?.value ?? "")
+      : category.kind === "length-only"
+        ? category.getLengthOptions()
+        : [];
+  const preferredInitialLength =
+    category.id === "tramy"
+      ? (initialDimensionLengthOptions.find((option) => option.value === "500")?.value ?? "")
+      : "";
   const [length, setLength] = useState(
     category.kind === "dimensioned"
-      ? (category.getLengthOptions(dimensionOptions[0]?.value ?? "")[0]?.value ?? "")
+      ? (preferredInitialLength || initialDimensionLengthOptions[0]?.value || "")
       : category.kind === "length-only"
         ? (category.getLengthOptions()[0]?.value ?? "")
         : "",
@@ -197,12 +207,14 @@ export function ProductDetailPage({ category }: { category: ProductCategory }) {
           </div>
 
           <div className="mt-6 grid items-stretch gap-6 lg:grid-cols-[minmax(0,1fr)_minmax(360px,460px)]">
-            <div className="order-2 h-full lg:order-1">
+            <div className="order-2 h-full min-w-0 lg:order-1">
               <WoodVisualizer
                 categoryId={category.id}
                 imageSrc={category.imageSrc}
                 imageAlt={category.thumbnailAlt}
                 quantity={visualQuantity}
+                dimension={category.kind === "dimensioned" ? dimension : undefined}
+                length={category.kind === "option-only" ? undefined : length}
               />
             </div>
 

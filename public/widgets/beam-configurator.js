@@ -18,27 +18,48 @@
     },
     catalog: {
       profiles: [
-        { value: "8x8", label: "8 × 8 cm" },
-        { value: "10x10", label: "10 × 10 cm" },
-        { value: "12x12", label: "12 × 12 cm" },
-        { value: "15x15", label: "15 × 15 cm" },
+        { value: "8x8", label: "8 \u00d7 8 cm" },
+        { value: "10x10", label: "10 \u00d7 10 cm" },
+        { value: "12x12", label: "12 \u00d7 12 cm" },
+        { value: "14x14", label: "14 \u00d7 14 cm" },
+        { value: "16x16", label: "16 \u00d7 16 cm" },
+        { value: "20x20", label: "20 \u00d7 20 cm" },
       ],
       lengths: [
-        { value: "300", label: "300 cm" },
         { value: "400", label: "400 cm" },
         { value: "500", label: "500 cm" },
-        { value: "600", label: "600 cm" },
       ],
       prices: {
-        "8x8": { 300: 198, 400: 272, 500: 290, 600: 348 },
-        "10x10": { 300: 338, 400: 450, 500: 473, 600: 568 },
-        "12x12": { 300: 489, 400: 612, 500: 739, 600: 888 },
-        "15x15": { 300: 690, 400: 920, 500: 1145, 600: 1375 },
+        "8x8": { 400: 272, 500: 290 },
+        "10x10": { 400: 450, 500: 473 },
+        "12x12": { 400: 612, 500: 739 },
+        "14x14": { 400: 741, 500: 926 },
+        "16x16": { 400: 1087, 500: 1313 },
+        "20x20": { 400: 1512, 500: 1890 },
       },
     },
   };
 
   const IMAGE_KEYS = ["one", "two", "three", "five", "seven", "eleven", "eighteen"];
+  const CHOPPED_IMAGES = {
+    one: "/images/widgets/1TramDIPICHOPPED.png",
+    two: "/images/widgets/2TramDIPICHOPPED.png",
+    three: "/images/widgets/3TramDIPICHOPPED.png",
+    five: "/images/widgets/5TramDIPICHOPPED.png",
+    seven: "/images/widgets/7TramDIPICHOPPED.webp",
+    eleven: "/images/widgets/11TramDIPICHOPPED.webp",
+    eighteen: "/images/widgets/18TramDIPICHOPPED.webp",
+  };
+  const PROFILE_SCALES = {
+    "8x8": 0.92,
+    "10x10": 0.95,
+    "12x12": 0.98,
+    "14x14": 1,
+    "16x16": 1.04,
+    "18x18": 1.04,
+    "20x20": 1.08,
+  };
+  const RECOIL_DURATION_MS = 420;
 
   function mergeOptions(base, override) {
     const merged = { ...base, ...override };
@@ -102,11 +123,29 @@
     return "eighteen";
   }
 
+  function getProfileScale(profile) {
+    return PROFILE_SCALES[profile] || 1;
+  }
+
+  function getImageSrc(imageKey, images, length) {
+    if (length === "400" && CHOPPED_IMAGES[imageKey]) {
+      return CHOPPED_IMAGES[imageKey];
+    }
+
+    return images[imageKey];
+  }
+
   function preloadImages(images) {
     IMAGE_KEYS.forEach((key) => {
       const image = new Image();
       image.decoding = "async";
       image.src = images[key];
+
+      if (CHOPPED_IMAGES[key]) {
+        const choppedImage = new Image();
+        choppedImage.decoding = "async";
+        choppedImage.src = CHOPPED_IMAGES[key];
+      }
     });
   }
 
@@ -170,6 +209,8 @@
     const unitPriceOutput = root.querySelector("[data-beam-unit-price]");
     const totalPriceOutput = root.querySelector("[data-beam-total-price]");
     const addButton = root.querySelector("[data-beam-add]");
+    const previewMotion = root.querySelector("[data-beam-preview-motion]");
+    const previewStage = root.querySelector("[data-beam-preview-stage]");
     const images = Array.from(root.querySelectorAll("[data-beam-image]"));
 
     if (
@@ -187,7 +228,7 @@
     }
 
     const firstProfile = options.catalog.profiles[0]?.value || "8x8";
-    const firstLength = options.catalog.lengths[0]?.value || "300";
+    const firstLength = options.catalog.lengths[0]?.value || "400";
 
     const state = {
       profile: root.getAttribute("data-default-profile") || firstProfile,
@@ -207,10 +248,32 @@
     quantityInput.min = String(options.slider.min);
     quantityInput.max = String(options.maxQuantity);
 
-    let frameId = 0;
+    let renderFrameId = 0;
+    let recoilFrameId = 0;
+    let recoilTimeoutId = 0;
+    let pendingRenderReason = "init";
+
+    function stopRecoil() {
+      if (recoilFrameId) {
+        window.cancelAnimationFrame(recoilFrameId);
+        recoilFrameId = 0;
+      }
+
+      if (recoilTimeoutId) {
+        window.clearTimeout(recoilTimeoutId);
+        recoilTimeoutId = 0;
+      }
+
+      if (previewMotion) {
+        previewMotion.classList.remove("is-recoiling");
+      }
+    }
 
     function render() {
-      frameId = 0;
+      renderFrameId = 0;
+
+      const renderReason = pendingRenderReason;
+      pendingRenderReason = "sync";
 
       const snapshot = getSnapshot(state, options);
       const rangeValue = Math.min(snapshot.quantity, options.slider.max);
@@ -226,10 +289,10 @@
       quantityRange.setAttribute("aria-valuemin", String(options.slider.min));
       quantityRange.setAttribute("aria-valuemax", String(options.slider.max));
       quantityRange.setAttribute("aria-valuenow", String(rangeValue));
-      quantityRange.setAttribute("aria-valuetext", `${snapshot.quantity} kusů`);
+      quantityRange.setAttribute("aria-valuetext", `${snapshot.quantity} kus\u016f`);
       quantityInput.setAttribute("aria-valuenow", String(snapshot.quantity));
 
-      summaryOutput.textContent = `${snapshot.profileLabel} · ${snapshot.lengthLabel} | ${snapshot.quantity} ks`;
+      summaryOutput.textContent = `${snapshot.profileLabel} \u00b7 ${snapshot.lengthLabel} | ${snapshot.quantity} ks`;
       unitPriceOutput.textContent = formatCurrency(
         snapshot.unitPrice,
         options.locale,
@@ -241,8 +304,34 @@
         options.currency,
       );
 
+      if (previewStage) {
+        previewStage.style.transform = `scale(${getProfileScale(snapshot.profile)})`;
+      }
+
+      if (renderReason === "profile" && previewMotion) {
+        stopRecoil();
+
+        recoilFrameId = window.requestAnimationFrame(function () {
+          previewMotion.classList.add("is-recoiling");
+          recoilFrameId = 0;
+
+          recoilTimeoutId = window.setTimeout(function () {
+            previewMotion.classList.remove("is-recoiling");
+            recoilTimeoutId = 0;
+          }, RECOIL_DURATION_MS);
+        });
+      } else {
+        stopRecoil();
+      }
+
       images.forEach((image) => {
-        const isActive = image.getAttribute("data-image-key") === snapshot.imageKey;
+        const imageKey = image.getAttribute("data-image-key");
+        const isActive = imageKey === snapshot.imageKey;
+
+        if (imageKey && options.images[imageKey]) {
+          image.src = getImageSrc(imageKey, options.images, snapshot.length);
+        }
+
         image.classList.toggle("is-active", isActive);
         image.setAttribute("aria-hidden", isActive ? "false" : "true");
       });
@@ -261,12 +350,14 @@
       );
     }
 
-    function scheduleRender() {
-      if (frameId) {
+    function scheduleRender(reason) {
+      pendingRenderReason = reason || pendingRenderReason;
+
+      if (renderFrameId) {
         return;
       }
 
-      frameId = window.requestAnimationFrame(render);
+      renderFrameId = window.requestAnimationFrame(render);
     }
 
     function syncLengthValue() {
@@ -280,17 +371,17 @@
     profileSelect.addEventListener("change", function () {
       state.profile = profileSelect.value;
       syncLengthValue();
-      scheduleRender();
+      scheduleRender("profile");
     });
 
     lengthSelect.addEventListener("change", function () {
       state.length = lengthSelect.value;
-      scheduleRender();
+      scheduleRender("length");
     });
 
     quantityRange.addEventListener("input", function () {
       state.quantity = clamp(Number(quantityRange.value), options.slider.min, options.maxQuantity);
-      scheduleRender();
+      scheduleRender("quantity");
     });
 
     quantityInput.addEventListener("input", function () {
@@ -299,13 +390,13 @@
       }
 
       state.quantity = clamp(Number(quantityInput.value), options.slider.min, options.maxQuantity);
-      scheduleRender();
+      scheduleRender("quantity");
     });
 
     quantityInput.addEventListener("blur", function () {
       if (!quantityInput.value) {
         state.quantity = options.slider.min;
-        scheduleRender();
+        scheduleRender("quantity");
       }
     });
 
@@ -328,21 +419,23 @@
       },
       setQuantity: function (quantity) {
         state.quantity = clamp(Number(quantity), options.slider.min, options.maxQuantity);
-        scheduleRender();
+        scheduleRender("quantity");
       },
       setProfile: function (profile) {
         state.profile = profile;
-        scheduleRender();
+        syncLengthValue();
+        scheduleRender("profile");
       },
       setLength: function (length) {
         state.length = length;
-        scheduleRender();
+        scheduleRender("length");
       },
       destroy: function () {
-        if (frameId) {
-          window.cancelAnimationFrame(frameId);
+        if (renderFrameId) {
+          window.cancelAnimationFrame(renderFrameId);
         }
 
+        stopRecoil();
         delete root.__beamConfigurator;
       },
     };
