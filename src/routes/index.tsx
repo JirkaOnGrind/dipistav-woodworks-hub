@@ -29,19 +29,6 @@ export const Route = createFileRoute("/")({
   component: Index,
 });
 
-function IconCheck() {
-  return (
-    <svg
-      viewBox="0 0 24 24"
-      className="h-5 w-5"
-      fill="none"
-      stroke="currentColor"
-      strokeWidth="2.5"
-    >
-      <path d="M4 12l5 5L20 6" strokeLinecap="round" strokeLinejoin="round" />
-    </svg>
-  );
-}
 
 function Index() {
   return (
@@ -99,44 +86,6 @@ function Index() {
 
       <CustomConfigurator />
 
-      <section className="bg-white">
-        <div className="mx-auto max-w-7xl px-4 py-12 sm:py-16">
-          <div className="mb-8 max-w-2xl">
-            <h2 className="text-2xl font-black tracking-tight sm:text-3xl">
-              Proč zvolit KVH hranoly?
-            </h2>
-          </div>
-          <div className="grid gap-4 md:grid-cols-3">
-            {[
-              {
-                title: "Vysušeno na 15 %",
-                description: "Tvarová stálost a minimální kroucení, ideální pro nosné konstrukce.",
-              },
-              {
-                title: "Hoblovaný povrch",
-                description: "Hladké hrany a stěny bez nutnosti dalšího opracování.",
-              },
-              {
-                title: "Certifikované dřevo",
-                description: "Vhodné pro pergoly, garážová stání i moderní dřevostavby.",
-              },
-            ].map((item) => (
-              <div
-                key={item.title}
-                className="rounded-2xl border border-border bg-[color:var(--sand)] p-6"
-              >
-                <div className="inline-flex h-10 w-10 items-center justify-center rounded-full bg-[color:var(--timber)] text-white">
-                  <IconCheck />
-                </div>
-                <h3 className="mt-4 text-lg font-black tracking-tight text-foreground">
-                  {item.title}
-                </h3>
-                <p className="mt-1 text-sm text-muted-foreground">{item.description}</p>
-              </div>
-            ))}
-          </div>
-        </div>
-      </section>
 
       <ShippingWidget />
 
