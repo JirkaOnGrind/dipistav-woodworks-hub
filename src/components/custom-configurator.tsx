@@ -53,8 +53,8 @@ const LENGTH_MIN = 1;
 const LENGTH_MAX = 8;
 const QTY_MIN = 1;
 const QTY_MAX = 100;
-const PREVIEW_VIEWBOX_WIDTH = 420;
-const PREVIEW_VIEWBOX_HEIGHT = 260;
+const PREVIEW_VIEWBOX_WIDTH = 480;
+const PREVIEW_VIEWBOX_HEIGHT = 300;
 
 function clamp(value: number, min: number, max: number) {
   if (Number.isNaN(value)) {
@@ -80,6 +80,53 @@ function formatControlValue(value: number, step: number) {
   }
 
   return value.toFixed(1).replace(".", ",");
+}
+
+function mapRange(value: number, inMin: number, inMax: number, outMin: number, outMax: number) {
+  const clamped = clamp(value, inMin, inMax);
+  const progress = (clamped - inMin) / Math.max(inMax - inMin, 1);
+  return outMin + progress * (outMax - outMin);
+}
+
+function estimateBadgeWidth(text: string) {
+  return Math.max(56, text.length * 7.4 + 20);
+}
+
+function DimensionBadge({
+  x,
+  y,
+  text,
+  rotate = 0,
+}: {
+  x: number;
+  y: number;
+  text: string;
+  rotate?: number;
+}) {
+  const width = estimateBadgeWidth(text);
+
+  return (
+    <g transform={`translate(${x} ${y})${rotate ? ` rotate(${rotate})` : ""}`}>
+      <rect
+        x={-width / 2}
+        y={-12}
+        width={width}
+        height={24}
+        rx={12}
+        fill="rgba(255,253,248,0.97)"
+        stroke="rgba(163,147,130,0.18)"
+      />
+      <text
+        textAnchor="middle"
+        dominantBaseline="central"
+        fill="#1b3b2b"
+        fontSize="13"
+        fontWeight="600"
+      >
+        {text}
+      </text>
+    </g>
+  );
 }
 
 function SawBladeWatermark() {
@@ -124,33 +171,36 @@ function BeamPreview({
   length: number;
   species: Species;
 }) {
-  const previewId = useId().replace(/:/g, "");
+  const widthLabel = `${width} mm`;
+  const heightLabel = `${height} mm`;
+  const lengthLabel = `${formatControlValue(length, 0.5)} m`;
 
   const geometry = useMemo(() => {
-    const cos30 = Math.cos(Math.PI / 6);
-    const sin30 = Math.sin(Math.PI / 6);
+    const angle = (27 * Math.PI) / 180;
+    const cosAngle = Math.cos(angle);
+    const sinAngle = Math.sin(angle);
     const widthMm = clamp(width, WIDTH_MIN, WIDTH_MAX);
     const heightMm = clamp(height, HEIGHT_MIN, HEIGHT_MAX);
-    const lengthMm = clamp(length, LENGTH_MIN, LENGTH_MAX) * 1000;
+    const clampedLength = clamp(length, LENGTH_MIN, LENGTH_MAX);
 
     const maxSection = Math.max(widthMm, heightMm);
     const minSection = Math.min(widthMm, heightMm);
     const sectionScale = 88 / maxSection;
-    const minVisibleBoost = Math.max(1, 14 / (minSection * sectionScale));
+    const minVisibleBoost = Math.max(1, 16 / (minSection * sectionScale));
 
     const rawFaceWidth = widthMm * sectionScale * minVisibleBoost;
     const rawFaceHeight = heightMm * sectionScale * minVisibleBoost;
 
-    const lengthRatio = (lengthMm - 1000) / 7000;
-    const rawBodyLength = 112 + Math.pow(lengthRatio, 0.9) * 104;
+    const lengthRatio = (clampedLength - LENGTH_MIN) / (LENGTH_MAX - LENGTH_MIN);
+    const rawBodyLength = mapRange(Math.pow(lengthRatio, 0.92), 0, 1, 100, 320);
 
     const rawWidthVector = {
-      x: rawFaceWidth * cos30,
-      y: rawFaceWidth * sin30,
+      x: rawFaceWidth * cosAngle,
+      y: rawFaceWidth * sinAngle,
     };
     const rawLengthVector = {
-      x: rawBodyLength * cos30,
-      y: -rawBodyLength * sin30,
+      x: rawBodyLength * cosAngle,
+      y: -rawBodyLength * sinAngle,
     };
 
     const rawBounds = {
@@ -160,8 +210,14 @@ function BeamPreview({
       maxY: rawFaceHeight + rawWidthVector.y,
     };
 
-    const availableWidth = 292;
-    const availableHeight = 176;
+    const framePadding = {
+      left: 92,
+      right: 30,
+      top: 52,
+      bottom: 60,
+    };
+    const availableWidth = PREVIEW_VIEWBOX_WIDTH - framePadding.left - framePadding.right;
+    const availableHeight = PREVIEW_VIEWBOX_HEIGHT - framePadding.top - framePadding.bottom;
     const fitScale = Math.min(
       1,
       availableWidth / (rawBounds.maxX - rawBounds.minX),
@@ -181,8 +237,8 @@ function BeamPreview({
 
     const scaledWidth = (rawBounds.maxX - rawBounds.minX) * fitScale;
     const scaledHeight = (rawBounds.maxY - rawBounds.minY) * fitScale;
-    const marginLeft = (PREVIEW_VIEWBOX_WIDTH - scaledWidth) / 2;
-    const marginTop = (PREVIEW_VIEWBOX_HEIGHT - scaledHeight) / 2;
+    const marginLeft = framePadding.left + (availableWidth - scaledWidth) / 2;
+    const marginTop = framePadding.top + (availableHeight - scaledHeight) / 2;
     const frontTopLeft = {
       x: marginLeft - rawBounds.minX * fitScale,
       y: marginTop - rawBounds.minY * fitScale,
@@ -259,18 +315,11 @@ function BeamPreview({
     .map((point) => `${point.x},${point.y}`)
     .join(" ");
 
-  const widthOffset = 34;
-  const heightOffset = 34;
-  const lengthOffset = 34;
-
-  const widthNormal = {
-    x: geometry.widthVector.y,
-    y: -geometry.widthVector.x,
-  };
-  const widthNormalLength = Math.hypot(widthNormal.x, widthNormal.y) || 1;
-  const widthNormalUnit = {
-    x: widthNormal.x / widthNormalLength,
-    y: widthNormal.y / widthNormalLength,
+  const widthOffsetVector = { x: -28, y: -26 };
+  const widthOffsetLength = Math.hypot(widthOffsetVector.x, widthOffsetVector.y) || 1;
+  const widthOffsetUnit = {
+    x: widthOffsetVector.x / widthOffsetLength,
+    y: widthOffsetVector.y / widthOffsetLength,
   };
 
   const lengthNormal = {
@@ -284,31 +333,33 @@ function BeamPreview({
   };
 
   const widthGuideStart = {
-    x: geometry.frontTopLeft.x + widthNormalUnit.x * widthOffset - 10,
-    y: geometry.frontTopLeft.y + widthNormalUnit.y * widthOffset,
+    x: geometry.backTopLeft.x + widthOffsetVector.x,
+    y: geometry.backTopLeft.y + widthOffsetVector.y,
   };
   const widthGuideEnd = {
-    x: geometry.frontTopRight.x + widthNormalUnit.x * widthOffset - 10,
-    y: geometry.frontTopRight.y + widthNormalUnit.y * widthOffset,
+    x: geometry.backTopRight.x + widthOffsetVector.x,
+    y: geometry.backTopRight.y + widthOffsetVector.y,
   };
 
-  const heightGuideX = geometry.frontTopLeft.x - heightOffset;
+  const heightGuideX = geometry.frontTopLeft.x - 30;
 
   const lengthGuideStart = {
-    x: geometry.frontBottomLeft.x + lengthNormalUnit.x * lengthOffset,
-    y: geometry.frontBottomLeft.y + lengthNormalUnit.y * lengthOffset + 2,
+    x: geometry.frontBottomRight.x + lengthNormalUnit.x * 28,
+    y: geometry.frontBottomRight.y + lengthNormalUnit.y * 28,
   };
   const lengthGuideEnd = {
-    x: geometry.backBottomLeft.x + lengthNormalUnit.x * lengthOffset,
-    y: geometry.backBottomLeft.y + lengthNormalUnit.y * lengthOffset + 2,
+    x: geometry.backBottomRight.x + lengthNormalUnit.x * 28,
+    y: geometry.backBottomRight.y + lengthNormalUnit.y * 28,
   };
 
-  const widthLabelX = (widthGuideStart.x + widthGuideEnd.x) / 2 - 8;
-  const widthLabelY = (widthGuideStart.y + widthGuideEnd.y) / 2 - 10;
-  const heightLabelX = heightGuideX - 12;
+  const widthLabelX = (widthGuideStart.x + widthGuideEnd.x) / 2;
+  const widthLabelY = (widthGuideStart.y + widthGuideEnd.y) / 2 - 14;
+  const heightLabelX = heightGuideX - 16;
   const heightLabelY = (geometry.frontTopLeft.y + geometry.frontBottomLeft.y) / 2;
-  const lengthLabelX = (lengthGuideStart.x + lengthGuideEnd.x) / 2;
-  const lengthLabelY = (lengthGuideStart.y + lengthGuideEnd.y) / 2 + 18;
+  const lengthLabelX =
+    (lengthGuideStart.x + lengthGuideEnd.x) / 2 + lengthNormalUnit.x * 16;
+  const lengthLabelY =
+    (lengthGuideStart.y + lengthGuideEnd.y) / 2 + lengthNormalUnit.y * 16;
 
   return (
     <div className="rounded-[1.8rem] border border-[#1E3A2B]/12 bg-[linear-gradient(180deg,rgba(255,253,248,0.98),rgba(244,238,225,0.96))] p-3 shadow-[inset_0_1px_0_rgba(255,255,255,0.72)] sm:p-4 lg:flex lg:h-full lg:min-h-[35rem] lg:flex-col lg:p-4">
@@ -316,29 +367,20 @@ function BeamPreview({
         {"N\u00e1hled"}
       </div>
 
-      <div className="relative mt-3 flex min-h-[220px] items-center justify-center overflow-hidden rounded-[1.65rem] border border-[#D9D1C1] bg-[radial-gradient(circle_at_top,#fffef9_0%,#f4ebdc_62%,#ecdfcc_100%)] px-3 py-4 sm:min-h-[260px] sm:px-5 sm:py-5 lg:min-h-0 lg:flex-1 lg:px-5 lg:py-4">
+      <div className="relative mt-3 flex min-h-[220px] items-center justify-center overflow-hidden rounded-[1.65rem] border border-[#D9D1C1] bg-[radial-gradient(circle_at_top,#fffef9_0%,#f4ebdc_62%,#ecdfcc_100%)] px-3 py-4 sm:min-h-[260px] sm:px-5 sm:py-5 lg:min-h-0 lg:flex-1 lg:px-4 lg:py-3">
         <div
           aria-hidden
-          className="absolute inset-x-10 bottom-5 h-6 rounded-full bg-[#6A4A2F]/8 blur-2xl"
+          className="absolute inset-x-10 bottom-5 h-7 rounded-full bg-[#6A4A2F]/8 blur-2xl"
           style={{
-            transform: `scaleX(${1.04 + ((length - LENGTH_MIN) / (LENGTH_MAX - LENGTH_MIN)) * 0.38})`,
+            transform: `scaleX(${1.1 + ((length - LENGTH_MIN) / (LENGTH_MAX - LENGTH_MIN)) * 0.44})`,
           }}
         />
 
         <div className="flex h-full w-full items-center justify-center">
           <svg
             viewBox={`0 0 ${PREVIEW_VIEWBOX_WIDTH} ${PREVIEW_VIEWBOX_HEIGHT}`}
-            className="relative z-10 h-auto w-full max-w-[27rem] sm:max-w-[31rem] lg:w-[84%] lg:max-w-[42rem]"
+            className="relative z-10 h-auto w-full max-w-[27rem] sm:max-w-[31rem] lg:w-[94%] lg:max-w-[46rem]"
           >
-            <defs>
-              <clipPath id={`${previewId}-top`}>
-                <polygon points={topFacePoints} />
-              </clipPath>
-              <clipPath id={`${previewId}-side`}>
-                <polygon points={sideFacePoints} />
-              </clipPath>
-            </defs>
-
             <g stroke="#1E3A2B" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round">
               <polygon points={topFacePoints} fill={species.topFill} />
               <polygon points={sideFacePoints} fill={species.sideFill} />
@@ -347,17 +389,16 @@ function BeamPreview({
 
             <g
               fill="none"
-              stroke="#1E3A2B"
+              stroke="#a39382"
               strokeWidth="1"
               strokeDasharray="3,3"
-              strokeOpacity="0.4"
               strokeLinecap="round"
             >
               <path
-                d={`M ${geometry.frontTopLeft.x} ${geometry.frontTopLeft.y} L ${widthGuideStart.x} ${widthGuideStart.y}`}
+                d={`M ${geometry.backTopLeft.x} ${geometry.backTopLeft.y} L ${widthGuideStart.x} ${widthGuideStart.y}`}
               />
               <path
-                d={`M ${geometry.frontTopRight.x} ${geometry.frontTopRight.y} L ${widthGuideEnd.x} ${widthGuideEnd.y}`}
+                d={`M ${geometry.backTopRight.x} ${geometry.backTopRight.y} L ${widthGuideEnd.x} ${widthGuideEnd.y}`}
               />
               <path
                 d={`M ${widthGuideStart.x} ${widthGuideStart.y} L ${widthGuideEnd.x} ${widthGuideEnd.y}`}
@@ -374,32 +415,23 @@ function BeamPreview({
               />
 
               <path
-                d={`M ${geometry.frontBottomLeft.x} ${geometry.frontBottomLeft.y} L ${lengthGuideStart.x} ${lengthGuideStart.y}`}
+                d={`M ${geometry.frontBottomRight.x} ${geometry.frontBottomRight.y} L ${lengthGuideStart.x} ${lengthGuideStart.y}`}
               />
               <path
-                d={`M ${geometry.backBottomLeft.x} ${geometry.backBottomLeft.y} L ${lengthGuideEnd.x} ${lengthGuideEnd.y}`}
+                d={`M ${geometry.backBottomRight.x} ${geometry.backBottomRight.y} L ${lengthGuideEnd.x} ${lengthGuideEnd.y}`}
               />
               <path
                 d={`M ${lengthGuideStart.x} ${lengthGuideStart.y} L ${lengthGuideEnd.x} ${lengthGuideEnd.y}`}
               />
             </g>
 
-            <g fill="#1E3A2B" fontSize="11" fontWeight="600">
-              <text x={widthLabelX} y={widthLabelY} textAnchor="middle">
-                {width} mm
-              </text>
-              <text
-                x={heightLabelX}
-                y={heightLabelY}
-                textAnchor="middle"
-                transform={`rotate(-90 ${heightLabelX} ${heightLabelY})`}
-              >
-                {height} mm
-              </text>
-              <text x={lengthLabelX} y={lengthLabelY} textAnchor="middle">
-                {formatControlValue(length, 0.5)} m
-              </text>
-            </g>
+            <DimensionBadge
+              x={widthLabelX + widthOffsetUnit.x * 6}
+              y={widthLabelY + widthOffsetUnit.y * 6}
+              text={widthLabel}
+            />
+            <DimensionBadge x={heightLabelX} y={heightLabelY} text={heightLabel} rotate={-90} />
+            <DimensionBadge x={lengthLabelX} y={lengthLabelY} text={lengthLabel} />
           </svg>
         </div>
       </div>
@@ -572,7 +604,20 @@ export function CustomConfigurator() {
   };
 
   return (
-    <section id="konfigurator" className="scroll-mt-24 overflow-hidden bg-[#FBF9F4]">
+    <section id="konfigurator" className="relative scroll-mt-24 overflow-hidden bg-[#FBF9F4]">
+      <div className="pointer-events-none absolute right-0 top-1/2 z-0 hidden -translate-y-1/2 select-none 2xl:block">
+        <svg
+          className="h-[420px] w-[420px] translate-x-[38%] text-[#3c2f1d] opacity-[0.04]"
+          viewBox="0 0 200 200"
+          fill="none"
+          stroke="currentColor"
+          strokeWidth="1"
+        >
+          <path d="M 50,200 L 200,50 M 80,200 L 200,80 M 110,200 L 200,110 M 140,200 L 200,140" />
+          <path d="M 20,150 L 150,20 M 20,180 L 180,20" />
+        </svg>
+      </div>
+
       <div className="mx-auto max-w-7xl px-4 py-12 sm:py-16 lg:py-20">
         <h2 className="mb-8 max-w-3xl text-3xl font-black tracking-tight text-[#1E293B] sm:text-4xl">
           {"Navrhn\u011bte si vlastn\u00ed \u0159ezivo"}
@@ -582,17 +627,6 @@ export function CustomConfigurator() {
           data-beam-configurator
           className="relative rounded-[2rem] border border-[#1E3A2B]/12 bg-[linear-gradient(180deg,rgba(255,255,255,0.84),rgba(255,252,246,0.96))] p-4 shadow-[0_24px_70px_rgba(30,58,43,0.08)] sm:p-6 lg:p-8"
         >
-          <svg
-            className="pointer-events-none absolute -right-[60px] top-[10%] z-0 hidden h-[420px] w-[420px] select-none text-[#3c2f1d] opacity-[0.04] 2xl:block"
-            viewBox="0 0 200 200"
-            fill="none"
-            stroke="currentColor"
-            strokeWidth="1"
-          >
-            <path d="M 50,200 L 200,50 M 80,200 L 200,80 M 110,200 L 200,110 M 140,200 L 200,140" />
-            <path d="M 20,150 L 150,20 M 20,180 L 180,20" />
-          </svg>
-
           <SawBladeWatermark />
 
           <div className="relative grid gap-6 lg:grid-cols-[minmax(360px,0.92fr)_minmax(420px,1.08fr)] lg:items-stretch lg:gap-6 xl:grid-cols-[minmax(380px,0.9fr)_minmax(460px,1.1fr)]">
