@@ -259,31 +259,6 @@ function BeamPreview({
     .map((point) => `${point.x},${point.y}`)
     .join(" ");
 
-  const faceCenterX = (geometry.frontTopLeft.x + geometry.frontBottomRight.x) / 2;
-  const faceCenterY = (geometry.frontTopLeft.y + geometry.frontBottomRight.y) / 2;
-  const faceRotation = (Math.atan2(geometry.widthVector.y, geometry.widthVector.x) * 180) / Math.PI;
-
-  const endGrainArcs = [0.3, 0.5, 0.7].map((ratio) => ({
-    rx: Math.max(8, geometry.faceWidth * ratio * 0.52),
-    ry: Math.max(4, geometry.faceHeight * ratio * 0.24),
-  }));
-
-  const topGrain = [0.26, 0.52, 0.78].map((ratio) => {
-    const startX = geometry.frontTopLeft.x + geometry.widthVector.x * ratio + 4;
-    const startY = geometry.frontTopLeft.y + geometry.widthVector.y * ratio + 3;
-    const endX = startX + geometry.lengthVector.x - 16;
-    const endY = startY + geometry.lengthVector.y + 1;
-    return `M ${startX} ${startY} L ${endX} ${endY}`;
-  });
-
-  const sideGrain = [0.24, 0.52, 0.8].map((ratio) => {
-    const startX = geometry.frontTopRight.x + geometry.lengthVector.x * ratio - 2;
-    const startY = geometry.frontTopRight.y + geometry.lengthVector.y * ratio + 10;
-    const endX = startX;
-    const endY = startY + geometry.faceHeight * 0.64;
-    return `M ${startX} ${startY} L ${endX} ${endY}`;
-  });
-
   const widthOffset = 34;
   const heightOffset = 34;
   const lengthOffset = 34;
@@ -336,12 +311,12 @@ function BeamPreview({
   const lengthLabelY = (lengthGuideStart.y + lengthGuideEnd.y) / 2 + 18;
 
   return (
-    <div className="rounded-[1.8rem] border border-[#1E3A2B]/12 bg-[linear-gradient(180deg,rgba(255,253,248,0.98),rgba(244,238,225,0.96))] p-3 shadow-[inset_0_1px_0_rgba(255,255,255,0.72)] sm:p-4 lg:p-5">
+    <div className="rounded-[1.8rem] border border-[#1E3A2B]/12 bg-[linear-gradient(180deg,rgba(255,253,248,0.98),rgba(244,238,225,0.96))] p-3 shadow-[inset_0_1px_0_rgba(255,255,255,0.72)] sm:p-4 lg:flex lg:h-full lg:min-h-[35rem] lg:flex-col lg:p-4">
       <div className="text-[11px] font-semibold uppercase tracking-[0.24em] text-[#1E3A2B]/55">
         {"N\u00e1hled"}
       </div>
 
-      <div className="relative mt-3 flex min-h-[220px] items-center justify-center overflow-hidden rounded-[1.65rem] border border-[#D9D1C1] bg-[radial-gradient(circle_at_top,#fffef9_0%,#f4ebdc_62%,#ecdfcc_100%)] px-3 py-4 sm:min-h-[260px] sm:px-5 sm:py-5 lg:min-h-[320px] lg:px-6 lg:py-6">
+      <div className="relative mt-3 flex min-h-[220px] items-center justify-center overflow-hidden rounded-[1.65rem] border border-[#D9D1C1] bg-[radial-gradient(circle_at_top,#fffef9_0%,#f4ebdc_62%,#ecdfcc_100%)] px-3 py-4 sm:min-h-[260px] sm:px-5 sm:py-5 lg:min-h-0 lg:flex-1 lg:px-5 lg:py-4">
         <div
           aria-hidden
           className="absolute inset-x-10 bottom-5 h-6 rounded-full bg-[#6A4A2F]/8 blur-2xl"
@@ -353,7 +328,7 @@ function BeamPreview({
         <div className="flex h-full w-full items-center justify-center">
           <svg
             viewBox={`0 0 ${PREVIEW_VIEWBOX_WIDTH} ${PREVIEW_VIEWBOX_HEIGHT}`}
-            className="relative z-10 h-auto w-full max-w-[27rem] sm:max-w-[31rem] lg:max-w-[35rem]"
+            className="relative z-10 h-auto w-full max-w-[27rem] sm:max-w-[31rem] lg:w-[84%] lg:max-w-[42rem]"
           >
             <defs>
               <clipPath id={`${previewId}-top`}>
@@ -368,48 +343,6 @@ function BeamPreview({
               <polygon points={topFacePoints} fill={species.topFill} />
               <polygon points={sideFacePoints} fill={species.sideFill} />
               <polygon points={frontFacePoints} fill={species.faceFill} />
-            </g>
-
-            <g
-              clipPath={`url(#${previewId}-top)`}
-              fill="none"
-              stroke="#1E3A2B"
-              strokeWidth="1.2"
-              strokeOpacity="0.15"
-              strokeLinecap="round"
-            >
-              {topGrain.map((path, index) => (
-                <path key={`top-grain-${index}`} d={path} />
-              ))}
-            </g>
-
-            <g
-              clipPath={`url(#${previewId}-side)`}
-              fill="none"
-              stroke="#1E3A2B"
-              strokeWidth="1.2"
-              strokeOpacity="0.15"
-              strokeLinecap="round"
-            >
-              {sideGrain.map((path, index) => (
-                <path key={`side-grain-${index}`} d={path} />
-              ))}
-            </g>
-
-            <g
-              fill="none"
-              stroke="#1E3A2B"
-              strokeWidth="1.1"
-              strokeLinecap="round"
-              strokeOpacity="0.25"
-              transform={`rotate(${faceRotation} ${faceCenterX} ${faceCenterY})`}
-            >
-              {endGrainArcs.map((arc, index) => (
-                <path
-                  key={`ring-${index}`}
-                  d={`M ${faceCenterX - arc.rx} ${faceCenterY + arc.ry * 0.18} A ${arc.rx} ${arc.ry} 0 0 1 ${faceCenterX + arc.rx} ${faceCenterY - arc.ry * 0.08}`}
-                />
-              ))}
             </g>
 
             <g
@@ -651,8 +584,8 @@ export function CustomConfigurator() {
         >
           <SawBladeWatermark />
 
-          <div className="relative grid gap-6 lg:grid-cols-[minmax(0,0.95fr)_minmax(360px,1.05fr)] lg:items-start lg:gap-5 xl:grid-cols-[minmax(0,0.92fr)_minmax(420px,1.08fr)]">
-            <div className="space-y-3 lg:space-y-3.5">
+          <div className="relative grid gap-6 lg:grid-cols-[minmax(360px,0.92fr)_minmax(420px,1.08fr)] lg:items-stretch lg:gap-6 xl:grid-cols-[minmax(380px,0.9fr)_minmax(460px,1.1fr)]">
+            <div className="space-y-3 lg:flex lg:h-full lg:flex-col lg:space-y-3.5">
               <div className="grid gap-3 md:grid-cols-2 lg:grid-cols-1 lg:gap-3.5">
                 <NumericControl
                   label={"\u0160\u00ed\u0159ka"}
@@ -715,34 +648,79 @@ export function CustomConfigurator() {
                   })}
                 </div>
               </div>
+
+              <div className="hidden rounded-[1.65rem] border border-[#1E3A2B]/12 bg-white/88 p-4 shadow-[inset_0_1px_0_rgba(255,255,255,0.72)] lg:block">
+                <div className="grid grid-cols-2 gap-3">
+                  <div className="rounded-2xl border border-[#1E3A2B]/10 bg-[#FBF9F4] px-3.5 py-3">
+                    <div className="text-[10px] font-semibold uppercase tracking-[0.18em] text-[#1E3A2B]/55">
+                      {"Objem celkem"}
+                    </div>
+                    <div className="mt-1 text-[1.7rem] font-black text-[#1E3A2B] tabular-nums">
+                      {formatDecimal(volumeM3)} {"m\u00b3"}
+                    </div>
+                  </div>
+
+                  <div className="rounded-2xl border border-[#1E3A2B]/10 bg-[#FBF9F4] px-3.5 py-3">
+                    <div className="text-[10px] font-semibold uppercase tracking-[0.18em] text-[#1E3A2B]/55">
+                      {"Hmotnost"}
+                    </div>
+                    <div className="mt-1 text-[1.7rem] font-black text-[#1E293B] tabular-nums">
+                      {new Intl.NumberFormat("cs-CZ").format(totalWeightKg)} kg
+                    </div>
+                  </div>
+                </div>
+
+                <div className="mt-3 grid grid-cols-2 items-center gap-3">
+                  <div className="min-w-0 px-0.5">
+                    <div className="text-[10px] font-semibold uppercase tracking-[0.2em] text-[#1E3A2B]/52">
+                      {"Celkov\u00e1 cena s DPH"}
+                    </div>
+                    <div
+                      aria-live="polite"
+                      className="mt-1 text-[2rem] font-black tracking-tight text-[#1E3A2B] tabular-nums"
+                    >
+                      {formatCurrency(totalPrice)}
+                    </div>
+                  </div>
+
+                  <Button
+                    type="button"
+                    onClick={handleAdd}
+                    className="h-11 w-full rounded-[1.2rem] bg-[#1E3A2B] px-5 text-sm font-bold text-white shadow-[0_14px_28px_rgba(30,58,43,0.16)] transition hover:bg-[#173021] hover:shadow-[0_18px_34px_rgba(30,58,43,0.2)]"
+                  >
+                    <ShoppingCart className="mr-2 h-4 w-4" />
+                    {"P\u0159idat do popt\u00e1vky"}
+                  </Button>
+                </div>
+              </div>
             </div>
 
-            <aside className="lg:self-start">
-              <div className="space-y-3 rounded-[1.9rem] border border-[#1E3A2B]/12 bg-[#EEF3EA] p-3 shadow-[0_22px_48px_rgba(30,58,43,0.12)] sm:p-4 lg:p-[1.05rem]">
+            <aside className="lg:self-stretch">
+              <div className="space-y-3 rounded-[1.9rem] border border-[#1E3A2B]/12 bg-[#EEF3EA] p-3 shadow-[0_22px_48px_rgba(30,58,43,0.12)] sm:p-4 lg:flex lg:h-full lg:flex-col lg:p-4">
                 <BeamPreview width={width} height={height} length={length} species={species} />
 
-                <div className="rounded-[1.8rem] border border-[#1E3A2B]/12 bg-white/88 p-4 shadow-[inset_0_1px_0_rgba(255,255,255,0.7)] sm:p-5 lg:p-4">
+                <div className="rounded-[1.8rem] border border-[#1E3A2B]/12 bg-white/88 p-4 shadow-[inset_0_1px_0_rgba(255,255,255,0.7)] sm:p-5 lg:hidden">
                   <div className="grid gap-2.5 sm:grid-cols-2 sm:gap-3">
-                    <div className="rounded-2xl border border-[#1E3A2B]/10 bg-[#FBF9F4] px-3 py-2.5 sm:px-4 sm:py-3">
+                    <div className="rounded-2xl border border-[#1E3A2B]/10 bg-[#FBF9F4] px-3 py-2.5 sm:px-4 sm:py-3 lg:px-3.5 lg:py-2.5">
                       <div className="text-[10px] font-semibold uppercase tracking-[0.18em] text-[#1E3A2B]/55 sm:text-[11px] sm:tracking-[0.2em]">
                         {"Objem celkem"}
                       </div>
-                      <div className="mt-1 text-xl font-black text-[#1E3A2B] tabular-nums sm:text-2xl">
+                      <div className="mt-1 text-xl font-black text-[#1E3A2B] tabular-nums sm:text-2xl lg:text-[1.7rem]">
                         {formatDecimal(volumeM3)} {"m\u00b3"}
                       </div>
                     </div>
 
-                    <div className="rounded-2xl border border-[#1E3A2B]/10 bg-[#FBF9F4] px-3 py-2.5 sm:px-4 sm:py-3">
+                    <div className="rounded-2xl border border-[#1E3A2B]/10 bg-[#FBF9F4] px-3 py-2.5 sm:px-4 sm:py-3 lg:px-3.5 lg:py-2.5">
                       <div className="text-[10px] font-semibold uppercase tracking-[0.18em] text-[#1E3A2B]/55 sm:text-[11px] sm:tracking-[0.2em]">
                         {"Hmotnost"}
                       </div>
-                      <div className="mt-1 text-xl font-black text-[#1E293B] tabular-nums sm:text-2xl">
+                      <div className="mt-1 text-xl font-black text-[#1E293B] tabular-nums sm:text-2xl lg:text-[1.7rem]">
                         {new Intl.NumberFormat("cs-CZ").format(totalWeightKg)} kg
                       </div>
                     </div>
                   </div>
 
-                  <div className="mt-4 space-y-3 lg:hidden">
+                  <div className="mt-4 space-y-3">
                     <div className="rounded-[1.55rem] bg-[#1E3A2B] px-4 py-3.5 text-white shadow-[0_14px_30px_rgba(30,58,43,0.18)] sm:px-5 sm:py-4">
                       <div className="text-[10px] font-semibold uppercase tracking-[0.2em] text-white/72 sm:text-[11px] sm:tracking-[0.22em]">
                         {"Celkov\u00e1 cena s DPH"}
@@ -763,31 +741,6 @@ export function CustomConfigurator() {
                       <ShoppingCart className="mr-2 h-4 w-4" />
                       {"P\u0159idat do popt\u00e1vky"}
                     </Button>
-                  </div>
-
-                  <div className="hidden lg:block">
-                    <div className="mt-3 flex items-center gap-3">
-                      <div className="min-w-0 flex-1">
-                        <div className="text-[10px] font-semibold uppercase tracking-[0.2em] text-[#1E3A2B]/52">
-                          {"Celkov\u00e1 cena s DPH"}
-                        </div>
-                        <div
-                          aria-live="polite"
-                          className="mt-1 text-[2rem] font-black tracking-tight text-[#1E3A2B] tabular-nums"
-                        >
-                          {formatCurrency(totalPrice)}
-                        </div>
-                      </div>
-
-                      <Button
-                        type="button"
-                        onClick={handleAdd}
-                        className="h-11 min-w-[15rem] rounded-[1.2rem] bg-[#1E3A2B] px-5 text-sm font-bold text-white shadow-[0_14px_28px_rgba(30,58,43,0.16)] transition hover:bg-[#173021] hover:shadow-[0_18px_34px_rgba(30,58,43,0.2)]"
-                      >
-                        <ShoppingCart className="mr-2 h-4 w-4" />
-                        {"P\u0159idat do popt\u00e1vky"}
-                      </Button>
-                    </div>
                   </div>
                 </div>
               </div>
