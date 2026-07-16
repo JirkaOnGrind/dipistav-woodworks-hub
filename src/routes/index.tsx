@@ -83,8 +83,20 @@ function Index() {
         </div>
       </section>
 
-      <section className="relative -mt-px bg-[#F5F2E9]">
+      <section className="relative -mt-px overflow-hidden bg-[#F5F2E9]">
         <div className="pointer-events-none absolute inset-x-0 top-0 h-12 bg-gradient-to-b from-[#F5F2E9] to-[#F5F2E9]/0" />
+        <svg
+          className="pointer-events-none absolute top-[35%] -left-[100px] z-0 hidden h-[500px] w-[500px] select-none text-[#3c2f1d] opacity-[0.04] 2xl:block"
+          viewBox="0 0 200 200"
+          fill="none"
+          stroke="currentColor"
+          strokeWidth="1"
+        >
+          <path d="M -20,100 C 20,40 80,10 140,30 C 190,50 210,110 190,160 C 170,200 100,210 50,190" />
+          <path d="M -10,100 C 25,52 75,25 125,42 C 168,58 185,108 168,150 C 152,185 92,192 48,175" />
+          <path d="M 0,100 C 30,64 70,40 110,54 C 146,66 160,106 146,140 C 134,170 84,174 46,160" />
+          <path d="M 10,100 C 35,76 65,55 95,66 C 124,74 135,104 124,130 C 116,155 76,156 44,145" />
+        </svg>
         <div className="relative mx-auto max-w-7xl space-y-12 px-4 py-8 sm:space-y-14 sm:py-14">
           {PRODUCT_CATEGORY_SECTIONS.map((section) => (
             <ProductCategorySection key={section.id} section={section} />

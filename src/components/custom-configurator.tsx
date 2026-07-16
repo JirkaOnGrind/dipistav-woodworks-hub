@@ -572,7 +572,7 @@ export function CustomConfigurator() {
   };
 
   return (
-    <section id="konfigurator" className="scroll-mt-24 bg-[#FBF9F4]">
+    <section id="konfigurator" className="scroll-mt-24 overflow-hidden bg-[#FBF9F4]">
       <div className="mx-auto max-w-7xl px-4 py-12 sm:py-16 lg:py-20">
         <h2 className="mb-8 max-w-3xl text-3xl font-black tracking-tight text-[#1E293B] sm:text-4xl">
           {"Navrhn\u011bte si vlastn\u00ed \u0159ezivo"}
@@ -582,6 +582,17 @@ export function CustomConfigurator() {
           data-beam-configurator
           className="relative rounded-[2rem] border border-[#1E3A2B]/12 bg-[linear-gradient(180deg,rgba(255,255,255,0.84),rgba(255,252,246,0.96))] p-4 shadow-[0_24px_70px_rgba(30,58,43,0.08)] sm:p-6 lg:p-8"
         >
+          <svg
+            className="pointer-events-none absolute -right-[60px] top-[10%] z-0 hidden h-[420px] w-[420px] select-none text-[#3c2f1d] opacity-[0.04] 2xl:block"
+            viewBox="0 0 200 200"
+            fill="none"
+            stroke="currentColor"
+            strokeWidth="1"
+          >
+            <path d="M 50,200 L 200,50 M 80,200 L 200,80 M 110,200 L 200,110 M 140,200 L 200,140" />
+            <path d="M 20,150 L 150,20 M 20,180 L 180,20" />
+          </svg>
+
           <SawBladeWatermark />
 
           <div className="relative grid gap-6 lg:grid-cols-[minmax(360px,0.92fr)_minmax(420px,1.08fr)] lg:items-stretch lg:gap-6 xl:grid-cols-[minmax(380px,0.9fr)_minmax(460px,1.1fr)]">
@@ -661,7 +672,7 @@ export function CustomConfigurator() {
                       </span>
                     </div>
 
-                    <div className="pt-2">
+                    <div className="px-4 py-2">
                       <span className="block text-xs font-medium uppercase tracking-wider text-amber-900/60">
                         {"Celkov\u00e1 cena s DPH"}
                       </span>
