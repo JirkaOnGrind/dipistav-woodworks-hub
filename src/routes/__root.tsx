@@ -14,6 +14,8 @@ import { CartProvider } from "@/lib/cart";
 import appCss from "../styles.css?url";
 import { reportLovableError } from "../lib/lovable-error-reporting";
 
+const faviconHref = "/favicon.ico?v=20260716-1";
+
 function NotFoundComponent() {
   return (
     <div className="flex min-h-screen items-center justify-center bg-background px-4">
@@ -98,7 +100,9 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
         rel: "stylesheet",
         href: appCss,
       },
-      { rel: "icon", href: "/favicon.ico", type: "image/x-icon" },
+      { rel: "icon", href: faviconHref, type: "image/x-icon", sizes: "any" },
+      { rel: "shortcut icon", href: faviconHref, type: "image/x-icon" },
+      { rel: "apple-touch-icon", href: faviconHref },
     ],
   }),
   shellComponent: RootShell,

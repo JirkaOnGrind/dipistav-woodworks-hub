@@ -5,6 +5,22 @@ import { ProductDetailPage } from "@/components/product-detail-page";
 import { getProductCategory } from "@/lib/product-catalog";
 
 export const Route = createFileRoute("/category/$id")({
+  head: ({ params }) => {
+    const category = getProductCategory(params.id);
+
+    if (!category) {
+      return {
+        meta: [{ title: "Kategorie nebyla nalezena | DIPISTAV" }],
+      };
+    }
+
+    return {
+      meta: [
+        { title: `${category.title} | DIPISTAV` },
+        { name: "description", content: category.subtitle },
+      ],
+    };
+  },
   component: CategoryRouteComponent,
 });
 

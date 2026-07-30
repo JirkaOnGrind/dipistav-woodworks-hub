@@ -20,6 +20,16 @@ const widgetConfig = JSON.stringify({
 });
 
 export const Route = createFileRoute("/widget-tramy")({
+  head: () => ({
+    meta: [
+      { title: "Konfigurátor trámů | DIPISTAV" },
+      {
+        name: "description",
+        content:
+          "Interaktivní konfigurátor trámů DIPISTAV s okamžitým přepočtem množství a orientační ceny.",
+      },
+    ],
+  }),
   component: WidgetTramyPage,
 });
 

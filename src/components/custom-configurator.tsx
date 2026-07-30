@@ -45,12 +45,12 @@ const SPECIES: Species[] = [
   },
 ];
 
-const WIDTH_MIN = 40;
-const WIDTH_MAX = 300;
-const HEIGHT_MIN = 40;
-const HEIGHT_MAX = 300;
-const LENGTH_MIN = 1;
-const LENGTH_MAX = 8;
+const WIDTH_MIN = 30;
+const WIDTH_MAX = 400;
+const HEIGHT_MIN = 30;
+const HEIGHT_MAX = 400;
+const LENGTH_MIN = 30;
+const LENGTH_MAX = 2000;
 const QTY_MIN = 1;
 const QTY_MAX = 100;
 const PREVIEW_VIEWBOX_WIDTH = 480;
@@ -67,7 +67,12 @@ function clamp(value: number, min: number, max: number) {
 function clampToStep(value: number, min: number, max: number, step: number) {
   const normalized = clamp(value, min, max);
   const stepped = Math.round((normalized - min) / step) * step + min;
-  return Number(stepped.toFixed(step < 1 ? 1 : 0));
+  return clamp(Number(stepped.toFixed(step < 1 ? 1 : 0)), min, max);
+}
+
+function clampToPrecision(value: number, min: number, max: number, decimals = 1) {
+  const normalized = clamp(value, min, max);
+  return Number(normalized.toFixed(decimals));
 }
 
 function parseLocalizedNumber(value: string) {
@@ -82,10 +87,8 @@ function formatControlValue(value: number, step: number) {
   return value.toFixed(1).replace(".", ",");
 }
 
-function mapRange(value: number, inMin: number, inMax: number, outMin: number, outMax: number) {
-  const clamped = clamp(value, inMin, inMax);
-  const progress = (clamped - inMin) / Math.max(inMax - inMin, 1);
-  return outMin + progress * (outMax - outMin);
+function formatFlexibleValue(value: number, decimals = 1) {
+  return value.toFixed(decimals).replace(/\.0+$/, "").replace(".", ",");
 }
 
 function estimateBadgeWidth(text: string) {
@@ -171,9 +174,9 @@ function BeamPreview({
   length: number;
   species: Species;
 }) {
-  const widthLabel = `${width} mm`;
-  const heightLabel = `${height} mm`;
-  const lengthLabel = `${formatControlValue(length, 0.5)} m`;
+  const widthLabel = `${formatFlexibleValue(width)} mm`;
+  const heightLabel = `${formatFlexibleValue(height)} mm`;
+  const lengthLabel = `${formatFlexibleValue(length)} mm`;
 
   const geometry = useMemo(() => {
     const angle = (27 * Math.PI) / 180;
@@ -182,17 +185,9 @@ function BeamPreview({
     const widthMm = clamp(width, WIDTH_MIN, WIDTH_MAX);
     const heightMm = clamp(height, HEIGHT_MIN, HEIGHT_MAX);
     const clampedLength = clamp(length, LENGTH_MIN, LENGTH_MAX);
-
-    const maxSection = Math.max(widthMm, heightMm);
-    const minSection = Math.min(widthMm, heightMm);
-    const sectionScale = 88 / maxSection;
-    const minVisibleBoost = Math.max(1, 16 / (minSection * sectionScale));
-
-    const rawFaceWidth = widthMm * sectionScale * minVisibleBoost;
-    const rawFaceHeight = heightMm * sectionScale * minVisibleBoost;
-
-    const lengthRatio = (clampedLength - LENGTH_MIN) / (LENGTH_MAX - LENGTH_MIN);
-    const rawBodyLength = mapRange(Math.pow(lengthRatio, 0.92), 0, 1, 100, 320);
+    const rawFaceWidth = widthMm;
+    const rawFaceHeight = heightMm;
+    const rawBodyLength = clampedLength;
 
     const rawWidthVector = {
       x: rawFaceWidth * cosAngle,
@@ -447,17 +442,29 @@ type NumericControlProps = {
   max: number;
   step: number;
   unit: string;
+  allowDecimal?: boolean;
 };
 
-function NumericControl({ label, value, onChange, min, max, step, unit }: NumericControlProps) {
+function NumericControl({
+  label,
+  value,
+  onChange,
+  min,
+  max,
+  step,
+  unit,
+  allowDecimal = false,
+}: NumericControlProps) {
   const id = useId();
-  const [draftValue, setDraftValue] = useState(() => formatControlValue(value, step));
+  const [draftValue, setDraftValue] = useState(() =>
+    allowDecimal ? formatFlexibleValue(value) : formatControlValue(value, step),
+  );
   const progress = ((value - min) / Math.max(max - min, step)) * 100;
   const sliderStyle = { "--beam-range-progress": `${progress}%` } as CSSProperties;
 
   useEffect(() => {
-    setDraftValue(formatControlValue(value, step));
-  }, [step, value]);
+    setDraftValue(allowDecimal ? formatFlexibleValue(value) : formatControlValue(value, step));
+  }, [allowDecimal, step, value]);
 
   const commitValue = (nextValue: number) => {
     const normalized = clampToStep(nextValue, min, max, step);
@@ -468,13 +475,17 @@ function NumericControl({ label, value, onChange, min, max, step, unit }: Numeri
     const parsed = parseLocalizedNumber(draftValue);
 
     if (Number.isNaN(parsed)) {
-      setDraftValue(formatControlValue(value, step));
+      setDraftValue(allowDecimal ? formatFlexibleValue(value) : formatControlValue(value, step));
       return;
     }
 
-    const normalized = clampToStep(parsed, min, max, step);
+    const normalized = allowDecimal
+      ? clampToPrecision(parsed, min, max, 1)
+      : clampToStep(parsed, min, max, step);
     onChange(normalized);
-    setDraftValue(formatControlValue(normalized, step));
+    setDraftValue(
+      allowDecimal ? formatFlexibleValue(normalized) : formatControlValue(normalized, step),
+    );
   };
 
   return (
@@ -488,14 +499,14 @@ function NumericControl({ label, value, onChange, min, max, step, unit }: Numeri
         </label>
 
         <div className="rounded-full border border-[#1E3A2B]/10 bg-[#FBF9F4] px-3 py-1 text-sm font-black text-[#1E293B] tabular-nums md:hidden">
-          {formatControlValue(value, step)} {unit}
+          {(allowDecimal ? formatFlexibleValue(value) : formatControlValue(value, step))} {unit}
         </div>
         <div className="hidden md:block">
           <Input
             id={id}
             aria-label={label}
             type="text"
-            inputMode={step < 1 ? "decimal" : "numeric"}
+            inputMode={allowDecimal || step < 1 ? "decimal" : "decimal"}
             value={draftValue}
             onChange={(event) => setDraftValue(event.currentTarget.value)}
             onBlur={commitDraft}
@@ -524,7 +535,7 @@ function NumericControl({ label, value, onChange, min, max, step, unit }: Numeri
             id={id}
             aria-label={label}
             type="text"
-            inputMode={step < 1 ? "decimal" : "numeric"}
+            inputMode={allowDecimal || step < 1 ? "decimal" : "decimal"}
             value={draftValue}
             onChange={(event) => setDraftValue(event.currentTarget.value)}
             onBlur={commitDraft}
@@ -572,7 +583,7 @@ export function CustomConfigurator() {
   const { addCustomItem } = useCart();
   const [width, setWidth] = useState(100);
   const [height, setHeight] = useState(100);
-  const [length, setLength] = useState(4);
+  const [length, setLength] = useState(100);
   const [quantity, setQuantity] = useState(10);
   const [speciesId, setSpeciesId] = useState<string>(SPECIES[0].id);
 
@@ -582,7 +593,7 @@ export function CustomConfigurator() {
   );
 
   const volumeM3 = useMemo(
-    () => (width / 1000) * (height / 1000) * length * quantity,
+    () => (width / 1000) * (height / 1000) * (length / 1000) * quantity,
     [width, height, length, quantity],
   );
   const totalPrice = useMemo(() => Math.round(volumeM3 * species.pricePerM3), [volumeM3, species]);
@@ -595,7 +606,7 @@ export function CustomConfigurator() {
     addCustomItem({
       widthMm: width,
       heightMm: height,
-      lengthM: length,
+      lengthM: length / 1000,
       quantity,
       species: species.label,
       volumeM3,
@@ -640,6 +651,7 @@ export function CustomConfigurator() {
                   max={WIDTH_MAX}
                   step={10}
                   unit="mm"
+                  allowDecimal
                 />
                 <NumericControl
                   label={"V\u00fd\u0161ka"}
@@ -649,6 +661,7 @@ export function CustomConfigurator() {
                   max={HEIGHT_MAX}
                   step={10}
                   unit="mm"
+                  allowDecimal
                 />
                 <NumericControl
                   label={"D\u00e9lka"}
@@ -656,8 +669,9 @@ export function CustomConfigurator() {
                   onChange={setLength}
                   min={LENGTH_MIN}
                   max={LENGTH_MAX}
-                  step={0.5}
-                  unit="m"
+                  step={10}
+                  unit="mm"
+                  allowDecimal
                 />
                 <NumericControl
                   label={"Po\u010det ks"}
