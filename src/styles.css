@@ -134,6 +134,15 @@
     opacity: 1;
   }
 
+  [data-beam-configurator] [data-product-illustration-layer] {
+    pointer-events: none;
+    transform-origin: center center;
+    will-change: opacity, transform;
+    transition:
+      opacity 220ms ease,
+      transform 360ms cubic-bezier(0.22, 1, 0.36, 1);
+  }
+
   [data-beam-configurator] [data-beam-range] {
     --beam-range-progress: 0%;
     appearance: none;

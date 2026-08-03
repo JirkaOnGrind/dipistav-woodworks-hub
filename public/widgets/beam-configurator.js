@@ -8,13 +8,13 @@
     },
     maxQuantity: 150,
     images: {
-      one: "/images/widgets/1TramDIPI_2.webp",
-      two: "/images/widgets/2TramDIPI.webp",
-      three: "/images/widgets/3TramDIPI.webp",
-      five: "/images/widgets/5TramDIPI.webp",
-      seven: "/images/widgets/7TramDIPI.webp",
-      eleven: "/images/widgets/11TramDIPI.webp",
-      eighteen: "/images/widgets/18TramDIPI.webp",
+      one: "/images/illustrations/beams/beam-1-500-v2.webp",
+      two: "/images/illustrations/beams/beam-2-500-v2.webp",
+      three: "/images/illustrations/beams/beam-3-500-v2.webp",
+      five: "/images/illustrations/beams/beam-5-500-v2.webp",
+      seven: "/images/illustrations/beams/beam-7-500-v2.webp",
+      eleven: "/images/illustrations/beams/beam-11-500-v2.webp",
+      eighteen: "/images/illustrations/beams/beam-18-500-v2.webp",
     },
     catalog: {
       profiles: [
@@ -42,13 +42,13 @@
 
   const IMAGE_KEYS = ["one", "two", "three", "five", "seven", "eleven", "eighteen"];
   const CHOPPED_IMAGES = {
-    one: "/images/widgets/1TramDIPICHOPPED.png",
-    two: "/images/widgets/2TramDIPICHOPPED.png",
-    three: "/images/widgets/3TramDIPICHOPPED.png",
-    five: "/images/widgets/5TramDIPICHOPPED.png",
-    seven: "/images/widgets/7TramDIPICHOPPED.webp",
-    eleven: "/images/widgets/11TramDIPICHOPPED.webp",
-    eighteen: "/images/widgets/18TramDIPICHOPPED.webp",
+    one: "/images/illustrations/beams/beam-1-400-v2.webp",
+    two: "/images/illustrations/beams/beam-2-400-v2.webp",
+    three: "/images/illustrations/beams/beam-3-400-v2.webp",
+    five: "/images/illustrations/beams/beam-5-400-v2.webp",
+    seven: "/images/illustrations/beams/beam-7-400-v2.webp",
+    eleven: "/images/illustrations/beams/beam-11-400-v2.webp",
+    eighteen: "/images/illustrations/beams/beam-18-400-v2.webp",
   };
   const PROFILE_SCALES = {
     "8x8": 0.92,
@@ -119,7 +119,7 @@
     if (quantity <= 4) return "three";
     if (quantity <= 6) return "five";
     if (quantity <= 10) return "seven";
-    if (quantity <= 16) return "eleven";
+    if (quantity <= 15) return "eleven";
     return "eighteen";
   }
 

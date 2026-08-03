@@ -98,10 +98,10 @@ const tramy: DimensionedCategory = {
   subtitle: "Masivní nosné trámy pro krovy, stropy, pergoly i další konstrukce.",
   description:
     "Poctivé stavební trámy v osvědčených profilech a délkách. Snadno si vyberete variantu, která bude sedět vašemu projektu i způsobu montáže.",
-  imageSrc: "/images/tramy-dipi.webp",
+  imageSrc: "/images/illustrations/tramy-v2.webp",
   thumbnailAlt: "Ilustrace stavebních trámů DIPISTAV",
   illustrationPrompt:
-    "Premium, clean, minimalist hand-drawn illustration of stacked structural timber beams, warm natural spruce tones, subtle pencil outlines, soft shadows, transparent background, product-card friendly composition.",
+    "DIPISTAV comic-engraving product illustration of square structural timber beams in a neat isometric stack, dark chocolate-brown contour, honey-amber spruce, visible end grain and controlled cross-hatching, transparent background, no baked shadow, text or logo.",
   priceUnitLabel: "Cena / ks",
   ctaLabel: "Přidat trámy do košíku",
   dimensionLabel: "Profil (cm)",
@@ -139,10 +139,10 @@ const fosny: DimensionedCategory = {
   subtitle: "Široké stavební fošny pro bednění, podlahy i konstrukční detaily.",
   description:
     "Fošny, které dobře poslouží na stavbě i při truhlářském využití. Vyberete si potřebný profil, délku i množství bez zdlouhavého doptávání.",
-  imageSrc: "/images/fosny-dipi.webp",
+  imageSrc: "/images/illustrations/fosny-v2.webp",
   thumbnailAlt: "Ilustrace stavebních fošen DIPISTAV",
   illustrationPrompt:
-    "Premium, clean, minimalist hand-drawn illustration of broad timber planks for construction, natural pine color palette, precise ink contour, transparent background, airy premium composition.",
+    "DIPISTAV comic-engraving product illustration of eight thick broad construction boards stacked in four orderly layers, dark chocolate-brown contour, honey-amber spruce, visible end grain and controlled cross-hatching, transparent background, no baked shadow, text or logo.",
   priceUnitLabel: "Cena / ks",
   ctaLabel: "Přidat fošny do košíku",
   dimensionLabel: "Profil (cm)",
@@ -181,10 +181,10 @@ const prkna: DimensionedCategory = {
   subtitle: "Coulová prkna v oblíbených šířkách pro střechy, obklady i běžnou stavbu.",
   description:
     "Praktická stavební prkna pro každodenní použití. Přehledně si zvolíte šířku, délku i počet kusů podle toho, co právě potřebujete.",
-  imageSrc: "/images/prkna-dipi.webp",
+  imageSrc: "/images/illustrations/prkna-v2.webp",
   thumbnailAlt: "Ilustrace stavebních prken DIPISTAV",
   illustrationPrompt:
-    "Premium, clean, minimalist hand-drawn illustration of construction boards arranged in a neat stack, light spruce color, gentle sketch texture, transparent background, refined custom illustration style.",
+    "DIPISTAV comic-engraving product illustration of thin construction boards in a regular drying stack with slim spacers, dark chocolate-brown contour, honey-amber spruce, visible end grain and restrained hatching, transparent background, no baked shadow, text or logo.",
   priceUnitLabel: "Cena / ks",
   ctaLabel: "Přidat prkna do košíku",
   dimensionLabel: "Šířka (cm)",
@@ -220,10 +220,10 @@ const late: LengthOnlyCategory = {
   subtitle: "Profil 60 × 40 mm pro střechy, podbití i lehké dřevěné konstrukce.",
   description:
     "Střešní latě v osvědčeném profilu pro spolehlivou montáž. Stačí zvolit délku a množství, které potřebujete na svou realizaci.",
-  imageSrc: "/images/late-dipi.webp",
+  imageSrc: "/images/illustrations/late-v2.webp",
   thumbnailAlt: "Ilustrace střešních latí DIPISTAV",
   illustrationPrompt:
-    "Premium, clean, minimalist hand-drawn illustration of roofing battens, tidy linear arrangement, warm wood palette, transparent background, subtle handcrafted premium finish.",
+    "DIPISTAV comic-engraving product illustration of identical rectangular roofing battens aligned tightly in parallel rows, orderly rather than scattered, dark chocolate-brown contour, honey-amber spruce and clear end grain, transparent background, no baked shadow, text or logo.",
   priceUnitLabel: "Cena / ks",
   ctaLabel: "Přidat latě do košíku",
   fixedDimensionLabel: "60 × 40 mm",
@@ -246,10 +246,10 @@ const stipaneDrevo: OptionOnlyCategory = {
   subtitle: "Poctivě štípané palivové dřevo pro pohodlné topení doma, na chatě i na chalupě.",
   description:
     "Vyberte si balení, které vám bude nejlépe vyhovovat při skladování i každodenním používání. Ideální volba pro ty, kdo chtějí mít dřevo přehledně připravené a snadno po ruce.",
-  imageSrc: "/images/paliva/stipany-novy.webp",
-  thumbnailAlt: "Ilustrace palety se štípaným dřevem",
+  imageSrc: "/images/illustrations/stipane-v2.webp",
+  thumbnailAlt: "Ilustrace volně loženého štípaného dřeva",
   illustrationPrompt:
-    "Premium, clean, minimalist hand-drawn illustration of split firewood logs tied in a neat bundle, natural oak and spruce tones, transparent background, subtle pencil linework, refined handcrafted feel.",
+    "DIPISTAV comic-engraving product illustration of a loose compact mound of believable split firewood logs, varied wedge and half-round cuts with some bark, dark chocolate-brown contour, honey-amber wood and readable growth rings, transparent background, no container, no baked shadow, text or logo.",
   priceUnitLabel: "Cena / balení",
   ctaLabel: "Přidat dřevo do košíku",
   optionLabel: "Balení",
@@ -286,10 +286,10 @@ const pelety: OptionOnlyCategory = {
   subtitle: "Čisté dřevní pelety pro pohodlné a úsporné vytápění kamen i kotlů.",
   description:
     "Pelety nabízíme v praktických baleních od menší zásoby až po celou paletu. Snadno si vyberete variantu podle spotřeby i prostoru na uskladnění.",
-  imageSrc: "/images/paliva/pelety.webp",
+  imageSrc: "/images/illustrations/pelety-v2.webp",
   thumbnailAlt: "Minimalistická ilustrace pelet",
   illustrationPrompt:
-    "Premium, clean, minimalist hand-drawn illustration of a pellet bag with scattered wood pellets, warm beige and timber palette, transparent background, elegant sketched premium packaging style.",
+    "Approved DIPISTAV comic-engraving illustration of a compact mound of wood pellets, dark chocolate-brown contour and engraving marks, honey-amber wood, clear silhouette at mobile size, transparent background, no baked shadow, text or logo.",
   priceUnitLabel: "Cena / balení",
   ctaLabel: "Přidat pelety do košíku",
   optionLabel: "Balení",
@@ -324,10 +324,10 @@ const krajinky: OptionOnlyCategory = {
   subtitle: "Úsporné palivo z omítaných boků kulatiny pro topení i rychlou zásobu dřeva.",
   description:
     "Krajinky jsou oblíbenou volbou tam, kde hledáte výhodné dřevo na roztápění nebo běžné topení. Zvolte si velikost balíku podle prostoru i očekávané spotřeby.",
-  imageSrc: "/images/paliva/krajinky-novy.webp",
-  thumbnailAlt: "Ilustrace bedny s krajinkami",
+  imageSrc: "/images/illustrations/krajinky-v2.webp",
+  thumbnailAlt: "Ilustrace svázaného balíku krajin s kůrou",
   illustrationPrompt:
-    "Premium, clean, minimalist hand-drawn illustration of rustic wood slabs and edgings stacked asymmetrically, warm wood colors, transparent background, tasteful artisanal linework.",
+    "DIPISTAV comic-engraving product illustration of a long strapped bale of irregular sawmill slab offcuts with natural bark edges, compact layered bundle with uneven ends, dark chocolate-brown contour and honey-amber wood, transparent background, no crate, no baked shadow, text or logo.",
   priceUnitLabel: "Cena / balík",
   ctaLabel: "Přidat krajinky do košíku",
   optionLabel: "Velikost balíku",
@@ -361,13 +361,14 @@ const driviNaPaletach: OptionOnlyCategory = {
   kind: "option-only",
   name: "Dříví na paletách",
   shortName: "Dříví na paletách",
-  subtitle: "Přehledně složené palety palivového dřeva pro čisté skladování a pohodlnou manipulaci.",
+  subtitle:
+    "Přehledně složené palety palivového dřeva pro čisté skladování a pohodlnou manipulaci.",
   description:
     "Paletované dříví ocení každý, kdo chce mít zásobu dřeva úhledně složenou a připravenou k okamžitému použití. Vyberte si variantu podle délky polen i objemu.",
-  imageSrc: "/images/paliva/palety.webp",
+  imageSrc: "/images/illustrations/palety-v2.webp",
   thumbnailAlt: "Minimalistická ilustrace paletovaného dříví",
   illustrationPrompt:
-    "Premium, clean, minimalist hand-drawn illustration of palletized firewood, tidy stacked logs on a wooden pallet, transparent background, subtle luxury sketch aesthetic with soft natural shadows.",
+    "DIPISTAV comic-engraving product illustration of a pallet-sized cube of split firewood packed in an open slatted wooden frame, dark chocolate-brown contour, honey-amber wood, readable bark and growth rings, transparent background, no baked shadow, text or logo.",
   priceUnitLabel: "Cena / paleta",
   ctaLabel: "Přidat paletu do košíku",
   optionLabel: "Typ palety",

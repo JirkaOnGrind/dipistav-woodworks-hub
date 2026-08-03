@@ -155,7 +155,7 @@ function WidgetTramyPage() {
                           className="relative h-full w-full max-h-full max-w-full overflow-hidden"
                         >
                           <img
-                            src="/images/widgets/1TramDIPI_2.webp"
+                            src="/images/illustrations/beams/beam-1-500-v2.webp"
                             alt={"Jeden stavebn\u00ed tr\u00e1m"}
                             data-beam-image
                             data-image-key="one"
@@ -165,7 +165,7 @@ function WidgetTramyPage() {
                             draggable={false}
                           />
                           <img
-                            src="/images/widgets/2TramDIPI.webp"
+                            src="/images/illustrations/beams/beam-2-500-v2.webp"
                             alt={"Dva stavebn\u00ed tr\u00e1my"}
                             data-beam-image
                             data-image-key="two"
@@ -175,7 +175,7 @@ function WidgetTramyPage() {
                             draggable={false}
                           />
                           <img
-                            src="/images/widgets/3TramDIPI.webp"
+                            src="/images/illustrations/beams/beam-3-500-v2.webp"
                             alt={"T\u0159i a\u017e \u010dty\u0159i stavebn\u00ed tr\u00e1my"}
                             data-beam-image
                             data-image-key="three"
@@ -185,7 +185,7 @@ function WidgetTramyPage() {
                             draggable={false}
                           />
                           <img
-                            src="/images/widgets/5TramDIPI.webp"
+                            src="/images/illustrations/beams/beam-5-500-v2.webp"
                             alt={"P\u011bt a\u017e \u0161est stavebn\u00edch tr\u00e1m\u016f"}
                             data-beam-image
                             data-image-key="five"
@@ -195,7 +195,7 @@ function WidgetTramyPage() {
                             draggable={false}
                           />
                           <img
-                            src="/images/widgets/7TramDIPI.webp"
+                            src="/images/illustrations/beams/beam-7-500-v2.webp"
                             alt={"Sedm a\u017e deset stavebn\u00edch tr\u00e1m\u016f"}
                             data-beam-image
                             data-image-key="seven"
@@ -205,8 +205,10 @@ function WidgetTramyPage() {
                             draggable={false}
                           />
                           <img
-                            src="/images/widgets/11TramDIPI.webp"
-                            alt={"Jeden\u00e1ct a v\u00edce stavebn\u00edch tr\u00e1m\u016f"}
+                            src="/images/illustrations/beams/beam-11-500-v2.webp"
+                            alt={
+                              "Jeden\u00e1ct a\u017e patn\u00e1ct stavebn\u00edch tr\u00e1m\u016f"
+                            }
                             data-beam-image
                             data-image-key="eleven"
                             className="absolute inset-0 h-full w-full max-h-full max-w-full object-contain select-none"
@@ -215,8 +217,8 @@ function WidgetTramyPage() {
                             draggable={false}
                           />
                           <img
-                            src="/images/widgets/18TramDIPI.webp"
-                            alt={"Sedmn\u00e1ct a v\u00edce stavebn\u00edch tr\u00e1m\u016f"}
+                            src="/images/illustrations/beams/beam-18-500-v2.webp"
+                            alt={"\u0160estn\u00e1ct a v\u00edce stavebn\u00edch tr\u00e1m\u016f"}
                             data-beam-image
                             data-image-key="eighteen"
                             className="absolute inset-0 h-full w-full max-h-full max-w-full object-contain select-none"

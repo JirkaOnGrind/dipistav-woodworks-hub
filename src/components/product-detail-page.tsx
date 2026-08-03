@@ -215,6 +215,7 @@ export function ProductDetailPage({ category }: { category: ProductCategory }) {
                 quantity={visualQuantity}
                 dimension={category.kind === "dimensioned" ? dimension : undefined}
                 length={category.kind === "option-only" ? undefined : length}
+                option={category.kind === "option-only" ? option : undefined}
               />
             </div>
 
