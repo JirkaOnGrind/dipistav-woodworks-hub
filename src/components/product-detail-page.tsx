@@ -1,12 +1,23 @@
-import { useDeferredValue, useEffect, useMemo, useState } from "react";
-import { ArrowLeft, Mail } from "lucide-react";
+import { useEffect, useMemo, useState } from "react";
+import { ArrowLeft, Mail, ShoppingCart } from "lucide-react";
 import { QuantitySelector } from "@/components/quantity-selector";
 import { SiteShell } from "@/components/site-shell";
 import { Button } from "@/components/ui/button";
 import { WoodVisualizer } from "@/components/wood-visualizer";
 import { useCart } from "@/lib/cart";
-import { type ProductCategory } from "@/lib/product-catalog";
-import { COMPANY_EMAIL_HREF, formatCurrency } from "@/lib/site";
+import {
+  getDefaultModeId,
+  getSelectionLabel,
+  getSelectionOptions,
+  getVariantDetails,
+  getVariantTitle,
+  normalizeSelection,
+  resolveProductVariant,
+  type ProductCategory,
+  type SelectOption,
+} from "@/lib/product-catalog";
+import { calculateVariantQuote } from "@/lib/pricing";
+import { COMPANY_EMAIL_HREF, formatCurrency, formatDecimal } from "@/lib/site";
 
 function ProductSelect({
   value,
@@ -16,9 +27,24 @@ function ProductSelect({
 }: {
   value: string;
   onChange: (value: string) => void;
-  options: { value: string; label: string }[];
+  options: SelectOption[];
   label: string;
 }) {
+  const isFixed = options.length === 1;
+
+  if (isFixed) {
+    return (
+      <div className="block" aria-label={`${label}: ${options[0].label}`}>
+        <span className="mb-1.5 block text-xs font-semibold uppercase tracking-[0.18em] text-muted-foreground">
+          {label}
+        </span>
+        <div className="flex h-12 items-center rounded-2xl border border-[#234A33]/8 bg-[#F6F4EE] px-4 text-sm font-bold text-[#1E293B]">
+          {options[0].label}
+        </div>
+      </div>
+    );
+  }
+
   return (
     <label className="block">
       <span className="mb-1.5 block text-xs font-semibold uppercase tracking-[0.18em] text-muted-foreground">
@@ -27,10 +53,14 @@ function ProductSelect({
       <select
         value={value}
         onChange={(event) => onChange(event.target.value)}
-        className="h-12 w-full rounded-2xl border border-border bg-white px-4 text-sm font-semibold text-foreground shadow-sm transition focus:border-primary focus:outline-none focus:ring-2 focus:ring-primary/20"
+        className="h-12 w-full cursor-pointer rounded-2xl border border-border bg-white px-4 text-sm font-semibold text-foreground shadow-sm transition focus:border-primary focus:outline-none focus:ring-2 focus:ring-primary/20"
       >
         {options.map((option) => (
-          <option key={option.value} value={option.value}>
+          <option
+            key={option.value}
+            value={option.value}
+            disabled={option.availability === "out-of-stock"}
+          >
             {option.label}
           </option>
         ))}
@@ -39,138 +69,113 @@ function ProductSelect({
   );
 }
 
+function pricingLabel(category: ProductCategory, basis?: string) {
+  if (basis === "linear-meter") return "Cena / bm";
+  if (basis === "cubic-meter") return "Cena / m³";
+  if (category.id === "pelety" || category.id === "stipane-drevo") return "Cena / balení";
+  if (category.id === "krajinky") return "Cena / balík";
+  if (category.id === "drivi-na-paletach") return "Cena / paleta";
+  return "Cena / ks";
+}
+
 export function ProductDetailPage({ category }: { category: ProductCategory }) {
-  const { addStandardItem } = useCart();
+  const { addCatalogItem } = useCart();
+  const initialModeId = getDefaultModeId(category);
+  const [modeId, setModeId] = useState<string | undefined>(initialModeId);
+  const [selection, setSelection] = useState(() => normalizeSelection(category, initialModeId));
   const [quantity, setQuantity] = useState(1);
-  const visualQuantity = useDeferredValue(quantity);
-
-  const dimensionOptions = useMemo(
-    () => (category.kind === "dimensioned" ? category.getDimensionOptions() : []),
-    [category],
-  );
-  const [dimension, setDimension] = useState(dimensionOptions[0]?.value ?? "");
-  const initialDimensionLengthOptions =
-    category.kind === "dimensioned"
-      ? category.getLengthOptions(dimensionOptions[0]?.value ?? "")
-      : category.kind === "length-only"
-        ? category.getLengthOptions()
-        : [];
-  const preferredInitialLength =
-    category.id === "tramy"
-      ? (initialDimensionLengthOptions.find((option) => option.value === "500")?.value ?? "")
-      : "";
-  const [length, setLength] = useState(
-    category.kind === "dimensioned"
-      ? preferredInitialLength || initialDimensionLengthOptions[0]?.value || ""
-      : category.kind === "length-only"
-        ? (category.getLengthOptions()[0]?.value ?? "")
-        : "",
-  );
-  const optionOptions = useMemo(
-    () => (category.kind === "option-only" ? category.getOptionOptions() : []),
-    [category],
-  );
-  const [option, setOption] = useState(
-    category.kind === "option-only" ? (category.getOptionOptions()[0]?.value ?? "") : "",
-  );
-
-  const lengthOptions = useMemo(() => {
-    if (category.kind === "dimensioned") {
-      return category.getLengthOptions(dimension);
-    }
-
-    if (category.kind === "option-only") {
-      return [];
-    }
-
-    return category.getLengthOptions();
-  }, [category, dimension]);
 
   useEffect(() => {
-    const nextLength = lengthOptions[0]?.value ?? "";
-    if (!lengthOptions.some((option) => option.value === length) && nextLength) {
-      setLength(nextLength);
-    }
-  }, [length, lengthOptions]);
+    const nextModeId = getDefaultModeId(category);
+    setModeId(nextModeId);
+    setSelection(normalizeSelection(category, nextModeId));
+    setQuantity(1);
+  }, [category]);
 
-  useEffect(() => {
-    const nextOption = optionOptions[0]?.value ?? "";
-    if (!optionOptions.some((item) => item.value === option) && nextOption) {
-      setOption(nextOption);
-    }
-  }, [option, optionOptions]);
+  const selectorOptions = useMemo(
+    () =>
+      Object.fromEntries(
+        category.selectors.map((selector) => [
+          selector.key,
+          getSelectionOptions(category, selector.key, modeId, selection),
+        ]),
+      ),
+    [category, modeId, selection],
+  );
 
-  const unitPrice = useMemo(() => {
-    if (category.kind === "dimensioned") {
-      return category.priceMap[dimension]?.[length] ?? 0;
-    }
+  const variant = useMemo(
+    () => resolveProductVariant(category, modeId, selection),
+    [category, modeId, selection],
+  );
+  const quote = useMemo(
+    () => (variant ? calculateVariantQuote(variant, quantity) : null),
+    [quantity, variant],
+  );
+  const isUnavailable = !variant || variant.availability === "out-of-stock" || !quote;
 
-    if (category.kind === "option-only") {
-      return category.priceByOption[option] ?? 0;
-    }
+  const selectionSummary = category.selectors
+    .map((selector) => getSelectionLabel(category, selector.key, selection[selector.key] ?? ""))
+    .filter(Boolean)
+    .join(" · ");
+  const activeModeLabel = category.modes?.find((mode) => mode.id === modeId)?.label;
+  const fullSelectionSummary = [
+    activeModeLabel,
+    selectionSummary,
+    `${quantity} ${category.quantityUnitLabel}`,
+  ]
+    .filter(Boolean)
+    .join(" | ");
 
-    return category.priceByLength[length] ?? 0;
-  }, [category, dimension, length, option]);
-
-  const totalPrice = unitPrice * quantity;
-  const selectedDimensionLabel =
-    category.kind === "dimensioned"
-      ? (dimensionOptions.find((option) => option.value === dimension)?.label ?? dimension)
-      : category.kind === "length-only"
-        ? category.fixedDimensionLabel
-        : "";
-  const selectedLengthLabel =
-    category.kind === "option-only"
-      ? ""
-      : (lengthOptions.find((option) => option.value === length)?.label ?? length);
-  const selectedOptionLabel = optionOptions.find((item) => item.value === option)?.label ?? option;
-  const selectionSummary =
-    category.kind === "option-only"
-      ? `${selectedOptionLabel} | ${quantity} ks`
-      : `${selectedDimensionLabel} · ${selectedLengthLabel} | ${quantity} ks`;
   const inquiryHref = useMemo(() => {
-    const subject = `Poptávka: ${category.shortName}`;
+    const pricingLine = isUnavailable
+      ? "Dostupnost: momentálně nenaskladněno"
+      : quote && variant?.pricing
+        ? `Sazba: ${formatCurrency(quote.rate)} / ${variant.pricing.displayUnit}; celkem ${formatCurrency(quote.totalPrice)}`
+        : "";
+    const metricLine = quote?.totalVolumeM3
+      ? `Objem: ${formatDecimal(quote.totalVolumeM3, 4)} m³`
+      : quote?.totalLinearMeters
+        ? `Běžné metry: ${formatDecimal(quote.totalLinearMeters, 2)} bm`
+        : "";
     const body = [
       "Dobrý den,",
       "",
       `mám zájem o produkt ${category.name}.`,
-      `Konfigurace: ${selectionSummary}`,
-      `Počet: ${quantity} ks`,
+      `Konfigurace: ${fullSelectionSummary}`,
+      pricingLine,
+      metricLine,
       "",
       "Prosím o potvrzení dostupnosti, ceny a dopravy.",
       "",
       "Děkuji.",
-    ].join("\n");
+    ]
+      .filter((line) => line !== "")
+      .join("\n");
+    return `${COMPANY_EMAIL_HREF}?subject=${encodeURIComponent(`Poptávka: ${category.shortName}`)}&body=${encodeURIComponent(body)}`;
+  }, [category.name, category.shortName, fullSelectionSummary, isUnavailable, quote, variant]);
 
-    return `${COMPANY_EMAIL_HREF}?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
-  }, [category.name, category.shortName, quantity, selectionSummary]);
+  const changeMode = (nextModeId: string) => {
+    setModeId(nextModeId);
+    setSelection(normalizeSelection(category, nextModeId));
+  };
+
+  const changeSelection = (key: string, value: string) => {
+    setSelection((current) => normalizeSelection(category, modeId, { ...current, [key]: value }));
+  };
 
   const handleAddToCart = () => {
-    if (category.kind === "dimensioned") {
-      addStandardItem({
-        title: category.getCartTitle(dimension, length),
-        quantity,
-        unitPrice,
-        details: [...category.getCartDetails(dimension, length), `Počet: ${quantity} ks`],
-      });
-      return;
-    }
-
-    if (category.kind === "option-only") {
-      addStandardItem({
-        title: category.getCartTitle(option),
-        quantity,
-        unitPrice,
-        details: [...category.getCartDetails(option), `Počet: ${quantity} ks`],
-      });
-      return;
-    }
-
-    addStandardItem({
-      title: category.getCartTitle(length),
+    if (!variant || !variant.pricing || !quote) return;
+    addCatalogItem({
+      productId: category.id,
+      modeId,
+      variantId: variant.id,
+      title: getVariantTitle(category, variant),
       quantity,
-      unitPrice,
-      details: [...category.getCartDetails(length), `Počet: ${quantity} ks`],
+      quantityUnitLabel: category.quantityUnitLabel,
+      details: getVariantDetails(category, variant),
+      availability: variant.availability,
+      pricing: variant.pricing,
+      dimensions: variant.dimensions,
     });
   };
 
@@ -178,14 +183,14 @@ export function ProductDetailPage({ category }: { category: ProductCategory }) {
     <SiteShell>
       <section
         data-beam-configurator
-        className="relative overflow-hidden border-b border-border bg-[linear-gradient(180deg,#f9f5ee_0%,#f3ede2_100%)]"
+        className="relative overflow-x-clip border-b border-border bg-[linear-gradient(180deg,#f9f5ee_0%,#f3ede2_100%)]"
       >
         <div
           aria-hidden
           className="absolute inset-0 scale-110 bg-cover bg-center opacity-20 blur-sm"
           style={{ backgroundImage: "url('/images/woodpatern.jpg')" }}
         />
-        <div className="relative mx-auto max-w-7xl px-4 py-10 sm:py-14">
+        <div className="relative mx-auto w-full min-w-0 max-w-7xl px-4 py-10 sm:py-14">
           <a
             href={`/#${category.sectionAnchorId}`}
             className="mb-5 inline-flex items-center gap-2 text-sm font-semibold text-[#234A33] transition hover:text-[#A86D38]"
@@ -194,131 +199,164 @@ export function ProductDetailPage({ category }: { category: ProductCategory }) {
             Zpět do obchodu
           </a>
 
-          <div className="rounded-3xl border border-white/70 bg-white/88 p-6 shadow-sm backdrop-blur sm:p-8">
-            <h1 className="text-3xl font-black tracking-tight text-[#1E293B] sm:text-5xl">
+          <div className="max-w-3xl py-1 sm:py-3">
+            <h1 className="text-3xl font-black tracking-[-0.035em] text-[#1E293B] sm:text-5xl">
               {category.name}
             </h1>
-            <p className="mt-3 max-w-2xl text-base font-semibold text-[#1E293B]/72">
-              {category.subtitle}
-            </p>
-            <p className="mt-2 max-w-3xl text-sm leading-7 text-[#1E293B]/65 sm:text-base">
+            <p className="mt-3 text-base font-bold text-[#1E293B]/72">{category.subtitle}</p>
+            <p className="mt-2 text-sm leading-7 text-[#1E293B]/65 sm:text-base">
               {category.description}
             </p>
           </div>
 
-          <div className="mt-6 grid items-stretch gap-6 lg:grid-cols-[minmax(0,1fr)_minmax(360px,460px)]">
-            <div className="order-2 h-full min-w-0 lg:order-1">
+          <div className="mt-6 grid min-w-0 items-stretch gap-6 xl:grid-cols-[minmax(0,1.08fr)_minmax(25rem,0.92fr)]">
+            <div className="order-1 h-full min-w-0">
               <WoodVisualizer
                 categoryId={category.id}
                 imageSrc={category.imageSrc}
                 imageAlt={category.thumbnailAlt}
-                quantity={visualQuantity}
-                dimension={category.kind === "dimensioned" ? dimension : undefined}
-                length={category.kind === "option-only" ? undefined : length}
-                option={category.kind === "option-only" ? option : undefined}
+                quantity={quantity}
+                quantityUnitLabel={category.quantityUnitLabel}
+                variant={variant}
               />
             </div>
 
-            <div className="order-1 flex h-full flex-col rounded-3xl border border-[#234A33]/12 bg-white p-5 shadow-sm transition-shadow duration-300 hover:shadow-[0_20px_45px_rgba(35,74,51,0.08)] sm:p-7 lg:order-2">
-              <div className="flex items-start justify-between gap-4">
+            <div className="order-2 flex h-full min-w-0 flex-col rounded-3xl border border-[#234A33]/12 bg-white p-5 shadow-[0_18px_50px_rgba(30,58,43,0.08)] sm:p-7">
+              <div className="flex min-w-0 flex-wrap items-start justify-between gap-4">
                 <h2 className="text-2xl font-black tracking-tight text-[#1E293B]">
                   Nastavte si sestavu
                 </h2>
                 <div className="min-w-[8.75rem] rounded-2xl bg-[#F6F4EE] px-4 py-3 text-right">
                   <div className="text-[11px] font-semibold uppercase tracking-[0.18em] text-muted-foreground">
-                    {category.priceUnitLabel}
+                    {pricingLabel(category, variant?.pricing?.basis)}
                   </div>
                   <div className="mt-1 text-xl font-black tracking-tight text-[color:var(--timber)] tabular-nums">
-                    {formatCurrency(unitPrice)}
+                    {variant?.pricing ? formatCurrency(variant.pricing.rate) : "—"}
                   </div>
                 </div>
               </div>
 
               <div className="mt-6 flex flex-1 flex-col gap-4">
-                {category.kind === "dimensioned" ? (
-                  <div className="grid gap-4 sm:grid-cols-2">
-                    <ProductSelect
-                      value={dimension}
-                      onChange={setDimension}
-                      options={dimensionOptions}
-                      label={category.dimensionLabel}
-                    />
-                    <ProductSelect
-                      value={length}
-                      onChange={setLength}
-                      options={lengthOptions}
-                      label={category.lengthLabel}
-                    />
-                  </div>
-                ) : category.kind === "option-only" ? (
-                  <div className="grid gap-4">
-                    <ProductSelect
-                      value={option}
-                      onChange={setOption}
-                      options={optionOptions}
-                      label={category.optionLabel}
-                    />
-                  </div>
-                ) : (
-                  <div className="grid gap-4 sm:grid-cols-2">
-                    <div className="rounded-2xl border border-border bg-[#F6F4EE] px-4 py-3">
-                      <div className="text-xs font-semibold uppercase tracking-[0.18em] text-muted-foreground">
-                        Profil
-                      </div>
-                      <div className="mt-1 text-base font-black text-[#1E293B]">
-                        {category.fixedDimensionLabel}
-                      </div>
-                    </div>
-                    <ProductSelect
-                      value={length}
-                      onChange={setLength}
-                      options={lengthOptions}
-                      label={category.lengthLabel}
-                    />
+                {category.modes && (
+                  <div
+                    role="group"
+                    aria-label="Typ prken"
+                    className="grid grid-cols-2 gap-2 rounded-2xl bg-[#F6F4EE] p-1.5"
+                  >
+                    {category.modes.map((mode) => (
+                      <button
+                        key={mode.id}
+                        type="button"
+                        aria-pressed={mode.id === modeId}
+                        onClick={() => changeMode(mode.id)}
+                        className={`rounded-xl px-3 py-2.5 text-sm font-bold transition ${
+                          mode.id === modeId
+                            ? "bg-[#234A33] text-white shadow-sm"
+                            : "text-[#1E293B]/70 hover:bg-white"
+                        }`}
+                      >
+                        {mode.label}
+                      </button>
+                    ))}
                   </div>
                 )}
 
-                <QuantitySelector quantity={quantity} onChange={setQuantity} min={1} max={500} />
-
-                <div className="rounded-[1.75rem] border border-[#234A33]/10 bg-[#F6F4EE] p-5">
-                  <div className="text-[11px] font-semibold uppercase tracking-[0.2em] text-muted-foreground">
-                    Konfigurace
-                  </div>
-                  <div className="mt-2 text-base font-black leading-6 text-[#1E293B]">
-                    {selectionSummary}
-                  </div>
-
-                  <div className="mt-5 flex items-end justify-between gap-4">
-                    <div>
-                      <div className="text-[11px] font-semibold uppercase tracking-[0.2em] text-muted-foreground">
-                        Celkem
-                      </div>
-                      <div
-                        aria-live="polite"
-                        className="mt-1 min-w-[8ch] text-4xl font-black tracking-tight text-[#1E3A2B] tabular-nums"
-                      >
-                        {formatCurrency(totalPrice)}
-                      </div>
+                {category.id === "prkna" && (
+                  <div className="rounded-2xl border border-border bg-[#F6F4EE] px-4 py-3">
+                    <div className="text-xs font-semibold uppercase tracking-[0.18em] text-muted-foreground">
+                      Tloušťka
                     </div>
-                    <div className="rounded-full border border-white/70 bg-white px-3 py-1.5 text-sm font-bold text-[#1E293B] tabular-nums">
-                      {quantity} ks
-                    </div>
+                    <div className="mt-1 text-base font-black text-[#1E293B]">25 mm</div>
                   </div>
+                )}
+
+                <div
+                  className={`grid gap-4 ${category.selectors.length > 1 ? "sm:grid-cols-2" : ""}`}
+                >
+                  {category.selectors.map((selector) => (
+                    <ProductSelect
+                      key={selector.key}
+                      value={selection[selector.key] ?? ""}
+                      onChange={(value) => changeSelection(selector.key, value)}
+                      options={selectorOptions[selector.key] ?? []}
+                      label={selector.label}
+                    />
+                  ))}
                 </div>
+
+                <QuantitySelector
+                  quantity={quantity}
+                  onChange={setQuantity}
+                  min={1}
+                  max={500}
+                  label={category.quantityLabel}
+                />
+
+                {isUnavailable ? (
+                  <div
+                    role="status"
+                    className="rounded-[1.75rem] border border-amber-300 bg-amber-50 p-5"
+                  >
+                    <div className="text-sm font-black text-amber-900">
+                      Momentálně nenaskladněno
+                    </div>
+                    <p className="mt-1 text-sm leading-6 text-amber-900/75">
+                      Tuto variantu nyní nelze vložit do košíku. Dostupnost vám rádi ověříme
+                      poptávkou.
+                    </p>
+                  </div>
+                ) : (
+                  <div className="rounded-[1.75rem] border border-[#234A33]/10 bg-[#F6F4EE] p-5">
+                    <div className="text-[11px] font-semibold uppercase tracking-[0.2em] text-muted-foreground">
+                      Konfigurace
+                    </div>
+                    <div className="mt-2 break-words text-base font-black leading-6 text-[#1E293B]">
+                      {fullSelectionSummary}
+                    </div>
+                    {quote?.totalLinearMeters != null && (
+                      <div className="mt-3 text-sm font-semibold text-[#70451F]">
+                        Celkem {formatDecimal(quote.totalLinearMeters, 2)} bm
+                      </div>
+                    )}
+                    {quote?.totalVolumeM3 != null && (
+                      <div className="mt-3 text-sm font-semibold text-[#70451F]">
+                        Objem {formatDecimal(quote.totalVolumeM3, 4)} m³
+                      </div>
+                    )}
+                    <div className="mt-5 flex items-end justify-between gap-4">
+                      <div>
+                        <div className="text-[11px] font-semibold uppercase tracking-[0.2em] text-muted-foreground">
+                          Celkem
+                        </div>
+                        <div
+                          aria-live="polite"
+                          className="mt-1 text-4xl font-black tracking-tight text-[#1E3A2B] tabular-nums"
+                        >
+                          {quote ? formatCurrency(quote.totalPrice) : "—"}
+                        </div>
+                      </div>
+                      <div className="rounded-full border border-white/70 bg-white px-3 py-1.5 text-sm font-bold text-[#1E293B]">
+                        {quantity} {category.quantityUnitLabel}
+                      </div>
+                    </div>
+                  </div>
+                )}
               </div>
 
               <div className="mt-6 grid gap-3 sm:grid-cols-2">
                 <Button
                   type="button"
                   onClick={handleAddToCart}
-                  className="h-12 w-full rounded-2xl bg-[#1e3a2b] text-sm font-bold text-white shadow-sm transition hover:bg-[#163022] hover:shadow-[0_14px_30px_rgba(30,58,43,0.18)]"
+                  disabled={isUnavailable}
+                  className="h-12 w-full rounded-2xl bg-[#1e3a2b] text-sm font-bold text-white disabled:cursor-not-allowed disabled:opacity-45"
                 >
-                  {category.ctaLabel}
+                  {!isUnavailable && <ShoppingCart className="h-4 w-4" />}
+                  {isUnavailable ? "Nenaskladněno" : category.ctaLabel}
                 </Button>
                 <Button
                   asChild
                   variant="outline"
-                  className="h-12 w-full rounded-2xl border-[#A86D38]/30 bg-[#FCFAF5] text-sm font-bold text-[#A86D38] shadow-sm transition hover:bg-[#F5ECDD] hover:text-[#8F5927]"
+                  className="h-12 w-full rounded-2xl border-[#A86D38]/30 bg-[#FCFAF5] text-sm font-bold text-[#A86D38]"
                 >
                   <a href={inquiryHref}>
                     <Mail className="h-4 w-4" />

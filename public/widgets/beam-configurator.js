@@ -8,57 +8,73 @@
     },
     maxQuantity: 150,
     images: {
-      one: "/images/illustrations/beams/beam-1-500-v2.webp",
-      two: "/images/illustrations/beams/beam-2-500-v2.webp",
-      three: "/images/illustrations/beams/beam-3-500-v2.webp",
-      five: "/images/illustrations/beams/beam-5-500-v2.webp",
-      seven: "/images/illustrations/beams/beam-7-500-v2.webp",
-      eleven: "/images/illustrations/beams/beam-11-500-v2.webp",
-      eighteen: "/images/illustrations/beams/beam-18-500-v2.webp",
+      one: "/images/illustrations/configurator-v4/beam-1-v4.webp",
+      two: "/images/illustrations/configurator-v4/beam-2-v4.webp",
+      three: "/images/illustrations/configurator-v4/beam-3-v4.webp",
+      five: "/images/illustrations/golden-masters/beam-bundle-6-seams-master-v2.webp",
+      eleven: "/images/illustrations/configurator-v4/beam-12-v4.webp",
+      eighteen: "/images/illustrations/configurator-v4/beam-16-v4.webp",
     },
     catalog: {
       profiles: [
         { value: "8x8", label: "8 \u00d7 8 cm" },
+        { value: "8x10", label: "8 \u00d7 10 cm" },
+        { value: "8x12", label: "8 \u00d7 12 cm" },
+        { value: "8x14", label: "8 \u00d7 14 cm" },
+        { value: "8x16", label: "8 \u00d7 16 cm" },
+        { value: "8x20", label: "8 \u00d7 20 cm" },
         { value: "10x10", label: "10 \u00d7 10 cm" },
+        { value: "10x12", label: "10 \u00d7 12 cm" },
+        { value: "10x14", label: "10 \u00d7 14 cm" },
+        { value: "10x16", label: "10 \u00d7 16 cm" },
+        { value: "10x18", label: "10 \u00d7 18 cm" },
+        { value: "10x20", label: "10 \u00d7 20 cm" },
         { value: "12x12", label: "12 \u00d7 12 cm" },
+        { value: "12x14", label: "12 \u00d7 14 cm" },
+        { value: "12x16", label: "12 \u00d7 16 cm" },
+        { value: "12x18", label: "12 \u00d7 18 cm" },
         { value: "14x14", label: "14 \u00d7 14 cm" },
+        { value: "14x16", label: "14 \u00d7 16 cm" },
         { value: "16x16", label: "16 \u00d7 16 cm" },
+        { value: "16x18", label: "16 \u00d7 18 cm" },
+        { value: "16x20", label: "16 \u00d7 20 cm" },
         { value: "20x20", label: "20 \u00d7 20 cm" },
       ],
       lengths: [
         { value: "400", label: "400 cm" },
         { value: "500", label: "500 cm" },
+        { value: "600", label: "600 cm" },
+        { value: "700", label: "700 cm" },
       ],
       prices: {
-        "8x8": { 400: 272, 500: 290 },
-        "10x10": { 400: 450, 500: 473 },
-        "12x12": { 400: 612, 500: 739 },
-        "14x14": { 400: 741, 500: 926 },
-        "16x16": { 400: 1087, 500: 1313 },
-        "20x20": { 400: 1512, 500: 1890 },
+        "8x8": { 400: 302, 500: 322 },
+        "8x10": { 400: 322, 500: 402 },
+        "8x12": { 400: 453 },
+        "8x14": { 400: 511, 500: 661 },
+        "8x16": { 400: 604, 500: 755, 600: 960, 700: 1048 },
+        "8x20": { 400: 819, 500: 840 },
+        "10x10": { 400: 500, 500: 525, 600: 678 },
+        "10x12": { 400: 566, 500: 708 },
+        "10x14": { 400: 661, 500: 826, 600: 1025 },
+        "10x16": { 400: 755, 500: 944, 600: 1200, 700: 1568 },
+        "10x18": { 400: 850, 500: 1062, 600: 1177, 700: 1714 },
+        "10x20": { 400: 912, 500: 1050, 600: 1680 },
+        "12x12": { 400: 680, 500: 821 },
+        "12x14": { 400: 598, 500: 806, 600: 1189 },
+        "12x16": { 400: 906, 500: 1133, 600: 1544 },
+        "12x18": { 400: 769, 500: 1318, 600: 1529 },
+        "14x14": { 400: 823, 500: 1029, 600: 1352 },
+        "14x16": { 400: 1093, 500: 1389, 600: 1693 },
+        "16x16": { 400: 1208, 500: 1459, 600: 2058 },
+        "16x18": { 400: 1025, 500: 1637 },
+        "16x20": { 400: 1600, 500: 1888, 600: 2419 },
+        "20x20": { 400: 1680, 500: 2100 },
       },
     },
   };
 
-  const IMAGE_KEYS = ["one", "two", "three", "five", "seven", "eleven", "eighteen"];
-  const CHOPPED_IMAGES = {
-    one: "/images/illustrations/beams/beam-1-400-v2.webp",
-    two: "/images/illustrations/beams/beam-2-400-v2.webp",
-    three: "/images/illustrations/beams/beam-3-400-v2.webp",
-    five: "/images/illustrations/beams/beam-5-400-v2.webp",
-    seven: "/images/illustrations/beams/beam-7-400-v2.webp",
-    eleven: "/images/illustrations/beams/beam-11-400-v2.webp",
-    eighteen: "/images/illustrations/beams/beam-18-400-v2.webp",
-  };
-  const PROFILE_SCALES = {
-    "8x8": 0.92,
-    "10x10": 0.95,
-    "12x12": 0.98,
-    "14x14": 1,
-    "16x16": 1.04,
-    "18x18": 1.04,
-    "20x20": 1.08,
-  };
+  const IMAGE_KEYS = ["one", "two", "three", "five", "eleven", "eighteen"];
+  const CHOPPED_IMAGES = {};
   const RECOIL_DURATION_MS = 420;
 
   function mergeOptions(base, override) {
@@ -117,14 +133,30 @@
     if (quantity <= 1) return "one";
     if (quantity === 2) return "two";
     if (quantity <= 4) return "three";
-    if (quantity <= 6) return "five";
-    if (quantity <= 10) return "seven";
+    if (quantity <= 10) return "five";
     if (quantity <= 15) return "eleven";
     return "eighteen";
   }
 
-  function getProfileScale(profile) {
-    return PROFILE_SCALES[profile] || 1;
+  function getStageTransform(profile, length) {
+    const dimensions = profile.split("x").map(Number);
+    const width = dimensions[0] || 14;
+    const height = dimensions[1] || width;
+    const areaScale = clamp(Math.sqrt((width * height) / (14 * 14)), 0.88, 1.12);
+    const ratio = width / height;
+    const profileX = clamp(Math.sqrt(ratio), 0.94, 1.06);
+    const profileY = clamp(1 / Math.sqrt(ratio), 0.94, 1.06);
+    const lengthScale = { 400: 0.82, 500: 1, 600: 1.1, 700: 1.18 }[length] || 1;
+    const scaleX = clamp(areaScale * lengthScale * profileX, 0.78, 1.18);
+    const scaleY = clamp(areaScale * profileY, 0.82, 1.16);
+    return `scaleX(${scaleX}) scaleY(${scaleY})`;
+  }
+
+  function getLengthsForProfile(profile, options) {
+    const prices = options.catalog.prices[profile] || {};
+    return options.catalog.lengths.filter((length) =>
+      Object.prototype.hasOwnProperty.call(prices, length.value),
+    );
   }
 
   function getImageSrc(imageKey, images, length) {
@@ -228,7 +260,7 @@
     }
 
     const firstProfile = options.catalog.profiles[0]?.value || "8x8";
-    const firstLength = options.catalog.lengths[0]?.value || "400";
+    const firstLength = getLengthsForProfile(firstProfile, options)[0]?.value || "400";
 
     const state = {
       profile: root.getAttribute("data-default-profile") || firstProfile,
@@ -241,7 +273,7 @@
     };
 
     populateSelect(profileSelect, options.catalog.profiles, state.profile);
-    populateSelect(lengthSelect, options.catalog.lengths, state.length);
+    populateSelect(lengthSelect, getLengthsForProfile(state.profile, options), state.length);
 
     quantityRange.min = String(options.slider.min);
     quantityRange.max = String(options.slider.max);
@@ -305,7 +337,7 @@
       );
 
       if (previewStage) {
-        previewStage.style.transform = `scale(${getProfileScale(snapshot.profile)})`;
+        previewStage.style.transform = getStageTransform(snapshot.profile, snapshot.length);
       }
 
       if (renderReason === "profile" && previewMotion) {
@@ -361,11 +393,14 @@
     }
 
     function syncLengthValue() {
-      const hasLength = options.catalog.lengths.some((length) => length.value === state.length);
+      const availableLengths = getLengthsForProfile(state.profile, options);
+      const hasLength = availableLengths.some((length) => length.value === state.length);
 
       if (!hasLength) {
-        state.length = options.catalog.lengths[0]?.value || firstLength;
+        state.length = availableLengths[0]?.value || firstLength;
       }
+
+      populateSelect(lengthSelect, availableLengths, state.length);
     }
 
     profileSelect.addEventListener("change", function () {
@@ -379,10 +414,13 @@
       scheduleRender("length");
     });
 
-    quantityRange.addEventListener("input", function () {
+    function syncQuantityRange() {
       state.quantity = clamp(Number(quantityRange.value), options.slider.min, options.maxQuantity);
       scheduleRender("quantity");
-    });
+    }
+
+    quantityRange.addEventListener("input", syncQuantityRange);
+    quantityRange.addEventListener("change", syncQuantityRange);
 
     quantityInput.addEventListener("input", function () {
       if (quantityInput.value === "") {

@@ -1,4 +1,4 @@
-import { useEffect, useId, useMemo, useState, type CSSProperties } from "react";
+import { useEffect, useId, useMemo, useRef, useState, type CSSProperties } from "react";
 import { Minus, Plus, ShoppingCart } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
@@ -133,6 +133,8 @@ function DimensionBadge({
 }
 
 function SawBladeWatermark() {
+  const coordinate = (value: number) => value.toFixed(6);
+
   return (
     <svg
       aria-hidden
@@ -156,7 +158,12 @@ function SawBladeWatermark() {
           const x3 = 200 + Math.cos(angle + spread) * inner;
           const y3 = 200 + Math.sin(angle + spread) * inner;
 
-          return <path key={index} d={`M ${x1} ${y1} L ${x2} ${y2} L ${x3} ${y3}`} />;
+          return (
+            <path
+              key={index}
+              d={`M ${coordinate(x1)} ${coordinate(y1)} L ${coordinate(x2)} ${coordinate(y2)} L ${coordinate(x3)} ${coordinate(y3)}`}
+            />
+          );
         })}
       </g>
     </svg>
@@ -455,7 +462,10 @@ function NumericControl({
   unit,
   allowDecimal = false,
 }: NumericControlProps) {
-  const id = useId();
+  const desktopInputId = useId();
+  const mobileInputId = useId();
+  const rangeId = useId();
+  const valueRef = useRef(value);
   const [draftValue, setDraftValue] = useState(() =>
     allowDecimal ? formatFlexibleValue(value) : formatControlValue(value, step),
   );
@@ -463,11 +473,13 @@ function NumericControl({
   const sliderStyle = { "--beam-range-progress": `${progress}%` } as CSSProperties;
 
   useEffect(() => {
+    valueRef.current = value;
     setDraftValue(allowDecimal ? formatFlexibleValue(value) : formatControlValue(value, step));
   }, [allowDecimal, step, value]);
 
   const commitValue = (nextValue: number) => {
     const normalized = clampToStep(nextValue, min, max, step);
+    valueRef.current = normalized;
     onChange(normalized);
   };
 
@@ -482,6 +494,7 @@ function NumericControl({
     const normalized = allowDecimal
       ? clampToPrecision(parsed, min, max, 1)
       : clampToStep(parsed, min, max, step);
+    valueRef.current = normalized;
     onChange(normalized);
     setDraftValue(
       allowDecimal ? formatFlexibleValue(normalized) : formatControlValue(normalized, step),
@@ -491,19 +504,16 @@ function NumericControl({
   return (
     <div className="rounded-[1.55rem] border border-[#1E3A2B]/10 bg-white/82 p-4 shadow-[0_12px_30px_rgba(30,58,43,0.05)] backdrop-blur-sm sm:p-5 lg:p-3.5">
       <div className="flex items-center justify-between gap-3">
-        <label
-          htmlFor={id}
-          className="text-[11px] font-semibold uppercase tracking-[0.22em] text-[#1E3A2B]/58"
-        >
+        <span className="text-[11px] font-semibold uppercase tracking-[0.22em] text-[#1E3A2B]/58">
           {label}
-        </label>
+        </span>
 
         <div className="rounded-full border border-[#1E3A2B]/10 bg-[#FBF9F4] px-3 py-1 text-sm font-black text-[#1E293B] tabular-nums md:hidden">
           {(allowDecimal ? formatFlexibleValue(value) : formatControlValue(value, step))} {unit}
         </div>
         <div className="hidden md:block">
           <Input
-            id={id}
+            id={desktopInputId}
             aria-label={label}
             type="text"
             inputMode={allowDecimal || step < 1 ? "decimal" : "decimal"}
@@ -523,8 +533,9 @@ function NumericControl({
       <div className="mt-4 flex items-center gap-3 md:hidden">
         <button
           type="button"
-          onClick={() => commitValue(value - step)}
-          className="flex h-12 w-12 shrink-0 items-center justify-center rounded-2xl border border-[#1E3A2B]/12 bg-[#FBF9F4] text-[#1E3A2B] shadow-sm transition hover:border-[#1E3A2B]/24 hover:bg-white focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#1E3A2B]/20"
+          onClick={() => commitValue(valueRef.current - step)}
+          disabled={value <= min}
+          className="flex h-12 w-12 shrink-0 items-center justify-center rounded-2xl border border-[#1E3A2B]/12 bg-[#FBF9F4] text-[#1E3A2B] shadow-sm transition hover:border-[#1E3A2B]/24 hover:bg-white focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#1E3A2B]/20 disabled:cursor-default disabled:opacity-35"
           aria-label={`Sn\u00ed\u017eit hodnotu ${label}`}
         >
           <Minus className="h-4 w-4" />
@@ -532,7 +543,7 @@ function NumericControl({
 
         <div className="flex min-w-0 flex-1 items-center gap-3 rounded-2xl border border-[#1E3A2B]/10 bg-[#FBF9F4] px-4 py-3 shadow-[inset_0_1px_0_rgba(255,255,255,0.72)]">
           <Input
-            id={id}
+            id={mobileInputId}
             aria-label={label}
             type="text"
             inputMode={allowDecimal || step < 1 ? "decimal" : "decimal"}
@@ -550,8 +561,9 @@ function NumericControl({
 
         <button
           type="button"
-          onClick={() => commitValue(value + step)}
-          className="flex h-12 w-12 shrink-0 items-center justify-center rounded-2xl border border-[#1E3A2B]/12 bg-[#FBF9F4] text-[#1E3A2B] shadow-sm transition hover:border-[#1E3A2B]/24 hover:bg-white focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#1E3A2B]/20"
+          onClick={() => commitValue(valueRef.current + step)}
+          disabled={value >= max}
+          className="flex h-12 w-12 shrink-0 items-center justify-center rounded-2xl border border-[#1E3A2B]/12 bg-[#FBF9F4] text-[#1E3A2B] shadow-sm transition hover:border-[#1E3A2B]/24 hover:bg-white focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#1E3A2B]/20 disabled:cursor-default disabled:opacity-35"
           aria-label={`Zv\u00fd\u0161it hodnotu ${label}`}
         >
           <Plus className="h-4 w-4" />
@@ -560,16 +572,16 @@ function NumericControl({
 
       <div className="mt-4 hidden md:block lg:mt-3">
         <input
-          id={id}
+          id={rangeId}
           data-beam-range
           type="range"
           min={min}
           max={max}
           step={step}
           value={value}
-          onInput={(event) => commitValue(Number(event.currentTarget.value))}
+          onChange={(event) => commitValue(Number(event.currentTarget.value))}
           style={sliderStyle}
-          className="block w-full cursor-grab touch-none bg-transparent active:cursor-grabbing"
+          className="block w-full cursor-grab bg-transparent active:cursor-grabbing"
           aria-valuemin={min}
           aria-valuemax={max}
           aria-valuenow={value}

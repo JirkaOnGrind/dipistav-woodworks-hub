@@ -74,22 +74,24 @@
     color: var(--color-foreground);
     font-family: var(--font-display);
     -webkit-font-smoothing: antialiased;
+    max-width: 100%;
+    overflow-x: clip;
   }
 }
 
 @layer components {
   [data-beam-configurator] [data-beam-preview] {
-    contain: layout paint style;
+    contain: layout style;
     min-width: 0;
     overflow: hidden;
   }
 
   [data-beam-configurator] [data-beam-preview-frame] {
-    aspect-ratio: 1820 / 1024;
     width: 100%;
+    height: 100%;
     max-width: 100%;
     max-height: 100%;
-    overflow: hidden;
+    overflow: visible;
   }
 
   [data-beam-configurator] [data-beam-preview-motion] {
@@ -97,7 +99,7 @@
     height: 100%;
     max-width: 100%;
     max-height: 100%;
-    overflow: hidden;
+    overflow: visible;
     transform-origin: center center;
   }
 
@@ -110,7 +112,7 @@
     height: 100%;
     max-width: 100%;
     max-height: 100%;
-    overflow: hidden;
+    overflow: visible;
     transform-origin: center center;
     transition: transform 280ms cubic-bezier(0.22, 1, 0.36, 1);
     will-change: transform;
@@ -141,6 +143,27 @@
     transition:
       opacity 220ms ease,
       transform 360ms cubic-bezier(0.22, 1, 0.36, 1);
+  }
+
+  [data-beam-configurator] [data-product-artwork] {
+    transform-origin: center;
+    animation: product-illustration-arrange 320ms cubic-bezier(0.22, 1, 0.36, 1);
+  }
+
+  [data-beam-configurator] [data-selling-unit] {
+    transform: translate(var(--artwork-x), var(--artwork-y)) rotate(var(--artwork-rotation, 0deg))
+      scale(var(--artwork-scale));
+    transform-origin: center;
+    transition:
+      opacity 220ms ease,
+      transform 360ms cubic-bezier(0.22, 1, 0.36, 1);
+  }
+
+  [data-beam-configurator] [data-composition-group] {
+    transform: translate(var(--artwork-x), var(--artwork-y)) rotate(var(--artwork-rotation, 0deg))
+      scale(var(--artwork-scale));
+    transform-origin: center;
+    transition: transform 360ms cubic-bezier(0.22, 1, 0.36, 1);
   }
 
   [data-beam-configurator] [data-beam-range] {
@@ -238,6 +261,30 @@
 
     100% {
       transform: scaleY(1);
+    }
+  }
+
+  @keyframes product-illustration-arrange {
+    from {
+      opacity: 0.35;
+      transform: translateY(2%) scale(0.97);
+    }
+
+    to {
+      opacity: 1;
+      transform: translateY(0) scale(1);
+    }
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    [data-beam-configurator] [data-beam-preview-motion],
+    [data-beam-configurator] [data-beam-preview-stage],
+    [data-beam-configurator] [data-product-illustration-layer],
+    [data-beam-configurator] [data-product-artwork],
+    [data-beam-configurator] [data-selling-unit],
+    [data-beam-configurator] [data-composition-group] {
+      animation: none !important;
+      transition: none !important;
     }
   }
 }

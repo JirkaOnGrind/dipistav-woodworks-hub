@@ -1,208 +1,159 @@
-import { useEffect, useMemo, useRef, useState } from "react";
+import { useEffect, useLayoutEffect, useMemo, useRef, useState } from "react";
+import { ProductIllustration } from "@/components/product-illustrations";
+import {
+  getProductArtworkSources,
+  getSellingUnitCount,
+  resolveProductArtwork,
+} from "@/lib/product-artwork";
+import type { ProductVariant } from "@/lib/product-catalog";
 
 type WoodVisualizerProps = {
   categoryId: string;
   imageSrc: string;
   imageAlt: string;
   quantity: number;
-  dimension?: string;
-  length?: string;
-  option?: string;
+  quantityUnitLabel?: string;
+  variant?: ProductVariant;
 };
 
 const BEAM_ASSETS = {
-  one: "/images/illustrations/beams/beam-1-500-v2.webp",
-  two: "/images/illustrations/beams/beam-2-500-v2.webp",
-  three: "/images/illustrations/beams/beam-3-500-v2.webp",
-  five: "/images/illustrations/beams/beam-5-500-v2.webp",
-  seven: "/images/illustrations/beams/beam-7-500-v2.webp",
-  eleven: "/images/illustrations/beams/beam-11-500-v2.webp",
-  eighteen: "/images/illustrations/beams/beam-18-500-v2.webp",
+  one: "/images/illustrations/configurator-v4/beam-1-v4.webp",
+  two: "/images/illustrations/configurator-v4/beam-2-v4.webp",
+  three: "/images/illustrations/configurator-v4/beam-3-v4.webp",
+  five: "/images/illustrations/golden-masters/beam-bundle-6-seams-master-v2.webp",
+  eleven: "/images/illustrations/configurator-v4/beam-12-v4.webp",
+  eighteen: "/images/illustrations/configurator-v7/beam-16-seams-v7.webp",
 } as const;
 
-const BEAM_CHOPPED_ASSETS = {
-  one: "/images/illustrations/beams/beam-1-400-v2.webp",
-  two: "/images/illustrations/beams/beam-2-400-v2.webp",
-  three: "/images/illustrations/beams/beam-3-400-v2.webp",
-  five: "/images/illustrations/beams/beam-5-400-v2.webp",
-  seven: "/images/illustrations/beams/beam-7-400-v2.webp",
-  eleven: "/images/illustrations/beams/beam-11-400-v2.webp",
-  eighteen: "/images/illustrations/beams/beam-18-400-v2.webp",
+const BEAM_ALT = {
+  one: "Jeden stavební trám",
+  two: "Dva stavební trámy",
+  three: "Tři až čtyři stavební trámy",
+  five: "Pět až deset stavebních trámů",
+  eleven: "Jedenáct až patnáct stavebních trámů",
+  eighteen: "Šestnáct a více stavebních trámů",
 } as const;
 
-const BEAM_IMAGE_STACK = [
-  { alt: "Jeden stavebn\u00ed tr\u00e1m", key: "one", src: BEAM_ASSETS.one },
-  { alt: "Dva stavebn\u00ed tr\u00e1my", key: "two", src: BEAM_ASSETS.two },
-  {
-    alt: "T\u0159i a\u017e \u010dty\u0159i stavebn\u00ed tr\u00e1my",
-    key: "three",
-    src: BEAM_ASSETS.three,
-  },
-  {
-    alt: "P\u011bt a\u017e \u0161est stavebn\u00edch tr\u00e1m\u016f",
-    key: "five",
-    src: BEAM_ASSETS.five,
-  },
-  {
-    alt: "Sedm a\u017e deset stavebn\u00edch tr\u00e1m\u016f",
-    key: "seven",
-    src: BEAM_ASSETS.seven,
-  },
-  {
-    alt: "Jeden\u00e1ct a\u017e patn\u00e1ct stavebn\u00edch tr\u00e1m\u016f",
-    key: "eleven",
-    src: BEAM_ASSETS.eleven,
-  },
-  {
-    alt: "\u0160estn\u00e1ct a v\u00edce stavebn\u00edch tr\u00e1m\u016f",
-    key: "eighteen",
-    src: BEAM_ASSETS.eighteen,
-  },
-] as const;
+type BeamKey = keyof typeof BEAM_ASSETS;
 
-const BEAM_REST_SCALES: Record<string, number> = {
-  "8x8": 0.92,
-  "10x10": 0.95,
-  "12x12": 0.98,
-  "14x14": 1,
-  "16x16": 1.04,
-  "18x18": 1.04,
-  "20x20": 1.08,
+type VisualState = {
+  signature: string;
+  source: string;
+  quantity: number;
+  beamKey?: BeamKey;
+  variant?: ProductVariant;
 };
 
-const RECOIL_DURATION_MS = 420;
+const decodedImages = new Map<string, Promise<void>>();
+const decodedSources = new Set<string>();
 
-type LayerPose = {
-  x: number;
-  y: number;
-  scale: number;
-  rotate: number;
-  zIndex: number;
-};
+function decodeImage(src: string) {
+  if (typeof Image === "undefined" || !src) return Promise.resolve();
 
-const PRODUCT_LAYER_PRESETS: Record<number, LayerPose[]> = {
-  1: [{ x: 0, y: 0, scale: 0.94, rotate: 0, zIndex: 1 }],
-  2: [
-    { x: -22, y: 4, scale: 0.68, rotate: -2, zIndex: 1 },
-    { x: 22, y: 4, scale: 0.68, rotate: 2, zIndex: 2 },
-  ],
-  3: [
-    { x: -25, y: 12, scale: 0.58, rotate: -3, zIndex: 1 },
-    { x: 0, y: -8, scale: 0.64, rotate: 0, zIndex: 3 },
-    { x: 25, y: 12, scale: 0.58, rotate: 3, zIndex: 2 },
-  ],
-  4: [
-    { x: -27, y: -8, scale: 0.52, rotate: -3, zIndex: 1 },
-    { x: 27, y: -8, scale: 0.52, rotate: 3, zIndex: 2 },
-    { x: -14, y: 20, scale: 0.5, rotate: -1, zIndex: 3 },
-    { x: 14, y: 20, scale: 0.5, rotate: 1, zIndex: 4 },
-  ],
-  5: [
-    { x: -31, y: 6, scale: 0.45, rotate: -4, zIndex: 1 },
-    { x: -16, y: -14, scale: 0.48, rotate: -2, zIndex: 2 },
-    { x: 0, y: 14, scale: 0.5, rotate: 0, zIndex: 5 },
-    { x: 16, y: -14, scale: 0.48, rotate: 2, zIndex: 3 },
-    { x: 31, y: 6, scale: 0.45, rotate: 4, zIndex: 4 },
-  ],
-};
+  const cached = decodedImages.get(src);
+  if (cached) return cached;
 
-function preloadImage(src: string) {
-  const image = new Image();
-  image.decoding = "async";
-  image.src = src;
+  const promise = new Promise<void>((resolve) => {
+    const image = new Image();
+    image.decoding = "async";
+    let settled = false;
+
+    const finish = () => {
+      if (settled) return;
+      settled = true;
+      if (typeof image.decode === "function") {
+        image
+          .decode()
+          .catch(() => undefined)
+          .finally(() => {
+            decodedSources.add(src);
+            resolve();
+          });
+      } else {
+        decodedSources.add(src);
+        resolve();
+      }
+    };
+
+    image.onload = finish;
+    image.onerror = () => resolve();
+    image.src = src;
+
+    if (image.complete) finish();
+  });
+
+  decodedImages.set(src, promise);
+  return promise;
 }
 
-function getBeamVisualKey(quantity: number) {
-  if (quantity <= 1) {
-    return "one";
-  }
-
-  if (quantity === 2) {
-    return "two";
-  }
-
-  if (quantity <= 4) {
-    return "three";
-  }
-
-  if (quantity <= 6) {
-    return "five";
-  }
-
-  if (quantity <= 10) {
-    return "seven";
-  }
-
-  if (quantity <= 15) {
-    return "eleven";
-  }
-
+function getBeamVisualKey(quantity: number): BeamKey {
+  if (quantity <= 1) return "one";
+  if (quantity === 2) return "two";
+  if (quantity <= 4) return "three";
+  if (quantity <= 10) return "five";
+  if (quantity <= 15) return "eleven";
   return "eighteen";
 }
 
-function getBeamRestScale(dimension?: string) {
-  if (!dimension) {
-    return 1;
-  }
-
-  return BEAM_REST_SCALES[dimension] ?? 1;
-}
-
-function clampScale(value: number, min: number, max: number) {
+function clamp(value: number, min: number, max: number) {
   return Math.min(Math.max(value, min), max);
 }
 
-function getProductVisualCount(quantity: number) {
-  if (quantity <= 1) return 1;
-  if (quantity === 2) return 2;
-  if (quantity <= 4) return 3;
-  if (quantity <= 8) return 4;
-  return 5;
+function getBeamTransform(variant?: ProductVariant, beamKey?: BeamKey) {
+  const width = variant?.dimensions?.widthMm ?? 140;
+  const height = variant?.dimensions?.heightMm ?? width;
+  const lengthMm = variant?.dimensions?.lengthMm ?? 5000;
+  const areaScale = clamp(Math.sqrt((width * height) / (140 * 140)), 0.88, 1.12);
+  const ratio = width / height;
+  const profileX = clamp(Math.sqrt(ratio), 0.9, 1.1);
+  const profileY = clamp(1 / Math.sqrt(ratio), 0.9, 1.1);
+  const lengthScale =
+    ({ 4000: 0.82, 5000: 1, 6000: 1.1, 7000: 1.18 } as Record<number, number>)[lengthMm] ?? 1;
+  const scaleX = clamp(areaScale * lengthScale * profileX, 0.78, 1.18);
+  const scaleY = clamp(areaScale * profileY, 0.82, 1.16);
+  const positionCorrection: Record<BeamKey, { x: number; y: number }> = {
+    one: { x: 0.25, y: 1.55 },
+    two: { x: -0.45, y: 1.4 },
+    three: { x: 0.8, y: -0.55 },
+    five: { x: 0, y: 0.3 },
+    eleven: { x: 2.95, y: -2.5 },
+    eighteen: { x: 0.8, y: -1.45 },
+  };
+  const correction = positionCorrection[beamKey ?? "one"];
+  return `translate(${correction.x}%, ${correction.y}%) scaleX(${scaleX}) scaleY(${scaleY})`;
 }
 
-function getProductStageTransform({
-  categoryId,
-  dimension,
-  length,
-  option,
-}: Pick<WoodVisualizerProps, "categoryId" | "dimension" | "length" | "option">) {
-  let scale = 1;
-  let scaleX = 1;
-
-  if (categoryId === "fosny" && dimension) {
-    const [thickness, width] = dimension.split("x").map(Number);
-    const crossSection = thickness * width;
-    scale = clampScale(0.92 + ((crossSection - 40) / 60) * 0.14, 0.92, 1.06);
-  } else if (categoryId === "prkna" && dimension) {
-    scale = clampScale(0.92 + ((Number(dimension) - 8) / 6) * 0.14, 0.92, 1.06);
+function getVisualState(
+  categoryId: string,
+  imageSrc: string,
+  quantity: number,
+  variant?: ProductVariant,
+): VisualState {
+  if (categoryId === "tramy") {
+    const beamKey = getBeamVisualKey(quantity);
+    const source = BEAM_ASSETS[beamKey];
+    return { signature: `beam:${beamKey}`, source, quantity, beamKey, variant };
   }
 
-  if (length) {
-    const normalizedLength = Number(length) > 1000 ? Number(length) / 10 : Number(length);
-    scaleX = clampScale(0.9 + ((normalizedLength - 300) / 200) * 0.18, 0.9, 1.08);
+  if (variant) {
+    const artwork = resolveProductArtwork(categoryId, variant, quantity);
+    const visualKey =
+      artwork.kind === "selling-unit"
+        ? getSellingUnitCount(quantity, variant.illustrationVariant)
+        : artwork.kind === "composition"
+          ? variant.illustrationVariant.startsWith("slabs-") && quantity >= 9
+            ? "expanded-composition"
+            : "composition"
+          : artwork.key;
+    return {
+      signature: `${variant.id}:${artwork.source}:${visualKey}`,
+      source: artwork.source || imageSrc,
+      quantity,
+      variant,
+    };
   }
 
-  if (option) {
-    if (categoryId === "krajinky") {
-      scaleX = option.includes("2m") ? 0.9 : option.includes("4m") ? 1.08 : 1;
-    } else if (categoryId === "stipane-drevo") {
-      scale = option.startsWith("volne") ? 0.93 : option.startsWith("paleta") ? 1.07 : 1;
-    } else if (categoryId === "pelety") {
-      scale = option.startsWith("pytel") ? 0.93 : option.startsWith("paleta") ? 1.07 : 1;
-    } else if (categoryId === "drivi-na-paletach") {
-      scale = option.includes("33cm") ? 0.95 : option.includes("16prm") ? 1.07 : 1;
-    }
-  }
-
-  return `scale(${scale}) scaleX(${scaleX})`;
-}
-
-function getBeamAssetSrc(key: keyof typeof BEAM_ASSETS, length?: string) {
-  if (length === "400" && key in BEAM_CHOPPED_ASSETS) {
-    return BEAM_CHOPPED_ASSETS[key as keyof typeof BEAM_CHOPPED_ASSETS];
-  }
-
-  return BEAM_ASSETS[key];
+  return { signature: `fallback:${imageSrc}`, source: imageSrc, quantity };
 }
 
 export function WoodVisualizer({
@@ -210,183 +161,144 @@ export function WoodVisualizer({
   imageSrc,
   imageAlt,
   quantity,
-  dimension,
-  length,
-  option,
+  quantityUnitLabel = "ks",
+  variant,
 }: WoodVisualizerProps) {
-  const isBeamCategory = categoryId === "tramy";
-  const activeBeamKey = useMemo(() => getBeamVisualKey(quantity), [quantity]);
-  const beamRestScale = useMemo(() => getBeamRestScale(dimension), [dimension]);
-  const productVisualCount = useMemo(() => getProductVisualCount(quantity), [quantity]);
-  const productLayerPoses = PRODUCT_LAYER_PRESETS[productVisualCount];
-  const stageTransform = useMemo(
-    () =>
-      isBeamCategory
-        ? `scale(${beamRestScale})`
-        : getProductStageTransform({ categoryId, dimension, length, option }),
-    [beamRestScale, categoryId, dimension, isBeamCategory, length, option],
+  const isBeam = categoryId === "tramy";
+  const isTimberArtwork = categoryId === "fosny" || categoryId === "prkna" || categoryId === "late";
+  const targetVisual = useMemo(
+    () => getVisualState(categoryId, imageSrc, quantity, variant),
+    [categoryId, imageSrc, quantity, variant],
   );
-  const beamImageStack = useMemo(
-    () =>
-      BEAM_IMAGE_STACK.map((asset) => ({
-        ...asset,
-        src: getBeamAssetSrc(asset.key, length),
-      })),
-    [length],
+  const [displayedVisual, setDisplayedVisual] = useState(targetVisual);
+  const beamTransform = useMemo(
+    () => getBeamTransform(variant, displayedVisual.beamKey),
+    [displayedVisual.beamKey, variant],
   );
   const [isRecoiling, setIsRecoiling] = useState(false);
-  const recoilFrameRef = useRef<number | null>(null);
-  const recoilTimeoutRef = useRef<number | null>(null);
-  const previousSelectionRef = useRef<{
-    dimension?: string;
-    length?: string;
-    option?: string;
-    quantity: number;
-  } | null>(null);
+  const previousVariantRef = useRef(variant?.id);
 
   useEffect(() => {
-    if (!isBeamCategory) {
-      preloadImage(imageSrc);
+    const sources = isBeam
+      ? Object.values(BEAM_ASSETS)
+      : variant
+        ? getProductArtworkSources(categoryId, variant)
+        : [imageSrc];
+
+    void Promise.all(sources.map((source) => decodeImage(source)));
+  }, [categoryId, imageSrc, isBeam, variant]);
+
+  useLayoutEffect(() => {
+    if (displayedVisual.signature === targetVisual.signature) {
+      if (
+        displayedVisual.quantity !== targetVisual.quantity ||
+        displayedVisual.variant !== targetVisual.variant
+      ) {
+        setDisplayedVisual(targetVisual);
+      }
       return;
     }
 
-    beamImageStack.forEach((asset) => preloadImage(asset.src));
-  }, [beamImageStack, imageSrc, isBeamCategory]);
+    let cancelled = false;
+    if (decodedSources.has(targetVisual.source)) {
+      setDisplayedVisual(targetVisual);
+      return;
+    }
 
-  useEffect(() => {
+    decodeImage(targetVisual.source).then(() => {
+      if (cancelled) return;
+      setDisplayedVisual(targetVisual);
+    });
+
     return () => {
-      if (recoilFrameRef.current != null) {
-        window.cancelAnimationFrame(recoilFrameRef.current);
-      }
-
-      if (recoilTimeoutRef.current != null) {
-        window.clearTimeout(recoilTimeoutRef.current);
-      }
+      cancelled = true;
     };
-  }, []);
+  }, [displayedVisual, targetVisual]);
 
   useEffect(() => {
-    const previousSelection = previousSelectionRef.current;
-    const nextSelection = { dimension, length, option, quantity };
-
-    if (!previousSelection) {
-      previousSelectionRef.current = nextSelection;
-      return;
-    }
-
-    const primarySelectionChanged =
-      previousSelection.dimension !== dimension || previousSelection.option !== option;
-    const passiveSelectionChanged =
-      previousSelection.length !== length || previousSelection.quantity !== quantity;
-
-    if (primarySelectionChanged) {
-      if (recoilFrameRef.current != null) {
-        window.cancelAnimationFrame(recoilFrameRef.current);
-      }
-
-      if (recoilTimeoutRef.current != null) {
-        window.clearTimeout(recoilTimeoutRef.current);
-      }
-
-      setIsRecoiling(false);
-
-      recoilFrameRef.current = window.requestAnimationFrame(() => {
-        setIsRecoiling(true);
-        recoilFrameRef.current = null;
-
-        recoilTimeoutRef.current = window.setTimeout(() => {
-          setIsRecoiling(false);
-          recoilTimeoutRef.current = null;
-        }, RECOIL_DURATION_MS);
-      });
-    } else if (passiveSelectionChanged) {
-      if (recoilFrameRef.current != null) {
-        window.cancelAnimationFrame(recoilFrameRef.current);
-        recoilFrameRef.current = null;
-      }
-
-      if (recoilTimeoutRef.current != null) {
-        window.clearTimeout(recoilTimeoutRef.current);
-        recoilTimeoutRef.current = null;
-      }
-
-      setIsRecoiling(false);
-    }
-
-    previousSelectionRef.current = nextSelection;
-  }, [dimension, length, option, quantity]);
+    if (previousVariantRef.current === variant?.id) return;
+    previousVariantRef.current = variant?.id;
+    setIsRecoiling(false);
+    const frame = window.requestAnimationFrame(() => setIsRecoiling(true));
+    const timeout = window.setTimeout(() => setIsRecoiling(false), 420);
+    return () => {
+      window.cancelAnimationFrame(frame);
+      window.clearTimeout(timeout);
+    };
+  }, [variant?.id]);
 
   return (
-    <div className="group flex h-full min-w-0 flex-col rounded-3xl border border-[#A86D38]/15 bg-white/80 p-4 shadow-sm backdrop-blur sm:p-6">
+    <div className="group flex h-full min-w-0 flex-col rounded-3xl border border-[#A86D38]/15 bg-white/86 p-4 shadow-[0_18px_50px_rgba(30,58,43,0.07)] backdrop-blur sm:p-6">
       <div className="mb-4 flex items-start justify-between gap-4">
-        <h2 className="text-2xl font-black tracking-tight text-[#1E293B]">
-          {"N\u00e1hled objedn\u00e1vky"}
-        </h2>
+        <h2 className="text-2xl font-black tracking-tight text-[#1E293B]">Náhled objednávky</h2>
         <div className="rounded-full bg-[#F6F4EE] px-3 py-1.5 text-sm font-bold text-[#1E293B] tabular-nums">
-          {quantity} ks
+          {quantity} {quantityUnitLabel}
         </div>
       </div>
 
-      <div className="relative flex min-h-[240px] w-full min-w-0 flex-1 items-center justify-center overflow-hidden rounded-[1.75rem] border border-[#E8DFD2] bg-[radial-gradient(circle_at_top,#fffdf7_0%,#f7efe0_58%,#efe4d3_100%)] px-3 py-5 transition-all duration-300 group-hover:shadow-[inset_0_1px_0_rgba(255,255,255,0.65)] sm:min-h-[420px] sm:px-5 sm:py-8">
+      <div
+        data-beam-preview
+        className="relative flex min-h-[270px] w-full min-w-0 flex-1 items-center justify-center overflow-hidden rounded-[1.75rem] border border-[#E8DFD2] bg-[#F8F1E5] px-3 py-5 sm:min-h-[420px] sm:px-5 sm:py-8"
+      >
         <div
           aria-hidden
-          className="absolute inset-x-10 bottom-8 h-8 rounded-full bg-[#6B4A2F]/10 blur-2xl transition-transform duration-300 group-hover:scale-x-110"
+          className="absolute inset-x-10 bottom-8 h-8 rounded-full bg-[#6B4A2F]/10 blur-2xl"
         />
-
-        <div className="relative w-full max-w-[44rem] min-w-0">
-          <div className="relative aspect-[1820/1024] w-full max-h-full max-w-full overflow-hidden">
+        <div className="relative w-full max-w-[44rem] min-w-0 self-stretch">
+          <div
+            data-beam-preview-frame
+            className="relative h-full min-h-[230px] w-full overflow-visible sm:min-h-[356px]"
+          >
             <div
               data-beam-preview-motion
-              className={`relative h-full w-full max-h-full max-w-full overflow-hidden ${
-                isRecoiling ? "is-recoiling" : ""
-              }`}
+              className={`relative h-full w-full ${isRecoiling ? "is-recoiling" : ""}`}
             >
-              <div
-                data-beam-preview-stage
-                className="relative h-full w-full max-h-full max-w-full overflow-hidden"
-                style={{ transform: stageTransform }}
-              >
-                {isBeamCategory
-                  ? beamImageStack.map((asset) => (
-                      <img
-                        key={asset.key}
-                        src={asset.src}
-                        alt={asset.alt}
-                        loading="eager"
-                        decoding="async"
-                        draggable={false}
-                        className={`absolute inset-0 h-full w-full max-h-full max-w-full select-none object-contain drop-shadow-[0_20px_34px_rgba(107,74,47,0.22)] [transform:translateZ(0)] [will-change:opacity] transition-opacity duration-150 ease-out ${
-                          activeBeamKey === asset.key ? "opacity-100" : "opacity-0"
-                        }`}
-                      />
-                    ))
-                  : Array.from({ length: 5 }, (_, index) => {
-                      const pose = productLayerPoses[index];
-                      const isVisible = Boolean(pose);
-
-                      return (
-                        <img
-                          key={index}
-                          src={imageSrc}
-                          alt={index === 0 ? imageAlt : ""}
-                          aria-hidden={index === 0 ? undefined : true}
-                          loading="eager"
-                          decoding="async"
-                          draggable={false}
-                          data-product-illustration-layer
-                          className="absolute inset-0 h-full w-full max-h-full max-w-full select-none object-contain drop-shadow-[0_20px_34px_rgba(107,74,47,0.2)]"
-                          style={{
-                            opacity: isVisible ? 1 : 0,
-                            transform: pose
-                              ? `translate(${pose.x}%, ${pose.y}%) scale(${pose.scale}) rotate(${pose.rotate}deg)`
-                              : "translate(0, 8%) scale(0.42)",
-                            zIndex: pose?.zIndex ?? 0,
-                            transitionDelay: `${index * 24}ms`,
-                          }}
-                        />
-                      );
-                    })}
-              </div>
+              {isBeam && displayedVisual.beamKey ? (
+                <div
+                  data-beam-preview-stage
+                  className="absolute inset-[8%] transition-transform duration-300"
+                  style={{
+                    transform: beamTransform,
+                    filter:
+                      displayedVisual.beamKey === "eleven" || displayedVisual.beamKey === "eighteen"
+                        ? "saturate(0.93) brightness(1.02) contrast(1.01)"
+                        : undefined,
+                  }}
+                >
+                  <img
+                    key={displayedVisual.signature}
+                    src={displayedVisual.source}
+                    alt={BEAM_ALT[displayedVisual.beamKey]}
+                    loading="eager"
+                    fetchPriority="high"
+                    decoding="async"
+                    draggable={false}
+                    className="absolute inset-0 h-full w-full select-none object-contain drop-shadow-[0_20px_34px_rgba(107,74,47,0.22)]"
+                  />
+                </div>
+              ) : displayedVisual.variant ? (
+                <div
+                  key={displayedVisual.signature}
+                  data-product-illustration-layer
+                  className={`${isTimberArtwork ? "absolute inset-[10%]" : "absolute inset-[4%]"} drop-shadow-[0_20px_34px_rgba(107,74,47,0.2)]`}
+                >
+                  <ProductIllustration
+                    categoryId={categoryId}
+                    quantity={displayedVisual.quantity}
+                    variant={displayedVisual.variant}
+                    title={`${imageAlt}, ${displayedVisual.quantity} ${quantityUnitLabel}`}
+                  />
+                </div>
+              ) : (
+                <img
+                  src={displayedVisual.source}
+                  alt={imageAlt}
+                  loading="eager"
+                  fetchPriority="high"
+                  decoding="async"
+                  className="absolute inset-[4%] h-[92%] w-[92%] object-contain"
+                />
+              )}
             </div>
           </div>
         </div>

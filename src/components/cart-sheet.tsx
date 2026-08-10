@@ -7,7 +7,13 @@ import {
   SheetTitle,
 } from "@/components/ui/sheet";
 import { useCart } from "@/lib/cart";
-import { COMPANY_EMAIL_HREF, COMPANY_PHONE, COMPANY_PHONE_HREF, formatCurrency } from "@/lib/site";
+import {
+  COMPANY_EMAIL_HREF,
+  COMPANY_PHONE,
+  COMPANY_PHONE_HREF,
+  formatCurrency,
+  formatDecimal,
+} from "@/lib/site";
 
 export function CartSheet() {
   const { items, itemCount, estimatedTotal, isOpen, setIsOpen, removeItem, clearCart } = useCart();
@@ -26,7 +32,7 @@ export function CartSheet() {
             <SheetDescription className="text-sm text-[#1E293B]/70">
               {itemCount === 0
                 ? "Zatím tu není žádná položka."
-                : `Vybráno ${itemCount} ${itemCount === 1 ? "kus" : itemCount < 5 ? "kusy" : "kusů"} k nacenění nebo objednání.`}
+                : `Vybráno ${itemCount} prodejních jednotek k nacenění nebo objednání.`}
             </SheetDescription>
           </SheetHeader>
 
@@ -72,6 +78,17 @@ export function CartSheet() {
                           {detail}
                         </div>
                       ))}
+                      {item.kind === "catalog" && (
+                        <div className="rounded-2xl border border-[#A86D38]/10 bg-[#FFF9EF] px-3 py-2 font-semibold text-[#70451F]">
+                          {formatCurrency(item.rate)} / {item.billableUnit} ·{" "}
+                          {item.pricing.basis === "cubic-meter"
+                            ? formatDecimal(item.billableAmount, 4)
+                            : new Intl.NumberFormat("cs-CZ", { maximumFractionDigits: 2 }).format(
+                                item.billableAmount,
+                              )}{" "}
+                          {item.billableUnit}
+                        </div>
+                      )}
                     </div>
 
                     <div className="mt-4 flex items-end justify-between gap-4 rounded-2xl bg-[#234A33] px-4 py-3 text-white">
@@ -79,14 +96,16 @@ export function CartSheet() {
                         <div className="text-xs font-semibold uppercase tracking-[0.16em] text-white/65">
                           Počet
                         </div>
-                        <div className="mt-1 text-sm font-bold">{item.quantity} ks</div>
+                        <div className="mt-1 text-sm font-bold">
+                          {item.quantity} {item.quantityUnitLabel}
+                        </div>
                       </div>
                       <div className="text-right">
                         <div className="text-xs font-semibold uppercase tracking-[0.16em] text-white/65">
                           {item.kind === "custom" ? "Orientační cena" : "Cena položky"}
                         </div>
                         <div className="mt-1 text-lg font-black tracking-tight">
-                          {item.totalPrice != null ? formatCurrency(item.totalPrice) : "Na dotaz"}
+                          {formatCurrency(item.totalPrice)}
                         </div>
                       </div>
                     </div>

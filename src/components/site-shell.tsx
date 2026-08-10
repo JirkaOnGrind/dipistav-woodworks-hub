@@ -1,4 +1,4 @@
-import { useState, type ReactNode } from "react";
+import { useEffect, useState, type ReactNode } from "react";
 import { Menu, ShoppingCart, X } from "lucide-react";
 import { useRouterState } from "@tanstack/react-router";
 import { useCart } from "@/lib/cart";
@@ -77,9 +77,13 @@ function CartButton() {
 export function SiteShell({ children }: { children: ReactNode }) {
   const currentLocation = useRouterState({ select: (state) => state.location });
   const [menuOpen, setMenuOpen] = useState(false);
+  const [currentHash, setCurrentHash] = useState("");
   const logoSrc = "/images/logo-dipi.png";
   const currentPath = currentLocation.pathname;
-  const currentHash = currentLocation.hash;
+
+  useEffect(() => {
+    setCurrentHash(currentLocation.hash);
+  }, [currentLocation.hash]);
 
   return (
     <div className="min-h-screen overflow-x-hidden bg-background text-foreground">

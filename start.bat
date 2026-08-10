@@ -22,7 +22,12 @@ if errorlevel 1 (
   exit /b %errorlevel%
 )
 
-start "" powershell -NoProfile -ExecutionPolicy Bypass -Command "Start-Sleep -Seconds 3; Start-Process 'http://localhost:5173'"
+set "DEV_URL=http://localhost:8080"
+
+rem Vite v tomto projektu bezi na portu 8080. Pockame na skutecnou odpoved
+rem serveru, aby prohlizec neotevrel prazdnou stranku behem startu aplikace.
+start "" powershell -NoProfile -ExecutionPolicy Bypass -WindowStyle Hidden -Command "$url='%DEV_URL%'; for ($i = 0; $i -lt 120; $i++) { try { $response = Invoke-WebRequest -Uri $url -UseBasicParsing -TimeoutSec 1; if ($response.StatusCode -ge 200 -and $response.StatusCode -lt 500) { Start-Process $url; exit 0 } } catch {}; Start-Sleep -Milliseconds 500 }; Write-Error 'Vyvojovy server se nepodarilo spustit na adrese %DEV_URL%.'"
 
 echo Spoustim vyvojovy server...
+echo Po spusteni bude web dostupny na %DEV_URL%.
 call %DEV_CMD%

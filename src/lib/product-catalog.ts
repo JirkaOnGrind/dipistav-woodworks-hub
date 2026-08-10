@@ -1,6 +1,51 @@
+import type { Availability, PriceDefinition, VariantDimensions } from "@/lib/pricing";
+
 export type SelectOption = {
   value: string;
   label: string;
+  availability: Availability;
+};
+
+export type ProductSelector = {
+  key: string;
+  label: string;
+};
+
+export type ProductMode = {
+  id: string;
+  label: string;
+};
+
+export type ProductVariant = {
+  id: string;
+  modeId?: string;
+  selection: Record<string, string>;
+  dimensions?: VariantDimensions;
+  availability: Availability;
+  pricing: PriceDefinition | null;
+  illustrationVariant: string;
+};
+
+export type ProductCategory = {
+  id: string;
+  sectionId: string;
+  sectionTitle: string;
+  sectionAnchorId: string;
+  title: string;
+  name: string;
+  shortName: string;
+  subtitle: string;
+  description: string;
+  imageSrc: string;
+  thumbnailAlt: string;
+  illustrationPrompt: string;
+  ctaLabel: string;
+  quantityLabel: string;
+  quantityUnitLabel: string;
+  selectors: ProductSelector[];
+  selectionLabels: Record<string, Record<string, string>>;
+  modes?: ProductMode[];
+  variants: ProductVariant[];
 };
 
 export type ProductCategorySection = {
@@ -10,54 +55,6 @@ export type ProductCategorySection = {
   description: string;
   categories: ProductCategory[];
 };
-
-type BaseCategory = {
-  id: string;
-  sectionId: string;
-  sectionTitle: string;
-  sectionAnchorId: string;
-  name: string;
-  shortName: string;
-  subtitle: string;
-  description: string;
-  imageSrc: string;
-  thumbnailAlt: string;
-  illustrationPrompt: string;
-  priceUnitLabel: string;
-  ctaLabel: string;
-};
-
-export type DimensionedCategory = BaseCategory & {
-  kind: "dimensioned";
-  dimensionLabel: string;
-  lengthLabel: string;
-  priceMap: Record<string, Record<string, number>>;
-  getDimensionOptions: () => SelectOption[];
-  getLengthOptions: (dimension: string) => SelectOption[];
-  getCartTitle: (dimension: string, length: string) => string;
-  getCartDetails: (dimension: string, length: string) => string[];
-};
-
-export type LengthOnlyCategory = BaseCategory & {
-  kind: "length-only";
-  fixedDimensionLabel: string;
-  lengthLabel: string;
-  priceByLength: Record<string, number>;
-  getLengthOptions: () => SelectOption[];
-  getCartTitle: (length: string) => string;
-  getCartDetails: (length: string) => string[];
-};
-
-export type OptionOnlyCategory = BaseCategory & {
-  kind: "option-only";
-  optionLabel: string;
-  priceByOption: Record<string, number>;
-  getOptionOptions: () => SelectOption[];
-  getCartTitle: (option: string) => string;
-  getCartDetails: (option: string) => string[];
-};
-
-export type ProductCategory = DimensionedCategory | LengthOnlyCategory | OptionOnlyCategory;
 
 const TIMBER_SECTION = {
   id: "rezivo",
@@ -75,340 +72,581 @@ const FUEL_SECTION = {
     "Praktická paliva pro domů, na chalupu i do provozu. Vyberte si balení, které se vám bude dobře skladovat i používat.",
 } as const;
 
-function cmDimensionLabel(value: string) {
-  return value.replace("x", " × ") + " cm";
+const piecePrice = (
+  rate: number,
+  displayUnit: Extract<PriceDefinition, { basis: "piece" }>["displayUnit"] = "ks",
+): PriceDefinition => ({ basis: "piece", rate, displayUnit });
+
+const linearMeterPrice = (rate: number): PriceDefinition => ({
+  basis: "linear-meter",
+  rate,
+  displayUnit: "bm",
+});
+
+const cubicMeterPrice = (rate: number): PriceDefinition => ({
+  basis: "cubic-meter",
+  rate,
+  displayUnit: "m³",
+});
+
+function pricedVariant(
+  id: string,
+  selection: Record<string, string>,
+  pricing: PriceDefinition,
+  dimensions: VariantDimensions | undefined,
+  illustrationVariant: string,
+  modeId?: string,
+): ProductVariant {
+  return {
+    id,
+    modeId,
+    selection,
+    dimensions,
+    availability: "in-stock",
+    pricing,
+    illustrationVariant,
+  };
 }
 
-function lengthCmLabel(value: string) {
-  return `${value} cm`;
+function unavailableVariant(
+  id: string,
+  selection: Record<string, string>,
+  dimensions: VariantDimensions,
+  illustrationVariant: string,
+  modeId?: string,
+): ProductVariant {
+  return {
+    id,
+    modeId,
+    selection,
+    dimensions,
+    availability: "out-of-stock",
+    pricing: null,
+    illustrationVariant,
+  };
 }
 
-function lengthMetersLabel(value: string) {
-  return `${Number(value) / 1000} m`;
-}
+const beamPriceMap: Record<string, Record<string, number>> = {
+  "8x8": { "400": 302, "500": 322 },
+  "8x10": { "400": 322, "500": 402 },
+  "8x12": { "400": 453 },
+  "8x14": { "400": 511, "500": 661 },
+  "8x16": { "400": 604, "500": 755, "600": 960, "700": 1048 },
+  "8x20": { "400": 819, "500": 840 },
+  "10x10": { "400": 500, "500": 525, "600": 678 },
+  "10x12": { "400": 566, "500": 708 },
+  "10x14": { "400": 661, "500": 826, "600": 1025 },
+  "10x16": { "400": 755, "500": 944, "600": 1200, "700": 1568 },
+  "10x18": { "400": 850, "500": 1062, "600": 1177, "700": 1714 },
+  "10x20": { "400": 912, "500": 1050, "600": 1680 },
+  "12x12": { "400": 680, "500": 821 },
+  "12x14": { "400": 598, "500": 806, "600": 1189 },
+  "12x16": { "400": 906, "500": 1133, "600": 1544 },
+  "12x18": { "400": 769, "500": 1318, "600": 1529 },
+  "14x14": { "400": 823, "500": 1029, "600": 1352 },
+  "14x16": { "400": 1093, "500": 1389, "600": 1693 },
+  "16x16": { "400": 1208, "500": 1459, "600": 2058 },
+  "16x18": { "400": 1025, "500": 1637 },
+  "16x20": { "400": 1600, "500": 1888, "600": 2419 },
+  "20x20": { "400": 1680, "500": 2100 },
+};
 
-const tramy: DimensionedCategory = {
+export const BEAM_PRICE_MAP = beamPriceMap;
+
+const beamVariants = Object.entries(beamPriceMap).flatMap(([profile, prices]) => {
+  const [widthCm, heightCm] = profile.split("x").map(Number);
+  return Object.entries(prices).map(([lengthCm, price]) =>
+    pricedVariant(
+      `beam-${profile}-${lengthCm}`,
+      { profile, length: lengthCm },
+      piecePrice(price),
+      { widthMm: widthCm * 10, heightMm: heightCm * 10, lengthMm: Number(lengthCm) * 10 },
+      "beam",
+    ),
+  );
+});
+
+const tramy: ProductCategory = {
   id: "tramy",
   sectionId: TIMBER_SECTION.id,
   sectionTitle: TIMBER_SECTION.title,
   sectionAnchorId: TIMBER_SECTION.anchorId,
-  kind: "dimensioned",
+  title: "Stavební trámy",
   name: "Stavební trámy",
   shortName: "Trámy",
   subtitle: "Masivní nosné trámy pro krovy, stropy, pergoly i další konstrukce.",
   description:
     "Poctivé stavební trámy v osvědčených profilech a délkách. Snadno si vyberete variantu, která bude sedět vašemu projektu i způsobu montáže.",
-  imageSrc: "/images/illustrations/tramy-v2.webp",
+  imageSrc: "/images/illustrations/golden-masters/beam-bundle-6-seams-master-v2.webp",
   thumbnailAlt: "Ilustrace stavebních trámů DIPISTAV",
   illustrationPrompt:
-    "DIPISTAV comic-engraving product illustration of square structural timber beams in a neat isometric stack, dark chocolate-brown contour, honey-amber spruce, visible end grain and controlled cross-hatching, transparent background, no baked shadow, text or logo.",
-  priceUnitLabel: "Cena / ks",
+    "DIPISTAV comic-engraving product illustration of square structural timber beams in a neat isometric stack.",
   ctaLabel: "Přidat trámy do košíku",
-  dimensionLabel: "Profil (cm)",
-  lengthLabel: "Délka (cm)",
-  priceMap: {
-    "8x8": { "400": 272, "500": 290 },
-    "10x10": { "400": 450, "500": 473 },
-    "12x12": { "400": 612, "500": 739 },
-    "14x14": { "400": 741, "500": 926 },
-    "16x16": { "400": 1087, "500": 1313 },
-    "20x20": { "400": 1512, "500": 1890 },
-  },
-  getDimensionOptions: () =>
-    Object.keys(tramy.priceMap).map((value) => ({ value, label: cmDimensionLabel(value) })),
-  getLengthOptions: (dimension) =>
-    Object.keys(tramy.priceMap[dimension] ?? {}).map((value) => ({
-      value,
-      label: lengthCmLabel(value),
-    })),
-  getCartTitle: (dimension, length) => `Trám ${dimension.replace("x", "×")} × ${length} cm`,
-  getCartDetails: (dimension, length) => [
-    `Profil: ${cmDimensionLabel(dimension)}`,
-    `Délka: ${lengthCmLabel(length)}`,
+  quantityLabel: "Počet kusů",
+  quantityUnitLabel: "ks",
+  selectors: [
+    { key: "profile", label: "Profil (cm)" },
+    { key: "length", label: "Délka (cm)" },
   ],
+  selectionLabels: {
+    profile: Object.fromEntries(
+      Object.keys(beamPriceMap).map((value) => [value, value.replace("x", " × ") + " cm"]),
+    ),
+    length: { "400": "400 cm", "500": "500 cm", "600": "600 cm", "700": "700 cm" },
+  },
+  variants: beamVariants,
 };
 
-const fosny: DimensionedCategory = {
+const fosny: ProductCategory = {
   id: "fosny",
   sectionId: TIMBER_SECTION.id,
   sectionTitle: TIMBER_SECTION.title,
   sectionAnchorId: TIMBER_SECTION.anchorId,
-  kind: "dimensioned",
+  title: "Stavební fošny",
   name: "Stavební fošny",
   shortName: "Fošny",
   subtitle: "Široké stavební fošny pro bednění, podlahy i konstrukční detaily.",
   description:
-    "Fošny, které dobře poslouží na stavbě i při truhlářském využití. Vyberete si potřebný profil, délku i množství bez zdlouhavého doptávání.",
+    "Masivní fošny pro stavbu i truhlářské využití. Skladová varianta má poctivý profil 4 × 14 cm a délku 4 metry.",
   imageSrc: "/images/illustrations/fosny-v2.webp",
   thumbnailAlt: "Ilustrace stavebních fošen DIPISTAV",
-  illustrationPrompt:
-    "DIPISTAV comic-engraving product illustration of eight thick broad construction boards stacked in four orderly layers, dark chocolate-brown contour, honey-amber spruce, visible end grain and controlled cross-hatching, transparent background, no baked shadow, text or logo.",
-  priceUnitLabel: "Cena / ks",
+  illustrationPrompt: "DIPISTAV comic-engraving illustration of thick broad construction boards.",
   ctaLabel: "Přidat fošny do košíku",
-  dimensionLabel: "Profil (cm)",
-  lengthLabel: "Délka (cm)",
-  priceMap: {
-    "4x14": { "400": 230 },
-    "4x16": { "400": 263, "500": 329 },
-    "4x20": { "400": 329, "500": 410 },
-    "5x10": { "400": 212, "500": 201 },
-    "5x12": { "400": 247, "500": 240 },
-    "5x16": { "400": 290, "500": 362 },
-    "5x20": { "400": 378, "500": 453 },
-  },
-  getDimensionOptions: () =>
-    Object.keys(fosny.priceMap).map((value) => ({ value, label: cmDimensionLabel(value) })),
-  getLengthOptions: (dimension) =>
-    Object.keys(fosny.priceMap[dimension] ?? {}).map((value) => ({
-      value,
-      label: lengthCmLabel(value),
-    })),
-  getCartTitle: (dimension, length) => `Fošna ${dimension.replace("x", "×")} × ${length} cm`,
-  getCartDetails: (dimension, length) => [
-    `Profil: ${cmDimensionLabel(dimension)}`,
-    `Délka: ${lengthCmLabel(length)}`,
+  quantityLabel: "Počet kusů",
+  quantityUnitLabel: "ks",
+  selectors: [
+    { key: "profile", label: "Profil (cm)" },
+    { key: "length", label: "Délka (cm)" },
+  ],
+  selectionLabels: { profile: { "4x14": "4 × 14 cm" }, length: { "400": "400 cm" } },
+  variants: [
+    pricedVariant(
+      "plank-4x14-400",
+      { profile: "4x14", length: "400" },
+      piecePrice(255),
+      { thicknessMm: 40, widthMm: 140, lengthMm: 4000 },
+      "plank",
+    ),
   ],
 };
 
-const prkna: DimensionedCategory = {
+const sortedBoardPrices: Record<string, Record<string, number>> = {
+  "8": { "400": 72, "500": 92 },
+  "10": { "400": 95, "500": 119 },
+  "12": { "400": 114, "500": 138 },
+  "14": { "400": 133, "500": 154 },
+  "16": { "400": 152, "500": 194 },
+  "20": { "400": 190, "500": 243 },
+};
+
+const sortedBoardVariants = Object.entries(sortedBoardPrices).flatMap(([widthCm, prices]) =>
+  Object.entries(prices).map(([lengthCm, price]) =>
+    pricedVariant(
+      `board-sorted-${widthCm}-${lengthCm}`,
+      { width: widthCm, length: lengthCm },
+      piecePrice(price),
+      { thicknessMm: 25, widthMm: Number(widthCm) * 10, lengthMm: Number(lengthCm) * 10 },
+      "board-sorted",
+      "sorted",
+    ),
+  ),
+);
+
+sortedBoardVariants.splice(
+  10,
+  0,
+  unavailableVariant(
+    "board-sorted-18-400",
+    { width: "18", length: "400" },
+    { thicknessMm: 25, widthMm: 180, lengthMm: 4000 },
+    "board-sorted",
+    "sorted",
+  ),
+);
+
+const unsortedBoardVariants = ["8", "10", "12", "14", "16", "18", "20"].flatMap((widthCm) =>
+  ["400", "500"].map((lengthCm) =>
+    pricedVariant(
+      `board-unsorted-${widthCm}-${lengthCm}`,
+      { width: widthCm, length: lengthCm },
+      cubicMeterPrice(Number(widthCm) >= 16 ? 8900 : 7200),
+      { thicknessMm: 25, widthMm: Number(widthCm) * 10, lengthMm: Number(lengthCm) * 10 },
+      Number(widthCm) >= 16 ? "board-unsorted-wide" : "board-unsorted",
+      "unsorted",
+    ),
+  ),
+);
+
+const prkna: ProductCategory = {
   id: "prkna",
   sectionId: TIMBER_SECTION.id,
   sectionTitle: TIMBER_SECTION.title,
   sectionAnchorId: TIMBER_SECTION.anchorId,
-  kind: "dimensioned",
+  title: "Stavební prkna",
   name: "Stavební prkna",
   shortName: "Prkna",
-  subtitle: "Coulová prkna v oblíbených šířkách pro střechy, obklady i běžnou stavbu.",
+  subtitle: "Tříděná i netříděná coulová prkna pro střechy, obklady a běžnou stavbu.",
   description:
-    "Praktická stavební prkna pro každodenní použití. Přehledně si zvolíte šířku, délku i počet kusů podle toho, co právě potřebujete.",
+    "Vyberte si přesná tříděná prkna s cenou za kus nebo surovější netříděná prkna účtovaná podle skutečného objemu.",
   imageSrc: "/images/illustrations/prkna-v2.webp",
   thumbnailAlt: "Ilustrace stavebních prken DIPISTAV",
-  illustrationPrompt:
-    "DIPISTAV comic-engraving product illustration of thin construction boards in a regular drying stack with slim spacers, dark chocolate-brown contour, honey-amber spruce, visible end grain and restrained hatching, transparent background, no baked shadow, text or logo.",
-  priceUnitLabel: "Cena / ks",
+  illustrationPrompt: "DIPISTAV comic-engraving illustration of thin construction boards.",
   ctaLabel: "Přidat prkna do košíku",
-  dimensionLabel: "Šířka (cm)",
-  lengthLabel: "Délka (cm)",
-  priceMap: {
-    "8": { "300": 49.5, "400": 64.8, "500": 82.8 },
-    "10": { "300": 63.9, "400": 85.5, "500": 107.1 },
-    "12": { "300": 74.7, "400": 102.6, "500": 124.2 },
-    "14": { "300": 90.0, "400": 119.7, "500": 138.6 },
-  },
-  getDimensionOptions: () =>
-    Object.keys(prkna.priceMap).map((value) => ({ value, label: `${value} cm` })),
-  getLengthOptions: (dimension) =>
-    Object.keys(prkna.priceMap[dimension] ?? {}).map((value) => ({
-      value,
-      label: lengthCmLabel(value),
-    })),
-  getCartTitle: (dimension, length) => `Prkno ${dimension} × ${length} cm`,
-  getCartDetails: (dimension, length) => [
-    `Šířka: ${dimension} cm`,
-    `Délka: ${lengthCmLabel(length)}`,
+  quantityLabel: "Počet kusů",
+  quantityUnitLabel: "ks",
+  modes: [
+    { id: "sorted", label: "Tříděná prkna" },
+    { id: "unsorted", label: "Netříděná prkna" },
   ],
+  selectors: [
+    { key: "width", label: "Šířka (cm)" },
+    { key: "length", label: "Délka (cm)" },
+  ],
+  selectionLabels: {
+    width: Object.fromEntries(
+      ["8", "10", "12", "14", "16", "18", "20"].map((value) => [value, `${value} cm`]),
+    ),
+    length: { "400": "400 cm", "500": "500 cm" },
+  },
+  variants: [...sortedBoardVariants, ...unsortedBoardVariants],
 };
 
-const late: LengthOnlyCategory = {
+const lathProfiles: Record<string, number> = { "60x40": 22, "50x30": 16, "50x40": 19 };
+const lathVariants = Object.entries(lathProfiles).flatMap(([profile, rate]) => {
+  const [widthMm, heightMm] = profile.split("x").map(Number);
+  return ["4000", "5000"].map((lengthMm) =>
+    pricedVariant(
+      `lath-${profile}-${lengthMm}`,
+      { profile, length: lengthMm },
+      linearMeterPrice(rate),
+      { widthMm, heightMm, lengthMm: Number(lengthMm) },
+      "lath",
+    ),
+  );
+});
+
+const late: ProductCategory = {
   id: "late",
   sectionId: TIMBER_SECTION.id,
   sectionTitle: TIMBER_SECTION.title,
   sectionAnchorId: TIMBER_SECTION.anchorId,
-  kind: "length-only",
+  title: "Střešní latě",
   name: "Střešní latě",
   shortName: "Latě",
-  subtitle: "Profil 60 × 40 mm pro střechy, podbití i lehké dřevěné konstrukce.",
+  subtitle: "Tři skladové profily v délkách 4 a 5 metrů, účtované za běžný metr.",
   description:
-    "Střešní latě v osvědčeném profilu pro spolehlivou montáž. Stačí zvolit délku a množství, které potřebujete na svou realizaci.",
+    "Střešní latě pro spolehlivou montáž střech, podbití i lehkých konstrukcí. Cena se automaticky počítá z délky a počtu kusů.",
   imageSrc: "/images/illustrations/late-v2.webp",
   thumbnailAlt: "Ilustrace střešních latí DIPISTAV",
-  illustrationPrompt:
-    "DIPISTAV comic-engraving product illustration of identical rectangular roofing battens aligned tightly in parallel rows, orderly rather than scattered, dark chocolate-brown contour, honey-amber spruce and clear end grain, transparent background, no baked shadow, text or logo.",
-  priceUnitLabel: "Cena / ks",
+  illustrationPrompt: "DIPISTAV comic-engraving illustration of rectangular roofing battens.",
   ctaLabel: "Přidat latě do košíku",
-  fixedDimensionLabel: "60 × 40 mm",
-  lengthLabel: "Délka",
-  priceByLength: { "3000": 57, "4000": 76, "5000": 95 },
-  getLengthOptions: () =>
-    Object.keys(late.priceByLength).map((value) => ({ value, label: lengthMetersLabel(value) })),
-  getCartTitle: (length) => `Lať 60 × 40 mm / ${lengthMetersLabel(length)}`,
-  getCartDetails: (length) => [`Profil: 60 × 40 mm`, `Délka: ${lengthMetersLabel(length)}`],
+  quantityLabel: "Počet kusů",
+  quantityUnitLabel: "ks",
+  selectors: [
+    { key: "profile", label: "Profil (mm)" },
+    { key: "length", label: "Délka" },
+  ],
+  selectionLabels: {
+    profile: { "60x40": "60 × 40 mm", "50x30": "50 × 30 mm", "50x40": "50 × 40 mm" },
+    length: { "4000": "4 m", "5000": "5 m" },
+  },
+  variants: lathVariants,
 };
 
-const stipaneDrevo: OptionOnlyCategory = {
+function optionCategory(config: {
+  id: string;
+  name: string;
+  subtitle: string;
+  description: string;
+  imageSrc: string;
+  thumbnailAlt: string;
+  ctaLabel: string;
+  quantityLabel: string;
+  quantityUnitLabel: string;
+  optionLabel: string;
+  displayUnit: Extract<PriceDefinition, { basis: "piece" }>["displayUnit"];
+  options: Array<{ value: string; label: string; price: number; illustrationVariant: string }>;
+}): ProductCategory {
+  return {
+    ...config,
+    sectionId: FUEL_SECTION.id,
+    sectionTitle: FUEL_SECTION.title,
+    sectionAnchorId: FUEL_SECTION.anchorId,
+    title: config.name,
+    shortName: config.name,
+    illustrationPrompt: `DIPISTAV comic-engraving illustration of ${config.name}.`,
+    selectors: [{ key: "option", label: config.optionLabel }],
+    selectionLabels: {
+      option: Object.fromEntries(config.options.map((option) => [option.value, option.label])),
+    },
+    variants: config.options.map((option) =>
+      pricedVariant(
+        `${config.id}-${option.value}`,
+        { option: option.value },
+        piecePrice(option.price, config.displayUnit),
+        undefined,
+        option.illustrationVariant,
+      ),
+    ),
+  };
+}
+
+const stipaneDrevo = optionCategory({
   id: "stipane-drevo",
-  sectionId: FUEL_SECTION.id,
-  sectionTitle: FUEL_SECTION.title,
-  sectionAnchorId: FUEL_SECTION.anchorId,
-  kind: "option-only",
   name: "Štípané dřevo",
-  shortName: "Štípané dřevo",
-  subtitle: "Poctivě štípané palivové dřevo pro pohodlné topení doma, na chatě i na chalupě.",
-  description:
-    "Vyberte si balení, které vám bude nejlépe vyhovovat při skladování i každodenním používání. Ideální volba pro ty, kdo chtějí mít dřevo přehledně připravené a snadno po ruce.",
+  subtitle: "Poctivě štípané palivové dřevo v balení podle vašich skladovacích možností.",
+  description: "Vyberte si volně ložené dřevo, praktický big bag nebo úhledně složenou paletu.",
   imageSrc: "/images/illustrations/stipane-v2.webp",
-  thumbnailAlt: "Ilustrace volně loženého štípaného dřeva",
-  illustrationPrompt:
-    "DIPISTAV comic-engraving product illustration of a loose compact mound of believable split firewood logs, varied wedge and half-round cuts with some bark, dark chocolate-brown contour, honey-amber wood and readable growth rings, transparent background, no container, no baked shadow, text or logo.",
-  priceUnitLabel: "Cena / balení",
+  thumbnailAlt: "Ilustrace štípaného dřeva",
   ctaLabel: "Přidat dřevo do košíku",
+  quantityLabel: "Počet balení",
+  quantityUnitLabel: "balení",
   optionLabel: "Balení",
-  priceByOption: {
-    "volne-1prm": 1490,
-    "big-bag-1prm": 1690,
-    "paleta-16prm": 2490,
-  },
-  getOptionOptions: () => [
-    { value: "volne-1prm", label: "Volně ložené 1 prm" },
-    { value: "big-bag-1prm", label: "Big bag 1 prm" },
-    { value: "paleta-16prm", label: "Paleta 1,6 prm" },
+  displayUnit: "balení",
+  options: [
+    {
+      value: "volne-1prm",
+      label: "Volně ložené 1 prm",
+      price: 1490,
+      illustrationVariant: "firewood-loose",
+    },
+    {
+      value: "big-bag-1prm",
+      label: "Big bag 1 prm",
+      price: 1690,
+      illustrationVariant: "firewood-bag",
+    },
+    {
+      value: "paleta-16prm",
+      label: "Paleta 1,6 prm",
+      price: 2490,
+      illustrationVariant: "firewood-pallet",
+    },
   ],
-  getCartTitle: (option) => {
-    const label =
-      stipaneDrevo.getOptionOptions().find((item) => item.value === option)?.label ?? option;
-    return `Štípané dřevo / ${label}`;
-  },
-  getCartDetails: (option) => {
-    const label =
-      stipaneDrevo.getOptionOptions().find((item) => item.value === option)?.label ?? option;
-    return [`Balení: ${label}`, "Dřevina: směs tvrdého dřeva"];
-  },
-};
+});
 
-const pelety: OptionOnlyCategory = {
+const pelety = optionCategory({
   id: "pelety",
-  sectionId: FUEL_SECTION.id,
-  sectionTitle: FUEL_SECTION.title,
-  sectionAnchorId: FUEL_SECTION.anchorId,
-  kind: "option-only",
   name: "Pelety",
-  shortName: "Pelety",
-  subtitle: "Čisté dřevní pelety pro pohodlné a úsporné vytápění kamen i kotlů.",
+  subtitle: "Čisté dřevní pelety od jednoho pytle až po celou paletu.",
   description:
-    "Pelety nabízíme v praktických baleních od menší zásoby až po celou paletu. Snadno si vyberete variantu podle spotřeby i prostoru na uskladnění.",
+    "Vyberte si samostatný pytel, výhodný set deseti pytlů nebo paletu pro celou topnou sezónu.",
   imageSrc: "/images/illustrations/pelety-v2.webp",
-  thumbnailAlt: "Minimalistická ilustrace pelet",
-  illustrationPrompt:
-    "Approved DIPISTAV comic-engraving illustration of a compact mound of wood pellets, dark chocolate-brown contour and engraving marks, honey-amber wood, clear silhouette at mobile size, transparent background, no baked shadow, text or logo.",
-  priceUnitLabel: "Cena / balení",
+  thumbnailAlt: "Ilustrace dřevních pelet",
   ctaLabel: "Přidat pelety do košíku",
+  quantityLabel: "Počet balení",
+  quantityUnitLabel: "balení",
   optionLabel: "Balení",
-  priceByOption: {
-    "pytel-15kg": 129,
-    "set-10-pytlu": 1190,
-    "paleta-975kg": 7490,
-  },
-  getOptionOptions: () => [
-    { value: "pytel-15kg", label: "Pytel 15 kg" },
-    { value: "set-10-pytlu", label: "Set 10 pytlů" },
-    { value: "paleta-975kg", label: "Paleta 975 kg" },
+  displayUnit: "balení",
+  options: [
+    { value: "pytel-15kg", label: "Pytel 15 kg", price: 129, illustrationVariant: "pellets-bag" },
+    {
+      value: "set-10-pytlu",
+      label: "Set 10 pytlů",
+      price: 1190,
+      illustrationVariant: "pellets-set",
+    },
+    {
+      value: "paleta-975kg",
+      label: "Paleta 975 kg",
+      price: 7490,
+      illustrationVariant: "pellets-pallet",
+    },
   ],
-  getCartTitle: (option) => {
-    const label = pelety.getOptionOptions().find((item) => item.value === option)?.label ?? option;
-    return `Pelety / ${label}`;
-  },
-  getCartDetails: (option) => {
-    const label = pelety.getOptionOptions().find((item) => item.value === option)?.label ?? option;
-    return [`Balení: ${label}`, "Kvalita: čisté smrkové pelety"];
-  },
-};
+});
 
-const krajinky: OptionOnlyCategory = {
+const krajinky = optionCategory({
   id: "krajinky",
-  sectionId: FUEL_SECTION.id,
-  sectionTitle: FUEL_SECTION.title,
-  sectionAnchorId: FUEL_SECTION.anchorId,
-  kind: "option-only",
   name: "Krajinky",
-  shortName: "Krajinky",
-  subtitle: "Úsporné palivo z omítaných boků kulatiny pro topení i rychlou zásobu dřeva.",
-  description:
-    "Krajinky jsou oblíbenou volbou tam, kde hledáte výhodné dřevo na roztápění nebo běžné topení. Zvolte si velikost balíku podle prostoru i očekávané spotřeby.",
+  subtitle: "Svázané balíky nepravidelných krajinek v délkách 2, 3 a 4 metry.",
+  description: "Úsporné palivo z omítaných boků kulatiny pro topení, zátop i hospodářské provozy.",
   imageSrc: "/images/illustrations/krajinky-v2.webp",
-  thumbnailAlt: "Ilustrace svázaného balíku krajin s kůrou",
-  illustrationPrompt:
-    "DIPISTAV comic-engraving product illustration of a long strapped bale of irregular sawmill slab offcuts with natural bark edges, compact layered bundle with uneven ends, dark chocolate-brown contour and honey-amber wood, transparent background, no crate, no baked shadow, text or logo.",
-  priceUnitLabel: "Cena / balík",
+  thumbnailAlt: "Ilustrace svázaného balíku krajinek",
   ctaLabel: "Přidat krajinky do košíku",
+  quantityLabel: "Počet balíků",
+  quantityUnitLabel: "balíků",
   optionLabel: "Velikost balíku",
-  priceByOption: {
-    "balik-2m": 890,
-    "balik-3m": 1190,
-    "balik-4m": 1490,
-  },
-  getOptionOptions: () => [
-    { value: "balik-2m", label: "Balík 2 m" },
-    { value: "balik-3m", label: "Balík 3 m" },
-    { value: "balik-4m", label: "Balík 4 m" },
+  displayUnit: "balík",
+  options: [
+    { value: "balik-2m", label: "Balík 2 m", price: 890, illustrationVariant: "slabs-2m" },
+    { value: "balik-3m", label: "Balík 3 m", price: 1190, illustrationVariant: "slabs-3m" },
+    { value: "balik-4m", label: "Balík 4 m", price: 1490, illustrationVariant: "slabs-4m" },
   ],
-  getCartTitle: (option) => {
-    const label =
-      krajinky.getOptionOptions().find((item) => item.value === option)?.label ?? option;
-    return `Krajinky / ${label}`;
-  },
-  getCartDetails: (option) => {
-    const label =
-      krajinky.getOptionOptions().find((item) => item.value === option)?.label ?? option;
-    return [`Balík: ${label}`, "Využití: topení, zátop i hospodářské provozy"];
-  },
-};
+});
 
-const driviNaPaletach: OptionOnlyCategory = {
+const driviNaPaletach = optionCategory({
   id: "drivi-na-paletach",
-  sectionId: FUEL_SECTION.id,
-  sectionTitle: FUEL_SECTION.title,
-  sectionAnchorId: FUEL_SECTION.anchorId,
-  kind: "option-only",
   name: "Dříví na paletách",
-  shortName: "Dříví na paletách",
-  subtitle:
-    "Přehledně složené palety palivového dřeva pro čisté skladování a pohodlnou manipulaci.",
-  description:
-    "Paletované dříví ocení každý, kdo chce mít zásobu dřeva úhledně složenou a připravenou k okamžitému použití. Vyberte si variantu podle délky polen i objemu.",
+  subtitle: "Přehledně složené palety palivového dřeva pro čisté skladování.",
+  description: "Vyberte délku polen nebo větší paletu 1,6 prm podle prostoru a očekávané spotřeby.",
   imageSrc: "/images/illustrations/palety-v2.webp",
-  thumbnailAlt: "Minimalistická ilustrace paletovaného dříví",
-  illustrationPrompt:
-    "DIPISTAV comic-engraving product illustration of a pallet-sized cube of split firewood packed in an open slatted wooden frame, dark chocolate-brown contour, honey-amber wood, readable bark and growth rings, transparent background, no baked shadow, text or logo.",
-  priceUnitLabel: "Cena / paleta",
+  thumbnailAlt: "Ilustrace paletovaného dříví",
   ctaLabel: "Přidat paletu do košíku",
+  quantityLabel: "Počet palet",
+  quantityUnitLabel: "palet",
   optionLabel: "Typ palety",
-  priceByOption: {
-    "paleta-33cm": 2190,
-    "paleta-25cm": 2290,
-    "paleta-16prm": 3190,
-  },
-  getOptionOptions: () => [
-    { value: "paleta-33cm", label: "Paleta 33 cm / 1 prm" },
-    { value: "paleta-25cm", label: "Paleta 25 cm / 1 prm" },
-    { value: "paleta-16prm", label: "Paleta 1,6 prm" },
+  displayUnit: "paleta",
+  options: [
+    {
+      value: "paleta-33cm",
+      label: "Paleta 33 cm / 1 prm",
+      price: 2190,
+      illustrationVariant: "pallet-33",
+    },
+    {
+      value: "paleta-25cm",
+      label: "Paleta 25 cm / 1 prm",
+      price: 2290,
+      illustrationVariant: "pallet-25",
+    },
+    {
+      value: "paleta-16prm",
+      label: "Paleta 1,6 prm",
+      price: 3190,
+      illustrationVariant: "pallet-16",
+    },
   ],
-  getCartTitle: (option) => {
-    const label =
-      driviNaPaletach.getOptionOptions().find((item) => item.value === option)?.label ?? option;
-    return `Dříví na paletách / ${label}`;
-  },
-  getCartDetails: (option) => {
-    const label =
-      driviNaPaletach.getOptionOptions().find((item) => item.value === option)?.label ?? option;
-    return [`Typ palety: ${label}`, "Doručení: vhodné pro rozvoz s hydraulickou rukou"];
-  },
-};
+});
 
 export const PRODUCT_CATEGORY_SECTIONS: ProductCategorySection[] = [
-  {
-    ...TIMBER_SECTION,
-    categories: [tramy, fosny, prkna, late],
-  },
-  {
-    ...FUEL_SECTION,
-    categories: [stipaneDrevo, pelety, krajinky, driviNaPaletach],
-  },
+  { ...TIMBER_SECTION, categories: [tramy, fosny, prkna, late] },
+  { ...FUEL_SECTION, categories: [stipaneDrevo, pelety, krajinky, driviNaPaletach] },
 ];
 
-export const PRODUCT_CATEGORIES: ProductCategory[] = PRODUCT_CATEGORY_SECTIONS.flatMap(
+export const PRODUCT_CATEGORIES = PRODUCT_CATEGORY_SECTIONS.flatMap(
   (section) => section.categories,
 );
 
 export function getProductCategory(categoryId: string) {
   return PRODUCT_CATEGORIES.find((category) => category.id === categoryId);
+}
+
+export function getDefaultModeId(category: ProductCategory) {
+  return category.modes?.[0]?.id;
+}
+
+export function getVariantsForMode(category: ProductCategory, modeId?: string) {
+  return category.variants.filter((variant) => !category.modes || variant.modeId === modeId);
+}
+
+export function getSelectionOptions(
+  category: ProductCategory,
+  selectorKey: string,
+  modeId: string | undefined,
+  selection: Record<string, string>,
+): SelectOption[] {
+  const selectorIndex = category.selectors.findIndex((selector) => selector.key === selectorKey);
+  const previousSelectors = category.selectors.slice(0, Math.max(selectorIndex, 0));
+  const candidates = getVariantsForMode(category, modeId).filter((variant) =>
+    previousSelectors.every(
+      (selector) =>
+        !selection[selector.key] || variant.selection[selector.key] === selection[selector.key],
+    ),
+  );
+  const values = [...new Set(candidates.map((variant) => variant.selection[selectorKey]))];
+
+  return values.map((value) => {
+    const matchingVariants = candidates.filter(
+      (variant) => variant.selection[selectorKey] === value,
+    );
+    const availability = matchingVariants.some((variant) => variant.availability === "in-stock")
+      ? "in-stock"
+      : "out-of-stock";
+    const baseLabel = category.selectionLabels[selectorKey]?.[value] ?? value;
+    return {
+      value,
+      availability,
+      label: availability === "out-of-stock" ? `${baseLabel} — nedostupné` : baseLabel,
+    };
+  });
+}
+
+export function normalizeSelection(
+  category: ProductCategory,
+  modeId: string | undefined,
+  requested: Record<string, string> = {},
+) {
+  const normalized: Record<string, string> = {};
+
+  for (const selector of category.selectors) {
+    const options = getSelectionOptions(category, selector.key, modeId, normalized);
+    const requestedValue = requested[selector.key];
+    const requestedOption = options.find((option) => option.value === requestedValue);
+    normalized[selector.key] =
+      requestedOption?.availability === "in-stock"
+        ? requestedValue
+        : (options.find((option) => option.availability === "in-stock")?.value ??
+          options[0]?.value ??
+          "");
+  }
+
+  return normalized;
+}
+
+export function resolveProductVariant(
+  category: ProductCategory,
+  modeId: string | undefined,
+  selection: Record<string, string>,
+) {
+  return getVariantsForMode(category, modeId).find((variant) =>
+    category.selectors.every(
+      (selector) => variant.selection[selector.key] === selection[selector.key],
+    ),
+  );
+}
+
+export function getSelectionLabel(category: ProductCategory, key: string, value: string) {
+  return category.selectionLabels[key]?.[value] ?? value;
+}
+
+export function getVariantTitle(category: ProductCategory, variant: ProductVariant) {
+  if (category.id === "tramy") {
+    return `Trám ${getSelectionLabel(category, "profile", variant.selection.profile)} × ${variant.selection.length} cm`;
+  }
+  if (category.id === "fosny") {
+    return `Fošna ${getSelectionLabel(category, "profile", variant.selection.profile)} × ${variant.selection.length} cm`;
+  }
+  if (category.id === "late") {
+    return `Lať ${getSelectionLabel(category, "profile", variant.selection.profile)} / ${getSelectionLabel(category, "length", variant.selection.length)}`;
+  }
+  if (category.id === "prkna") {
+    const modeLabel = category.modes?.find((mode) => mode.id === variant.modeId)?.label ?? "Prkna";
+    return `${modeLabel} ${variant.selection.width} × ${variant.selection.length} cm`;
+  }
+  return `${category.name} / ${getSelectionLabel(category, "option", variant.selection.option)}`;
+}
+
+export function getVariantDetails(category: ProductCategory, variant: ProductVariant) {
+  if (category.id === "tramy" || category.id === "fosny") {
+    return [
+      `Profil: ${getSelectionLabel(category, "profile", variant.selection.profile)}`,
+      `Délka: ${getSelectionLabel(category, "length", variant.selection.length)}`,
+    ];
+  }
+  if (category.id === "late") {
+    return [
+      `Profil: ${getSelectionLabel(category, "profile", variant.selection.profile)}`,
+      `Délka: ${getSelectionLabel(category, "length", variant.selection.length)}`,
+    ];
+  }
+  if (category.id === "prkna") {
+    return [
+      `Typ: ${category.modes?.find((mode) => mode.id === variant.modeId)?.label ?? "Prkna"}`,
+      "Tloušťka: 25 mm",
+      `Šířka: ${variant.selection.width} cm`,
+      `Délka: ${variant.selection.length} cm`,
+    ];
+  }
+  return [`Varianta: ${getSelectionLabel(category, "option", variant.selection.option)}`];
+}
+
+export function getBeamWidgetCatalog() {
+  return {
+    profiles: Object.keys(beamPriceMap).map((value) => ({
+      value,
+      label: value.replace("x", " × ") + " cm",
+    })),
+    lengths: ["400", "500", "600", "700"].map((value) => ({ value, label: `${value} cm` })),
+    prices: beamPriceMap,
+  };
 }

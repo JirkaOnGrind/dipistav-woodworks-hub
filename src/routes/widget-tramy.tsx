@@ -2,6 +2,7 @@ import { useEffect } from "react";
 import { createFileRoute } from "@tanstack/react-router";
 import { ArrowLeft } from "lucide-react";
 import { SiteShell } from "@/components/site-shell";
+import { getBeamWidgetCatalog } from "@/lib/product-catalog";
 
 declare global {
   interface Window {
@@ -13,6 +14,7 @@ declare global {
 
 const widgetConfig = JSON.stringify({
   maxQuantity: 200,
+  catalog: getBeamWidgetCatalog(),
   slider: {
     min: 1,
     max: 25,
@@ -35,33 +37,38 @@ export const Route = createFileRoute("/widget-tramy")({
 
 function WidgetTramyPage() {
   useEffect(() => {
+    let cancelled = false;
     const existingScript = document.querySelector<HTMLScriptElement>(
       'script[data-beam-configurator-script="true"]',
     );
 
+    const initialize = () => {
+      if (!cancelled) window.BeamConfigurator?.initAll(document);
+    };
+
     if (window.BeamConfigurator?.initAll) {
-      window.BeamConfigurator.initAll(document);
+      initialize();
       return;
     }
 
     if (existingScript) {
-      existingScript.addEventListener("load", () => {
-        window.BeamConfigurator?.initAll(document);
-      });
-      return;
+      existingScript.addEventListener("load", initialize);
+      return () => {
+        cancelled = true;
+        existingScript.removeEventListener("load", initialize);
+      };
     }
 
     const script = document.createElement("script");
     script.src = "/widgets/beam-configurator.js";
     script.defer = true;
     script.dataset.beamConfiguratorScript = "true";
-    script.onload = () => {
-      window.BeamConfigurator?.initAll(document);
-    };
+    script.addEventListener("load", initialize);
     document.body.appendChild(script);
 
     return () => {
-      script.onload = null;
+      cancelled = true;
+      script.removeEventListener("load", initialize);
     };
   }, []);
 
@@ -112,7 +119,7 @@ function WidgetTramyPage() {
               dangerouslySetInnerHTML={{ __html: widgetConfig }}
             />
 
-            <div className="grid items-stretch gap-6 lg:grid-cols-[minmax(0,1fr)_minmax(360px,430px)]">
+            <div className="grid min-w-0 items-stretch gap-6 xl:grid-cols-[minmax(0,1fr)_minmax(360px,430px)]">
               <div className="min-w-0 rounded-3xl border border-[#A86D38]/15 bg-white/80 p-4 shadow-sm backdrop-blur sm:p-6">
                 <header className="mb-4 flex items-start justify-between gap-4">
                   <div>
@@ -141,18 +148,18 @@ function WidgetTramyPage() {
                     className="absolute inset-x-10 bottom-8 h-8 rounded-full bg-[#6B4A2F]/10 blur-2xl"
                   />
 
-                  <div className="relative w-full max-w-[44rem] min-w-0">
+                  <div className="relative w-full max-w-[44rem] min-w-0 self-stretch">
                     <div
                       data-beam-preview-frame
-                      className="relative aspect-[1820/1024] w-full overflow-hidden"
+                      className="relative h-full min-h-[200px] w-full overflow-visible sm:min-h-[356px]"
                     >
                       <div
                         data-beam-preview-motion
-                        className="relative h-full w-full max-h-full max-w-full overflow-hidden"
+                        className="relative h-full w-full max-h-full max-w-full overflow-visible"
                       >
                         <div
                           data-beam-preview-stage
-                          className="relative h-full w-full max-h-full max-w-full overflow-hidden"
+                          className="absolute inset-[8%] overflow-visible"
                         >
                           <img
                             src="/images/illustrations/beams/beam-1-500-v2.webp"
@@ -185,20 +192,10 @@ function WidgetTramyPage() {
                             draggable={false}
                           />
                           <img
-                            src="/images/illustrations/beams/beam-5-500-v2.webp"
-                            alt={"P\u011bt a\u017e \u0161est stavebn\u00edch tr\u00e1m\u016f"}
+                            src="/images/illustrations/golden-masters/beam-bundle-6-seams-master-v2.webp"
+                            alt={"P\u011bt a\u017e deset stavebn\u00edch tr\u00e1m\u016f"}
                             data-beam-image
                             data-image-key="five"
-                            className="absolute inset-0 h-full w-full max-h-full max-w-full object-contain select-none"
-                            loading="eager"
-                            decoding="async"
-                            draggable={false}
-                          />
-                          <img
-                            src="/images/illustrations/beams/beam-7-500-v2.webp"
-                            alt={"Sedm a\u017e deset stavebn\u00edch tr\u00e1m\u016f"}
-                            data-beam-image
-                            data-image-key="seven"
                             className="absolute inset-0 h-full w-full max-h-full max-w-full object-contain select-none"
                             loading="eager"
                             decoding="async"
@@ -252,7 +249,7 @@ function WidgetTramyPage() {
                       aria-live="polite"
                       className="mt-1 block text-xl font-black tracking-tight text-[color:var(--timber)] tabular-nums"
                     >
-                      {"473 K\u010d"}
+                      {"525 K\u010d"}
                     </output>
                   </div>
                 </header>
@@ -305,7 +302,7 @@ function WidgetTramyPage() {
                           min={1}
                           max={25}
                           step={1}
-                          value={5}
+                          defaultValue={5}
                           aria-label={"Po\u010det kus\u016f"}
                           aria-valuemin={1}
                           aria-valuemax={25}
@@ -321,7 +318,7 @@ function WidgetTramyPage() {
                           type="number"
                           min={1}
                           max={200}
-                          value={5}
+                          defaultValue={5}
                           inputMode="numeric"
                           aria-label={"Po\u010det kus\u016f v \u010d\u00edsle"}
                           className="h-11 w-full rounded-2xl border border-border bg-white px-3 text-base font-black text-[#1E293B] shadow-sm tabular-nums focus:border-primary focus:outline-none focus:ring-2 focus:ring-primary/20"
@@ -352,7 +349,7 @@ function WidgetTramyPage() {
                           aria-live="polite"
                           className="mt-1 block min-w-[8ch] text-4xl font-black tracking-tight text-[#1E3A2B] tabular-nums"
                         >
-                          {"2 365 K\u010d"}
+                          {"2 625 K\u010d"}
                         </output>
                       </div>
 
