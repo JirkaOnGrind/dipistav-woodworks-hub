@@ -1,10 +1,9 @@
 import type { CSSProperties } from "react";
 import {
+  calculateSafeArtworkTransform,
+  getArtworkRequestedScale,
   getSellingUnitCount,
-  getSellingUnitTransform,
-  getTimberArtworkFilter,
-  getTimberArtworkTransform,
-  resolveProductArtwork,
+  resolveArtworkScene,
   type SellingUnitCount,
 } from "@/lib/product-artwork";
 import type { ProductVariant } from "@/lib/product-catalog";
@@ -196,11 +195,6 @@ const PELLET_BAG_LAYOUTS: Record<SellingUnitCount, UnitPlacement[]> = {
   30: createGridLayout(30, 10, 0.19, 33, 24),
 };
 
-const SLAB_CLUSTER_LAYOUT: UnitPlacement[] = [
-  { x: 15, y: -11, scale: 0.72, zIndex: 1 },
-  { x: -15, y: 12, scale: 0.75, zIndex: 2 },
-];
-
 const SLAB_UNIT_LAYOUTS: Partial<Record<SellingUnitCount, UnitPlacement[]>> = {
   3: [
     { x: 20, y: -12, scale: 0.57, zIndex: 1, rotation: 0.5 },
@@ -216,84 +210,50 @@ const SLAB_UNIT_LAYOUTS: Partial<Record<SellingUnitCount, UnitPlacement[]>> = {
 };
 
 export function ProductIllustration({ categoryId, quantity, variant, title }: IllustrationProps) {
-  const artwork = resolveProductArtwork(categoryId, variant, quantity);
+  const { scene } = resolveArtworkScene(categoryId, variant, quantity);
 
-  if (!artwork.source) return null;
+  if (!scene.source) return null;
 
-  if (artwork.kind === "timber") {
-    return (
-      <div data-product-artwork data-artwork-key={artwork.key} className="h-full w-full">
-        <img
-          src={artwork.source}
-          alt={title}
-          draggable={false}
-          decoding="async"
-          className="h-full w-full select-none object-contain"
-          style={{
-            transform: getTimberArtworkTransform(categoryId, variant, artwork.key),
-            filter: getTimberArtworkFilter(categoryId, artwork.key),
-          }}
-        />
-      </div>
+  if (scene.renderMode === "master") {
+    const safeTransform = calculateSafeArtworkTransform(
+      scene,
+      getArtworkRequestedScale(scene, variant),
     );
-  }
-
-  if (artwork.kind === "composition") {
-    const isExpandedSlabPile = quantity >= 9 && variant.illustrationVariant.startsWith("slabs-");
-    const compositionLayout = isExpandedSlabPile ? SLAB_CLUSTER_LAYOUT : null;
 
     return (
       <div
         role="img"
         aria-label={title}
         data-product-artwork
-        data-artwork-key={artwork.key}
-        data-product-composition
-        data-composition-unit-count={compositionLayout?.length}
-        className="relative flex h-full w-full items-center justify-center"
+        data-artwork-scene={scene.id}
+        data-artwork-key={scene.artworkKey}
+        data-artwork-render-mode="master"
+        data-safe-inset={scene.safeInset}
+        className="flex h-full w-full items-center justify-center"
       >
-        {compositionLayout?.map((placement, index) => (
-          <div
-            key={`${placement.x}-${placement.y}-${index}`}
-            aria-hidden
-            data-composition-group
-            className="absolute inset-0 flex items-center justify-center"
-            style={
-              {
-                "--artwork-x": `${placement.x}%`,
-                "--artwork-y": `${placement.y}%`,
-                "--artwork-scale": placement.scale,
-                "--artwork-rotation": `${placement.rotation ?? 0}deg`,
-                zIndex: placement.zIndex,
-              } as CSSProperties
-            }
-          >
-            <img
-              src={artwork.source}
-              alt=""
-              draggable={false}
-              decoding="async"
-              className="h-full w-full select-none object-contain"
-              style={{ transform: getSellingUnitTransform(variant) }}
-            />
-          </div>
-        )) ?? (
-          <img
-            src={artwork.source}
-            alt=""
-            aria-hidden
-            draggable={false}
-            decoding="async"
-            className="h-full w-full select-none object-contain"
-            style={{ transform: getSellingUnitTransform(variant) }}
-          />
-        )}
+        <img
+          src={scene.source}
+          alt=""
+          aria-hidden
+          width={scene.canvas.width}
+          height={scene.canvas.height}
+          draggable={false}
+          decoding="async"
+          className="max-h-full max-w-full select-none object-contain"
+          style={{
+            transform: safeTransform.transform,
+            filter: scene.filter,
+          }}
+        />
       </div>
     );
   }
 
-  const unitCount = getSellingUnitCount(quantity, variant.illustrationVariant);
-  const unitTransform = getSellingUnitTransform(variant);
+  const unitCount =
+    scene.legacyUnitCount ?? getSellingUnitCount(quantity, variant.illustrationVariant);
+  const unitTransform = variant.illustrationVariant.startsWith("slabs-")
+    ? `scaleX(${variant.illustrationVariant === "slabs-2m" ? 0.9 : variant.illustrationVariant === "slabs-4m" ? 1.1 : 1})`
+    : undefined;
   const isSlab = variant.illustrationVariant.startsWith("slabs-");
   const layout =
     isSlab && SLAB_UNIT_LAYOUTS[unitCount]
@@ -312,7 +272,9 @@ export function ProductIllustration({ categoryId, quantity, variant, title }: Il
       role="img"
       aria-label={title}
       data-product-artwork
-      data-artwork-key={artwork.key}
+      data-artwork-scene={scene.id}
+      data-artwork-key={scene.artworkKey}
+      data-artwork-render-mode="legacy-units"
       data-selling-unit-count={unitCount}
       className="relative h-full w-full"
     >
@@ -334,7 +296,7 @@ export function ProductIllustration({ categoryId, quantity, variant, title }: Il
             style={style}
           >
             <img
-              src={artwork.source}
+              src={scene.source}
               alt=""
               draggable={false}
               decoding="async"

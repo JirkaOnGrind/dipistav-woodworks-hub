@@ -1,10 +1,6 @@
 import { useEffect, useLayoutEffect, useMemo, useRef, useState } from "react";
 import { ProductIllustration } from "@/components/product-illustrations";
-import {
-  getProductArtworkSources,
-  getSellingUnitCount,
-  resolveProductArtwork,
-} from "@/lib/product-artwork";
+import { getArtworkPreloadSources, resolveArtworkScene } from "@/lib/product-artwork";
 import type { ProductVariant } from "@/lib/product-catalog";
 
 type WoodVisualizerProps = {
@@ -16,111 +12,61 @@ type WoodVisualizerProps = {
   variant?: ProductVariant;
 };
 
-const BEAM_ASSETS = {
-  one: "/images/illustrations/configurator-v4/beam-1-v4.webp",
-  two: "/images/illustrations/configurator-v4/beam-2-v4.webp",
-  three: "/images/illustrations/configurator-v4/beam-3-v4.webp",
-  five: "/images/illustrations/golden-masters/beam-bundle-6-seams-master-v2.webp",
-  eleven: "/images/illustrations/configurator-v4/beam-12-v4.webp",
-  eighteen: "/images/illustrations/configurator-v7/beam-16-seams-v7.webp",
-} as const;
-
-const BEAM_ALT = {
-  one: "Jeden stavební trám",
-  two: "Dva stavební trámy",
-  three: "Tři až čtyři stavební trámy",
-  five: "Pět až deset stavebních trámů",
-  eleven: "Jedenáct až patnáct stavebních trámů",
-  eighteen: "Šestnáct a více stavebních trámů",
-} as const;
-
-type BeamKey = keyof typeof BEAM_ASSETS;
-
 type VisualState = {
   signature: string;
   source: string;
   quantity: number;
-  beamKey?: BeamKey;
   variant?: ProductVariant;
 };
 
-const decodedImages = new Map<string, Promise<void>>();
+type VisualLayers = {
+  current: VisualState;
+  previous?: VisualState;
+};
+
+const decodedImages = new Map<string, Promise<boolean>>();
 const decodedSources = new Set<string>();
 
 function decodeImage(src: string) {
-  if (typeof Image === "undefined" || !src) return Promise.resolve();
+  if (typeof Image === "undefined" || !src) return Promise.resolve(true);
+  if (decodedSources.has(src)) return Promise.resolve(true);
 
   const cached = decodedImages.get(src);
   if (cached) return cached;
 
-  const promise = new Promise<void>((resolve) => {
+  const promise = new Promise<boolean>((resolve) => {
     const image = new Image();
     image.decoding = "async";
     let settled = false;
 
-    const finish = () => {
+    const finish = (success: boolean) => {
       if (settled) return;
       settled = true;
-      if (typeof image.decode === "function") {
-        image
-          .decode()
-          .catch(() => undefined)
-          .finally(() => {
-            decodedSources.add(src);
-            resolve();
-          });
-      } else {
-        decodedSources.add(src);
-        resolve();
-      }
+      if (success) decodedSources.add(src);
+      resolve(success);
     };
 
-    image.onload = finish;
-    image.onerror = () => resolve();
+    image.onload = () => {
+      if (typeof image.decode !== "function") {
+        finish(true);
+        return;
+      }
+      image.decode().then(
+        () => finish(true),
+        () => finish(false),
+      );
+    };
+    image.onerror = () => finish(false);
     image.src = src;
 
-    if (image.complete) finish();
+    if (image.complete) {
+      if (image.naturalWidth > 0) image.onload?.(new Event("load"));
+      else finish(false);
+    }
   });
 
   decodedImages.set(src, promise);
   return promise;
-}
-
-function getBeamVisualKey(quantity: number): BeamKey {
-  if (quantity <= 1) return "one";
-  if (quantity === 2) return "two";
-  if (quantity <= 4) return "three";
-  if (quantity <= 10) return "five";
-  if (quantity <= 15) return "eleven";
-  return "eighteen";
-}
-
-function clamp(value: number, min: number, max: number) {
-  return Math.min(Math.max(value, min), max);
-}
-
-function getBeamTransform(variant?: ProductVariant, beamKey?: BeamKey) {
-  const width = variant?.dimensions?.widthMm ?? 140;
-  const height = variant?.dimensions?.heightMm ?? width;
-  const lengthMm = variant?.dimensions?.lengthMm ?? 5000;
-  const areaScale = clamp(Math.sqrt((width * height) / (140 * 140)), 0.88, 1.12);
-  const ratio = width / height;
-  const profileX = clamp(Math.sqrt(ratio), 0.9, 1.1);
-  const profileY = clamp(1 / Math.sqrt(ratio), 0.9, 1.1);
-  const lengthScale =
-    ({ 4000: 0.82, 5000: 1, 6000: 1.1, 7000: 1.18 } as Record<number, number>)[lengthMm] ?? 1;
-  const scaleX = clamp(areaScale * lengthScale * profileX, 0.78, 1.18);
-  const scaleY = clamp(areaScale * profileY, 0.82, 1.16);
-  const positionCorrection: Record<BeamKey, { x: number; y: number }> = {
-    one: { x: 0.25, y: 1.55 },
-    two: { x: -0.45, y: 1.4 },
-    three: { x: 0.8, y: -0.55 },
-    five: { x: 0, y: 0.3 },
-    eleven: { x: 2.95, y: -2.5 },
-    eighteen: { x: 0.8, y: -1.45 },
-  };
-  const correction = positionCorrection[beamKey ?? "one"];
-  return `translate(${correction.x}%, ${correction.y}%) scaleX(${scaleX}) scaleY(${scaleY})`;
 }
 
 function getVisualState(
@@ -129,31 +75,17 @@ function getVisualState(
   quantity: number,
   variant?: ProductVariant,
 ): VisualState {
-  if (categoryId === "tramy") {
-    const beamKey = getBeamVisualKey(quantity);
-    const source = BEAM_ASSETS[beamKey];
-    return { signature: `beam:${beamKey}`, source, quantity, beamKey, variant };
+  if (!variant) {
+    return { signature: `fallback:${imageSrc}`, source: imageSrc, quantity };
   }
 
-  if (variant) {
-    const artwork = resolveProductArtwork(categoryId, variant, quantity);
-    const visualKey =
-      artwork.kind === "selling-unit"
-        ? getSellingUnitCount(quantity, variant.illustrationVariant)
-        : artwork.kind === "composition"
-          ? variant.illustrationVariant.startsWith("slabs-") && quantity >= 9
-            ? "expanded-composition"
-            : "composition"
-          : artwork.key;
-    return {
-      signature: `${variant.id}:${artwork.source}:${visualKey}`,
-      source: artwork.source || imageSrc,
-      quantity,
-      variant,
-    };
-  }
-
-  return { signature: `fallback:${imageSrc}`, source: imageSrc, quantity };
+  const { scene } = resolveArtworkScene(categoryId, variant, quantity);
+  return {
+    signature: `${scene.id}:${variant.id}:${scene.source}`,
+    source: scene.source || imageSrc,
+    quantity,
+    variant,
+  };
 }
 
 export function WoodVisualizer({
@@ -164,56 +96,72 @@ export function WoodVisualizer({
   quantityUnitLabel = "ks",
   variant,
 }: WoodVisualizerProps) {
-  const isBeam = categoryId === "tramy";
-  const isTimberArtwork = categoryId === "fosny" || categoryId === "prkna" || categoryId === "late";
   const targetVisual = useMemo(
     () => getVisualState(categoryId, imageSrc, quantity, variant),
     [categoryId, imageSrc, quantity, variant],
   );
-  const [displayedVisual, setDisplayedVisual] = useState(targetVisual);
-  const beamTransform = useMemo(
-    () => getBeamTransform(variant, displayedVisual.beamKey),
-    [displayedVisual.beamKey, variant],
-  );
+  const [layers, setLayers] = useState<VisualLayers>({ current: targetVisual });
+  const layersRef = useRef(layers);
+  const requestIdRef = useRef(0);
+  const transitionTimerRef = useRef<number>();
   const [isRecoiling, setIsRecoiling] = useState(false);
   const previousVariantRef = useRef(variant?.id);
 
   useEffect(() => {
-    const sources = isBeam
-      ? Object.values(BEAM_ASSETS)
-      : variant
-        ? getProductArtworkSources(categoryId, variant)
-        : [imageSrc];
+    layersRef.current = layers;
+  }, [layers]);
 
-    void Promise.all(sources.map((source) => decodeImage(source)));
-  }, [categoryId, imageSrc, isBeam, variant]);
+  useEffect(() => {
+    const sources = variant ? getArtworkPreloadSources(categoryId, variant, quantity) : [imageSrc];
+    for (const source of sources) void decodeImage(source);
+  }, [categoryId, imageSrc, quantity, variant]);
 
   useLayoutEffect(() => {
-    if (displayedVisual.signature === targetVisual.signature) {
-      if (
-        displayedVisual.quantity !== targetVisual.quantity ||
-        displayedVisual.variant !== targetVisual.variant
-      ) {
-        setDisplayedVisual(targetVisual);
+    const active = layersRef.current.current;
+    if (active.signature === targetVisual.signature) {
+      if (active.quantity !== targetVisual.quantity || active.variant !== targetVisual.variant) {
+        setLayers((current) => ({
+          ...current,
+          current: targetVisual,
+        }));
       }
       return;
     }
 
+    const requestId = ++requestIdRef.current;
     let cancelled = false;
-    if (decodedSources.has(targetVisual.source)) {
-      setDisplayedVisual(targetVisual);
-      return;
-    }
 
-    decodeImage(targetVisual.source).then(() => {
-      if (cancelled) return;
-      setDisplayedVisual(targetVisual);
-    });
+    const commit = () => {
+      if (cancelled || requestId !== requestIdRef.current) return;
+      if (transitionTimerRef.current !== undefined) {
+        window.clearTimeout(transitionTimerRef.current);
+      }
+
+      setLayers((current) => ({ previous: current.current, current: targetVisual }));
+      transitionTimerRef.current = window.setTimeout(() => {
+        if (requestId !== requestIdRef.current) return;
+        setLayers((current) => ({ current: current.current }));
+        transitionTimerRef.current = undefined;
+      }, 220);
+    };
+
+    if (decodedSources.has(targetVisual.source)) commit();
+    else void decodeImage(targetVisual.source).then((success) => success && commit());
 
     return () => {
       cancelled = true;
     };
-  }, [displayedVisual, targetVisual]);
+  }, [targetVisual]);
+
+  useEffect(
+    () => () => {
+      requestIdRef.current += 1;
+      if (transitionTimerRef.current !== undefined) {
+        window.clearTimeout(transitionTimerRef.current);
+      }
+    },
+    [],
+  );
 
   useEffect(() => {
     if (previousVariantRef.current === variant?.id) return;
@@ -226,6 +174,37 @@ export function WoodVisualizer({
       window.clearTimeout(timeout);
     };
   }, [variant?.id]);
+
+  const renderLayer = (visual: VisualState, state: "current" | "previous") => (
+    <div
+      key={visual.signature}
+      aria-hidden={state === "previous" || undefined}
+      data-artwork-visual-layer
+      data-layer-state={state}
+      className={`absolute inset-[4%] drop-shadow-[0_20px_34px_rgba(107,74,47,0.2)] ${
+        state === "current" ? "is-current" : "is-previous"
+      }`}
+    >
+      {visual.variant ? (
+        <ProductIllustration
+          categoryId={categoryId}
+          quantity={visual.quantity}
+          variant={visual.variant}
+          title={`${imageAlt}, ${visual.quantity} ${quantityUnitLabel}`}
+        />
+      ) : (
+        <img
+          src={visual.source}
+          alt={imageAlt}
+          loading="eager"
+          fetchPriority="high"
+          decoding="async"
+          draggable={false}
+          className="h-full w-full select-none object-contain"
+        />
+      )}
+    </div>
+  );
 
   return (
     <div className="group flex h-full min-w-0 flex-col rounded-3xl border border-[#A86D38]/15 bg-white/86 p-4 shadow-[0_18px_50px_rgba(30,58,43,0.07)] backdrop-blur sm:p-6">
@@ -247,58 +226,16 @@ export function WoodVisualizer({
         <div className="relative w-full max-w-[44rem] min-w-0 self-stretch">
           <div
             data-beam-preview-frame
-            className="relative h-full min-h-[230px] w-full overflow-visible sm:min-h-[356px]"
+            className="relative h-full min-h-[230px] w-full overflow-hidden sm:min-h-[356px]"
           >
             <div
               data-beam-preview-motion
               className={`relative h-full w-full ${isRecoiling ? "is-recoiling" : ""}`}
             >
-              {isBeam && displayedVisual.beamKey ? (
-                <div
-                  data-beam-preview-stage
-                  className="absolute inset-[8%] transition-transform duration-300"
-                  style={{
-                    transform: beamTransform,
-                    filter:
-                      displayedVisual.beamKey === "eleven" || displayedVisual.beamKey === "eighteen"
-                        ? "saturate(0.93) brightness(1.02) contrast(1.01)"
-                        : undefined,
-                  }}
-                >
-                  <img
-                    key={displayedVisual.signature}
-                    src={displayedVisual.source}
-                    alt={BEAM_ALT[displayedVisual.beamKey]}
-                    loading="eager"
-                    fetchPriority="high"
-                    decoding="async"
-                    draggable={false}
-                    className="absolute inset-0 h-full w-full select-none object-contain drop-shadow-[0_20px_34px_rgba(107,74,47,0.22)]"
-                  />
-                </div>
-              ) : displayedVisual.variant ? (
-                <div
-                  key={displayedVisual.signature}
-                  data-product-illustration-layer
-                  className={`${isTimberArtwork ? "absolute inset-[10%]" : "absolute inset-[4%]"} drop-shadow-[0_20px_34px_rgba(107,74,47,0.2)]`}
-                >
-                  <ProductIllustration
-                    categoryId={categoryId}
-                    quantity={displayedVisual.quantity}
-                    variant={displayedVisual.variant}
-                    title={`${imageAlt}, ${displayedVisual.quantity} ${quantityUnitLabel}`}
-                  />
-                </div>
-              ) : (
-                <img
-                  src={displayedVisual.source}
-                  alt={imageAlt}
-                  loading="eager"
-                  fetchPriority="high"
-                  decoding="async"
-                  className="absolute inset-[4%] h-[92%] w-[92%] object-contain"
-                />
-              )}
+              <div data-beam-preview-stage className="absolute inset-0 overflow-hidden">
+                {layers.previous && renderLayer(layers.previous, "previous")}
+                {renderLayer(layers.current, "current")}
+              </div>
             </div>
           </div>
         </div>

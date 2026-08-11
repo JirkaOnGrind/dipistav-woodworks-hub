@@ -9,6 +9,7 @@
     "build:dev": "vite build --mode development",
     "preview": "vite preview",
     "test": "vitest run",
+    "test:artwork": "vitest run src/lib/product-artwork.test.ts src/components/product-illustrations.test.tsx",
     "lint": "eslint .",
     "format": "prettier --write ."
   },

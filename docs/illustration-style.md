@@ -1,47 +1,134 @@
 # DIPISTAV illustration system
 
-This guide defines the product-illustration language used across the DIPISTAV shop. Client photographs are private production references only; they are not published or committed.
+Tento dokument je závazný výrobní a implementační standard pro produktové ilustrace. Klientské fotografie jsou pouze soukromé výrobní reference; nepublikují se a necommitují.
 
-## Visual signature
+## Vizuální podpis
 
-- Three-quarter isometric view with the cut ends generally facing the lower-right corner.
-- Dark chocolate-brown contour and engraving lines; honey and amber fills for the wood.
-- Controlled cross-hatching on shaded planes, bark and gaps. Keep broad faces calmer so the product remains readable on a mobile card.
-- Growth rings are visible on important cut ends, but never so dense that they become visual noise.
-- One clear silhouette, centered with generous breathing room. No environment, people, tools, text, logo, watermark or baked shadow.
-- Final delivery is a square transparent WebP for category illustrations. Beam quantity variants use a transparent 1820:1024 canvas.
+- Tříčtvrteční izometrický pohled, čela materiálu zpravidla míří k pravému dolnímu rohu.
+- Tmavě čokoládová kontura a šrafování, medové až jantarové výplně dřeva.
+- Šrafování je hustší ve stínu, na kůře a ve spárách. Široké plochy zůstávají klidné a čitelné i na mobilu.
+- Letokruhy jsou viditelné na důležitých čelech, ale nesmí vytvářet vizuální šum.
+- Jedna čitelná silueta, bez prostředí, lidí, nářadí, textu, loga, watermarku a zapečeného stínu.
+- Všechny kusy jsou kompletní. Zakázané jsou slité plochy, chybějící dělicí čáry, useknuté kusy, měnící se perspektiva a mechanicky opakované mřížky.
 
-## Product truth
+## `ArtworkSceneDefinition`
 
-- **Trámy:** square structural beams; clean parallel stack and clearly square ends.
-- **Fošny:** eight thick, broad boards in four orderly layers.
-- **Prkna:** thinner boards in a regular drying stack with narrow spacers.
-- **Střešní latě:** identical rectangular battens aligned in parallel rows; never scattered.
-- **Štípané dřevo:** loose compact mound of believable wedge and half-round split logs, with some bark.
-- **Pelety:** preserve the approved compact engraved pellet mound as the style anchor.
-- **Krajinky:** a long strapped bale of irregular bark-edged sawmill slab offcuts; never a neat crate of uniform sticks.
-- **Dříví na paletách:** split logs packed into an open slatted wooden frame on a pallet.
+Produkční mapování žije v `src/lib/product-artwork.ts`. Každý množstevní stav je typovaná scéna s těmito povinnými údaji:
 
-## Dynamic composition
+- stabilní `id`, `categoryId` a `illustrationVariant`;
+- `quantityBand` a neklesající `visualMassRank`;
+- verzovaný `source` a skutečné rozměry `canvas`;
+- normalizovaný `alphaBounds` změřený z hotového alpha kanálu;
+- `opticalCenter`, minimálně šestiprocentní `safeInset` a `transformPolicy`;
+- sousední assety pro preload;
+- `renderMode: "master"` pro kurátorovanou scénu nebo dočasný `"legacy-units"` pouze pro dosud nemigrované stavy.
 
-- Quantity is represented symbolically as one to five selling units: 1, 2, 3–4, 5–8 and 9+ pieces. The exact ordered quantity remains visible in the UI.
-- Length changes the horizontal extent by at most ±10%; profile or package changes overall scale by at most ±8%.
-- Transitions use a short spring-like rearrangement without layout shifts. The CSS stage owns all shadows so assets remain reusable.
-- Beam previews use six stable quantity thresholds: 1, 2, 3–4, 5–10, 11–15 and 16+. The 5–10 range deliberately keeps one topology so the illustration never switches while still showing the same six-beam bundle.
+Nové nebo upravené množstevní pásmo musí být vždy jeden `master`. Přidávání nových CSS klonů je zakázané. `legacy-units` je pouze přechodová kompatibilita během schvalovací brány a nesmí se rozšiřovat.
 
-## Prompt template
+## Množstevní pásma
 
-Use the client photograph as the product-truth reference, the current DIPISTAV asset as a composition reference and the approved pellet/beam artwork as the style reference.
+Po vizuálním schválení se používá tato cílová matice:
 
-> DIPISTAV comic-engraving product illustration of [exact product and count/arrangement], three-quarter isometric view, dark chocolate-brown contour, honey-amber spruce, visible end grain and controlled cross-hatching, simple mobile-readable silhouette, isolated on flat chroma green #00ff00, no ground plane, shadow, gradient, text, logo, watermark, people or tools.
+- Trámy: 1 / 2 / 3–4 / 5–10 / 11–15 / 16+.
+- Fošny: 1 / 2 / 3–4 / 5–9 / 10–14 / 15+; první pět pásem zachovat, pro 15+ použít schválený dlouhý nízký master.
+- Netříděná prkna: 1 / 2 / 3–4 / 5–9 / 10–14 / 15+.
+- Latě: 1 / 2 / 3–4 / 5–9 / 10–14 / 15+.
+- Štípané dřevo a dříví na paletách: 1 / 2 / 3–4 / 5–8 / 9+.
+- Pytle a sety pelet: 1 / 2 / 3–4 / 5–9 / 10–19 / 20+.
+- Palety pelet: 1 / 2 / 3 / 4+.
+- Krajinky: 1 / 2 / 3–4 / 5–8 / 9+.
 
-Generate in `stylized-concept` mode, remove the chroma background with a soft alpha matte and despill, then export as versioned WebP. Never overwrite or delete the previous production asset.
+Přesný objednaný počet zůstává v badge a cenové rekapitulaci. Scéna komunikuje objem symbolicky; nemusí kreslit každý objednaný kus.
 
-## Golden-master approval gate
+## Safe-fit matematika
 
-Do not expand a new illustration pass across the catalog until both composition families are approved:
+`calculateSafeArtworkTransform()` nevychází z obdélníku souboru, ale ze skutečného `alphaBounds` a `opticalCenter`. Pro každou osu vypočte maximální scale z nejvzdálenějšího okraje od optického středu a z dostupné poloviny plochy po odečtení safe-zone.
 
-1. `golden-masters/beam-bundle-6-seams-master-v2.webp` locks the technical timber topology. It shows exactly six complete beams in a 3 × 2 bundle, six readable end faces and continuous separation seams on every visible plane.
-2. `golden-masters/bigbag-pile-9-master-v1.webp` locks the organic high-quantity language. It must show exactly nine complete firewood bags as one stable 4–3–2 pile, with readable mass and depth rather than a repeated icon grid.
+- minimální vnitřní okraj je 6 % na všech stranách;
+- výsledný scale je vždy omezen alpha bounds;
+- optický střed je po transformaci zarovnán na střed preview;
+- dynamická odchylka scale u trámů má sílu 0,95;
+- regresní stav `20 × 20 cm / 500 cm / 20 ks` musí zůstat celý uvnitř safe-zone.
 
-For all follow-up variants, preserve the approved camera, contour weight, honey/cream palette, transparent padding and product scale. Only change the product-specific geometry and the symbolic quantity composition. Reject any fused surfaces, partial pieces, duplicated handles, disappearing seams, mechanically repeated grids or smaller-looking 16+ state.
+Alpha bounds se zapisují až z finálního PNG po odstranění pozadí, ne z chroma source.
+
+## Plynulé přepínání
+
+`wood-visualizer.tsx` drží stabilní rozměr preview a používá dva obrazové buffery:
+
+1. přednačte aktuální scénu a její přímé sousedy;
+2. nový obraz zobrazí až po úspěšném `decode()`;
+3. pořadové ID požadavku zahodí zastaralý výsledek při rychlém posouvání slideru;
+4. předchozí vrstva zůstane pod novou po dobu 220ms crossfadu;
+5. nová vrstva má jemnou 320ms scale animaci;
+6. `prefers-reduced-motion` vypne crossfade, scale i rearrange animace.
+
+Chyba načtení nikdy nesmí odstranit poslední úspěšně zobrazenou scénu.
+
+## Alpha-edge výrobní postup
+
+Výchozí cesta je ImageGen na dokonale plochém `#00ff00`. Pozadí nesmí obsahovat stín, gradient, podlahu, odlesk, texturu ani změnu osvětlení.
+
+Základní průchod:
+
+```powershell
+python C:\Users\Utrh\.codex\skills\.system\imagegen\scripts\remove_chroma_key.py `
+  --input <source.png> `
+  --out <cutout.png> `
+  --auto-key border `
+  --soft-matte `
+  --transparent-threshold 12 `
+  --opaque-threshold 220 `
+  --despill
+```
+
+Povolený je jediný opravný průchod s `--edge-contract 1`. Asset se zamítne, pokud i potom:
+
+- nejsou všechny rohy zcela průhledné;
+- existují izolované zelené pixely nebo zelená dominance v poloprůhledné hraně;
+- je při 100 % nebo 200 % viditelná zubatost, světlý či zelený lem;
+- soft matte vyžral tmavou konturu, kresbu dřeva, oka pytle nebo provaz.
+
+Při poškození detailu se použije uživatelem schválený fallback: nativně průhledné PNG přes CLI `gpt-image-1.5`, následně produkční WebP. Vadný chroma výsledek se nesmí „zachraňovat“ dalším agresivním contractingem.
+
+## Ukládání a naming
+
+- Nové produkční soubory patří do `public/images/illustrations/configurator-v9/`.
+- Zdrojové chroma PNG a alfa mezivýstupy se archivují mimo repozitář.
+- Produkce: `<product>-<band>-master-v9.webp`.
+- Existující assety se nepřepisují ani nemažou.
+
+## Golden Master gate
+
+První výrobní fáze obsahuje pouze osm reprezentativních kandidátů:
+
+1. `fosna-15plus-master-v9.webp`;
+2. `lat-3-4-master-v9.webp`;
+3. `firewood-loose-9plus-master-v9.webp`;
+4. `firewood-bigbag-5-8-master-v9.webp`;
+5. `pallet-25-1-master-v9.webp`;
+6. `pellets-set-1-master-v9.webp`;
+7. `pellets-pallet-1-master-v9.webp`;
+8. `slabs-4-master-v9.webp`.
+
+Po čtvrtém schvalovacím kole je zamknuto a chráněno SHA-256 hashem sedm v9 masterů: `fosna-15plus-master-v9.webp`, `lat-3-4-master-v9.webp`, `firewood-loose-9plus-master-v9.webp`, `pellets-pallet-1-master-v9.webp`, `pellets-set-1-master-v9.webp`, `firewood-bigbag-5-8-master-v9.webp` a `firewood-bigbag-9plus-master-v9.webp`.
+
+Korekční prompty vždy zachovávají DIPISTAV styl a přidávají společný zákaz: `no reverse perspective, no oversized background objects, no flat grid wall, no floating items, no unnatural wood peeling`.
+
+Korekční kola používají tyto zpřesněné generativní podmínky:
+
+- Big bag: přesně pět jednotek, tři vpředu a dvě vzadu; každý pytel vychází ze stejné geometrické šablony a má shodnou projektovanou šířku i výšku. Hloubka mění pouze pozici a překrytí, nikdy scale. Zakázané jsou `larger rear bags`, `taller rear bags` a `perspective scaling`.
+- Set pelet: přesně deset pytlů; osm horizontálních v asymetrickém vazebném stohu a dva opřené z boků. Povinné jsou různé malé úhly natočení, široký fyzický kontakt a jednotlivě čitelné siluety. Zakázaná je matematická pyramida, pravidelná stěna a sterilní symetrie.
+- Paleta 25 cm: obsah tvoří hranaté štípané klíny, ne hladké válce. Všechna čitelná řezná čela směřují doprava dolů; na druhé viditelné straně jsou pouze podélná těla s kůrou. Negativní prompt obsahuje `melted wood, peeled texture, organic distortion, blurry end grain`.
+- Krajinky: čtyři rozměrově identické balíky tvoří stabilní pyramidu se třemi balíky v dolní nosné řadě a jedním vycentrovaným balíkem nahoře. Zakázané jsou izolované bloky, skryté mezery, levitace a opora mimo těžiště.
+
+Na základě pokynu k celkové exekuci je všech 47 v9 assetů vyrobeno a produkčně aktivováno v jednotném registru scén. Aktivace a Golden Master lock jsou oddělené stavy: sedm výslovně schválených v9 assetů je hashově zamknutých; ostatní jsou produkční kandidáti se stavem `awaiting-approval` a nesmějí se přidat do hashového zámku bez dalšího výslovného schválení. Každý budoucí kandidát se kontroluje na světlém a tmavém pozadí, v desktopovém i mobilním konfigurátoru a s detailem alfa hran.
+
+## Povinné kontroly před předáním
+
+- testy hranic množstevních pásem a neklesajícího `visualMassRank`;
+- existence všech registrovaných assetů;
+- safe-fit včetně regresního stavu trámů;
+- jeden `<img>` a žádné `data-selling-unit` u každého nového masteru;
+- build, komponentové testy a cílený lint změněných souborů;
+- Browser QA na 1440 × 900 a 390 × 844: první načtení, rychlý slider, ruční vstup, změna varianty, reduced motion a čistá konzole.
