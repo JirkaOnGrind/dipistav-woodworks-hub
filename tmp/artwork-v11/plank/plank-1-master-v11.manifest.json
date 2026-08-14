@@ -1,0 +1,98 @@
+{
+  "canvas": {
+    "width": 1536,
+    "height": 1024
+  },
+  "alphaBoundsPixels": {
+    "left": 112,
+    "top": 148,
+    "right": 1424,
+    "bottom": 876
+  },
+  "alphaBounds": {
+    "x": 0.072917,
+    "y": 0.144531,
+    "width": 0.854167,
+    "height": 0.710938
+  },
+  "opticalCenter": {
+    "x": 0.5,
+    "y": 0.5
+  },
+  "alphaCoverage": 0.388492,
+  "interiorAlphaMin": 248,
+  "margins": {
+    "left": 112,
+    "top": 148,
+    "right": 112,
+    "bottom": 148
+  },
+  "family": "plank",
+  "quantityBand": {
+    "min": 1,
+    "max": 1
+  },
+  "representativeCount": 1,
+  "layout": "1x1",
+  "expectedVisibleConstructionSeams": 0,
+  "camera": {
+    "projection": "orthographic",
+    "azimuthDegrees": 40,
+    "elevationDegrees": 27
+  },
+  "designVectors": {
+    "column": [
+      280.0,
+      -58.0
+    ],
+    "rowDown": [
+      0.0,
+      119.0
+    ],
+    "back": [
+      -372.0,
+      -183.0
+    ]
+  },
+  "autoFit": {
+    "policy": "adaptive-bounds",
+    "safeInset": 0.07,
+    "contourReservePixels": 8.0,
+    "maxScale": 2.0,
+    "renderScale": 2.0,
+    "translation": [
+      860.0,
+      634.0
+    ]
+  },
+  "lineWeights": {
+    "outer": 4.0,
+    "edge": 3.0,
+    "seam": 3.0,
+    "rings": 1.5,
+    "grain": 1.25
+  },
+  "palette": [
+    "#501801",
+    "#501801",
+    "#6B310B",
+    "#804015",
+    "#965622",
+    "#C5813B",
+    "#F0A242",
+    "#F4A847",
+    "#EEA847"
+  ],
+  "canonicalTextureSource": "artwork-sources/beams/beam-unit-tile-master-v1-4x.png",
+  "canonicalTextureSha256": "752db88a14866587604e271225b5c85f82d1974d96a62a2cd8ec57beadf3bec0",
+  "visualReference": "Obrázek Codex 12. 8. 2026 19_45_37.png",
+  "texturePolicy": "reference-face-transfer-with-clean-polygon-corners",
+  "cornerCleanup": "no-corner-discoloration-no-dirty-corner-shading-no-ao",
+  "seed": 20260813,
+  "styleVersion": "v11",
+  "approvalStatus": "awaiting-approval",
+  "source": "tmp/artwork-v11/unit-tiles/plank-unit-tile-master-v11.png",
+  "sourceSha256": "dc218693ab2f1a2835726c5687037efb788ac34d89ffebdf890a819d8594007f",
+  "outputSha256": "d331b0a328128608876d0cc8f5a6120c4af30579b9005e63a520b70d27cfc6df",
+  "plannedRuntimePath": "/images/illustrations/configurator-v11/plank-1-master-v11.webp"
+}

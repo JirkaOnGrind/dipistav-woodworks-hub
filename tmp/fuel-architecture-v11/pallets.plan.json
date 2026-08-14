@@ -1,0 +1,293 @@
+{
+  "families": [
+    {
+      "styleVersion": "v11",
+      "approvalStatus": "planned",
+      "runtimeActivation": "blocked-until-explicit-visual-approval",
+      "canvas": {
+        "width": 1536,
+        "height": 1024
+      },
+      "camera": {
+        "projection": "orthographic",
+        "azimuthDegrees": 40,
+        "elevationDegrees": 27
+      },
+      "safeInset": 0.07,
+      "seed": 20260813,
+      "family": {
+        "id": "firewood-pallet-16",
+        "category_id": "stipane-drevo",
+        "illustration_variants": [
+          "firewood-pallet",
+          "pallet-16"
+        ],
+        "unit_tiles": [
+          "pallet",
+          "pallet-frame-16",
+          "split-half-round",
+          "split-quarter",
+          "split-triangular"
+        ],
+        "bands": [
+          {
+            "suffix": "1",
+            "minimum": 1,
+            "maximum": 1,
+            "representative_selling_units": 1,
+            "rendered_module_counts": {
+              "firewood-pallet": 1,
+              "pallet": 1
+            },
+            "composition_basis": "exact",
+            "contained_unit_equivalent": null
+          },
+          {
+            "suffix": "2",
+            "minimum": 2,
+            "maximum": 2,
+            "representative_selling_units": 2,
+            "rendered_module_counts": {
+              "firewood-pallet": 2,
+              "pallet": 2
+            },
+            "composition_basis": "exact",
+            "contained_unit_equivalent": null
+          },
+          {
+            "suffix": "3-4",
+            "minimum": 3,
+            "maximum": 4,
+            "representative_selling_units": 4,
+            "rendered_module_counts": {
+              "firewood-pallet": 4,
+              "pallet": 4
+            },
+            "composition_basis": "exact",
+            "contained_unit_equivalent": null
+          },
+          {
+            "suffix": "5-8",
+            "minimum": 5,
+            "maximum": 8,
+            "representative_selling_units": 6,
+            "rendered_module_counts": {
+              "firewood-pallet": 6,
+              "pallet": 6
+            },
+            "composition_basis": "exact",
+            "contained_unit_equivalent": null
+          },
+          {
+            "suffix": "9plus",
+            "minimum": 9,
+            "maximum": null,
+            "representative_selling_units": 9,
+            "rendered_module_counts": {
+              "firewood-pallet": 9,
+              "pallet": 9
+            },
+            "composition_basis": "exact",
+            "contained_unit_equivalent": null
+          }
+        ],
+        "notes": [
+          "Share the same 1.6 prm master across both runtime variants."
+        ]
+      },
+      "planSha256": "0b689b3ca890fd2d5d489745cb0e7067037a1c1d6f56fb5dcf59007e16f1f49d"
+    },
+    {
+      "styleVersion": "v11",
+      "approvalStatus": "planned",
+      "runtimeActivation": "blocked-until-explicit-visual-approval",
+      "canvas": {
+        "width": 1536,
+        "height": 1024
+      },
+      "camera": {
+        "projection": "orthographic",
+        "azimuthDegrees": 40,
+        "elevationDegrees": 27
+      },
+      "safeInset": 0.07,
+      "seed": 20260813,
+      "family": {
+        "id": "firewood-pallet-25",
+        "category_id": "drivi-na-paletach",
+        "illustration_variants": [
+          "pallet-25"
+        ],
+        "unit_tiles": [
+          "pallet",
+          "pallet-frame-25",
+          "split-half-round",
+          "split-quarter",
+          "split-triangular"
+        ],
+        "bands": [
+          {
+            "suffix": "1",
+            "minimum": 1,
+            "maximum": 1,
+            "representative_selling_units": 1,
+            "rendered_module_counts": {
+              "firewood-pallet": 1,
+              "pallet": 1
+            },
+            "composition_basis": "exact",
+            "contained_unit_equivalent": null
+          },
+          {
+            "suffix": "2",
+            "minimum": 2,
+            "maximum": 2,
+            "representative_selling_units": 2,
+            "rendered_module_counts": {
+              "firewood-pallet": 2,
+              "pallet": 2
+            },
+            "composition_basis": "exact",
+            "contained_unit_equivalent": null
+          },
+          {
+            "suffix": "3-4",
+            "minimum": 3,
+            "maximum": 4,
+            "representative_selling_units": 4,
+            "rendered_module_counts": {
+              "firewood-pallet": 4,
+              "pallet": 4
+            },
+            "composition_basis": "exact",
+            "contained_unit_equivalent": null
+          },
+          {
+            "suffix": "5-8",
+            "minimum": 5,
+            "maximum": 8,
+            "representative_selling_units": 6,
+            "rendered_module_counts": {
+              "firewood-pallet": 6,
+              "pallet": 6
+            },
+            "composition_basis": "exact",
+            "contained_unit_equivalent": null
+          },
+          {
+            "suffix": "9plus",
+            "minimum": 9,
+            "maximum": null,
+            "representative_selling_units": 9,
+            "rendered_module_counts": {
+              "firewood-pallet": 9,
+              "pallet": 9
+            },
+            "composition_basis": "exact",
+            "contained_unit_equivalent": null
+          }
+        ],
+        "notes": [
+          "Parameterize 25 cm log length and denser cut faces."
+        ]
+      },
+      "planSha256": "9b8d384250e5ba32b2aacd5be7a066365c6300c3fb93423cbd24ea114b1e82a5"
+    },
+    {
+      "styleVersion": "v11",
+      "approvalStatus": "planned",
+      "runtimeActivation": "blocked-until-explicit-visual-approval",
+      "canvas": {
+        "width": 1536,
+        "height": 1024
+      },
+      "camera": {
+        "projection": "orthographic",
+        "azimuthDegrees": 40,
+        "elevationDegrees": 27
+      },
+      "safeInset": 0.07,
+      "seed": 20260813,
+      "family": {
+        "id": "firewood-pallet-33",
+        "category_id": "drivi-na-paletach",
+        "illustration_variants": [
+          "pallet-33"
+        ],
+        "unit_tiles": [
+          "pallet",
+          "pallet-frame-33",
+          "split-half-round",
+          "split-quarter",
+          "split-triangular"
+        ],
+        "bands": [
+          {
+            "suffix": "1",
+            "minimum": 1,
+            "maximum": 1,
+            "representative_selling_units": 1,
+            "rendered_module_counts": {
+              "firewood-pallet": 1,
+              "pallet": 1
+            },
+            "composition_basis": "exact",
+            "contained_unit_equivalent": null
+          },
+          {
+            "suffix": "2",
+            "minimum": 2,
+            "maximum": 2,
+            "representative_selling_units": 2,
+            "rendered_module_counts": {
+              "firewood-pallet": 2,
+              "pallet": 2
+            },
+            "composition_basis": "exact",
+            "contained_unit_equivalent": null
+          },
+          {
+            "suffix": "3-4",
+            "minimum": 3,
+            "maximum": 4,
+            "representative_selling_units": 4,
+            "rendered_module_counts": {
+              "firewood-pallet": 4,
+              "pallet": 4
+            },
+            "composition_basis": "exact",
+            "contained_unit_equivalent": null
+          },
+          {
+            "suffix": "5-8",
+            "minimum": 5,
+            "maximum": 8,
+            "representative_selling_units": 6,
+            "rendered_module_counts": {
+              "firewood-pallet": 6,
+              "pallet": 6
+            },
+            "composition_basis": "exact",
+            "contained_unit_equivalent": null
+          },
+          {
+            "suffix": "9plus",
+            "minimum": 9,
+            "maximum": null,
+            "representative_selling_units": 9,
+            "rendered_module_counts": {
+              "firewood-pallet": 9,
+              "pallet": 9
+            },
+            "composition_basis": "exact",
+            "contained_unit_equivalent": null
+          }
+        ],
+        "notes": [
+          "Parameterize 33 cm log length; use its 1 prm master for the future homepage icon."
+        ]
+      },
+      "planSha256": "ce358cee2c88b77cae82c28e6f81ae051d0f28cd752d2293a195c50b01737bf6"
+    }
+  ]
+}

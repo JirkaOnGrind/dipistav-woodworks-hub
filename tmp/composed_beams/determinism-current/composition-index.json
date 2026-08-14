@@ -1,0 +1,96 @@
+{
+  "generator": "scripts/compose_beam_stacks.py",
+  "seed": 20260812,
+  "safeInset": 0.06,
+  "sharedRenderScale": 0.9815,
+  "designVectors": {
+    "x": [
+      135.0,
+      -28.0
+    ],
+    "yDown": [
+      0.0,
+      130.0
+    ],
+    "zFrontToBack": [
+      -560.0,
+      -275.0
+    ]
+  },
+  "source": "artwork-sources/beams/beam-unit-tile-master-v1-4x.png",
+  "sourceSha256": "752db88a14866587604e271225b5c85f82d1974d96a62a2cd8ec57beadf3bec0",
+  "assets": {
+    "1": {
+      "canvas": {
+        "width": 1536,
+        "height": 1024
+      },
+      "alphaBoundsPixels": {
+        "left": 424,
+        "top": 297,
+        "right": 1112,
+        "bottom": 727
+      },
+      "alphaBounds": {
+        "x": 0.276042,
+        "y": 0.290039,
+        "width": 0.447917,
+        "height": 0.419922
+      },
+      "opticalCenter": {
+        "x": 0.5,
+        "y": 0.5
+      },
+      "alphaCoverage": 0.08948,
+      "margins": {
+        "left": 424,
+        "top": 297,
+        "right": 424,
+        "bottom": 297
+      },
+      "representativeCount": 1,
+      "layout": "1x1",
+      "png": "beam-1-composed-master-v10.png",
+      "webp": "beam-1-composed-master-v10.webp",
+      "manifest": "beam-1-composed-master-v10.manifest.json",
+      "sha256": "d3da423c14437e065d2138716e8b357ce07e3c0d71880bbd1f9f0d8dbcb90690",
+      "interiorAlphaMin": 255
+    },
+    "3": {
+      "canvas": {
+        "width": 1536,
+        "height": 1024
+      },
+      "alphaBoundsPixels": {
+        "left": 358,
+        "top": 226,
+        "right": 1178,
+        "bottom": 798
+      },
+      "alphaBounds": {
+        "x": 0.233073,
+        "y": 0.220703,
+        "width": 0.533854,
+        "height": 0.558594
+      },
+      "opticalCenter": {
+        "x": 0.5,
+        "y": 0.5
+      },
+      "alphaCoverage": 0.173257,
+      "margins": {
+        "left": 358,
+        "top": 226,
+        "right": 358,
+        "bottom": 226
+      },
+      "representativeCount": 3,
+      "layout": "2+1-centered",
+      "png": "beam-3-4-composed-master-v10.png",
+      "webp": "beam-3-4-composed-master-v10.webp",
+      "manifest": "beam-3-4-composed-master-v10.manifest.json",
+      "sha256": "0e9562eb4959ed232292ccca89908b4a17877bca46e444f71de7a39aeac60b29",
+      "interiorAlphaMin": 255
+    }
+  }
+}

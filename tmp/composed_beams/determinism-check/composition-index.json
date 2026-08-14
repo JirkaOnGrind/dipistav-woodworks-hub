@@ -1,0 +1,234 @@
+{
+  "generator": "scripts/compose_beam_stacks.py",
+  "seed": 20260812,
+  "safeInset": 0.06,
+  "sharedRenderScale": 0.9815,
+  "designVectors": {
+    "x": [
+      135.0,
+      -28.0
+    ],
+    "yDown": [
+      0.0,
+      130.0
+    ],
+    "zFrontToBack": [
+      -560.0,
+      -275.0
+    ]
+  },
+  "source": "artwork-sources/beams/beam-unit-tile-master-v1-4x.png",
+  "sourceSha256": "752db88a14866587604e271225b5c85f82d1974d96a62a2cd8ec57beadf3bec0",
+  "assets": {
+    "2": {
+      "canvas": {
+        "width": 1536,
+        "height": 1024
+      },
+      "alphaBoundsPixels": {
+        "left": 356,
+        "top": 282,
+        "right": 1180,
+        "bottom": 742
+      },
+      "alphaBounds": {
+        "x": 0.231771,
+        "y": 0.275391,
+        "width": 0.536458,
+        "height": 0.449219
+      },
+      "opticalCenter": {
+        "x": 0.5,
+        "y": 0.5
+      },
+      "alphaCoverage": 0.134832,
+      "margins": {
+        "left": 356,
+        "top": 282,
+        "right": 356,
+        "bottom": 282
+      },
+      "representativeCount": 2,
+      "layout": "2x1",
+      "png": "beam-2-composed-master-v10.png",
+      "webp": "beam-2-composed-master-v10.webp",
+      "manifest": "beam-2-composed-master-v10.manifest.json",
+      "sha256": "fbf97f14e1260921fcb9dfbf564854835285efa9c74b771a3358aa0c5f405f78"
+    },
+    "3": {
+      "canvas": {
+        "width": 1536,
+        "height": 1024
+      },
+      "alphaBoundsPixels": {
+        "left": 356,
+        "top": 225,
+        "right": 1180,
+        "bottom": 799
+      },
+      "alphaBounds": {
+        "x": 0.231771,
+        "y": 0.219727,
+        "width": 0.536458,
+        "height": 0.560547
+      },
+      "opticalCenter": {
+        "x": 0.5,
+        "y": 0.5
+      },
+      "alphaCoverage": 0.175384,
+      "margins": {
+        "left": 356,
+        "top": 225,
+        "right": 356,
+        "bottom": 225
+      },
+      "representativeCount": 3,
+      "layout": "2+1-centered",
+      "png": "beam-3-4-composed-master-v10.png",
+      "webp": "beam-3-4-composed-master-v10.webp",
+      "manifest": "beam-3-4-composed-master-v10.manifest.json",
+      "sha256": "1e01dfb9914d8daa4761c2389c01ab8cc3c3e70756d235eb51f360635655c157"
+    },
+    "6": {
+      "canvas": {
+        "width": 1536,
+        "height": 1024
+      },
+      "alphaBoundsPixels": {
+        "left": 290,
+        "top": 204,
+        "right": 1246,
+        "bottom": 820
+      },
+      "alphaBounds": {
+        "x": 0.188802,
+        "y": 0.199219,
+        "width": 0.622396,
+        "height": 0.601562
+      },
+      "opticalCenter": {
+        "x": 0.5,
+        "y": 0.5
+      },
+      "alphaCoverage": 0.255894,
+      "margins": {
+        "left": 290,
+        "top": 204,
+        "right": 290,
+        "bottom": 204
+      },
+      "representativeCount": 6,
+      "layout": "3x2",
+      "png": "beam-5-8-composed-master-v10.png",
+      "webp": "beam-5-8-composed-master-v10.webp",
+      "manifest": "beam-5-8-composed-master-v10.manifest.json",
+      "sha256": "2e28fc2e8f564270fa4b7355163525e61e97ca880efe8c0bb3447e11d51af7e4"
+    },
+    "9": {
+      "canvas": {
+        "width": 1536,
+        "height": 1024
+      },
+      "alphaBoundsPixels": {
+        "left": 290,
+        "top": 140,
+        "right": 1246,
+        "bottom": 884
+      },
+      "alphaBounds": {
+        "x": 0.188802,
+        "y": 0.136719,
+        "width": 0.622396,
+        "height": 0.726562
+      },
+      "opticalCenter": {
+        "x": 0.5,
+        "y": 0.5
+      },
+      "alphaCoverage": 0.333225,
+      "margins": {
+        "left": 290,
+        "top": 140,
+        "right": 290,
+        "bottom": 140
+      },
+      "representativeCount": 9,
+      "layout": "3x3",
+      "png": "beam-9-11-composed-master-v10.png",
+      "webp": "beam-9-11-composed-master-v10.webp",
+      "manifest": "beam-9-11-composed-master-v10.manifest.json",
+      "sha256": "c8a15e6fb71d7e5b4280f7010227794840d70282c2e2c8a311aa47f73d17f757"
+    },
+    "12": {
+      "canvas": {
+        "width": 1536,
+        "height": 1024
+      },
+      "alphaBoundsPixels": {
+        "left": 224,
+        "top": 127,
+        "right": 1312,
+        "bottom": 897
+      },
+      "alphaBounds": {
+        "x": 0.145833,
+        "y": 0.124023,
+        "width": 0.708333,
+        "height": 0.751953
+      },
+      "opticalCenter": {
+        "x": 0.5,
+        "y": 0.5
+      },
+      "alphaCoverage": 0.398246,
+      "margins": {
+        "left": 224,
+        "top": 127,
+        "right": 224,
+        "bottom": 127
+      },
+      "representativeCount": 12,
+      "layout": "4x3",
+      "png": "beam-12-15-composed-master-v10.png",
+      "webp": "beam-12-15-composed-master-v10.webp",
+      "manifest": "beam-12-15-composed-master-v10.manifest.json",
+      "sha256": "77cc4b339f64010345d7f19b72a49a58e7d3224a352ef267e0c1d60b1ebffde3"
+    },
+    "16": {
+      "canvas": {
+        "width": 1536,
+        "height": 1024
+      },
+      "alphaBoundsPixels": {
+        "left": 224,
+        "top": 63,
+        "right": 1312,
+        "bottom": 961
+      },
+      "alphaBounds": {
+        "x": 0.145833,
+        "y": 0.061523,
+        "width": 0.708333,
+        "height": 0.876953
+      },
+      "opticalCenter": {
+        "x": 0.5,
+        "y": 0.5
+      },
+      "alphaCoverage": 0.486284,
+      "margins": {
+        "left": 224,
+        "top": 63,
+        "right": 224,
+        "bottom": 63
+      },
+      "representativeCount": 16,
+      "layout": "4x4",
+      "png": "beam-16plus-composed-master-v10.png",
+      "webp": "beam-16plus-composed-master-v10.webp",
+      "manifest": "beam-16plus-composed-master-v10.manifest.json",
+      "sha256": "503f2a8859882ffb4480aa5a6cded991cc05e684a6ab1db0f95a013e477902e3"
+    }
+  }
+}

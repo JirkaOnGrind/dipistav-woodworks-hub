@@ -1,0 +1,56 @@
+{
+  "styleVersion": "v11",
+  "approvalStatus": "awaiting-approval",
+  "visualStyle": "canonical-19-45-37-warm-engraved-comic",
+  "cornerPolicy": "no-corner-discoloration-no-dirty-corner-shading-no-ao",
+  "entries": [
+    {
+      "image": "tmp/artwork-v11/homepage/tramy-icon-master-v11.webp",
+      "manifest": "tmp/artwork-v11/homepage/tramy-icon-master-v11.manifest.json",
+      "plannedRuntimePath": "/images/illustrations/homepage-v11/tramy-icon-master-v11.webp",
+      "outputSha256": "ef4a75847498ae910bdf02268dffaa591a9ee48fd6340e534e0fdbd461f36818"
+    },
+    {
+      "image": "tmp/artwork-v11/homepage/fosny-icon-master-v11.webp",
+      "manifest": "tmp/artwork-v11/homepage/fosny-icon-master-v11.manifest.json",
+      "plannedRuntimePath": "/images/illustrations/homepage-v11/fosny-icon-master-v11.webp",
+      "outputSha256": "b12a3c63479ed3abd3503972579fea11a486e86a0dd9026441467d631b34cc32"
+    },
+    {
+      "image": "tmp/artwork-v11/homepage/prkna-icon-master-v11.webp",
+      "manifest": "tmp/artwork-v11/homepage/prkna-icon-master-v11.manifest.json",
+      "plannedRuntimePath": "/images/illustrations/homepage-v11/prkna-icon-master-v11.webp",
+      "outputSha256": "8144ed933d80ae6c24157d1ea40d47f0a393055d811e454a8d5784a79f5dbd50"
+    },
+    {
+      "image": "tmp/artwork-v11/homepage/late-icon-master-v11.webp",
+      "manifest": "tmp/artwork-v11/homepage/late-icon-master-v11.manifest.json",
+      "plannedRuntimePath": "/images/illustrations/homepage-v11/late-icon-master-v11.webp",
+      "outputSha256": "4f80846d954d22e9d8de31614f3b136987dc381eb74bdc4a93673a6eda0daf65"
+    },
+    {
+      "image": "tmp/artwork-v11/homepage/stipane-drevo-icon-master-v11.webp",
+      "manifest": "tmp/artwork-v11/homepage/stipane-drevo-icon-master-v11.manifest.json",
+      "plannedRuntimePath": "/images/illustrations/homepage-v11/stipane-drevo-icon-master-v11.webp",
+      "outputSha256": "8943c23063b7dd50eb46ed27101482ea6c30227093644df29540e6c5a1f0f34c"
+    },
+    {
+      "image": "tmp/artwork-v11/homepage/pelety-icon-master-v11.webp",
+      "manifest": "tmp/artwork-v11/homepage/pelety-icon-master-v11.manifest.json",
+      "plannedRuntimePath": "/images/illustrations/homepage-v11/pelety-icon-master-v11.webp",
+      "outputSha256": "47362065bf790ae5b7a5a604384b0116addaf729ff40b2ba2a2cca659b804c8b"
+    },
+    {
+      "image": "tmp/artwork-v11/homepage/krajinky-icon-master-v11.webp",
+      "manifest": "tmp/artwork-v11/homepage/krajinky-icon-master-v11.manifest.json",
+      "plannedRuntimePath": "/images/illustrations/homepage-v11/krajinky-icon-master-v11.webp",
+      "outputSha256": "71fedc6e4e71281d8269cc6e8450093e94bc5be37b7252bb01614d4dd8f35b74"
+    },
+    {
+      "image": "tmp/artwork-v11/homepage/drivi-na-paletach-icon-master-v11.webp",
+      "manifest": "tmp/artwork-v11/homepage/drivi-na-paletach-icon-master-v11.manifest.json",
+      "plannedRuntimePath": "/images/illustrations/homepage-v11/drivi-na-paletach-icon-master-v11.webp",
+      "outputSha256": "2c894096d81cbc4612a83a1723278cdd1ca69401e7a08ccac11524f54ebcadb1"
+    }
+  ]
+}

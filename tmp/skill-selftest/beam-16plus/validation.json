@@ -1,0 +1,24 @@
+{
+  "input": "public\\images\\illustrations\\configurator-v10\\beam-16plus-master-v10.webp",
+  "canvas": {
+    "width": 1536,
+    "height": 1024
+  },
+  "alphaBoundsPixels": {
+    "left": 176,
+    "top": 71,
+    "right": 1299,
+    "bottom": 960
+  },
+  "alphaBoundsNormalized": {
+    "x": 0.114583,
+    "y": 0.069336,
+    "width": 0.73112,
+    "height": 0.868164
+  },
+  "alphaCoverage": 0.4631,
+  "paletteProximity": 0.938633,
+  "errors": [],
+  "warnings": [],
+  "status": "pass"
+}

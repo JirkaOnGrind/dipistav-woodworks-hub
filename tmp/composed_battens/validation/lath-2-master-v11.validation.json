@@ -1,0 +1,25 @@
+{
+  "input": "C:\\Users\\Utrh\\Documents\\Codex\\dipistav-woodworks-hub\\tmp\\composed_battens\\lath\\lath-2-master-v11.webp",
+  "canvas": {
+    "width": 1536,
+    "height": 1024
+  },
+  "alphaBoundsPixels": {
+    "left": 156,
+    "top": 194,
+    "right": 1380,
+    "bottom": 830
+  },
+  "alphaBoundsNormalized": {
+    "x": 0.101562,
+    "y": 0.189453,
+    "width": 0.796875,
+    "height": 0.621094
+  },
+  "alphaCoverage": 0.245491,
+  "paletteProximity": 0.899409,
+  "whiteOrBrightEdgePixels": 0,
+  "errors": [],
+  "warnings": [],
+  "status": "pass"
+}

@@ -16,6 +16,14 @@ import {
   V9_APPROVED_CANDIDATES,
   V9_ARTWORK_CANDIDATES,
 } from "@/lib/product-artwork-v9-candidates";
+import {
+  V10_APPROVED_CANDIDATES,
+  V10_ARTWORK_CANDIDATES,
+} from "@/lib/product-artwork-v10-candidates";
+import {
+  V11_APPROVED_CANDIDATES,
+  V11_ARTWORK_CANDIDATES,
+} from "@/lib/product-artwork-v11-candidates";
 import { PRODUCT_CATEGORIES } from "@/lib/product-catalog";
 
 function filePath(source: string) {
@@ -61,6 +69,22 @@ function assertSafeFit(scene: ArtworkSceneDefinition) {
   expect(bottom).toBeLessThanOrEqual(1 - scene.safeInset + 0.0001);
 }
 
+function matchingOverride(
+  candidates: readonly ArtworkSceneDefinition[],
+  categoryId: string,
+  illustrationVariant: string,
+  quantity: number,
+) {
+  return candidates.find(
+    (scene) =>
+      scene.categoryId === categoryId &&
+      (scene.illustrationVariant === illustrationVariant ||
+        (scene.illustrationVariant === "slabs-*" && illustrationVariant.startsWith("slabs-"))) &&
+      quantity >= scene.quantityBand.min &&
+      (scene.quantityBand.max === undefined || quantity <= scene.quantityBand.max),
+  );
+}
+
 describe("ArtworkSceneDefinition production registry", () => {
   it("resolves every catalog variant without band gaps and with non-decreasing mass", () => {
     for (const category of PRODUCT_CATEGORIES) {
@@ -83,19 +107,49 @@ describe("ArtworkSceneDefinition production registry", () => {
     }
   });
 
-  it("uses the exact existing widget bands and assets for category/tramy", () => {
+  it("switches beams at truthful 3, 6, 9, 12 and 16-piece representative thresholds", () => {
     const category = PRODUCT_CATEGORIES.find((item) => item.id === "tramy")!;
     const variant = category.variants[0];
     const cases = [
-      [1, "beam-1-v4.webp"],
-      [2, "beam-2-v4.webp"],
-      [3, "beam-3-v4.webp"],
-      [5, "beam-bundle-6-seams-master-v2.webp"],
-      [11, "beam-12-v4.webp"],
-      [16, "beam-16-v4.webp"],
+      [1, "beam-1-master-v11.webp"],
+      [2, "beam-2-master-v11.webp"],
+      [3, "beam-3-4-master-v11.webp"],
+      [4, "beam-3-4-master-v11.webp"],
+      [5, "beam-5-8-master-v11.webp"],
+      [8, "beam-5-8-master-v11.webp"],
+      [9, "beam-9-11-master-v11.webp"],
+      [11, "beam-9-11-master-v11.webp"],
+      [12, "beam-12-15-master-v11.webp"],
+      [15, "beam-12-15-master-v11.webp"],
+      [16, "beam-16plus-master-v11.webp"],
+      [20, "beam-16plus-master-v11.webp"],
     ] as const;
     for (const [quantity, filename] of cases) {
       expect(resolveArtworkScene(category.id, variant, quantity).scene.source).toContain(filename);
+    }
+
+    expect(resolveArtworkScene(category.id, variant, 9).scene.quantityBand).toEqual({
+      min: 9,
+      max: 11,
+    });
+    expect(resolveArtworkScene(category.id, variant, 12).scene.quantityBand).toEqual({
+      min: 12,
+      max: 15,
+    });
+    expect(resolveArtworkScene(category.id, variant, 16).scene.filter).toBeUndefined();
+
+    const lockedBeamHashes = [
+      [1, "c4739683a10e049045804348f8ace7a1710128b54e776eb1a1bb7cd082d3e361"],
+      [2, "fb5886f02c1494fa1f3684a52494b110b800913f1137462a8b154822f143cb28"],
+      [3, "ef4a75847498ae910bdf02268dffaa591a9ee48fd6340e534e0fdbd461f36818"],
+      [5, "03db6c61463ba85787fc811c30f40207da8950a2dba6057d8d3c0fb7922f250f"],
+      [9, "f3c6bf9081943130fbbf895f2046909516bdf9bae4783ce0327c1e42eca76e89"],
+      [12, "638df3b51cbb6304d9b070a6df08ef4c4dd506193c68752cec5ba632219dd208"],
+      [16, "16a781cc378b15e6076990245feda746a31a45929b36b11bff7c464d05928dbc"],
+    ] as const;
+    for (const [quantity, expectedHash] of lockedBeamHashes) {
+      const path = filePath(resolveArtworkScene(category.id, variant, quantity).scene.source);
+      expect(createHash("sha256").update(readFileSync(path)).digest("hex")).toBe(expectedHash);
     }
   });
 
@@ -124,16 +178,17 @@ describe("ArtworkSceneDefinition production registry", () => {
     }
   });
 
-  it("keeps beam dimension transforms inside the six-percent safe inset", () => {
+  it("keeps approved v11 masters free from runtime dimensional distortion", () => {
     const category = PRODUCT_CATEGORIES.find((item) => item.id === "tramy")!;
     const variant = category.variants.find((item) => item.id === "beam-20x20-500")!;
     const { scene } = resolveArtworkScene(category.id, variant, 20);
     const requested = getArtworkRequestedScale(scene, variant);
     const transform = calculateSafeArtworkTransform(scene, requested);
-    expect(scene.id).toBe("beam-16-plus");
-    expect(scene.transformPolicy).toBe("beam");
-    expect(transform.scaleX).toBeLessThanOrEqual(transform.maxSafeScaleX);
-    expect(transform.scaleY).toBeLessThanOrEqual(transform.maxSafeScaleY);
+    expect(scene.source).toContain("configurator-v11/beam-16plus-master-v11.webp");
+    expect(scene.transformPolicy).toBe("none");
+    expect(requested).toEqual({ x: 1, y: 1 });
+    expect(transform.scaleX).toBe(1);
+    expect(transform.scaleY).toBe(1);
   });
 });
 
@@ -154,7 +209,7 @@ describe("v9 production registry", () => {
     }
   });
 
-  it("activates every v9 quantity band in the production resolver", () => {
+  it("activates every v9 quantity band unless an approved v10 scene supersedes it", () => {
     for (const candidate of V9_ARTWORK_CANDIDATES) {
       const category = PRODUCT_CATEGORIES.find((item) => item.id === candidate.categoryId)!;
       const variants = category.variants.filter(
@@ -169,8 +224,20 @@ describe("v9 production registry", () => {
           (quantity): quantity is number => quantity !== undefined,
         );
         for (const quantity of quantities) {
+          const v10Override = matchingOverride(
+            V10_ARTWORK_CANDIDATES,
+            category.id,
+            variant.illustrationVariant,
+            quantity,
+          );
+          const v11Override = matchingOverride(
+            V11_ARTWORK_CANDIDATES,
+            category.id,
+            variant.illustrationVariant,
+            quantity,
+          );
           expect(resolveArtworkScene(category.id, variant, quantity).scene.source).toBe(
-            candidate.source,
+            v11Override?.source ?? v10Override?.source ?? candidate.source,
           );
         }
       }
@@ -217,6 +284,116 @@ describe("v9 production registry", () => {
       (scene?.alphaBounds.width ?? 0) * (scene?.alphaBounds.height ?? 0);
 
     expect(alphaFootprint(bigBagNinePlus)).toBeGreaterThan(alphaFootprint(bigBagFiveToEight));
+  });
+});
+
+describe("v10 production registry", () => {
+  it("registers all 47 approved assets with existing files and truthful canvases", () => {
+    expect(V10_ARTWORK_CANDIDATES).toHaveLength(47);
+    expect(V10_APPROVED_CANDIDATES).toHaveLength(47);
+    expect(new Set(V10_ARTWORK_CANDIDATES.map((scene) => scene.source)).size).toBe(47);
+
+    for (const scene of V10_ARTWORK_CANDIDATES) {
+      const path = filePath(scene.source);
+      expect(scene.approvalStatus, scene.id).toBe("approved");
+      expect(existsSync(path), scene.source).toBe(true);
+      expect(readWebpCanvas(path), scene.source).toEqual(scene.canvas);
+      expect(scene.alphaCoverage, scene.id).toBeGreaterThan(0);
+      expect(scene.alphaBounds.x, scene.id).toBeGreaterThanOrEqual(scene.safeInset - 0.001);
+      expect(scene.alphaBounds.y, scene.id).toBeGreaterThanOrEqual(scene.safeInset - 0.001);
+      expect(scene.alphaBounds.x + scene.alphaBounds.width, scene.id).toBeLessThanOrEqual(
+        1 - scene.safeInset + 0.001,
+      );
+      expect(scene.alphaBounds.y + scene.alphaBounds.height, scene.id).toBeLessThanOrEqual(
+        1 - scene.safeInset + 0.001,
+      );
+      assertSafeFit(scene);
+    }
+  });
+
+  it("activates every approved v10 quantity band unless v11 supersedes it", () => {
+    for (const candidate of V10_ARTWORK_CANDIDATES) {
+      const category = PRODUCT_CATEGORIES.find((item) => item.id === candidate.categoryId)!;
+      const variants = category.variants.filter(
+        (variant) =>
+          variant.illustrationVariant === candidate.illustrationVariant ||
+          (candidate.illustrationVariant === "slabs-*" &&
+            variant.illustrationVariant.startsWith("slabs-")),
+      );
+      expect(variants.length, candidate.id).toBeGreaterThan(0);
+      for (const variant of variants) {
+        const quantities = [candidate.quantityBand.min, candidate.quantityBand.max].filter(
+          (quantity): quantity is number => quantity !== undefined,
+        );
+        for (const quantity of quantities) {
+          const v11Override = matchingOverride(
+            V11_ARTWORK_CANDIDATES,
+            category.id,
+            variant.illustrationVariant,
+            quantity,
+          );
+          expect(resolveArtworkScene(category.id, variant, quantity).scene.source).toBe(
+            v11Override?.source ?? candidate.source,
+          );
+        }
+      }
+    }
+  });
+
+  it("stores the approved representative counts and loose-firewood coverage ratio", () => {
+    const representativeCount = (id: string) =>
+      V10_ARTWORK_CANDIDATES.find((scene) => scene.id === id)?.representativeCount;
+
+    expect(representativeCount("beam-1-composed-master-v10")).toBe(1);
+    expect(representativeCount("beam-2-composed-master-v10")).toBe(2);
+    expect(representativeCount("beam-3-4-composed-master-v11")).toBe(3);
+    expect(representativeCount("beam-5-8-composed-master-v10")).toBe(6);
+    expect(representativeCount("beam-9-11-composed-master-v10")).toBe(9);
+    expect(representativeCount("beam-12-15-composed-master-v10")).toBe(12);
+    expect(representativeCount("beam-16plus-composed-master-v10")).toBe(16);
+    expect(representativeCount("plank-5-9-master-v10")).toBe(6);
+    expect(representativeCount("lath-10-14-master-v10")).toBe(12);
+    expect(representativeCount("pellets-set-5plus-master-v10")).toBe(50);
+    expect(representativeCount("pellets-pallet-6plus-master-v10")).toBe(6);
+    expect(representativeCount("slabs-3-4-master-v10")).toBe(4);
+
+    const looseNinePlus = V10_ARTWORK_CANDIDATES.find(
+      (scene) => scene.id === "firewood-loose-9plus-master-v10",
+    )!;
+    const looseFiveToEight = V9_ARTWORK_CANDIDATES.find(
+      (scene) => scene.id === "firewood-loose-5-8-master-v9",
+    )!;
+    expect(looseNinePlus.alphaCoverage / looseFiveToEight.alphaCoverage).toBeGreaterThanOrEqual(
+      1.3,
+    );
+  });
+});
+
+describe("v11 production registry", () => {
+  it("registers four approved timber families and seven physical assets per family", () => {
+    expect(V11_ARTWORK_CANDIDATES).toHaveLength(42);
+    expect(V11_APPROVED_CANDIDATES).toHaveLength(42);
+    expect(new Set(V11_ARTWORK_CANDIDATES.map((scene) => scene.source)).size).toBe(28);
+    for (const scene of V11_ARTWORK_CANDIDATES) {
+      expect(scene.approvalStatus).toBe("approved");
+      expect(scene.styleVersion).toBe("v11");
+      expect(scene.fitPolicy).toBe("adaptive-bounds");
+      expect(scene.safeInset).toBe(0.07);
+      expect(scene.transformPolicy).toBe("none");
+      expect(scene.filter).toBeUndefined();
+      expect(existsSync(filePath(scene.source)), scene.source).toBe(true);
+      assertSafeFit(scene);
+    }
+  });
+
+  it("maps all three board variants to one approved source family", () => {
+    const boards = PRODUCT_CATEGORIES.find((item) => item.id === "prkna")!;
+    for (const variantName of ["board-sorted", "board-unsorted-narrow", "board-unsorted-wide"]) {
+      const variant = boards.variants.find((item) => item.illustrationVariant === variantName)!;
+      expect(resolveArtworkScene(boards.id, variant, 9).scene.source).toContain(
+        "configurator-v11/board-9-11-master-v11.webp",
+      );
+    }
   });
 });
 

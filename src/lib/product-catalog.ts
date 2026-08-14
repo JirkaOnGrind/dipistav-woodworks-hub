@@ -16,6 +16,19 @@ export type ProductMode = {
   label: string;
 };
 
+export type QuantityPolicy = {
+  min: number;
+  max: number;
+  step: number;
+  sliderMax: number;
+};
+
+export type VolumeCalculation = {
+  basis: "group-average-width";
+  averageWidthMm: number;
+  memberWidthsCm: readonly number[];
+};
+
 export type ProductVariant = {
   id: string;
   modeId?: string;
@@ -24,6 +37,7 @@ export type ProductVariant = {
   availability: Availability;
   pricing: PriceDefinition | null;
   illustrationVariant: string;
+  volumeCalculation?: VolumeCalculation;
 };
 
 export type ProductCategory = {
@@ -42,6 +56,7 @@ export type ProductCategory = {
   ctaLabel: string;
   quantityLabel: string;
   quantityUnitLabel: string;
+  quantityPolicy: QuantityPolicy;
   selectors: ProductSelector[];
   selectionLabels: Record<string, Record<string, string>>;
   modes?: ProductMode[];
@@ -71,6 +86,13 @@ const FUEL_SECTION = {
   description:
     "Praktická paliva pro domů, na chalupu i do provozu. Vyberte si balení, které se vám bude dobře skladovat i používat.",
 } as const;
+
+const DEFAULT_QUANTITY_POLICY: QuantityPolicy = {
+  min: 1,
+  max: 500,
+  step: 1,
+  sliderMax: 20,
+};
 
 const piecePrice = (
   rate: number,
@@ -177,13 +199,14 @@ const tramy: ProductCategory = {
   subtitle: "Masivní nosné trámy pro krovy, stropy, pergoly i další konstrukce.",
   description:
     "Poctivé stavební trámy v osvědčených profilech a délkách. Snadno si vyberete variantu, která bude sedět vašemu projektu i způsobu montáže.",
-  imageSrc: "/images/illustrations/golden-masters/beam-bundle-6-seams-master-v2.webp",
+  imageSrc: "/images/illustrations/homepage-v11/tramy-icon-master-v11.webp",
   thumbnailAlt: "Ilustrace stavebních trámů DIPISTAV",
   illustrationPrompt:
     "DIPISTAV comic-engraving product illustration of square structural timber beams in a neat isometric stack.",
   ctaLabel: "Přidat trámy do košíku",
   quantityLabel: "Počet kusů",
   quantityUnitLabel: "ks",
+  quantityPolicy: DEFAULT_QUANTITY_POLICY,
   selectors: [
     { key: "profile", label: "Profil (cm)" },
     { key: "length", label: "Délka (cm)" },
@@ -208,12 +231,13 @@ const fosny: ProductCategory = {
   subtitle: "Široké stavební fošny pro bednění, podlahy i konstrukční detaily.",
   description:
     "Masivní fošny pro stavbu i truhlářské využití. Skladová varianta má poctivý profil 4 × 14 cm a délku 4 metry.",
-  imageSrc: "/images/illustrations/fosny-v2.webp",
+  imageSrc: "/images/illustrations/homepage-v11/fosny-icon-master-v11.webp",
   thumbnailAlt: "Ilustrace stavebních fošen DIPISTAV",
   illustrationPrompt: "DIPISTAV comic-engraving illustration of thick broad construction boards.",
   ctaLabel: "Přidat fošny do košíku",
   quantityLabel: "Počet kusů",
   quantityUnitLabel: "ks",
+  quantityPolicy: DEFAULT_QUANTITY_POLICY,
   selectors: [
     { key: "profile", label: "Profil (cm)" },
     { key: "length", label: "Délka (cm)" },
@@ -264,17 +288,41 @@ sortedBoardVariants.splice(
   ),
 );
 
-const unsortedBoardVariants = ["8", "10", "12", "14", "16", "18", "20"].flatMap((widthCm) =>
-  ["400", "500"].map((lengthCm) =>
-    pricedVariant(
-      `board-unsorted-${widthCm}-${lengthCm}`,
-      { width: widthCm, length: lengthCm },
-      cubicMeterPrice(Number(widthCm) >= 16 ? 8900 : 7200),
-      { thicknessMm: 25, widthMm: Number(widthCm) * 10, lengthMm: Number(lengthCm) * 10 },
-      Number(widthCm) >= 16 ? "board-unsorted-wide" : "board-unsorted",
+export const UNSORTED_BOARD_GROUPS = [
+  {
+    id: "8-14",
+    label: "8–14 cm (8, 10, 12, 14 cm)",
+    memberWidthsCm: [8, 10, 12, 14],
+    averageWidthMm: 110,
+    ratePerM3: 7200,
+    illustrationVariant: "board-unsorted-narrow",
+  },
+  {
+    id: "16-20",
+    label: "16–20 cm — ŠIROKÁ PRKNA (16, 18, 20 cm)",
+    memberWidthsCm: [16, 18, 20],
+    averageWidthMm: 180,
+    ratePerM3: 8900,
+    illustrationVariant: "board-unsorted-wide",
+  },
+] as const;
+
+const unsortedBoardVariants = UNSORTED_BOARD_GROUPS.flatMap((group) =>
+  ["400", "500"].map((lengthCm) => ({
+    ...pricedVariant(
+      `board-unsorted-${group.id}-${lengthCm}`,
+      { width: group.id, length: lengthCm },
+      cubicMeterPrice(group.ratePerM3),
+      { thicknessMm: 25, widthMm: group.averageWidthMm, lengthMm: Number(lengthCm) * 10 },
+      group.illustrationVariant,
       "unsorted",
     ),
-  ),
+    volumeCalculation: {
+      basis: "group-average-width" as const,
+      averageWidthMm: group.averageWidthMm,
+      memberWidthsCm: group.memberWidthsCm,
+    },
+  })),
 );
 
 const prkna: ProductCategory = {
@@ -287,25 +335,27 @@ const prkna: ProductCategory = {
   shortName: "Prkna",
   subtitle: "Tříděná i netříděná coulová prkna pro střechy, obklady a běžnou stavbu.",
   description:
-    "Vyberte si přesná tříděná prkna s cenou za kus nebo surovější netříděná prkna účtovaná podle skutečného objemu.",
-  imageSrc: "/images/illustrations/prkna-v2.webp",
+    "Vyberte si přesná tříděná prkna s cenou za kus nebo čistě omítaná netříděná prkna účtovaná podle objemu vypočteného z průměrné šířky zvolené skupiny.",
+  imageSrc: "/images/illustrations/homepage-v11/prkna-icon-master-v11.webp",
   thumbnailAlt: "Ilustrace stavebních prken DIPISTAV",
   illustrationPrompt: "DIPISTAV comic-engraving illustration of thin construction boards.",
   ctaLabel: "Přidat prkna do košíku",
   quantityLabel: "Počet kusů",
   quantityUnitLabel: "ks",
+  quantityPolicy: DEFAULT_QUANTITY_POLICY,
   modes: [
     { id: "sorted", label: "Tříděná prkna" },
     { id: "unsorted", label: "Netříděná prkna" },
   ],
   selectors: [
-    { key: "width", label: "Šířka (cm)" },
+    { key: "width", label: "Šířka / skupina šířek" },
     { key: "length", label: "Délka (cm)" },
   ],
   selectionLabels: {
-    width: Object.fromEntries(
-      ["8", "10", "12", "14", "16", "18", "20"].map((value) => [value, `${value} cm`]),
-    ),
+    width: Object.fromEntries([
+      ...["8", "10", "12", "14", "16", "18", "20"].map((value) => [value, `${value} cm`] as const),
+      ...UNSORTED_BOARD_GROUPS.map((group) => [group.id, group.label] as const),
+    ]),
     length: { "400": "400 cm", "500": "500 cm" },
   },
   variants: [...sortedBoardVariants, ...unsortedBoardVariants],
@@ -336,12 +386,13 @@ const late: ProductCategory = {
   subtitle: "Tři skladové profily v délkách 4 a 5 metrů, účtované za běžný metr.",
   description:
     "Střešní latě pro spolehlivou montáž střech, podbití i lehkých konstrukcí. Cena se automaticky počítá z délky a počtu kusů.",
-  imageSrc: "/images/illustrations/late-v2.webp",
+  imageSrc: "/images/illustrations/homepage-v11/late-icon-master-v11.webp",
   thumbnailAlt: "Ilustrace střešních latí DIPISTAV",
   illustrationPrompt: "DIPISTAV comic-engraving illustration of rectangular roofing battens.",
   ctaLabel: "Přidat latě do košíku",
   quantityLabel: "Počet kusů",
   quantityUnitLabel: "ks",
+  quantityPolicy: DEFAULT_QUANTITY_POLICY,
   selectors: [
     { key: "profile", label: "Profil (mm)" },
     { key: "length", label: "Délka" },
@@ -375,6 +426,7 @@ function optionCategory(config: {
     title: config.name,
     shortName: config.name,
     illustrationPrompt: `DIPISTAV comic-engraving illustration of ${config.name}.`,
+    quantityPolicy: DEFAULT_QUANTITY_POLICY,
     selectors: [{ key: "option", label: config.optionLabel }],
     selectionLabels: {
       option: Object.fromEntries(config.options.map((option) => [option.value, option.label])),
@@ -611,7 +663,7 @@ export function getVariantTitle(category: ProductCategory, variant: ProductVaria
   }
   if (category.id === "prkna") {
     const modeLabel = category.modes?.find((mode) => mode.id === variant.modeId)?.label ?? "Prkna";
-    return `${modeLabel} ${variant.selection.width} × ${variant.selection.length} cm`;
+    return `${modeLabel} ${getSelectionLabel(category, "width", variant.selection.width)} × ${getSelectionLabel(category, "length", variant.selection.length)}`;
   }
   return `${category.name} / ${getSelectionLabel(category, "option", variant.selection.option)}`;
 }
@@ -630,12 +682,18 @@ export function getVariantDetails(category: ProductCategory, variant: ProductVar
     ];
   }
   if (category.id === "prkna") {
-    return [
+    const details = [
       `Typ: ${category.modes?.find((mode) => mode.id === variant.modeId)?.label ?? "Prkna"}`,
       "Tloušťka: 25 mm",
-      `Šířka: ${variant.selection.width} cm`,
-      `Délka: ${variant.selection.length} cm`,
+      `Šířka: ${getSelectionLabel(category, "width", variant.selection.width)}`,
+      `Délka: ${getSelectionLabel(category, "length", variant.selection.length)}`,
     ];
+    if (variant.volumeCalculation?.basis === "group-average-width") {
+      details.push(
+        `Výpočtová šířka: ${variant.volumeCalculation.averageWidthMm / 10} cm (průměr skupiny)`,
+      );
+    }
+    return details;
   }
   return [`Varianta: ${getSelectionLabel(category, "option", variant.selection.option)}`];
 }

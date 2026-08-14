@@ -1,0 +1,108 @@
+{
+  "canvas": {
+    "width": 1536,
+    "height": 1024
+  },
+  "alphaBoundsPixels": {
+    "left": 120,
+    "top": 78,
+    "right": 1416,
+    "bottom": 946
+  },
+  "alphaBounds": {
+    "x": 0.078125,
+    "y": 0.076172,
+    "width": 0.84375,
+    "height": 0.847656
+  },
+  "opticalCenter": {
+    "x": 0.5,
+    "y": 0.5
+  },
+  "alphaCoverage": 0.484786,
+  "interiorAlphaMin": 248,
+  "margins": {
+    "left": 120,
+    "top": 78,
+    "right": 120,
+    "bottom": 78
+  },
+  "family": "lath",
+  "quantityBand": {
+    "min": 9,
+    "max": 11
+  },
+  "representativeCount": 9,
+  "layout": "3x3",
+  "expectedVisibleConstructionSeams": 16,
+  "camera": {
+    "projection": "orthographic",
+    "azimuthDegrees": 40,
+    "elevationDegrees": 27
+  },
+  "designVectors": {
+    "column": [
+      90.0,
+      -19.0
+    ],
+    "rowDown": [
+      0.0,
+      67.0
+    ],
+    "back": [
+      -430.0,
+      -211.0
+    ]
+  },
+  "autoFit": {
+    "policy": "adaptive-bounds",
+    "safeInset": 0.07,
+    "contourReservePixels": 8.0,
+    "maxScale": 2.0,
+    "renderScale": 1.84358209,
+    "translation": [
+      915.4866,
+      573.76
+    ]
+  },
+  "lineWeights": {
+    "outer": 4.0,
+    "edge": 3.0,
+    "seam": 3.0,
+    "rings": 1.5,
+    "grain": 1.25
+  },
+  "palette": [
+    "#501801",
+    "#501801",
+    "#6B310B",
+    "#804015",
+    "#965622",
+    "#C5813B",
+    "#F0A242",
+    "#F4A847",
+    "#EEA847"
+  ],
+  "canonicalTextureSource": "artwork-sources/beams/beam-unit-tile-master-v1-4x.png",
+  "canonicalTextureSha256": "752db88a14866587604e271225b5c85f82d1974d96a62a2cd8ec57beadf3bec0",
+  "visualReference": "Obrázek Codex 12. 8. 2026 19_45_37.png",
+  "texturePolicy": "reference-face-transfer-with-clean-polygon-corners",
+  "cornerCleanup": "no-corner-discoloration-no-dirty-corner-shading-no-ao",
+  "edgePolicy": "dark-timber-edges-no-white-halo-no-bright-inner-fringe",
+  "textureCoverage": "full-face-to-contour",
+  "antiCloning": {
+    "policy": "deterministic-inset-source-sampling",
+    "maximumSourceOffsetPixels4x": [
+      14,
+      10
+    ],
+    "changesGeometryOrColor": false
+  },
+  "seed": 20260813,
+  "styleVersion": "v11",
+  "approvalStatus": "awaiting-approval",
+  "source": "tmp/composed_battens/unit-tiles/lath-unit-tile-master-v11.png",
+  "sourceSha256": "b9b14b27e9d5fea5975fab14beb1fe34fc189148dd0ec6968ef1d3e974a58716",
+  "outputSha256": "d257aa1e7afcd6aea33ac47a338bb055e49775ad49c71c2c43d92c8a4d7c5332",
+  "plannedRuntimePath": "/images/illustrations/configurator-v11/lath-9-11-master-v11.webp"
+}

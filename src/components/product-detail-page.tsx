@@ -83,13 +83,13 @@ export function ProductDetailPage({ category }: { category: ProductCategory }) {
   const initialModeId = getDefaultModeId(category);
   const [modeId, setModeId] = useState<string | undefined>(initialModeId);
   const [selection, setSelection] = useState(() => normalizeSelection(category, initialModeId));
-  const [quantity, setQuantity] = useState(1);
+  const [quantity, setQuantity] = useState(() => category.quantityPolicy.min);
 
   useEffect(() => {
     const nextModeId = getDefaultModeId(category);
     setModeId(nextModeId);
     setSelection(normalizeSelection(category, nextModeId));
-    setQuantity(1);
+    setQuantity(category.quantityPolicy.min);
   }, [category]);
 
   const selectorOptions = useMemo(
@@ -287,9 +287,12 @@ export function ProductDetailPage({ category }: { category: ProductCategory }) {
                 <QuantitySelector
                   quantity={quantity}
                   onChange={setQuantity}
-                  min={1}
-                  max={500}
+                  min={category.quantityPolicy.min}
+                  max={category.quantityPolicy.max}
+                  step={category.quantityPolicy.step}
+                  sliderMax={category.quantityPolicy.sliderMax}
                   label={category.quantityLabel}
+                  unitLabel={category.quantityUnitLabel}
                 />
 
                 {isUnavailable ? (

@@ -8,12 +8,15 @@ type QuantitySelectorProps = {
   label?: string;
   min?: number;
   max?: number;
+  step?: number;
   sliderMax?: number;
+  unitLabel?: string;
 };
 
-function clampQuantity(value: number, min: number, max: number) {
+function clampQuantity(value: number, min: number, max: number, step: number) {
   if (!Number.isFinite(value)) return min;
-  return Math.min(Math.max(Math.round(value), min), max);
+  const steppedValue = min + Math.round((value - min) / step) * step;
+  return Math.min(Math.max(steppedValue, min), max);
 }
 
 export function QuantitySelector({
@@ -22,7 +25,9 @@ export function QuantitySelector({
   label = "Počet kusů",
   min = 1,
   max = 500,
+  step = 1,
   sliderMax = 20,
+  unitLabel = "ks",
 }: QuantitySelectorProps) {
   const inputId = useId();
   const rangeId = useId();
@@ -41,7 +46,7 @@ export function QuantitySelector({
   }, [quantity]);
 
   const updateQuantity = (value: number) => {
-    const nextQuantity = clampQuantity(value, min, max);
+    const nextQuantity = clampQuantity(value, min, max, step);
     quantityRef.current = nextQuantity;
     onChange(nextQuantity);
   };
@@ -53,7 +58,7 @@ export function QuantitySelector({
       return;
     }
 
-    const nextQuantity = clampQuantity(parsed, min, max);
+    const nextQuantity = clampQuantity(parsed, min, max, step);
     quantityRef.current = nextQuantity;
     onChange(nextQuantity);
     setDraftValue(String(nextQuantity));
@@ -89,7 +94,7 @@ export function QuantitySelector({
             }}
             className="h-11 w-20 rounded-xl border-[#1E3A2B]/12 bg-white px-2 text-center text-base font-black text-[#1E293B] shadow-sm tabular-nums focus-visible:ring-[#1E3A2B]/20"
           />
-          <span className="text-sm font-bold text-[#1E293B]/58">ks</span>
+          <span className="text-sm font-bold text-[#1E293B]/58">{unitLabel}</span>
         </div>
       </div>
 
@@ -110,12 +115,12 @@ export function QuantitySelector({
           aria-valuemin={min}
           aria-valuemax={effectiveSliderMax}
           aria-valuenow={sliderValue}
-          aria-valuetext={`${quantity} kusů`}
+          aria-valuetext={`${quantity} ${unitLabel}`}
           data-beam-range
           type="range"
           min={min}
           max={effectiveSliderMax}
-          step={1}
+          step={step}
           value={sliderValue}
           onChange={(event) => updateQuantity(Number(event.currentTarget.value))}
           style={sliderStyle}
@@ -140,7 +145,7 @@ export function QuantitySelector({
             quantity > effectiveSliderMax ? "opacity-100" : "pointer-events-none opacity-0"
           }`}
         >
-          Posuvník je do {effectiveSliderMax} ks, vyšší počet zadejte přesně.
+          Posuvník je do {effectiveSliderMax} {unitLabel}, vyšší počet zadejte přesně.
         </p>
       </div>
     </div>

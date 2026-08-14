@@ -1,0 +1,69 @@
+{
+  "scene": "beam-3-4",
+  "canvas": {
+    "width": 1536,
+    "height": 1024
+  },
+  "representativeCount": 3,
+  "layout": "2+1",
+  "frontFaces": [
+    [
+      [
+        760,
+        675
+      ],
+      [
+        1020,
+        620
+      ],
+      [
+        1020,
+        820
+      ],
+      [
+        760,
+        875
+      ]
+    ],
+    [
+      [
+        1020,
+        620
+      ],
+      [
+        1280,
+        565
+      ],
+      [
+        1280,
+        765
+      ],
+      [
+        1020,
+        820
+      ]
+    ],
+    [
+      [
+        890,
+        420
+      ],
+      [
+        1150,
+        365
+      ],
+      [
+        1150,
+        565
+      ],
+      [
+        890,
+        620
+      ]
+    ]
+  ],
+  "topSeams": [],
+  "expectedTopSeamCount": 0,
+  "equalCrossSectionTolerancePx": 2,
+  "approvalStatus": "candidate"
+}

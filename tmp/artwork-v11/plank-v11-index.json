@@ -1,0 +1,55 @@
+{
+  "family": "plank",
+  "styleVersion": "v11",
+  "approvalStatus": "awaiting-approval",
+  "texturePolicy": "canonical-19-45-37-reference",
+  "crossSectionContract": "height:width = 1:2.3-2.5",
+  "geometryRatios": {
+    "crossSectionRatio": 2.402891,
+    "depthToWidthRatio": 1.449849
+  },
+  "entries": [
+    {
+      "image": "tmp/artwork-v11/plank/plank-1-master-v11.webp",
+      "manifest": "tmp/artwork-v11/plank/plank-1-master-v11.manifest.json",
+      "representativeCount": 1,
+      "outputSha256": "d331b0a328128608876d0cc8f5a6120c4af30579b9005e63a520b70d27cfc6df"
+    },
+    {
+      "image": "tmp/artwork-v11/plank/plank-2-master-v11.webp",
+      "manifest": "tmp/artwork-v11/plank/plank-2-master-v11.manifest.json",
+      "representativeCount": 2,
+      "outputSha256": "209ba60870d83fb5aa23ae55e7df75eb9574e12ccc9db383bbbb750b2c3e9159"
+    },
+    {
+      "image": "tmp/artwork-v11/plank/plank-3-4-master-v11.webp",
+      "manifest": "tmp/artwork-v11/plank/plank-3-4-master-v11.manifest.json",
+      "representativeCount": 3,
+      "outputSha256": "c5e4381e77339a2826baef6d5c2b4e98aba6e19130c7850f4d46457a33320013"
+    },
+    {
+      "image": "tmp/artwork-v11/plank/plank-5-8-master-v11.webp",
+      "manifest": "tmp/artwork-v11/plank/plank-5-8-master-v11.manifest.json",
+      "representativeCount": 6,
+      "outputSha256": "b12a3c63479ed3abd3503972579fea11a486e86a0dd9026441467d631b34cc32"
+    },
+    {
+      "image": "tmp/artwork-v11/plank/plank-9-11-master-v11.webp",
+      "manifest": "tmp/artwork-v11/plank/plank-9-11-master-v11.manifest.json",
+      "representativeCount": 9,
+      "outputSha256": "875ec25446626740ac1e7505e143ba166d760eb68458eb42015b71898cbc2b5c"
+    },
+    {
+      "image": "tmp/artwork-v11/plank/plank-12-15-master-v11.webp",
+      "manifest": "tmp/artwork-v11/plank/plank-12-15-master-v11.manifest.json",
+      "representativeCount": 12,
+      "outputSha256": "3c73914ac3a23eb8026dae25e40335422fd130bb32b32d2a08ba4fc3b83166d0"
+    },
+    {
+      "image": "tmp/artwork-v11/plank/plank-16plus-master-v11.webp",
+      "manifest": "tmp/artwork-v11/plank/plank-16plus-master-v11.manifest.json",
+      "representativeCount": 16,
+      "outputSha256": "32439ea326e3531e63096b95d92ff75d732e5b24e75f27780757bb96d12a9d75"
+    }
+  ]
+}

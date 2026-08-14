@@ -1,4 +1,20 @@
 export const APPROVED_ARTWORK_SHA256 = {
+  "public/images/illustrations/beams/beam-1-composed-master-v10.webp":
+    "d3da423c14437e065d2138716e8b357ce07e3c0d71880bbd1f9f0d8dbcb90690",
+  "public/images/illustrations/beams/beam-2-composed-master-v10.webp":
+    "a11ca7ca2084a928dc169acd8a130d4539a3e73e30da577b01b62b5b2f87cb30",
+  "public/images/illustrations/beams/beam-3-4-composed-master-v10.webp":
+    "0e9562eb4959ed232292ccca89908b4a17877bca46e444f71de7a39aeac60b29",
+  "public/images/illustrations/beams/beam-3-4-composed-master-v11.webp":
+    "86e9cbbd76de806638cbd959a6456726b8dc65468362c42910fb408a4fce4307",
+  "public/images/illustrations/beams/beam-5-8-composed-master-v10.webp":
+    "33a60943c0246ddf5cd89fc928377151ba915a0693953046dcb7a64c565c341b",
+  "public/images/illustrations/beams/beam-9-11-composed-master-v10.webp":
+    "b8bba1cfa1a6b3cf6d870e5ad70bed0aa8460b6836063f5739ca3ea8f1df4a9d",
+  "public/images/illustrations/beams/beam-12-15-composed-master-v10.webp":
+    "75853347bb9505161d2cd4015942aa9ae0a96fed4aad07cfc7409722451b09a7",
+  "public/images/illustrations/beams/beam-16plus-composed-master-v10.webp":
+    "656783429dbf7098354b37040a40635686e115aaf55c89c814478ec0d7b785ba",
   "public/images/illustrations/configurator-v4/beam-1-v4.webp":
     "b2f4d3ba261123527acbb30f5b6db5aa8f30e9c0f9d623daed17948363364410",
   "public/images/illustrations/configurator-v4/beam-2-v4.webp":
@@ -57,4 +73,68 @@ export const APPROVED_ARTWORK_SHA256 = {
     "79fb697bfac2fa03abe295d4c4a9d05c20018ba3eea057761cac4ca2af9ace8b",
   "public/images/illustrations/configurator-v9/firewood-bigbag-9plus-master-v9.webp":
     "dbe42643bef97e0a2de51057133e56919967f22df52c2b990f354111e4c8629a",
+  "public/images/illustrations/configurator-v11/beam-1-master-v11.webp":
+    "c4739683a10e049045804348f8ace7a1710128b54e776eb1a1bb7cd082d3e361",
+  "public/images/illustrations/configurator-v11/beam-2-master-v11.webp":
+    "fb5886f02c1494fa1f3684a52494b110b800913f1137462a8b154822f143cb28",
+  "public/images/illustrations/configurator-v11/beam-3-4-master-v11.webp":
+    "ef4a75847498ae910bdf02268dffaa591a9ee48fd6340e534e0fdbd461f36818",
+  "public/images/illustrations/configurator-v11/beam-5-8-master-v11.webp":
+    "03db6c61463ba85787fc811c30f40207da8950a2dba6057d8d3c0fb7922f250f",
+  "public/images/illustrations/configurator-v11/beam-9-11-master-v11.webp":
+    "f3c6bf9081943130fbbf895f2046909516bdf9bae4783ce0327c1e42eca76e89",
+  "public/images/illustrations/configurator-v11/beam-12-15-master-v11.webp":
+    "638df3b51cbb6304d9b070a6df08ef4c4dd506193c68752cec5ba632219dd208",
+  "public/images/illustrations/configurator-v11/beam-16plus-master-v11.webp":
+    "16a781cc378b15e6076990245feda746a31a45929b36b11bff7c464d05928dbc",
+  "public/images/illustrations/configurator-v11/plank-1-master-v11.webp":
+    "7975d99ffa45ab59f2efaf80dcdd14b4f449572f653eff0d787bff5ba6d51ac1",
+  "public/images/illustrations/configurator-v11/plank-2-master-v11.webp":
+    "08bf11687b6de8a3640e84fa7b2b6e89efad4408e855a7aab56ab037127edee4",
+  "public/images/illustrations/configurator-v11/plank-3-4-master-v11.webp":
+    "81b1bf6f8136d1fa6028292b3f65a48d34b0629f6513885fbf7dde58d2af3c40",
+  "public/images/illustrations/configurator-v11/plank-5-8-master-v11.webp":
+    "a890bb92371402d056772861568d0e904b0a7f36fcd54d60c41353523518a346",
+  "public/images/illustrations/configurator-v11/plank-9-11-master-v11.webp":
+    "f456f0e6de9815193e356984f6925e0e2b8f9f8dc3b1c1b468ce20371f249248",
+  "public/images/illustrations/configurator-v11/plank-12-15-master-v11.webp":
+    "befb8be501c3a9e382f9bab61b6357984013241708f8c45c142484bcf078a1b5",
+  "public/images/illustrations/configurator-v11/plank-16plus-master-v11.webp":
+    "57ed2ac2f9f3fcfc58ff1413ddc77e482559eeda9c9dad9dadc93909d35c41aa",
+  "public/images/illustrations/configurator-v11/board-1-master-v11.webp":
+    "a6e9afcc94e765cf836fb4d48efd8ddc292a036f4fda96ac2ac7cd375b9a95f3",
+  "public/images/illustrations/configurator-v11/board-2-master-v11.webp":
+    "43e2a85452e18429e01e90feabaeb2562095247bb97e9e81e3bc426ce754b33f",
+  "public/images/illustrations/configurator-v11/board-3-4-master-v11.webp":
+    "bc0b24fa8a96fe6972bd2a6f456b804d9a42858942de9e9a70e16cda9d845a1e",
+  "public/images/illustrations/configurator-v11/board-5-8-master-v11.webp":
+    "48b488e1c603561a7c17bc9f115744c9efd631a118cd43dd1eb03b609b7e6c22",
+  "public/images/illustrations/configurator-v11/board-9-11-master-v11.webp":
+    "ca2a44d24b35ee500fdff51876cf14981e1c33349529bd25aac0742bb55b85f2",
+  "public/images/illustrations/configurator-v11/board-12-15-master-v11.webp":
+    "546b1fe62f866d496e3d05299a6d8c5a189403ff4514f5857da63aa8923e4aed",
+  "public/images/illustrations/configurator-v11/board-16plus-master-v11.webp":
+    "e2a8e0fcaf6352ecbc84b7ee82c8cd84e55ce61bc9b9cd546d5e8649c88676fa",
+  "public/images/illustrations/configurator-v11/lath-1-master-v11.webp":
+    "561e89b5c4f2d8250cfd0ea9f9fe1326615c4f191616300ad59b83186fd6b624",
+  "public/images/illustrations/configurator-v11/lath-2-master-v11.webp":
+    "c853fca4b29a7fb63372901facdf7d31abfa780d16f44b4e9a51ab6f86cf1ef0",
+  "public/images/illustrations/configurator-v11/lath-3-4-master-v11.webp":
+    "14454aede3fef8cbb5c429f1caa3e671a89aedc9323dd6cf0b595efef491bb17",
+  "public/images/illustrations/configurator-v11/lath-5-8-master-v11.webp":
+    "0aa625ffd9c54c60a89b3291daf942a483792d70e490fd77f949120504935b1e",
+  "public/images/illustrations/configurator-v11/lath-9-11-master-v11.webp":
+    "d257aa1e7afcd6aea33ac47a338bb055e49775ad49c71c2c43d92c8a4d7c5332",
+  "public/images/illustrations/configurator-v11/lath-12-15-master-v11.webp":
+    "833434100329b47120603f832607292130c8af3be60f23d7b2b49e296824adb4",
+  "public/images/illustrations/configurator-v11/lath-16plus-master-v11.webp":
+    "75cbbfb627435549e7613efb80b8ec679efc343e118b079d079484637b6f6e1f",
+  "public/images/illustrations/homepage-v11/tramy-icon-master-v11.webp":
+    "ef4a75847498ae910bdf02268dffaa591a9ee48fd6340e534e0fdbd461f36818",
+  "public/images/illustrations/homepage-v11/fosny-icon-master-v11.webp":
+    "a890bb92371402d056772861568d0e904b0a7f36fcd54d60c41353523518a346",
+  "public/images/illustrations/homepage-v11/prkna-icon-master-v11.webp":
+    "48b488e1c603561a7c17bc9f115744c9efd631a118cd43dd1eb03b609b7e6c22",
+  "public/images/illustrations/homepage-v11/late-icon-master-v11.webp":
+    "d257aa1e7afcd6aea33ac47a338bb055e49775ad49c71c2c43d92c8a4d7c5332",
 } as const;

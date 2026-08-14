@@ -1,0 +1,9 @@
+---
+description: DIPISTAV artwork canonical rule redirect
+globs: public/images/illustrations/**,src/lib/product-artwork*.ts,src/lib/product-catalog.ts,scripts/*artwork*.py,scripts/compose_*.py
+alwaysApply: false
+---
+
+For every DIPISTAV product illustration, homepage icon, artwork registry, manifest, prompt, or QA
+task, follow `.agents/skills/dipistav-artwork/SKILL.md` as the sole normative source. Files under
+`docs/archive/legacy-artwork/` are historical and must never override the skill.

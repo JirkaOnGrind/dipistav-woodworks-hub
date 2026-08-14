@@ -1,0 +1,41 @@
+{
+  "canvas": {
+    "width": 1536,
+    "height": 1024
+  },
+  "alphaBoundsPixels": {
+    "left": 366,
+    "top": 79,
+    "right": 1169,
+    "bottom": 944
+  },
+  "alphaBounds": {
+    "x": 0.238281,
+    "y": 0.077148,
+    "width": 0.522786,
+    "height": 0.844727
+  },
+  "opticalCenter": {
+    "x": 0.499674,
+    "y": 0.499512
+  },
+  "alphaCoverage": 0.340579,
+  "interiorAlphaMin": 248,
+  "margins": {
+    "left": 366,
+    "top": 79,
+    "right": 367,
+    "bottom": 80
+  },
+  "styleVersion": "v11",
+  "fitPolicy": "adaptive-bounds",
+  "safeInset": 0.07,
+  "approvalStatus": "awaiting-approval",
+  "source": "public/images/illustrations/palety-v2.webp",
+  "sourceSha256": "9ac1e2da20f76ec17460079191ab68177ea41193d33cce01bce46a088b7b4fca",
+  "visualReference": "Obrázek Codex 12. 8. 2026 19_45_37.png",
+  "styleContract": "canonical-19-45-37-warm-engraved-comic",
+  "cornerCleanup": "no-corner-discoloration-no-dirty-corner-shading-no-ao",
+  "outputSha256": "2c894096d81cbc4612a83a1723278cdd1ca69401e7a08ccac11524f54ebcadb1",
+  "plannedRuntimePath": "/images/illustrations/homepage-v11/drivi-na-paletach-icon-master-v11.webp"
+}

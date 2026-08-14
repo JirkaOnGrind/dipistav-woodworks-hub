@@ -1,0 +1,56 @@
+{
+  "family": "plank",
+  "styleVersion": "v11",
+  "approvalStatus": "awaiting-approval",
+  "texturePolicy": "canonical-19-45-37-reference",
+  "edgePolicy": "dark-timber-edges-no-white-halo-no-bright-inner-fringe",
+  "crossSectionContract": "height:width = 1:2.3-2.5",
+  "geometryRatios": {
+    "crossSectionRatio": 2.402891,
+    "depthToWidthRatio": 1.449849
+  },
+  "entries": [
+    {
+      "image": "tmp/composed_planks/plank/plank-1-master-v11.webp",
+      "manifest": "tmp/composed_planks/plank/plank-1-master-v11.manifest.json",
+      "representativeCount": 1,
+      "outputSha256": "7975d99ffa45ab59f2efaf80dcdd14b4f449572f653eff0d787bff5ba6d51ac1"
+    },
+    {
+      "image": "tmp/composed_planks/plank/plank-2-master-v11.webp",
+      "manifest": "tmp/composed_planks/plank/plank-2-master-v11.manifest.json",
+      "representativeCount": 2,
+      "outputSha256": "08bf11687b6de8a3640e84fa7b2b6e89efad4408e855a7aab56ab037127edee4"
+    },
+    {
+      "image": "tmp/composed_planks/plank/plank-3-4-master-v11.webp",
+      "manifest": "tmp/composed_planks/plank/plank-3-4-master-v11.manifest.json",
+      "representativeCount": 3,
+      "outputSha256": "81b1bf6f8136d1fa6028292b3f65a48d34b0629f6513885fbf7dde58d2af3c40"
+    },
+    {
+      "image": "tmp/composed_planks/plank/plank-5-8-master-v11.webp",
+      "manifest": "tmp/composed_planks/plank/plank-5-8-master-v11.manifest.json",
+      "representativeCount": 6,
+      "outputSha256": "a890bb92371402d056772861568d0e904b0a7f36fcd54d60c41353523518a346"
+    },
+    {
+      "image": "tmp/composed_planks/plank/plank-9-11-master-v11.webp",
+      "manifest": "tmp/composed_planks/plank/plank-9-11-master-v11.manifest.json",
+      "representativeCount": 9,
+      "outputSha256": "f456f0e6de9815193e356984f6925e0e2b8f9f8dc3b1c1b468ce20371f249248"
+    },
+    {
+      "image": "tmp/composed_planks/plank/plank-12-15-master-v11.webp",
+      "manifest": "tmp/composed_planks/plank/plank-12-15-master-v11.manifest.json",
+      "representativeCount": 12,
+      "outputSha256": "befb8be501c3a9e382f9bab61b6357984013241708f8c45c142484bcf078a1b5"
+    },
+    {
+      "image": "tmp/composed_planks/plank/plank-16plus-master-v11.webp",
+      "manifest": "tmp/composed_planks/plank/plank-16plus-master-v11.manifest.json",
+      "representativeCount": 16,
+      "outputSha256": "57ed2ac2f9f3fcfc58ff1413ddc77e482559eeda9c9dad9dadc93909d35c41aa"
+    }
+  ]
+}

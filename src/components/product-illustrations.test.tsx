@@ -52,7 +52,7 @@ describe("ProductIllustration", () => {
     }
   });
 
-  it("renders every v9 production band as exactly one img", () => {
+  it("renders every v9 production band or its v10 override as exactly one img", () => {
     for (const candidate of V9_ARTWORK_CANDIDATES) {
       const category = PRODUCT_CATEGORIES.find((item) => item.id === candidate.categoryId)!;
       const variant = category.variants.find(
@@ -69,17 +69,18 @@ describe("ProductIllustration", () => {
           title={candidate.id}
         />,
       );
-      expect(markup, candidate.id).toContain(candidate.source);
+      const resolved = resolveArtworkScene(category.id, variant, candidate.quantityBand.min).scene;
+      expect(markup, candidate.id).toContain(resolved.source);
       expect(markup, candidate.id).toContain('data-artwork-render-mode="master"');
       expect(markup, candidate.id).not.toContain("data-selling-unit=");
       expect(markup.match(/<img/g), candidate.id).toHaveLength(1);
     }
   });
 
-  it("keeps the approved slabs 1/2/3 legacy composition unchanged", () => {
+  it("keeps the approved slabs 1/2 legacy composition unchanged", () => {
     const category = PRODUCT_CATEGORIES.find((item) => item.id === "krajinky")!;
     const variant = category.variants[0];
-    for (const quantity of [1, 2, 3]) {
+    for (const quantity of [1, 2]) {
       const markup = renderToStaticMarkup(
         <ProductIllustration
           categoryId={category.id}
@@ -105,7 +106,7 @@ describe("ProductIllustration", () => {
         title="Trámy"
       />,
     );
-    expect(markup).toContain("beam-16-v4.webp");
+    expect(markup).toContain("configurator-v11/beam-16plus-master-v11.webp");
     expect(markup.match(/<img/g)).toHaveLength(1);
   });
 

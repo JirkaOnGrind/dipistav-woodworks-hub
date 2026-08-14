@@ -1,0 +1,482 @@
+<!doctype html>
+<html lang="cs">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>DIPISTAV — Isometric Fošny Master</title>
+    <style>
+      :root {
+        color-scheme: light;
+        --page: #f4f3ef;
+        --panel: #ffffff;
+        --ink: #3f3f3f;
+        --muted: #71717a;
+        --line: #d8d8d4;
+        --checker-a: #f6f6f4;
+        --checker-b: #e6e6e2;
+      }
+
+      * {
+        box-sizing: border-box;
+      }
+
+      html,
+      body {
+        margin: 0;
+        min-height: 100%;
+        background: var(--page);
+        color: var(--ink);
+        font-family:
+          Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI",
+          sans-serif;
+      }
+
+      body {
+        padding: clamp(18px, 3vw, 44px);
+      }
+
+      main {
+        width: min(1540px, 100%);
+        margin: 0 auto;
+      }
+
+      h1 {
+        margin: 0 0 8px;
+        color: #501801;
+        font-size: clamp(24px, 3vw, 38px);
+        line-height: 1.1;
+        letter-spacing: -0.025em;
+      }
+
+      .intro {
+        margin: 0 0 24px;
+        color: var(--muted);
+        font-size: 14px;
+      }
+
+      .grid {
+        display: grid;
+        grid-template-columns: repeat(4, minmax(0, 1fr));
+        gap: 18px;
+      }
+
+      figure {
+        min-width: 0;
+        margin: 0;
+        overflow: hidden;
+        border: 1px solid var(--line);
+        border-radius: 12px;
+        background: var(--panel);
+        box-shadow: 0 4px 18px rgb(80 24 1 / 6%);
+      }
+
+      .preview {
+        aspect-ratio: 420 / 270;
+        background-color: var(--checker-a);
+        background-image:
+          linear-gradient(45deg, var(--checker-b) 25%, transparent 25%),
+          linear-gradient(-45deg, var(--checker-b) 25%, transparent 25%),
+          linear-gradient(45deg, transparent 75%, var(--checker-b) 75%),
+          linear-gradient(-45deg, transparent 75%, var(--checker-b) 75%);
+        background-position:
+          0 0,
+          0 10px,
+          10px -10px,
+          -10px 0;
+        background-size: 20px 20px;
+      }
+
+      svg {
+        display: block;
+        width: 100%;
+        height: 100%;
+      }
+
+      figcaption {
+        min-height: 45px;
+        padding: 13px 15px 14px;
+        border-top: 1px solid var(--line);
+        color: #686868;
+        font-size: 12px;
+        font-weight: 550;
+        line-height: 1.4;
+        letter-spacing: 0.005em;
+      }
+
+      @media (max-width: 1080px) {
+        .grid {
+          grid-template-columns: repeat(2, minmax(0, 1fr));
+        }
+      }
+
+      @media (max-width: 600px) {
+        body {
+          padding: 14px;
+        }
+
+        .grid {
+          grid-template-columns: 1fr;
+          gap: 14px;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <main>
+      <h1>Izometrické fošny</h1>
+      <p class="intro">Kanonický parametrický master · průřez W:H = 3.5:1 · projekce 30° / 150°</p>
+      <section id="stack-grid" class="grid" aria-label="Sedm konfigurací stohů fošen"></section>
+    </main>
+
+    <script>
+      (() => {
+        "use strict";
+
+        const SVG_NS = "http://www.w3.org/2000/svg";
+        const VIEWBOX = Object.freeze({ width: 420, height: 270 });
+        const MODEL = Object.freeze({ W: 42, H: 12, L: 168, scale: 1.06 });
+        const COS_30 = Math.sqrt(3) / 2;
+        const SIN_30 = 0.5;
+        const COS_150 = -Math.sqrt(3) / 2;
+        const SIN_150 = 0.5;
+
+        const TOKENS = Object.freeze({
+          topHighlight: "#F4A847",
+          topBase: "#F0A242",
+          sideBase: "#C5813B",
+          sideShadow: "#965622",
+          front: "#EEA847",
+          border: "#501801",
+          seam: "#6B310B",
+          grain: "#804015",
+        });
+
+        const STACKS = Object.freeze([
+          { count: 1, label: "1 ks | 1x1", units: rectangle(1, 1) },
+          { count: 2, label: "2 ks | 2x1", units: rectangle(2, 1) },
+          {
+            count: 3,
+            label: "3 ks | 2+1-centered OPAQUE",
+            units: [unit(0, 0), unit(1, 0), unit(0.5, 1)],
+          },
+          { count: 6, label: "6 ks | 3x2", units: rectangle(3, 2) },
+          { count: 9, label: "9 ks | 3x3", units: rectangle(3, 3) },
+          { count: 12, label: "12 ks | 4x3", units: rectangle(4, 3) },
+          { count: 16, label: "16 ks | 4x4", units: rectangle(4, 4) },
+        ]);
+
+        function unit(column, layer) {
+          return Object.freeze({
+            column,
+            layer,
+            X: column * MODEL.W,
+            Y: layer * MODEL.H,
+            Z: 0,
+          });
+        }
+
+        function rectangle(columns, layers) {
+          const units = [];
+          for (let layer = 0; layer < layers; layer += 1) {
+            for (let column = 0; column < columns; column += 1) {
+              units.push(unit(column, layer));
+            }
+          }
+          return units;
+        }
+
+        function svgElement(name, attributes = {}) {
+          const node = document.createElementNS(SVG_NS, name);
+          for (const [key, value] of Object.entries(attributes)) {
+            node.setAttribute(key, String(value));
+          }
+          return node;
+        }
+
+        function project(point, origin) {
+          const x =
+            origin.x +
+            MODEL.scale * (point.X * COS_30 + point.Z * COS_150);
+          const y =
+            origin.y +
+            MODEL.scale * (point.X * SIN_30 - point.Z * SIN_150 - point.Y);
+          return { x, y };
+        }
+
+        function corners(plank) {
+          const { X, Y, Z } = plank;
+          const { W, H, L } = MODEL;
+          return {
+            frontBottomLeft: { X, Y, Z },
+            frontBottomRight: { X: X + W, Y, Z },
+            frontTopRight: { X: X + W, Y: Y + H, Z },
+            frontTopLeft: { X, Y: Y + H, Z },
+            backBottomLeft: { X, Y, Z: Z + L },
+            backBottomRight: { X: X + W, Y, Z: Z + L },
+            backTopRight: { X: X + W, Y: Y + H, Z: Z + L },
+            backTopLeft: { X, Y: Y + H, Z: Z + L },
+          };
+        }
+
+        function faces(plank) {
+          const p = corners(plank);
+          return {
+            side: [p.backBottomLeft, p.frontBottomLeft, p.frontTopLeft, p.backTopLeft],
+            top: [p.backTopLeft, p.backTopRight, p.frontTopRight, p.frontTopLeft],
+            front: [p.frontBottomLeft, p.frontBottomRight, p.frontTopRight, p.frontTopLeft],
+          };
+        }
+
+        function pointsAttribute(points, origin) {
+          return points
+            .map((point) => project(point, origin))
+            .map(({ x, y }) => `${x.toFixed(2)},${y.toFixed(2)}`)
+            .join(" ");
+        }
+
+        function pathAttribute(points, origin, close = false) {
+          const projected = points.map((point) => project(point, origin));
+          const commands = projected.map(
+            ({ x, y }, index) => `${index === 0 ? "M" : "L"}${x.toFixed(2)} ${y.toFixed(2)}`,
+          );
+          return `${commands.join(" ")}${close ? " Z" : ""}`;
+        }
+
+        function seeded(seed) {
+          let value = seed >>> 0;
+          return () => {
+            value = (value * 1664525 + 1013904223) >>> 0;
+            return value / 4294967296;
+          };
+        }
+
+        function modelBounds(units) {
+          const all = [];
+          for (const plank of units) {
+            all.push(...Object.values(corners(plank)));
+          }
+          const raw = all.map((point) => project(point, { x: 0, y: 0 }));
+          return {
+            minX: Math.min(...raw.map((point) => point.x)),
+            maxX: Math.max(...raw.map((point) => point.x)),
+            minY: Math.min(...raw.map((point) => point.y)),
+            maxY: Math.max(...raw.map((point) => point.y)),
+          };
+        }
+
+        function centeredOrigin(units) {
+          const bounds = modelBounds(units);
+          return {
+            x: VIEWBOX.width / 2 - (bounds.minX + bounds.maxX) / 2,
+            y: VIEWBOX.height / 2 - (bounds.minY + bounds.maxY) / 2,
+          };
+        }
+
+        function addDefinitions(svg, prefix) {
+          const defs = svgElement("defs");
+          const gradients = [
+            ["top", TOKENS.topHighlight, TOKENS.topBase, "0%", "100%"],
+            ["side", TOKENS.sideBase, TOKENS.sideShadow, "0%", "100%"],
+            ["front", "#F7B85C", TOKENS.front, "0%", "100%"],
+          ];
+
+          for (const [name, start, end, x1, x2] of gradients) {
+            const gradient = svgElement("linearGradient", {
+              id: `${prefix}-${name}`,
+              x1,
+              y1: "0%",
+              x2,
+              y2: "100%",
+            });
+            gradient.append(
+              svgElement("stop", { offset: "0%", "stop-color": start }),
+              svgElement("stop", { offset: "100%", "stop-color": end }),
+            );
+            defs.append(gradient);
+          }
+          svg.append(defs);
+          return defs;
+        }
+
+        function longitudinalGrain(plank, faceName, origin, clipId, seedValue) {
+          const group = svgElement("g", {
+            "clip-path": `url(#${clipId})`,
+            fill: "none",
+            stroke: TOKENS.grain,
+            "stroke-width": 0.62,
+            "stroke-linecap": "round",
+          });
+          const random = seeded(seedValue);
+          const lineCount = faceName === "top" ? 5 : 3;
+
+          for (let line = 1; line <= lineCount; line += 1) {
+            const points = [];
+            for (let step = 0; step <= 7; step += 1) {
+              const t = step / 7;
+              const wave = (random() - 0.5) * (faceName === "top" ? 1.8 : 0.8);
+              points.push(
+                faceName === "top"
+                  ? {
+                      X: plank.X + (MODEL.W * line) / (lineCount + 1) + wave,
+                      Y: plank.Y + MODEL.H,
+                      Z: plank.Z + MODEL.L * t,
+                    }
+                  : {
+                      X: plank.X,
+                      Y: plank.Y + (MODEL.H * line) / (lineCount + 1) + wave,
+                      Z: plank.Z + MODEL.L * t,
+                    },
+              );
+            }
+            group.append(svgElement("path", { d: pathAttribute(points, origin) }));
+          }
+          return group;
+        }
+
+        function endGrain(plank, origin, clipId, seedValue) {
+          const group = svgElement("g", {
+            "clip-path": `url(#${clipId})`,
+            fill: "none",
+            stroke: TOKENS.grain,
+            "stroke-width": 0.58,
+            "stroke-linecap": "round",
+            "stroke-linejoin": "round",
+          });
+          const random = seeded(seedValue);
+          const centerX = plank.X + MODEL.W * (0.46 + random() * 0.12);
+          const centerY = plank.Y + MODEL.H * (0.46 + random() * 0.08);
+
+          for (let ring = 1; ring <= 4; ring += 1) {
+            const radiusX = MODEL.W * (0.09 * ring);
+            const radiusY = MODEL.H * (0.105 * ring);
+            const points = [];
+            for (let step = 0; step <= 28; step += 1) {
+              const angle = (Math.PI * 2 * step) / 28;
+              const wobble = 1 + Math.sin(angle * 3 + seedValue) * 0.035;
+              points.push({
+                X: centerX + Math.cos(angle) * radiusX * wobble,
+                Y: centerY + Math.sin(angle) * radiusY * wobble,
+                Z: plank.Z,
+              });
+            }
+            group.append(svgElement("path", { d: pathAttribute(points, origin, true) }));
+          }
+          return group;
+        }
+
+        function renderFace(svg, defs, plank, faceName, origin, prefix, seedValue) {
+          const polygon = faces(plank)[faceName];
+          const clipId = `${prefix}-${faceName}-clip`;
+          const clipPath = svgElement("clipPath", { id: clipId });
+          clipPath.append(svgElement("polygon", { points: pointsAttribute(polygon, origin) }));
+          defs.append(clipPath);
+
+          const group = svgElement("g", { "data-face": faceName });
+          group.append(
+            svgElement("polygon", {
+              points: pointsAttribute(polygon, origin),
+              fill: `url(#${prefix.split("-u")[0]}-${faceName})`,
+            }),
+          );
+
+          if (faceName === "front") {
+            group.append(endGrain(plank, origin, clipId, seedValue));
+          } else {
+            group.append(longitudinalGrain(plank, faceName, origin, clipId, seedValue));
+          }
+
+          group.append(
+            svgElement("polygon", {
+              points: pointsAttribute(polygon, origin),
+              fill: "none",
+              stroke: faceName === "front" ? TOKENS.border : TOKENS.seam,
+              "stroke-width": faceName === "front" ? 1.35 : 1.15,
+              "stroke-linejoin": "round",
+            }),
+          );
+          svg.append(group);
+        }
+
+        function renderPlank(svg, defs, plank, origin, stackPrefix, unitIndex, stackCount) {
+          const prefix = `${stackPrefix}-u${unitIndex}`;
+          const group = svgElement("g", {
+            "data-unit": unitIndex + 1,
+            "data-column": plank.column,
+            "data-layer": plank.layer,
+          });
+          const fragment = svgElement("g");
+          const localSvg = { append: (node) => fragment.append(node) };
+          const baseSeed = stackCount * 1009 + unitIndex * 97;
+
+          renderFace(localSvg, defs, plank, "side", origin, prefix, baseSeed + 11);
+          renderFace(localSvg, defs, plank, "top", origin, prefix, baseSeed + 23);
+          renderFace(localSvg, defs, plank, "front", origin, prefix, baseSeed + 37);
+          group.append(fragment);
+          svg.append(group);
+        }
+
+        function renderStack(stack, stackIndex) {
+          const figure = document.createElement("figure");
+          const preview = document.createElement("div");
+          preview.className = "preview";
+
+          const svg = svgElement("svg", {
+            viewBox: `0 0 ${VIEWBOX.width} ${VIEWBOX.height}`,
+            role: "img",
+            "aria-label": stack.label,
+            "data-stack-count": stack.count,
+            "shape-rendering": "geometricPrecision",
+          });
+          const title = svgElement("title");
+          title.textContent = stack.label;
+          svg.append(title);
+
+          const prefix = `stack-${stackIndex}`;
+          const defs = addDefinitions(svg, prefix);
+          const origin = centeredOrigin(stack.units);
+          const orderedUnits = [...stack.units].sort(
+            (a, b) => a.layer - b.layer || a.column - b.column,
+          );
+          orderedUnits.forEach((plank, index) =>
+            renderPlank(svg, defs, plank, origin, prefix, index, stack.count),
+          );
+
+          const caption = document.createElement("figcaption");
+          caption.textContent = stack.label;
+          preview.append(svg);
+          figure.append(preview, caption);
+          return figure;
+        }
+
+        function verifyMaster() {
+          if (Math.abs(MODEL.W / MODEL.H - 3.5) > Number.EPSILON) {
+            throw new Error("Invalid plank cross-section: W:H must equal 3.5:1.");
+          }
+          if (MODEL.L !== MODEL.W * 4) {
+            throw new Error("Invalid plank length: L must equal 4W.");
+          }
+          for (const stack of STACKS) {
+            if (stack.units.length !== stack.count) {
+              throw new Error(`Invalid physical unit count for ${stack.label}.`);
+            }
+          }
+          if (document.querySelector("[opacity], [fill-opacity], [stroke-opacity]")) {
+            throw new Error("Opacity attributes are forbidden in the plank master.");
+          }
+          for (const stack of STACKS) {
+            const rendered = document.querySelector(
+              `svg[data-stack-count="${stack.count}"]`,
+            );
+            if (!rendered || rendered.querySelectorAll("[data-unit]").length !== stack.count) {
+              throw new Error(`Rendered unit count mismatch for ${stack.label}.`);
+            }
+          }
+        }
+
+        const grid = document.getElementById("stack-grid");
+        STACKS.forEach((stack, index) => grid.append(renderStack(stack, index)));
+        verifyMaster();
+      })();
+    </script>
+  </body>
+</html>

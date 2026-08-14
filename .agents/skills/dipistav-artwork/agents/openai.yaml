@@ -1,0 +1,4 @@
+interface:
+  display_name: "DIPISTAV Artwork"
+  short_description: "Guardrails for DIPISTAV product artwork"
+  default_prompt: "Use $dipistav-artwork to create or validate a DIPISTAV product illustration."

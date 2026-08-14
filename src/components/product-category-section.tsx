@@ -30,7 +30,7 @@ function CategoryCard({
             alt={imageAlt}
             loading="lazy"
             draggable={false}
-            className="max-h-full w-auto select-none object-contain drop-shadow-[0_8px_14px_rgba(122,78,36,0.25)] transition duration-300 group-hover:scale-[1.03]"
+            className="max-h-full w-auto select-none object-contain transition duration-300 group-hover:scale-[1.03]"
           />
         </div>
 

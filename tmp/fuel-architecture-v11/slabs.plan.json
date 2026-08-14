@@ -1,0 +1,89 @@
+{
+  "families": [
+    {
+      "styleVersion": "v11",
+      "approvalStatus": "planned",
+      "runtimeActivation": "blocked-until-explicit-visual-approval",
+      "canvas": {
+        "width": 1536,
+        "height": 1024
+      },
+      "camera": {
+        "projection": "orthographic",
+        "azimuthDegrees": 40,
+        "elevationDegrees": 27
+      },
+      "safeInset": 0.07,
+      "seed": 20260813,
+      "family": {
+        "id": "slabs",
+        "category_id": "krajinky",
+        "illustration_variants": [
+          "slabs-2m",
+          "slabs-3m",
+          "slabs-4m"
+        ],
+        "unit_tiles": [
+          "slab-a",
+          "slab-b",
+          "slab-c",
+          "strap"
+        ],
+        "bands": [
+          {
+            "suffix": "1",
+            "minimum": 1,
+            "maximum": 1,
+            "representative_selling_units": 1,
+            "rendered_module_counts": {
+              "slab-bundle": 1,
+              "strap": 2
+            },
+            "composition_basis": "exact",
+            "contained_unit_equivalent": null
+          },
+          {
+            "suffix": "2",
+            "minimum": 2,
+            "maximum": 2,
+            "representative_selling_units": 2,
+            "rendered_module_counts": {
+              "slab-bundle": 2,
+              "strap": 4
+            },
+            "composition_basis": "exact",
+            "contained_unit_equivalent": null
+          },
+          {
+            "suffix": "3-4",
+            "minimum": 3,
+            "maximum": 4,
+            "representative_selling_units": 4,
+            "rendered_module_counts": {
+              "slab-bundle": 4,
+              "strap": 8
+            },
+            "composition_basis": "exact",
+            "contained_unit_equivalent": null
+          },
+          {
+            "suffix": "5plus",
+            "minimum": 5,
+            "maximum": null,
+            "representative_selling_units": 5,
+            "rendered_module_counts": {
+              "slab-bundle": 5,
+              "strap": 10
+            },
+            "composition_basis": "exact",
+            "contained_unit_equivalent": null
+          }
+        ],
+        "notes": [
+          "Render separate 2/3/4 m geometry without runtime stretching; use two straps per bundle."
+        ]
+      },
+      "planSha256": "2e01a47e1ab6b6ecda5011393d0677e97d07aae4f6b7e8c782087726fbf7b1cb"
+    }
+  ]
+}

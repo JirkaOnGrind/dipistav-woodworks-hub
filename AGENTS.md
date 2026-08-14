@@ -28,7 +28,6 @@ You MUST strictly adhere to the following execution workflow for all tasks:
 
 ## Artwork Visual DNA
 
-Before creating, editing, mapping, or approving any product illustration, read
-[`ARTWORK_STYLEGUIDE.md`](./ARTWORK_STYLEGUIDE.md). Its Golden Masters, palette,
-isometric geometry, prompt template, negative prompts, and reject gate are
-mandatory. Approved artwork marked `DO NOT TOUCH` must remain byte-identical.
+Before creating, editing, mapping, or approving any product illustration, read the sole canonical
+artwork specification in [`.agents/skills/dipistav-artwork/SKILL.md`](./.agents/skills/dipistav-artwork/SKILL.md).
+Archived artwork documents are historical only. Approved assets and hash locks must remain byte-identical.

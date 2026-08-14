@@ -8,12 +8,13 @@
     },
     maxQuantity: 150,
     images: {
-      one: "/images/illustrations/configurator-v4/beam-1-v4.webp",
-      two: "/images/illustrations/configurator-v4/beam-2-v4.webp",
-      three: "/images/illustrations/configurator-v4/beam-3-v4.webp",
-      five: "/images/illustrations/golden-masters/beam-bundle-6-seams-master-v2.webp",
-      eleven: "/images/illustrations/configurator-v4/beam-12-v4.webp",
-      eighteen: "/images/illustrations/configurator-v4/beam-16-v4.webp",
+      one: "/images/illustrations/configurator-v11/beam-1-master-v11.webp",
+      two: "/images/illustrations/configurator-v11/beam-2-master-v11.webp",
+      three: "/images/illustrations/configurator-v11/beam-3-4-master-v11.webp",
+      five: "/images/illustrations/configurator-v11/beam-5-8-master-v11.webp",
+      nine: "/images/illustrations/configurator-v11/beam-9-11-master-v11.webp",
+      twelve: "/images/illustrations/configurator-v11/beam-12-15-master-v11.webp",
+      eighteen: "/images/illustrations/configurator-v11/beam-16plus-master-v11.webp",
     },
     catalog: {
       profiles: [
@@ -73,7 +74,7 @@
     },
   };
 
-  const IMAGE_KEYS = ["one", "two", "three", "five", "eleven", "eighteen"];
+  const IMAGE_KEYS = ["one", "two", "three", "five", "nine", "twelve", "eighteen"];
   const CHOPPED_IMAGES = {};
   const RECOIL_DURATION_MS = 420;
 
@@ -133,8 +134,9 @@
     if (quantity <= 1) return "one";
     if (quantity === 2) return "two";
     if (quantity <= 4) return "three";
-    if (quantity <= 10) return "five";
-    if (quantity <= 15) return "eleven";
+    if (quantity <= 8) return "five";
+    if (quantity <= 11) return "nine";
+    if (quantity <= 15) return "twelve";
     return "eighteen";
   }
 

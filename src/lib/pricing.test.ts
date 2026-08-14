@@ -15,17 +15,17 @@ describe("calculateVariantQuote", () => {
     ).toMatchObject({ totalLinearMeters: 12, totalPrice: 264 });
   });
 
-  it("počítá objem netříděných prken bez mezizaokrouhlení", () => {
+  it("počítá objem skupiny netříděných prken z průměrné šířky bez mezizaokrouhlení", () => {
     const quote = calculateVariantQuote(
       {
         availability: "in-stock",
-        dimensions: { thicknessMm: 25, widthMm: 140, lengthMm: 5000 },
+        dimensions: { thicknessMm: 25, widthMm: 110, lengthMm: 5000 },
         pricing: { basis: "cubic-meter", rate: 7200, displayUnit: "m³" },
       },
       10,
     );
-    expect(quote?.totalVolumeM3).toBeCloseTo(0.175, 8);
-    expect(quote?.totalPrice).toBe(1260);
+    expect(quote?.totalVolumeM3).toBeCloseTo(0.1375, 8);
+    expect(quote?.totalPrice).toBe(990);
   });
 
   it("nevrací cenu pro nenaskladněnou variantu", () => {

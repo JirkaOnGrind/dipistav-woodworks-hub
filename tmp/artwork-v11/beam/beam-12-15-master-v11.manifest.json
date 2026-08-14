@@ -1,0 +1,100 @@
+{
+  "canvas": {
+    "width": 1536,
+    "height": 1024
+  },
+  "alphaBoundsPixels": {
+    "left": 152,
+    "top": 76,
+    "right": 1384,
+    "bottom": 948
+  },
+  "alphaBounds": {
+    "x": 0.098958,
+    "y": 0.074219,
+    "width": 0.802083,
+    "height": 0.851562
+  },
+  "opticalCenter": {
+    "x": 0.5,
+    "y": 0.5
+  },
+  "alphaCoverage": 0.510539,
+  "interiorAlphaMin": 248,
+  "margins": {
+    "left": 152,
+    "top": 76,
+    "right": 152,
+    "bottom": 76
+  },
+  "family": "beam",
+  "quantityBand": {
+    "min": 12,
+    "max": 15
+  },
+  "representativeCount": 12,
+  "layout": "4x3",
+  "expectedVisibleConstructionSeams": 22,
+  "camera": {
+    "projection": "orthographic",
+    "azimuthDegrees": 40,
+    "elevationDegrees": 27
+  },
+  "designVectors": {
+    "column": [
+      135.0,
+      -28.0
+    ],
+    "rowDown": [
+      0.0,
+      130.0
+    ],
+    "back": [
+      -560.0,
+      -275.0
+    ]
+  },
+  "autoFit": {
+    "policy": "adaptive-bounds",
+    "safeInset": 0.07,
+    "contourReservePixels": 8.0,
+    "maxScale": 2.0,
+    "renderScale": 1.11279279,
+    "translation": [
+      779.1279,
+      510.3308
+    ]
+  },
+  "lineWeights": {
+    "outer": 4.0,
+    "edge": 3.0,
+    "seam": 3.0,
+    "rings": 1.5,
+    "grain": 1.25
+  },
+  "palette": [
+    "#501801",
+    "#501801",
+    "#6B310B",
+    "#804015",
+    "#965622",
+    "#C5813B",
+    "#F0A242",
+    "#F4A847",
+    "#EEA847"
+  ],
+  "canonicalTextureSource": "artwork-sources/beams/beam-unit-tile-master-v1-4x.png",
+  "canonicalTextureSha256": "752db88a14866587604e271225b5c85f82d1974d96a62a2cd8ec57beadf3bec0",
+  "visualReference": "Obrázek Codex 12. 8. 2026 19_45_37.png",
+  "texturePolicy": "reference-face-transfer-with-clean-polygon-corners",
+  "cornerCleanup": "no-corner-discoloration-no-dirty-corner-shading-no-ao",
+  "edgePolicy": "dark-timber-edges-no-white-halo-no-bright-inner-fringe",
+  "textureCoverage": "full-face-to-contour",
+  "seed": 20260813,
+  "styleVersion": "v11",
+  "approvalStatus": "approved",
+  "source": "tmp/artwork-v11/unit-tiles/beam-unit-tile-master-v11.png",
+  "sourceSha256": "cb720608d3e198686fb14863710a66254b0adb3b1508b9f6d47468b4515a63a2",
+  "outputSha256": "638df3b51cbb6304d9b070a6df08ef4c4dd506193c68752cec5ba632219dd208",
+  "plannedRuntimePath": "/images/illustrations/configurator-v11/beam-12-15-master-v11.webp"
+}

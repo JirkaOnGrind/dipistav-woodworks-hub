@@ -162,7 +162,7 @@ function WidgetTramyPage() {
                           className="absolute inset-[8%] overflow-visible"
                         >
                           <img
-                            src="/images/illustrations/beams/beam-1-500-v2.webp"
+                            src="/images/illustrations/configurator-v11/beam-1-master-v11.webp"
                             alt={"Jeden stavebn\u00ed tr\u00e1m"}
                             data-beam-image
                             data-image-key="one"
@@ -172,7 +172,7 @@ function WidgetTramyPage() {
                             draggable={false}
                           />
                           <img
-                            src="/images/illustrations/beams/beam-2-500-v2.webp"
+                            src="/images/illustrations/configurator-v11/beam-2-master-v11.webp"
                             alt={"Dva stavebn\u00ed tr\u00e1my"}
                             data-beam-image
                             data-image-key="two"
@@ -182,7 +182,7 @@ function WidgetTramyPage() {
                             draggable={false}
                           />
                           <img
-                            src="/images/illustrations/beams/beam-3-500-v2.webp"
+                            src="/images/illustrations/configurator-v11/beam-3-4-master-v11.webp"
                             alt={"T\u0159i a\u017e \u010dty\u0159i stavebn\u00ed tr\u00e1my"}
                             data-beam-image
                             data-image-key="three"
@@ -192,8 +192,8 @@ function WidgetTramyPage() {
                             draggable={false}
                           />
                           <img
-                            src="/images/illustrations/golden-masters/beam-bundle-6-seams-master-v2.webp"
-                            alt={"P\u011bt a\u017e deset stavebn\u00edch tr\u00e1m\u016f"}
+                            src="/images/illustrations/configurator-v11/beam-5-8-master-v11.webp"
+                            alt={"P\u011bt a\u017e osm stavebn\u00edch tr\u00e1m\u016f"}
                             data-beam-image
                             data-image-key="five"
                             className="absolute inset-0 h-full w-full max-h-full max-w-full object-contain select-none"
@@ -202,19 +202,29 @@ function WidgetTramyPage() {
                             draggable={false}
                           />
                           <img
-                            src="/images/illustrations/beams/beam-11-500-v2.webp"
-                            alt={
-                              "Jeden\u00e1ct a\u017e patn\u00e1ct stavebn\u00edch tr\u00e1m\u016f"
-                            }
+                            src="/images/illustrations/configurator-v11/beam-9-11-master-v11.webp"
+                            alt={"Dev\u011bt a\u017e jeden\u00e1ct stavebn\u00edch tr\u00e1m\u016f"}
                             data-beam-image
-                            data-image-key="eleven"
+                            data-image-key="nine"
                             className="absolute inset-0 h-full w-full max-h-full max-w-full object-contain select-none"
                             loading="eager"
                             decoding="async"
                             draggable={false}
                           />
                           <img
-                            src="/images/illustrations/beams/beam-18-500-v2.webp"
+                            src="/images/illustrations/configurator-v11/beam-12-15-master-v11.webp"
+                            alt={
+                              "Dvan\u00e1ct a\u017e patn\u00e1ct stavebn\u00edch tr\u00e1m\u016f"
+                            }
+                            data-beam-image
+                            data-image-key="twelve"
+                            className="absolute inset-0 h-full w-full max-h-full max-w-full object-contain select-none"
+                            loading="eager"
+                            decoding="async"
+                            draggable={false}
+                          />
+                          <img
+                            src="/images/illustrations/configurator-v11/beam-16plus-master-v11.webp"
                             alt={"\u0160estn\u00e1ct a v\u00edce stavebn\u00edch tr\u00e1m\u016f"}
                             data-beam-image
                             data-image-key="eighteen"

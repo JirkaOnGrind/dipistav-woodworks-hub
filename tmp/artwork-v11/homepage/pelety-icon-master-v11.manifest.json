@@ -1,0 +1,41 @@
+{
+  "canvas": {
+    "width": 1536,
+    "height": 1024
+  },
+  "alphaBoundsPixels": {
+    "left": 520,
+    "top": 79,
+    "right": 1015,
+    "bottom": 944
+  },
+  "alphaBounds": {
+    "x": 0.338542,
+    "y": 0.077148,
+    "width": 0.322266,
+    "height": 0.844727
+  },
+  "opticalCenter": {
+    "x": 0.499674,
+    "y": 0.499512
+  },
+  "alphaCoverage": 0.23297,
+  "interiorAlphaMin": 248,
+  "margins": {
+    "left": 520,
+    "top": 79,
+    "right": 521,
+    "bottom": 80
+  },
+  "styleVersion": "v11",
+  "fitPolicy": "adaptive-bounds",
+  "safeInset": 0.07,
+  "approvalStatus": "awaiting-approval",
+  "source": "public/images/illustrations/configurator-v3/pelety-pytel-v3.webp",
+  "sourceSha256": "f8225c69fa6e6aaa3795dfb8fcfb0dcdd551cfaf5d532e6a2b122b1b81e1e418",
+  "visualReference": "Obrázek Codex 12. 8. 2026 19_45_37.png",
+  "styleContract": "canonical-19-45-37-warm-engraved-comic",
+  "cornerCleanup": "no-corner-discoloration-no-dirty-corner-shading-no-ao",
+  "outputSha256": "47362065bf790ae5b7a5a604384b0116addaf729ff40b2ba2a2cca659b804c8b",
+  "plannedRuntimePath": "/images/illustrations/homepage-v11/pelety-icon-master-v11.webp"
+}

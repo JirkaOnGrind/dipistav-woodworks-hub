@@ -1,0 +1,24 @@
+{
+  "input": "tmp\\composed_beams\\beam-1-composed-master-v10.webp",
+  "canvas": {
+    "width": 1536,
+    "height": 1024
+  },
+  "alphaBoundsPixels": {
+    "left": 424,
+    "top": 297,
+    "right": 1112,
+    "bottom": 727
+  },
+  "alphaBoundsNormalized": {
+    "x": 0.276042,
+    "y": 0.290039,
+    "width": 0.447917,
+    "height": 0.419922
+  },
+  "alphaCoverage": 0.08948,
+  "paletteProximity": 0.834148,
+  "errors": [],
+  "warnings": [],
+  "status": "pass"
+}

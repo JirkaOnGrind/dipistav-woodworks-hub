@@ -1,0 +1,25 @@
+{
+  "input": "C:\\Users\\Utrh\\Documents\\Codex\\dipistav-woodworks-hub\\tmp\\composed_planks\\plank\\plank-1-master-v11.webp",
+  "canvas": {
+    "width": 1536,
+    "height": 1024
+  },
+  "alphaBoundsPixels": {
+    "left": 114,
+    "top": 150,
+    "right": 1422,
+    "bottom": 874
+  },
+  "alphaBoundsNormalized": {
+    "x": 0.074219,
+    "y": 0.146484,
+    "width": 0.851562,
+    "height": 0.707031
+  },
+  "alphaCoverage": 0.386368,
+  "paletteProximity": 0.899089,
+  "whiteOrBrightEdgePixels": 0,
+  "errors": [],
+  "warnings": [],
+  "status": "pass"
+}

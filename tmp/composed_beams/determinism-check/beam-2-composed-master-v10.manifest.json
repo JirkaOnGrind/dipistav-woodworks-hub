@@ -1,0 +1,110 @@
+{
+  "family": "beam",
+  "scene": "beam-composed-2",
+  "quantityBand": {
+    "min": 2,
+    "max": 2
+  },
+  "representativeCount": 2,
+  "layout": "2x1",
+  "canvas": {
+    "width": 1536,
+    "height": 1024
+  },
+  "designVectors": {
+    "x": [
+      135.0,
+      -28.0
+    ],
+    "yDown": [
+      0.0,
+      130.0
+    ],
+    "zFrontToBack": [
+      -560.0,
+      -275.0
+    ]
+  },
+  "sharedRenderScale": 0.9815,
+  "effectiveVectors": {
+    "x": [
+      132.5025,
+      -27.482
+    ],
+    "yDown": [
+      0.0,
+      127.595
+    ],
+    "zFrontToBack": [
+      -549.64,
+      -269.9125
+    ]
+  },
+  "frontFaces": [
+    [
+      [
+        910.317,
+        610.641
+      ],
+      [
+        1042.82,
+        583.159
+      ],
+      [
+        1042.82,
+        710.754
+      ],
+      [
+        910.317,
+        738.236
+      ]
+    ],
+    [
+      [
+        1042.82,
+        583.159
+      ],
+      [
+        1175.322,
+        555.677
+      ],
+      [
+        1175.322,
+        683.272
+      ],
+      [
+        1042.82,
+        710.754
+      ]
+    ]
+  ],
+  "topSeams": [
+    [
+      [
+        493.18,
+        313.246
+      ],
+      [
+        1042.82,
+        583.159
+      ]
+    ]
+  ],
+  "expectedTopSeamCount": 1,
+  "equalCrossSectionTolerancePx": 0.25,
+  "source": "artwork-sources/beams/beam-unit-tile-master-v1-4x.png",
+  "sourceSha256": "752db88a14866587604e271225b5c85f82d1974d96a62a2cd8ec57beadf3bec0",
+  "painterOrder": "back-to-front, bottom-to-top",
+  "textureVariation": {
+    "seed": 20260812,
+    "sourcePixelMaxShift": [
+      14.0,
+      10.0
+    ],
+    "toneRange": [
+      0.982,
+      1.018
+    ]
+  },
+  "approvalStatus": "candidate"
+}

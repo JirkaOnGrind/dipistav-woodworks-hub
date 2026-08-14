@@ -1,0 +1,41 @@
+{
+  "canvas": {
+    "width": 1536,
+    "height": 1024
+  },
+  "alphaBoundsPixels": {
+    "left": 256,
+    "top": 79,
+    "right": 1280,
+    "bottom": 944
+  },
+  "alphaBounds": {
+    "x": 0.166667,
+    "y": 0.077148,
+    "width": 0.666667,
+    "height": 0.844727
+  },
+  "opticalCenter": {
+    "x": 0.5,
+    "y": 0.499512
+  },
+  "alphaCoverage": 0.406256,
+  "interiorAlphaMin": 248,
+  "margins": {
+    "left": 256,
+    "top": 79,
+    "right": 256,
+    "bottom": 80
+  },
+  "styleVersion": "v11",
+  "fitPolicy": "adaptive-bounds",
+  "safeInset": 0.07,
+  "approvalStatus": "awaiting-approval",
+  "source": "public/images/illustrations/stipane-v2.webp",
+  "sourceSha256": "8eb1bdd9115c41200e221064aff2c9a7ee819938391078acb671714d1c597da5",
+  "visualReference": "Obrázek Codex 12. 8. 2026 19_45_37.png",
+  "styleContract": "canonical-19-45-37-warm-engraved-comic",
+  "cornerCleanup": "no-corner-discoloration-no-dirty-corner-shading-no-ao",
+  "outputSha256": "8943c23063b7dd50eb46ed27101482ea6c30227093644df29540e6c5a1f0f34c",
+  "plannedRuntimePath": "/images/illustrations/homepage-v11/stipane-drevo-icon-master-v11.webp"
+}

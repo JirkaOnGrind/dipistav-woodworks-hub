@@ -1,0 +1,59 @@
+{
+  "family": "lath",
+  "styleVersion": "v11",
+  "approvalStatus": "awaiting-approval",
+  "texturePolicy": "canonical-19-45-37-reference",
+  "edgePolicy": "dark-timber-edges-no-white-halo-no-bright-inner-fringe",
+  "antiCloning": "deterministic-inset-source-sampling",
+  "crossSectionContract": "height:width = 1:1.25-1.5",
+  "geometryRatios": {
+    "crossSectionRatio": 2.402891,
+    "depthToWidthRatio": 1.449849,
+    "boardCrossSectionRatio": 4.788677,
+    "lathCrossSectionRatio": 1.372891
+  },
+  "entries": [
+    {
+      "image": "tmp/composed_battens/lath/lath-1-master-v11.webp",
+      "manifest": "tmp/composed_battens/lath/lath-1-master-v11.manifest.json",
+      "representativeCount": 1,
+      "outputSha256": "561e89b5c4f2d8250cfd0ea9f9fe1326615c4f191616300ad59b83186fd6b624"
+    },
+    {
+      "image": "tmp/composed_battens/lath/lath-2-master-v11.webp",
+      "manifest": "tmp/composed_battens/lath/lath-2-master-v11.manifest.json",
+      "representativeCount": 2,
+      "outputSha256": "c853fca4b29a7fb63372901facdf7d31abfa780d16f44b4e9a51ab6f86cf1ef0"
+    },
+    {
+      "image": "tmp/composed_battens/lath/lath-3-4-master-v11.webp",
+      "manifest": "tmp/composed_battens/lath/lath-3-4-master-v11.manifest.json",
+      "representativeCount": 3,
+      "outputSha256": "14454aede3fef8cbb5c429f1caa3e671a89aedc9323dd6cf0b595efef491bb17"
+    },
+    {
+      "image": "tmp/composed_battens/lath/lath-5-8-master-v11.webp",
+      "manifest": "tmp/composed_battens/lath/lath-5-8-master-v11.manifest.json",
+      "representativeCount": 6,
+      "outputSha256": "0aa625ffd9c54c60a89b3291daf942a483792d70e490fd77f949120504935b1e"
+    },
+    {
+      "image": "tmp/composed_battens/lath/lath-9-11-master-v11.webp",
+      "manifest": "tmp/composed_battens/lath/lath-9-11-master-v11.manifest.json",
+      "representativeCount": 9,
+      "outputSha256": "d257aa1e7afcd6aea33ac47a338bb055e49775ad49c71c2c43d92c8a4d7c5332"
+    },
+    {
+      "image": "tmp/composed_battens/lath/lath-12-15-master-v11.webp",
+      "manifest": "tmp/composed_battens/lath/lath-12-15-master-v11.manifest.json",
+      "representativeCount": 12,
+      "outputSha256": "833434100329b47120603f832607292130c8af3be60f23d7b2b49e296824adb4"
+    },
+    {
+      "image": "tmp/composed_battens/lath/lath-16plus-master-v11.webp",
+      "manifest": "tmp/composed_battens/lath/lath-16plus-master-v11.manifest.json",
+      "representativeCount": 16,
+      "outputSha256": "75cbbfb627435549e7613efb80b8ec679efc343e118b079d079484637b6f6e1f"
+    }
+  ]
+}

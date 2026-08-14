@@ -1,5 +1,7 @@
 import type { ProductVariant } from "@/lib/product-catalog";
 import { V9_ARTWORK_CANDIDATES } from "@/lib/product-artwork-v9-candidates";
+import { V10_ARTWORK_CANDIDATES } from "@/lib/product-artwork-v10-candidates";
+import { V11_ARTWORK_CANDIDATES } from "@/lib/product-artwork-v11-candidates";
 
 const CONFIGURATOR_ROOT = "/images/illustrations/configurator-v3";
 const CONFIGURATOR_V4_ROOT = "/images/illustrations/configurator-v4";
@@ -8,6 +10,7 @@ const CONFIGURATOR_V6_ROOT = "/images/illustrations/configurator-v6";
 const CONFIGURATOR_V7_ROOT = "/images/illustrations/configurator-v7";
 const GOLDEN_MASTERS_ROOT = "/images/illustrations/golden-masters";
 const HOMEPAGE_ROOT = "/images/illustrations";
+const BEAMS_ROOT = "/images/illustrations/beams";
 
 export type ProductArtworkKey = "one" | "two" | "three" | "five" | "bundle" | "dense";
 export type SellingUnitCount = 1 | 2 | 3 | 4 | 5 | 8 | 12 | 16 | 20 | 30;
@@ -38,6 +41,9 @@ export type ArtworkSceneDefinition = {
   renderMode: "master" | "legacy-units";
   legacyUnitCount?: SellingUnitCount;
   filter?: string;
+  representativeCount?: number;
+  styleVersion?: "legacy" | "v9" | "v10" | "v11";
+  fitPolicy?: "alpha-safe" | "adaptive-bounds";
 };
 
 export type ResolvedArtworkScene = {
@@ -87,12 +93,13 @@ const ASSET_CANVAS: Record<string, { width: number; height: number }> = {
   [`${CONFIGURATOR_ROOT}/prkno-unsorted-5-v3.webp`]: { width: 1536, height: 1024 },
   [`${CONFIGURATOR_ROOT}/prkno-unsorted-bundle-v3.webp`]: { width: 1254, height: 1254 },
   [`${CONFIGURATOR_V7_ROOT}/prkno-unsorted-dense-v7.webp`]: { width: 1536, height: 1024 },
-  [`${CONFIGURATOR_V4_ROOT}/beam-1-v4.webp`]: { width: 1536, height: 1024 },
-  [`${CONFIGURATOR_V4_ROOT}/beam-2-v4.webp`]: { width: 1536, height: 1024 },
-  [`${CONFIGURATOR_V4_ROOT}/beam-3-v4.webp`]: { width: 1536, height: 1024 },
-  [`${GOLDEN_MASTERS_ROOT}/beam-bundle-6-seams-master-v2.webp`]: { width: 1672, height: 941 },
-  [`${CONFIGURATOR_V4_ROOT}/beam-12-v4.webp`]: { width: 1536, height: 1024 },
-  [`${CONFIGURATOR_V4_ROOT}/beam-16-v4.webp`]: { width: 1536, height: 1024 },
+  [`${BEAMS_ROOT}/beam-1-composed-master-v10.webp`]: { width: 1536, height: 1024 },
+  [`${BEAMS_ROOT}/beam-2-composed-master-v10.webp`]: { width: 1536, height: 1024 },
+  [`${BEAMS_ROOT}/beam-3-4-composed-master-v11.webp`]: { width: 1536, height: 1024 },
+  [`${BEAMS_ROOT}/beam-5-8-composed-master-v10.webp`]: { width: 1536, height: 1024 },
+  [`${BEAMS_ROOT}/beam-9-11-composed-master-v10.webp`]: { width: 1536, height: 1024 },
+  [`${BEAMS_ROOT}/beam-12-15-composed-master-v10.webp`]: { width: 1536, height: 1024 },
+  [`${BEAMS_ROOT}/beam-16plus-composed-master-v10.webp`]: { width: 1536, height: 1024 },
   [`${HOMEPAGE_ROOT}/stipane-v2.webp`]: { width: 1254, height: 1254 },
   [`${CONFIGURATOR_V7_ROOT}/firewood-loose-pile-v7.webp`]: { width: 1510, height: 1042 },
   [`${CONFIGURATOR_ROOT}/drevo-bigbag-v3.webp`]: { width: 1254, height: 1254 },
@@ -203,21 +210,22 @@ function artworkKeyForQuantity(quantity: number): ProductArtworkKey {
   return "dense";
 }
 
-function withV9Overrides(
+function withArtworkOverrides(
   baseFamily: readonly ArtworkSceneDefinition[],
   categoryId: string,
   illustrationVariant: string,
+  overrides: readonly ArtworkSceneDefinition[],
 ): readonly ArtworkSceneDefinition[] {
-  const v9Scenes = V9_ARTWORK_CANDIDATES.filter(
+  const overrideScenes = overrides.filter(
     (scene) =>
       scene.categoryId === categoryId &&
       (scene.illustrationVariant === illustrationVariant ||
         (scene.illustrationVariant === "slabs-*" && illustrationVariant.startsWith("slabs-"))),
   );
-  if (v9Scenes.length === 0) return baseFamily;
+  if (overrideScenes.length === 0) return baseFamily;
 
   const starts = new Set<number>();
-  for (const scene of [...baseFamily, ...v9Scenes]) {
+  for (const scene of [...baseFamily, ...overrideScenes]) {
     starts.add(scene.quantityBand.min);
     if (scene.quantityBand.max !== undefined) starts.add(scene.quantityBand.max + 1);
   }
@@ -226,7 +234,7 @@ function withV9Overrides(
 
   sortedStarts.forEach((min, index) => {
     const sourceScene =
-      v9Scenes.find((scene) => inBand(min, scene.quantityBand)) ??
+      overrideScenes.find((scene) => inBand(min, scene.quantityBand)) ??
       baseFamily.find((scene) => inBand(min, scene.quantityBand));
     if (!sourceScene) return;
     slices.push({
@@ -260,6 +268,30 @@ function withV9Overrides(
       preloadNeighbors: undefined as never,
     })),
   );
+}
+
+function withV9Overrides(
+  baseFamily: readonly ArtworkSceneDefinition[],
+  categoryId: string,
+  illustrationVariant: string,
+) {
+  return withArtworkOverrides(baseFamily, categoryId, illustrationVariant, V9_ARTWORK_CANDIDATES);
+}
+
+function withV10Overrides(
+  baseFamily: readonly ArtworkSceneDefinition[],
+  categoryId: string,
+  illustrationVariant: string,
+) {
+  return withArtworkOverrides(baseFamily, categoryId, illustrationVariant, V10_ARTWORK_CANDIDATES);
+}
+
+function withV11Overrides(
+  baseFamily: readonly ArtworkSceneDefinition[],
+  categoryId: string,
+  illustrationVariant: string,
+) {
+  return withArtworkOverrides(baseFamily, categoryId, illustrationVariant, V11_ARTWORK_CANDIDATES);
 }
 
 function timberFamily(
@@ -308,10 +340,10 @@ const BEAM_FAMILY = addPreloadNeighbors([
     artworkKey: "one",
     quantityBand: { min: 1, max: 1 },
     visualMassRank: 1,
-    source: `${CONFIGURATOR_V4_ROOT}/beam-1-v4.webp`,
+    source: `${BEAMS_ROOT}/beam-1-composed-master-v10.webp`,
     canvas: { width: 1536, height: 1024 },
-    alphaBounds: { x: 0.08659, y: 0.10449, width: 0.82227, height: 0.75977 },
-    opticalCenter: { x: 0.49773, y: 0.48438 },
+    alphaBounds: { x: 0.276042, y: 0.290039, width: 0.447917, height: 0.419922 },
+    opticalCenter: { x: 0.5, y: 0.5 },
     safeInset: DEFAULT_SAFE_INSET,
     transformPolicy: "beam",
     transformStrength: 0.95,
@@ -324,10 +356,10 @@ const BEAM_FAMILY = addPreloadNeighbors([
     artworkKey: "two",
     quantityBand: { min: 2, max: 2 },
     visualMassRank: 2,
-    source: `${CONFIGURATOR_V4_ROOT}/beam-2-v4.webp`,
+    source: `${BEAMS_ROOT}/beam-2-composed-master-v10.webp`,
     canvas: { width: 1536, height: 1024 },
-    alphaBounds: { x: 0.08398, y: 0.09082, width: 0.84115, height: 0.79004 },
-    opticalCenter: { x: 0.50456, y: 0.48584 },
+    alphaBounds: { x: 0.233073, y: 0.276367, width: 0.533854, height: 0.447266 },
+    opticalCenter: { x: 0.5, y: 0.5 },
     safeInset: DEFAULT_SAFE_INSET,
     transformPolicy: "beam",
     transformStrength: 0.95,
@@ -340,42 +372,59 @@ const BEAM_FAMILY = addPreloadNeighbors([
     artworkKey: "three",
     quantityBand: { min: 3, max: 4 },
     visualMassRank: 3,
-    source: `${CONFIGURATOR_V4_ROOT}/beam-3-v4.webp`,
+    source: `${BEAMS_ROOT}/beam-3-4-composed-master-v11.webp`,
     canvas: { width: 1536, height: 1024 },
-    alphaBounds: { x: 0.08659, y: 0.08691, width: 0.8112, height: 0.83691 },
-    opticalCenter: { x: 0.49219, y: 0.50537 },
+    alphaBounds: { x: 0.233073, y: 0.220703, width: 0.533854, height: 0.558594 },
+    opticalCenter: { x: 0.5, y: 0.5 },
     safeInset: DEFAULT_SAFE_INSET,
     transformPolicy: "beam",
     transformStrength: 0.95,
     renderMode: "master",
   },
   {
-    id: "beam-5-10",
+    id: "beam-5-8",
     categoryId: "tramy",
     illustrationVariant: "beam",
     artworkKey: "five",
-    quantityBand: { min: 5, max: 10 },
+    quantityBand: { min: 5, max: 8 },
     visualMassRank: 4,
-    source: `${GOLDEN_MASTERS_ROOT}/beam-bundle-6-seams-master-v2.webp`,
-    canvas: { width: 1672, height: 941 },
-    alphaBounds: { x: 0.11902, y: 0.04145, width: 0.76256, height: 0.91073 },
-    opticalCenter: { x: 0.5003, y: 0.49682 },
+    source: `${BEAMS_ROOT}/beam-5-8-composed-master-v10.webp`,
+    canvas: { width: 1536, height: 1024 },
+    alphaBounds: { x: 0.190104, y: 0.201172, width: 0.619792, height: 0.597656 },
+    opticalCenter: { x: 0.5, y: 0.5 },
     safeInset: DEFAULT_SAFE_INSET,
     transformPolicy: "beam",
     transformStrength: 0.95,
     renderMode: "master",
   },
   {
-    id: "beam-11-15",
+    id: "beam-9-11",
     categoryId: "tramy",
     illustrationVariant: "beam",
     artworkKey: "bundle",
-    quantityBand: { min: 11, max: 15 },
+    quantityBand: { min: 9, max: 11 },
     visualMassRank: 5,
-    source: `${CONFIGURATOR_V4_ROOT}/beam-12-v4.webp`,
+    source: `${BEAMS_ROOT}/beam-9-11-composed-master-v10.webp`,
     canvas: { width: 1536, height: 1024 },
-    alphaBounds: { x: 0.08203, y: 0.08887, width: 0.77669, height: 0.87207 },
-    opticalCenter: { x: 0.47038, y: 0.5249 },
+    alphaBounds: { x: 0.190104, y: 0.138672, width: 0.619792, height: 0.722656 },
+    opticalCenter: { x: 0.5, y: 0.5 },
+    safeInset: DEFAULT_SAFE_INSET,
+    transformPolicy: "beam",
+    transformStrength: 0.95,
+    renderMode: "master",
+    filter: "saturate(0.93) brightness(1.02) contrast(1.01)",
+  },
+  {
+    id: "beam-12-15",
+    categoryId: "tramy",
+    illustrationVariant: "beam",
+    artworkKey: "dense",
+    quantityBand: { min: 12, max: 15 },
+    visualMassRank: 6,
+    source: `${BEAMS_ROOT}/beam-12-15-composed-master-v10.webp`,
+    canvas: { width: 1536, height: 1024 },
+    alphaBounds: { x: 0.146484, y: 0.125, width: 0.707031, height: 0.75 },
+    opticalCenter: { x: 0.5, y: 0.5 },
     safeInset: DEFAULT_SAFE_INSET,
     transformPolicy: "beam",
     transformStrength: 0.95,
@@ -388,11 +437,11 @@ const BEAM_FAMILY = addPreloadNeighbors([
     illustrationVariant: "beam",
     artworkKey: "dense",
     quantityBand: { min: 16 },
-    visualMassRank: 6,
-    source: `${CONFIGURATOR_V4_ROOT}/beam-16-v4.webp`,
+    visualMassRank: 7,
+    source: `${BEAMS_ROOT}/beam-16plus-composed-master-v10.webp`,
     canvas: { width: 1536, height: 1024 },
-    alphaBounds: { x: 0.07227, y: 0.08594, width: 0.83984, height: 0.85742 },
-    opticalCenter: { x: 0.49219, y: 0.51465 },
+    alphaBounds: { x: 0.146484, y: 0.0625, width: 0.707031, height: 0.875 },
+    opticalCenter: { x: 0.5, y: 0.5 },
     safeInset: DEFAULT_SAFE_INSET,
     transformPolicy: "beam",
     transformStrength: 0.95,
@@ -731,8 +780,16 @@ export function getArtworkSceneFamily(
   categoryId: string,
   variant: ProductVariant,
 ): readonly ArtworkSceneDefinition[] {
-  return withV9Overrides(
-    getLegacyArtworkSceneFamily(categoryId, variant),
+  return withV11Overrides(
+    withV10Overrides(
+      withV9Overrides(
+        getLegacyArtworkSceneFamily(categoryId, variant),
+        categoryId,
+        variant.illustrationVariant,
+      ),
+      categoryId,
+      variant.illustrationVariant,
+    ),
     categoryId,
     variant.illustrationVariant,
   );

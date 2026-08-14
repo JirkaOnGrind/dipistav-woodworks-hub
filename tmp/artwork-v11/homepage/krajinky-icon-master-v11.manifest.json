@@ -1,0 +1,41 @@
+{
+  "canvas": {
+    "width": 1536,
+    "height": 1024
+  },
+  "alphaBoundsPixels": {
+    "left": 251,
+    "top": 79,
+    "right": 1285,
+    "bottom": 944
+  },
+  "alphaBounds": {
+    "x": 0.163411,
+    "y": 0.077148,
+    "width": 0.673177,
+    "height": 0.844727
+  },
+  "opticalCenter": {
+    "x": 0.5,
+    "y": 0.499512
+  },
+  "alphaCoverage": 0.346969,
+  "interiorAlphaMin": 248,
+  "margins": {
+    "left": 251,
+    "top": 79,
+    "right": 251,
+    "bottom": 80
+  },
+  "styleVersion": "v11",
+  "fitPolicy": "adaptive-bounds",
+  "safeInset": 0.07,
+  "approvalStatus": "awaiting-approval",
+  "source": "public/images/illustrations/krajinky-v2.webp",
+  "sourceSha256": "66172e0f253be4daa60eb6386006ddddeed8c2a6fb36fbb8065efdfaad1f44fa",
+  "visualReference": "Obrázek Codex 12. 8. 2026 19_45_37.png",
+  "styleContract": "canonical-19-45-37-warm-engraved-comic",
+  "cornerCleanup": "no-corner-discoloration-no-dirty-corner-shading-no-ao",
+  "outputSha256": "71fedc6e4e71281d8269cc6e8450093e94bc5be37b7252bb01614d4dd8f35b74",
+  "plannedRuntimePath": "/images/illustrations/homepage-v11/krajinky-icon-master-v11.webp"
+}

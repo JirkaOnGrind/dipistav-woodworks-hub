@@ -1,0 +1,59 @@
+{
+  "family": "board",
+  "styleVersion": "v11",
+  "approvalStatus": "awaiting-approval",
+  "texturePolicy": "canonical-19-45-37-reference",
+  "edgePolicy": "dark-timber-edges-no-white-halo-no-bright-inner-fringe",
+  "antiCloning": "deterministic-inset-source-sampling",
+  "crossSectionContract": "height:width = 1:4.5-5.0",
+  "geometryRatios": {
+    "crossSectionRatio": 2.402891,
+    "depthToWidthRatio": 1.449849,
+    "boardCrossSectionRatio": 4.788677,
+    "lathCrossSectionRatio": 1.372891
+  },
+  "entries": [
+    {
+      "image": "tmp/composed_boards/board/board-1-master-v11.webp",
+      "manifest": "tmp/composed_boards/board/board-1-master-v11.manifest.json",
+      "representativeCount": 1,
+      "outputSha256": "a6e9afcc94e765cf836fb4d48efd8ddc292a036f4fda96ac2ac7cd375b9a95f3"
+    },
+    {
+      "image": "tmp/composed_boards/board/board-2-master-v11.webp",
+      "manifest": "tmp/composed_boards/board/board-2-master-v11.manifest.json",
+      "representativeCount": 2,
+      "outputSha256": "43e2a85452e18429e01e90feabaeb2562095247bb97e9e81e3bc426ce754b33f"
+    },
+    {
+      "image": "tmp/composed_boards/board/board-3-4-master-v11.webp",
+      "manifest": "tmp/composed_boards/board/board-3-4-master-v11.manifest.json",
+      "representativeCount": 3,
+      "outputSha256": "bc0b24fa8a96fe6972bd2a6f456b804d9a42858942de9e9a70e16cda9d845a1e"
+    },
+    {
+      "image": "tmp/composed_boards/board/board-5-8-master-v11.webp",
+      "manifest": "tmp/composed_boards/board/board-5-8-master-v11.manifest.json",
+      "representativeCount": 6,
+      "outputSha256": "48b488e1c603561a7c17bc9f115744c9efd631a118cd43dd1eb03b609b7e6c22"
+    },
+    {
+      "image": "tmp/composed_boards/board/board-9-11-master-v11.webp",
+      "manifest": "tmp/composed_boards/board/board-9-11-master-v11.manifest.json",
+      "representativeCount": 9,
+      "outputSha256": "ca2a44d24b35ee500fdff51876cf14981e1c33349529bd25aac0742bb55b85f2"
+    },
+    {
+      "image": "tmp/composed_boards/board/board-12-15-master-v11.webp",
+      "manifest": "tmp/composed_boards/board/board-12-15-master-v11.manifest.json",
+      "representativeCount": 12,
+      "outputSha256": "546b1fe62f866d496e3d05299a6d8c5a189403ff4514f5857da63aa8923e4aed"
+    },
+    {
+      "image": "tmp/composed_boards/board/board-16plus-master-v11.webp",
+      "manifest": "tmp/composed_boards/board/board-16plus-master-v11.manifest.json",
+      "representativeCount": 16,
+      "outputSha256": "e2a8e0fcaf6352ecbc84b7ee82c8cd84e55ce61bc9b9cd546d5e8649c88676fa"
+    }
+  ]
+}

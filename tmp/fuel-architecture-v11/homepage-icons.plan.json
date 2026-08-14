@@ -1,0 +1,27 @@
+{
+  "styleVersion": "v11",
+  "approvalStatus": "planned",
+  "runtimeActivation": "blocked-until-source-master-approval",
+  "icons": [
+    {
+      "categoryId": "stipane-drevo",
+      "sourceFamily": "firewood-loose",
+      "sourceBand": "1"
+    },
+    {
+      "categoryId": "pelety",
+      "sourceFamily": "pellets-bag",
+      "sourceBand": "1"
+    },
+    {
+      "categoryId": "krajinky",
+      "sourceFamily": "slabs-3m",
+      "sourceBand": "1"
+    },
+    {
+      "categoryId": "drivi-na-paletach",
+      "sourceFamily": "firewood-pallet-33",
+      "sourceBand": "1"
+    }
+  ]
+}

@@ -4,6 +4,7 @@ import {
   getProductCategory,
   normalizeSelection,
   resolveProductVariant,
+  UNSORTED_BOARD_GROUPS,
 } from "@/lib/product-catalog";
 import { calculateVariantQuote } from "@/lib/pricing";
 
@@ -18,19 +19,44 @@ describe("produktový katalog", () => {
     expect(getProductCategory("late")?.variants).toHaveLength(6);
     expect(getProductCategory("fosny")?.variants).toHaveLength(1);
     expect(boards?.variants.filter((variant) => variant.modeId === "sorted")).toHaveLength(13);
-    expect(boards?.variants.filter((variant) => variant.modeId === "unsorted")).toHaveLength(14);
+    expect(boards?.variants.filter((variant) => variant.modeId === "unsorted")).toHaveLength(4);
   });
 
-  it("účtuje široká netříděná prkna sazbou 8 900 Kč za m³", () => {
+  it("účtuje široká netříděná prkna podle průměrné šířky 18 cm", () => {
     const boards = getProductCategory("prkna")!;
     const wideBoard = resolveProductVariant(boards, "unsorted", {
-      width: "20",
+      width: "16-20",
       length: "500",
     })!;
 
     expect(wideBoard.pricing).toMatchObject({ basis: "cubic-meter", rate: 8900 });
-    expect(calculateVariantQuote(wideBoard, 1)?.totalVolumeM3).toBeCloseTo(0.025);
-    expect(calculateVariantQuote(wideBoard, 1)?.totalPrice).toBe(222.5);
+    expect(wideBoard.volumeCalculation).toEqual({
+      basis: "group-average-width",
+      averageWidthMm: 180,
+      memberWidthsCm: [16, 18, 20],
+    });
+    expect(calculateVariantQuote(wideBoard, 1)?.totalVolumeM3).toBeCloseTo(0.0225);
+    expect(calculateVariantQuote(wideBoard, 1)?.totalPrice).toBe(200.25);
+  });
+
+  it("účtuje užší skupinu podle průměrné šířky 11 cm", () => {
+    const boards = getProductCategory("prkna")!;
+    const narrowBoard = resolveProductVariant(boards, "unsorted", {
+      width: "8-14",
+      length: "500",
+    })!;
+
+    expect(narrowBoard.pricing).toMatchObject({ basis: "cubic-meter", rate: 7200 });
+    expect(calculateVariantQuote(narrowBoard, 10)?.totalVolumeM3).toBeCloseTo(0.1375);
+    expect(calculateVariantQuote(narrowBoard, 10)?.totalPrice).toBe(990);
+  });
+
+  it("definuje skupiny netříděných prken bez překryvu", () => {
+    expect(UNSORTED_BOARD_GROUPS.map((group) => group.memberWidthsCm)).toEqual([
+      [8, 10, 12, 14],
+      [16, 18, 20],
+    ]);
+    expect(UNSORTED_BOARD_GROUPS.map((group) => group.averageWidthMm)).toEqual([110, 180]);
   });
 
   it("při normalizaci přeskočí nenaskladněnou kombinaci", () => {
@@ -83,5 +109,36 @@ describe("produktový katalog", () => {
       length: "700",
     })!;
     expect(calculateVariantQuote(beam, 2)?.totalPrice).toBe(3136);
+  });
+
+  it("má každá kategorie explicitní množstevní politiku", () => {
+    for (const categoryId of [
+      "tramy",
+      "fosny",
+      "prkna",
+      "late",
+      "stipane-drevo",
+      "pelety",
+      "krajinky",
+      "drivi-na-paletach",
+    ]) {
+      expect(getProductCategory(categoryId)?.quantityPolicy).toEqual({
+        min: 1,
+        max: 500,
+        step: 1,
+        sliderMax: 20,
+      });
+    }
+  });
+
+  it("maps only the four approved timber homepage icons to v11", () => {
+    for (const categoryId of ["tramy", "fosny", "prkna", "late"]) {
+      expect(getProductCategory(categoryId)?.imageSrc).toBe(
+        `/images/illustrations/homepage-v11/${categoryId}-icon-master-v11.webp`,
+      );
+    }
+    for (const categoryId of ["stipane-drevo", "pelety", "krajinky", "drivi-na-paletach"]) {
+      expect(getProductCategory(categoryId)?.imageSrc).not.toContain("homepage-v11");
+    }
   });
 });

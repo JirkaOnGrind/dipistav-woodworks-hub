@@ -1,0 +1,25 @@
+{
+  "input": "C:\\Users\\Utrh\\Documents\\Codex\\dipistav-woodworks-hub\\tmp\\composed_boards\\board\\board-2-master-v11.webp",
+  "canvas": {
+    "width": 1536,
+    "height": 1024
+  },
+  "alphaBoundsPixels": {
+    "left": 113,
+    "top": 251,
+    "right": 1423,
+    "bottom": 773
+  },
+  "alphaBoundsNormalized": {
+    "x": 0.073568,
+    "y": 0.245117,
+    "width": 0.852865,
+    "height": 0.509766
+  },
+  "alphaCoverage": 0.25443,
+  "paletteProximity": 0.962003,
+  "whiteOrBrightEdgePixels": 0,
+  "errors": [],
+  "warnings": [],
+  "status": "pass"
+}

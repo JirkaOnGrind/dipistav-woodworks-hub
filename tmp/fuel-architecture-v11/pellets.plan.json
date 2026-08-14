@@ -1,0 +1,302 @@
+{
+  "families": [
+    {
+      "styleVersion": "v11",
+      "approvalStatus": "planned",
+      "runtimeActivation": "blocked-until-explicit-visual-approval",
+      "canvas": {
+        "width": 1536,
+        "height": 1024
+      },
+      "camera": {
+        "projection": "orthographic",
+        "azimuthDegrees": 40,
+        "elevationDegrees": 27
+      },
+      "safeInset": 0.07,
+      "seed": 20260813,
+      "family": {
+        "id": "pellets-bag",
+        "category_id": "pelety",
+        "illustration_variants": [
+          "pellets-bag"
+        ],
+        "unit_tiles": [
+          "pellet-bag-15kg"
+        ],
+        "bands": [
+          {
+            "suffix": "1",
+            "minimum": 1,
+            "maximum": 1,
+            "representative_selling_units": 1,
+            "rendered_module_counts": {
+              "pellet-bag-15kg": 1
+            },
+            "composition_basis": "exact",
+            "contained_unit_equivalent": null
+          },
+          {
+            "suffix": "2",
+            "minimum": 2,
+            "maximum": 2,
+            "representative_selling_units": 2,
+            "rendered_module_counts": {
+              "pellet-bag-15kg": 2
+            },
+            "composition_basis": "exact",
+            "contained_unit_equivalent": null
+          },
+          {
+            "suffix": "3-4",
+            "minimum": 3,
+            "maximum": 4,
+            "representative_selling_units": 4,
+            "rendered_module_counts": {
+              "pellet-bag-15kg": 4
+            },
+            "composition_basis": "exact",
+            "contained_unit_equivalent": null
+          },
+          {
+            "suffix": "5-9",
+            "minimum": 5,
+            "maximum": 9,
+            "representative_selling_units": 7,
+            "rendered_module_counts": {
+              "pellet-bag-15kg": 7
+            },
+            "composition_basis": "exact",
+            "contained_unit_equivalent": null
+          },
+          {
+            "suffix": "10-19",
+            "minimum": 10,
+            "maximum": 19,
+            "representative_selling_units": 15,
+            "rendered_module_counts": {
+              "pellet-bag-15kg": 15
+            },
+            "composition_basis": "exact",
+            "contained_unit_equivalent": null
+          },
+          {
+            "suffix": "20plus",
+            "minimum": 20,
+            "maximum": null,
+            "representative_selling_units": 20,
+            "rendered_module_counts": {
+              "pellet-bag-15kg": 20
+            },
+            "composition_basis": "exact",
+            "contained_unit_equivalent": null
+          }
+        ],
+        "notes": [
+          "Preserve the approved v3 tree print and 15 kg only."
+        ]
+      },
+      "planSha256": "fb12df1a29bbfee14805f1d2f494005890ae79bc58e428b58aa6be6e5d4e2ab7"
+    },
+    {
+      "styleVersion": "v11",
+      "approvalStatus": "planned",
+      "runtimeActivation": "blocked-until-explicit-visual-approval",
+      "canvas": {
+        "width": 1536,
+        "height": 1024
+      },
+      "camera": {
+        "projection": "orthographic",
+        "azimuthDegrees": 40,
+        "elevationDegrees": 27
+      },
+      "safeInset": 0.07,
+      "seed": 20260813,
+      "family": {
+        "id": "pellets-set",
+        "category_id": "pelety",
+        "illustration_variants": [
+          "pellets-set"
+        ],
+        "unit_tiles": [
+          "pellet-bag-15kg"
+        ],
+        "bands": [
+          {
+            "suffix": "1",
+            "minimum": 1,
+            "maximum": 1,
+            "representative_selling_units": 1,
+            "rendered_module_counts": {
+              "pellet-bag-15kg": 10
+            },
+            "composition_basis": "exact",
+            "contained_unit_equivalent": null
+          },
+          {
+            "suffix": "2",
+            "minimum": 2,
+            "maximum": 2,
+            "representative_selling_units": 2,
+            "rendered_module_counts": {
+              "pellet-bag-15kg": 20
+            },
+            "composition_basis": "exact",
+            "contained_unit_equivalent": null
+          },
+          {
+            "suffix": "3-4",
+            "minimum": 3,
+            "maximum": 4,
+            "representative_selling_units": 3,
+            "rendered_module_counts": {
+              "pellet-bag-15kg": 30
+            },
+            "composition_basis": "exact",
+            "contained_unit_equivalent": null
+          },
+          {
+            "suffix": "5plus",
+            "minimum": 5,
+            "maximum": null,
+            "representative_selling_units": 5,
+            "rendered_module_counts": {
+              "pellet-bag-15kg": 50
+            },
+            "composition_basis": "exact",
+            "contained_unit_equivalent": null
+          }
+        ],
+        "notes": [
+          "One selling set equals ten bags."
+        ]
+      },
+      "planSha256": "ffbfc5ac86df396d54519dff56ce5aeeb30391cb78dbe0fc376110e2bedf4e2e"
+    },
+    {
+      "styleVersion": "v11",
+      "approvalStatus": "planned",
+      "runtimeActivation": "blocked-until-explicit-visual-approval",
+      "canvas": {
+        "width": 1536,
+        "height": 1024
+      },
+      "camera": {
+        "projection": "orthographic",
+        "azimuthDegrees": 40,
+        "elevationDegrees": 27
+      },
+      "safeInset": 0.07,
+      "seed": 20260813,
+      "family": {
+        "id": "pellets-pallet",
+        "category_id": "pelety",
+        "illustration_variants": [
+          "pellets-pallet"
+        ],
+        "unit_tiles": [
+          "pellet-bag-15kg",
+          "pallet",
+          "wrap"
+        ],
+        "bands": [
+          {
+            "suffix": "1",
+            "minimum": 1,
+            "maximum": 1,
+            "representative_selling_units": 1,
+            "rendered_module_counts": {
+              "pellet-pallet": 1,
+              "pellet-bag-15kg": 40,
+              "pallet": 1,
+              "wrap": 1
+            },
+            "composition_basis": "optical-density",
+            "contained_unit_equivalent": {
+              "count": 65,
+              "unit": "pellet-bag-15kg",
+              "mass_kg": 975
+            }
+          },
+          {
+            "suffix": "2",
+            "minimum": 2,
+            "maximum": 2,
+            "representative_selling_units": 2,
+            "rendered_module_counts": {
+              "pellet-pallet": 2,
+              "pellet-bag-15kg": 80,
+              "pallet": 2,
+              "wrap": 2
+            },
+            "composition_basis": "optical-density",
+            "contained_unit_equivalent": {
+              "count": 130,
+              "unit": "pellet-bag-15kg",
+              "mass_kg": 1950
+            }
+          },
+          {
+            "suffix": "3",
+            "minimum": 3,
+            "maximum": 3,
+            "representative_selling_units": 3,
+            "rendered_module_counts": {
+              "pellet-pallet": 3,
+              "pellet-bag-15kg": 120,
+              "pallet": 3,
+              "wrap": 3
+            },
+            "composition_basis": "optical-density",
+            "contained_unit_equivalent": {
+              "count": 195,
+              "unit": "pellet-bag-15kg",
+              "mass_kg": 2925
+            }
+          },
+          {
+            "suffix": "4-5",
+            "minimum": 4,
+            "maximum": 5,
+            "representative_selling_units": 4,
+            "rendered_module_counts": {
+              "pellet-pallet": 4,
+              "pellet-bag-15kg": 160,
+              "pallet": 4,
+              "wrap": 4
+            },
+            "composition_basis": "optical-density",
+            "contained_unit_equivalent": {
+              "count": 260,
+              "unit": "pellet-bag-15kg",
+              "mass_kg": 3900
+            }
+          },
+          {
+            "suffix": "6plus",
+            "minimum": 6,
+            "maximum": null,
+            "representative_selling_units": 6,
+            "rendered_module_counts": {
+              "pellet-pallet": 6,
+              "pellet-bag-15kg": 240,
+              "pallet": 6,
+              "wrap": 6
+            },
+            "composition_basis": "optical-density",
+            "contained_unit_equivalent": {
+              "count": 390,
+              "unit": "pellet-bag-15kg",
+              "mass_kg": 5850
+            }
+          }
+        ],
+        "notes": [
+          "Use eight layers of five rendered bags; commercial equivalent is 65 bags / 975 kg."
+        ]
+      },
+      "planSha256": "a46c931a3ee7e75aa347bc7fd68a46c35c4567404c14d46a8e9e2c7b048f2a38"
+    }
+  ]
+}
