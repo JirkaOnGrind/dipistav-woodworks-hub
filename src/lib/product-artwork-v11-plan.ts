@@ -23,11 +23,11 @@ export const V11_ARTWORK_CONSTANTS = {
   safeInset: 0.07,
   contourReservePixels: 8,
   maximumAutoFitScale: 2,
-  lineWeights: { outer: 4, edge: 3, seam: 3, rings: 1.5, grain: 1.25 },
+  lineWeights: { outer: 4, edge: 3, seam: 4, rings: 1.5, grain: 1.25 },
   palette: {
     outer: "#501801",
     edge: "#501801",
-    seam: "#6B310B",
+    seam: "#501801",
     grain: "#804015",
     sideShadow: "#965622",
     side: "#C5813B",
@@ -40,13 +40,15 @@ export const V11_ARTWORK_CONSTANTS = {
   cornerPolicy: "no-corner-discoloration-no-dirty-corner-shading-no-ao",
 } as const;
 
-export type V11ArtworkFamilyId = "beam" | "plank" | "board" | "lath";
+export type V11ArtworkFamilyId =
+  "beam" | "plank" | "board" | "board-unsorted-narrow" | "board-unsorted-wide" | "lath";
 
 export type V11ArtworkBandPlan = {
   id: string;
   quantityBand: QuantityBand;
   representativeCount: number;
   layout: "1x1" | "2x1" | "2+1-centered" | "3x2" | "3x3" | "4x3" | "4x4";
+  metadataKey: string;
   plannedSource: string;
   approvalStatus: "approved";
   styleVersion: "v11";
@@ -74,17 +76,20 @@ function family(
   id: V11ArtworkFamilyId,
   categoryId: V11ArtworkFamilyPlan["categoryId"],
   illustrationVariants: readonly string[],
+  assetPrefix: string,
+  metadataFamily: "beam" | "plank" | "board" | "lath" = id as "beam" | "plank" | "board" | "lath",
 ): V11ArtworkFamilyPlan {
   return {
     id,
     categoryId,
     illustrationVariants,
     bands: V11_BAND_SPECS.map(([suffix, quantityBand, representativeCount, layout]) => ({
-      id: `${id}-${suffix}-master-v11`,
+      id: `${assetPrefix}-${suffix}-master-v11`,
       quantityBand,
       representativeCount,
       layout,
-      plannedSource: `${CONFIGURATOR_V11_ROOT}/${id}-${suffix}-master-v11.webp`,
+      metadataKey: `${metadataFamily}-${suffix}-master-v11`,
+      plannedSource: `${CONFIGURATOR_V11_ROOT}/${assetPrefix}-${suffix}-master-v11.webp`,
       approvalStatus: "approved",
       styleVersion: "v11",
       fitPolicy: "adaptive-bounds",
@@ -93,17 +98,31 @@ function family(
 }
 
 export const V11_ARTWORK_PLAN: readonly V11ArtworkFamilyPlan[] = [
-  family("beam", "tramy", ["beam"]),
-  family("plank", "fosny", ["plank"]),
-  family("board", "prkna", ["board-sorted", "board-unsorted-narrow", "board-unsorted-wide"]),
-  family("lath", "late", ["lath"]),
+  family("beam", "tramy", ["beam"], "beam-occlusion-v3"),
+  family("plank", "fosny", ["plank"], "plank-family-match-v6"),
+  family("board", "prkna", ["board-sorted"], "board-occlusion-v3"),
+  family(
+    "board-unsorted-narrow",
+    "prkna",
+    ["board-unsorted-narrow"],
+    "board-unsorted-narrow-occlusion-v3",
+    "board",
+  ),
+  family(
+    "board-unsorted-wide",
+    "prkna",
+    ["board-unsorted-wide"],
+    "board-unsorted-wide-occlusion-v3",
+    "board",
+  ),
+  family("lath", "late", ["lath"], "lath-production-v2"),
 ];
 
 export const V11_HOMEPAGE_ICON_PLAN = [
-  ["tramy", "tramy-icon-master-v11.webp", "2+1", "approved"],
-  ["fosny", "fosny-icon-master-v11.webp", "3x2", "approved"],
-  ["prkna", "prkna-icon-master-v11.webp", "3x2", "approved"],
-  ["late", "late-icon-master-v11.webp", "3x3", "approved"],
+  ["tramy", "tramy-icon-occlusion-v3-master-v11.webp", "2+1", "approved"],
+  ["fosny", "fosny-icon-family-match-v6-master-v11.webp", "3x2", "approved"],
+  ["prkna", "prkna-icon-occlusion-v3-master-v11.webp", "3x2", "approved"],
+  ["late", "late-icon-production-v2-master-v11.webp", "3x3", "approved"],
   ["stipane-drevo", "stipane-drevo-icon-master-v11.webp", "loose 1 prm", "planned"],
   ["pelety", "pelety-icon-master-v11.webp", "one canonical 15 kg bag", "planned"],
   ["krajinky", "krajinky-icon-master-v11.webp", "one 3 m bundle", "planned"],

@@ -13,7 +13,7 @@ import hashlib
 import json
 import math
 import random
-from dataclasses import dataclass
+from dataclasses import dataclass, replace
 from functools import lru_cache
 from pathlib import Path
 from typing import Iterable, Sequence
@@ -30,7 +30,7 @@ SEED = 20260813
 
 OUTER = "#501801"
 EDGE = "#501801"
-SEAM = "#6B310B"
+SEAM = "#501801"
 GRAIN = "#804015"
 SIDE_SHADOW = "#965622"
 SIDE = "#C5813B"
@@ -40,9 +40,10 @@ END = "#EEA847"
 
 OUTER_PX = 4.0
 EDGE_PX = 3.0
-SEAM_PX = 3.0
+SEAM_PX = 4.0
 RING_PX = 1.5
 GRAIN_PX = 1.25
+CORNER_CLEAN_RADIUS_PX = 2.5
 
 PLANK_COLUMN = (280.0, -58.0)
 PLANK_ROW = (0.0, 119.0)
@@ -76,9 +77,10 @@ class FamilyGeometry:
     column: Vec
     row: Vec
     depth: Vec
-    top_grain_lines: int
+    top_texture_lanes: int
     side_grain_lines: int
     end_rings: int
+    member_widths_cm: tuple[float, ...] = ()
 
 
 @dataclass(frozen=True)
@@ -86,6 +88,8 @@ class Unit:
     column: float
     row: int
     key: str
+    width_scale: float = 1.0
+    width_cm: float | None = None
 
     @property
     def anchor_indices(self) -> tuple[float, int]:
@@ -104,10 +108,32 @@ class Layout:
 
 
 FAMILIES = {
-    "beam": FamilyGeometry("beam", BEAM_COLUMN, BEAM_ROW, BEAM_DEPTH, 5, 4, 5),
-    "plank": FamilyGeometry("plank", PLANK_COLUMN, PLANK_ROW, PLANK_DEPTH, 6, 4, 5),
+    "beam": FamilyGeometry("beam", BEAM_COLUMN, BEAM_ROW, BEAM_DEPTH, 1, 4, 5),
+    # A plank top is one continuous face. Repeating the canonical sample in
+    # multiple lanes copied an internal crop edge that looked like a seam.
+    "plank": FamilyGeometry("plank", PLANK_COLUMN, PLANK_ROW, PLANK_DEPTH, 1, 4, 5),
     "board": FamilyGeometry("board", BOARD_COLUMN, BOARD_ROW, BOARD_DEPTH, 5, 3, 4),
-    "lath": FamilyGeometry("lath", LATH_COLUMN, LATH_ROW, LATH_DEPTH, 4, 3, 4),
+    "board-unsorted-narrow": FamilyGeometry(
+        "board-unsorted-narrow",
+        BOARD_COLUMN,
+        BOARD_ROW,
+        BOARD_DEPTH,
+        5,
+        3,
+        4,
+        (8.0, 14.0, 10.0, 12.0),
+    ),
+    "board-unsorted-wide": FamilyGeometry(
+        "board-unsorted-wide",
+        BOARD_COLUMN,
+        BOARD_ROW,
+        BOARD_DEPTH,
+        5,
+        3,
+        4,
+        (16.0, 20.0, 18.0),
+    ),
+    "lath": FamilyGeometry("lath", LATH_COLUMN, LATH_ROW, LATH_DEPTH, 1, 3, 4),
 }
 
 
@@ -146,8 +172,8 @@ def rectangular_layout(
     return Layout(count, f"{columns}x{rows}", columns, rows, units, band, suffix)
 
 
-def quantity_layouts() -> tuple[Layout, ...]:
-    return (
+def quantity_layouts(geometry: FamilyGeometry | None = None) -> tuple[Layout, ...]:
+    layouts = (
         rectangular_layout(1, 1, 1, (1, 1), "1"),
         rectangular_layout(2, 2, 1, (2, 2), "2"),
         Layout(
@@ -168,10 +194,46 @@ def quantity_layouts() -> tuple[Layout, ...]:
         rectangular_layout(12, 4, 3, (12, 15), "12-15"),
         rectangular_layout(16, 4, 4, (16, None), "16plus"),
     )
+    if geometry is None or not geometry.member_widths_cm:
+        return layouts
+    return tuple(apply_mixed_widths(layout, geometry) for layout in layouts)
+
+
+def apply_mixed_widths(layout: Layout, geometry: FamilyGeometry) -> Layout:
+    """Assign mixed member widths while preserving each row's total footprint."""
+    widths = geometry.member_widths_cm
+    average_width = sum(widths) / len(widths)
+    units: list[Unit] = []
+    for row in sorted({unit.row for unit in layout.units}, reverse=True):
+        row_units = sorted(
+            (unit for unit in layout.units if unit.row == row),
+            key=lambda unit: unit.column,
+        )
+        selected_widths = [widths[(index + row) % len(widths)] for index in range(len(row_units))]
+        raw_scales = [width / average_width for width in selected_widths]
+        normalization = len(row_units) / sum(raw_scales)
+        scales = [scale * normalization for scale in raw_scales]
+        cursor = (layout.columns - len(row_units)) / 2
+        for unit, width_cm, width_scale in zip(row_units, selected_widths, scales, strict=True):
+            units.append(
+                Unit(
+                    cursor,
+                    unit.row,
+                    unit.key,
+                    width_scale=width_scale,
+                    width_cm=width_cm,
+                )
+            )
+            cursor += width_scale
+    return replace(layout, units=tuple(units))
 
 
 def unit_anchor(unit: Unit, geometry: FamilyGeometry) -> Vec:
     return add(mul(geometry.column, unit.column), mul(geometry.row, unit.row))
+
+
+def unit_geometry(unit: Unit, geometry: FamilyGeometry) -> FamilyGeometry:
+    return replace(geometry, column=mul(geometry.column, unit.width_scale))
 
 
 def face_polygons(anchor: Vec, geometry: FamilyGeometry) -> dict[str, list[Vec]]:
@@ -192,7 +254,8 @@ def face_polygons(anchor: Vec, geometry: FamilyGeometry) -> dict[str, list[Vec]]
 def geometry_bounds(layout: Layout, geometry: FamilyGeometry) -> tuple[float, float, float, float]:
     points: list[Vec] = []
     for unit in layout.units:
-        for polygon in face_polygons(unit_anchor(unit, geometry), geometry).values():
+        effective_geometry = unit_geometry(unit, geometry)
+        for polygon in face_polygons(unit_anchor(unit, geometry), effective_geometry).values():
             points.extend(polygon)
     xs = [point[0] for point in points]
     ys = [point[1] for point in points]
@@ -290,8 +353,9 @@ def render_reference_texture_face(
     face_name: str,
     polygon: Sequence[Vec],
     texture_key: str,
+    texture_lanes: int = 1,
 ) -> None:
-    """Map the approved face texture into an exact, fully opaque polygon."""
+    """Map dense canonical texture lanes into an exact, fully opaque polygon."""
     source_faces, sampling_polygons = canonical_texture_faces()
     xs = [point[0] for point in polygon]
     ys = [point[1] for point in polygon]
@@ -302,49 +366,83 @@ def render_reference_texture_face(
     bottom = math.ceil(max(ys)) + padding
     size = (right - left, bottom - top)
     local_polygon = [(x - left, y - top) for x, y in polygon]
-    rng = stable_rng("texture-sample", texture_key, face_name)
-    sample_offset = (rng.uniform(-14.0, 14.0), rng.uniform(-10.0, 10.0))
-    source_polygon = [
-        add(point, sample_offset)
-        for point in sampling_polygons[face_name]
-    ]
-    patch = source_faces[face_name].transform(
-        size,
-        Image.Transform.AFFINE,
-        inverse_affine(local_polygon, source_polygon),
-        resample=Image.Resampling.BICUBIC,
-    )
     mask = Image.new("L", size, 0)
     ImageDraw.Draw(mask).polygon(local_polygon, fill=255)
-    interior = mask.filter(ImageFilter.MinFilter(17))
-    patch_alpha = patch.getchannel("A")
-    covered = patch_alpha.point(lambda value: 255 if value >= 248 else 0)
-    uncovered = ImageChops.subtract(interior, covered)
-    if uncovered.getbbox() is not None:
-        raise ValueError(f"Canonical texture does not fully cover {face_name} face interior")
     base = Image.new(
         "RGBA",
         size,
         {"side": SIDE, "top": TOP, "front": END}[face_name],
     )
     base.putalpha(mask)
-    patch.putalpha(ImageChops.multiply(patch_alpha, mask))
-    base.alpha_composite(patch)
+    texture_layer = Image.new("RGBA", size, (0, 0, 0, 0))
+
+    back_left, back_right, front_right, front_left = polygon
+    lane_polygons = []
+    for lane_index in range(texture_lanes):
+        start = lane_index / texture_lanes
+        end = (lane_index + 1) / texture_lanes
+        lane_polygons.append(
+            (
+                lerp(back_left, back_right, start),
+                lerp(back_left, back_right, end),
+                lerp(front_left, front_right, end),
+                lerp(front_left, front_right, start),
+            )
+        )
+
+    for lane_index, lane_polygon in enumerate(lane_polygons):
+        lane_xs = [point[0] for point in lane_polygon]
+        lane_ys = [point[1] for point in lane_polygon]
+        lane_left = math.floor(min(lane_xs)) - padding
+        lane_top = math.floor(min(lane_ys)) - padding
+        lane_right = math.ceil(max(lane_xs)) + padding
+        lane_bottom = math.ceil(max(lane_ys)) + padding
+        lane_size = (lane_right - lane_left, lane_bottom - lane_top)
+        local_lane = [(x - lane_left, y - lane_top) for x, y in lane_polygon]
+        rng = stable_rng("texture-sample", texture_key, face_name, lane_index)
+        sample_offset = (rng.uniform(-14.0, 14.0), rng.uniform(-10.0, 10.0))
+        source_polygon = [add(point, sample_offset) for point in sampling_polygons[face_name]]
+        source_face = source_faces[face_name]
+        patch = source_face.transform(
+            lane_size,
+            Image.Transform.AFFINE,
+            inverse_affine(local_lane, source_polygon),
+            resample=Image.Resampling.BICUBIC,
+        )
+        lane_mask = Image.new("L", lane_size, 0)
+        ImageDraw.Draw(lane_mask).polygon(local_lane, fill=255)
+        interior = lane_mask.filter(ImageFilter.MinFilter(17))
+        patch_alpha = patch.getchannel("A")
+        covered = patch_alpha.point(lambda value: 255 if value >= 248 else 0)
+        uncovered = ImageChops.subtract(interior, covered)
+        if uncovered.getbbox() is not None:
+            raise ValueError(f"Canonical texture does not fully cover {face_name} face interior")
+        patch.putalpha(ImageChops.multiply(patch_alpha, lane_mask))
+        texture_layer.alpha_composite(patch, (lane_left - left, lane_top - top))
+
+    clean_corners = Image.new("L", size, 255)
+    corner_draw = ImageDraw.Draw(clean_corners)
+    radius = CORNER_CLEAN_RADIUS_PX * SUPER_SAMPLE
+    for x, y in local_polygon:
+        corner_draw.ellipse((x - radius, y - radius, x + radius, y + radius), fill=0)
+    texture_layer.putalpha(
+        ImageChops.multiply(ImageChops.multiply(texture_layer.getchannel("A"), mask), clean_corners)
+    )
+    base.alpha_composite(texture_layer)
     canvas.alpha_composite(base, (left, top))
 
 
-def draw_longitudinal_grain(
+def draw_side_grain(
     draw: ImageDraw.ImageDraw,
     anchor: Vec,
     geometry: FamilyGeometry,
-    face: str,
     transform: tuple[float, float, float],
     unit_key: str,
 ) -> None:
-    count = geometry.top_grain_lines if face == "top" else geometry.side_grain_lines
-    cross = geometry.column if face == "top" else geometry.row
+    count = geometry.side_grain_lines
+    cross = geometry.row
     origin = anchor
-    rng = stable_rng(geometry.family, unit_key, face)
+    rng = stable_rng(geometry.family, unit_key, "side")
     for line_index in range(1, count + 1):
         fraction = line_index / (count + 1)
         points: list[Vec] = []
@@ -401,18 +499,92 @@ def render_unit(
 ) -> None:
     draw = ImageDraw.Draw(image)
     anchor = unit_anchor(unit, geometry)
-    polygons = face_polygons(anchor, geometry)
+    effective_geometry = unit_geometry(unit, geometry)
+    polygons = face_polygons(anchor, effective_geometry)
     for face in ("side", "top", "front"):
         if face not in visible_faces:
             continue
         polygon = transform_points(polygons[face], transform)
-        render_reference_texture_face(image, face, polygon, f"{geometry.family}:{unit.key}")
+        lane_count = (
+            max(1, round(geometry.top_texture_lanes * unit.width_scale))
+            if face == "top"
+            else 1
+        )
+        render_reference_texture_face(
+            image,
+            face,
+            polygon,
+            f"{geometry.family}:{unit.key}",
+            lane_count,
+        )
+        if face == "side":
+            draw_side_grain(
+                draw,
+                anchor,
+                effective_geometry,
+                transform,
+                unit.key,
+            )
         draw.line(
             closed(polygon),
             fill=EDGE,
             width=round(EDGE_PX * SUPER_SAMPLE),
             joint="curve",
         )
+
+
+def draw_row_separation_seams(
+    image: Image.Image,
+    layout: Layout,
+    geometry: FamilyGeometry,
+    transform: tuple[float, float, float],
+    row: int,
+) -> None:
+    """Close one row before upper rows are painted over it."""
+    draw = ImageDraw.Draw(image)
+    row_units = sorted(
+        (unit for unit in layout.units if unit.row == row),
+        key=lambda unit: unit.column,
+    )
+    for unit in row_units[1:]:
+        anchor = unit_anchor(unit, geometry)
+        draw.line(
+            transform_points((anchor, add(anchor, geometry.row)), transform),
+            fill=SEAM,
+            width=round(SEAM_PX * SUPER_SAMPLE),
+        )
+        if row == 0 or layout.count == 3:
+            draw.line(
+                transform_points((add(anchor, geometry.depth), anchor), transform),
+                fill=SEAM,
+                width=round(SEAM_PX * SUPER_SAMPLE),
+            )
+    if row > 0:
+        for unit in row_units:
+            anchor = unit_anchor(unit, geometry)
+            effective_geometry = unit_geometry(unit, geometry)
+            draw.line(
+                transform_points((anchor, add(anchor, effective_geometry.column)), transform),
+                fill=SEAM,
+                width=round(SEAM_PX * SUPER_SAMPLE),
+            )
+        left_anchor = unit_anchor(row_units[0], geometry)
+        draw.line(
+            transform_points((add(left_anchor, geometry.depth), left_anchor), transform),
+            fill=SEAM,
+            width=round(SEAM_PX * SUPER_SAMPLE),
+        )
+
+
+def draw_separation_seams(
+    image: Image.Image,
+    layout: Layout,
+    geometry: FamilyGeometry,
+    transform: tuple[float, float, float],
+) -> None:
+    """Preserve the approved global seam pass used only by final laths."""
+    for row in sorted({unit.row for unit in layout.units}):
+        draw_row_separation_seams(image, layout, geometry, transform, row)
 
 
 def add_outer_contour(image: Image.Image, sample_scale: int = 1) -> Image.Image:
@@ -469,7 +641,7 @@ def alpha_metadata(image: Image.Image) -> dict[str, object]:
 
 def expected_seam_count(layout: Layout) -> int:
     if layout.count == 3:
-        return 2
+        return 5
     front = (layout.columns - 1) * layout.rows + (layout.rows - 1) * layout.columns
     top = layout.columns - 1
     side = layout.rows - 1
@@ -479,14 +651,21 @@ def expected_seam_count(layout: Layout) -> int:
 def render_stack(layout: Layout, geometry: FamilyGeometry) -> tuple[Image.Image, dict[str, object]]:
     transform = auto_fit_transform(layout, geometry)
     image = Image.new("RGBA", (CANVAS[0] * SUPER_SAMPLE, CANVAS[1] * SUPER_SAMPLE), (0, 0, 0, 0))
-    for unit in layout.units:
-        row_columns = [candidate.column for candidate in layout.units if candidate.row == unit.row]
-        faces = ["front"]
-        if unit.column == min(row_columns):
-            faces.insert(0, "side")
-        if unit.row == 0 or layout.count == 3:
-            faces.insert(1 if "side" in faces else 0, "top")
-        render_unit(image, unit, geometry, transform, faces)
+    rows = sorted({unit.row for unit in layout.units}, reverse=True)
+    for row in rows:
+        row_units = [unit for unit in layout.units if unit.row == row]
+        for unit in row_units:
+            row_columns = [candidate.column for candidate in row_units]
+            faces = ["front"]
+            if unit.column == min(row_columns):
+                faces.insert(0, "side")
+            if unit.row == 0 or layout.count == 3:
+                faces.insert(1 if "side" in faces else 0, "top")
+            render_unit(image, unit, geometry, transform, faces)
+        if geometry.family != "lath":
+            draw_row_separation_seams(image, layout, geometry, transform, row)
+    if geometry.family == "lath":
+        draw_separation_seams(image, layout, geometry, transform)
     image = sanitize_antialias_alpha(image.resize(CANVAS, Image.Resampling.LANCZOS))
     # The authoritative alpha is antialiased once, then the four-pixel contour
     # is derived inside that final mask.  This is mathematically equivalent to
@@ -524,6 +703,12 @@ def render_stack(layout: Layout, geometry: FamilyGeometry) -> tuple[Image.Image,
                 "grain": GRAIN_PX,
             },
             "palette": [OUTER, EDGE, SEAM, GRAIN, SIDE_SHADOW, SIDE, TOP_BASE, TOP, END],
+            "plankTopColor": "canonical-unit-tile-source" if geometry.family == "plank" else None,
+            "plankTopColorPolicy": (
+                "exact-canonical-warm-profile-with-natural-tonal-variation"
+                if geometry.family == "plank"
+                else None
+            ),
             "canonicalTextureSource": CANONICAL_UNIT_TILE.relative_to(REPOSITORY_ROOT).as_posix(),
             "canonicalTextureSha256": hashlib.sha256(CANONICAL_UNIT_TILE.read_bytes()).hexdigest(),
             "visualReference": CANONICAL_REFERENCE.name,
@@ -531,6 +716,31 @@ def render_stack(layout: Layout, geometry: FamilyGeometry) -> tuple[Image.Image,
             "cornerCleanup": "no-corner-discoloration-no-dirty-corner-shading-no-ao",
             "edgePolicy": "dark-timber-edges-no-white-halo-no-bright-inner-fringe",
             "textureCoverage": "full-face-to-contour",
+            "topFaceTextureLanes": geometry.top_texture_lanes,
+            "topFaceTexturePolicy": (
+                "canonical-unit-tile-continuous-face-no-procedural-grain"
+                if geometry.family == "plank"
+                else "canonical-unit-tile-multi-lane-no-procedural-grain"
+            ),
+            "seamPainterOrder": (
+                "after-all-face-polygons"
+                if geometry.family == "lath"
+                else "row-local-before-upper-row-occlusion"
+            ),
+            "memberWidthsCm": list(geometry.member_widths_cm),
+            "renderedMembers": [
+                {
+                    "key": unit.key,
+                    "row": unit.row,
+                    "widthCm": unit.width_cm,
+                    "normalizedWidthScale": round(unit.width_scale, 6),
+                    "topTextureLanes": max(
+                        1,
+                        round(geometry.top_texture_lanes * unit.width_scale),
+                    ),
+                }
+                for unit in layout.units
+            ],
             "antiCloning": {
                 "policy": "deterministic-inset-source-sampling",
                 "maximumSourceOffsetPixels4x": [14, 10],
@@ -558,20 +768,26 @@ def write_json(path: Path, payload: object) -> None:
     path.write_text(json.dumps(payload, indent=2, ensure_ascii=False) + "\n", encoding="utf-8")
 
 
-def compose_family(family: str, output_dir: Path) -> list[dict[str, object]]:
+def compose_family(
+    family: str,
+    output_dir: Path,
+    output_prefix: str | None = None,
+) -> list[dict[str, object]]:
     geometry = FAMILIES[family]
+    prefix = output_prefix or family
     results: list[dict[str, object]] = []
-    unit_tile, unit_metadata = render_stack(quantity_layouts()[0], geometry)
-    unit_path = output_dir / "unit-tiles" / f"{family}-unit-tile-master-v11.png"
+    layouts = quantity_layouts(geometry)
+    unit_tile, unit_metadata = render_stack(layouts[0], geometry)
+    unit_path = output_dir / "unit-tiles" / f"{prefix}-unit-tile-master-v11.png"
     unit_path.parent.mkdir(parents=True, exist_ok=True)
     unit_tile.save(unit_path)
     unit_hash = sha256(unit_path)
     write_json(unit_path.with_suffix(".json"), unit_metadata)
 
-    for layout in quantity_layouts():
+    for layout in layouts:
         image, metadata = render_stack(layout, geometry)
-        filename = f"{family}-{layout.suffix}-master-v11.webp"
-        image_path = output_dir / family / filename
+        filename = f"{prefix}-{layout.suffix}-master-v11.webp"
+        image_path = output_dir / prefix / filename
         save_webp(image, image_path)
         metadata.update(
             {
@@ -680,6 +896,38 @@ def assert_family_contract(results: Sequence[dict[str, object]], family: str) ->
             raise AssertionError(f"{family}: canonical reference texture hash mismatch")
         if result.get("cornerCleanup") != "no-corner-discoloration-no-dirty-corner-shading-no-ao":
             raise AssertionError(f"{family}: missing clean-corner contract")
+        if family == "plank" and int(result.get("topFaceTextureLanes", 0)) != 1:
+            raise AssertionError("plank: top face must use one continuous canonical texture sample")
+        if int(result.get("topFaceTextureLanes", 0)) < 3 and family in {
+            "board",
+            "board-unsorted-narrow",
+            "board-unsorted-wide",
+        }:
+            raise AssertionError(f"{family}: top face needs dense canonical texture lanes")
+        expected_texture_policy = (
+            "canonical-unit-tile-continuous-face-no-procedural-grain"
+            if family == "plank"
+            else "canonical-unit-tile-multi-lane-no-procedural-grain"
+        )
+        if result.get("topFaceTexturePolicy") != expected_texture_policy:
+            raise AssertionError(f"{family}: invalid top-face texture policy")
+        if float(result.get("lineWeights", {}).get("seam", 0)) != 4.0:
+            raise AssertionError(f"{family}: construction seams must be 4 px")
+        expected_painter_order = (
+            "after-all-face-polygons"
+            if family == "lath"
+            else "row-local-before-upper-row-occlusion"
+        )
+        if result.get("seamPainterOrder") != expected_painter_order:
+            raise AssertionError(f"{family}: invalid seam painter order")
+        if family.startswith("board-unsorted") and int(result["representativeCount"]) > 1:
+            member_widths = {
+                member["widthCm"]
+                for member in result.get("renderedMembers", [])
+                if isinstance(member, dict) and member.get("widthCm") is not None
+            }
+            if len(member_widths) < 2:
+                raise AssertionError(f"{family}: mixed stack must contain different widths")
 
 
 def geometry_contract() -> dict[str, float]:
@@ -696,6 +944,10 @@ def geometry_contract() -> dict[str, float]:
     lath_ratio = math.hypot(*FAMILIES["lath"].column) / math.hypot(*FAMILIES["lath"].row)
     if not 4.5 <= board_ratio <= 5.0:
         raise AssertionError(f"Board cross-section ratio out of contract: {board_ratio}")
+    for family in ("board-unsorted-narrow", "board-unsorted-wide"):
+        family_ratio = math.hypot(*FAMILIES[family].column) / math.hypot(*FAMILIES[family].row)
+        if not 4.5 <= family_ratio <= 5.0:
+            raise AssertionError(f"{family} cross-section ratio out of contract: {family_ratio}")
     if not 1.25 <= lath_ratio <= 1.5:
         raise AssertionError(f"Lath cross-section ratio out of contract: {lath_ratio}")
     return {

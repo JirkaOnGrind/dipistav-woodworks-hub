@@ -111,18 +111,18 @@ describe("ArtworkSceneDefinition production registry", () => {
     const category = PRODUCT_CATEGORIES.find((item) => item.id === "tramy")!;
     const variant = category.variants[0];
     const cases = [
-      [1, "beam-1-master-v11.webp"],
-      [2, "beam-2-master-v11.webp"],
-      [3, "beam-3-4-master-v11.webp"],
-      [4, "beam-3-4-master-v11.webp"],
-      [5, "beam-5-8-master-v11.webp"],
-      [8, "beam-5-8-master-v11.webp"],
-      [9, "beam-9-11-master-v11.webp"],
-      [11, "beam-9-11-master-v11.webp"],
-      [12, "beam-12-15-master-v11.webp"],
-      [15, "beam-12-15-master-v11.webp"],
-      [16, "beam-16plus-master-v11.webp"],
-      [20, "beam-16plus-master-v11.webp"],
+      [1, "beam-occlusion-v3-1-master-v11.webp"],
+      [2, "beam-occlusion-v3-2-master-v11.webp"],
+      [3, "beam-occlusion-v3-3-4-master-v11.webp"],
+      [4, "beam-occlusion-v3-3-4-master-v11.webp"],
+      [5, "beam-occlusion-v3-5-8-master-v11.webp"],
+      [8, "beam-occlusion-v3-5-8-master-v11.webp"],
+      [9, "beam-occlusion-v3-9-11-master-v11.webp"],
+      [11, "beam-occlusion-v3-9-11-master-v11.webp"],
+      [12, "beam-occlusion-v3-12-15-master-v11.webp"],
+      [15, "beam-occlusion-v3-12-15-master-v11.webp"],
+      [16, "beam-occlusion-v3-16plus-master-v11.webp"],
+      [20, "beam-occlusion-v3-16plus-master-v11.webp"],
     ] as const;
     for (const [quantity, filename] of cases) {
       expect(resolveArtworkScene(category.id, variant, quantity).scene.source).toContain(filename);
@@ -139,13 +139,13 @@ describe("ArtworkSceneDefinition production registry", () => {
     expect(resolveArtworkScene(category.id, variant, 16).scene.filter).toBeUndefined();
 
     const lockedBeamHashes = [
-      [1, "c4739683a10e049045804348f8ace7a1710128b54e776eb1a1bb7cd082d3e361"],
-      [2, "fb5886f02c1494fa1f3684a52494b110b800913f1137462a8b154822f143cb28"],
-      [3, "ef4a75847498ae910bdf02268dffaa591a9ee48fd6340e534e0fdbd461f36818"],
-      [5, "03db6c61463ba85787fc811c30f40207da8950a2dba6057d8d3c0fb7922f250f"],
-      [9, "f3c6bf9081943130fbbf895f2046909516bdf9bae4783ce0327c1e42eca76e89"],
-      [12, "638df3b51cbb6304d9b070a6df08ef4c4dd506193c68752cec5ba632219dd208"],
-      [16, "16a781cc378b15e6076990245feda746a31a45929b36b11bff7c464d05928dbc"],
+      [1, "3975b4fddbc00a8361466cb02075319291a04fc1d276bbb4c5b1e0799fa54aa6"],
+      [2, "4340cd78802e2c6b96f80541a0931d1965df8cae358ec0ac7d5cc578214c8956"],
+      [3, "8086603bdef7e6b3f3e1a9b3d62e11084fad0425377d017b536005cb993bda10"],
+      [5, "70b81e86d861d739b6ef99dfd3c8f5d2a2cc53448fbe3af1ea7de710bf2af8f9"],
+      [9, "8ed6f95b6fc9226543d82a1d132af83add2fa87828686edb3067c5ec94d10e4d"],
+      [12, "3a92f20f8362c891209e63f67a298bc9a12450d20c8a18a4bd73334d24f008b7"],
+      [16, "c25926059e552d4d4da621026ea81c6561cef1927b7b833c136173812a1a37e1"],
     ] as const;
     for (const [quantity, expectedHash] of lockedBeamHashes) {
       const path = filePath(resolveArtworkScene(category.id, variant, quantity).scene.source);
@@ -184,7 +184,7 @@ describe("ArtworkSceneDefinition production registry", () => {
     const { scene } = resolveArtworkScene(category.id, variant, 20);
     const requested = getArtworkRequestedScale(scene, variant);
     const transform = calculateSafeArtworkTransform(scene, requested);
-    expect(scene.source).toContain("configurator-v11/beam-16plus-master-v11.webp");
+    expect(scene.source).toContain("configurator-v11/beam-occlusion-v3-16plus-master-v11.webp");
     expect(scene.transformPolicy).toBe("none");
     expect(requested).toEqual({ x: 1, y: 1 });
     expect(transform.scaleX).toBe(1);
@@ -373,7 +373,7 @@ describe("v11 production registry", () => {
   it("registers four approved timber families and seven physical assets per family", () => {
     expect(V11_ARTWORK_CANDIDATES).toHaveLength(42);
     expect(V11_APPROVED_CANDIDATES).toHaveLength(42);
-    expect(new Set(V11_ARTWORK_CANDIDATES.map((scene) => scene.source)).size).toBe(28);
+    expect(new Set(V11_ARTWORK_CANDIDATES.map((scene) => scene.source)).size).toBe(42);
     for (const scene of V11_ARTWORK_CANDIDATES) {
       expect(scene.approvalStatus).toBe("approved");
       expect(scene.styleVersion).toBe("v11");
@@ -386,12 +386,27 @@ describe("v11 production registry", () => {
     }
   });
 
-  it("maps all three board variants to one approved source family", () => {
+  it("resolves every plank quantity band to the approved family-matched v6 set", () => {
+    const category = PRODUCT_CATEGORIES.find((item) => item.id === "fosny")!;
+    const variant = category.variants[0];
+    for (const quantity of [1, 2, 3, 6, 9, 12, 16]) {
+      expect(resolveArtworkScene(category.id, variant, quantity).scene.source).toContain(
+        "configurator-v11/plank-family-match-v6-",
+      );
+    }
+  });
+
+  it("maps sorted and unsorted board variants to their distinct approved source families", () => {
     const boards = PRODUCT_CATEGORIES.find((item) => item.id === "prkna")!;
-    for (const variantName of ["board-sorted", "board-unsorted-narrow", "board-unsorted-wide"]) {
+    const expectedPrefix = {
+      "board-sorted": "board-occlusion-v3",
+      "board-unsorted-narrow": "board-unsorted-narrow-occlusion-v3",
+      "board-unsorted-wide": "board-unsorted-wide-occlusion-v3",
+    } as const;
+    for (const variantName of Object.keys(expectedPrefix) as Array<keyof typeof expectedPrefix>) {
       const variant = boards.variants.find((item) => item.illustrationVariant === variantName)!;
       expect(resolveArtworkScene(boards.id, variant, 9).scene.source).toContain(
-        "configurator-v11/board-9-11-master-v11.webp",
+        `configurator-v11/${expectedPrefix[variantName]}-9-11-master-v11.webp`,
       );
     }
   });

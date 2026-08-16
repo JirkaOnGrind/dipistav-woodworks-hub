@@ -19,12 +19,13 @@ from artwork_v11 import (
 def parse_args() -> argparse.Namespace:
     parser = argparse.ArgumentParser()
     parser.add_argument("--output-dir", type=Path, default=Path("tmp/composed_planks"))
+    parser.add_argument("--output-prefix", default="plank")
     return parser.parse_args()
 
 
 def main() -> None:
     args = parse_args()
-    results = compose_family("plank", args.output_dir)
+    results = compose_family("plank", args.output_dir, args.output_prefix)
     assert_family_contract(results, "plank")
     ratios = geometry_contract()
     contact_sheet(
@@ -65,7 +66,7 @@ def main() -> None:
             for result in results
         ],
     }
-    write_json(args.output_dir / "plank-v11-index.json", index)
+    write_json(args.output_dir / f"{args.output_prefix}-v11-index.json", index)
     print(json.dumps(index, ensure_ascii=False, indent=2))
 
 

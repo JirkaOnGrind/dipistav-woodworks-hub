@@ -199,7 +199,7 @@ const tramy: ProductCategory = {
   subtitle: "Masivní nosné trámy pro krovy, stropy, pergoly i další konstrukce.",
   description:
     "Poctivé stavební trámy v osvědčených profilech a délkách. Snadno si vyberete variantu, která bude sedět vašemu projektu i způsobu montáže.",
-  imageSrc: "/images/illustrations/homepage-v11/tramy-icon-master-v11.webp",
+  imageSrc: "/images/illustrations/homepage-v11/tramy-icon-occlusion-v3-master-v11.webp",
   thumbnailAlt: "Ilustrace stavebních trámů DIPISTAV",
   illustrationPrompt:
     "DIPISTAV comic-engraving product illustration of square structural timber beams in a neat isometric stack.",
@@ -231,7 +231,7 @@ const fosny: ProductCategory = {
   subtitle: "Široké stavební fošny pro bednění, podlahy i konstrukční detaily.",
   description:
     "Masivní fošny pro stavbu i truhlářské využití. Skladová varianta má poctivý profil 4 × 14 cm a délku 4 metry.",
-  imageSrc: "/images/illustrations/homepage-v11/fosny-icon-master-v11.webp",
+  imageSrc: "/images/illustrations/homepage-v11/fosny-icon-family-match-v6-master-v11.webp",
   thumbnailAlt: "Ilustrace stavebních fošen DIPISTAV",
   illustrationPrompt: "DIPISTAV comic-engraving illustration of thick broad construction boards.",
   ctaLabel: "Přidat fošny do košíku",
@@ -336,7 +336,7 @@ const prkna: ProductCategory = {
   subtitle: "Tříděná i netříděná coulová prkna pro střechy, obklady a běžnou stavbu.",
   description:
     "Vyberte si přesná tříděná prkna s cenou za kus nebo čistě omítaná netříděná prkna účtovaná podle objemu vypočteného z průměrné šířky zvolené skupiny.",
-  imageSrc: "/images/illustrations/homepage-v11/prkna-icon-master-v11.webp",
+  imageSrc: "/images/illustrations/homepage-v11/prkna-icon-occlusion-v3-master-v11.webp",
   thumbnailAlt: "Ilustrace stavebních prken DIPISTAV",
   illustrationPrompt: "DIPISTAV comic-engraving illustration of thin construction boards.",
   ctaLabel: "Přidat prkna do košíku",
@@ -386,7 +386,7 @@ const late: ProductCategory = {
   subtitle: "Tři skladové profily v délkách 4 a 5 metrů, účtované za běžný metr.",
   description:
     "Střešní latě pro spolehlivou montáž střech, podbití i lehkých konstrukcí. Cena se automaticky počítá z délky a počtu kusů.",
-  imageSrc: "/images/illustrations/homepage-v11/late-icon-master-v11.webp",
+  imageSrc: "/images/illustrations/homepage-v11/late-icon-production-v2-master-v11.webp",
   thumbnailAlt: "Ilustrace střešních latí DIPISTAV",
   illustrationPrompt: "DIPISTAV comic-engraving illustration of rectangular roofing battens.",
   ctaLabel: "Přidat latě do košíku",

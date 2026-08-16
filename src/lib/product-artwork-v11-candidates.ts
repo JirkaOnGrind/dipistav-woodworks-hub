@@ -15,8 +15,8 @@ export const V11_ARTWORK_CANDIDATES: readonly ArtworkSceneCandidate[] = V11_ARTW
   (family) =>
     family.illustrationVariants.flatMap((illustrationVariant) =>
       family.bands.map((band, index) => {
-        const generated = V11_ARTWORK_METADATA[band.id];
-        if (!generated) throw new Error(`Missing v11 artwork metadata: ${band.id}`);
+        const generated = V11_ARTWORK_METADATA[band.metadataKey];
+        if (!generated) throw new Error(`Missing v11 artwork metadata: ${band.metadataKey}`);
         return {
           id: `${illustrationVariant}-${band.id}`,
           categoryId: family.categoryId,

@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""Build seven warm-blended DIPISTAV board-stack candidates for v11."""
+"""Build sorted and mixed-width DIPISTAV board-stack candidates for v11."""
 
 from __future__ import annotations
 
@@ -19,29 +19,41 @@ from artwork_v11 import (
 def parse_args() -> argparse.Namespace:
     parser = argparse.ArgumentParser()
     parser.add_argument("--output-dir", type=Path, default=Path("tmp/composed_boards"))
+    parser.add_argument("--sorted-prefix", default="board")
+    parser.add_argument("--unsorted-narrow-prefix", default="board-unsorted-narrow")
+    parser.add_argument("--unsorted-wide-prefix", default="board-unsorted-wide")
     return parser.parse_args()
 
 
 def main() -> None:
     args = parse_args()
-    results = compose_family("board", args.output_dir)
-    assert_family_contract(results, "board")
+    families = (
+        ("board", args.sorted_prefix, "tříděná prkna"),
+        ("board-unsorted-narrow", args.unsorted_narrow_prefix, "netříděná 8/10/12/14 cm"),
+        ("board-unsorted-wide", args.unsorted_wide_prefix, "netříděná 16/18/20 cm"),
+    )
+    family_results: dict[str, list[dict[str, object]]] = {}
+    for family, prefix, _ in families:
+        results = compose_family(family, args.output_dir, prefix)
+        assert_family_contract(results, family)
+        family_results[family] = results
     ratios = geometry_contract()
-    for suffix, background, cell_size in (
-        ("light", "#F4EFE5", (480, 320)),
-        ("dark", "#3B352F", (480, 320)),
-        ("320", "#F4EFE5", (320, 220)),
-    ):
-        contact_sheet(
-            results,
-            args.output_dir / "contact-sheets" / f"boards-v11-{suffix}.png",
-            f"DIPISTAV v11 - prkna - {suffix}",
-            background,
-            cell_size=cell_size,
-            columns=4,
-        )
+    for family, prefix, title in families:
+        for suffix, background, cell_size in (
+            ("light", "#F4EFE5", (480, 320)),
+            ("dark", "#3B352F", (480, 320)),
+            ("320", "#F4EFE5", (320, 220)),
+        ):
+            contact_sheet(
+                family_results[family],
+                args.output_dir / "contact-sheets" / f"{prefix}-v11-{suffix}.png",
+                f"DIPISTAV v11 - {title} - {suffix}",
+                background,
+                cell_size=cell_size,
+                columns=4,
+            )
     index = {
-        "family": "board",
+        "families": [family for family, _, _ in families],
         "styleVersion": "v11",
         "approvalStatus": "awaiting-approval",
         "texturePolicy": "canonical-19-45-37-reference",
@@ -56,6 +68,7 @@ def main() -> None:
                 "representativeCount": result["representativeCount"],
                 "outputSha256": result["outputSha256"],
             }
+            for results in family_results.values()
             for result in results
         ],
     }

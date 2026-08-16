@@ -1,5 +1,7 @@
 import { useEffect, useLayoutEffect, useMemo, useRef, useState } from "react";
+import type { CSSProperties } from "react";
 import { ProductIllustration } from "@/components/product-illustrations";
+import { getArtworkInteractionMotion } from "@/lib/artwork-interaction-motion";
 import { getArtworkPreloadSources, resolveArtworkScene } from "@/lib/product-artwork";
 import type { ProductVariant } from "@/lib/product-catalog";
 
@@ -96,6 +98,13 @@ export function WoodVisualizer({
   quantityUnitLabel = "ks",
   variant,
 }: WoodVisualizerProps) {
+  const interactionMotion = getArtworkInteractionMotion(categoryId, variant);
+  const interactionStyle = {
+    "--artwork-interaction-scale-x": interactionMotion.scaleX,
+    "--artwork-interaction-scale-y": interactionMotion.scaleY,
+    "--artwork-interaction-x": `${interactionMotion.translateXPercent}%`,
+    "--artwork-interaction-y": `${interactionMotion.translateYPercent}%`,
+  } as CSSProperties;
   const targetVisual = useMemo(
     () => getVisualState(categoryId, imageSrc, quantity, variant),
     [categoryId, imageSrc, quantity, variant],
@@ -233,8 +242,19 @@ export function WoodVisualizer({
               className={`relative h-full w-full ${isRecoiling ? "is-recoiling" : ""}`}
             >
               <div data-beam-preview-stage className="absolute inset-0 overflow-hidden">
-                {layers.previous && renderLayer(layers.previous, "previous")}
-                {renderLayer(layers.current, "current")}
+                <div
+                  data-artwork-interaction-transform
+                  data-length-scale={interactionMotion.lengthScale}
+                  data-profile-scale={interactionMotion.profileScale}
+                  data-combined-scale={interactionMotion.scale}
+                  data-scale-x={interactionMotion.scaleX}
+                  data-scale-y={interactionMotion.scaleY}
+                  style={interactionStyle}
+                  className="absolute inset-0"
+                >
+                  {layers.previous && renderLayer(layers.previous, "previous")}
+                  {renderLayer(layers.current, "current")}
+                </div>
               </div>
             </div>
           </div>

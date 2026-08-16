@@ -106,7 +106,7 @@ describe("ProductIllustration", () => {
         title="Trámy"
       />,
     );
-    expect(markup).toContain("configurator-v11/beam-16plus-master-v11.webp");
+    expect(markup).toContain("configurator-v11/beam-occlusion-v3-16plus-master-v11.webp");
     expect(markup.match(/<img/g)).toHaveLength(1);
   });
 

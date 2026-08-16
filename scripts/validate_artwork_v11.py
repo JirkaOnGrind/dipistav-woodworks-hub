@@ -29,6 +29,18 @@ def parse_args() -> argparse.Namespace:
     parser = argparse.ArgumentParser()
     parser.add_argument("--output-dir", type=Path, default=Path("tmp/artwork-v11"))
     parser.add_argument("--determinism", action="store_true")
+    parser.add_argument(
+        "--refined",
+        action="store_true",
+        help="Validate refined beam/plank prefixes and all three board families.",
+    )
+    parser.add_argument("--beam-prefix")
+    parser.add_argument("--plank-prefix")
+    parser.add_argument(
+        "--only",
+        choices=("beam", "plank"),
+        help="Validate one staged timber family without requiring unrelated candidate indexes.",
+    )
     return parser.parse_args()
 
 
@@ -106,6 +118,31 @@ def validate_family_index(output_dir: Path, family: str) -> list[dict[str, objec
     return entries
 
 
+def validate_board_index(output_dir: Path) -> dict[str, list[dict[str, object]]]:
+    index = read_json(output_dir / "board-v11-index.json")
+    entries = index.get("entries")
+    if not isinstance(entries, list):
+        raise AssertionError("board: missing index entries")
+    grouped: dict[str, list[dict[str, object]]] = {}
+    for entry in entries:
+        manifest_path = Path(str(entry["manifest"]))
+        validate_manifest(manifest_path)
+        payload = read_json(manifest_path)
+        family = str(payload["family"])
+        grouped.setdefault(family, []).append(
+            {**entry, **payload, "image": Path(str(entry["image"])), "manifest": manifest_path}
+        )
+    expected_families = {"board", "board-unsorted-narrow", "board-unsorted-wide"}
+    if set(grouped) != expected_families:
+        raise AssertionError(f"board: expected {expected_families}, got {set(grouped)}")
+    for family, family_entries in grouped.items():
+        counts = [int(entry["representativeCount"]) for entry in family_entries]
+        if counts != EXPECTED_COUNTS:
+            raise AssertionError(f"{family}: wrong representative counts {counts}")
+        assert_family_contract(family_entries, family)
+    return grouped
+
+
 def validate_determinism(output_dir: Path, family: str, original_entries: list[dict[str, object]]) -> None:
     with tempfile.TemporaryDirectory(prefix=f"dipistav-{family}-v11-") as directory:
         rerendered = compose_family(family, Path(directory))
@@ -123,18 +160,36 @@ def main() -> None:
     if "GaussianBlur" in renderer_source or "apply_multiply_ao" in renderer_source:
         raise AssertionError("v11 renderer contains a forbidden blur/AO path")
     canonical_texture_hash = sha256(CANONICAL_UNIT_TILE)
-    beam_entries = validate_family_index(args.output_dir, "beam")
-    plank_entries = validate_family_index(args.output_dir, "plank")
-    homepage_index = read_json(args.output_dir / "homepage-v11-index.json")
-    homepage_entries = homepage_index.get("entries")
-    if not isinstance(homepage_entries, list) or len(homepage_entries) != 8:
-        raise AssertionError("Homepage v11 must contain exactly eight candidates")
-    for entry in homepage_entries:
-        validate_manifest(Path(str(entry["manifest"])))
+    beam_index = args.beam_prefix or ("beam-refined" if args.refined else "beam")
+    plank_index = args.plank_prefix or ("plank-refined" if args.refined else "plank")
+    beam_entries = (
+        [] if args.only == "plank" else validate_family_index(args.output_dir, beam_index)
+    )
+    plank_entries = (
+        [] if args.only == "beam" else validate_family_index(args.output_dir, plank_index)
+    )
+    homepage_entries: list[dict[str, object]] = []
+    board_entries: dict[str, list[dict[str, object]]] = {}
+    if args.refined and args.only:
+        raise AssertionError("--refined cannot be combined with --only")
+    if args.refined:
+        board_entries = validate_board_index(args.output_dir)
+    elif not args.only:
+        homepage_index = read_json(args.output_dir / "homepage-v11-index.json")
+        raw_homepage_entries = homepage_index.get("entries")
+        if not isinstance(raw_homepage_entries, list) or len(raw_homepage_entries) != 8:
+            raise AssertionError("Homepage v11 must contain exactly eight candidates")
+        homepage_entries = raw_homepage_entries
+        for entry in homepage_entries:
+            validate_manifest(Path(str(entry["manifest"])))
     locked_count = validate_locked_assets()
     if args.determinism:
-        validate_determinism(args.output_dir, "beam", beam_entries)
-        validate_determinism(args.output_dir, "plank", plank_entries)
+        if beam_entries:
+            validate_determinism(args.output_dir, "beam", beam_entries)
+        if plank_entries:
+            validate_determinism(args.output_dir, "plank", plank_entries)
+        for family, entries in board_entries.items():
+            validate_determinism(args.output_dir, family, entries)
     print(
         json.dumps(
             {
@@ -142,6 +197,7 @@ def main() -> None:
                 "approvalStatus": "awaiting-approval",
                 "beamCandidates": len(beam_entries),
                 "plankCandidates": len(plank_entries),
+                "boardCandidates": sum(len(entries) for entries in board_entries.values()),
                 "homepageCandidates": len(homepage_entries),
                 "lockedAssetsVerified": locked_count,
                 "geometryRatios": ratios,

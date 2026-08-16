@@ -19,7 +19,7 @@ describe("artwork-system v11 production contract", () => {
     expect(V11_ARTWORK_CONSTANTS.lineWeights).toEqual({
       outer: 4,
       edge: 3,
-      seam: 3,
+      seam: 4,
       rings: 1.5,
       grain: 1.25,
     });
@@ -47,7 +47,14 @@ describe("artwork-system v11 production contract", () => {
   });
 
   it("defines seven approved quantity scenes for all rigid timber families", () => {
-    expect(V11_ARTWORK_PLAN.map((family) => family.id)).toEqual(["beam", "plank", "board", "lath"]);
+    expect(V11_ARTWORK_PLAN.map((family) => family.id)).toEqual([
+      "beam",
+      "plank",
+      "board",
+      "board-unsorted-narrow",
+      "board-unsorted-wide",
+      "lath",
+    ]);
     for (const family of V11_ARTWORK_PLAN) {
       expect(family.bands.map((band) => band.representativeCount)).toEqual([1, 2, 3, 6, 9, 12, 16]);
       expect(family.bands.map((band) => band.layout)).toEqual([
@@ -61,6 +68,19 @@ describe("artwork-system v11 production contract", () => {
       ]);
       expect(family.bands.every((band) => band.approvalStatus === "approved")).toBe(true);
     }
+  });
+
+  it("promotes the approved family-matched plank masters without reusing v4 paths", () => {
+    const planks = V11_ARTWORK_PLAN.find((family) => family.id === "plank")!;
+    expect(planks.bands.map((band) => band.plannedSource)).toEqual(
+      expect.arrayContaining([
+        "/images/illustrations/configurator-v11/plank-family-match-v6-1-master-v11.webp",
+        "/images/illustrations/configurator-v11/plank-family-match-v6-16plus-master-v11.webp",
+      ]),
+    );
+    expect(planks.bands.every((band) => !band.plannedSource.includes("occlusion-clean-v4"))).toBe(
+      true,
+    );
   });
 
   it("approves only the four timber homepage icons", () => {

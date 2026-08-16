@@ -18,12 +18,13 @@ from artwork_v11 import assert_family_contract, compose_family, contact_sheet, w
 def parse_args() -> argparse.Namespace:
     parser = argparse.ArgumentParser()
     parser.add_argument("--output-dir", type=Path, default=Path("tmp/artwork-v11"))
+    parser.add_argument("--output-prefix", default="beam")
     return parser.parse_args()
 
 
 def main() -> None:
     args = parse_args()
-    results = compose_family("beam", args.output_dir)
+    results = compose_family("beam", args.output_dir, args.output_prefix)
     assert_family_contract(results, "beam")
     contact_sheet(
         results,
@@ -61,7 +62,7 @@ def main() -> None:
             for result in results
         ],
     }
-    write_json(args.output_dir / "beam-v11-index.json", index)
+    write_json(args.output_dir / f"{args.output_prefix}-v11-index.json", index)
     print(json.dumps(index, ensure_ascii=False, indent=2))
 
 

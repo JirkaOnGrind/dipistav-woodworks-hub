@@ -114,6 +114,16 @@
     max-height: 100%;
     overflow: hidden;
     transform-origin: center center;
+    transition: transform 0.25s ease-out;
+    will-change: transform;
+  }
+
+  [data-beam-configurator] [data-artwork-interaction-transform] {
+    transform: translate3d(var(--artwork-interaction-x, 0%), var(--artwork-interaction-y, 0%), 0)
+      scaleX(var(--artwork-interaction-scale-x, 1)) scaleY(var(--artwork-interaction-scale-y, 1));
+    transform-origin: 62% 62%;
+    transition: transform 0.25s ease-out;
+    will-change: transform;
   }
 
   [data-beam-configurator] [data-artwork-visual-layer] {
@@ -313,6 +323,7 @@
   @media (prefers-reduced-motion: reduce) {
     [data-beam-configurator] [data-beam-preview-motion],
     [data-beam-configurator] [data-beam-preview-stage],
+    [data-beam-configurator] [data-artwork-interaction-transform],
     [data-beam-configurator] [data-artwork-visual-layer],
     [data-beam-configurator] [data-product-illustration-layer],
     [data-beam-configurator] [data-product-artwork],

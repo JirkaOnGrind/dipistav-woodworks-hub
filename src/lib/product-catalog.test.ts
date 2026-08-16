@@ -132,9 +132,15 @@ describe("produktový katalog", () => {
   });
 
   it("maps only the four approved timber homepage icons to v11", () => {
-    for (const categoryId of ["tramy", "fosny", "prkna", "late"]) {
+    const expectedIcons = {
+      tramy: "tramy-icon-occlusion-v3-master-v11.webp",
+      fosny: "fosny-icon-family-match-v6-master-v11.webp",
+      prkna: "prkna-icon-occlusion-v3-master-v11.webp",
+      late: "late-icon-production-v2-master-v11.webp",
+    } as const;
+    for (const [categoryId, filename] of Object.entries(expectedIcons)) {
       expect(getProductCategory(categoryId)?.imageSrc).toBe(
-        `/images/illustrations/homepage-v11/${categoryId}-icon-master-v11.webp`,
+        `/images/illustrations/homepage-v11/${filename}`,
       );
     }
     for (const categoryId of ["stipane-drevo", "pelety", "krajinky", "drivi-na-paletach"]) {

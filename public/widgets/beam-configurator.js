@@ -8,13 +8,13 @@
     },
     maxQuantity: 150,
     images: {
-      one: "/images/illustrations/configurator-v11/beam-1-master-v11.webp",
-      two: "/images/illustrations/configurator-v11/beam-2-master-v11.webp",
-      three: "/images/illustrations/configurator-v11/beam-3-4-master-v11.webp",
-      five: "/images/illustrations/configurator-v11/beam-5-8-master-v11.webp",
-      nine: "/images/illustrations/configurator-v11/beam-9-11-master-v11.webp",
-      twelve: "/images/illustrations/configurator-v11/beam-12-15-master-v11.webp",
-      eighteen: "/images/illustrations/configurator-v11/beam-16plus-master-v11.webp",
+      one: "/images/illustrations/configurator-v11/beam-occlusion-v3-1-master-v11.webp",
+      two: "/images/illustrations/configurator-v11/beam-occlusion-v3-2-master-v11.webp",
+      three: "/images/illustrations/configurator-v11/beam-occlusion-v3-3-4-master-v11.webp",
+      five: "/images/illustrations/configurator-v11/beam-occlusion-v3-5-8-master-v11.webp",
+      nine: "/images/illustrations/configurator-v11/beam-occlusion-v3-9-11-master-v11.webp",
+      twelve: "/images/illustrations/configurator-v11/beam-occlusion-v3-12-15-master-v11.webp",
+      eighteen: "/images/illustrations/configurator-v11/beam-occlusion-v3-16plus-master-v11.webp",
     },
     catalog: {
       profiles: [
@@ -142,16 +142,18 @@
 
   function getStageTransform(profile, length) {
     const dimensions = profile.split("x").map(Number);
-    const width = dimensions[0] || 14;
+    const width = dimensions[0] || 8;
     const height = dimensions[1] || width;
-    const areaScale = clamp(Math.sqrt((width * height) / (14 * 14)), 0.88, 1.12);
-    const ratio = width / height;
-    const profileX = clamp(Math.sqrt(ratio), 0.94, 1.06);
-    const profileY = clamp(1 / Math.sqrt(ratio), 0.94, 1.06);
-    const lengthScale = { 400: 0.82, 500: 1, 600: 1.1, 700: 1.18 }[length] || 1;
-    const scaleX = clamp(areaScale * lengthScale * profileX, 0.78, 1.18);
-    const scaleY = clamp(areaScale * profileY, 0.82, 1.16);
-    return `scaleX(${scaleX}) scaleY(${scaleY})`;
+    const linearProgress = clamp((Math.sqrt(width * height) - 8) / 12, 0, 1);
+    const profileProgress = linearProgress * linearProgress * (3 - 2 * linearProgress);
+    const profileScale = 0.95 + profileProgress * 0.1;
+    const aspectScaleX = clamp(Math.pow(width / height, 0.035), 0.968, 1.032);
+    const aspectScaleY = 1 / aspectScaleX;
+    const lengthScale = { 400: 1, 500: 1.023, 600: 1.04025, 700: 1.0575 }[length] || 1;
+    const scaleX = clamp(lengthScale * profileScale * aspectScaleX, 0.92, 1.08);
+    const scaleY = clamp(profileScale * aspectScaleY, 0.92, 1.08);
+    const depthProgress = clamp((lengthScale - 1) / 0.0575, 0, 1);
+    return `translate3d(${-0.8 * depthProgress}%, ${-0.4 * depthProgress}%, 0) scaleX(${scaleX}) scaleY(${scaleY})`;
   }
 
   function getLengthsForProfile(profile, options) {
