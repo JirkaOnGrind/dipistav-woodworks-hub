@@ -1,0 +1,123 @@
+{
+  "canvas": {
+    "width": 1536,
+    "height": 1024
+  },
+  "alphaBoundsPixels": {
+    "left": 161,
+    "top": 228,
+    "right": 1375,
+    "bottom": 796
+  },
+  "alphaBounds": {
+    "x": 0.104818,
+    "y": 0.222656,
+    "width": 0.790365,
+    "height": 0.554688
+  },
+  "opticalCenter": {
+    "x": 0.5,
+    "y": 0.5
+  },
+  "alphaCoverage": 0.229557,
+  "interiorAlphaMin": 248,
+  "margins": {
+    "left": 161,
+    "top": 228,
+    "right": 161,
+    "bottom": 228
+  },
+  "family": "board-unsorted-narrow",
+  "quantityBand": {
+    "min": 1,
+    "max": 1
+  },
+  "representativeCount": 1,
+  "layout": "1x1",
+  "expectedVisibleConstructionSeams": 0,
+  "camera": {
+    "projection": "orthographic",
+    "azimuthDegrees": 40,
+    "elevationDegrees": 27
+  },
+  "designVectors": {
+    "column": [
+      225.0,
+      -47.0
+    ],
+    "rowDown": [
+      0.0,
+      48.0
+    ],
+    "back": [
+      -380.0,
+      -187.0
+    ]
+  },
+  "autoFit": {
+    "policy": "adaptive-bounds",
+    "safeInset": 0.07,
+    "contourReservePixels": 8.0,
+    "maxScale": 2.0,
+    "renderScale": 2.0,
+    "translation": [
+      923.0,
+      698.0
+    ]
+  },
+  "lineWeights": {
+    "outer": 4.0,
+    "edge": 3.0,
+    "seam": 3.0,
+    "rings": 1.5,
+    "grain": 1.25
+  },
+  "palette": [
+    "#501801",
+    "#501801",
+    "#6B310B",
+    "#804015",
+    "#965622",
+    "#C5813B",
+    "#F0A242",
+    "#F4A847",
+    "#EEA847"
+  ],
+  "canonicalTextureSource": "artwork-sources/beams/beam-unit-tile-master-v1-4x.png",
+  "canonicalTextureSha256": "752db88a14866587604e271225b5c85f82d1974d96a62a2cd8ec57beadf3bec0",
+  "visualReference": "Obrázek Codex 12. 8. 2026 19_45_37.png",
+  "texturePolicy": "reference-face-transfer-with-clean-polygon-corners",
+  "cornerCleanup": "no-corner-discoloration-no-dirty-corner-shading-no-ao",
+  "edgePolicy": "dark-timber-edges-no-white-halo-no-bright-inner-fringe",
+  "textureCoverage": "full-face-to-contour",
+  "topFaceGrainLines": 8,
+  "memberWidthsCm": [
+    8.0,
+    14.0,
+    10.0,
+    12.0
+  ],
+  "renderedMembers": [
+    {
+      "key": "r0c0",
+      "row": 0,
+      "widthCm": 8.0,
+      "normalizedWidthScale": 1.0
+    }
+  ],
+  "antiCloning": {
+    "policy": "deterministic-inset-source-sampling",
+    "maximumSourceOffsetPixels4x": [
+      14,
+      10
+    ],
+    "changesGeometryOrColor": false
+  },
+  "seed": 20260813,
+  "styleVersion": "v11",
+  "approvalStatus": "awaiting-approval",
+  "source": "tmp/artwork-v11-refined/unit-tiles/board-unsorted-narrow-unit-tile-master-v11.png",
+  "sourceSha256": "a042d36400793420bdc55c8db7ef012a16638dec36550dcd99b6c8a3cb0a38ef",
+  "outputSha256": "94bd354dce51c31b2e3df71ae9a6b1a57a19c93a1a6a1b6c3377a9f44b1b7b27",
+  "plannedRuntimePath": "/images/illustrations/configurator-v11/board-unsorted-narrow-1-master-v11.webp"
+}

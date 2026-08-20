@@ -1,0 +1,189 @@
+{
+  "canvas": {
+    "width": 1536,
+    "height": 1024
+  },
+  "alphaBoundsPixels": {
+    "left": 113,
+    "top": 245,
+    "right": 1423,
+    "bottom": 779
+  },
+  "alphaBounds": {
+    "x": 0.073568,
+    "y": 0.239258,
+    "width": 0.852865,
+    "height": 0.521484
+  },
+  "opticalCenter": {
+    "x": 0.5,
+    "y": 0.5
+  },
+  "alphaCoverage": 0.283878,
+  "interiorAlphaMin": 248,
+  "margins": {
+    "left": 113,
+    "top": 245,
+    "right": 113,
+    "bottom": 245
+  },
+  "family": "board-unsorted-narrow",
+  "quantityBand": {
+    "min": 12,
+    "max": 15
+  },
+  "representativeCount": 12,
+  "layout": "4x3",
+  "expectedVisibleConstructionSeams": 22,
+  "camera": {
+    "projection": "orthographic",
+    "azimuthDegrees": 40,
+    "elevationDegrees": 27
+  },
+  "designVectors": {
+    "column": [
+      225.0,
+      -47.0
+    ],
+    "rowDown": [
+      0.0,
+      48.0
+    ],
+    "back": [
+      -380.0,
+      -187.0
+    ]
+  },
+  "autoFit": {
+    "policy": "adaptive-bounds",
+    "safeInset": 0.07,
+    "contourReservePixels": 8.0,
+    "maxScale": 2.0,
+    "renderScale": 1.0195,
+    "translation": [
+      502.93,
+      629.7523
+    ]
+  },
+  "lineWeights": {
+    "outer": 4.0,
+    "edge": 3.0,
+    "seam": 3.0,
+    "rings": 1.5,
+    "grain": 1.25
+  },
+  "palette": [
+    "#501801",
+    "#501801",
+    "#6B310B",
+    "#804015",
+    "#965622",
+    "#C5813B",
+    "#F0A242",
+    "#F4A847",
+    "#EEA847"
+  ],
+  "canonicalTextureSource": "artwork-sources/beams/beam-unit-tile-master-v1-4x.png",
+  "canonicalTextureSha256": "752db88a14866587604e271225b5c85f82d1974d96a62a2cd8ec57beadf3bec0",
+  "visualReference": "Obrázek Codex 12. 8. 2026 19_45_37.png",
+  "texturePolicy": "reference-face-transfer-with-clean-polygon-corners",
+  "cornerCleanup": "no-corner-discoloration-no-dirty-corner-shading-no-ao",
+  "edgePolicy": "dark-timber-edges-no-white-halo-no-bright-inner-fringe",
+  "textureCoverage": "full-face-to-contour",
+  "topFaceGrainLines": 8,
+  "memberWidthsCm": [
+    8.0,
+    14.0,
+    10.0,
+    12.0
+  ],
+  "renderedMembers": [
+    {
+      "key": "r2c0",
+      "row": 2,
+      "widthCm": 10.0,
+      "normalizedWidthScale": 0.909091
+    },
+    {
+      "key": "r2c1",
+      "row": 2,
+      "widthCm": 12.0,
+      "normalizedWidthScale": 1.090909
+    },
+    {
+      "key": "r2c2",
+      "row": 2,
+      "widthCm": 8.0,
+      "normalizedWidthScale": 0.727273
+    },
+    {
+      "key": "r2c3",
+      "row": 2,
+      "widthCm": 14.0,
+      "normalizedWidthScale": 1.272727
+    },
+    {
+      "key": "r1c0",
+      "row": 1,
+      "widthCm": 14.0,
+      "normalizedWidthScale": 1.272727
+    },
+    {
+      "key": "r1c1",
+      "row": 1,
+      "widthCm": 10.0,
+      "normalizedWidthScale": 0.909091
+    },
+    {
+      "key": "r1c2",
+      "row": 1,
+      "widthCm": 12.0,
+      "normalizedWidthScale": 1.090909
+    },
+    {
+      "key": "r1c3",
+      "row": 1,
+      "widthCm": 8.0,
+      "normalizedWidthScale": 0.727273
+    },
+    {
+      "key": "r0c0",
+      "row": 0,
+      "widthCm": 8.0,
+      "normalizedWidthScale": 0.727273
+    },
+    {
+      "key": "r0c1",
+      "row": 0,
+      "widthCm": 14.0,
+      "normalizedWidthScale": 1.272727
+    },
+    {
+      "key": "r0c2",
+      "row": 0,
+      "widthCm": 10.0,
+      "normalizedWidthScale": 0.909091
+    },
+    {
+      "key": "r0c3",
+      "row": 0,
+      "widthCm": 12.0,
+      "normalizedWidthScale": 1.090909
+    }
+  ],
+  "antiCloning": {
+    "policy": "deterministic-inset-source-sampling",
+    "maximumSourceOffsetPixels4x": [
+      14,
+      10
+    ],
+    "changesGeometryOrColor": false
+  },
+  "seed": 20260813,
+  "styleVersion": "v11",
+  "approvalStatus": "awaiting-approval",
+  "source": "tmp/artwork-v11-refined/unit-tiles/board-unsorted-narrow-unit-tile-master-v11.png",
+  "sourceSha256": "a042d36400793420bdc55c8db7ef012a16638dec36550dcd99b6c8a3cb0a38ef",
+  "outputSha256": "b0538079e8060ee29b4b47f3849eb152d91cc2e9f65ef73851b179fe4fa3d3cf",
+  "plannedRuntimePath": "/images/illustrations/configurator-v11/board-unsorted-narrow-12-15-master-v11.webp"
+}

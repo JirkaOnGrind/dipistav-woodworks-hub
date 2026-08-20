@@ -1,0 +1,147 @@
+{
+  "families": [
+    "board",
+    "board-unsorted-narrow",
+    "board-unsorted-wide"
+  ],
+  "styleVersion": "v11",
+  "approvalStatus": "awaiting-approval",
+  "texturePolicy": "canonical-19-45-37-reference",
+  "edgePolicy": "dark-timber-edges-no-white-halo-no-bright-inner-fringe",
+  "antiCloning": "deterministic-inset-source-sampling",
+  "crossSectionContract": "height:width = 1:4.5-5.0",
+  "geometryRatios": {
+    "crossSectionRatio": 2.402891,
+    "depthToWidthRatio": 1.449849,
+    "boardCrossSectionRatio": 4.788677,
+    "lathCrossSectionRatio": 1.372891
+  },
+  "entries": [
+    {
+      "image": "tmp/artwork-v11-occlusion-v3/board-occlusion-v3/board-occlusion-v3-1-master-v11.webp",
+      "manifest": "tmp/artwork-v11-occlusion-v3/board-occlusion-v3/board-occlusion-v3-1-master-v11.manifest.json",
+      "representativeCount": 1,
+      "outputSha256": "c56a1e6addbff7a4132a4a5994c435217b9b1b7cd9d4d57a189dc0d79aac7e9d"
+    },
+    {
+      "image": "tmp/artwork-v11-occlusion-v3/board-occlusion-v3/board-occlusion-v3-2-master-v11.webp",
+      "manifest": "tmp/artwork-v11-occlusion-v3/board-occlusion-v3/board-occlusion-v3-2-master-v11.manifest.json",
+      "representativeCount": 2,
+      "outputSha256": "9f4d7f8fb83a80ac5243b3b8b04ad7caec338b500699a0bf9f2d93a377004575"
+    },
+    {
+      "image": "tmp/artwork-v11-occlusion-v3/board-occlusion-v3/board-occlusion-v3-3-4-master-v11.webp",
+      "manifest": "tmp/artwork-v11-occlusion-v3/board-occlusion-v3/board-occlusion-v3-3-4-master-v11.manifest.json",
+      "representativeCount": 3,
+      "outputSha256": "52a47701c1d615a92d9dca53fbc27c5ab5cd79a6ac91c8be401e5f72c9a916f4"
+    },
+    {
+      "image": "tmp/artwork-v11-occlusion-v3/board-occlusion-v3/board-occlusion-v3-5-8-master-v11.webp",
+      "manifest": "tmp/artwork-v11-occlusion-v3/board-occlusion-v3/board-occlusion-v3-5-8-master-v11.manifest.json",
+      "representativeCount": 6,
+      "outputSha256": "d78a968abad205e59675d133820a5c2f62510de1f29f72758a62d0b17afc5796"
+    },
+    {
+      "image": "tmp/artwork-v11-occlusion-v3/board-occlusion-v3/board-occlusion-v3-9-11-master-v11.webp",
+      "manifest": "tmp/artwork-v11-occlusion-v3/board-occlusion-v3/board-occlusion-v3-9-11-master-v11.manifest.json",
+      "representativeCount": 9,
+      "outputSha256": "acad00b24f4d5e7536ac4b00ee97081d3ed0116b029089250fe831431a6e81cf"
+    },
+    {
+      "image": "tmp/artwork-v11-occlusion-v3/board-occlusion-v3/board-occlusion-v3-12-15-master-v11.webp",
+      "manifest": "tmp/artwork-v11-occlusion-v3/board-occlusion-v3/board-occlusion-v3-12-15-master-v11.manifest.json",
+      "representativeCount": 12,
+      "outputSha256": "94cfa1e574d10d26d0d814cb6e23337050761522c87c6daf8b80cd50a73fb0a4"
+    },
+    {
+      "image": "tmp/artwork-v11-occlusion-v3/board-occlusion-v3/board-occlusion-v3-16plus-master-v11.webp",
+      "manifest": "tmp/artwork-v11-occlusion-v3/board-occlusion-v3/board-occlusion-v3-16plus-master-v11.manifest.json",
+      "representativeCount": 16,
+      "outputSha256": "d811dc1c8f0a41496920a3a686edd84de6963df6be67eb68917d4c7f67325715"
+    },
+    {
+      "image": "tmp/artwork-v11-occlusion-v3/board-unsorted-narrow-occlusion-v3/board-unsorted-narrow-occlusion-v3-1-master-v11.webp",
+      "manifest": "tmp/artwork-v11-occlusion-v3/board-unsorted-narrow-occlusion-v3/board-unsorted-narrow-occlusion-v3-1-master-v11.manifest.json",
+      "representativeCount": 1,
+      "outputSha256": "77fb342b913faad4ca0a2056c59feff83e73c303c8a18afb4de5ba6cd6d92174"
+    },
+    {
+      "image": "tmp/artwork-v11-occlusion-v3/board-unsorted-narrow-occlusion-v3/board-unsorted-narrow-occlusion-v3-2-master-v11.webp",
+      "manifest": "tmp/artwork-v11-occlusion-v3/board-unsorted-narrow-occlusion-v3/board-unsorted-narrow-occlusion-v3-2-master-v11.manifest.json",
+      "representativeCount": 2,
+      "outputSha256": "4727acb78f7b58a283b8fda046a862f4b6db44550f2ae4d8dda821b822db455d"
+    },
+    {
+      "image": "tmp/artwork-v11-occlusion-v3/board-unsorted-narrow-occlusion-v3/board-unsorted-narrow-occlusion-v3-3-4-master-v11.webp",
+      "manifest": "tmp/artwork-v11-occlusion-v3/board-unsorted-narrow-occlusion-v3/board-unsorted-narrow-occlusion-v3-3-4-master-v11.manifest.json",
+      "representativeCount": 3,
+      "outputSha256": "eadabbeed3cfb88a0dea4fc9f9e711c9c3ad0bf9fca07ea69f7326ec4ba96a37"
+    },
+    {
+      "image": "tmp/artwork-v11-occlusion-v3/board-unsorted-narrow-occlusion-v3/board-unsorted-narrow-occlusion-v3-5-8-master-v11.webp",
+      "manifest": "tmp/artwork-v11-occlusion-v3/board-unsorted-narrow-occlusion-v3/board-unsorted-narrow-occlusion-v3-5-8-master-v11.manifest.json",
+      "representativeCount": 6,
+      "outputSha256": "4b62f0893e4f9ef9182bd1cb0df937e73121ef7c90c5ffe2dfa0fd0619ec7830"
+    },
+    {
+      "image": "tmp/artwork-v11-occlusion-v3/board-unsorted-narrow-occlusion-v3/board-unsorted-narrow-occlusion-v3-9-11-master-v11.webp",
+      "manifest": "tmp/artwork-v11-occlusion-v3/board-unsorted-narrow-occlusion-v3/board-unsorted-narrow-occlusion-v3-9-11-master-v11.manifest.json",
+      "representativeCount": 9,
+      "outputSha256": "7ba0806dcb3fa3e400df3e71a8b1ae7d9c7c22b0ce2e7d896df2b5d0e97d5145"
+    },
+    {
+      "image": "tmp/artwork-v11-occlusion-v3/board-unsorted-narrow-occlusion-v3/board-unsorted-narrow-occlusion-v3-12-15-master-v11.webp",
+      "manifest": "tmp/artwork-v11-occlusion-v3/board-unsorted-narrow-occlusion-v3/board-unsorted-narrow-occlusion-v3-12-15-master-v11.manifest.json",
+      "representativeCount": 12,
+      "outputSha256": "ed19158bd3a5c314a0e169ad6909a00883453ef98e50fa415c6b09f42e38614a"
+    },
+    {
+      "image": "tmp/artwork-v11-occlusion-v3/board-unsorted-narrow-occlusion-v3/board-unsorted-narrow-occlusion-v3-16plus-master-v11.webp",
+      "manifest": "tmp/artwork-v11-occlusion-v3/board-unsorted-narrow-occlusion-v3/board-unsorted-narrow-occlusion-v3-16plus-master-v11.manifest.json",
+      "representativeCount": 16,
+      "outputSha256": "35f4fc6d831759aa6ea7c632c681339a3a13f9cd562989013c05e21d51ad9ee1"
+    },
+    {
+      "image": "tmp/artwork-v11-occlusion-v3/board-unsorted-wide-occlusion-v3/board-unsorted-wide-occlusion-v3-1-master-v11.webp",
+      "manifest": "tmp/artwork-v11-occlusion-v3/board-unsorted-wide-occlusion-v3/board-unsorted-wide-occlusion-v3-1-master-v11.manifest.json",
+      "representativeCount": 1,
+      "outputSha256": "a2de892e01c3a6c87bd66a7407e386e2bf8ad39f76f808cdf24b851a677e239f"
+    },
+    {
+      "image": "tmp/artwork-v11-occlusion-v3/board-unsorted-wide-occlusion-v3/board-unsorted-wide-occlusion-v3-2-master-v11.webp",
+      "manifest": "tmp/artwork-v11-occlusion-v3/board-unsorted-wide-occlusion-v3/board-unsorted-wide-occlusion-v3-2-master-v11.manifest.json",
+      "representativeCount": 2,
+      "outputSha256": "2b5ada2f4e2b2cd62103d6b1cae58668dfb250603bfef06bdd3cfe65b22b7ad7"
+    },
+    {
+      "image": "tmp/artwork-v11-occlusion-v3/board-unsorted-wide-occlusion-v3/board-unsorted-wide-occlusion-v3-3-4-master-v11.webp",
+      "manifest": "tmp/artwork-v11-occlusion-v3/board-unsorted-wide-occlusion-v3/board-unsorted-wide-occlusion-v3-3-4-master-v11.manifest.json",
+      "representativeCount": 3,
+      "outputSha256": "d30b39eaeca67b99671817605b9721590e8386ba6e6e962d4911e2618459eca1"
+    },
+    {
+      "image": "tmp/artwork-v11-occlusion-v3/board-unsorted-wide-occlusion-v3/board-unsorted-wide-occlusion-v3-5-8-master-v11.webp",
+      "manifest": "tmp/artwork-v11-occlusion-v3/board-unsorted-wide-occlusion-v3/board-unsorted-wide-occlusion-v3-5-8-master-v11.manifest.json",
+      "representativeCount": 6,
+      "outputSha256": "928dfceeb7ba800a6ddf3a82f77b18bb90940bdcee262b5cb2d49063bda07546"
+    },
+    {
+      "image": "tmp/artwork-v11-occlusion-v3/board-unsorted-wide-occlusion-v3/board-unsorted-wide-occlusion-v3-9-11-master-v11.webp",
+      "manifest": "tmp/artwork-v11-occlusion-v3/board-unsorted-wide-occlusion-v3/board-unsorted-wide-occlusion-v3-9-11-master-v11.manifest.json",
+      "representativeCount": 9,
+      "outputSha256": "19fa1abe50491712ccbceb41117c5a5626a11f9f0dffd4e1d6fea90c3708933b"
+    },
+    {
+      "image": "tmp/artwork-v11-occlusion-v3/board-unsorted-wide-occlusion-v3/board-unsorted-wide-occlusion-v3-12-15-master-v11.webp",
+      "manifest": "tmp/artwork-v11-occlusion-v3/board-unsorted-wide-occlusion-v3/board-unsorted-wide-occlusion-v3-12-15-master-v11.manifest.json",
+      "representativeCount": 12,
+      "outputSha256": "8aa896be968ba33c0225271c46ccb9160090ba85127cb686adad6edf4d169b7c"
+    },
+    {
+      "image": "tmp/artwork-v11-occlusion-v3/board-unsorted-wide-occlusion-v3/board-unsorted-wide-occlusion-v3-16plus-master-v11.webp",
+      "manifest": "tmp/artwork-v11-occlusion-v3/board-unsorted-wide-occlusion-v3/board-unsorted-wide-occlusion-v3-16plus-master-v11.manifest.json",
+      "representativeCount": 16,
+      "outputSha256": "0a8fe9b2099f37574cf44586d9708ea7a0ee8f9378afb368a3ec8fd0f5597679"
+    }
+  ]
+}

@@ -1,0 +1,119 @@
+{
+  "canvas": {
+    "width": 1536,
+    "height": 1024
+  },
+  "alphaBoundsPixels": {
+    "left": 114,
+    "top": 150,
+    "right": 1422,
+    "bottom": 874
+  },
+  "alphaBounds": {
+    "x": 0.074219,
+    "y": 0.146484,
+    "width": 0.851562,
+    "height": 0.707031
+  },
+  "opticalCenter": {
+    "x": 0.5,
+    "y": 0.5
+  },
+  "alphaCoverage": 0.386368,
+  "interiorAlphaMin": 248,
+  "margins": {
+    "left": 114,
+    "top": 150,
+    "right": 114,
+    "bottom": 150
+  },
+  "family": "plank",
+  "quantityBand": {
+    "min": 1,
+    "max": 1
+  },
+  "representativeCount": 1,
+  "layout": "1x1",
+  "expectedVisibleConstructionSeams": 0,
+  "camera": {
+    "projection": "orthographic",
+    "azimuthDegrees": 40,
+    "elevationDegrees": 27
+  },
+  "designVectors": {
+    "column": [
+      280.0,
+      -58.0
+    ],
+    "rowDown": [
+      0.0,
+      119.0
+    ],
+    "back": [
+      -372.0,
+      -183.0
+    ]
+  },
+  "autoFit": {
+    "policy": "adaptive-bounds",
+    "safeInset": 0.07,
+    "contourReservePixels": 8.0,
+    "maxScale": 2.0,
+    "renderScale": 2.0,
+    "translation": [
+      860.0,
+      634.0
+    ]
+  },
+  "lineWeights": {
+    "outer": 4.0,
+    "edge": 3.0,
+    "seam": 4.0,
+    "rings": 1.5,
+    "grain": 1.25
+  },
+  "palette": [
+    "#501801",
+    "#501801",
+    "#501801",
+    "#804015",
+    "#965622",
+    "#C5813B",
+    "#F0A242",
+    "#F4A847",
+    "#EEA847"
+  ],
+  "plankTopColor": "canonical-unit-tile-source",
+  "plankTopColorPolicy": "exact-canonical-warm-profile-with-natural-tonal-variation",
+  "canonicalTextureSource": "artwork-sources/beams/beam-unit-tile-master-v1-4x.png",
+  "canonicalTextureSha256": "752db88a14866587604e271225b5c85f82d1974d96a62a2cd8ec57beadf3bec0",
+  "visualReference": "Obrázek Codex 12. 8. 2026 19_45_37.png",
+  "texturePolicy": "reference-face-transfer-with-clean-polygon-corners",
+  "cornerCleanup": "no-corner-discoloration-no-dirty-corner-shading-no-ao",
+  "edgePolicy": "dark-timber-edges-no-white-halo-no-bright-inner-fringe",
+  "textureCoverage": "full-face-to-contour",
+  "topFaceTextureLanes": 1,
+  "topFaceTexturePolicy": "canonical-unit-tile-continuous-face-no-procedural-grain",
+  "seamPainterOrder": "row-local-before-upper-row-occlusion",
+  "memberWidthsCm": [],
+  "renderedMembers": [
+    {
+      "key": "r0c0",
+      "row": 0,
+      "widthCm": null,
+      "normalizedWidthScale": 1.0,
+      "topTextureLanes": 1
+    }
+  ],
+  "antiCloning": {
+    "policy": "deterministic-inset-source-sampling",
+    "maximumSourceOffsetPixels4x": [
+      14,
+      10
+    ],
+    "changesGeometryOrColor": false
+  },
+  "seed": 20260813,
+  "styleVersion": "v11",
+  "approvalStatus": "awaiting-approval"
+}

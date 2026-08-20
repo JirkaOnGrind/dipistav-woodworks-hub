@@ -1,0 +1,147 @@
+{
+  "approvalStatus": "awaiting-approval",
+  "runtimeActivation": "blocked-until-explicit-visual-approval",
+  "unitTile": {
+    "path": "tmp/firewood-loose-production-v2/unit-tiles/firewood-loose-production-v2-unit-tile-master-v11.png",
+    "sha256": "14e50c8c009a21af75b495eb57feaaa6769ae0a2ec110dcafa257da91715307c",
+    "canvas": {
+      "width": 1536,
+      "height": 1024
+    },
+    "alphaBoundsPixels": {
+      "left": 194,
+      "top": 427,
+      "right": 1335,
+      "bottom": 597
+    },
+    "alphaBounds": {
+      "x": 0.126302,
+      "y": 0.416992,
+      "width": 0.742839,
+      "height": 0.166016
+    },
+    "opticalCenter": {
+      "x": 0.497721,
+      "y": 0.5
+    },
+    "alphaCoverage": 0.057024,
+    "interiorAlphaMin": 255,
+    "margins": {
+      "left": 194,
+      "top": 427,
+      "right": 201,
+      "bottom": 427
+    },
+    "styleVersion": "v11",
+    "approvalStatus": "awaiting-approval",
+    "family": "firewood-loose",
+    "seed": 20260813,
+    "camera": {
+      "projection": "orthographic",
+      "azimuthDegrees": 40,
+      "elevationDegrees": 27
+    },
+    "tileKinds": [
+      "split-triangular",
+      "split-quarter",
+      "split-triangular-irregular"
+    ],
+    "tileSize": {
+      "width": 360,
+      "height": 240
+    },
+    "tileOrigins": [
+      [
+        178,
+        392
+      ],
+      [
+        588,
+        392
+      ],
+      [
+        998,
+        392
+      ]
+    ],
+    "componentBounds": [
+      {
+        "kind": "split-triangular",
+        "sourceXRange": [
+          0,
+          540
+        ],
+        "normalizedSize4x": {
+          "width": 1310,
+          "height": 680
+        }
+      },
+      {
+        "kind": "split-quarter",
+        "sourceXRange": [
+          520,
+          1025
+        ],
+        "normalizedSize4x": {
+          "width": 865,
+          "height": 680
+        }
+      },
+      {
+        "kind": "split-triangular-irregular",
+        "sourceXRange": [
+          995,
+          1536
+        ],
+        "normalizedSize4x": {
+          "width": 1267,
+          "height": 680
+        }
+      }
+    ],
+    "unitScale": 1,
+    "barkPolicy": "outer-rounded-surface-only",
+    "renderTechnique": "imagegen-style-reference-plus-deterministic-composition",
+    "sourceGeneratedPath": "tmp/firewood-loose-production-v2/source/firewood-unit-tile-v2-alpha.png",
+    "sourceGeneratedSha256": "bf035354f00d69e06255dba9bee992e96a622d9f306f50f047c4021c9f92caec",
+    "promptSpec": "C:/Users/Utrh/Documents/Codex/dipistav-woodworks-hub/scripts/firewood_loose_prompt_v2.json",
+    "promptSpecSha256": "eb1204248aff8a3ce6f9e4447d29efb39574489829b9121400323114b834a4e4"
+  },
+  "candidates": [
+    {
+      "image": "tmp/firewood-loose-production-v2/firewood-loose-production-v2/firewood-loose-production-v2-1-master-v11.webp",
+      "manifest": "tmp/firewood-loose-production-v2/firewood-loose-production-v2/firewood-loose-production-v2-1-master-v11.manifest.json",
+      "outputSha256": "e2c240568a25546945d5e022304e2c2da18826d8947ac12c6a8d2cdc9f8fae68"
+    },
+    {
+      "image": "tmp/firewood-loose-production-v2/firewood-loose-production-v2/firewood-loose-production-v2-2-master-v11.webp",
+      "manifest": "tmp/firewood-loose-production-v2/firewood-loose-production-v2/firewood-loose-production-v2-2-master-v11.manifest.json",
+      "outputSha256": "f95f26dcfe890dcd423d3599f3d8fae854f5aad9acce34d6e0f522e9e3508c87"
+    },
+    {
+      "image": "tmp/firewood-loose-production-v2/firewood-loose-production-v2/firewood-loose-production-v2-3-4-master-v11.webp",
+      "manifest": "tmp/firewood-loose-production-v2/firewood-loose-production-v2/firewood-loose-production-v2-3-4-master-v11.manifest.json",
+      "outputSha256": "6693389cf2741eb873dfd9e00d53d4b84ae43e96089c9a48e62a1b4705c4693a"
+    },
+    {
+      "image": "tmp/firewood-loose-production-v2/firewood-loose-production-v2/firewood-loose-production-v2-5-8-master-v11.webp",
+      "manifest": "tmp/firewood-loose-production-v2/firewood-loose-production-v2/firewood-loose-production-v2-5-8-master-v11.manifest.json",
+      "outputSha256": "f2f5fec2ad48aca17cb82a8b6ada71188cbc13927ef767520e9dcbc72bfe3ede"
+    },
+    {
+      "image": "tmp/firewood-loose-production-v2/firewood-loose-production-v2/firewood-loose-production-v2-9-11-master-v11.webp",
+      "manifest": "tmp/firewood-loose-production-v2/firewood-loose-production-v2/firewood-loose-production-v2-9-11-master-v11.manifest.json",
+      "outputSha256": "eb1bfc44177e75afc29ec216c9b21ad21f9a7639687240808b2dfdd2bffafc29"
+    },
+    {
+      "image": "tmp/firewood-loose-production-v2/firewood-loose-production-v2/firewood-loose-production-v2-12-15-master-v11.webp",
+      "manifest": "tmp/firewood-loose-production-v2/firewood-loose-production-v2/firewood-loose-production-v2-12-15-master-v11.manifest.json",
+      "outputSha256": "621116054e3ff0bc3f92f3976df4f60fe0357aa6ec4b4d454daa2ac361a94040"
+    },
+    {
+      "image": "tmp/firewood-loose-production-v2/firewood-loose-production-v2/firewood-loose-production-v2-16plus-master-v11.webp",
+      "manifest": "tmp/firewood-loose-production-v2/firewood-loose-production-v2/firewood-loose-production-v2-16plus-master-v11.manifest.json",
+      "outputSha256": "8e98df6fa5a0a1e56848be0928a90d6270b6761ff4fdb65c5e6c94114dd9d456"
+    }
+  ]
+}

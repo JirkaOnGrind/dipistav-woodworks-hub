@@ -70,15 +70,15 @@ describe("artwork-system v11 production contract", () => {
     }
   });
 
-  it("promotes the approved family-matched plank masters without reusing v4 paths", () => {
+  it("promotes the approved smoothed-top-grain plank masters", () => {
     const planks = V11_ARTWORK_PLAN.find((family) => family.id === "plank")!;
     expect(planks.bands.map((band) => band.plannedSource)).toEqual(
       expect.arrayContaining([
-        "/images/illustrations/configurator-v11/plank-family-match-v6-1-master-v11.webp",
-        "/images/illustrations/configurator-v11/plank-family-match-v6-16plus-master-v11.webp",
+        "/images/illustrations/configurator-v11/plank-topgrain-smooth-v7-1-master-v11.webp",
+        "/images/illustrations/configurator-v11/plank-topgrain-smooth-v7-16plus-master-v11.webp",
       ]),
     );
-    expect(planks.bands.every((band) => !band.plannedSource.includes("occlusion-clean-v4"))).toBe(
+    expect(planks.bands.every((band) => !band.plannedSource.includes("family-match-v6"))).toBe(
       true,
     );
   });

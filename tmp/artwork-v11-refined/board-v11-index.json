@@ -1,0 +1,147 @@
+{
+  "families": [
+    "board",
+    "board-unsorted-narrow",
+    "board-unsorted-wide"
+  ],
+  "styleVersion": "v11",
+  "approvalStatus": "awaiting-approval",
+  "texturePolicy": "canonical-19-45-37-reference",
+  "edgePolicy": "dark-timber-edges-no-white-halo-no-bright-inner-fringe",
+  "antiCloning": "deterministic-inset-source-sampling",
+  "crossSectionContract": "height:width = 1:4.5-5.0",
+  "geometryRatios": {
+    "crossSectionRatio": 2.402891,
+    "depthToWidthRatio": 1.449849,
+    "boardCrossSectionRatio": 4.788677,
+    "lathCrossSectionRatio": 1.372891
+  },
+  "entries": [
+    {
+      "image": "tmp/artwork-v11-refined/board-refined/board-refined-1-master-v11.webp",
+      "manifest": "tmp/artwork-v11-refined/board-refined/board-refined-1-master-v11.manifest.json",
+      "representativeCount": 1,
+      "outputSha256": "b517d6fc4751c3e22fba219cf73f598b1b7590a3b8b4b69ad86c8a6eb190b8b3"
+    },
+    {
+      "image": "tmp/artwork-v11-refined/board-refined/board-refined-2-master-v11.webp",
+      "manifest": "tmp/artwork-v11-refined/board-refined/board-refined-2-master-v11.manifest.json",
+      "representativeCount": 2,
+      "outputSha256": "85b778337c629157e9100db2d34e231a350f36a5283663f6951b4767e9e3307b"
+    },
+    {
+      "image": "tmp/artwork-v11-refined/board-refined/board-refined-3-4-master-v11.webp",
+      "manifest": "tmp/artwork-v11-refined/board-refined/board-refined-3-4-master-v11.manifest.json",
+      "representativeCount": 3,
+      "outputSha256": "da172d2dde9c0c3f3427ba4d2db9646eb499cd95250f731851b0cb9fa3319462"
+    },
+    {
+      "image": "tmp/artwork-v11-refined/board-refined/board-refined-5-8-master-v11.webp",
+      "manifest": "tmp/artwork-v11-refined/board-refined/board-refined-5-8-master-v11.manifest.json",
+      "representativeCount": 6,
+      "outputSha256": "b9c681a69fa70a13b441694fef47fc193ed69fe0bbeea6d631f916f46f45a1d6"
+    },
+    {
+      "image": "tmp/artwork-v11-refined/board-refined/board-refined-9-11-master-v11.webp",
+      "manifest": "tmp/artwork-v11-refined/board-refined/board-refined-9-11-master-v11.manifest.json",
+      "representativeCount": 9,
+      "outputSha256": "ce34f83a9a0d33f2e529bafb7fae3f24e76c7b7c81e61ec0c279df6e784a5457"
+    },
+    {
+      "image": "tmp/artwork-v11-refined/board-refined/board-refined-12-15-master-v11.webp",
+      "manifest": "tmp/artwork-v11-refined/board-refined/board-refined-12-15-master-v11.manifest.json",
+      "representativeCount": 12,
+      "outputSha256": "48d07be9ff169ee5f820ba095efad12787575c75d5de2c64fc0ed5f754520709"
+    },
+    {
+      "image": "tmp/artwork-v11-refined/board-refined/board-refined-16plus-master-v11.webp",
+      "manifest": "tmp/artwork-v11-refined/board-refined/board-refined-16plus-master-v11.manifest.json",
+      "representativeCount": 16,
+      "outputSha256": "da8b70f39ce1ff9a711f955288e9cc4c4f04ba4e9a0ede11af6146927463004c"
+    },
+    {
+      "image": "tmp/artwork-v11-refined/board-unsorted-narrow/board-unsorted-narrow-1-master-v11.webp",
+      "manifest": "tmp/artwork-v11-refined/board-unsorted-narrow/board-unsorted-narrow-1-master-v11.manifest.json",
+      "representativeCount": 1,
+      "outputSha256": "94bd354dce51c31b2e3df71ae9a6b1a57a19c93a1a6a1b6c3377a9f44b1b7b27"
+    },
+    {
+      "image": "tmp/artwork-v11-refined/board-unsorted-narrow/board-unsorted-narrow-2-master-v11.webp",
+      "manifest": "tmp/artwork-v11-refined/board-unsorted-narrow/board-unsorted-narrow-2-master-v11.manifest.json",
+      "representativeCount": 2,
+      "outputSha256": "8a92921978812e7c3fcab7183c30a3c339921a321b44db8ea1cb6eb5aac244a8"
+    },
+    {
+      "image": "tmp/artwork-v11-refined/board-unsorted-narrow/board-unsorted-narrow-3-4-master-v11.webp",
+      "manifest": "tmp/artwork-v11-refined/board-unsorted-narrow/board-unsorted-narrow-3-4-master-v11.manifest.json",
+      "representativeCount": 3,
+      "outputSha256": "72f162c1f0c5bec15fd9cf7971eebdf91bd11def2704eee4dadab4e75ea2104f"
+    },
+    {
+      "image": "tmp/artwork-v11-refined/board-unsorted-narrow/board-unsorted-narrow-5-8-master-v11.webp",
+      "manifest": "tmp/artwork-v11-refined/board-unsorted-narrow/board-unsorted-narrow-5-8-master-v11.manifest.json",
+      "representativeCount": 6,
+      "outputSha256": "d52ca9cf1f94aa7e8a9e71e53920ab2474f338d42d272d92ceded879ce789d70"
+    },
+    {
+      "image": "tmp/artwork-v11-refined/board-unsorted-narrow/board-unsorted-narrow-9-11-master-v11.webp",
+      "manifest": "tmp/artwork-v11-refined/board-unsorted-narrow/board-unsorted-narrow-9-11-master-v11.manifest.json",
+      "representativeCount": 9,
+      "outputSha256": "35a4ab54812685a8734a0a7c71c41d6fe743ad54c6f7c1588132d903390b3c9c"
+    },
+    {
+      "image": "tmp/artwork-v11-refined/board-unsorted-narrow/board-unsorted-narrow-12-15-master-v11.webp",
+      "manifest": "tmp/artwork-v11-refined/board-unsorted-narrow/board-unsorted-narrow-12-15-master-v11.manifest.json",
+      "representativeCount": 12,
+      "outputSha256": "b0538079e8060ee29b4b47f3849eb152d91cc2e9f65ef73851b179fe4fa3d3cf"
+    },
+    {
+      "image": "tmp/artwork-v11-refined/board-unsorted-narrow/board-unsorted-narrow-16plus-master-v11.webp",
+      "manifest": "tmp/artwork-v11-refined/board-unsorted-narrow/board-unsorted-narrow-16plus-master-v11.manifest.json",
+      "representativeCount": 16,
+      "outputSha256": "c55ac888d7e5c640f31602e56e439c3e669c9ba8c8a7920bf4e677fa73770b66"
+    },
+    {
+      "image": "tmp/artwork-v11-refined/board-unsorted-wide/board-unsorted-wide-1-master-v11.webp",
+      "manifest": "tmp/artwork-v11-refined/board-unsorted-wide/board-unsorted-wide-1-master-v11.manifest.json",
+      "representativeCount": 1,
+      "outputSha256": "2ed7c29ad705abfc7a4d12fae7256499ee73a201d51a2fc2d176b42524033c05"
+    },
+    {
+      "image": "tmp/artwork-v11-refined/board-unsorted-wide/board-unsorted-wide-2-master-v11.webp",
+      "manifest": "tmp/artwork-v11-refined/board-unsorted-wide/board-unsorted-wide-2-master-v11.manifest.json",
+      "representativeCount": 2,
+      "outputSha256": "a9ac22ecbbb05040358c7a896e8f1cd82d4d37a85b7d01aba91f6ad630001cbb"
+    },
+    {
+      "image": "tmp/artwork-v11-refined/board-unsorted-wide/board-unsorted-wide-3-4-master-v11.webp",
+      "manifest": "tmp/artwork-v11-refined/board-unsorted-wide/board-unsorted-wide-3-4-master-v11.manifest.json",
+      "representativeCount": 3,
+      "outputSha256": "817b1bb309e36b453aaeab99f77f7a493645eb3ade77c65b422d596e2e781cd6"
+    },
+    {
+      "image": "tmp/artwork-v11-refined/board-unsorted-wide/board-unsorted-wide-5-8-master-v11.webp",
+      "manifest": "tmp/artwork-v11-refined/board-unsorted-wide/board-unsorted-wide-5-8-master-v11.manifest.json",
+      "representativeCount": 6,
+      "outputSha256": "26295e28ca8c5f805d5066533a8e33dc2821d0939d79c636741ba0022e381147"
+    },
+    {
+      "image": "tmp/artwork-v11-refined/board-unsorted-wide/board-unsorted-wide-9-11-master-v11.webp",
+      "manifest": "tmp/artwork-v11-refined/board-unsorted-wide/board-unsorted-wide-9-11-master-v11.manifest.json",
+      "representativeCount": 9,
+      "outputSha256": "8bfd7015296ac16188337b84ac959c98877dcb3ef486f808446d85778dc46bf7"
+    },
+    {
+      "image": "tmp/artwork-v11-refined/board-unsorted-wide/board-unsorted-wide-12-15-master-v11.webp",
+      "manifest": "tmp/artwork-v11-refined/board-unsorted-wide/board-unsorted-wide-12-15-master-v11.manifest.json",
+      "representativeCount": 12,
+      "outputSha256": "d2ce7f65fd8b735fbfd17cd2e1d8bf7cebcb09ff2505d71beab76127c872b81d"
+    },
+    {
+      "image": "tmp/artwork-v11-refined/board-unsorted-wide/board-unsorted-wide-16plus-master-v11.webp",
+      "manifest": "tmp/artwork-v11-refined/board-unsorted-wide/board-unsorted-wide-16plus-master-v11.manifest.json",
+      "representativeCount": 16,
+      "outputSha256": "48a5cc628b68c3f615865b0ffc614ea28c094afa3ce7407a9171d427f3ec7900"
+    }
+  ]
+}

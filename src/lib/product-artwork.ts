@@ -1,4 +1,5 @@
 import type { ProductVariant } from "@/lib/product-catalog";
+import { getPalletRepresentativeCount } from "@/lib/pallet-composition";
 import { V9_ARTWORK_CANDIDATES } from "@/lib/product-artwork-v9-candidates";
 import { V10_ARTWORK_CANDIDATES } from "@/lib/product-artwork-v10-candidates";
 import { V11_ARTWORK_CANDIDATES } from "@/lib/product-artwork-v11-candidates";
@@ -8,6 +9,7 @@ const CONFIGURATOR_V4_ROOT = "/images/illustrations/configurator-v4";
 const CONFIGURATOR_V5_ROOT = "/images/illustrations/configurator-v5";
 const CONFIGURATOR_V6_ROOT = "/images/illustrations/configurator-v6";
 const CONFIGURATOR_V7_ROOT = "/images/illustrations/configurator-v7";
+const CONFIGURATOR_V10_ROOT = "/images/illustrations/configurator-v10";
 const GOLDEN_MASTERS_ROOT = "/images/illustrations/golden-masters";
 const HOMEPAGE_ROOT = "/images/illustrations";
 const BEAMS_ROOT = "/images/illustrations/beams";
@@ -38,7 +40,7 @@ export type ArtworkSceneDefinition = {
   maxScaleX?: number;
   maxScaleY?: number;
   preloadNeighbors: readonly string[];
-  renderMode: "master" | "legacy-units";
+  renderMode: "master" | "legacy-units" | "modular-pallet";
   legacyUnitCount?: SellingUnitCount;
   filter?: string;
   representativeCount?: number;
@@ -164,6 +166,51 @@ const SELLING_UNIT_ARTWORK: Record<string, string> = {
   "pallet-33": `${CONFIGURATOR_V4_ROOT}/paleta-drevo-33-v4.webp`,
   "pallet-16": `${CONFIGURATOR_V4_ROOT}/paleta-drevo-16-v4.webp`,
 };
+
+const MODULAR_PALLET_SOURCE = `${CONFIGURATOR_V10_ROOT}/firewood-pallet-1-master-v10.webp`;
+const MODULAR_PALLET_BANDS = [
+  { suffix: "1", quantityBand: { min: 1, max: 1 }, artworkKey: "one" },
+  { suffix: "2", quantityBand: { min: 2, max: 2 }, artworkKey: "two" },
+  { suffix: "3-4", quantityBand: { min: 3, max: 4 }, artworkKey: "three" },
+  { suffix: "5-8", quantityBand: { min: 5, max: 8 }, artworkKey: "five" },
+  { suffix: "9-11", quantityBand: { min: 9, max: 11 }, artworkKey: "bundle" },
+  { suffix: "12-15", quantityBand: { min: 12, max: 15 }, artworkKey: "dense" },
+  { suffix: "16plus", quantityBand: { min: 16 }, artworkKey: "dense" },
+] as const;
+
+function modularPalletFamily(
+  categoryId: "stipane-drevo" | "drivi-na-paletach",
+  illustrationVariant: "firewood-pallet" | "pallet-16",
+) {
+  return addPreloadNeighbors(
+    MODULAR_PALLET_BANDS.map((band, index) => ({
+      id: `${illustrationVariant}-modular-${band.suffix}`,
+      categoryId,
+      illustrationVariant,
+      artworkKey: band.artworkKey,
+      quantityBand: band.quantityBand,
+      visualMassRank: index + 1,
+      source: MODULAR_PALLET_SOURCE,
+      canvas: { width: 1254, height: 1254 },
+      alphaBounds: {
+        x: 142 / 1254,
+        y: 83 / 1254,
+        width: 970 / 1254,
+        height: 1089 / 1254,
+      },
+      opticalCenter: { x: 627 / 1254, y: 627.5 / 1254 },
+      safeInset: 0.07,
+      transformPolicy: "none" as const,
+      renderMode: "modular-pallet" as const,
+      representativeCount: getPalletRepresentativeCount(band.quantityBand.min),
+    })),
+  );
+}
+
+const MODULAR_PALLET_FAMILIES = {
+  "firewood-pallet": modularPalletFamily("stipane-drevo", "firewood-pallet"),
+  "pallet-16": modularPalletFamily("drivi-na-paletach", "pallet-16"),
+} as const;
 
 const BAND_BY_KEY: Record<ProductArtworkKey, QuantityBand> = {
   one: { min: 1, max: 1 },
@@ -780,6 +827,13 @@ export function getArtworkSceneFamily(
   categoryId: string,
   variant: ProductVariant,
 ): readonly ArtworkSceneDefinition[] {
+  if (variant.illustrationVariant === "firewood-pallet") {
+    return MODULAR_PALLET_FAMILIES["firewood-pallet"];
+  }
+  if (variant.illustrationVariant === "pallet-16") {
+    return MODULAR_PALLET_FAMILIES["pallet-16"];
+  }
+
   return withV11Overrides(
     withV10Overrides(
       withV9Overrides(

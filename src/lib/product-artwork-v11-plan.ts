@@ -99,7 +99,7 @@ function family(
 
 export const V11_ARTWORK_PLAN: readonly V11ArtworkFamilyPlan[] = [
   family("beam", "tramy", ["beam"], "beam-occlusion-v3"),
-  family("plank", "fosny", ["plank"], "plank-family-match-v6"),
+  family("plank", "fosny", ["plank"], "plank-topgrain-smooth-v7"),
   family("board", "prkna", ["board-sorted"], "board-occlusion-v3"),
   family(
     "board-unsorted-narrow",

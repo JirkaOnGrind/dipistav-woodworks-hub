@@ -1,0 +1,121 @@
+{
+  "canvas": {
+    "width": 1536,
+    "height": 1024
+  },
+  "alphaBoundsPixels": {
+    "left": 113,
+    "top": 103,
+    "right": 1423,
+    "bottom": 921
+  },
+  "alphaBounds": {
+    "x": 0.073568,
+    "y": 0.100586,
+    "width": 0.852865,
+    "height": 0.798828
+  },
+  "opticalCenter": {
+    "x": 0.5,
+    "y": 0.5
+  },
+  "alphaCoverage": 0.325016,
+  "interiorAlphaMin": 248,
+  "margins": {
+    "left": 113,
+    "top": 103,
+    "right": 113,
+    "bottom": 103
+  },
+  "family": "beam",
+  "quantityBand": {
+    "min": 1,
+    "max": 1
+  },
+  "representativeCount": 1,
+  "layout": "1x1",
+  "expectedVisibleConstructionSeams": 0,
+  "camera": {
+    "projection": "orthographic",
+    "azimuthDegrees": 40,
+    "elevationDegrees": 27
+  },
+  "designVectors": {
+    "column": [
+      135.0,
+      -28.0
+    ],
+    "rowDown": [
+      0.0,
+      130.0
+    ],
+    "back": [
+      -560.0,
+      -275.0
+    ]
+  },
+  "autoFit": {
+    "policy": "adaptive-bounds",
+    "safeInset": 0.07,
+    "contourReservePixels": 8.0,
+    "maxScale": 2.0,
+    "renderScale": 1.87764029,
+    "translation": [
+      1166.9986,
+      674.4159
+    ]
+  },
+  "lineWeights": {
+    "outer": 4.0,
+    "edge": 3.0,
+    "seam": 4.0,
+    "rings": 1.5,
+    "grain": 1.25
+  },
+  "palette": [
+    "#501801",
+    "#501801",
+    "#501801",
+    "#804015",
+    "#965622",
+    "#C5813B",
+    "#F0A242",
+    "#F4A847",
+    "#EEA847"
+  ],
+  "canonicalTextureSource": "artwork-sources/beams/beam-unit-tile-master-v1-4x.png",
+  "canonicalTextureSha256": "752db88a14866587604e271225b5c85f82d1974d96a62a2cd8ec57beadf3bec0",
+  "visualReference": "Obrázek Codex 12. 8. 2026 19_45_37.png",
+  "texturePolicy": "reference-face-transfer-with-clean-polygon-corners",
+  "cornerCleanup": "no-corner-discoloration-no-dirty-corner-shading-no-ao",
+  "edgePolicy": "dark-timber-edges-no-white-halo-no-bright-inner-fringe",
+  "textureCoverage": "full-face-to-contour",
+  "topFaceTextureLanes": 1,
+  "topFaceTexturePolicy": "canonical-unit-tile-multi-lane-no-procedural-grain",
+  "seamPainterOrder": "row-local-before-upper-row-occlusion",
+  "memberWidthsCm": [],
+  "renderedMembers": [
+    {
+      "key": "r0c0",
+      "row": 0,
+      "widthCm": null,
+      "normalizedWidthScale": 1.0,
+      "topTextureLanes": 1
+    }
+  ],
+  "antiCloning": {
+    "policy": "deterministic-inset-source-sampling",
+    "maximumSourceOffsetPixels4x": [
+      14,
+      10
+    ],
+    "changesGeometryOrColor": false
+  },
+  "seed": 20260813,
+  "styleVersion": "v11",
+  "approvalStatus": "awaiting-approval",
+  "source": "tmp/artwork-v11-occlusion-v3/unit-tiles/beam-occlusion-v3-unit-tile-master-v11.png",
+  "sourceSha256": "2413c6ce959a8a2be62994e2422e676541d55917cdc2c33e64d53f3e2babf101",
+  "outputSha256": "3975b4fddbc00a8361466cb02075319291a04fc1d276bbb4c5b1e0799fa54aa6",
+  "plannedRuntimePath": "/images/illustrations/configurator-v11/beam-occlusion-v3-1-master-v11.webp"
+}

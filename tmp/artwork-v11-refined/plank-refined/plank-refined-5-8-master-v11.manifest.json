@@ -1,0 +1,148 @@
+{
+  "canvas": {
+    "width": 1536,
+    "height": 1024
+  },
+  "alphaBoundsPixels": {
+    "left": 113,
+    "top": 190,
+    "right": 1423,
+    "bottom": 834
+  },
+  "alphaBounds": {
+    "x": 0.073568,
+    "y": 0.185547,
+    "width": 0.852865,
+    "height": 0.628906
+  },
+  "opticalCenter": {
+    "x": 0.5,
+    "y": 0.5
+  },
+  "alphaCoverage": 0.377684,
+  "interiorAlphaMin": 248,
+  "margins": {
+    "left": 113,
+    "top": 190,
+    "right": 113,
+    "bottom": 190
+  },
+  "family": "plank",
+  "quantityBand": {
+    "min": 5,
+    "max": 8
+  },
+  "representativeCount": 6,
+  "layout": "3x2",
+  "expectedVisibleConstructionSeams": 10,
+  "camera": {
+    "projection": "orthographic",
+    "azimuthDegrees": 40,
+    "elevationDegrees": 27
+  },
+  "designVectors": {
+    "column": [
+      280.0,
+      -58.0
+    ],
+    "rowDown": [
+      0.0,
+      119.0
+    ],
+    "back": [
+      -372.0,
+      -183.0
+    ]
+  },
+  "autoFit": {
+    "policy": "adaptive-bounds",
+    "safeInset": 0.07,
+    "contourReservePixels": 8.0,
+    "maxScale": 2.0,
+    "renderScale": 1.07669967,
+    "translation": [
+      516.0523,
+      576.0636
+    ]
+  },
+  "lineWeights": {
+    "outer": 4.0,
+    "edge": 3.0,
+    "seam": 3.0,
+    "rings": 1.5,
+    "grain": 1.25
+  },
+  "palette": [
+    "#501801",
+    "#501801",
+    "#6B310B",
+    "#804015",
+    "#965622",
+    "#C5813B",
+    "#F0A242",
+    "#F4A847",
+    "#EEA847"
+  ],
+  "canonicalTextureSource": "artwork-sources/beams/beam-unit-tile-master-v1-4x.png",
+  "canonicalTextureSha256": "752db88a14866587604e271225b5c85f82d1974d96a62a2cd8ec57beadf3bec0",
+  "visualReference": "Obrázek Codex 12. 8. 2026 19_45_37.png",
+  "texturePolicy": "reference-face-transfer-with-clean-polygon-corners",
+  "cornerCleanup": "no-corner-discoloration-no-dirty-corner-shading-no-ao",
+  "edgePolicy": "dark-timber-edges-no-white-halo-no-bright-inner-fringe",
+  "textureCoverage": "full-face-to-contour",
+  "topFaceGrainLines": 8,
+  "memberWidthsCm": [],
+  "renderedMembers": [
+    {
+      "key": "r1c0",
+      "row": 1,
+      "widthCm": null,
+      "normalizedWidthScale": 1.0
+    },
+    {
+      "key": "r1c1",
+      "row": 1,
+      "widthCm": null,
+      "normalizedWidthScale": 1.0
+    },
+    {
+      "key": "r1c2",
+      "row": 1,
+      "widthCm": null,
+      "normalizedWidthScale": 1.0
+    },
+    {
+      "key": "r0c0",
+      "row": 0,
+      "widthCm": null,
+      "normalizedWidthScale": 1.0
+    },
+    {
+      "key": "r0c1",
+      "row": 0,
+      "widthCm": null,
+      "normalizedWidthScale": 1.0
+    },
+    {
+      "key": "r0c2",
+      "row": 0,
+      "widthCm": null,
+      "normalizedWidthScale": 1.0
+    }
+  ],
+  "antiCloning": {
+    "policy": "deterministic-inset-source-sampling",
+    "maximumSourceOffsetPixels4x": [
+      14,
+      10
+    ],
+    "changesGeometryOrColor": false
+  },
+  "seed": 20260813,
+  "styleVersion": "v11",
+  "approvalStatus": "awaiting-approval",
+  "source": "tmp/artwork-v11-refined/unit-tiles/plank-refined-unit-tile-master-v11.png",
+  "sourceSha256": "fdac7921064f9cceeea2ee9b0f4d015d39c7bc1bfc6711f420996d0e0b824273",
+  "outputSha256": "09d825398ad5caf537b6d83ce1976f1c9530b584e92b5a6b89fd0cc41e9b4a9f",
+  "plannedRuntimePath": "/images/illustrations/configurator-v11/plank-refined-5-8-master-v11.webp"
+}

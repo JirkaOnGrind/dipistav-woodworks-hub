@@ -44,6 +44,11 @@ SEAM_PX = 4.0
 RING_PX = 1.5
 GRAIN_PX = 1.25
 CORNER_CLEAN_RADIUS_PX = 2.5
+PLANK_TOP_MEDIAN_SIZE_4X = 5
+PLANK_TOP_SMOOTH_RADIUS_4X = 2.0
+PLANK_TOP_SHARP_RADIUS_4X = 1.8
+PLANK_TOP_SHARP_PERCENT = 210
+PLANK_TOP_SHARP_THRESHOLD = 3
 
 PLANK_COLUMN = (280.0, -58.0)
 PLANK_ROW = (0.0, 119.0)
@@ -348,6 +353,28 @@ def canonical_texture_faces() -> tuple[dict[str, Image.Image], dict[str, list[Ve
     return faces, sampling_polygons
 
 
+@lru_cache(maxsize=1)
+def refined_plank_top_texture() -> Image.Image:
+    """Clean the canonical top-face stroke edges without changing their source geometry."""
+    source_faces, _ = canonical_texture_faces()
+    source = source_faces["top"]
+    refined_rgb = (
+        source.convert("RGB")
+        .filter(ImageFilter.MedianFilter(PLANK_TOP_MEDIAN_SIZE_4X))
+        .filter(ImageFilter.GaussianBlur(PLANK_TOP_SMOOTH_RADIUS_4X))
+        .filter(
+            ImageFilter.UnsharpMask(
+                radius=PLANK_TOP_SHARP_RADIUS_4X,
+                percent=PLANK_TOP_SHARP_PERCENT,
+                threshold=PLANK_TOP_SHARP_THRESHOLD,
+            )
+        )
+    )
+    refined = refined_rgb.convert("RGBA")
+    refined.putalpha(source.getchannel("A"))
+    return refined
+
+
 def render_reference_texture_face(
     canvas: Image.Image,
     face_name: str,
@@ -402,7 +429,11 @@ def render_reference_texture_face(
         rng = stable_rng("texture-sample", texture_key, face_name, lane_index)
         sample_offset = (rng.uniform(-14.0, 14.0), rng.uniform(-10.0, 10.0))
         source_polygon = [add(point, sample_offset) for point in sampling_polygons[face_name]]
-        source_face = source_faces[face_name]
+        source_face = (
+            refined_plank_top_texture()
+            if face_name == "top" and texture_key.startswith("plank:")
+            else source_faces[face_name]
+        )
         patch = source_face.transform(
             lane_size,
             Image.Transform.AFFINE,
@@ -718,7 +749,7 @@ def render_stack(layout: Layout, geometry: FamilyGeometry) -> tuple[Image.Image,
             "textureCoverage": "full-face-to-contour",
             "topFaceTextureLanes": geometry.top_texture_lanes,
             "topFaceTexturePolicy": (
-                "canonical-unit-tile-continuous-face-no-procedural-grain"
+                "canonical-unit-tile-continuous-face-source-smoothed-no-procedural-grain"
                 if geometry.family == "plank"
                 else "canonical-unit-tile-multi-lane-no-procedural-grain"
             ),
@@ -905,7 +936,7 @@ def assert_family_contract(results: Sequence[dict[str, object]], family: str) ->
         }:
             raise AssertionError(f"{family}: top face needs dense canonical texture lanes")
         expected_texture_policy = (
-            "canonical-unit-tile-continuous-face-no-procedural-grain"
+            "canonical-unit-tile-continuous-face-source-smoothed-no-procedural-grain"
             if family == "plank"
             else "canonical-unit-tile-multi-lane-no-procedural-grain"
         )

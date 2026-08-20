@@ -1,0 +1,104 @@
+{
+  "canvas": {
+    "width": 1536,
+    "height": 1024
+  },
+  "alphaBoundsPixels": {
+    "left": 194,
+    "top": 427,
+    "right": 1335,
+    "bottom": 597
+  },
+  "alphaBounds": {
+    "x": 0.126302,
+    "y": 0.416992,
+    "width": 0.742839,
+    "height": 0.166016
+  },
+  "opticalCenter": {
+    "x": 0.497721,
+    "y": 0.5
+  },
+  "alphaCoverage": 0.057024,
+  "interiorAlphaMin": 255,
+  "margins": {
+    "left": 194,
+    "top": 427,
+    "right": 201,
+    "bottom": 427
+  },
+  "styleVersion": "v11",
+  "approvalStatus": "awaiting-approval",
+  "family": "firewood-loose",
+  "seed": 20260813,
+  "camera": {
+    "projection": "orthographic",
+    "azimuthDegrees": 40,
+    "elevationDegrees": 27
+  },
+  "tileKinds": [
+    "split-triangular",
+    "split-quarter",
+    "split-triangular-irregular"
+  ],
+  "tileSize": {
+    "width": 360,
+    "height": 240
+  },
+  "tileOrigins": [
+    [
+      178,
+      392
+    ],
+    [
+      588,
+      392
+    ],
+    [
+      998,
+      392
+    ]
+  ],
+  "componentBounds": [
+    {
+      "kind": "split-triangular",
+      "sourceXRange": [
+        0,
+        540
+      ],
+      "normalizedSize4x": {
+        "width": 1310,
+        "height": 680
+      }
+    },
+    {
+      "kind": "split-quarter",
+      "sourceXRange": [
+        520,
+        1025
+      ],
+      "normalizedSize4x": {
+        "width": 865,
+        "height": 680
+      }
+    },
+    {
+      "kind": "split-triangular-irregular",
+      "sourceXRange": [
+        995,
+        1536
+      ],
+      "normalizedSize4x": {
+        "width": 1267,
+        "height": 680
+      }
+    }
+  ],
+  "unitScale": 1,
+  "barkPolicy": "outer-rounded-surface-only",
+  "renderTechnique": "imagegen-style-reference-plus-deterministic-composition",
+  "sourceGeneratedPath": "tmp/firewood-loose-production-v2/source/firewood-unit-tile-v2-alpha.png",
+  "sourceGeneratedSha256": "bf035354f00d69e06255dba9bee992e96a622d9f306f50f047c4021c9f92caec",
+  "promptSpec": "C:/Users/Utrh/Documents/Codex/dipistav-woodworks-hub/scripts/firewood_loose_prompt_v2.json",
+  "promptSpecSha256": "eb1204248aff8a3ce6f9e4447d29efb39574489829b9121400323114b834a4e4"
+}

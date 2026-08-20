@@ -1,4 +1,4 @@
-import type { CSSProperties } from "react";
+import { useMemo, type CSSProperties } from "react";
 import {
   calculateSafeArtworkTransform,
   getArtworkRequestedScale,
@@ -7,6 +7,11 @@ import {
   type SellingUnitCount,
 } from "@/lib/product-artwork";
 import type { ProductVariant } from "@/lib/product-catalog";
+import {
+  createPalletComposition,
+  PALLET_COMPOSITION_CANVAS,
+  PALLET_UNIT_CANVAS,
+} from "@/lib/pallet-composition";
 
 type IllustrationProps = {
   categoryId: string;
@@ -211,8 +216,52 @@ const SLAB_UNIT_LAYOUTS: Partial<Record<SellingUnitCount, UnitPlacement[]>> = {
 
 export function ProductIllustration({ categoryId, quantity, variant, title }: IllustrationProps) {
   const { scene } = resolveArtworkScene(categoryId, variant, quantity);
+  const palletComposition = useMemo(
+    () => (scene.renderMode === "modular-pallet" ? createPalletComposition(quantity) : null),
+    [quantity, scene.renderMode],
+  );
 
   if (!scene.source) return null;
+
+  if (scene.renderMode === "modular-pallet" && palletComposition) {
+    return (
+      <div
+        role="img"
+        aria-label={title}
+        data-product-artwork
+        data-artwork-scene={scene.id}
+        data-artwork-key={scene.artworkKey}
+        data-artwork-render-mode="modular-pallet"
+        data-pallet-representative-count={palletComposition.representativeCount}
+        data-safe-inset={scene.safeInset}
+        className="flex h-full w-full items-center justify-center"
+      >
+        <svg
+          aria-hidden
+          data-pallet-composition
+          viewBox={`0 0 ${PALLET_COMPOSITION_CANVAS.width} ${PALLET_COMPOSITION_CANVAS.height}`}
+          preserveAspectRatio="xMidYMid meet"
+          className="h-full w-full select-none overflow-visible"
+        >
+          {palletComposition.placements.map((placement) => (
+            <image
+              key={`${placement.column}-${placement.depth}-${placement.level}`}
+              data-pallet-unit
+              data-pallet-column={placement.column}
+              data-pallet-depth={placement.depth}
+              data-pallet-level={placement.level}
+              data-pallet-z-index={placement.zIndex}
+              href={scene.source}
+              width={PALLET_UNIT_CANVAS.width}
+              height={PALLET_UNIT_CANVAS.height}
+              transform={`matrix(${placement.matrix.join(" ")})`}
+              preserveAspectRatio="none"
+            />
+          ))}
+        </svg>
+      </div>
+    );
+  }
 
   if (scene.renderMode === "master") {
     const safeTransform = calculateSafeArtworkTransform(

@@ -1,0 +1,58 @@
+{
+  "family": "plank",
+  "styleVersion": "v11",
+  "approvalStatus": "awaiting-approval",
+  "texturePolicy": "canonical-19-45-37-reference",
+  "edgePolicy": "dark-timber-edges-no-white-halo-no-bright-inner-fringe",
+  "crossSectionContract": "height:width = 1:2.3-2.5",
+  "geometryRatios": {
+    "crossSectionRatio": 2.402891,
+    "depthToWidthRatio": 1.449849,
+    "boardCrossSectionRatio": 4.788677,
+    "lathCrossSectionRatio": 1.372891
+  },
+  "entries": [
+    {
+      "image": "tmp/artwork-v11-seams-v2/plank-texture-v2/plank-texture-v2-1-master-v11.webp",
+      "manifest": "tmp/artwork-v11-seams-v2/plank-texture-v2/plank-texture-v2-1-master-v11.manifest.json",
+      "representativeCount": 1,
+      "outputSha256": "7421ba38a559c8c6a7dea3e41e3d7df1889532b1e2c43d50f339b8fff45bbe9a"
+    },
+    {
+      "image": "tmp/artwork-v11-seams-v2/plank-texture-v2/plank-texture-v2-2-master-v11.webp",
+      "manifest": "tmp/artwork-v11-seams-v2/plank-texture-v2/plank-texture-v2-2-master-v11.manifest.json",
+      "representativeCount": 2,
+      "outputSha256": "eecf207c75cd2dedeb4b343600e23fe9d6ce3339f74c4d6024be61e91ab4720b"
+    },
+    {
+      "image": "tmp/artwork-v11-seams-v2/plank-texture-v2/plank-texture-v2-3-4-master-v11.webp",
+      "manifest": "tmp/artwork-v11-seams-v2/plank-texture-v2/plank-texture-v2-3-4-master-v11.manifest.json",
+      "representativeCount": 3,
+      "outputSha256": "ae86e6baf83969b62fa76fb6e857d08fea014a0e8428e530fc105252d62bd9b8"
+    },
+    {
+      "image": "tmp/artwork-v11-seams-v2/plank-texture-v2/plank-texture-v2-5-8-master-v11.webp",
+      "manifest": "tmp/artwork-v11-seams-v2/plank-texture-v2/plank-texture-v2-5-8-master-v11.manifest.json",
+      "representativeCount": 6,
+      "outputSha256": "a14db5a1ec3d1965007726443193f9455907e9a844598b68fae70e77bc5becb4"
+    },
+    {
+      "image": "tmp/artwork-v11-seams-v2/plank-texture-v2/plank-texture-v2-9-11-master-v11.webp",
+      "manifest": "tmp/artwork-v11-seams-v2/plank-texture-v2/plank-texture-v2-9-11-master-v11.manifest.json",
+      "representativeCount": 9,
+      "outputSha256": "ff9625f875a68d2fc8ce8e198eebf883f7d179c7babd1ceb652dd04c6aee7017"
+    },
+    {
+      "image": "tmp/artwork-v11-seams-v2/plank-texture-v2/plank-texture-v2-12-15-master-v11.webp",
+      "manifest": "tmp/artwork-v11-seams-v2/plank-texture-v2/plank-texture-v2-12-15-master-v11.manifest.json",
+      "representativeCount": 12,
+      "outputSha256": "5178972e66f289b520677d3a41c6eb7909728cfbeaef82f210cc5b717dde7357"
+    },
+    {
+      "image": "tmp/artwork-v11-seams-v2/plank-texture-v2/plank-texture-v2-16plus-master-v11.webp",
+      "manifest": "tmp/artwork-v11-seams-v2/plank-texture-v2/plank-texture-v2-16plus-master-v11.manifest.json",
+      "representativeCount": 16,
+      "outputSha256": "4a8f3135cc5a32f012011e7c9eb9919917572cab96b5f99ae7f313069923dc34"
+    }
+  ]
+}

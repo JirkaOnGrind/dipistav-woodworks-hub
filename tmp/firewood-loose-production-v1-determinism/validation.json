@@ -1,0 +1,57 @@
+{
+  "valid": true,
+  "approvalStatus": "awaiting-approval",
+  "runtimeActivation": "blocked-until-explicit-visual-approval",
+  "unitTileSha256": "38eca530e76c78c0f10d0422163c801f77a30fdb668e2316995da724e3afe557",
+  "candidates": [
+    {
+      "image": "tmp/firewood-loose-production-v1-determinism/firewood-loose-production-v1/firewood-loose-production-v1-1-master-v11.webp",
+      "sha256": "a402e49ce5339b07741caec24009e2c87af0b6b5fe1098b3e282ff2771dc1509",
+      "alphaWidth": 467,
+      "alphaCoverage": 0.068465,
+      "renderedLogs": 12
+    },
+    {
+      "image": "tmp/firewood-loose-production-v1-determinism/firewood-loose-production-v1/firewood-loose-production-v1-2-master-v11.webp",
+      "sha256": "3f3cd947d07935aa12531e2e5be4d5d4d254941a3154f2f6f51eb52c00784121",
+      "alphaWidth": 602,
+      "alphaCoverage": 0.094561,
+      "renderedLogs": 18
+    },
+    {
+      "image": "tmp/firewood-loose-production-v1-determinism/firewood-loose-production-v1/firewood-loose-production-v1-3-4-master-v11.webp",
+      "sha256": "5b74f5f6b334f3266a2894dcfc7b514951f2aa0f429a5cca577fdd71026d06c5",
+      "alphaWidth": 631,
+      "alphaCoverage": 0.113399,
+      "renderedLogs": 24
+    },
+    {
+      "image": "tmp/firewood-loose-production-v1-determinism/firewood-loose-production-v1/firewood-loose-production-v1-5-8-master-v11.webp",
+      "sha256": "606bc744fda75c69b25447cf0e222665420c2bf0738ebc658f6b182ff6e27c05",
+      "alphaWidth": 801,
+      "alphaCoverage": 0.154037,
+      "renderedLogs": 36
+    },
+    {
+      "image": "tmp/firewood-loose-production-v1-determinism/firewood-loose-production-v1/firewood-loose-production-v1-9-11-master-v11.webp",
+      "sha256": "6851bfa9a6320850d3178f0384b5fc9704508ff9f4587e0b2969865a6279f42e",
+      "alphaWidth": 935,
+      "alphaCoverage": 0.196725,
+      "renderedLogs": 48
+    },
+    {
+      "image": "tmp/firewood-loose-production-v1-determinism/firewood-loose-production-v1/firewood-loose-production-v1-12-15-master-v11.webp",
+      "sha256": "7e50e2c1d7b4e347422ec085db5bf7361178a939a4ff83bfdb312b4ab9de844c",
+      "alphaWidth": 1101,
+      "alphaCoverage": 0.238419,
+      "renderedLogs": 60
+    },
+    {
+      "image": "tmp/firewood-loose-production-v1-determinism/firewood-loose-production-v1/firewood-loose-production-v1-16plus-master-v11.webp",
+      "sha256": "56c9db56078fd88105e560633391afb6f08eaeac192937d016f2130bb7983cfa",
+      "alphaWidth": 1208,
+      "alphaCoverage": 0.28479,
+      "renderedLogs": 72
+    }
+  ]
+}

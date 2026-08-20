@@ -72,12 +72,34 @@
             "contained_unit_equivalent": null
           },
           {
-            "suffix": "9plus",
+            "suffix": "9-11",
             "minimum": 9,
-            "maximum": null,
+            "maximum": 11,
             "representative_selling_units": 9,
             "rendered_module_counts": {
               "split-log": 48
+            },
+            "composition_basis": "aggregate-volume",
+            "contained_unit_equivalent": null
+          },
+          {
+            "suffix": "12-15",
+            "minimum": 12,
+            "maximum": 15,
+            "representative_selling_units": 12,
+            "rendered_module_counts": {
+              "split-log": 60
+            },
+            "composition_basis": "aggregate-volume",
+            "contained_unit_equivalent": null
+          },
+          {
+            "suffix": "16plus",
+            "minimum": 16,
+            "maximum": null,
+            "representative_selling_units": 16,
+            "rendered_module_counts": {
+              "split-log": 72
             },
             "composition_basis": "aggregate-volume",
             "contained_unit_equivalent": null
@@ -87,7 +109,7 @@
           "Bark is allowed only on the outer rounded edge."
         ]
       },
-      "planSha256": "52db1c5ffbe5d6558729ee6137a127e3fe8482029c406b034e2151d9dfd7463b"
+      "planSha256": "7a9023c40200fe79e899d0cc99f58f64501dfd05a33f3e84b4acc9b5fb0bf8fd"
     },
     {
       "styleVersion": "v11",

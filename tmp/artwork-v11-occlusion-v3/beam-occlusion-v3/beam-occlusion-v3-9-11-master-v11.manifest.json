@@ -1,0 +1,177 @@
+{
+  "canvas": {
+    "width": 1536,
+    "height": 1024
+  },
+  "alphaBoundsPixels": {
+    "left": 209,
+    "top": 78,
+    "right": 1327,
+    "bottom": 946
+  },
+  "alphaBounds": {
+    "x": 0.136068,
+    "y": 0.076172,
+    "width": 0.727865,
+    "height": 0.847656
+  },
+  "opticalCenter": {
+    "x": 0.5,
+    "y": 0.5
+  },
+  "alphaCoverage": 0.457013,
+  "interiorAlphaMin": 248,
+  "margins": {
+    "left": 209,
+    "top": 78,
+    "right": 209,
+    "bottom": 78
+  },
+  "family": "beam",
+  "quantityBand": {
+    "min": 9,
+    "max": 11
+  },
+  "representativeCount": 9,
+  "layout": "3x3",
+  "expectedVisibleConstructionSeams": 16,
+  "camera": {
+    "projection": "orthographic",
+    "azimuthDegrees": 40,
+    "elevationDegrees": 27
+  },
+  "designVectors": {
+    "column": [
+      135.0,
+      -28.0
+    ],
+    "rowDown": [
+      0.0,
+      130.0
+    ],
+    "back": [
+      -560.0,
+      -275.0
+    ]
+  },
+  "autoFit": {
+    "policy": "adaptive-bounds",
+    "safeInset": 0.07,
+    "contourReservePixels": 8.0,
+    "maxScale": 2.0,
+    "renderScale": 1.15439252,
+    "translation": [
+      857.4654,
+      494.1069
+    ]
+  },
+  "lineWeights": {
+    "outer": 4.0,
+    "edge": 3.0,
+    "seam": 4.0,
+    "rings": 1.5,
+    "grain": 1.25
+  },
+  "palette": [
+    "#501801",
+    "#501801",
+    "#501801",
+    "#804015",
+    "#965622",
+    "#C5813B",
+    "#F0A242",
+    "#F4A847",
+    "#EEA847"
+  ],
+  "canonicalTextureSource": "artwork-sources/beams/beam-unit-tile-master-v1-4x.png",
+  "canonicalTextureSha256": "752db88a14866587604e271225b5c85f82d1974d96a62a2cd8ec57beadf3bec0",
+  "visualReference": "Obrázek Codex 12. 8. 2026 19_45_37.png",
+  "texturePolicy": "reference-face-transfer-with-clean-polygon-corners",
+  "cornerCleanup": "no-corner-discoloration-no-dirty-corner-shading-no-ao",
+  "edgePolicy": "dark-timber-edges-no-white-halo-no-bright-inner-fringe",
+  "textureCoverage": "full-face-to-contour",
+  "topFaceTextureLanes": 1,
+  "topFaceTexturePolicy": "canonical-unit-tile-multi-lane-no-procedural-grain",
+  "seamPainterOrder": "row-local-before-upper-row-occlusion",
+  "memberWidthsCm": [],
+  "renderedMembers": [
+    {
+      "key": "r2c0",
+      "row": 2,
+      "widthCm": null,
+      "normalizedWidthScale": 1.0,
+      "topTextureLanes": 1
+    },
+    {
+      "key": "r2c1",
+      "row": 2,
+      "widthCm": null,
+      "normalizedWidthScale": 1.0,
+      "topTextureLanes": 1
+    },
+    {
+      "key": "r2c2",
+      "row": 2,
+      "widthCm": null,
+      "normalizedWidthScale": 1.0,
+      "topTextureLanes": 1
+    },
+    {
+      "key": "r1c0",
+      "row": 1,
+      "widthCm": null,
+      "normalizedWidthScale": 1.0,
+      "topTextureLanes": 1
+    },
+    {
+      "key": "r1c1",
+      "row": 1,
+      "widthCm": null,
+      "normalizedWidthScale": 1.0,
+      "topTextureLanes": 1
+    },
+    {
+      "key": "r1c2",
+      "row": 1,
+      "widthCm": null,
+      "normalizedWidthScale": 1.0,
+      "topTextureLanes": 1
+    },
+    {
+      "key": "r0c0",
+      "row": 0,
+      "widthCm": null,
+      "normalizedWidthScale": 1.0,
+      "topTextureLanes": 1
+    },
+    {
+      "key": "r0c1",
+      "row": 0,
+      "widthCm": null,
+      "normalizedWidthScale": 1.0,
+      "topTextureLanes": 1
+    },
+    {
+      "key": "r0c2",
+      "row": 0,
+      "widthCm": null,
+      "normalizedWidthScale": 1.0,
+      "topTextureLanes": 1
+    }
+  ],
+  "antiCloning": {
+    "policy": "deterministic-inset-source-sampling",
+    "maximumSourceOffsetPixels4x": [
+      14,
+      10
+    ],
+    "changesGeometryOrColor": false
+  },
+  "seed": 20260813,
+  "styleVersion": "v11",
+  "approvalStatus": "awaiting-approval",
+  "source": "tmp/artwork-v11-occlusion-v3/unit-tiles/beam-occlusion-v3-unit-tile-master-v11.png",
+  "sourceSha256": "2413c6ce959a8a2be62994e2422e676541d55917cdc2c33e64d53f3e2babf101",
+  "outputSha256": "8ed6f95b6fc9226543d82a1d132af83add2fa87828686edb3067c5ec94d10e4d",
+  "plannedRuntimePath": "/images/illustrations/configurator-v11/beam-occlusion-v3-9-11-master-v11.webp"
+}

@@ -1,0 +1,107 @@
+{
+  "approvalStatus": "awaiting-approval",
+  "runtimeActivation": "blocked-until-explicit-visual-approval",
+  "unitTile": {
+    "path": "tmp/firewood-loose-production-v1/unit-tiles/firewood-loose-production-v1-unit-tile-master-v11.png",
+    "sha256": "38eca530e76c78c0f10d0422163c801f77a30fdb668e2316995da724e3afe557",
+    "canvas": {
+      "width": 1536,
+      "height": 1024
+    },
+    "alphaBoundsPixels": {
+      "left": 219,
+      "top": 443,
+      "right": 1315,
+      "bottom": 584
+    },
+    "alphaBounds": {
+      "x": 0.142578,
+      "y": 0.432617,
+      "width": 0.713542,
+      "height": 0.137695
+    },
+    "opticalCenter": {
+      "x": 0.499349,
+      "y": 0.501465
+    },
+    "alphaCoverage": 0.042644,
+    "interiorAlphaMin": 248,
+    "margins": {
+      "left": 219,
+      "top": 443,
+      "right": 221,
+      "bottom": 440
+    },
+    "styleVersion": "v11",
+    "approvalStatus": "awaiting-approval",
+    "family": "firewood-loose",
+    "seed": 20260813,
+    "camera": {
+      "projection": "orthographic",
+      "azimuthDegrees": 40,
+      "elevationDegrees": 27
+    },
+    "tileKinds": [
+      "split-half-round",
+      "split-quarter",
+      "split-triangular"
+    ],
+    "tileSize": {
+      "width": 360,
+      "height": 240
+    },
+    "tileOrigins": [
+      [
+        178,
+        392
+      ],
+      [
+        588,
+        392
+      ],
+      [
+        998,
+        392
+      ]
+    ],
+    "unitScale": 1,
+    "barkPolicy": "outer-rounded-surface-only"
+  },
+  "candidates": [
+    {
+      "image": "tmp/firewood-loose-production-v1/firewood-loose-production-v1/firewood-loose-production-v1-1-master-v11.webp",
+      "manifest": "tmp/firewood-loose-production-v1/firewood-loose-production-v1/firewood-loose-production-v1-1-master-v11.manifest.json",
+      "outputSha256": "a402e49ce5339b07741caec24009e2c87af0b6b5fe1098b3e282ff2771dc1509"
+    },
+    {
+      "image": "tmp/firewood-loose-production-v1/firewood-loose-production-v1/firewood-loose-production-v1-2-master-v11.webp",
+      "manifest": "tmp/firewood-loose-production-v1/firewood-loose-production-v1/firewood-loose-production-v1-2-master-v11.manifest.json",
+      "outputSha256": "3f3cd947d07935aa12531e2e5be4d5d4d254941a3154f2f6f51eb52c00784121"
+    },
+    {
+      "image": "tmp/firewood-loose-production-v1/firewood-loose-production-v1/firewood-loose-production-v1-3-4-master-v11.webp",
+      "manifest": "tmp/firewood-loose-production-v1/firewood-loose-production-v1/firewood-loose-production-v1-3-4-master-v11.manifest.json",
+      "outputSha256": "5b74f5f6b334f3266a2894dcfc7b514951f2aa0f429a5cca577fdd71026d06c5"
+    },
+    {
+      "image": "tmp/firewood-loose-production-v1/firewood-loose-production-v1/firewood-loose-production-v1-5-8-master-v11.webp",
+      "manifest": "tmp/firewood-loose-production-v1/firewood-loose-production-v1/firewood-loose-production-v1-5-8-master-v11.manifest.json",
+      "outputSha256": "606bc744fda75c69b25447cf0e222665420c2bf0738ebc658f6b182ff6e27c05"
+    },
+    {
+      "image": "tmp/firewood-loose-production-v1/firewood-loose-production-v1/firewood-loose-production-v1-9-11-master-v11.webp",
+      "manifest": "tmp/firewood-loose-production-v1/firewood-loose-production-v1/firewood-loose-production-v1-9-11-master-v11.manifest.json",
+      "outputSha256": "6851bfa9a6320850d3178f0384b5fc9704508ff9f4587e0b2969865a6279f42e"
+    },
+    {
+      "image": "tmp/firewood-loose-production-v1/firewood-loose-production-v1/firewood-loose-production-v1-12-15-master-v11.webp",
+      "manifest": "tmp/firewood-loose-production-v1/firewood-loose-production-v1/firewood-loose-production-v1-12-15-master-v11.manifest.json",
+      "outputSha256": "7e50e2c1d7b4e347422ec085db5bf7361178a939a4ff83bfdb312b4ab9de844c"
+    },
+    {
+      "image": "tmp/firewood-loose-production-v1/firewood-loose-production-v1/firewood-loose-production-v1-16plus-master-v11.webp",
+      "manifest": "tmp/firewood-loose-production-v1/firewood-loose-production-v1/firewood-loose-production-v1-16plus-master-v11.manifest.json",
+      "outputSha256": "56c9db56078fd88105e560633391afb6f08eaeac192937d016f2130bb7983cfa"
+    }
+  ]
+}

@@ -1,0 +1,19 @@
+{
+  "id": "firewood-loose-production-v2",
+  "useCase": "stylized-concept",
+  "assetType": "DIPISTAV split-firewood Unit Tile atlas",
+  "styleReference": "public/images/illustrations/stipane-v2.webp",
+  "coreMasterPrompt": "Detailed vintage woodcut engraving of a pile of authentic split firewood, classical architectural textbook illustration, fine hand-drawn ink cross-hatching linework, warm amber and honey watercolor wash. Sharp triangular split log wedges, quarter-round wood pieces with visible natural grain and growth rings on flat faces, deeply textured rough dark-brown tree bark strictly on outer curved edges. Isometric 3/4 axonometric view, warm soft lighting from top-left, subtle drop shadow, perfectly isolated on clean off-white cream background, high detail, artisanal craft aesthetic.",
+  "volumeModifiers": {
+    "1-2": "a small neat pile of split firewood",
+    "3-4": "a medium loose heap of split firewood",
+    "5-8": "a wide, naturally spread pile of dumped split firewood",
+    "9-15": "a large broad heap of scattered split firewood from a truck dump",
+    "16plus": "a massive expansive wide-spread mound of split firewood"
+  },
+  "negativePrompt": "round logs, cylindrical timber, tree trunks, logs with circular ends, whole round wood, 3D render, low poly, polygon mesh, flat vector, clean SVG, cartoon, comic book style, smooth plastic texture, glossy surfaces, oversaturated neon colors, blurry edges, floating logs, artificial geometric blocks, photorealistic modern photograph, dark background, noisy background.",
+  "unitTileOverride": "Generate exactly three separate, equally scaled split-firewood pieces in one horizontal row: a triangular wedge, a quarter-round sector, and an irregular asymmetric triangular wedge. No overlaps or extra fragments.",
+  "masterOutputOverride": "For alpha extraction, replace the cream background and drop shadow with a perfectly uniform #00FF00 chroma-key background. No floor plane, shadow, reflection, halo, text, logo, or watermark. The final master is transparent; cream is used only on the light QA sheet.",
+  "approvalStatus": "awaiting-approval",
+  "runtimeActivation": "blocked-until-explicit-visual-approval"
+}

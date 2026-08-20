@@ -1,0 +1,61 @@
+{
+  "canvas": {
+    "width": 1536,
+    "height": 1024
+  },
+  "alphaBoundsPixels": {
+    "left": 320,
+    "top": 366,
+    "right": 1183,
+    "bottom": 887
+  },
+  "alphaBounds": {
+    "x": 0.208333,
+    "y": 0.357422,
+    "width": 0.561849,
+    "height": 0.508789
+  },
+  "opticalCenter": {
+    "x": 0.489258,
+    "y": 0.611816
+  },
+  "alphaCoverage": 0.181767,
+  "interiorAlphaMin": 248,
+  "margins": {
+    "left": 320,
+    "top": 366,
+    "right": 353,
+    "bottom": 137
+  },
+  "styleVersion": "v11",
+  "approvalStatus": "awaiting-approval",
+  "family": "firewood-loose",
+  "quantityBand": {
+    "min": 5,
+    "max": 8
+  },
+  "representativeCount": 6,
+  "renderedModuleCounts": {
+    "split-log": 36
+  },
+  "layerCountsBottomToTop": [
+    11,
+    10,
+    8,
+    7
+  ],
+  "unitScale": 1,
+  "pileEnvelopeExponents": {
+    "width": 0.45,
+    "depth": 0.35,
+    "height": 0.2
+  },
+  "supportPolicy": "ground-or-two-lower-neighbours",
+  "seed": 20261419,
+  "safeInset": 0.07,
+  "contourReservePixels": 8.0,
+  "source": "tmp/firewood-loose-production-v2/unit-tiles/firewood-loose-production-v2-unit-tile-master-v11.png",
+  "sourceSha256": "14e50c8c009a21af75b495eb57feaaa6769ae0a2ec110dcafa257da91715307c",
+  "outputSha256": "f2f5fec2ad48aca17cb82a8b6ada71188cbc13927ef767520e9dcbc72bfe3ede",
+  "plannedRuntimePath": "/images/illustrations/configurator-v11/firewood-loose-production-v2-5-8-master-v11.webp"
+}

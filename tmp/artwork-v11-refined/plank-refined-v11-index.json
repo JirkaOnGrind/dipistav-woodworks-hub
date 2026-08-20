@@ -1,0 +1,58 @@
+{
+  "family": "plank",
+  "styleVersion": "v11",
+  "approvalStatus": "awaiting-approval",
+  "texturePolicy": "canonical-19-45-37-reference",
+  "edgePolicy": "dark-timber-edges-no-white-halo-no-bright-inner-fringe",
+  "crossSectionContract": "height:width = 1:2.3-2.5",
+  "geometryRatios": {
+    "crossSectionRatio": 2.402891,
+    "depthToWidthRatio": 1.449849,
+    "boardCrossSectionRatio": 4.788677,
+    "lathCrossSectionRatio": 1.372891
+  },
+  "entries": [
+    {
+      "image": "tmp/artwork-v11-refined/plank-refined/plank-refined-1-master-v11.webp",
+      "manifest": "tmp/artwork-v11-refined/plank-refined/plank-refined-1-master-v11.manifest.json",
+      "representativeCount": 1,
+      "outputSha256": "76208b7cbd99cfc05d7d2de6ba5deaaeb6e15ae618209870b780311bb9913e38"
+    },
+    {
+      "image": "tmp/artwork-v11-refined/plank-refined/plank-refined-2-master-v11.webp",
+      "manifest": "tmp/artwork-v11-refined/plank-refined/plank-refined-2-master-v11.manifest.json",
+      "representativeCount": 2,
+      "outputSha256": "cff91fab03a4e0e4e03e780af8602c6c7d05cecd3d166dfe71d0c312b2f17645"
+    },
+    {
+      "image": "tmp/artwork-v11-refined/plank-refined/plank-refined-3-4-master-v11.webp",
+      "manifest": "tmp/artwork-v11-refined/plank-refined/plank-refined-3-4-master-v11.manifest.json",
+      "representativeCount": 3,
+      "outputSha256": "f8682b0d73e9ad92b76d8eb52051387905eb0a9e0afd4297d5035a09671d4f24"
+    },
+    {
+      "image": "tmp/artwork-v11-refined/plank-refined/plank-refined-5-8-master-v11.webp",
+      "manifest": "tmp/artwork-v11-refined/plank-refined/plank-refined-5-8-master-v11.manifest.json",
+      "representativeCount": 6,
+      "outputSha256": "09d825398ad5caf537b6d83ce1976f1c9530b584e92b5a6b89fd0cc41e9b4a9f"
+    },
+    {
+      "image": "tmp/artwork-v11-refined/plank-refined/plank-refined-9-11-master-v11.webp",
+      "manifest": "tmp/artwork-v11-refined/plank-refined/plank-refined-9-11-master-v11.manifest.json",
+      "representativeCount": 9,
+      "outputSha256": "eaa41e832c4a9edcf81a98ac5e37cccace96b3729dd7c865ad4792e7279b1b56"
+    },
+    {
+      "image": "tmp/artwork-v11-refined/plank-refined/plank-refined-12-15-master-v11.webp",
+      "manifest": "tmp/artwork-v11-refined/plank-refined/plank-refined-12-15-master-v11.manifest.json",
+      "representativeCount": 12,
+      "outputSha256": "c01eaa708cf7023537db3d5b8f450d3940205d6691e8827b10a6f7db0b6ea975"
+    },
+    {
+      "image": "tmp/artwork-v11-refined/plank-refined/plank-refined-16plus-master-v11.webp",
+      "manifest": "tmp/artwork-v11-refined/plank-refined/plank-refined-16plus-master-v11.manifest.json",
+      "representativeCount": 16,
+      "outputSha256": "e9dce7eef3a91314fba5a25a3e4aba7c2cd2100241f2d9f5f8f56a7cf70d4de6"
+    }
+  ]
+}

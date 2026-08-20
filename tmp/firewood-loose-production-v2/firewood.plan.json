@@ -1,0 +1,210 @@
+{
+  "families": [
+    {
+      "styleVersion": "v11",
+      "approvalStatus": "planned",
+      "runtimeActivation": "blocked-until-explicit-visual-approval",
+      "canvas": {
+        "width": 1536,
+        "height": 1024
+      },
+      "camera": {
+        "projection": "orthographic",
+        "azimuthDegrees": 40,
+        "elevationDegrees": 27
+      },
+      "safeInset": 0.07,
+      "seed": 20260813,
+      "family": {
+        "id": "firewood-loose",
+        "category_id": "stipane-drevo",
+        "illustration_variants": [
+          "firewood-loose"
+        ],
+        "unit_tiles": [
+          "split-triangular",
+          "split-quarter",
+          "split-triangular-irregular"
+        ],
+        "bands": [
+          {
+            "suffix": "1",
+            "minimum": 1,
+            "maximum": 1,
+            "representative_selling_units": 1,
+            "rendered_module_counts": {
+              "split-log": 12
+            },
+            "composition_basis": "aggregate-volume",
+            "contained_unit_equivalent": null
+          },
+          {
+            "suffix": "2",
+            "minimum": 2,
+            "maximum": 2,
+            "representative_selling_units": 2,
+            "rendered_module_counts": {
+              "split-log": 18
+            },
+            "composition_basis": "aggregate-volume",
+            "contained_unit_equivalent": null
+          },
+          {
+            "suffix": "3-4",
+            "minimum": 3,
+            "maximum": 4,
+            "representative_selling_units": 3,
+            "rendered_module_counts": {
+              "split-log": 24
+            },
+            "composition_basis": "aggregate-volume",
+            "contained_unit_equivalent": null
+          },
+          {
+            "suffix": "5-8",
+            "minimum": 5,
+            "maximum": 8,
+            "representative_selling_units": 6,
+            "rendered_module_counts": {
+              "split-log": 36
+            },
+            "composition_basis": "aggregate-volume",
+            "contained_unit_equivalent": null
+          },
+          {
+            "suffix": "9-11",
+            "minimum": 9,
+            "maximum": 11,
+            "representative_selling_units": 9,
+            "rendered_module_counts": {
+              "split-log": 48
+            },
+            "composition_basis": "aggregate-volume",
+            "contained_unit_equivalent": null
+          },
+          {
+            "suffix": "12-15",
+            "minimum": 12,
+            "maximum": 15,
+            "representative_selling_units": 12,
+            "rendered_module_counts": {
+              "split-log": 60
+            },
+            "composition_basis": "aggregate-volume",
+            "contained_unit_equivalent": null
+          },
+          {
+            "suffix": "16plus",
+            "minimum": 16,
+            "maximum": null,
+            "representative_selling_units": 16,
+            "rendered_module_counts": {
+              "split-log": 72
+            },
+            "composition_basis": "aggregate-volume",
+            "contained_unit_equivalent": null
+          }
+        ],
+        "notes": [
+          "Bark is allowed only on the outer rounded edge."
+        ]
+      },
+      "planSha256": "3414ca7a3539a6032d5d1bab7628a191df726cdcead7d58ff02c7e174aecd143"
+    },
+    {
+      "styleVersion": "v11",
+      "approvalStatus": "planned",
+      "runtimeActivation": "blocked-until-explicit-visual-approval",
+      "canvas": {
+        "width": 1536,
+        "height": 1024
+      },
+      "camera": {
+        "projection": "orthographic",
+        "azimuthDegrees": 40,
+        "elevationDegrees": 27
+      },
+      "safeInset": 0.07,
+      "seed": 20260813,
+      "family": {
+        "id": "firewood-bigbag",
+        "category_id": "stipane-drevo",
+        "illustration_variants": [
+          "firewood-bag"
+        ],
+        "unit_tiles": [
+          "big-bag",
+          "split-half-round",
+          "split-quarter",
+          "split-triangular"
+        ],
+        "bands": [
+          {
+            "suffix": "1",
+            "minimum": 1,
+            "maximum": 1,
+            "representative_selling_units": 1,
+            "rendered_module_counts": {
+              "big-bag": 1,
+              "split-log": 12
+            },
+            "composition_basis": "optical-density",
+            "contained_unit_equivalent": null
+          },
+          {
+            "suffix": "2",
+            "minimum": 2,
+            "maximum": 2,
+            "representative_selling_units": 2,
+            "rendered_module_counts": {
+              "big-bag": 2,
+              "split-log": 24
+            },
+            "composition_basis": "optical-density",
+            "contained_unit_equivalent": null
+          },
+          {
+            "suffix": "3-4",
+            "minimum": 3,
+            "maximum": 4,
+            "representative_selling_units": 4,
+            "rendered_module_counts": {
+              "big-bag": 4,
+              "split-log": 48
+            },
+            "composition_basis": "optical-density",
+            "contained_unit_equivalent": null
+          },
+          {
+            "suffix": "5-8",
+            "minimum": 5,
+            "maximum": 8,
+            "representative_selling_units": 5,
+            "rendered_module_counts": {
+              "big-bag": 5,
+              "split-log": 60
+            },
+            "composition_basis": "optical-density",
+            "contained_unit_equivalent": null
+          },
+          {
+            "suffix": "9plus",
+            "minimum": 9,
+            "maximum": null,
+            "representative_selling_units": 9,
+            "rendered_module_counts": {
+              "big-bag": 9,
+              "split-log": 108
+            },
+            "composition_basis": "optical-density",
+            "contained_unit_equivalent": null
+          }
+        ],
+        "notes": [
+          "Use fully opaque warm canvas."
+        ]
+      },
+      "planSha256": "10397ae59172d805b9997f0801529d2e8a221140d1aa3da7409cf59367062e04"
+    }
+  ]
+}

@@ -1,0 +1,200 @@
+{
+  "canvas": {
+    "width": 1536,
+    "height": 1024
+  },
+  "alphaBoundsPixels": {
+    "left": 113,
+    "top": 172,
+    "right": 1423,
+    "bottom": 852
+  },
+  "alphaBounds": {
+    "x": 0.073568,
+    "y": 0.167969,
+    "width": 0.852865,
+    "height": 0.664062
+  },
+  "opticalCenter": {
+    "x": 0.5,
+    "y": 0.5
+  },
+  "alphaCoverage": 0.404932,
+  "interiorAlphaMin": 248,
+  "margins": {
+    "left": 113,
+    "top": 172,
+    "right": 113,
+    "bottom": 172
+  },
+  "family": "plank",
+  "quantityBand": {
+    "min": 12,
+    "max": 15
+  },
+  "representativeCount": 12,
+  "layout": "4x3",
+  "expectedVisibleConstructionSeams": 22,
+  "camera": {
+    "projection": "orthographic",
+    "azimuthDegrees": 40,
+    "elevationDegrees": 27
+  },
+  "designVectors": {
+    "column": [
+      280.0,
+      -58.0
+    ],
+    "rowDown": [
+      0.0,
+      119.0
+    ],
+    "back": [
+      -372.0,
+      -183.0
+    ]
+  },
+  "autoFit": {
+    "policy": "adaptive-bounds",
+    "safeInset": 0.07,
+    "contourReservePixels": 8.0,
+    "maxScale": 2.0,
+    "renderScale": 0.87463807,
+    "translation": [
+      440.8854,
+      537.3645
+    ]
+  },
+  "lineWeights": {
+    "outer": 4.0,
+    "edge": 3.0,
+    "seam": 4.0,
+    "rings": 1.5,
+    "grain": 1.25
+  },
+  "palette": [
+    "#501801",
+    "#501801",
+    "#501801",
+    "#804015",
+    "#965622",
+    "#C5813B",
+    "#F0A242",
+    "#F4A847",
+    "#EEA847"
+  ],
+  "plankTopColor": "#F8A038",
+  "plankTopColorPolicy": "warm-saturated-family-match-with-mild-top-light",
+  "canonicalTextureSource": "artwork-sources/beams/beam-unit-tile-master-v1-4x.png",
+  "canonicalTextureSha256": "752db88a14866587604e271225b5c85f82d1974d96a62a2cd8ec57beadf3bec0",
+  "visualReference": "Obrázek Codex 12. 8. 2026 19_45_37.png",
+  "texturePolicy": "reference-face-transfer-with-clean-polygon-corners",
+  "cornerCleanup": "no-corner-discoloration-no-dirty-corner-shading-no-ao",
+  "edgePolicy": "dark-timber-edges-no-white-halo-no-bright-inner-fringe",
+  "textureCoverage": "full-face-to-contour",
+  "topFaceTextureLanes": 1,
+  "topFaceTexturePolicy": "canonical-unit-tile-continuous-face-no-procedural-grain",
+  "seamPainterOrder": "row-local-before-upper-row-occlusion",
+  "memberWidthsCm": [],
+  "renderedMembers": [
+    {
+      "key": "r2c0",
+      "row": 2,
+      "widthCm": null,
+      "normalizedWidthScale": 1.0,
+      "topTextureLanes": 1
+    },
+    {
+      "key": "r2c1",
+      "row": 2,
+      "widthCm": null,
+      "normalizedWidthScale": 1.0,
+      "topTextureLanes": 1
+    },
+    {
+      "key": "r2c2",
+      "row": 2,
+      "widthCm": null,
+      "normalizedWidthScale": 1.0,
+      "topTextureLanes": 1
+    },
+    {
+      "key": "r2c3",
+      "row": 2,
+      "widthCm": null,
+      "normalizedWidthScale": 1.0,
+      "topTextureLanes": 1
+    },
+    {
+      "key": "r1c0",
+      "row": 1,
+      "widthCm": null,
+      "normalizedWidthScale": 1.0,
+      "topTextureLanes": 1
+    },
+    {
+      "key": "r1c1",
+      "row": 1,
+      "widthCm": null,
+      "normalizedWidthScale": 1.0,
+      "topTextureLanes": 1
+    },
+    {
+      "key": "r1c2",
+      "row": 1,
+      "widthCm": null,
+      "normalizedWidthScale": 1.0,
+      "topTextureLanes": 1
+    },
+    {
+      "key": "r1c3",
+      "row": 1,
+      "widthCm": null,
+      "normalizedWidthScale": 1.0,
+      "topTextureLanes": 1
+    },
+    {
+      "key": "r0c0",
+      "row": 0,
+      "widthCm": null,
+      "normalizedWidthScale": 1.0,
+      "topTextureLanes": 1
+    },
+    {
+      "key": "r0c1",
+      "row": 0,
+      "widthCm": null,
+      "normalizedWidthScale": 1.0,
+      "topTextureLanes": 1
+    },
+    {
+      "key": "r0c2",
+      "row": 0,
+      "widthCm": null,
+      "normalizedWidthScale": 1.0,
+      "topTextureLanes": 1
+    },
+    {
+      "key": "r0c3",
+      "row": 0,
+      "widthCm": null,
+      "normalizedWidthScale": 1.0,
+      "topTextureLanes": 1
+    }
+  ],
+  "antiCloning": {
+    "policy": "deterministic-inset-source-sampling",
+    "maximumSourceOffsetPixels4x": [
+      14,
+      10
+    ],
+    "changesGeometryOrColor": false
+  },
+  "seed": 20260813,
+  "styleVersion": "v11",
+  "approvalStatus": "awaiting-approval",
+  "source": "tmp/artwork-v11-warm-calibration/unit-tiles/plank-warm-v5-unit-tile-master-v11.png",
+  "sourceSha256": "6416963955dcdde7d0c24cf746d42a28b10dbaeac151e0ea6301777e0603d5f8",
+  "outputSha256": "d4802d5232215580d44be3a75aa7021f729c387bc496838fcf8259490b8a52ba",
+  "plannedRuntimePath": "/images/illustrations/configurator-v11/plank-warm-v5-12-15-master-v11.webp"
+}

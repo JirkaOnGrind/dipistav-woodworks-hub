@@ -1,0 +1,51 @@
+{
+  "family": "beam",
+  "styleVersion": "v11",
+  "approvalStatus": "awaiting-approval",
+  "texturePolicy": "canonical-19-45-37-reference",
+  "cornerCleanup": "no-corner-discoloration-no-dirty-corner-shading-no-ao",
+  "entries": [
+    {
+      "image": "tmp/artwork-v11-seams-v2/beam-seams-v2/beam-seams-v2-1-master-v11.webp",
+      "manifest": "tmp/artwork-v11-seams-v2/beam-seams-v2/beam-seams-v2-1-master-v11.manifest.json",
+      "representativeCount": 1,
+      "outputSha256": "3975b4fddbc00a8361466cb02075319291a04fc1d276bbb4c5b1e0799fa54aa6"
+    },
+    {
+      "image": "tmp/artwork-v11-seams-v2/beam-seams-v2/beam-seams-v2-2-master-v11.webp",
+      "manifest": "tmp/artwork-v11-seams-v2/beam-seams-v2/beam-seams-v2-2-master-v11.manifest.json",
+      "representativeCount": 2,
+      "outputSha256": "4340cd78802e2c6b96f80541a0931d1965df8cae358ec0ac7d5cc578214c8956"
+    },
+    {
+      "image": "tmp/artwork-v11-seams-v2/beam-seams-v2/beam-seams-v2-3-4-master-v11.webp",
+      "manifest": "tmp/artwork-v11-seams-v2/beam-seams-v2/beam-seams-v2-3-4-master-v11.manifest.json",
+      "representativeCount": 3,
+      "outputSha256": "42e326f223d541f5d265eaeb68c85be73dff54d9ab17a5432b37104c431a8d6e"
+    },
+    {
+      "image": "tmp/artwork-v11-seams-v2/beam-seams-v2/beam-seams-v2-5-8-master-v11.webp",
+      "manifest": "tmp/artwork-v11-seams-v2/beam-seams-v2/beam-seams-v2-5-8-master-v11.manifest.json",
+      "representativeCount": 6,
+      "outputSha256": "25fd00f8503b74a5747b458bd82e7ca486e2d150707ff26b5ea8ff4f0a084097"
+    },
+    {
+      "image": "tmp/artwork-v11-seams-v2/beam-seams-v2/beam-seams-v2-9-11-master-v11.webp",
+      "manifest": "tmp/artwork-v11-seams-v2/beam-seams-v2/beam-seams-v2-9-11-master-v11.manifest.json",
+      "representativeCount": 9,
+      "outputSha256": "ef80c837f93a43944c2020093d9eff9e7395fc1239bc336e2006f386a0a0b34d"
+    },
+    {
+      "image": "tmp/artwork-v11-seams-v2/beam-seams-v2/beam-seams-v2-12-15-master-v11.webp",
+      "manifest": "tmp/artwork-v11-seams-v2/beam-seams-v2/beam-seams-v2-12-15-master-v11.manifest.json",
+      "representativeCount": 12,
+      "outputSha256": "9d06ec74ada49c871018058ae228f03c2f852b13edee5444830cec73e73bd172"
+    },
+    {
+      "image": "tmp/artwork-v11-seams-v2/beam-seams-v2/beam-seams-v2-16plus-master-v11.webp",
+      "manifest": "tmp/artwork-v11-seams-v2/beam-seams-v2/beam-seams-v2-16plus-master-v11.manifest.json",
+      "representativeCount": 16,
+      "outputSha256": "0cc115f4527d17fa60337bb14f76541e1801bcdafa0cac70d77e0a7784e7311c"
+    }
+  ]
+}

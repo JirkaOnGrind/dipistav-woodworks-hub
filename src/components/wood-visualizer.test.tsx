@@ -15,18 +15,28 @@ function variant(dimensions: ProductVariant["dimensions"]): ProductVariant {
 }
 
 describe("artwork interaction motion", () => {
-  it("expands the non-lath length amplitude by exactly 15 percent", () => {
+  it("expands the current non-lath length amplitude by an additional 10 percent", () => {
     for (const categoryId of ["tramy", "fosny", "prkna"]) {
       expect(getArtworkInteractionMotion(categoryId, variant({ lengthMm: 3000 })).lengthScale).toBe(
-        0.977,
+        0.9747,
       );
       expect(getArtworkInteractionMotion(categoryId, variant({ lengthMm: 4000 })).lengthScale).toBe(
         1,
       );
       expect(getArtworkInteractionMotion(categoryId, variant({ lengthMm: 5000 })).lengthScale).toBe(
-        1.023,
+        1.0253,
       );
-      expect((1.023 - 0.977) / (1.02 - 0.98)).toBeCloseTo(1.15, 8);
+      expect((1.0253 - 1) / (1.023 - 1)).toBeCloseTo(1.1, 8);
+    }
+  });
+
+  it("keeps the non-lath end anchoring unchanged while length scaling grows", () => {
+    for (const categoryId of ["tramy", "fosny", "prkna"]) {
+      expect(getArtworkInteractionMotion(categoryId, variant({ lengthMm: 7000 }))).toMatchObject({
+        lengthScale: 1.0633,
+        translateXPercent: -0.8,
+        translateYPercent: -0.4,
+      });
     }
   });
 
@@ -88,7 +98,7 @@ describe("artwork interaction motion", () => {
   it("uses the same bounded perceptual transform in the standalone beam widget", () => {
     const widget = readFileSync("public/widgets/beam-configurator.js", "utf8");
     expect(widget).toContain("const profileScale = 0.95 + profileProgress * 0.1");
-    expect(widget).toContain("500: 1.023, 600: 1.04025, 700: 1.0575");
+    expect(widget).toContain("500: 1.0253, 600: 1.044275, 700: 1.06325");
     expect(widget).toContain("clamp(lengthScale * profileScale * aspectScaleX, 0.92, 1.08)");
     expect(widget).toContain("scaleX(${scaleX}) scaleY(${scaleY})");
   });

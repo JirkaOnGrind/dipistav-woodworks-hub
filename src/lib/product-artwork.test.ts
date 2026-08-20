@@ -236,9 +236,14 @@ describe("v9 production registry", () => {
             variant.illustrationVariant,
             quantity,
           );
-          expect(resolveArtworkScene(category.id, variant, quantity).scene.source).toBe(
-            v11Override?.source ?? v10Override?.source ?? candidate.source,
-          );
+          const resolved = resolveArtworkScene(category.id, variant, quantity).scene;
+          if (resolved.renderMode === "modular-pallet") {
+            expect(resolved.source).toContain("firewood-pallet-1-master-v10.webp");
+          } else {
+            expect(resolved.source).toBe(
+              v11Override?.source ?? v10Override?.source ?? candidate.source,
+            );
+          }
         }
       }
     }
@@ -332,9 +337,12 @@ describe("v10 production registry", () => {
             variant.illustrationVariant,
             quantity,
           );
-          expect(resolveArtworkScene(category.id, variant, quantity).scene.source).toBe(
-            v11Override?.source ?? candidate.source,
-          );
+          const resolved = resolveArtworkScene(category.id, variant, quantity).scene;
+          if (resolved.renderMode === "modular-pallet") {
+            expect(resolved.source).toContain("firewood-pallet-1-master-v10.webp");
+          } else {
+            expect(resolved.source).toBe(v11Override?.source ?? candidate.source);
+          }
         }
       }
     }
@@ -386,12 +394,12 @@ describe("v11 production registry", () => {
     }
   });
 
-  it("resolves every plank quantity band to the approved family-matched v6 set", () => {
+  it("resolves every plank quantity band to the approved smoothed-top-grain v7 set", () => {
     const category = PRODUCT_CATEGORIES.find((item) => item.id === "fosny")!;
     const variant = category.variants[0];
     for (const quantity of [1, 2, 3, 6, 9, 12, 16]) {
       expect(resolveArtworkScene(category.id, variant, quantity).scene.source).toContain(
-        "configurator-v11/plank-family-match-v6-",
+        "configurator-v11/plank-topgrain-smooth-v7-",
       );
     }
   });

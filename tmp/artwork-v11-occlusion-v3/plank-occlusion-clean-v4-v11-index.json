@@ -1,0 +1,58 @@
+{
+  "family": "plank",
+  "styleVersion": "v11",
+  "approvalStatus": "awaiting-approval",
+  "texturePolicy": "canonical-19-45-37-reference",
+  "edgePolicy": "dark-timber-edges-no-white-halo-no-bright-inner-fringe",
+  "crossSectionContract": "height:width = 1:2.3-2.5",
+  "geometryRatios": {
+    "crossSectionRatio": 2.402891,
+    "depthToWidthRatio": 1.449849,
+    "boardCrossSectionRatio": 4.788677,
+    "lathCrossSectionRatio": 1.372891
+  },
+  "entries": [
+    {
+      "image": "tmp/artwork-v11-occlusion-v3/plank-occlusion-clean-v4/plank-occlusion-clean-v4-1-master-v11.webp",
+      "manifest": "tmp/artwork-v11-occlusion-v3/plank-occlusion-clean-v4/plank-occlusion-clean-v4-1-master-v11.manifest.json",
+      "representativeCount": 1,
+      "outputSha256": "b958f093e37462336f679504ff16eec0c61f31b735e8685df4934c3b50fc9b51"
+    },
+    {
+      "image": "tmp/artwork-v11-occlusion-v3/plank-occlusion-clean-v4/plank-occlusion-clean-v4-2-master-v11.webp",
+      "manifest": "tmp/artwork-v11-occlusion-v3/plank-occlusion-clean-v4/plank-occlusion-clean-v4-2-master-v11.manifest.json",
+      "representativeCount": 2,
+      "outputSha256": "2e1aa4089005416e4939b4d1bbf4e8dc0c3403e5e66dae7911037bbc701d8326"
+    },
+    {
+      "image": "tmp/artwork-v11-occlusion-v3/plank-occlusion-clean-v4/plank-occlusion-clean-v4-3-4-master-v11.webp",
+      "manifest": "tmp/artwork-v11-occlusion-v3/plank-occlusion-clean-v4/plank-occlusion-clean-v4-3-4-master-v11.manifest.json",
+      "representativeCount": 3,
+      "outputSha256": "cc21d24b2bdfd731f606c2f2ac1bd432248fdb004237afc0938a33b0ed19a59c"
+    },
+    {
+      "image": "tmp/artwork-v11-occlusion-v3/plank-occlusion-clean-v4/plank-occlusion-clean-v4-5-8-master-v11.webp",
+      "manifest": "tmp/artwork-v11-occlusion-v3/plank-occlusion-clean-v4/plank-occlusion-clean-v4-5-8-master-v11.manifest.json",
+      "representativeCount": 6,
+      "outputSha256": "f8bfe6bb9d1a3a4efd8662a28d4b0dfa0f4e5f6f19ec497e124c161f03597b5e"
+    },
+    {
+      "image": "tmp/artwork-v11-occlusion-v3/plank-occlusion-clean-v4/plank-occlusion-clean-v4-9-11-master-v11.webp",
+      "manifest": "tmp/artwork-v11-occlusion-v3/plank-occlusion-clean-v4/plank-occlusion-clean-v4-9-11-master-v11.manifest.json",
+      "representativeCount": 9,
+      "outputSha256": "192e55f10daa950a1d71daa10a9bcc46999856786021affa2268488462b21cb7"
+    },
+    {
+      "image": "tmp/artwork-v11-occlusion-v3/plank-occlusion-clean-v4/plank-occlusion-clean-v4-12-15-master-v11.webp",
+      "manifest": "tmp/artwork-v11-occlusion-v3/plank-occlusion-clean-v4/plank-occlusion-clean-v4-12-15-master-v11.manifest.json",
+      "representativeCount": 12,
+      "outputSha256": "b511d98ff5d91900cc919f693aab4d1541f83de66f7a36dc192ab905ef16d542"
+    },
+    {
+      "image": "tmp/artwork-v11-occlusion-v3/plank-occlusion-clean-v4/plank-occlusion-clean-v4-16plus-master-v11.webp",
+      "manifest": "tmp/artwork-v11-occlusion-v3/plank-occlusion-clean-v4/plank-occlusion-clean-v4-16plus-master-v11.manifest.json",
+      "representativeCount": 16,
+      "outputSha256": "454870f28d842cf5fae76f3059ac3485b61cd64285aca293f6e552e15fba8710"
+    }
+  ]
+}

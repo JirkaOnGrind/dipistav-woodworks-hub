@@ -51,12 +51,12 @@ function getLegacyLengthScale(lengthMm?: number) {
 function getLengthScale(categoryId: string, lengthMm?: number) {
   if (categoryId === "late") return getLegacyLengthScale(lengthMm);
   if (!lengthMm) return 1;
-  if (lengthMm <= 3000) return 0.977;
-  if (lengthMm <= 4000) return 0.977 + ((lengthMm - 3000) / 1000) * 0.023;
-  if (lengthMm <= 5000) return 1 + ((lengthMm - 4000) / 1000) * 0.023;
-  if (lengthMm <= 6000) return 1.023 + ((lengthMm - 5000) / 1000) * 0.01725;
-  if (lengthMm <= 7000) return 1.04025 + ((lengthMm - 6000) / 1000) * 0.01725;
-  return 1.0575;
+  if (lengthMm <= 3000) return 0.9747;
+  if (lengthMm <= 4000) return 0.9747 + ((lengthMm - 3000) / 1000) * 0.0253;
+  if (lengthMm <= 5000) return 1 + ((lengthMm - 4000) / 1000) * 0.0253;
+  if (lengthMm <= 6000) return 1.0253 + ((lengthMm - 5000) / 1000) * 0.018975;
+  if (lengthMm <= 7000) return 1.044275 + ((lengthMm - 6000) / 1000) * 0.018975;
+  return 1.06325;
 }
 
 function getProfileMotion(categoryId: string, variant?: ProductVariant) {
@@ -143,7 +143,7 @@ export function getArtworkInteractionMotion(
   const depthProgress =
     categoryId === "late"
       ? clamp((lengthScale - 0.95) / 0.15, 0, 1)
-      : clamp((lengthScale - 0.977) / 0.0805, 0, 1);
+      : clamp((lengthScale - 0.9747) / 0.08855, 0, 1);
   const translationStrength = categoryId === "late" ? 1.8 : 0.8;
   return {
     lengthScale: Number(lengthScale.toFixed(4)),

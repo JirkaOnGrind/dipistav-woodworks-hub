@@ -1,0 +1,58 @@
+{
+  "family": "plank",
+  "styleVersion": "v11",
+  "approvalStatus": "awaiting-approval",
+  "texturePolicy": "canonical-19-45-37-reference",
+  "edgePolicy": "dark-timber-edges-no-white-halo-no-bright-inner-fringe",
+  "crossSectionContract": "height:width = 1:2.3-2.5",
+  "geometryRatios": {
+    "crossSectionRatio": 2.402891,
+    "depthToWidthRatio": 1.449849,
+    "boardCrossSectionRatio": 4.788677,
+    "lathCrossSectionRatio": 1.372891
+  },
+  "entries": [
+    {
+      "image": "tmp/artwork-v11-topgrain-smooth-v7-determinism-final/plank-topgrain-smooth-v7/plank-topgrain-smooth-v7-1-master-v11.webp",
+      "manifest": "tmp/artwork-v11-topgrain-smooth-v7-determinism-final/plank-topgrain-smooth-v7/plank-topgrain-smooth-v7-1-master-v11.manifest.json",
+      "representativeCount": 1,
+      "outputSha256": "3735fc957466868a40cfbdf03338c235a0e977653ad1cb7025afd21420600c5e"
+    },
+    {
+      "image": "tmp/artwork-v11-topgrain-smooth-v7-determinism-final/plank-topgrain-smooth-v7/plank-topgrain-smooth-v7-2-master-v11.webp",
+      "manifest": "tmp/artwork-v11-topgrain-smooth-v7-determinism-final/plank-topgrain-smooth-v7/plank-topgrain-smooth-v7-2-master-v11.manifest.json",
+      "representativeCount": 2,
+      "outputSha256": "b6f2ea21857833505c18d532a4b4aef02312cee5cd0c2c596c3eab788d2b601b"
+    },
+    {
+      "image": "tmp/artwork-v11-topgrain-smooth-v7-determinism-final/plank-topgrain-smooth-v7/plank-topgrain-smooth-v7-3-4-master-v11.webp",
+      "manifest": "tmp/artwork-v11-topgrain-smooth-v7-determinism-final/plank-topgrain-smooth-v7/plank-topgrain-smooth-v7-3-4-master-v11.manifest.json",
+      "representativeCount": 3,
+      "outputSha256": "6a06fc767b7bbe7eed8a72be2924bc4b2bd1e4254b89fc3b30357ce782c926ef"
+    },
+    {
+      "image": "tmp/artwork-v11-topgrain-smooth-v7-determinism-final/plank-topgrain-smooth-v7/plank-topgrain-smooth-v7-5-8-master-v11.webp",
+      "manifest": "tmp/artwork-v11-topgrain-smooth-v7-determinism-final/plank-topgrain-smooth-v7/plank-topgrain-smooth-v7-5-8-master-v11.manifest.json",
+      "representativeCount": 6,
+      "outputSha256": "9d13cb24dfe9a4f7901b873f67cd30340a46a68015d2a807a5d0dcb13e22903d"
+    },
+    {
+      "image": "tmp/artwork-v11-topgrain-smooth-v7-determinism-final/plank-topgrain-smooth-v7/plank-topgrain-smooth-v7-9-11-master-v11.webp",
+      "manifest": "tmp/artwork-v11-topgrain-smooth-v7-determinism-final/plank-topgrain-smooth-v7/plank-topgrain-smooth-v7-9-11-master-v11.manifest.json",
+      "representativeCount": 9,
+      "outputSha256": "479be4e96b86b3b3df19810cbb0f15e49ed66d2f04fef268540d45bf827f9d42"
+    },
+    {
+      "image": "tmp/artwork-v11-topgrain-smooth-v7-determinism-final/plank-topgrain-smooth-v7/plank-topgrain-smooth-v7-12-15-master-v11.webp",
+      "manifest": "tmp/artwork-v11-topgrain-smooth-v7-determinism-final/plank-topgrain-smooth-v7/plank-topgrain-smooth-v7-12-15-master-v11.manifest.json",
+      "representativeCount": 12,
+      "outputSha256": "c45859a8f361286a951847157124ab82023b10813cf796c296ca06c63008e9d9"
+    },
+    {
+      "image": "tmp/artwork-v11-topgrain-smooth-v7-determinism-final/plank-topgrain-smooth-v7/plank-topgrain-smooth-v7-16plus-master-v11.webp",
+      "manifest": "tmp/artwork-v11-topgrain-smooth-v7-determinism-final/plank-topgrain-smooth-v7/plank-topgrain-smooth-v7-16plus-master-v11.manifest.json",
+      "representativeCount": 16,
+      "outputSha256": "478305da6b1f93f1fe3c8c917adc33084b103f0f6f232deafe6b2f9476c8d2a3"
+    }
+  ]
+}

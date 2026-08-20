@@ -1,0 +1,232 @@
+﻿[
+    {
+        "Path":  "public/images/illustrations/configurator-v11/beam-seams-v2-12-15-master-v11.webp",
+        "Sha256":  "9d06ec74ada49c871018058ae228f03c2f852b13edee5444830cec73e73bd172",
+        "Bytes":  1303504
+    },
+    {
+        "Path":  "public/images/illustrations/configurator-v11/beam-seams-v2-16plus-master-v11.webp",
+        "Sha256":  "0cc115f4527d17fa60337bb14f76541e1801bcdafa0cac70d77e0a7784e7311c",
+        "Bytes":  1213680
+    },
+    {
+        "Path":  "public/images/illustrations/configurator-v11/beam-seams-v2-1-master-v11.webp",
+        "Sha256":  "3975b4fddbc00a8361466cb02075319291a04fc1d276bbb4c5b1e0799fa54aa6",
+        "Bytes":  689376
+    },
+    {
+        "Path":  "public/images/illustrations/configurator-v11/beam-seams-v2-2-master-v11.webp",
+        "Sha256":  "4340cd78802e2c6b96f80541a0931d1965df8cae358ec0ac7d5cc578214c8956",
+        "Bytes":  770980
+    },
+    {
+        "Path":  "public/images/illustrations/configurator-v11/beam-seams-v2-3-4-master-v11.webp",
+        "Sha256":  "42e326f223d541f5d265eaeb68c85be73dff54d9ab17a5432b37104c431a8d6e",
+        "Bytes":  942014
+    },
+    {
+        "Path":  "public/images/illustrations/configurator-v11/beam-seams-v2-5-8-master-v11.webp",
+        "Sha256":  "25fd00f8503b74a5747b458bd82e7ca486e2d150707ff26b5ea8ff4f0a084097",
+        "Bytes":  1155576
+    },
+    {
+        "Path":  "public/images/illustrations/configurator-v11/beam-seams-v2-9-11-master-v11.webp",
+        "Sha256":  "ef80c837f93a43944c2020093d9eff9e7395fc1239bc336e2006f386a0a0b34d",
+        "Bytes":  1155484
+    },
+    {
+        "Path":  "public/images/illustrations/configurator-v11/board-texture-v2-12-15-master-v11.webp",
+        "Sha256":  "36072e6fb576e34a8d9fd5ae6d8c66a31761cba4b69c58f51bdf0d23e7262b2d",
+        "Bytes":  745916
+    },
+    {
+        "Path":  "public/images/illustrations/configurator-v11/board-texture-v2-16plus-master-v11.webp",
+        "Sha256":  "168fc8d9c6176be24527a33cd53c262c11f9fc751dd1532a5cefb3ef85deae09",
+        "Bytes":  861764
+    },
+    {
+        "Path":  "public/images/illustrations/configurator-v11/board-texture-v2-1-master-v11.webp",
+        "Sha256":  "c56a1e6addbff7a4132a4a5994c435217b9b1b7cd9d4d57a189dc0d79aac7e9d",
+        "Bytes":  572214
+    },
+    {
+        "Path":  "public/images/illustrations/configurator-v11/board-texture-v2-2-master-v11.webp",
+        "Sha256":  "9f4d7f8fb83a80ac5243b3b8b04ad7caec338b500699a0bf9f2d93a377004575",
+        "Bytes":  655598
+    },
+    {
+        "Path":  "public/images/illustrations/configurator-v11/board-texture-v2-3-4-master-v11.webp",
+        "Sha256":  "7e7cd454d4214eecfc6f94bbe6495aafc41c0f1a3b983d63fbc2b17a56154012",
+        "Bytes":  714266
+    },
+    {
+        "Path":  "public/images/illustrations/configurator-v11/board-texture-v2-5-8-master-v11.webp",
+        "Sha256":  "7ed4267b0a10d42dd8a9d7c78a9795a35d527a6371c52ad9dc7b099e7695699c",
+        "Bytes":  724760
+    },
+    {
+        "Path":  "public/images/illustrations/configurator-v11/board-texture-v2-9-11-master-v11.webp",
+        "Sha256":  "a0df85bfb83c3e1480b116082c159a8871d1c39cdf6740cc97ed6745d34e1761",
+        "Bytes":  862014
+    },
+    {
+        "Path":  "public/images/illustrations/configurator-v11/board-unsorted-narrow-v2-12-15-master-v11.webp",
+        "Sha256":  "7a4d8d8623e97a43109b0873ec1aa6a4ba798c75306bd4df9dc4e3e1d1197426",
+        "Bytes":  744416
+    },
+    {
+        "Path":  "public/images/illustrations/configurator-v11/board-unsorted-narrow-v2-16plus-master-v11.webp",
+        "Sha256":  "37ab4cf5543971506f8267fb73f33d7cfeee2be9c8055ce6173bd1c0eea96bff",
+        "Bytes":  859662
+    },
+    {
+        "Path":  "public/images/illustrations/configurator-v11/board-unsorted-narrow-v2-1-master-v11.webp",
+        "Sha256":  "77fb342b913faad4ca0a2056c59feff83e73c303c8a18afb4de5ba6cd6d92174",
+        "Bytes":  571446
+    },
+    {
+        "Path":  "public/images/illustrations/configurator-v11/board-unsorted-narrow-v2-2-master-v11.webp",
+        "Sha256":  "4727acb78f7b58a283b8fda046a862f4b6db44550f2ae4d8dda821b822db455d",
+        "Bytes":  656138
+    },
+    {
+        "Path":  "public/images/illustrations/configurator-v11/board-unsorted-narrow-v2-3-4-master-v11.webp",
+        "Sha256":  "2240bf782a1e2a353c90a589f24b65dc7c96399a5068bd72ab75e01b58e2f721",
+        "Bytes":  714330
+    },
+    {
+        "Path":  "public/images/illustrations/configurator-v11/board-unsorted-narrow-v2-5-8-master-v11.webp",
+        "Sha256":  "5304516e7316af4d23fa99737b9bb2d0f691f6bb27236da4abafbf06b3b39bae",
+        "Bytes":  721744
+    },
+    {
+        "Path":  "public/images/illustrations/configurator-v11/board-unsorted-narrow-v2-9-11-master-v11.webp",
+        "Sha256":  "daaee0013dc6b229cc5f03bd32d56de467d5c9a1df2cf13f16d7e268c7ac6e78",
+        "Bytes":  857838
+    },
+    {
+        "Path":  "public/images/illustrations/configurator-v11/board-unsorted-wide-v2-12-15-master-v11.webp",
+        "Sha256":  "1ff260d7af64c1d2c364fe61b629dc16d39004fecec4a7492b74ad77e9a5c804",
+        "Bytes":  743796
+    },
+    {
+        "Path":  "public/images/illustrations/configurator-v11/board-unsorted-wide-v2-16plus-master-v11.webp",
+        "Sha256":  "3cf228d63a96d9dc593a569a6fc3a4aa4a0d665de91291a9c77971a06a666ec1",
+        "Bytes":  860126
+    },
+    {
+        "Path":  "public/images/illustrations/configurator-v11/board-unsorted-wide-v2-1-master-v11.webp",
+        "Sha256":  "a2de892e01c3a6c87bd66a7407e386e2bf8ad39f76f808cdf24b851a677e239f",
+        "Bytes":  572050
+    },
+    {
+        "Path":  "public/images/illustrations/configurator-v11/board-unsorted-wide-v2-2-master-v11.webp",
+        "Sha256":  "2b5ada2f4e2b2cd62103d6b1cae58668dfb250603bfef06bdd3cfe65b22b7ad7",
+        "Bytes":  656580
+    },
+    {
+        "Path":  "public/images/illustrations/configurator-v11/board-unsorted-wide-v2-3-4-master-v11.webp",
+        "Sha256":  "940ca29b460e1bccad87265ec5333b8eddb4802e744fc6ecf7c401ae85798757",
+        "Bytes":  713954
+    },
+    {
+        "Path":  "public/images/illustrations/configurator-v11/board-unsorted-wide-v2-5-8-master-v11.webp",
+        "Sha256":  "c416a7020d48c42313dbbad4a0b26e81f880ba4bea9f96c14e883e27a209bf44",
+        "Bytes":  724808
+    },
+    {
+        "Path":  "public/images/illustrations/configurator-v11/board-unsorted-wide-v2-9-11-master-v11.webp",
+        "Sha256":  "20f2bd210bbc63ebf8e913b62fb2e119530c48ef42c4a95dd3001426cd169a9f",
+        "Bytes":  861744
+    },
+    {
+        "Path":  "public/images/illustrations/configurator-v11/lath-production-v2-12-15-master-v11.webp",
+        "Sha256":  "833434100329b47120603f832607292130c8af3be60f23d7b2b49e296824adb4",
+        "Bytes":  1191282
+    },
+    {
+        "Path":  "public/images/illustrations/configurator-v11/lath-production-v2-16plus-master-v11.webp",
+        "Sha256":  "75cbbfb627435549e7613efb80b8ec679efc343e118b079d079484637b6f6e1f",
+        "Bytes":  1290556
+    },
+    {
+        "Path":  "public/images/illustrations/configurator-v11/lath-production-v2-1-master-v11.webp",
+        "Sha256":  "561e89b5c4f2d8250cfd0ea9f9fe1326615c4f191616300ad59b83186fd6b624",
+        "Bytes":  366590
+    },
+    {
+        "Path":  "public/images/illustrations/configurator-v11/lath-production-v2-2-master-v11.webp",
+        "Sha256":  "c853fca4b29a7fb63372901facdf7d31abfa780d16f44b4e9a51ab6f86cf1ef0",
+        "Bytes":  571110
+    },
+    {
+        "Path":  "public/images/illustrations/configurator-v11/lath-production-v2-3-4-master-v11.webp",
+        "Sha256":  "14454aede3fef8cbb5c429f1caa3e671a89aedc9323dd6cf0b595efef491bb17",
+        "Bytes":  706730
+    },
+    {
+        "Path":  "public/images/illustrations/configurator-v11/lath-production-v2-5-8-master-v11.webp",
+        "Sha256":  "0aa625ffd9c54c60a89b3291daf942a483792d70e490fd77f949120504935b1e",
+        "Bytes":  951850
+    },
+    {
+        "Path":  "public/images/illustrations/configurator-v11/lath-production-v2-9-11-master-v11.webp",
+        "Sha256":  "d257aa1e7afcd6aea33ac47a338bb055e49775ad49c71c2c43d92c8a4d7c5332",
+        "Bytes":  1192902
+    },
+    {
+        "Path":  "public/images/illustrations/configurator-v11/plank-production-v3-12-15-master-v11.webp",
+        "Sha256":  "dbc5d1580301f305a5981c469755889ef5033a203898a9f9d08c0854f12694e7",
+        "Bytes":  1057526
+    },
+    {
+        "Path":  "public/images/illustrations/configurator-v11/plank-production-v3-16plus-master-v11.webp",
+        "Sha256":  "61ab92f4992b68c4bb77678697b5498e565320856c8ad29e237cb9f50f142633",
+        "Bytes":  1303312
+    },
+    {
+        "Path":  "public/images/illustrations/configurator-v11/plank-production-v3-1-master-v11.webp",
+        "Sha256":  "2308911ae8788f676c0b2c5c949d36b6e35670044e057d4d0216f7e2ce244ae3",
+        "Bytes":  784028
+    },
+    {
+        "Path":  "public/images/illustrations/configurator-v11/plank-production-v3-2-master-v11.webp",
+        "Sha256":  "f5f6930358322113ab7f00528c1dc82d1c4cb67b2b52304a2c69c6f54a62e12a",
+        "Bytes":  700988
+    },
+    {
+        "Path":  "public/images/illustrations/configurator-v11/plank-production-v3-3-4-master-v11.webp",
+        "Sha256":  "d4c515bd723cb618c558a87b14f164607c2363351ac71e7c4a60ddadc40e3139",
+        "Bytes":  868198
+    },
+    {
+        "Path":  "public/images/illustrations/configurator-v11/plank-production-v3-5-8-master-v11.webp",
+        "Sha256":  "dafe94993b909c9889119e37c0bfbb41d3a24f069151449d8e0035f870a83efa",
+        "Bytes":  910206
+    },
+    {
+        "Path":  "public/images/illustrations/configurator-v11/plank-production-v3-9-11-master-v11.webp",
+        "Sha256":  "5c5a55e518e0622b51dc2858e43b8cc67d51bcac308e9c49263080d787dec250",
+        "Bytes":  1196064
+    },
+    {
+        "Path":  "public/images/illustrations/homepage-v11/fosny-icon-production-v3-master-v11.webp",
+        "Sha256":  "dafe94993b909c9889119e37c0bfbb41d3a24f069151449d8e0035f870a83efa",
+        "Bytes":  910206
+    },
+    {
+        "Path":  "public/images/illustrations/homepage-v11/late-icon-production-v2-master-v11.webp",
+        "Sha256":  "d257aa1e7afcd6aea33ac47a338bb055e49775ad49c71c2c43d92c8a4d7c5332",
+        "Bytes":  1192902
+    },
+    {
+        "Path":  "public/images/illustrations/homepage-v11/prkna-icon-production-v2-master-v11.webp",
+        "Sha256":  "7ed4267b0a10d42dd8a9d7c78a9795a35d527a6371c52ad9dc7b099e7695699c",
+        "Bytes":  724760
+    },
+    {
+        "Path":  "public/images/illustrations/homepage-v11/tramy-icon-production-v2-master-v11.webp",
+        "Sha256":  "42e326f223d541f5d265eaeb68c85be73dff54d9ab17a5432b37104c431a8d6e",
+        "Bytes":  942014
+    }
+]

@@ -1,0 +1,31 @@
+{
+  "styleVersion": "v11",
+  "approvalStatus": "approved",
+  "scope": "timber-only",
+  "entries": [
+    {
+      "image": "tmp/artwork-v11-production/homepage-derived/homepage/tramy-icon-production-v2-master-v11.webp",
+      "manifest": "tmp/artwork-v11-production/homepage-derived/homepage/tramy-icon-production-v2-master-v11.manifest.json",
+      "plannedRuntimePath": "/images/illustrations/homepage-v11/tramy-icon-production-v2-master-v11.webp",
+      "outputSha256": "42e326f223d541f5d265eaeb68c85be73dff54d9ab17a5432b37104c431a8d6e"
+    },
+    {
+      "image": "tmp/artwork-v11-production/homepage-derived/homepage/fosny-icon-production-v3-master-v11.webp",
+      "manifest": "tmp/artwork-v11-production/homepage-derived/homepage/fosny-icon-production-v3-master-v11.manifest.json",
+      "plannedRuntimePath": "/images/illustrations/homepage-v11/fosny-icon-production-v3-master-v11.webp",
+      "outputSha256": "dafe94993b909c9889119e37c0bfbb41d3a24f069151449d8e0035f870a83efa"
+    },
+    {
+      "image": "tmp/artwork-v11-production/homepage-derived/homepage/prkna-icon-production-v2-master-v11.webp",
+      "manifest": "tmp/artwork-v11-production/homepage-derived/homepage/prkna-icon-production-v2-master-v11.manifest.json",
+      "plannedRuntimePath": "/images/illustrations/homepage-v11/prkna-icon-production-v2-master-v11.webp",
+      "outputSha256": "7ed4267b0a10d42dd8a9d7c78a9795a35d527a6371c52ad9dc7b099e7695699c"
+    },
+    {
+      "image": "tmp/artwork-v11-production/homepage-derived/homepage/late-icon-production-v2-master-v11.webp",
+      "manifest": "tmp/artwork-v11-production/homepage-derived/homepage/late-icon-production-v2-master-v11.manifest.json",
+      "plannedRuntimePath": "/images/illustrations/homepage-v11/late-icon-production-v2-master-v11.webp",
+      "outputSha256": "d257aa1e7afcd6aea33ac47a338bb055e49775ad49c71c2c43d92c8a4d7c5332"
+    }
+  ]
+}

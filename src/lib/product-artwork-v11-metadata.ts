@@ -55,37 +55,37 @@ export const V11_ARTWORK_METADATA: Record<string, V11ArtworkMetadata> = {
   "plank-1-master-v11": metadata(
     0.386368,
     { x: 0.074219, y: 0.146484, width: 0.851562, height: 0.707031 },
-    "2308911ae8788f676c0b2c5c949d36b6e35670044e057d4d0216f7e2ce244ae3",
+    "3735fc957466868a40cfbdf03338c235a0e977653ad1cb7025afd21420600c5e",
   ),
   "plank-2-master-v11": metadata(
     0.323453,
     { x: 0.073568, y: 0.211914, width: 0.852865, height: 0.576172 },
-    "f5f6930358322113ab7f00528c1dc82d1c4cb67b2b52304a2c69c6f54a62e12a",
+    "b6f2ea21857833505c18d532a4b4aef02312cee5cd0c2c596c3eab788d2b601b",
   ),
   "plank-3-4-master-v11": metadata(
     0.383638,
     { x: 0.073568, y: 0.150391, width: 0.852865, height: 0.699219 },
-    "81a58f1c002b1f863af30989d846725a8d091082264684f59dbb67a1eb5a3b6f",
+    "6a06fc767b7bbe7eed8a72be2924bc4b2bd1e4254b89fc3b30357ce782c926ef",
   ),
   "plank-5-8-master-v11": metadata(
     0.377684,
     { x: 0.073568, y: 0.185547, width: 0.852865, height: 0.628906 },
-    "94f89b8e450c92f6e04750885ce9f0f69264d4f9ee8355c0ea163d339409c6a8",
+    "9d13cb24dfe9a4f7901b873f67cd30340a46a68015d2a807a5d0dcb13e22903d",
   ),
   "plank-9-11-master-v11": metadata(
     0.484341,
     { x: 0.073568, y: 0.123047, width: 0.852865, height: 0.753906 },
-    "b62110e3b48fa4f9ca3891b4a8f963744f74c3bae24a09a4e7a1071c37af1e70",
+    "479be4e96b86b3b3df19810cbb0f15e49ed66d2f04fef268540d45bf827f9d42",
   ),
   "plank-12-15-master-v11": metadata(
     0.404932,
     { x: 0.073568, y: 0.167969, width: 0.852865, height: 0.664062 },
-    "5e5b06c7b5cae02cb216640df050763be929e5dd573f0c455b5b5c4b2ccdb981",
+    "c45859a8f361286a951847157124ab82023b10813cf796c296ca06c63008e9d9",
   ),
   "plank-16plus-master-v11": metadata(
     0.491551,
     { x: 0.073568, y: 0.117188, width: 0.852865, height: 0.765625 },
-    "ac80779836630b3e94279fb4ec8d87525ed210b7389f64a5ebeab452287c19d2",
+    "478305da6b1f93f1fe3c8c917adc33084b103f0f6f232deafe6b2f9476c8d2a3",
   ),
   "board-1-master-v11": metadata(
     0.229557,

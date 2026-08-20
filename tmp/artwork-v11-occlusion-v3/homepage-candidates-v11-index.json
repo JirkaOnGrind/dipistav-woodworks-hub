@@ -1,0 +1,21 @@
+{
+  "styleVersion": "v11",
+  "approvalStatus": "awaiting-approval",
+  "entries": [
+    {
+      "categoryId": "tramy",
+      "image": "tmp/artwork-v11-occlusion-v3/homepage-candidates/tramy-icon-occlusion-v3-master-v11.webp",
+      "sha256": "8086603bdef7e6b3f3e1a9b3d62e11084fad0425377d017b536005cb993bda10"
+    },
+    {
+      "categoryId": "fosny",
+      "image": "tmp/artwork-v11-occlusion-v3/homepage-candidates/fosny-icon-occlusion-clean-v4-master-v11.webp",
+      "sha256": "f8bfe6bb9d1a3a4efd8662a28d4b0dfa0f4e5f6f19ec497e124c161f03597b5e"
+    },
+    {
+      "categoryId": "prkna",
+      "image": "tmp/artwork-v11-occlusion-v3/homepage-candidates/prkna-icon-occlusion-v3-master-v11.webp",
+      "sha256": "d78a968abad205e59675d133820a5c2f62510de1f29f72758a62d0b17afc5796"
+    }
+  ]
+}

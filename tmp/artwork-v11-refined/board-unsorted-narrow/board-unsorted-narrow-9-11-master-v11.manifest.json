@@ -1,0 +1,171 @@
+{
+  "canvas": {
+    "width": 1536,
+    "height": 1024
+  },
+  "alphaBoundsPixels": {
+    "left": 113,
+    "top": 218,
+    "right": 1423,
+    "bottom": 806
+  },
+  "alphaBounds": {
+    "x": 0.073568,
+    "y": 0.212891,
+    "width": 0.852865,
+    "height": 0.574219
+  },
+  "opticalCenter": {
+    "x": 0.5,
+    "y": 0.5
+  },
+  "alphaCoverage": 0.326497,
+  "interiorAlphaMin": 248,
+  "margins": {
+    "left": 113,
+    "top": 218,
+    "right": 113,
+    "bottom": 218
+  },
+  "family": "board-unsorted-narrow",
+  "quantityBand": {
+    "min": 9,
+    "max": 11
+  },
+  "representativeCount": 9,
+  "layout": "3x3",
+  "expectedVisibleConstructionSeams": 16,
+  "camera": {
+    "projection": "orthographic",
+    "azimuthDegrees": 40,
+    "elevationDegrees": 27
+  },
+  "designVectors": {
+    "column": [
+      225.0,
+      -47.0
+    ],
+    "rowDown": [
+      0.0,
+      48.0
+    ],
+    "back": [
+      -380.0,
+      -187.0
+    ]
+  },
+  "autoFit": {
+    "policy": "adaptive-bounds",
+    "safeInset": 0.07,
+    "contourReservePixels": 8.0,
+    "maxScale": 2.0,
+    "renderScale": 1.23692891,
+    "translation": [
+      585.553,
+      625.7975
+    ]
+  },
+  "lineWeights": {
+    "outer": 4.0,
+    "edge": 3.0,
+    "seam": 3.0,
+    "rings": 1.5,
+    "grain": 1.25
+  },
+  "palette": [
+    "#501801",
+    "#501801",
+    "#6B310B",
+    "#804015",
+    "#965622",
+    "#C5813B",
+    "#F0A242",
+    "#F4A847",
+    "#EEA847"
+  ],
+  "canonicalTextureSource": "artwork-sources/beams/beam-unit-tile-master-v1-4x.png",
+  "canonicalTextureSha256": "752db88a14866587604e271225b5c85f82d1974d96a62a2cd8ec57beadf3bec0",
+  "visualReference": "Obrázek Codex 12. 8. 2026 19_45_37.png",
+  "texturePolicy": "reference-face-transfer-with-clean-polygon-corners",
+  "cornerCleanup": "no-corner-discoloration-no-dirty-corner-shading-no-ao",
+  "edgePolicy": "dark-timber-edges-no-white-halo-no-bright-inner-fringe",
+  "textureCoverage": "full-face-to-contour",
+  "topFaceGrainLines": 8,
+  "memberWidthsCm": [
+    8.0,
+    14.0,
+    10.0,
+    12.0
+  ],
+  "renderedMembers": [
+    {
+      "key": "r2c0",
+      "row": 2,
+      "widthCm": 10.0,
+      "normalizedWidthScale": 1.0
+    },
+    {
+      "key": "r2c1",
+      "row": 2,
+      "widthCm": 12.0,
+      "normalizedWidthScale": 1.2
+    },
+    {
+      "key": "r2c2",
+      "row": 2,
+      "widthCm": 8.0,
+      "normalizedWidthScale": 0.8
+    },
+    {
+      "key": "r1c0",
+      "row": 1,
+      "widthCm": 14.0,
+      "normalizedWidthScale": 1.166667
+    },
+    {
+      "key": "r1c1",
+      "row": 1,
+      "widthCm": 10.0,
+      "normalizedWidthScale": 0.833333
+    },
+    {
+      "key": "r1c2",
+      "row": 1,
+      "widthCm": 12.0,
+      "normalizedWidthScale": 1.0
+    },
+    {
+      "key": "r0c0",
+      "row": 0,
+      "widthCm": 8.0,
+      "normalizedWidthScale": 0.75
+    },
+    {
+      "key": "r0c1",
+      "row": 0,
+      "widthCm": 14.0,
+      "normalizedWidthScale": 1.3125
+    },
+    {
+      "key": "r0c2",
+      "row": 0,
+      "widthCm": 10.0,
+      "normalizedWidthScale": 0.9375
+    }
+  ],
+  "antiCloning": {
+    "policy": "deterministic-inset-source-sampling",
+    "maximumSourceOffsetPixels4x": [
+      14,
+      10
+    ],
+    "changesGeometryOrColor": false
+  },
+  "seed": 20260813,
+  "styleVersion": "v11",
+  "approvalStatus": "awaiting-approval",
+  "source": "tmp/artwork-v11-refined/unit-tiles/board-unsorted-narrow-unit-tile-master-v11.png",
+  "sourceSha256": "a042d36400793420bdc55c8db7ef012a16638dec36550dcd99b6c8a3cb0a38ef",
+  "outputSha256": "35a4ab54812685a8734a0a7c71c41d6fe743ad54c6f7c1588132d903390b3c9c",
+  "plannedRuntimePath": "/images/illustrations/configurator-v11/board-unsorted-narrow-9-11-master-v11.webp"
+}

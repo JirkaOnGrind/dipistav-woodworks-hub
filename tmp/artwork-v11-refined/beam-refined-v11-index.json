@@ -1,0 +1,51 @@
+{
+  "family": "beam",
+  "styleVersion": "v11",
+  "approvalStatus": "awaiting-approval",
+  "texturePolicy": "canonical-19-45-37-reference",
+  "cornerCleanup": "no-corner-discoloration-no-dirty-corner-shading-no-ao",
+  "entries": [
+    {
+      "image": "tmp/artwork-v11-refined/beam-refined/beam-refined-1-master-v11.webp",
+      "manifest": "tmp/artwork-v11-refined/beam-refined/beam-refined-1-master-v11.manifest.json",
+      "representativeCount": 1,
+      "outputSha256": "b76871ad2fce3dbf50655b2e2f052d436d0ab6c1dfcac1f2a743e5d1794620ff"
+    },
+    {
+      "image": "tmp/artwork-v11-refined/beam-refined/beam-refined-2-master-v11.webp",
+      "manifest": "tmp/artwork-v11-refined/beam-refined/beam-refined-2-master-v11.manifest.json",
+      "representativeCount": 2,
+      "outputSha256": "5f6a5c6922c9b8c2edd8603f0b76f6ae48e418eb20226e59de510781ba4a97a2"
+    },
+    {
+      "image": "tmp/artwork-v11-refined/beam-refined/beam-refined-3-4-master-v11.webp",
+      "manifest": "tmp/artwork-v11-refined/beam-refined/beam-refined-3-4-master-v11.manifest.json",
+      "representativeCount": 3,
+      "outputSha256": "a1612ff8b7e8da4be77f13430c619493efb2bc324aa8fe555cd10def9144ad30"
+    },
+    {
+      "image": "tmp/artwork-v11-refined/beam-refined/beam-refined-5-8-master-v11.webp",
+      "manifest": "tmp/artwork-v11-refined/beam-refined/beam-refined-5-8-master-v11.manifest.json",
+      "representativeCount": 6,
+      "outputSha256": "32e9201b57f8728029ad31fe07a89eda04d7b32068f6f10bca7e33476e82cc7c"
+    },
+    {
+      "image": "tmp/artwork-v11-refined/beam-refined/beam-refined-9-11-master-v11.webp",
+      "manifest": "tmp/artwork-v11-refined/beam-refined/beam-refined-9-11-master-v11.manifest.json",
+      "representativeCount": 9,
+      "outputSha256": "2f966374a3ecb313ad3bf813dbdeeb9d5e1c128db5ccb4af309a33f3964a5c76"
+    },
+    {
+      "image": "tmp/artwork-v11-refined/beam-refined/beam-refined-12-15-master-v11.webp",
+      "manifest": "tmp/artwork-v11-refined/beam-refined/beam-refined-12-15-master-v11.manifest.json",
+      "representativeCount": 12,
+      "outputSha256": "03f44ec48e138b5cce7c0e327701854285b13b1fe89201d002b5ceafd6a41fca"
+    },
+    {
+      "image": "tmp/artwork-v11-refined/beam-refined/beam-refined-16plus-master-v11.webp",
+      "manifest": "tmp/artwork-v11-refined/beam-refined/beam-refined-16plus-master-v11.manifest.json",
+      "representativeCount": 16,
+      "outputSha256": "8e5cfda64e933d9204dec474a1f4220ebf0fedf9754d5a37ed99b98191a18ee1"
+    }
+  ]
+}

@@ -1,0 +1,31 @@
+{
+  "styleVersion": "v11",
+  "approvalStatus": "approved",
+  "scope": "timber-only",
+  "entries": [
+    {
+      "image": "tmp/artwork-v11-final-calibration/homepage/tramy-icon-occlusion-v3-master-v11.webp",
+      "manifest": "tmp/artwork-v11-final-calibration/homepage/tramy-icon-occlusion-v3-master-v11.manifest.json",
+      "plannedRuntimePath": "/images/illustrations/homepage-v11/tramy-icon-occlusion-v3-master-v11.webp",
+      "outputSha256": "8086603bdef7e6b3f3e1a9b3d62e11084fad0425377d017b536005cb993bda10"
+    },
+    {
+      "image": "tmp/artwork-v11-final-calibration/homepage/fosny-icon-family-match-v6-master-v11.webp",
+      "manifest": "tmp/artwork-v11-final-calibration/homepage/fosny-icon-family-match-v6-master-v11.manifest.json",
+      "plannedRuntimePath": "/images/illustrations/homepage-v11/fosny-icon-family-match-v6-master-v11.webp",
+      "outputSha256": "94f89b8e450c92f6e04750885ce9f0f69264d4f9ee8355c0ea163d339409c6a8"
+    },
+    {
+      "image": "tmp/artwork-v11-final-calibration/homepage/prkna-icon-occlusion-v3-master-v11.webp",
+      "manifest": "tmp/artwork-v11-final-calibration/homepage/prkna-icon-occlusion-v3-master-v11.manifest.json",
+      "plannedRuntimePath": "/images/illustrations/homepage-v11/prkna-icon-occlusion-v3-master-v11.webp",
+      "outputSha256": "d78a968abad205e59675d133820a5c2f62510de1f29f72758a62d0b17afc5796"
+    },
+    {
+      "image": "tmp/artwork-v11-final-calibration/homepage/late-icon-production-v2-master-v11.webp",
+      "manifest": "tmp/artwork-v11-final-calibration/homepage/late-icon-production-v2-master-v11.manifest.json",
+      "plannedRuntimePath": "/images/illustrations/homepage-v11/late-icon-production-v2-master-v11.webp",
+      "outputSha256": "d257aa1e7afcd6aea33ac47a338bb055e49775ad49c71c2c43d92c8a4d7c5332"
+    }
+  ]
+}

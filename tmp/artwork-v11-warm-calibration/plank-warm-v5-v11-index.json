@@ -1,0 +1,58 @@
+{
+  "family": "plank",
+  "styleVersion": "v11",
+  "approvalStatus": "awaiting-approval",
+  "texturePolicy": "canonical-19-45-37-reference",
+  "edgePolicy": "dark-timber-edges-no-white-halo-no-bright-inner-fringe",
+  "crossSectionContract": "height:width = 1:2.3-2.5",
+  "geometryRatios": {
+    "crossSectionRatio": 2.402891,
+    "depthToWidthRatio": 1.449849,
+    "boardCrossSectionRatio": 4.788677,
+    "lathCrossSectionRatio": 1.372891
+  },
+  "entries": [
+    {
+      "image": "tmp/artwork-v11-warm-calibration/plank-warm-v5/plank-warm-v5-1-master-v11.webp",
+      "manifest": "tmp/artwork-v11-warm-calibration/plank-warm-v5/plank-warm-v5-1-master-v11.manifest.json",
+      "representativeCount": 1,
+      "outputSha256": "f5c0d08c4198d9186b2b3db836a17ef5de07361b36a7926c8d765d9d4b7eadb6"
+    },
+    {
+      "image": "tmp/artwork-v11-warm-calibration/plank-warm-v5/plank-warm-v5-2-master-v11.webp",
+      "manifest": "tmp/artwork-v11-warm-calibration/plank-warm-v5/plank-warm-v5-2-master-v11.manifest.json",
+      "representativeCount": 2,
+      "outputSha256": "5f8bd3a1a3125fe62777ddd542843e506a207805e0d92d4a81fb74589d17d2f7"
+    },
+    {
+      "image": "tmp/artwork-v11-warm-calibration/plank-warm-v5/plank-warm-v5-3-4-master-v11.webp",
+      "manifest": "tmp/artwork-v11-warm-calibration/plank-warm-v5/plank-warm-v5-3-4-master-v11.manifest.json",
+      "representativeCount": 3,
+      "outputSha256": "2e69fb40e4f39b8a084c32fa42591fc99611cc349f63d7a38b62048e21cf62bc"
+    },
+    {
+      "image": "tmp/artwork-v11-warm-calibration/plank-warm-v5/plank-warm-v5-5-8-master-v11.webp",
+      "manifest": "tmp/artwork-v11-warm-calibration/plank-warm-v5/plank-warm-v5-5-8-master-v11.manifest.json",
+      "representativeCount": 6,
+      "outputSha256": "775060e812081ffad6afd03c70d7234907c4e7d104bc8c619203d62310f1b85e"
+    },
+    {
+      "image": "tmp/artwork-v11-warm-calibration/plank-warm-v5/plank-warm-v5-9-11-master-v11.webp",
+      "manifest": "tmp/artwork-v11-warm-calibration/plank-warm-v5/plank-warm-v5-9-11-master-v11.manifest.json",
+      "representativeCount": 9,
+      "outputSha256": "6e0612ac1b9ed1d005883728d0782ee203c3101c3fd2a30f875edb197b09bba2"
+    },
+    {
+      "image": "tmp/artwork-v11-warm-calibration/plank-warm-v5/plank-warm-v5-12-15-master-v11.webp",
+      "manifest": "tmp/artwork-v11-warm-calibration/plank-warm-v5/plank-warm-v5-12-15-master-v11.manifest.json",
+      "representativeCount": 12,
+      "outputSha256": "d4802d5232215580d44be3a75aa7021f729c387bc496838fcf8259490b8a52ba"
+    },
+    {
+      "image": "tmp/artwork-v11-warm-calibration/plank-warm-v5/plank-warm-v5-16plus-master-v11.webp",
+      "manifest": "tmp/artwork-v11-warm-calibration/plank-warm-v5/plank-warm-v5-16plus-master-v11.manifest.json",
+      "representativeCount": 16,
+      "outputSha256": "c9f465b6f228ab6001ef9facbd74996f07892cc31e73db8096adce33b895bd74"
+    }
+  ]
+}

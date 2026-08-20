@@ -1,0 +1,156 @@
+{
+  "canvas": {
+    "width": 1536,
+    "height": 1024
+  },
+  "alphaBoundsPixels": {
+    "left": 113,
+    "top": 136,
+    "right": 1423,
+    "bottom": 889
+  },
+  "alphaBounds": {
+    "x": 0.073568,
+    "y": 0.132812,
+    "width": 0.852865,
+    "height": 0.735352
+  },
+  "opticalCenter": {
+    "x": 0.5,
+    "y": 0.500488
+  },
+  "alphaCoverage": 0.391301,
+  "interiorAlphaMin": 248,
+  "margins": {
+    "left": 113,
+    "top": 136,
+    "right": 113,
+    "bottom": 135
+  },
+  "family": "lath",
+  "quantityBand": {
+    "min": 5,
+    "max": 8
+  },
+  "representativeCount": 6,
+  "layout": "3x2",
+  "expectedVisibleConstructionSeams": 10,
+  "camera": {
+    "projection": "orthographic",
+    "azimuthDegrees": 40,
+    "elevationDegrees": 27
+  },
+  "designVectors": {
+    "column": [
+      90.0,
+      -19.0
+    ],
+    "rowDown": [
+      0.0,
+      67.0
+    ],
+    "back": [
+      -430.0,
+      -211.0
+    ]
+  },
+  "autoFit": {
+    "policy": "adaptive-bounds",
+    "safeInset": 0.07,
+    "contourReservePixels": 8.0,
+    "maxScale": 2.0,
+    "renderScale": 1.86422857,
+    "translation": [
+      917.1383,
+      636.9033
+    ]
+  },
+  "lineWeights": {
+    "outer": 4.0,
+    "edge": 3.0,
+    "seam": 4.0,
+    "rings": 1.5,
+    "grain": 1.25
+  },
+  "palette": [
+    "#501801",
+    "#501801",
+    "#501801",
+    "#804015",
+    "#965622",
+    "#C5813B",
+    "#F0A242",
+    "#F4A847",
+    "#EEA847"
+  ],
+  "canonicalTextureSource": "artwork-sources/beams/beam-unit-tile-master-v1-4x.png",
+  "canonicalTextureSha256": "752db88a14866587604e271225b5c85f82d1974d96a62a2cd8ec57beadf3bec0",
+  "visualReference": "Obrázek Codex 12. 8. 2026 19_45_37.png",
+  "texturePolicy": "reference-face-transfer-with-clean-polygon-corners",
+  "cornerCleanup": "no-corner-discoloration-no-dirty-corner-shading-no-ao",
+  "edgePolicy": "dark-timber-edges-no-white-halo-no-bright-inner-fringe",
+  "textureCoverage": "full-face-to-contour",
+  "topFaceTextureLanes": 1,
+  "topFaceTexturePolicy": "canonical-unit-tile-multi-lane-no-procedural-grain",
+  "seamPainterOrder": "after-all-face-polygons",
+  "memberWidthsCm": [],
+  "renderedMembers": [
+    {
+      "key": "r1c0",
+      "row": 1,
+      "widthCm": null,
+      "normalizedWidthScale": 1.0,
+      "topTextureLanes": 1
+    },
+    {
+      "key": "r1c1",
+      "row": 1,
+      "widthCm": null,
+      "normalizedWidthScale": 1.0,
+      "topTextureLanes": 1
+    },
+    {
+      "key": "r1c2",
+      "row": 1,
+      "widthCm": null,
+      "normalizedWidthScale": 1.0,
+      "topTextureLanes": 1
+    },
+    {
+      "key": "r0c0",
+      "row": 0,
+      "widthCm": null,
+      "normalizedWidthScale": 1.0,
+      "topTextureLanes": 1
+    },
+    {
+      "key": "r0c1",
+      "row": 0,
+      "widthCm": null,
+      "normalizedWidthScale": 1.0,
+      "topTextureLanes": 1
+    },
+    {
+      "key": "r0c2",
+      "row": 0,
+      "widthCm": null,
+      "normalizedWidthScale": 1.0,
+      "topTextureLanes": 1
+    }
+  ],
+  "antiCloning": {
+    "policy": "deterministic-inset-source-sampling",
+    "maximumSourceOffsetPixels4x": [
+      14,
+      10
+    ],
+    "changesGeometryOrColor": false
+  },
+  "seed": 20260813,
+  "styleVersion": "v11",
+  "approvalStatus": "awaiting-approval",
+  "source": "tmp/artwork-v11-lath-invariance/unit-tiles/lath-production-v2-unit-tile-master-v11.png",
+  "sourceSha256": "327395dc78240b1a92fbbb6095372b9bbbc9556958ff8233b1a2403e1223ca16",
+  "outputSha256": "147a29087f4d0684388f3730030bba2c08e8df95627228c243884196332aefc9",
+  "plannedRuntimePath": "/images/illustrations/configurator-v11/lath-production-v2-5-8-master-v11.webp"
+}

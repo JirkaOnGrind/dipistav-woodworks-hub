@@ -1,0 +1,64 @@
+{
+  "canvas": {
+    "width": 1536,
+    "height": 1024
+  },
+  "alphaBoundsPixels": {
+    "left": 219,
+    "top": 443,
+    "right": 1315,
+    "bottom": 584
+  },
+  "alphaBounds": {
+    "x": 0.142578,
+    "y": 0.432617,
+    "width": 0.713542,
+    "height": 0.137695
+  },
+  "opticalCenter": {
+    "x": 0.499349,
+    "y": 0.501465
+  },
+  "alphaCoverage": 0.042644,
+  "interiorAlphaMin": 248,
+  "margins": {
+    "left": 219,
+    "top": 443,
+    "right": 221,
+    "bottom": 440
+  },
+  "styleVersion": "v11",
+  "approvalStatus": "awaiting-approval",
+  "family": "firewood-loose",
+  "seed": 20260813,
+  "camera": {
+    "projection": "orthographic",
+    "azimuthDegrees": 40,
+    "elevationDegrees": 27
+  },
+  "tileKinds": [
+    "split-half-round",
+    "split-quarter",
+    "split-triangular"
+  ],
+  "tileSize": {
+    "width": 360,
+    "height": 240
+  },
+  "tileOrigins": [
+    [
+      178,
+      392
+    ],
+    [
+      588,
+      392
+    ],
+    [
+      998,
+      392
+    ]
+  ],
+  "unitScale": 1,
+  "barkPolicy": "outer-rounded-surface-only"
+}

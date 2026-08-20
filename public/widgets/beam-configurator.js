@@ -149,10 +149,10 @@
     const profileScale = 0.95 + profileProgress * 0.1;
     const aspectScaleX = clamp(Math.pow(width / height, 0.035), 0.968, 1.032);
     const aspectScaleY = 1 / aspectScaleX;
-    const lengthScale = { 400: 1, 500: 1.023, 600: 1.04025, 700: 1.0575 }[length] || 1;
+    const lengthScale = { 400: 1, 500: 1.0253, 600: 1.044275, 700: 1.06325 }[length] || 1;
     const scaleX = clamp(lengthScale * profileScale * aspectScaleX, 0.92, 1.08);
     const scaleY = clamp(profileScale * aspectScaleY, 0.92, 1.08);
-    const depthProgress = clamp((lengthScale - 1) / 0.0575, 0, 1);
+    const depthProgress = clamp((lengthScale - 1) / 0.06325, 0, 1);
     return `translate3d(${-0.8 * depthProgress}%, ${-0.4 * depthProgress}%, 0) scaleX(${scaleX}) scaleY(${scaleY})`;
   }
 

@@ -321,4 +321,18 @@ export const APPROVED_ARTWORK_SHA256 = {
     "ac80779836630b3e94279fb4ec8d87525ed210b7389f64a5ebeab452287c19d2",
   "public/images/illustrations/homepage-v11/fosny-icon-family-match-v6-master-v11.webp":
     "94f89b8e450c92f6e04750885ce9f0f69264d4f9ee8355c0ea163d339409c6a8",
+  "public/images/illustrations/configurator-v11/plank-topgrain-smooth-v7-1-master-v11.webp":
+    "3735fc957466868a40cfbdf03338c235a0e977653ad1cb7025afd21420600c5e",
+  "public/images/illustrations/configurator-v11/plank-topgrain-smooth-v7-2-master-v11.webp":
+    "b6f2ea21857833505c18d532a4b4aef02312cee5cd0c2c596c3eab788d2b601b",
+  "public/images/illustrations/configurator-v11/plank-topgrain-smooth-v7-3-4-master-v11.webp":
+    "6a06fc767b7bbe7eed8a72be2924bc4b2bd1e4254b89fc3b30357ce782c926ef",
+  "public/images/illustrations/configurator-v11/plank-topgrain-smooth-v7-5-8-master-v11.webp":
+    "9d13cb24dfe9a4f7901b873f67cd30340a46a68015d2a807a5d0dcb13e22903d",
+  "public/images/illustrations/configurator-v11/plank-topgrain-smooth-v7-9-11-master-v11.webp":
+    "479be4e96b86b3b3df19810cbb0f15e49ed66d2f04fef268540d45bf827f9d42",
+  "public/images/illustrations/configurator-v11/plank-topgrain-smooth-v7-12-15-master-v11.webp":
+    "c45859a8f361286a951847157124ab82023b10813cf796c296ca06c63008e9d9",
+  "public/images/illustrations/configurator-v11/plank-topgrain-smooth-v7-16plus-master-v11.webp":
+    "478305da6b1f93f1fe3c8c917adc33084b103f0f6f232deafe6b2f9476c8d2a3",
 } as const;
