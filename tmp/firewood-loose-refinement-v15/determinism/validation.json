@@ -1,0 +1,116 @@
+{
+  "valid": true,
+  "styleVersion": "v15-candidate",
+  "approvalStatus": "awaiting-visual-approval",
+  "runtimeActivation": "blocked-until-explicit-visual-approval",
+  "goldenMaster": "public/images/illustrations/configurator-v12/firewood-loose-16plus-master-v12.webp",
+  "goldenMasterSha256": "993a4d12bbb2f0f511d74ab70d2d1738f88492f640602e8cfeb4805a919c3a9f",
+  "colorSpace": "implicit-sRGB-no-embedded-ICC",
+  "targetAlphaWidths": [
+    0.62,
+    0.7,
+    0.76,
+    0.82,
+    0.86
+  ],
+  "effectiveAlphaWidths": [
+    0.619792,
+    0.69987,
+    0.759766,
+    0.820312,
+    0.860026
+  ],
+  "selectedCandidates": [
+    "1-2 candidate B v15",
+    "3-4 candidate B v15",
+    "5-8 candidate B v15",
+    "9-15 candidate A v15"
+  ],
+  "candidates": [
+    {
+      "id": "firewood-loose-1-2-candidate-a-v15",
+      "selectedForQa": false,
+      "technicalPass": false,
+      "technicalFailures": [
+        "crushed-black-lt5",
+        "crushed-black-lt10",
+        "median-lightness-mismatch",
+        "color-correction-exceeds-limit"
+      ],
+      "image": "tmp/firewood-loose-refinement-v15/determinism/masters/firewood-loose-1-2-candidate-a-v15.webp",
+      "manifest": "tmp/firewood-loose-refinement-v15/determinism/masters/firewood-loose-1-2-candidate-a-v15.manifest.json",
+      "sha256": "2c8b56bb73a4a6fa6b271d9f451643a743f9e4b35cec702872abc386a7b32830"
+    },
+    {
+      "id": "firewood-loose-1-2-candidate-b-v15",
+      "selectedForQa": true,
+      "technicalPass": true,
+      "technicalFailures": [],
+      "image": "tmp/firewood-loose-refinement-v15/determinism/masters/firewood-loose-1-2-candidate-b-v15.webp",
+      "manifest": "tmp/firewood-loose-refinement-v15/determinism/masters/firewood-loose-1-2-candidate-b-v15.manifest.json",
+      "sha256": "910da17bee361b6fbd57289c9d13465d697dc82d376d735389203458a4ae33f7"
+    },
+    {
+      "id": "firewood-loose-3-4-candidate-a-v15",
+      "selectedForQa": false,
+      "technicalPass": true,
+      "technicalFailures": [],
+      "image": "tmp/firewood-loose-refinement-v15/determinism/masters/firewood-loose-3-4-candidate-a-v15.webp",
+      "manifest": "tmp/firewood-loose-refinement-v15/determinism/masters/firewood-loose-3-4-candidate-a-v15.manifest.json",
+      "sha256": "247cd648fd6b0b22b204584ac5d21bb046b543a57ab9a7e8188b74490f58a913"
+    },
+    {
+      "id": "firewood-loose-3-4-candidate-b-v15",
+      "selectedForQa": true,
+      "technicalPass": true,
+      "technicalFailures": [],
+      "image": "tmp/firewood-loose-refinement-v15/determinism/masters/firewood-loose-3-4-candidate-b-v15.webp",
+      "manifest": "tmp/firewood-loose-refinement-v15/determinism/masters/firewood-loose-3-4-candidate-b-v15.manifest.json",
+      "sha256": "ed765373ec24c13ca4c3eb77510c57b83213ac7c7c77ec4d42631d8ca52dc384"
+    },
+    {
+      "id": "firewood-loose-5-8-candidate-a-v15",
+      "selectedForQa": false,
+      "technicalPass": false,
+      "technicalFailures": [
+        "bright-neutral-alpha-halo"
+      ],
+      "image": "tmp/firewood-loose-refinement-v15/determinism/masters/firewood-loose-5-8-candidate-a-v15.webp",
+      "manifest": "tmp/firewood-loose-refinement-v15/determinism/masters/firewood-loose-5-8-candidate-a-v15.manifest.json",
+      "sha256": "1b783b51304ec874ae6cf6d7c5c4c986333edd02db6aecb96a0766cde2203a3b"
+    },
+    {
+      "id": "firewood-loose-5-8-candidate-b-v15",
+      "selectedForQa": true,
+      "technicalPass": true,
+      "technicalFailures": [],
+      "image": "tmp/firewood-loose-refinement-v15/determinism/masters/firewood-loose-5-8-candidate-b-v15.webp",
+      "manifest": "tmp/firewood-loose-refinement-v15/determinism/masters/firewood-loose-5-8-candidate-b-v15.manifest.json",
+      "sha256": "7bafe3bfb61652da5489f36e8d6a0ffab39257f86c4bfb10569dc555a7189d0d"
+    },
+    {
+      "id": "firewood-loose-9-15-candidate-a-v15",
+      "selectedForQa": true,
+      "technicalPass": true,
+      "technicalFailures": [],
+      "image": "tmp/firewood-loose-refinement-v15/determinism/masters/firewood-loose-9-15-candidate-a-v15.webp",
+      "manifest": "tmp/firewood-loose-refinement-v15/determinism/masters/firewood-loose-9-15-candidate-a-v15.manifest.json",
+      "sha256": "8d8c69f36a1dc2d68760a9544797e85a392fc88f743949f472252c516cf34095"
+    },
+    {
+      "id": "firewood-loose-9-15-candidate-b-v15",
+      "selectedForQa": false,
+      "technicalPass": true,
+      "technicalFailures": [],
+      "image": "tmp/firewood-loose-refinement-v15/determinism/masters/firewood-loose-9-15-candidate-b-v15.webp",
+      "manifest": "tmp/firewood-loose-refinement-v15/determinism/masters/firewood-loose-9-15-candidate-b-v15.manifest.json",
+      "sha256": "0f7ca0ddcfec78320277dd5bd12fb31a3a900226eb910a56f0261c2270352507"
+    }
+  ],
+  "qa": [
+    "tmp/firewood-loose-refinement-v15/determinism/qa/firewood-loose-v15-comparison-light.png",
+    "tmp/firewood-loose-refinement-v15/determinism/qa/firewood-loose-v15-comparison-dark.png",
+    "tmp/firewood-loose-refinement-v15/determinism/qa/firewood-loose-v15-comparison-320.png",
+    "tmp/firewood-loose-refinement-v15/determinism/qa/firewood-loose-v15-alpha-edge.png"
+  ]
+}

@@ -1,0 +1,56 @@
+{
+  "canvas": {
+    "width": 1536,
+    "height": 1024
+  },
+  "alphaBoundsPixels": {
+    "left": 142,
+    "top": 223,
+    "right": 1394,
+    "bottom": 801
+  },
+  "alphaBounds": {
+    "x": 0.092448,
+    "y": 0.217773,
+    "width": 0.815104,
+    "height": 0.564453
+  },
+  "opticalCenter": {
+    "x": 0.5,
+    "y": 0.5
+  },
+  "alphaCoverage": 0.309555,
+  "interiorAlphaMin": 255,
+  "margins": {
+    "left": 142,
+    "top": 223,
+    "right": 142,
+    "bottom": 223
+  },
+  "styleVersion": "v13-candidate",
+  "approvalStatus": "awaiting-visual-approval",
+  "runtimeActivation": "blocked-until-explicit-visual-approval",
+  "quantityBand": {
+    "min": 9,
+    "max": 15
+  },
+  "targetAlphaWidth": 0.82,
+  "renderTechnique": "reference-guided-whole-pile-imagegen",
+  "styleReference": {
+    "path": "public/images/illustrations/stipane-v2.webp",
+    "role": "sole-style-palette-morphology-linework-lighting-reference",
+    "sha256": "8eb1bdd9115c41200e221064aff2c9a7ee819938391078acb671714d1c597da5"
+  },
+  "compositionReference": {
+    "path": "public/images/illustrations/configurator-v12/firewood-loose-5-8-master-v12.webp",
+    "role": "shape-and-footprint-only",
+    "sha256": "c56ad66c3dac847c9ae3107bc094fcc2de062342a8d6635c71e85396875f4536"
+  },
+  "selectedChromaSource": {
+    "path": "tmp/firewood-loose-9-15-v13/source/firewood-loose-9-15-v13-chroma.png",
+    "sha256": "3749e63e4499639e49526066dc76f98fc4aee6e5f6a79f1ba7ea126eab24da87"
+  },
+  "promptSpec": "C:/Users/Utrh/Documents/Codex/dipistav-woodworks-hub/scripts/firewood_loose_9_15_prompt_v13.json",
+  "promptSpecSha256": "5026045942aa7be1afe8bc7c7cd81b63f758767b16cb7edc918da1ffd2bf3362",
+  "outputSha256": "f30e1e7ab1a60b9a4fa77c552d7faa9323590a4ba3611ea0d78869de8942116d"
+}

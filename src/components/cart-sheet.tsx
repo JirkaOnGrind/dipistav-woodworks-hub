@@ -6,17 +6,35 @@ import {
   SheetHeader,
   SheetTitle,
 } from "@/components/ui/sheet";
-import { useCart } from "@/lib/cart";
-import {
-  COMPANY_EMAIL_HREF,
-  COMPANY_PHONE,
-  COMPANY_PHONE_HREF,
-  formatCurrency,
-  formatDecimal,
-} from "@/lib/site";
+import { visibleVariantDetails, useCart } from "@/lib/cart";
+import { COMPANY_EMAIL, formatCurrency } from "@/lib/site";
+
+function billableUnitLabel(unit: string, amount: number) {
+  if (unit !== "paleta") return unit;
+  if (amount === 1) return "paleta";
+  if (Number.isInteger(amount) && amount >= 2 && amount <= 4) return "palety";
+  return "palet";
+}
+
+function formatBillableAmount(amount: number) {
+  return new Intl.NumberFormat("cs-CZ", { maximumFractionDigits: 4 }).format(amount);
+}
 
 export function CartSheet() {
-  const { items, itemCount, estimatedTotal, isOpen, setIsOpen, removeItem, clearCart } = useCart();
+  const { items, estimatedTotal, isOpen, setIsOpen, removeItem, clearCart } = useCart();
+  const inquiryHref = `mailto:${COMPANY_EMAIL}?subject=${encodeURIComponent("Poptávka z košíku DIPISTAV")}&body=${encodeURIComponent(
+    [
+      "Dobrý den,",
+      "",
+      "mám zájem o následující položky:",
+      ...items.map(
+        (item) =>
+          `- ${item.title}, ${item.quantity} ${item.quantityUnitLabel}, ${formatCurrency(item.totalPrice)}`,
+      ),
+      "",
+      `Cena celkem: ${estimatedTotal > 0 ? formatCurrency(estimatedTotal) : "Na dotaz"}`,
+    ].join("\n"),
+  )}`;
 
   return (
     <Sheet open={isOpen} onOpenChange={setIsOpen}>
@@ -25,19 +43,17 @@ export function CartSheet() {
         className="w-full max-w-md border-l border-[#A86D38]/10 bg-[#FBF8F1] p-0 sm:max-w-lg"
       >
         <div className="flex h-full flex-col">
-          <SheetHeader className="border-b border-[#A86D38]/10 px-6 py-5 text-left">
+          <SheetHeader className="border-b border-[#A86D38]/10 px-4 py-4 text-left min-[381px]:px-6 min-[381px]:py-5">
             <SheetTitle className="text-2xl font-black tracking-tight text-[#1E293B]">
               Košík a poptávka
             </SheetTitle>
             <SheetDescription className="text-sm text-[#1E293B]/70">
-              {itemCount === 0
-                ? "Zatím tu není žádná položka."
-                : `Vybráno ${itemCount} prodejních jednotek k nacenění nebo objednání.`}
+              V košíku máte {items.length} položek
             </SheetDescription>
           </SheetHeader>
 
-          <ScrollArea className="flex-1">
-            <div className="space-y-4 px-6 py-6">
+          <ScrollArea className="min-h-0 flex-1">
+            <div className="mb-4 space-y-3 px-3 py-4 min-[381px]:space-y-4 min-[381px]:px-6 min-[381px]:py-6">
               {items.length === 0 ? (
                 <div className="rounded-3xl border border-dashed border-[#A86D38]/35 bg-white px-6 py-10 text-center">
                   <div className="text-lg font-black tracking-tight text-[#1E293B]">
@@ -52,61 +68,52 @@ export function CartSheet() {
                 items.map((item) => (
                   <article
                     key={item.id}
-                    className="rounded-3xl border border-[#A86D38]/15 bg-white p-5 shadow-sm"
+                    className="rounded-2xl border border-[#A86D38]/15 bg-white p-3 shadow-sm min-[381px]:rounded-3xl"
                   >
-                    <div className="flex items-start justify-between gap-4">
-                      <div>
-                        <div className="inline-flex rounded-full bg-[#F5F2E9] px-3 py-1 text-[11px] font-bold uppercase tracking-[0.18em] text-[#A86D38]">
-                          {item.kind === "custom" ? "Poptávka na míru" : "Skladová položka"}
-                        </div>
-                        <h3 className="mt-3 text-lg font-black tracking-tight text-[#1E293B]">
-                          {item.title}
-                        </h3>
-                      </div>
-
+                    <div className="flex flex-col items-start gap-2">
                       <button
                         onClick={() => removeItem(item.id)}
                         className="rounded-full border border-[#A86D38]/15 px-3 py-1.5 text-xs font-bold text-[#1E293B]/70 transition hover:border-[#A86D38]/40 hover:text-[#1E293B]"
                       >
                         Odebrat
                       </button>
+                      <h3 className="text-lg font-black tracking-tight text-[#1E293B]">
+                        {item.title}
+                      </h3>
                     </div>
 
-                    <div className="mt-4 space-y-2 text-sm text-[#1E293B]/75">
-                      {item.details.map((detail) => (
-                        <div key={detail} className="rounded-2xl bg-[#F5F2E9]/70 px-3 py-2">
-                          {detail}
-                        </div>
-                      ))}
+                    <div className="mt-3 flex flex-wrap gap-1 text-[11px] text-[#1E293B]/75 min-[381px]:mt-4">
+                      {visibleVariantDetails(item.title, item.details, item.quantity).map(
+                        (detail) => (
+                          <div key={detail} className="rounded-full bg-[#F5F2E9]/70 px-2 py-0.5">
+                            {detail}
+                          </div>
+                        ),
+                      )}
                       {item.kind === "catalog" && (
-                        <div className="rounded-2xl border border-[#A86D38]/10 bg-[#FFF9EF] px-3 py-2 font-semibold text-[#70451F]">
-                          {formatCurrency(item.rate)} / {item.billableUnit} ·{" "}
-                          {item.pricing.basis === "cubic-meter"
-                            ? formatDecimal(item.billableAmount, 4)
-                            : new Intl.NumberFormat("cs-CZ", { maximumFractionDigits: 2 }).format(
-                                item.billableAmount,
-                              )}{" "}
-                          {item.billableUnit}
+                        <div className="rounded-full border border-[#A86D38]/10 bg-[#FFF9EF] px-2 py-0.5 font-semibold text-[#70451F]">
+                          {formatCurrency(item.rate)} / {item.billableUnit}
+                          {item.pricing.basis !== "piece" && (
+                            <>
+                              {" · "}
+                              {item.pricing.basis === "cubic-meter"
+                                ? formatBillableAmount(item.billableAmount)
+                                : new Intl.NumberFormat("cs-CZ", {
+                                    maximumFractionDigits: 2,
+                                  }).format(item.billableAmount)}{" "}
+                              {billableUnitLabel(item.billableUnit, item.billableAmount)}
+                            </>
+                          )}
                         </div>
                       )}
                     </div>
 
-                    <div className="mt-4 flex items-end justify-between gap-4 rounded-2xl bg-[#234A33] px-4 py-3 text-white">
-                      <div>
-                        <div className="text-xs font-semibold uppercase tracking-[0.16em] text-white/65">
-                          Počet
-                        </div>
-                        <div className="mt-1 text-sm font-bold">
-                          {item.quantity} {item.quantityUnitLabel}
-                        </div>
+                    <div className="mt-3 flex items-center justify-between gap-3 border-t border-[#A86D38]/10 pt-3 text-[#1E293B]">
+                      <div className="text-sm font-semibold">
+                        {item.quantity} {item.quantityUnitLabel}
                       </div>
-                      <div className="text-right">
-                        <div className="text-xs font-semibold uppercase tracking-[0.16em] text-white/65">
-                          {item.kind === "custom" ? "Orientační cena" : "Cena položky"}
-                        </div>
-                        <div className="mt-1 text-lg font-black tracking-tight">
-                          {formatCurrency(item.totalPrice)}
-                        </div>
+                      <div className="text-lg font-black tracking-tight text-[#234A33]">
+                        {formatCurrency(item.totalPrice)}
                       </div>
                     </div>
                   </article>
@@ -115,11 +122,11 @@ export function CartSheet() {
             </div>
           </ScrollArea>
 
-          <div className="border-t border-[#A86D38]/10 bg-white px-6 py-5">
+          <div className="shrink-0 border-t border-[#A86D38]/10 bg-white px-3 py-3 min-[381px]:px-6 min-[381px]:py-5">
             <div className="flex items-end justify-between gap-4">
               <div>
                 <div className="text-xs font-semibold uppercase tracking-[0.16em] text-[#1E293B]/55">
-                  Odhad celkem
+                  Cena celkem
                 </div>
                 <div className="mt-1 text-3xl font-black tracking-tight text-[#234A33]">
                   {estimatedTotal > 0 ? formatCurrency(estimatedTotal) : "Na dotaz"}
@@ -135,17 +142,12 @@ export function CartSheet() {
               )}
             </div>
 
-            <div className="mt-4 rounded-3xl bg-[#F5F2E9] p-4 text-sm text-[#1E293B]/80">
-              Pro dokončení objednávky nebo poptávky nám zavolejte na{" "}
-              <a className="font-bold text-[#234A33]" href={COMPANY_PHONE_HREF}>
-                {COMPANY_PHONE}
-              </a>{" "}
-              nebo napište na{" "}
-              <a className="font-bold text-[#234A33]" href={COMPANY_EMAIL_HREF}>
-                info@dipistav.cz
-              </a>
-              .
-            </div>
+            <a
+              href={inquiryHref}
+              className="mt-3 inline-flex w-full items-center justify-center rounded-2xl bg-[#A86D38] px-6 py-4 text-base font-black text-white shadow-lg shadow-[#A86D38]/20 transition hover:bg-[#8A5528] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#234A33] focus-visible:ring-offset-2 min-[381px]:mt-4 min-[381px]:text-lg"
+            >
+              Přejít k poptávce
+            </a>
           </div>
         </div>
       </SheetContent>

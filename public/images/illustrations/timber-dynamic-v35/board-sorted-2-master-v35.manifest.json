@@ -1,0 +1,57 @@
+{
+  "canvas": {
+    "width": 1536,
+    "height": 1024
+  },
+  "alphaBoundsPixels": {
+    "left": 113,
+    "top": 251,
+    "right": 1423,
+    "bottom": 773
+  },
+  "alphaBounds": {
+    "x": 0.073568,
+    "y": 0.245117,
+    "width": 0.852865,
+    "height": 0.509766
+  },
+  "opticalCenter": {
+    "x": 0.5,
+    "y": 0.5
+  },
+  "alphaCoverage": 0.25443,
+  "interiorAlphaMin": 248,
+  "margins": {
+    "left": 113,
+    "top": 251,
+    "right": 113,
+    "bottom": 251
+  },
+  "family": "board",
+  "quantityBand": {
+    "min": 2,
+    "max": 2
+  },
+  "representativeCount": 2,
+  "layout": "5-wide-exact-2",
+  "piecesPerLayer": 5,
+  "levelCount": 1,
+  "renderOrigin": "approved-v11-byte-copy",
+  "designVectors": {
+    "column": [
+      225.0,
+      -47.0
+    ],
+    "rowDown": [
+      0.0,
+      48.0
+    ],
+    "back": [
+      -380.0,
+      -187.0
+    ]
+  },
+  "outputSha256": "9f4d7f8fb83a80ac5243b3b8b04ad7caec338b500699a0bf9f2d93a377004575",
+  "runtimePath": "/images/illustrations/timber-dynamic-v35/board-sorted-2-master-v35.webp",
+  "styleVersion": "v35"
+}

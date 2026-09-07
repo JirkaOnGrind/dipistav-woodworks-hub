@@ -1,0 +1,49 @@
+{
+  "canvas": {
+    "width": 1536,
+    "height": 1024
+  },
+  "alphaBoundsPixels": {
+    "left": 115,
+    "top": 163,
+    "right": 1423,
+    "bottom": 861
+  },
+  "alphaBounds": {
+    "x": 0.07487,
+    "y": 0.15918,
+    "width": 0.851562,
+    "height": 0.681641
+  },
+  "opticalCenter": {
+    "x": 0.5,
+    "y": 0.5
+  },
+  "alphaCoverage": 0.400494,
+  "cornersTransparent": true,
+  "transparentRgbClean": true,
+  "id": "pellets-50-candidate-e-v15",
+  "styleVersion": "v15-candidate",
+  "approvalStatus": "awaiting-visual-approval",
+  "runtimeActivation": "blocked-until-explicit-visual-approval",
+  "family": "pellets-set",
+  "representativeCount": 50,
+  "targetAlphaWidth": 0.85,
+  "selectedForQa": false,
+  "reference": "public/images/illustrations/configurator-v3/pelety-pytel-v3.webp",
+  "referenceSha256": "f8225c69fa6e6aaa3795dfb8fcfb0dcdd551cfaf5d532e6a2b122b1b81e1e418",
+  "source": "tmp/pellets-v15/source/pellets-50-source-e-v15.png",
+  "sourceSha256": "23a4f5d7776e314be0485c9ac64fe8c6257f07dd292269235ccc4352514eea2f",
+  "outputSha256": "1b0a8fdf5a642a73f04b5a92bfc5e13b59ff4820ff25ba74f10d4dc96597b1f5",
+  "alphaMethod": "deterministic-neutral-checkerboard-extraction",
+  "renderPipeline": "built-in-reference-guided-imagegen; 4x compositing; one Lanczos downsample; lossless WebP",
+  "prompt": "Fifty lying sacks in four to five broad alternating supported layers.",
+  "nativeBranding": true,
+  "decalApplied": false,
+  "fullyVisibleLabelCount": 15,
+  "exactLabelText": "15 kg",
+  "exactLabelPass": true,
+  "layerSupportPass": true,
+  "compositionPass": true,
+  "review": "pass: wide natural mound"
+}

@@ -1,0 +1,276 @@
+{
+  "canvas": {
+    "width": 1536,
+    "height": 1024
+  },
+  "alphaBoundsPixels": {
+    "left": 113,
+    "top": 244,
+    "right": 1423,
+    "bottom": 781
+  },
+  "alphaBounds": {
+    "x": 0.073568,
+    "y": 0.238281,
+    "width": 0.852865,
+    "height": 0.524414
+  },
+  "opticalCenter": {
+    "x": 0.5,
+    "y": 0.500488
+  },
+  "alphaCoverage": 0.301454,
+  "interiorAlphaMin": 248,
+  "margins": {
+    "left": 113,
+    "top": 244,
+    "right": 113,
+    "bottom": 243
+  },
+  "family": "board",
+  "quantityBand": {
+    "min": 23,
+    "max": 23
+  },
+  "representativeCount": 23,
+  "layout": "5-wide-exact-23",
+  "expectedVisibleConstructionSeams": 48,
+  "camera": {
+    "projection": "orthographic",
+    "azimuthDegrees": 40,
+    "elevationDegrees": 27
+  },
+  "designVectors": {
+    "column": [
+      225.0,
+      -47.0
+    ],
+    "rowDown": [
+      0.0,
+      48.0
+    ],
+    "back": [
+      -380.0,
+      -187.0
+    ]
+  },
+  "autoFit": {
+    "policy": "adaptive-bounds",
+    "safeInset": 0.07,
+    "contourReservePixels": 8.0,
+    "maxScale": 2.0,
+    "renderScale": 0.86708306,
+    "translation": [
+      445.0116,
+      570.5281
+    ]
+  },
+  "lineWeights": {
+    "outer": 4.0,
+    "edge": 3.0,
+    "seam": 4.0,
+    "rings": 1.5,
+    "grain": 1.25
+  },
+  "palette": [
+    "#501801",
+    "#501801",
+    "#501801",
+    "#804015",
+    "#965622",
+    "#C5813B",
+    "#F0A242",
+    "#F4A847",
+    "#EEA847"
+  ],
+  "plankTopColor": null,
+  "plankTopColorPolicy": null,
+  "canonicalTextureSource": "artwork-sources/beams/beam-unit-tile-master-v1-4x.png",
+  "canonicalTextureSha256": "752db88a14866587604e271225b5c85f82d1974d96a62a2cd8ec57beadf3bec0",
+  "visualReference": "Obrázek Codex 12. 8. 2026 19_45_37.png",
+  "texturePolicy": "reference-face-transfer-with-clean-polygon-corners",
+  "cornerCleanup": "no-corner-discoloration-no-dirty-corner-shading-no-ao",
+  "edgePolicy": "dark-timber-edges-no-white-halo-no-bright-inner-fringe",
+  "textureCoverage": "full-face-to-contour",
+  "topFaceTextureLanes": 5,
+  "topFaceTexturePolicy": "canonical-unit-tile-multi-lane-no-procedural-grain",
+  "seamPainterOrder": "row-local-before-upper-row-occlusion",
+  "memberWidthsCm": [],
+  "renderedMembers": [
+    {
+      "key": "r4c0",
+      "row": 4,
+      "widthCm": null,
+      "normalizedWidthScale": 1.0,
+      "topTextureLanes": 5
+    },
+    {
+      "key": "r4c1",
+      "row": 4,
+      "widthCm": null,
+      "normalizedWidthScale": 1.0,
+      "topTextureLanes": 5
+    },
+    {
+      "key": "r4c2",
+      "row": 4,
+      "widthCm": null,
+      "normalizedWidthScale": 1.0,
+      "topTextureLanes": 5
+    },
+    {
+      "key": "r4c3",
+      "row": 4,
+      "widthCm": null,
+      "normalizedWidthScale": 1.0,
+      "topTextureLanes": 5
+    },
+    {
+      "key": "r4c4",
+      "row": 4,
+      "widthCm": null,
+      "normalizedWidthScale": 1.0,
+      "topTextureLanes": 5
+    },
+    {
+      "key": "r3c0",
+      "row": 3,
+      "widthCm": null,
+      "normalizedWidthScale": 1.0,
+      "topTextureLanes": 5
+    },
+    {
+      "key": "r3c1",
+      "row": 3,
+      "widthCm": null,
+      "normalizedWidthScale": 1.0,
+      "topTextureLanes": 5
+    },
+    {
+      "key": "r3c2",
+      "row": 3,
+      "widthCm": null,
+      "normalizedWidthScale": 1.0,
+      "topTextureLanes": 5
+    },
+    {
+      "key": "r3c3",
+      "row": 3,
+      "widthCm": null,
+      "normalizedWidthScale": 1.0,
+      "topTextureLanes": 5
+    },
+    {
+      "key": "r3c4",
+      "row": 3,
+      "widthCm": null,
+      "normalizedWidthScale": 1.0,
+      "topTextureLanes": 5
+    },
+    {
+      "key": "r2c0",
+      "row": 2,
+      "widthCm": null,
+      "normalizedWidthScale": 1.0,
+      "topTextureLanes": 5
+    },
+    {
+      "key": "r2c1",
+      "row": 2,
+      "widthCm": null,
+      "normalizedWidthScale": 1.0,
+      "topTextureLanes": 5
+    },
+    {
+      "key": "r2c2",
+      "row": 2,
+      "widthCm": null,
+      "normalizedWidthScale": 1.0,
+      "topTextureLanes": 5
+    },
+    {
+      "key": "r2c3",
+      "row": 2,
+      "widthCm": null,
+      "normalizedWidthScale": 1.0,
+      "topTextureLanes": 5
+    },
+    {
+      "key": "r2c4",
+      "row": 2,
+      "widthCm": null,
+      "normalizedWidthScale": 1.0,
+      "topTextureLanes": 5
+    },
+    {
+      "key": "r1c0",
+      "row": 1,
+      "widthCm": null,
+      "normalizedWidthScale": 1.0,
+      "topTextureLanes": 5
+    },
+    {
+      "key": "r1c1",
+      "row": 1,
+      "widthCm": null,
+      "normalizedWidthScale": 1.0,
+      "topTextureLanes": 5
+    },
+    {
+      "key": "r1c2",
+      "row": 1,
+      "widthCm": null,
+      "normalizedWidthScale": 1.0,
+      "topTextureLanes": 5
+    },
+    {
+      "key": "r1c3",
+      "row": 1,
+      "widthCm": null,
+      "normalizedWidthScale": 1.0,
+      "topTextureLanes": 5
+    },
+    {
+      "key": "r1c4",
+      "row": 1,
+      "widthCm": null,
+      "normalizedWidthScale": 1.0,
+      "topTextureLanes": 5
+    },
+    {
+      "key": "r0c0",
+      "row": 0,
+      "widthCm": null,
+      "normalizedWidthScale": 1.0,
+      "topTextureLanes": 5
+    },
+    {
+      "key": "r0c1",
+      "row": 0,
+      "widthCm": null,
+      "normalizedWidthScale": 1.0,
+      "topTextureLanes": 5
+    },
+    {
+      "key": "r0c2",
+      "row": 0,
+      "widthCm": null,
+      "normalizedWidthScale": 1.0,
+      "topTextureLanes": 5
+    }
+  ],
+  "antiCloning": {
+    "policy": "deterministic-inset-source-sampling",
+    "maximumSourceOffsetPixels4x": [
+      14,
+      10
+    ],
+    "changesGeometryOrColor": false
+  },
+  "seed": 20260813,
+  "styleVersion": "v40",
+  "approvalStatus": "awaiting-approval",
+  "piecesPerLayer": 5,
+  "levelCount": 5,
+  "outputSha256": "fd5b3fbe8ab3d16ed62d874cfd774712129a80bf2f268e703a793e5c276c7776"
+}

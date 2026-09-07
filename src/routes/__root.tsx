@@ -14,7 +14,7 @@ import { CartProvider } from "@/lib/cart";
 import appCss from "../styles.css?url";
 import { reportLovableError } from "../lib/lovable-error-reporting";
 
-const faviconHref = "/favicon.ico?v=20260716-1";
+const faviconHref = "/images/logo-dipi.webp?v=20260716-1";
 
 function NotFoundComponent() {
   return (

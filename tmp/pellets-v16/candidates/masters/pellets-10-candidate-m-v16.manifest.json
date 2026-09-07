@@ -1,0 +1,116 @@
+{
+  "canvas": {
+    "width": 1536,
+    "height": 1024
+  },
+  "alphaBoundsPixels": {
+    "left": 184,
+    "top": 130,
+    "right": 1274,
+    "bottom": 895
+  },
+  "alphaBounds": {
+    "x": 0.119792,
+    "y": 0.126953,
+    "width": 0.709635,
+    "height": 0.74707
+  },
+  "opticalCenter": {
+    "x": 0.5,
+    "y": 0.5
+  },
+  "alphaCoverage": 0.449018,
+  "cornersTransparent": true,
+  "transparentRgbClean": true,
+  "safeInsetPixels": {
+    "x": 116,
+    "y": 80
+  },
+  "safeInsetPass": true,
+  "dimensionsPass": true,
+  "rgbaPass": true,
+  "losslessWebp": true,
+  "editMask": {
+    "left": 1138,
+    "top": 716,
+    "right": 1291,
+    "bottom": 897
+  },
+  "workingScale": 4,
+  "profileAnchors": [
+    [
+      720,
+      1262
+    ],
+    [
+      740,
+      1262
+    ],
+    [
+      760,
+      1260
+    ],
+    [
+      780,
+      1254
+    ],
+    [
+      800,
+      1245
+    ],
+    [
+      820,
+      1234
+    ],
+    [
+      840,
+      1222
+    ],
+    [
+      860,
+      1208
+    ],
+    [
+      875,
+      1196
+    ],
+    [
+      885,
+      1188
+    ],
+    [
+      892,
+      1179
+    ]
+  ],
+  "outerContourWidthPx": 3.5,
+  "changedPixels": 13267,
+  "outsideMaskChangedPixels": 0,
+  "outsideMaskByteIdentical": true,
+  "frontBrandingRegionsByteIdentical": true,
+  "falseFourthWedgeRemovedPass": true,
+  "rightSideLayerCount": 3,
+  "rightLowerCornerSmoothPass": true,
+  "rightLowerCornerFullVolumePass": true,
+  "monotonicOuterProfilePass": true,
+  "id": "pellets-10-candidate-m-v16",
+  "styleVersion": "v16-final-r12-candidate",
+  "approvalStatus": "awaiting-final-visual-approval",
+  "runtimeActivation": "blocked-until-explicit-final-approval",
+  "representativeCount": 10,
+  "targetOpticalWidth": 0.76,
+  "source": "tmp/pellets-v16/candidates/masters/pellets-10-candidate-l-v16.webp",
+  "sourceSha256": "0c4082349947636a97eea0bce84a9dd6e2f8a8f2df17f820d88a33dbb21b27c0",
+  "outputSha256": "11cbc899c12b02b5e6b13c0477bcd0016e0e1303a4adbaf94920541adf50cb33",
+  "renderPipeline": "4x monotonic contour reconstruction; one Lanczos downsample; lossless WebP",
+  "editedObject": "extreme lower-right outer contour and rounded kraft-paper corner only",
+  "brandingByteIdentical": true,
+  "topSurfacesByteIdentical": true,
+  "leftAndCenterByteIdentical": true,
+  "bagCountUnchanged": true,
+  "referenceProfiles": [
+    "pellets-20-candidate-f-v16.webp",
+    "pellets-30-candidate-h-v16.webp"
+  ],
+  "alphaChannelByteIdentical": false
+}

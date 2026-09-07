@@ -74,27 +74,50 @@ function CartButton() {
   );
 }
 
-export function SiteShell({ children }: { children: ReactNode }) {
+export function SiteShell({
+  children,
+  productDetail = false,
+}: {
+  children: ReactNode;
+  productDetail?: boolean;
+}) {
   const currentLocation = useRouterState({ select: (state) => state.location });
   const [menuOpen, setMenuOpen] = useState(false);
   const [currentHash, setCurrentHash] = useState("");
-  const logoSrc = "/images/logo-dipi.png";
+  const [productFooterVisible, setProductFooterVisible] = useState(false);
+  const logoSrc = "/images/logo-dipi.webp";
   const currentPath = currentLocation.pathname;
 
   useEffect(() => {
     setCurrentHash(currentLocation.hash);
   }, [currentLocation.hash]);
 
+  useEffect(() => {
+    if (!productDetail) return;
+
+    const updateFooterVisibility = () => setProductFooterVisible(window.scrollY >= 1);
+    updateFooterVisibility();
+    window.addEventListener("scroll", updateFooterVisibility, { passive: true });
+    return () => window.removeEventListener("scroll", updateFooterVisibility);
+  }, [productDetail]);
+
   return (
-    <div className="min-h-screen overflow-x-hidden bg-background text-foreground">
+    <div
+      data-product-detail-shell={productDetail || undefined}
+      data-product-footer-visible={productDetail && productFooterVisible ? true : undefined}
+      className="min-h-screen overflow-x-clip bg-background text-foreground"
+    >
       <header className="sticky top-0 z-40 border-b border-border bg-white/95 backdrop-blur">
-        <div className="mx-auto flex max-w-7xl items-center justify-between gap-4 px-4 py-2">
+        <div className="mx-auto flex max-w-7xl items-center justify-between gap-4 px-4 py-2 xl:grid xl:grid-cols-[1fr_auto_1fr]">
           <a href="/" className="flex min-w-0 items-center gap-2">
-            <img
-              src={logoSrc}
-              alt="DIPISTAV"
-              className="h-12 w-auto shrink-0 object-contain sm:h-14 md:h-16"
-            />
+            <picture className="block leading-none">
+              <source media="(max-width: 767px)" srcSet="/images/logo-dipimobil.webp" />
+              <img
+                src={logoSrc}
+                alt="DIPISTAV"
+                className="h-12 w-auto shrink-0 object-contain sm:h-14 md:h-16"
+              />
+            </picture>
           </a>
 
           <nav className="hidden items-center gap-6 xl:flex">
@@ -108,7 +131,7 @@ export function SiteShell({ children }: { children: ReactNode }) {
             ))}
           </nav>
 
-          <div className="flex items-center gap-2">
+          <div className="flex items-center gap-2 xl:justify-self-end">
             <CartButton />
             <button
               aria-label="Otevřít menu"
@@ -129,7 +152,11 @@ export function SiteShell({ children }: { children: ReactNode }) {
           />
           <aside className="absolute right-0 top-0 flex h-full w-[86%] max-w-sm flex-col bg-white shadow-2xl">
             <div className="flex items-center justify-between border-b border-border px-5 py-4">
-              <img src={logoSrc} alt="DIPISTAV" className="h-10 w-auto object-contain" />
+              <img
+                src="/images/logo-dipimobil.webp"
+                alt="DIPISTAV"
+                className="h-10 w-auto object-contain"
+              />
               <button
                 aria-label="Zavřít menu"
                 onClick={() => setMenuOpen(false)}
@@ -177,13 +204,15 @@ export function SiteShell({ children }: { children: ReactNode }) {
           <div>
             <img src={logoSrc} alt="DIPISTAV" className="h-12 w-auto object-contain" />
             <p className="mt-3 text-sm text-white/70">
-              Poctivá česká pila a prodej dřeva. Standardní skladové profily i řezivo na míru do 8
-              metrů.
+              Stavební řezivo, palivové dřevo a pelety přímo z české pily. Skladové profily i řezivo
+              na míru do 8 metrů.
             </p>
           </div>
 
           <div>
-            <div className="mb-3 text-sm font-black uppercase tracking-wide text-white">Kontakt</div>
+            <div className="mb-3 text-sm font-black uppercase tracking-wide text-white">
+              Kontakt
+            </div>
             <ul className="space-y-1.5 text-sm">
               <li>{COMPANY_PHONE}</li>
               <li>{COMPANY_EMAIL}</li>
@@ -224,7 +253,6 @@ export function SiteShell({ children }: { children: ReactNode }) {
           </div>
         </div>
       </footer>
-
     </div>
   );
 }

@@ -1,0 +1,67 @@
+{
+  "version": "v35",
+  "piecesPerLayer": 5,
+  "maxPieces": 20,
+  "preserveGoldenCounts": [1, 2],
+  "webp": {
+    "lossless": false,
+    "quality": 92,
+    "method": 6
+  },
+  "families": {
+    "beam": {
+      "assetPrefix": "beam",
+      "goldenPrefix": "beam-occlusion-v3",
+      "column": [135.0, -28.0],
+      "rowDown": [0.0, 130.0],
+      "back": [-560.0, -275.0],
+      "seamWidth": 4.0,
+      "seamColor": "#501801"
+    },
+    "plank": {
+      "assetPrefix": "plank",
+      "goldenPrefix": "plank-topgrain-smooth-v7",
+      "column": [280.0, -58.0],
+      "rowDown": [0.0, 119.0],
+      "back": [-372.0, -183.0],
+      "seamWidth": 4.0,
+      "seamColor": "#501801"
+    },
+    "board": {
+      "assetPrefix": "board-sorted",
+      "goldenPrefix": "board-occlusion-v3",
+      "column": [225.0, -47.0],
+      "rowDown": [0.0, 48.0],
+      "back": [-380.0, -187.0],
+      "seamWidth": 4.0,
+      "seamColor": "#501801"
+    },
+    "board-unsorted-narrow": {
+      "assetPrefix": "board-unsorted-narrow",
+      "goldenPrefix": "board-unsorted-narrow-occlusion-v3",
+      "column": [225.0, -47.0],
+      "rowDown": [0.0, 48.0],
+      "back": [-380.0, -187.0],
+      "seamWidth": 4.0,
+      "seamColor": "#501801"
+    },
+    "board-unsorted-wide": {
+      "assetPrefix": "board-unsorted-wide",
+      "goldenPrefix": "board-unsorted-wide-occlusion-v3",
+      "column": [225.0, -47.0],
+      "rowDown": [0.0, 48.0],
+      "back": [-380.0, -187.0],
+      "seamWidth": 4.0,
+      "seamColor": "#501801"
+    },
+    "lath": {
+      "assetPrefix": "lath",
+      "goldenPrefix": "lath-production-v2",
+      "column": [90.0, -19.0],
+      "rowDown": [0.0, 67.0],
+      "back": [-430.0, -211.0],
+      "seamWidth": 3.0,
+      "seamColor": "#6B310B"
+    }
+  }
+}

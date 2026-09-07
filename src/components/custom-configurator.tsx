@@ -213,9 +213,9 @@ function BeamPreview({
     };
 
     const framePadding = {
-      left: 92,
-      right: 30,
-      top: 52,
+      left: 72,
+      right: 72,
+      top: 60,
       bottom: 60,
     };
     const availableWidth = PREVIEW_VIEWBOX_WIDTH - framePadding.left - framePadding.right;
@@ -358,18 +358,19 @@ function BeamPreview({
   const widthLabelY = (widthGuideStart.y + widthGuideEnd.y) / 2 - 14;
   const heightLabelX = heightGuideX - 16;
   const heightLabelY = (geometry.frontTopLeft.y + geometry.frontBottomLeft.y) / 2;
-  const lengthLabelX =
-    (lengthGuideStart.x + lengthGuideEnd.x) / 2 + lengthNormalUnit.x * 16;
-  const lengthLabelY =
-    (lengthGuideStart.y + lengthGuideEnd.y) / 2 + lengthNormalUnit.y * 16;
+  const lengthLabelX = (lengthGuideStart.x + lengthGuideEnd.x) / 2 + lengthNormalUnit.x * 16;
+  const lengthLabelY = (lengthGuideStart.y + lengthGuideEnd.y) / 2 + lengthNormalUnit.y * 16;
 
   return (
-    <div className="rounded-[1.8rem] border border-[#1E3A2B]/12 bg-[linear-gradient(180deg,rgba(255,253,248,0.98),rgba(244,238,225,0.96))] p-3 shadow-[inset_0_1px_0_rgba(255,255,255,0.72)] sm:p-4 lg:flex lg:h-full lg:min-h-[35rem] lg:flex-col lg:p-4">
+    <div
+      data-custom-preview
+      className="rounded-[1.8rem] border border-[#1E3A2B]/12 bg-[linear-gradient(180deg,rgba(255,253,248,0.98),rgba(244,238,225,0.96))] p-3 shadow-[inset_0_1px_0_rgba(255,255,255,0.72)] sm:p-4 lg:flex lg:h-full lg:min-h-[35rem] lg:flex-col lg:p-4"
+    >
       <div className="text-[11px] font-semibold uppercase tracking-[0.24em] text-[#1E3A2B]/55">
         {"N\u00e1hled"}
       </div>
 
-      <div className="relative mt-3 flex min-h-[220px] items-center justify-center overflow-hidden rounded-[1.65rem] border border-[#D9D1C1] bg-[radial-gradient(circle_at_top,#fffef9_0%,#f4ebdc_62%,#ecdfcc_100%)] px-3 py-4 sm:min-h-[260px] sm:px-5 sm:py-5 lg:min-h-0 lg:flex-1 lg:px-4 lg:py-3">
+      <div className="relative mt-3 grid min-h-[220px] place-items-center overflow-hidden rounded-[1.65rem] border border-[#D9D1C1] bg-[radial-gradient(circle_at_top,#fffef9_0%,#f4ebdc_62%,#ecdfcc_100%)] sm:min-h-[260px] lg:min-h-0 lg:flex-1">
         <div
           aria-hidden
           className="absolute inset-x-10 bottom-5 h-7 rounded-full bg-[#6A4A2F]/8 blur-2xl"
@@ -378,10 +379,11 @@ function BeamPreview({
           }}
         />
 
-        <div className="flex h-full w-full items-center justify-center">
+        <div className="absolute inset-0 grid place-items-center px-3 py-4 sm:px-5 sm:py-5 lg:px-4 lg:py-3">
           <svg
             viewBox={`0 0 ${PREVIEW_VIEWBOX_WIDTH} ${PREVIEW_VIEWBOX_HEIGHT}`}
-            className="relative z-10 h-auto w-full max-w-[27rem] sm:max-w-[31rem] lg:w-[94%] lg:max-w-[46rem]"
+            preserveAspectRatio="xMidYMid meet"
+            className="relative z-10 h-auto max-h-full w-full max-w-[27rem] sm:max-w-[31rem] lg:w-[94%] lg:max-w-[46rem]"
           >
             <g stroke="#1E3A2B" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round">
               <polygon points={topFacePoints} fill={species.topFill} />
@@ -502,15 +504,12 @@ function NumericControl({
   };
 
   return (
-    <div className="rounded-[1.55rem] border border-[#1E3A2B]/10 bg-white/82 p-4 shadow-[0_12px_30px_rgba(30,58,43,0.05)] backdrop-blur-sm sm:p-5 lg:p-3.5">
-      <div className="flex items-center justify-between gap-3">
+    <div className="border-b border-[#1E3A2B]/10 bg-transparent p-3 last:border-b-0 md:rounded-[1.55rem] md:border md:bg-white/82 md:p-5 md:shadow-[0_12px_30px_rgba(30,58,43,0.05)] md:backdrop-blur-sm md:last:border lg:p-3.5">
+      <div className="flex items-center justify-center gap-3 md:justify-between">
         <span className="text-[11px] font-semibold uppercase tracking-[0.22em] text-[#1E3A2B]/58">
           {label}
         </span>
 
-        <div className="rounded-full border border-[#1E3A2B]/10 bg-[#FBF9F4] px-3 py-1 text-sm font-black text-[#1E293B] tabular-nums md:hidden">
-          {(allowDecimal ? formatFlexibleValue(value) : formatControlValue(value, step))} {unit}
-        </div>
         <div className="hidden md:block">
           <Input
             id={desktopInputId}
@@ -530,18 +529,18 @@ function NumericControl({
         </div>
       </div>
 
-      <div className="mt-4 flex items-center gap-3 md:hidden">
+      <div className="mt-3 grid grid-cols-[2.75rem_minmax(0,1fr)_2.75rem] items-center gap-2.5 md:hidden">
         <button
           type="button"
           onClick={() => commitValue(valueRef.current - step)}
           disabled={value <= min}
-          className="flex h-12 w-12 shrink-0 items-center justify-center rounded-2xl border border-[#1E3A2B]/12 bg-[#FBF9F4] text-[#1E3A2B] shadow-sm transition hover:border-[#1E3A2B]/24 hover:bg-white focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#1E3A2B]/20 disabled:cursor-default disabled:opacity-35"
+          className="flex size-11 items-center justify-center rounded-xl border border-[#1E3A2B]/12 bg-[#FBF9F4] text-[#1E3A2B] shadow-sm transition hover:border-[#1E3A2B]/24 hover:bg-white focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#1E3A2B]/20 disabled:cursor-default disabled:opacity-35"
           aria-label={`Sn\u00ed\u017eit hodnotu ${label}`}
         >
           <Minus className="h-4 w-4" />
         </button>
 
-        <div className="flex min-w-0 flex-1 items-center gap-3 rounded-2xl border border-[#1E3A2B]/10 bg-[#FBF9F4] px-4 py-3 shadow-[inset_0_1px_0_rgba(255,255,255,0.72)]">
+        <div className="relative flex min-w-0 items-center rounded-xl border border-[#1E3A2B]/10 bg-[#FBF9F4] px-3 py-2.5 shadow-[inset_0_1px_0_rgba(255,255,255,0.72)]">
           <Input
             id={mobileInputId}
             aria-label={label}
@@ -555,15 +554,18 @@ function NumericControl({
                 commitDraft();
               }
             }}
-            className="h-auto border-0 bg-transparent px-0 py-0 text-center text-lg font-black text-[#1E293B] shadow-none tabular-nums focus-visible:ring-0"
+            className="h-auto border-0 bg-transparent px-9 py-0 text-center text-lg font-black text-[#1E293B] shadow-none tabular-nums focus-visible:ring-0"
           />
+          <span className="pointer-events-none absolute right-3 text-xs font-bold text-[#1E293B]/55">
+            {unit}
+          </span>
         </div>
 
         <button
           type="button"
           onClick={() => commitValue(valueRef.current + step)}
           disabled={value >= max}
-          className="flex h-12 w-12 shrink-0 items-center justify-center rounded-2xl border border-[#1E3A2B]/12 bg-[#FBF9F4] text-[#1E3A2B] shadow-sm transition hover:border-[#1E3A2B]/24 hover:bg-white focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#1E3A2B]/20 disabled:cursor-default disabled:opacity-35"
+          className="flex size-11 items-center justify-center rounded-xl border border-[#1E3A2B]/12 bg-[#FBF9F4] text-[#1E3A2B] shadow-sm transition hover:border-[#1E3A2B]/24 hover:bg-white focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#1E3A2B]/20 disabled:cursor-default disabled:opacity-35"
           aria-label={`Zv\u00fd\u0161it hodnotu ${label}`}
         >
           <Plus className="h-4 w-4" />
@@ -642,19 +644,19 @@ export function CustomConfigurator() {
       </div>
 
       <div className="mx-auto max-w-7xl px-4 py-12 sm:py-16 lg:py-20">
-        <h2 className="mb-8 max-w-3xl text-3xl font-black tracking-tight text-[#1E293B] sm:text-4xl">
+        <h2 className="custom-configurator-title mb-8 text-center font-black tracking-tight text-[#1E293B]">
           {"Navrhn\u011bte si vlastn\u00ed \u0159ezivo"}
         </h2>
 
         <div
           data-beam-configurator
-          className="relative rounded-[2rem] border border-[#1E3A2B]/12 bg-[linear-gradient(180deg,rgba(255,255,255,0.84),rgba(255,252,246,0.96))] p-4 shadow-[0_24px_70px_rgba(30,58,43,0.08)] sm:p-6 lg:p-8"
+          className="configurator-surface relative rounded-[2rem] border border-[#1E3A2B]/12 bg-[linear-gradient(180deg,rgba(255,255,255,0.84),rgba(255,252,246,0.96))] p-4 shadow-[0_24px_70px_rgba(30,58,43,0.08)] sm:p-6 lg:p-8"
         >
           <SawBladeWatermark />
 
           <div className="relative grid gap-6 lg:grid-cols-[minmax(360px,0.92fr)_minmax(420px,1.08fr)] lg:items-stretch lg:gap-6 xl:grid-cols-[minmax(380px,0.9fr)_minmax(460px,1.1fr)]">
             <div className="space-y-3 lg:flex lg:h-full lg:flex-col lg:space-y-3.5">
-              <div className="grid gap-3 md:grid-cols-2 lg:grid-cols-1 lg:gap-3.5">
+              <div className="configurator-fields grid overflow-hidden rounded-[1.55rem] border border-[#1E3A2B]/10 bg-white/82 shadow-[0_12px_30px_rgba(30,58,43,0.05)] md:grid-cols-2 md:gap-3 md:overflow-visible md:rounded-none md:border-0 md:bg-transparent md:shadow-none lg:grid-cols-1 lg:gap-3.5">
                 <NumericControl
                   label={"\u0160\u00ed\u0159ka"}
                   value={width}
@@ -666,7 +668,7 @@ export function CustomConfigurator() {
                   allowDecimal
                 />
                 <NumericControl
-                  label={"V\u00fd\u0161ka"}
+                  label={"S\u00edla"}
                   value={height}
                   onChange={setHeight}
                   min={HEIGHT_MIN}
@@ -696,7 +698,7 @@ export function CustomConfigurator() {
                 />
               </div>
 
-              <div className="rounded-[1.55rem] border border-[#1E3A2B]/10 bg-white/82 p-3 shadow-[0_12px_30px_rgba(30,58,43,0.05)] backdrop-blur-sm lg:p-3.5">
+              <div className="configurator-species rounded-[1.55rem] border border-[#1E3A2B]/10 bg-white/82 p-3 shadow-[0_12px_30px_rgba(30,58,43,0.05)] backdrop-blur-sm lg:p-3.5">
                 <div className="grid grid-cols-3 gap-2 lg:gap-2.5">
                   {SPECIES.map((item) => {
                     const isActive = item.id === speciesId;
@@ -766,10 +768,10 @@ export function CustomConfigurator() {
             </div>
 
             <aside className="lg:self-stretch">
-              <div className="space-y-3 rounded-[1.9rem] border border-[#1E3A2B]/12 bg-[#EEF3EA] p-3 shadow-[0_22px_48px_rgba(30,58,43,0.12)] sm:p-4 lg:flex lg:h-full lg:flex-col lg:p-4">
+              <div className="configurator-preview-group space-y-3 rounded-[1.9rem] border border-[#1E3A2B]/12 bg-[#EEF3EA] p-3 shadow-[0_22px_48px_rgba(30,58,43,0.12)] sm:p-4 lg:flex lg:h-full lg:flex-col lg:p-4">
                 <BeamPreview width={width} height={height} length={length} species={species} />
 
-                <div className="rounded-[1.8rem] border border-[#1E3A2B]/12 bg-white/88 p-4 shadow-[inset_0_1px_0_rgba(255,255,255,0.7)] sm:p-5 lg:hidden">
+                <div className="configurator-totals rounded-[1.8rem] border border-[#1E3A2B]/12 bg-white/88 p-4 shadow-[inset_0_1px_0_rgba(255,255,255,0.7)] sm:p-5 lg:hidden">
                   <div className="grid gap-2.5 sm:grid-cols-2 sm:gap-3">
                     <div className="rounded-2xl border border-[#1E3A2B]/10 bg-[#FBF9F4] px-3 py-2.5 sm:px-4 sm:py-3 lg:px-3.5 lg:py-2.5">
                       <div className="text-[10px] font-semibold uppercase tracking-[0.18em] text-[#1E3A2B]/55 sm:text-[11px] sm:tracking-[0.2em]">

@@ -1,0 +1,25 @@
+{
+  "input": "tmp\\pellets-v18-phase2-blank-stacks\\state-02\\candidates\\masters\\pellets-blank-02-master-candidate-a-v18.png",
+  "canvas": {
+    "width": 1536,
+    "height": 1024
+  },
+  "alphaBoundsPixels": {
+    "left": 240,
+    "top": 80,
+    "right": 1296,
+    "bottom": 943
+  },
+  "alphaBoundsNormalized": {
+    "x": 0.15625,
+    "y": 0.078125,
+    "width": 0.6875,
+    "height": 0.842773
+  },
+  "alphaCoverage": 0.473815,
+  "paletteProximity": 0.974588,
+  "whiteOrBrightEdgePixels": 0,
+  "errors": [],
+  "warnings": [],
+  "status": "pass"
+}

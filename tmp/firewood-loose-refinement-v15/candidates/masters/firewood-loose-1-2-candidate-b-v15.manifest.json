@@ -1,0 +1,124 @@
+{
+  "canvas": {
+    "width": 1536,
+    "height": 1024
+  },
+  "alphaBoundsPixels": {
+    "left": 116,
+    "top": 153,
+    "right": 1420,
+    "bottom": 871
+  },
+  "alphaBounds": {
+    "x": 0.075521,
+    "y": 0.149414,
+    "width": 0.848958,
+    "height": 0.701172
+  },
+  "opticalCenter": {
+    "x": 0.5,
+    "y": 0.5
+  },
+  "alphaCoverage": 0.376188,
+  "margins": {
+    "left": 116,
+    "top": 153,
+    "right": 116,
+    "bottom": 153
+  },
+  "id": "firewood-loose-1-2-candidate-b-v15",
+  "styleVersion": "v15-candidate",
+  "approvalStatus": "awaiting-visual-approval",
+  "runtimeActivation": "blocked-until-explicit-visual-approval",
+  "renderMode": "master",
+  "renderTechnique": "golden-master-reference-guided-whole-pile-edit",
+  "quantityBand": {
+    "min": 1,
+    "max": 2
+  },
+  "representativeCount": 1,
+  "targetAlphaWidth": 0.62,
+  "variant": "b",
+  "selectedForQa": true,
+  "visualReview": "selected: compact full-size split pieces and clean Golden-Master color correction",
+  "technicalPass": true,
+  "technicalFailures": [],
+  "source": "tmp/firewood-loose-refinement-v15/source/firewood-loose-1-2-source-b-v15.png",
+  "sourceMode": "RGB",
+  "sourceSha256": "78f08d98143f06276807872a0d6da6d167cb29442aaa1b3a0581cc62725c7ec9",
+  "goldenMaster": "public/images/illustrations/configurator-v12/firewood-loose-16plus-master-v12.webp",
+  "goldenMasterSha256": "993a4d12bbb2f0f511d74ab70d2d1738f88492f640602e8cfeb4805a919c3a9f",
+  "colorSpace": "implicit-sRGB-no-embedded-ICC",
+  "positivePrompt": "Artisan architectural woodcut engraving of a loose pile of authentic split firewood, matching exactly the style, line weight, and color palette of reference image 16-plus-approved. Precise triangular wedge logs, quarter-split timber with visible wood grain and growth rings on warm honey-gold cleaved faces. Natural rough brown bark on curved outer edges. Clean ink hatching lines, soft ambient illumination, no crushed blacks. Perfectly isolated on transparent background, professional master catalog quality.",
+  "bandModifier": "Small compact low pile with a clear center crest and a modest number of large, thick quarter-split and naturally wedge-split pieces; reduce piece count and footprint, never log scale.",
+  "negativePrompt": "crushed black shadows, pitch black edges, muddy textures, oversaturated dark brown, burned wood, charcoal, round logs, cylindrical ends, pebble shapes, smooth plastic, low poly, 3D render, cartoon vector, inconsistent line weight, noisy background, halo artifacts, harsh black outlines.",
+  "rawColorMetrics": {
+    "labQuantiles": {
+      "p05": 5.7353,
+      "p25": 23.2711,
+      "p50": 53.3682,
+      "p75": 75.7435,
+      "p95": 89.1624
+    },
+    "darkFractions": {
+      "lStarLt5": 0.040703,
+      "lStarLt10": 0.103233,
+      "lStarLt25": 0.266282
+    },
+    "medianA": 16.5188,
+    "medianB": 44.4894
+  },
+  "colorNormalization": {
+    "applied": true,
+    "correctionAllowed": true,
+    "maximumLightnessShift": 4.7489,
+    "maximumChromaShift": 4.8727,
+    "lightnessShifts": [
+      0.3018,
+      2.1884,
+      -4.7489,
+      -2.5326,
+      -1.4357
+    ],
+    "chromaShifts": [
+      [
+        -1.7101,
+        -0.2939
+      ],
+      [
+        -2.2158,
+        -1.0014
+      ],
+      [
+        -4.2627,
+        -4.8727
+      ],
+      [
+        -1.0992,
+        -2.5332
+      ]
+    ]
+  },
+  "finalColorMetrics": {
+    "labQuantiles": {
+      "p05": 6.064,
+      "p25": 24.5341,
+      "p50": 49.9907,
+      "p75": 72.8971,
+      "p95": 87.9553
+    },
+    "darkFractions": {
+      "lStarLt5": 0.038861,
+      "lStarLt10": 0.09253,
+      "lStarLt25": 0.255008
+    },
+    "medianA": 14.379,
+    "medianB": 42.3007
+  },
+  "edgeMetrics": {
+    "semiTransparentPixels": 6440,
+    "brightNeutralFraction": 0.00031056,
+    "transparentRgbNonzeroFraction": 0.0
+  },
+  "outputSha256": "910da17bee361b6fbd57289c9d13465d697dc82d376d735389203458a4ae33f7"
+}

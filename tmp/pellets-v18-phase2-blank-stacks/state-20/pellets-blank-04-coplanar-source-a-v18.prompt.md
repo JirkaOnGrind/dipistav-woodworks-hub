@@ -1,0 +1,3 @@
+# Four-bag coplanar foundation prompt
+
+Use the approved locked Tier 3 as the absolute authority for material, anatomy, camera, lighting, linework, texture, scale, and spacing. Extend the layer from three bags to exactly four blank prone bags in one coplanar row. All four bags must share one ground plane and Z elevation, remain parallel, touch flush side-by-side, and align their front and rear closure baselines. Preserve the 40°/27° orthographic camera, individual bag dimensions, matte kraft-paper treatment, restrained 2.5D lighting, blank surfaces, and transparent background. Reject gaps, overlaps, shingles, stairs, stacking, floating, branding, gloss, photorealistic plastic, gradients, bloom, ambient occlusion, cast shadows, and extra objects.

@@ -1,0 +1,102 @@
+{
+  "valid": false,
+  "styleVersion": "v16-approved-r3",
+  "approvalStatus": "approved-for-production",
+  "runtimeActivation": "authorized",
+  "lockedGoldenMasters": [
+    {
+      "count": 1,
+      "sha256": "abed47d8cbb97c452366acfd84bdbd7c770f4873c305985c6012778e441f9cde"
+    },
+    {
+      "count": 2,
+      "sha256": "7491e805062d29055383282090f69c1cde3aa57418b802fa73eb7e496c499f25"
+    },
+    {
+      "count": 3,
+      "sha256": "b740dfb57fa9ca38a12c9a5818e5558ae28b9305b43ed18ad167e294b89bb819"
+    },
+    {
+      "count": 5,
+      "sha256": "1a7813d569e9a323d7ab322e919c3caa60964c47f552fa09479b6d9540d014fc"
+    },
+    {
+      "count": 20,
+      "sha256": "87444606f5b3c9131df5512a0b220341177345c1e04259a6facfa8706e63894f"
+    },
+    {
+      "count": 30,
+      "sha256": "d6c46c8b2c1c373575c380a9b54ccdc221928abef80c3896037f87e7bcf027af"
+    },
+    {
+      "count": 50,
+      "sha256": "16cad2725c02ecf36f89717a0abd27fbc928ebb263337197d3285cb7c567895d"
+    }
+  ],
+  "newCandidate": {
+    "count": 10,
+    "path": "tmp/pellets-v16/candidates/masters/pellets-10-master-v16-r3.webp",
+    "sha256": "67d8ca1ac6d9cc74dd2a8ce7063ae5a970c4349735ee2e598d1fa3d5a7643c2f"
+  },
+  "surgicalDiff": {
+    "editMask": {
+      "left": 1084,
+      "top": 801,
+      "right": 1160,
+      "bottom": 820
+    },
+    "editPolygon": [
+      [
+        1088,
+        805
+      ],
+      [
+        1156,
+        807
+      ],
+      [
+        1155,
+        817
+      ],
+      [
+        1088,
+        815
+      ]
+    ],
+    "donorBox": {
+      "left": 515,
+      "top": 748,
+      "right": 583,
+      "bottom": 760
+    },
+    "workingScale": 4,
+    "changedPixels": 1213,
+    "outsideMaskChangedPixels": 0,
+    "outsideMaskByteIdentical": true,
+    "alphaChannelByteIdentical": true,
+    "frontBrandingRegionsByteIdentical": true,
+    "horizontalSeamStrengthBefore": 11.072727,
+    "horizontalSeamStrengthAfter": 11.339394,
+    "horizontalArtifactRemovedPass": false,
+    "rightOuterProfileByteIdentical": true
+  },
+  "opticalWidths": [
+    0.4,
+    0.52,
+    0.6,
+    0.68,
+    0.76,
+    0.8,
+    0.83,
+    0.85
+  ],
+  "qa": [
+    "tmp/pellets-v16/final-r18/qa/pellets-v16-approved-r3-320.png",
+    "tmp/pellets-v16/final-r18/qa/pellets-v16-approved-r3-alpha-edge.png",
+    "tmp/pellets-v16/final-r18/qa/pellets-v16-approved-r3-before-after.png",
+    "tmp/pellets-v16/final-r18/qa/pellets-v16-approved-r3-branding.png",
+    "tmp/pellets-v16/final-r18/qa/pellets-v16-approved-r3-dark.png",
+    "tmp/pellets-v16/final-r18/qa/pellets-v16-approved-r3-light.png"
+  ],
+  "cleanBaseSha256": "0c4082349947636a97eea0bce84a9dd6e2f8a8f2df17f820d88a33dbb21b27c0"
+}

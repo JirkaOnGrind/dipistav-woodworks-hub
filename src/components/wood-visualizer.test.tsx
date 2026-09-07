@@ -1,7 +1,10 @@
 import { readFileSync } from "node:fs";
+import { renderToStaticMarkup } from "react-dom/server";
 import { describe, expect, it } from "vitest";
+import { WoodVisualizer } from "@/components/wood-visualizer";
 import { getArtworkInteractionMotion } from "@/lib/artwork-interaction-motion";
 import type { ProductVariant } from "@/lib/product-catalog";
+import { PRODUCT_CATEGORIES } from "@/lib/product-catalog";
 
 function variant(dimensions: ProductVariant["dimensions"]): ProductVariant {
   return {
@@ -15,6 +18,47 @@ function variant(dimensions: ProductVariant["dimensions"]): ProductVariant {
 }
 
 describe("artwork interaction motion", () => {
+  it("renders visualization-limit copy inside product media above the limits", () => {
+    for (const category of PRODUCT_CATEGORIES) {
+      const markup = renderToStaticMarkup(
+        <WoodVisualizer
+          categoryId={category.id}
+          imageSrc={category.imageSrc}
+          imageAlt={category.name}
+          quantity={500}
+          variant={category.variants[0]}
+        />,
+      );
+      expect(markup).toContain("Vizualizace je do");
+      expect(markup).toContain("data-visualization-limit");
+    }
+  });
+  it("renders the persisted desktop modes and exactly four numbered gallery choices", () => {
+    const markup = renderToStaticMarkup(
+      <WoodVisualizer
+        categoryId="test-product"
+        imageSrc="/test-product.webp"
+        imageAlt="Testovací produkt"
+        quantity={1}
+      />,
+    );
+
+    expect(markup).toContain("Vizualizace");
+    expect(markup).toContain("Galerie");
+    expect(markup.match(/aria-pressed=/g)).toHaveLength(4);
+    for (const item of [1, 2, 3, 4]) {
+      expect(markup).toContain(`${item}: sem bude přidaná fotka`);
+    }
+  });
+
+  it("keeps the view preference in versioned local storage", () => {
+    const store = readFileSync("src/lib/media-view-mode.ts", "utf8");
+
+    expect(store).toContain('"dipistav:product-media-view:v1"');
+    expect(store).toContain("window.localStorage.getItem");
+    expect(store).toContain("window.localStorage.setItem");
+  });
+
   it("expands the current non-lath length amplitude by an additional 10 percent", () => {
     for (const categoryId of ["tramy", "fosny", "prkna"]) {
       expect(getArtworkInteractionMotion(categoryId, variant({ lengthMm: 3000 })).lengthScale).toBe(

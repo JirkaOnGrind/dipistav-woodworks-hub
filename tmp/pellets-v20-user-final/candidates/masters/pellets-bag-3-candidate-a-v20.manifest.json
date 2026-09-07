@@ -1,0 +1,58 @@
+{
+  "candidateId": "pellets-bag-3-candidate-a-v20",
+  "quantity": 3,
+  "quantityBand": {
+    "min": 3,
+    "max": 4
+  },
+  "representativeCount": 3,
+  "approvalStatus": "approved",
+  "runtimeActive": true,
+  "approvedBy": "user",
+  "approvedDate": "2026-08-28",
+  "runtimePath": "public/images/illustrations/configurator-v20/pellets-bag-3-master-v20.webp",
+  "source": "FINAL3.webp",
+  "sourceSha256": "055762632fe56138f95f833b4cbca1f3eb506d94dbd90639fb4e6663df92d7ed",
+  "alphaMethod": "preserved-source-alpha+connected-exterior-neutral-halo-removal",
+  "workScale": 4,
+  "downsample": "single-lanczos",
+  "safeInset": 0.07,
+  "runtimeTargetAlphaWidth": 0.78,
+  "contourReservePixels": 8,
+  "canvas": {
+    "width": 1536,
+    "height": 1024
+  },
+  "alphaBoundsPixels": {
+    "left": 116,
+    "top": 128,
+    "right": 1420,
+    "bottom": 896
+  },
+  "alphaBounds": {
+    "x": 0.075521,
+    "y": 0.125,
+    "width": 0.848958,
+    "height": 0.75
+  },
+  "opticalCenter": {
+    "x": 0.5,
+    "y": 0.5
+  },
+  "alphaCoverage": 0.3812,
+  "cornersTransparent": true,
+  "transparentRgbClean": true,
+  "neutralBrightVisiblePixels": 0,
+  "safeInsetPass": true,
+  "masterPng": "tmp/pellets-v20-user-final/candidates/masters/pellets-bag-3-candidate-a-v20.png",
+  "masterPngSha256": "6912979594d04d02287a122d0fbb1055a6fd7329407207da6cccbf6f23c8cafc",
+  "masterWebp": "tmp/pellets-v20-user-final/candidates/masters/pellets-bag-3-candidate-a-v20.webp",
+  "masterWebpSha256": "8968ada8d0157975f8245ba55e5b3ca4e6ec93b78465c6ebd0d65aa3ac5c05e8",
+  "masterWebpBytes": 645958,
+  "qa": [
+    "tmp/pellets-v20-user-final/candidates/qa/pellets-bag-3-v20-320px.png",
+    "tmp/pellets-v20-user-final/candidates/qa/pellets-bag-3-v20-alpha.png",
+    "tmp/pellets-v20-user-final/candidates/qa/pellets-bag-3-v20-dark.png",
+    "tmp/pellets-v20-user-final/candidates/qa/pellets-bag-3-v20-light.png"
+  ]
+}

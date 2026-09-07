@@ -91,19 +91,19 @@ describe("artwork-system v11 production contract", () => {
     ).toHaveLength(4);
   });
 
-  it("activates v11 for timber and keeps fuels on earlier versions", () => {
+  it("uses single-piece homepage icons while product timber uses the current exact masters", () => {
     for (const category of PRODUCT_CATEGORIES) {
       for (const variant of category.variants) {
         const isTimber = ["tramy", "fosny", "prkna", "late"].includes(category.id);
         expect(
           getArtworkSceneFamily(category.id, variant).every((scene) =>
             isTimber
-              ? scene.source.includes("configurator-v11")
-              : !scene.source.includes("configurator-v11"),
+              ? scene.source.includes(scene.representativeCount! > 20 ? "timber-v40" : category.id === "fosny" ? "plank-v39" : "timber-dynamic-v35")
+              : !scene.source.includes("timber-dynamic-v35"),
           ),
         ).toBe(true);
       }
-      expect(category.imageSrc.includes("homepage-v11")).toBe(
+      expect(category.imageSrc.endsWith("-single.webp")).toBe(
         ["tramy", "fosny", "prkna", "late"].includes(category.id),
       );
     }

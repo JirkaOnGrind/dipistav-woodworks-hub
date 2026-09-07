@@ -1,0 +1,82 @@
+{
+  "canvas": {
+    "width": 1536,
+    "height": 1024
+  },
+  "alphaBoundsPixels": {
+    "left": 130,
+    "top": 191,
+    "right": 1406,
+    "bottom": 833
+  },
+  "alphaBounds": {
+    "x": 0.084635,
+    "y": 0.186523,
+    "width": 0.830729,
+    "height": 0.626953
+  },
+  "opticalCenter": {
+    "x": 0.5,
+    "y": 0.5
+  },
+  "alphaCoverage": 0.426572,
+  "cornersTransparent": true,
+  "transparentRgbClean": true,
+  "safeInsetPixels": {
+    "x": 116,
+    "y": 80
+  },
+  "safeInsetPass": true,
+  "dimensionsPass": true,
+  "rgbaPass": true,
+  "losslessWebp": true,
+  "id": "pellets-30-candidate-h-v16",
+  "styleVersion": "v16-final-r6-candidate",
+  "approvalStatus": "awaiting-final-visual-approval",
+  "runtimeActivation": "blocked-until-explicit-final-approval",
+  "representativeCount": 30,
+  "targetOpticalWidth": 0.83,
+  "effectiveAlphaWidth": 0.830729,
+  "source": "tmp/pellets-v16/source/pellets-30-source-h-v16.png",
+  "sourceSha256": "a3f8b826cf457e60a440a73704a3fc65e8405f54702f9bdc8dae66ef16f6c7db",
+  "outputSha256": "d6c46c8b2c1c373575c380a9b54ccdc221928abef80c3896037f87e7bcf027af",
+  "alphaMethod": "deterministic-neutral-checkerboard-extraction-v16",
+  "renderPipeline": "built-in precise-object ImageGen edit; deterministic neutral-background extraction; 4x fit; one Lanczos downsample; lossless WebP",
+  "editTarget": "tmp/pellets-v16/candidates/masters/pellets-30-candidate-g-v16.webp",
+  "editTargetSha256": "801553016e554c0b8f646221dd1dbf0384e1a9a1590ba1c3227b60743bb2fd15",
+  "goldenScaleReference": {
+    "path": "tmp/pellets-v16/candidates/masters/pellets-50-candidate-b-v16.webp",
+    "sha256": "16cad2725c02ecf36f89717a0abd27fbc928ebb263337197d3285cb7c567895d"
+  },
+  "composition": "expanded four-tier Golden-20 grid with thirty uniform full-size bag units",
+  "promptSummary": "Generated directly from the locked 20-bag grid; every tier preserves its unit dimensions and parallel axes.",
+  "fullyVisibleLabelCount": 6,
+  "nativeBranding": true,
+  "decalApplied": false,
+  "blankVisibleBagPass": true,
+  "miniBagPass": true,
+  "manualScaleDeviationEstimatePct": 1.5,
+  "sizeTolerancePct": 8.0,
+  "sizeTolerancePass": true,
+  "topTierFullSizePass": true,
+  "topTierCenteredPass": true,
+  "layerSupportPass": true,
+  "unifiedPerspectivePass": true,
+  "goldenGridReference": {
+    "path": "tmp/pellets-v16/candidates/masters/pellets-20-candidate-f-v16.webp",
+    "sha256": "87444606f5b3c9131df5512a0b220341177345c1e04259a6facfa8706e63894f",
+    "role": "primary image-to-image geometry and unit-scale reference"
+  },
+  "projection": {
+    "type": "strict-parallel-isometric",
+    "azimuthDegrees": 40,
+    "elevationDegrees": 27,
+    "uniformUnitScaleAcrossTiers": true,
+    "perspectiveTapering": false,
+    "focalDistortion": false
+  },
+  "parallelTierAxesPass": true,
+  "zeroShearPass": true,
+  "zeroTaperPass": true,
+  "representativeCountPass": true
+}

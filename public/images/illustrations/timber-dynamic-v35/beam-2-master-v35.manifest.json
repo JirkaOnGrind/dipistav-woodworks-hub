@@ -1,0 +1,57 @@
+{
+  "canvas": {
+    "width": 1536,
+    "height": 1024
+  },
+  "alphaBoundsPixels": {
+    "left": 113,
+    "top": 148,
+    "right": 1423,
+    "bottom": 876
+  },
+  "alphaBounds": {
+    "x": 0.073568,
+    "y": 0.144531,
+    "width": 0.852865,
+    "height": 0.710938
+  },
+  "opticalCenter": {
+    "x": 0.5,
+    "y": 0.5
+  },
+  "alphaCoverage": 0.33951,
+  "interiorAlphaMin": 248,
+  "margins": {
+    "left": 113,
+    "top": 148,
+    "right": 113,
+    "bottom": 148
+  },
+  "family": "beam",
+  "quantityBand": {
+    "min": 2,
+    "max": 2
+  },
+  "representativeCount": 2,
+  "layout": "5-wide-exact-2",
+  "piecesPerLayer": 5,
+  "levelCount": 1,
+  "renderOrigin": "approved-v11-byte-copy",
+  "designVectors": {
+    "column": [
+      135.0,
+      -28.0
+    ],
+    "rowDown": [
+      0.0,
+      130.0
+    ],
+    "back": [
+      -560.0,
+      -275.0
+    ]
+  },
+  "outputSha256": "4340cd78802e2c6b96f80541a0931d1965df8cae358ec0ac7d5cc578214c8956",
+  "runtimePath": "/images/illustrations/timber-dynamic-v35/beam-2-master-v35.webp",
+  "styleVersion": "v35"
+}

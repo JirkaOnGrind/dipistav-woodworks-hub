@@ -1,0 +1,68 @@
+{
+  "valid": true,
+  "styleVersion": "v16-final-r3-candidate",
+  "approvalStatus": "awaiting-final-visual-approval",
+  "runtimeActivation": "blocked-until-explicit-final-approval",
+  "lockedGoldenMasters": [
+    {
+      "count": 1,
+      "sha256": "abed47d8cbb97c452366acfd84bdbd7c770f4873c305985c6012778e441f9cde"
+    },
+    {
+      "count": 2,
+      "sha256": "7491e805062d29055383282090f69c1cde3aa57418b802fa73eb7e496c499f25"
+    },
+    {
+      "count": 3,
+      "sha256": "b740dfb57fa9ca38a12c9a5818e5558ae28b9305b43ed18ad167e294b89bb819"
+    },
+    {
+      "count": 50,
+      "sha256": "16cad2725c02ecf36f89717a0abd27fbc928ebb263337197d3285cb7c567895d"
+    }
+  ],
+  "fallback20": {
+    "path": "tmp/pellets-v16/candidates/masters/pellets-20-candidate-c-v16.webp",
+    "sha256": "4573e2abb388a8fa769b4a57ae6e12fda7b65fed1df00bd92d92cb8447efd9c3"
+  },
+  "newCandidates": [
+    {
+      "count": 5,
+      "sha256": "1a7813d569e9a323d7ab322e919c3caa60964c47f552fa09479b6d9540d014fc",
+      "path": "tmp/pellets-v16/candidates/masters/pellets-5-candidate-c-v16.webp"
+    },
+    {
+      "count": 10,
+      "sha256": "4e9de6059cc7bddeac0b4c92680167c24820e111f4267734eb2de88b84f252bf",
+      "path": "tmp/pellets-v16/candidates/masters/pellets-10-candidate-d-v16.webp"
+    },
+    {
+      "count": 20,
+      "sha256": "63c0b0947ddcef4f1dbc510a356d41ea212de8af200d680d6e0da89b3a03cb72",
+      "path": "tmp/pellets-v16/candidates/masters/pellets-20-candidate-d-v16.webp"
+    },
+    {
+      "count": 30,
+      "sha256": "82d46918c81c63d21ad5d99e9672ee72abb206b49f8f3329e7b7e695bdd7b0ef",
+      "path": "tmp/pellets-v16/candidates/masters/pellets-30-candidate-e-v16.webp"
+    }
+  ],
+  "opticalWidths": [
+    0.4,
+    0.52,
+    0.6,
+    0.68,
+    0.76,
+    0.8,
+    0.83,
+    0.85
+  ],
+  "qa": [
+    "tmp/pellets-v16/final-r3/qa/pellets-v16-final-r3-320.png",
+    "tmp/pellets-v16/final-r3/qa/pellets-v16-final-r3-alpha-edge.png",
+    "tmp/pellets-v16/final-r3/qa/pellets-v16-final-r3-before-after.png",
+    "tmp/pellets-v16/final-r3/qa/pellets-v16-final-r3-branding.png",
+    "tmp/pellets-v16/final-r3/qa/pellets-v16-final-r3-dark.png",
+    "tmp/pellets-v16/final-r3/qa/pellets-v16-final-r3-light.png"
+  ]
+}

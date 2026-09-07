@@ -1,0 +1,114 @@
+{
+  "candidateId": "pellets-blank-03-master-candidate-a-v18",
+  "phase": 2,
+  "tier": 3,
+  "quantity": 3,
+  "approvalStatus": "awaiting-visual-approval",
+  "runtimeActive": false,
+  "canvas": {
+    "width": 2560,
+    "height": 1536
+  },
+  "alphaBoundsPixels": {
+    "left": 230,
+    "top": 213,
+    "right": 2330,
+    "bottom": 1323
+  },
+  "brandingPolicy": "zero-branding-all-surfaces",
+  "compositionMode": "three-byte-identical-prone-units-no-resampling",
+  "cameraLock": {
+    "projection": "orthographic",
+    "azimuthDegrees": 40,
+    "elevationDegrees": 27,
+    "zoomFactor": 1.0
+  },
+  "scaleLock": {
+    "uprightAnchorFootprintPixels": {
+      "width": 520,
+      "height": 863
+    },
+    "proneProjectedFootprintPixels": {
+      "width": 1060,
+      "height": 770
+    },
+    "instanceScalePercent": [
+      100,
+      100,
+      100
+    ],
+    "zoomOutAllowed": false,
+    "canvasExpanded": true
+  },
+  "layout": "one-flat-ground-layer-three-prone-bags-side-by-side-aligned",
+  "rowVectorPixels": {
+    "x": 520,
+    "y": 170
+  },
+  "placements": [
+    {
+      "id": "prone-1",
+      "x": 230,
+      "y": 213,
+      "width": 1060,
+      "height": 770,
+      "layer": 1
+    },
+    {
+      "id": "prone-2",
+      "x": 750,
+      "y": 383,
+      "width": 1060,
+      "height": 770,
+      "layer": 1
+    },
+    {
+      "id": "prone-3",
+      "x": 1270,
+      "y": 553,
+      "width": 1060,
+      "height": 770,
+      "layer": 1
+    }
+  ],
+  "proneUnitSource": "tmp/pellets-v18-phase2-blank-stacks/state-03/source/pellets-blank-prone-unit-candidate-a-v18.png",
+  "proneUnitSourceSha256": "84814f9e44e3a0c45706411eb374a8e2377ae390059ee3e680755b5742c61d99",
+  "instancePixelSourceSha256": [
+    "fdef5eeea3bca3a03638921d2a3fe6bc79f3b8afd8739e0408ce21e48ef6d56d",
+    "fdef5eeea3bca3a03638921d2a3fe6bc79f3b8afd8739e0408ce21e48ef6d56d",
+    "fdef5eeea3bca3a03638921d2a3fe6bc79f3b8afd8739e0408ce21e48ef6d56d"
+  ],
+  "generatedSource": "tmp/pellets-v18-phase2-blank-stacks/state-03/source/pellets-blank-prone-unit-source-b-v18.png",
+  "generatedSourceSha256": "a4fe403f80bbe41412c807917385711fe9b38d85d67e4541c41bd386032f699c",
+  "sourceAlphaMethod": "deterministic-neutral-checkerboard-extraction",
+  "lockedUprightUnitSha256": "46ec4ff49e6fd776529fb4ab428d18fe7811159591b4e41327a2e6a958f242f9",
+  "lockedLogoSha256": "590dbcd3773af5a9c82eecfe35f1316c68808b02f9f5a4f72c91c594e5fc87ed",
+  "layoutReferenceSha256": "eafa06688b5e0bd9d4bbcd9929a814d9816619a35b2ad7d2540f542c540b4afe",
+  "promptSpec": "tmp/pellets-v18-phase2-blank-stacks/state-03/pellets-blank-state-03-candidate-a-v18.prompt.md",
+  "promptSpecSha256": "c5626b42a4dcb41656f369abce0e6311af655daa2c63e67f42694bb6b8639af3",
+  "validation": {
+    "canvas": {
+      "width": 2560,
+      "height": 1536
+    },
+    "alphaBoundsPixels": {
+      "left": 230,
+      "top": 213,
+      "right": 2330,
+      "bottom": 1323
+    },
+    "marginsPixels": {
+      "left": 230,
+      "top": 213,
+      "right": 230,
+      "bottom": 213
+    },
+    "safeInset": 0.07,
+    "whiteOrBrightEdgePixels": 0,
+    "transparentRgbClean": true,
+    "errors": [],
+    "status": "pass"
+  },
+  "masterPngSha256": "4840bee333754db6d602045eb8450f421625de57f8230e9db3122f79507af78f",
+  "masterWebpSha256": "ab60e6d2c3e580e3c5fcda74e190984c3173fa4bad2e7c347646fcf92d448622"
+}

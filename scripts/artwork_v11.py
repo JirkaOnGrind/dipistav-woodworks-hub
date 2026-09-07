@@ -375,6 +375,33 @@ def refined_plank_top_texture() -> Image.Image:
     return refined
 
 
+def erode_mask(mask: Image.Image, radius: int) -> Image.Image:
+    """Exact square minimum filter using separable, logarithmic shift passes.
+
+    White padding is neutral for minimums, matching Pillow's edge extension.
+    This avoids scanning a 17x17 neighborhood for every supersampled pixel.
+    """
+    result = mask
+    for axis in (0, 1):
+        remaining = radius
+        step = 1
+        while remaining:
+            distance = min(step, remaining)
+            previous = result
+            for direction in (-1, 1):
+                offset = direction * distance
+                shifted = ImageChops.offset(previous, offset if axis == 0 else 0, offset if axis == 1 else 0)
+                if axis == 0:
+                    box = (0, 0, distance, mask.height) if direction > 0 else (mask.width - distance, 0, mask.width, mask.height)
+                else:
+                    box = (0, 0, mask.width, distance) if direction > 0 else (0, mask.height - distance, mask.width, mask.height)
+                shifted.paste(255, box)
+                result = ImageChops.darker(result, shifted)
+            remaining -= distance
+            step *= 2
+    return result
+
+
 def render_reference_texture_face(
     canvas: Image.Image,
     face_name: str,
@@ -426,7 +453,10 @@ def render_reference_texture_face(
         lane_bottom = math.ceil(max(lane_ys)) + padding
         lane_size = (lane_right - lane_left, lane_bottom - lane_top)
         local_lane = [(x - lane_left, y - lane_top) for x, y in lane_polygon]
-        rng = stable_rng("texture-sample", texture_key, face_name, lane_index)
+        # Every plank uses the clean right-hand reference member's top grain.
+        # Other member offsets can sample a dark source mark as a false split.
+        sample_key = "plank:r0c1" if face_name == "top" and texture_key.startswith("plank:") else texture_key
+        rng = stable_rng("texture-sample", sample_key, face_name, lane_index)
         sample_offset = (rng.uniform(-14.0, 14.0), rng.uniform(-10.0, 10.0))
         source_polygon = [add(point, sample_offset) for point in sampling_polygons[face_name]]
         source_face = (
@@ -442,7 +472,7 @@ def render_reference_texture_face(
         )
         lane_mask = Image.new("L", lane_size, 0)
         ImageDraw.Draw(lane_mask).polygon(local_lane, fill=255)
-        interior = lane_mask.filter(ImageFilter.MinFilter(17))
+        interior = erode_mask(lane_mask, 8)
         patch_alpha = patch.getchannel("A")
         covered = patch_alpha.point(lambda value: 255 if value >= 248 else 0)
         uncovered = ImageChops.subtract(interior, covered)
@@ -621,7 +651,7 @@ def draw_separation_seams(
 def add_outer_contour(image: Image.Image, sample_scale: int = 1) -> Image.Image:
     alpha = image.getchannel("A")
     erosion_size = round(OUTER_PX * sample_scale) * 2 + 1
-    eroded = alpha.filter(ImageFilter.MinFilter(erosion_size))
+    eroded = erode_mask(alpha, erosion_size // 2)
     boundary = ImageChops.subtract(alpha, eroded)
     contour = Image.new("RGBA", image.size, OUTER)
     contour.putalpha(boundary)
@@ -690,8 +720,10 @@ def render_stack(layout: Layout, geometry: FamilyGeometry) -> tuple[Image.Image,
             faces = ["front"]
             if unit.column == min(row_columns):
                 faces.insert(0, "side")
-            if unit.row == 0 or layout.count == 3:
-                faces.insert(1 if "side" in faces else 0, "top")
+            # Paint every row's top face. Upper rows are rendered afterwards,
+            # so they naturally occlude only the area they actually cover and
+            # leave the exposed shoulders of lower rows fully opaque.
+            faces.insert(1 if "side" in faces else 0, "top")
             render_unit(image, unit, geometry, transform, faces)
         if geometry.family != "lath":
             draw_row_separation_seams(image, layout, geometry, transform, row)
@@ -876,6 +908,7 @@ def contact_sheet(
     background: str,
     cell_size: tuple[int, int] = (480, 320),
     columns: int = 4,
+    presentation_shadow: bool = False,
 ) -> None:
     rows = math.ceil(len(entries) / columns)
     header = 72
@@ -892,9 +925,17 @@ def contact_sheet(
         scale = min(max_width / image.width, max_height / image.height)
         size = (round(image.width * scale), round(image.height * scale))
         preview = image.resize(size, Image.Resampling.LANCZOS)
+        paste_x = cell_x + (cell_size[0] - size[0]) // 2
+        paste_y = cell_y + 8
+        if presentation_shadow:
+            shadow_alpha = preview.getchannel("A").filter(ImageFilter.GaussianBlur(6))
+            shadow_alpha = shadow_alpha.point(lambda alpha: round(alpha * 0.24))
+            shadow = Image.new("RGBA", preview.size, (43, 22, 10, 0))
+            shadow.putalpha(shadow_alpha)
+            sheet.paste(shadow, (paste_x + 5, paste_y + 8), shadow)
         sheet.paste(
             preview,
-            (cell_x + (cell_size[0] - size[0]) // 2, cell_y + 8),
+            (paste_x, paste_y),
             preview,
         )
         manifest = Path(entry.get("manifest", ""))

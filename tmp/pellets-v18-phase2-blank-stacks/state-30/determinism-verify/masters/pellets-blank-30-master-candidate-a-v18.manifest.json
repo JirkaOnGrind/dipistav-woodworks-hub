@@ -1,0 +1,105 @@
+{
+  "candidateId": "pellets-blank-30-master-candidate-a-v18",
+  "tier": 30,
+  "quantity": 30,
+  "approvalStatus": "awaiting-visual-approval",
+  "runtimeActive": false,
+  "brandingPolicy": "zero-branding-all-surfaces",
+  "compositionMode": "6-byte-identical-5-bag-coplanar-layers-no-resampling",
+  "geometry": {
+    "layers": 6,
+    "bagsPerLayer": 5,
+    "alignment": "direct-vertical-flush",
+    "zStepPixels": 128
+  },
+  "cameraLock": {
+    "projection": "orthographic",
+    "azimuthDegrees": 40,
+    "elevationDegrees": 27,
+    "zoomFactor": 1.0
+  },
+  "scaleLock": {
+    "instanceScalePercent": 100,
+    "zoomOutAllowed": false,
+    "canvasExpanded": true
+  },
+  "lockedTier3PngSha256": "493875f22457dc37f95eda7f9a7ae9661d9aa68177c0911c3a2d124815f4f60a",
+  "moduleSourceSha256": "ae7c877d8ce41c7446d331e29f38d1948d24acabf9ff3ea8ea38f3a6d2a6ba59",
+  "modulePngSha256": "c1e7e82dadf3e32962e18d37c4158ec702b3093b1c7c56669fba578c7c30fe47",
+  "layerPixelSha256": [
+    "6855a17521f01cd13ba77cf6194cfd5806f49bb1db3f147c3f20f8ec9ad6bd93",
+    "6855a17521f01cd13ba77cf6194cfd5806f49bb1db3f147c3f20f8ec9ad6bd93",
+    "6855a17521f01cd13ba77cf6194cfd5806f49bb1db3f147c3f20f8ec9ad6bd93",
+    "6855a17521f01cd13ba77cf6194cfd5806f49bb1db3f147c3f20f8ec9ad6bd93",
+    "6855a17521f01cd13ba77cf6194cfd5806f49bb1db3f147c3f20f8ec9ad6bd93",
+    "6855a17521f01cd13ba77cf6194cfd5806f49bb1db3f147c3f20f8ec9ad6bd93"
+  ],
+  "placementsTopToBottom": [
+    {
+      "layer": 1,
+      "x": 318,
+      "y": 273
+    },
+    {
+      "layer": 2,
+      "x": 318,
+      "y": 401
+    },
+    {
+      "layer": 3,
+      "x": 318,
+      "y": 529
+    },
+    {
+      "layer": 4,
+      "x": 318,
+      "y": 657
+    },
+    {
+      "layer": 5,
+      "x": 318,
+      "y": 785
+    },
+    {
+      "layer": 6,
+      "x": 318,
+      "y": 913
+    }
+  ],
+  "validation": {
+    "status": "pass",
+    "canvas": {
+      "width": 3072,
+      "height": 2048
+    },
+    "alphaBoundsPixels": {
+      "left": 318,
+      "top": 273,
+      "right": 2752,
+      "bottom": 1774
+    },
+    "marginsPixels": {
+      "left": 318,
+      "top": 273,
+      "right": 320,
+      "bottom": 274
+    },
+    "layerCount": 6,
+    "bagsPerLayer": 5,
+    "bagCount": 30,
+    "layerPixelSize": {
+      "width": 2435,
+      "height": 861
+    },
+    "layerZStepPixels": 128,
+    "horizontalLayerOffsetPixels": 0,
+    "instanceScalePercent": 100,
+    "sourceLayerResampling": "none-after-module-normalization",
+    "visibleInterlayerGapPixels": 0,
+    "transparentRgbClean": true,
+    "whiteOrBrightEdgePixels": 0,
+    "errors": []
+  },
+  "masterPngSha256": "75c17ca194029cd6082969172783c5e8cf3262b81d9e9271b607e7f48d7de39c",
+  "masterWebpSha256": "1ad1869d68300fd684ac8c6b39363430b58d3aee83c1523d2724151eb4a07dec"
+}

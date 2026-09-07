@@ -1,0 +1,49 @@
+{
+  "canvas": {
+    "width": 1536,
+    "height": 1024
+  },
+  "alphaBoundsPixels": {
+    "left": 369,
+    "top": 118,
+    "right": 1168,
+    "bottom": 905
+  },
+  "alphaBounds": {
+    "x": 0.240234,
+    "y": 0.115234,
+    "width": 0.520182,
+    "height": 0.768555
+  },
+  "opticalCenter": {
+    "x": 0.5,
+    "y": 0.5
+  },
+  "alphaCoverage": 0.296056,
+  "cornersTransparent": true,
+  "transparentRgbClean": true,
+  "id": "pellets-2-candidate-b-v15",
+  "styleVersion": "v15-candidate",
+  "approvalStatus": "awaiting-visual-approval",
+  "runtimeActivation": "blocked-until-explicit-visual-approval",
+  "family": "pellets-bag",
+  "representativeCount": 2,
+  "targetAlphaWidth": 0.52,
+  "selectedForQa": false,
+  "reference": "public/images/illustrations/configurator-v3/pelety-pytel-v3.webp",
+  "referenceSha256": "f8225c69fa6e6aaa3795dfb8fcfb0dcdd551cfaf5d532e6a2b122b1b81e1e418",
+  "source": "tmp/pellets-v15/source/pellets-2-source-b-v15.png",
+  "sourceSha256": "ee59bd9f4755897f4e365741753804366c2698ac3b003a848980a333b03ae43f",
+  "outputSha256": "5eff994f2e9cb98be5faf7290d99eb8f8d5e63260248df46a44172c4c7b72ee3",
+  "alphaMethod": "preserved-generated-alpha",
+  "renderPipeline": "built-in-reference-guided-imagegen; 4x compositing; one Lanczos downsample; lossless WebP",
+  "prompt": "Two standing sacks leaning their shoulders against one another.",
+  "nativeBranding": true,
+  "decalApplied": false,
+  "fullyVisibleLabelCount": 2,
+  "exactLabelText": "15 kg",
+  "exactLabelPass": true,
+  "layerSupportPass": true,
+  "compositionPass": true,
+  "review": "pass"
+}

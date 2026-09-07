@@ -1,0 +1,22 @@
+{
+  "candidateId": "pellets-bag-1-unit-tile-candidate-a-v17",
+  "approvalStatus": "approved-locked-base",
+  "approvedBy": "user",
+  "approvedDate": "2026-08-27",
+  "runtimeActive": false,
+  "png": {
+    "path": "artwork-sources/pellets/pellets-bag-unit-tile-master-v17.png",
+    "sha256": "88bd6c89f2a665472c19d7fd041b42b815526d8bee2cbe8f165c5437b752ed36"
+  },
+  "webp": {
+    "path": "artwork-sources/pellets/pellets-bag-unit-tile-master-v17.webp",
+    "sha256": "b2b25ba15f2a20329297c1001d0cbbbf0c0decafca7f1a04d6833564a333e7cc"
+  },
+  "invariants": {
+    "kraftTexture": "byte-locked-source",
+    "lighting": "upper-left",
+    "exactText": "15 kg",
+    "emblem": "double-circle-pinecone-needles-five-pellets-two-rules",
+    "printedSurface": "broad-front-face-only"
+  }
+}

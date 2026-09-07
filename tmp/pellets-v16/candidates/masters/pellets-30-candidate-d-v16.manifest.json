@@ -1,0 +1,67 @@
+{
+  "canvas": {
+    "width": 1536,
+    "height": 1024
+  },
+  "alphaBoundsPixels": {
+    "left": 128,
+    "top": 183,
+    "right": 1406,
+    "bottom": 841
+  },
+  "alphaBounds": {
+    "x": 0.083333,
+    "y": 0.178711,
+    "width": 0.832031,
+    "height": 0.642578
+  },
+  "opticalCenter": {
+    "x": 0.5,
+    "y": 0.5
+  },
+  "alphaCoverage": 0.420778,
+  "cornersTransparent": true,
+  "transparentRgbClean": true,
+  "safeInsetPixels": {
+    "x": 116,
+    "y": 80
+  },
+  "safeInsetPass": true,
+  "dimensionsPass": true,
+  "rgbaPass": true,
+  "losslessWebp": true,
+  "id": "pellets-30-candidate-d-v16",
+  "styleVersion": "v16-selective-r2-candidate",
+  "approvalStatus": "awaiting-visual-approval",
+  "runtimeActivation": "blocked-until-explicit-visual-approval",
+  "representativeCount": 30,
+  "visibleBagCountEstimate": 30,
+  "targetOpticalWidth": 0.83,
+  "effectiveAlphaWidth": 0.832031,
+  "source": "tmp/pellets-v16/source/pellets-30-source-d-v16.png",
+  "sourceSha256": "df2f0429b1448d664fd27f31ffd6ad1e1a523f1f0ad4295a9795db74bd8aba4d",
+  "outputSha256": "0289745634a6a9392aae36531e960de5b933e8aaf560290df46d2476ccd753a1",
+  "alphaMethod": "deterministic-neutral-checkerboard-extraction-v16",
+  "renderPipeline": "built-in reference-guided ImageGen; deterministic neutral-background extraction; 4x fit; one Lanczos downsample; lossless WebP",
+  "goldenReferences": [
+    {
+      "count": 3,
+      "sha256": "b740dfb57fa9ca38a12c9a5818e5558ae28b9305b43ed18ad167e294b89bb819"
+    },
+    {
+      "count": 50,
+      "sha256": "16cad2725c02ecf36f89717a0abd27fbc928ebb263337197d3285cb7c567895d"
+    }
+  ],
+  "composition": "reduced Golden-50 rectangular block with five full-size columns and two depth sections",
+  "fullyVisibleLabelCount": 5,
+  "nativeBranding": true,
+  "decalApplied": false,
+  "blankVisibleBagPass": true,
+  "miniBagPass": true,
+  "manualScaleDeviationEstimatePct": 6.0,
+  "sizeTolerancePct": 8.0,
+  "sizeTolerancePass": true,
+  "layerSupportPass": true,
+  "unifiedPerspectivePass": true
+}

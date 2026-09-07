@@ -1,0 +1,23 @@
+{
+  "canvas": {
+    "width": 2560,
+    "height": 1536
+  },
+  "alphaBoundsPixels": {
+    "left": 230,
+    "top": 213,
+    "right": 2330,
+    "bottom": 1323
+  },
+  "marginsPixels": {
+    "left": 230,
+    "top": 213,
+    "right": 230,
+    "bottom": 213
+  },
+  "safeInset": 0.07,
+  "whiteOrBrightEdgePixels": 0,
+  "transparentRgbClean": true,
+  "errors": [],
+  "status": "pass"
+}

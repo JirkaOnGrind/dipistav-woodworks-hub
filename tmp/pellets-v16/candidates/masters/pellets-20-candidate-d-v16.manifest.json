@@ -1,0 +1,66 @@
+{
+  "canvas": {
+    "width": 1536,
+    "height": 1024
+  },
+  "alphaBoundsPixels": {
+    "left": 153,
+    "top": 214,
+    "right": 1382,
+    "bottom": 810
+  },
+  "alphaBounds": {
+    "x": 0.099609,
+    "y": 0.208984,
+    "width": 0.80013,
+    "height": 0.582031
+  },
+  "opticalCenter": {
+    "x": 0.5,
+    "y": 0.5
+  },
+  "alphaCoverage": 0.407981,
+  "cornersTransparent": true,
+  "transparentRgbClean": true,
+  "safeInsetPixels": {
+    "x": 116,
+    "y": 80
+  },
+  "safeInsetPass": true,
+  "dimensionsPass": true,
+  "rgbaPass": true,
+  "losslessWebp": true,
+  "id": "pellets-20-candidate-d-v16",
+  "styleVersion": "v16-final-r3-candidate",
+  "approvalStatus": "awaiting-final-visual-approval",
+  "runtimeActivation": "blocked-until-explicit-final-approval",
+  "representativeCount": 20,
+  "visibleBagCountEstimate": 20,
+  "targetOpticalWidth": 0.8,
+  "effectiveAlphaWidth": 0.80013,
+  "source": "tmp/pellets-v16/source/pellets-20-source-d-v16.png",
+  "sourceSha256": "1cd63b8f9009167eb61b37ef9f9a3106aee6fd43b71f025000a7294f3e70eced",
+  "outputSha256": "63c0b0947ddcef4f1dbc510a356d41ea212de8af200d680d6e0da89b3a03cb72",
+  "alphaMethod": "deterministic-neutral-checkerboard-extraction-v16",
+  "renderPipeline": "built-in precise-object ImageGen edit; deterministic neutral-background extraction; 4x fit; one Lanczos downsample; lossless WebP",
+  "prompt": "Change only top-row alignment: translate the row rigidly to the center without resizing.",
+  "editTarget": "tmp/pellets-v16/candidates/masters/pellets-20-candidate-c-v16.webp",
+  "editTargetSha256": "4573e2abb388a8fa769b4a57ae6e12fda7b65fed1df00bd92d92cb8447efd9c3",
+  "goldenScaleReference": {
+    "path": "tmp/pellets-v16/candidates/masters/pellets-50-candidate-b-v16.webp",
+    "sha256": "16cad2725c02ecf36f89717a0abd27fbc928ebb263337197d3285cb7c567895d"
+  },
+  "composition": "unchanged four-tier block with the full-size top row centered over the lower block",
+  "fullyVisibleLabelCount": 4,
+  "nativeBranding": true,
+  "decalApplied": false,
+  "blankVisibleBagPass": true,
+  "miniBagPass": true,
+  "manualScaleDeviationEstimatePct": 3.0,
+  "sizeTolerancePct": 8.0,
+  "sizeTolerancePass": true,
+  "topTierFullSizePass": true,
+  "topTierCenteredPass": true,
+  "layerSupportPass": true,
+  "unifiedPerspectivePass": true
+}

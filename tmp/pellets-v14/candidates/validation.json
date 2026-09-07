@@ -1,0 +1,65 @@
+{
+  "valid": true,
+  "approvalStatus": "awaiting-visual-approval",
+  "runtimeActivation": "blocked-until-explicit-visual-approval",
+  "masters": [
+    {
+      "image": "tmp/pellets-v14/candidates/masters/pellets-bag-1-master-v14.webp",
+      "manifest": "tmp/pellets-v14/candidates/masters/pellets-bag-1-master-v14.manifest.json",
+      "sha256": "aa80c29519fdaf8bb0e63bc439bad634bbba5aae07059028c6407be1623e336f"
+    },
+    {
+      "image": "tmp/pellets-v14/candidates/masters/pellets-bag-2-master-v14.webp",
+      "manifest": "tmp/pellets-v14/candidates/masters/pellets-bag-2-master-v14.manifest.json",
+      "sha256": "f2fc6e2dfc44c95957a6d22d8066d432a6147033cdb4037827da71366e6fdb77"
+    },
+    {
+      "image": "tmp/pellets-v14/candidates/masters/pellets-bag-3-4-master-v14.webp",
+      "manifest": "tmp/pellets-v14/candidates/masters/pellets-bag-3-4-master-v14.manifest.json",
+      "sha256": "c38c65fa1599cc72150691e88ebc311702c44fe1d8c0d8700b3edf14e05ea1c7"
+    },
+    {
+      "image": "tmp/pellets-v14/candidates/masters/pellets-bag-5-9-master-v14.webp",
+      "manifest": "tmp/pellets-v14/candidates/masters/pellets-bag-5-9-master-v14.manifest.json",
+      "sha256": "aeb946d10e2c189893415a8080f4cb116263540327734e4a738b0222e85e1a48"
+    },
+    {
+      "image": "tmp/pellets-v14/candidates/masters/pellets-bag-10-19-master-v14.webp",
+      "manifest": "tmp/pellets-v14/candidates/masters/pellets-bag-10-19-master-v14.manifest.json",
+      "sha256": "8ce9e03be92c5e562f8d41f51fc003aee219533dd76245b257176c9179d3262a"
+    },
+    {
+      "image": "tmp/pellets-v14/candidates/masters/pellets-bag-20plus-master-v14.webp",
+      "manifest": "tmp/pellets-v14/candidates/masters/pellets-bag-20plus-master-v14.manifest.json",
+      "sha256": "dd4a089cef1f623d3106fab0683d64cf3c461fbcc18701558408dd3492318f98"
+    },
+    {
+      "image": "tmp/pellets-v14/candidates/masters/pellets-set-1-master-v14.webp",
+      "manifest": "tmp/pellets-v14/candidates/masters/pellets-set-1-master-v14.manifest.json",
+      "sha256": "8ce9e03be92c5e562f8d41f51fc003aee219533dd76245b257176c9179d3262a"
+    },
+    {
+      "image": "tmp/pellets-v14/candidates/masters/pellets-set-2-master-v14.webp",
+      "manifest": "tmp/pellets-v14/candidates/masters/pellets-set-2-master-v14.manifest.json",
+      "sha256": "dd4a089cef1f623d3106fab0683d64cf3c461fbcc18701558408dd3492318f98"
+    },
+    {
+      "image": "tmp/pellets-v14/candidates/masters/pellets-set-3-4-master-v14.webp",
+      "manifest": "tmp/pellets-v14/candidates/masters/pellets-set-3-4-master-v14.manifest.json",
+      "sha256": "1310c801d749c5536fa93489436e252a145429b99c4d422c88cbf2154346b8b3"
+    },
+    {
+      "image": "tmp/pellets-v14/candidates/masters/pellets-set-5plus-master-v14.webp",
+      "manifest": "tmp/pellets-v14/candidates/masters/pellets-set-5plus-master-v14.manifest.json",
+      "sha256": "6c4ec71702e5b85b3656834f0fec3cc90b2b2e29f329c881b905697645b2e45c"
+    }
+  ],
+  "qa": [
+    "tmp/pellets-v14/candidates/qa/pellets-bag-v14-light.png",
+    "tmp/pellets-v14/candidates/qa/pellets-bag-v14-dark.png",
+    "tmp/pellets-v14/candidates/qa/pellets-bag-v14-320.png",
+    "tmp/pellets-v14/candidates/qa/pellets-set-v14-light.png",
+    "tmp/pellets-v14/candidates/qa/pellets-set-v14-dark.png",
+    "tmp/pellets-v14/candidates/qa/pellets-set-v14-320.png"
+  ]
+}

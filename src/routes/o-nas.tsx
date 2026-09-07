@@ -26,13 +26,44 @@ function ONasPage() {
           className="absolute inset-0 bg-[radial-gradient(circle_at_top_left,rgba(35,74,51,0.1),transparent_36%),linear-gradient(180deg,rgba(245,242,233,0.82),rgba(245,242,233,0))]"
         />
         <div className="relative mx-auto max-w-7xl px-4 py-14 sm:py-18">
-          <div className="max-w-3xl">
-            <h1 className="text-4xl font-black tracking-tight text-[#1E293B] sm:text-5xl">
-              Poctivá česká pila a prodej dřeva DIPISTAV
+          <div>
+            <h1 className="whitespace-nowrap text-[clamp(1.15rem,4.8vw,3rem)] font-black leading-tight tracking-tight text-[#1E293B]">
+              Poctivá česká pila a paliva
             </h1>
-            <p className="mt-4 text-lg text-[#1E293B]/72">
-              Dodáváme stavební řezivo a palivové dřevo, na které je spoleh od první poptávky až po vykládku na místě.
+            <p className="mt-3 max-w-3xl text-sm leading-6 text-[#1E293B]/72 sm:text-base">
+              Dodáváme stavební řezivo a palivové dřevo, na které je spoleh od první poptávky až po
+              vykládku na místě.
             </p>
+          </div>
+        </div>
+      </section>
+
+      <section className="mx-auto max-w-7xl px-4 pt-10 sm:pt-12">
+        <div className="rounded-[2rem] border border-[#A86D38]/12 bg-white p-6 shadow-sm sm:p-8">
+          <div className="max-w-2xl">
+            <h2 className="whitespace-nowrap text-[clamp(1rem,3.4vw,1.875rem)] font-black tracking-tight text-[#1E293B]">
+              Dřevo, které známe od původu až po expedici
+            </h2>
+            <p className="mt-3 text-sm leading-6 text-[#1E293B]/75">
+              Každou zakázku řešíme osobně. Pomůžeme s výběrem profilu, doporučíme vhodné rozměry a
+              připravíme materiál tak, aby na stavbě vše sedělo bez zbytečných kompromisů.
+            </p>
+          </div>
+
+          <div className="mt-6 grid justify-items-center gap-3 md:flex md:flex-wrap">
+            {[
+              { label: "Lokální surovina", icon: Trees },
+              { label: "Výroba na míru", icon: Ruler },
+              { label: "Osobní přístup", icon: Handshake },
+            ].map((pillar) => (
+              <div
+                key={pillar.label}
+                className="inline-flex items-center gap-3 rounded-full bg-[#F5F2E9] px-5 py-3 text-xs font-bold text-[#234A33] sm:text-sm"
+              >
+                <pillar.icon className="h-4 w-4" />
+                {pillar.label}
+              </div>
+            ))}
           </div>
         </div>
       </section>
@@ -41,7 +72,7 @@ function ONasPage() {
         <div className="grid gap-5 md:grid-cols-2 xl:grid-cols-3">
           <figure className="overflow-hidden rounded-[1.75rem] border border-[#A86D38]/10 bg-white shadow-sm">
             <img
-              src="/images/onas2.jpeg"
+              src="/images/onas2.webp"
               alt="Naložené fošny a prkna připravené k expedici"
               className="h-72 w-full object-cover"
             />
@@ -52,7 +83,7 @@ function ONasPage() {
 
           <figure className="overflow-hidden rounded-[1.75rem] border border-[#A86D38]/10 bg-white shadow-sm">
             <img
-              src="/images/onas1.jpeg"
+              src="/images/onas1.webp"
               alt="Masivní stavební trámy na korbě nákladního vozu"
               className="h-72 w-full object-cover"
             />
@@ -72,44 +103,16 @@ function ONasPage() {
         </div>
       </section>
 
-      <section className="mx-auto max-w-7xl px-4 pb-10">
-        <div className="rounded-[2rem] border border-[#A86D38]/12 bg-white p-6 shadow-sm sm:p-8">
-          <div className="max-w-2xl">
-            <h2 className="text-2xl font-black tracking-tight text-[#1E293B] sm:text-3xl">
-              Dřevo, které známe od původu až po expedici
-            </h2>
-            <p className="mt-3 text-sm leading-7 text-[#1E293B]/75 sm:text-base">
-              Každou zakázku řešíme osobně. Pomůžeme s výběrem profilu, doporučíme vhodné rozměry a připravíme materiál tak, aby na stavbě vše sedělo bez zbytečných kompromisů.
-            </p>
-          </div>
-
-          <div className="mt-8 flex flex-wrap gap-3">
-            {[
-              { label: "Lokální surovina", icon: Trees },
-              { label: "Výroba na míru", icon: Ruler },
-              { label: "Osobní přístup", icon: Handshake },
-            ].map((pillar) => (
-              <div
-                key={pillar.label}
-                className="inline-flex items-center gap-3 rounded-full bg-[#F5F2E9] px-5 py-3 text-sm font-bold text-[#234A33]"
-              >
-                <pillar.icon className="h-4 w-4" />
-                {pillar.label}
-              </div>
-            ))}
-          </div>
-        </div>
-      </section>
-
       <section className="mx-auto max-w-7xl px-4 pb-12 sm:pb-16">
         <div className="rounded-[2rem] bg-[#234A33] px-6 py-8 text-white shadow-sm sm:px-10 sm:py-10">
           <div className="grid gap-6 md:grid-cols-[1fr_auto] md:items-center">
             <div>
-              <h2 className="text-2xl font-black tracking-tight sm:text-3xl">
+              <h2 className="text-xl font-black tracking-tight sm:text-2xl">
                 Chcete připravit nabídku na trámy, fošny nebo atypické řezivo?
               </h2>
-              <p className="mt-3 text-white/80">
-                Zavolejte nám nebo pošlete poptávku. Připravíme přehlednou nabídku, ověříme dostupnost a doporučíme nejvhodnější řešení pro váš projekt.
+              <p className="mt-3 text-sm leading-6 text-white/80">
+                Zavolejte nám nebo pošlete poptávku. Připravíme přehlednou nabídku, ověříme
+                dostupnost a doporučíme nejvhodnější řešení pro váš projekt.
               </p>
             </div>
             <div className="flex flex-col gap-3 sm:flex-row md:flex-col lg:flex-row">

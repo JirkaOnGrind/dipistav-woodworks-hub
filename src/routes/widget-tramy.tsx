@@ -78,7 +78,7 @@ function WidgetTramyPage() {
         <div
           aria-hidden
           className="absolute inset-0 scale-110 bg-cover bg-center opacity-20 blur-sm"
-          style={{ backgroundImage: "url('/images/woodpatern.jpg')" }}
+          style={{ backgroundImage: "url('/images/woodpatern.webp')" }}
         />
 
         <div className="relative mx-auto max-w-7xl px-4 py-10 sm:py-14">

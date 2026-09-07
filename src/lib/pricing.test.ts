@@ -28,6 +28,23 @@ describe("calculateVariantQuote", () => {
     expect(quote?.totalPrice).toBe(990);
   });
 
+  it("účtuje netříděná prkna přímo podle zvolených m³", () => {
+    const quote = calculateVariantQuote(
+      {
+        availability: "in-stock",
+        pricing: {
+          basis: "cubic-meter",
+          rate: 7200,
+          displayUnit: "m³",
+          quantityMode: "volume",
+        },
+      },
+      3,
+    );
+
+    expect(quote).toMatchObject({ quantity: 3, totalVolumeM3: 3, totalPrice: 21600 });
+  });
+
   it("nevrací cenu pro nenaskladněnou variantu", () => {
     expect(calculateVariantQuote({ availability: "out-of-stock", pricing: null }, 1)).toBeNull();
   });

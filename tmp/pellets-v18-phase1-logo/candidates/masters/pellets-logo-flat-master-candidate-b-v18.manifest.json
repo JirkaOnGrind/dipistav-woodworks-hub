@@ -1,0 +1,46 @@
+{
+  "candidateId": "pellets-logo-flat-master-candidate-b-v18",
+  "assetRole": "phase-1-flat-branding",
+  "approvalStatus": "approved-locked-base",
+  "approvedBy": "user",
+  "approvedDate": "2026-08-27",
+  "runtimeActive": false,
+  "canvas": {
+    "width": 1536,
+    "height": 1024
+  },
+  "alphaBoundsPixels": {
+    "left": 386,
+    "top": 79,
+    "right": 1150,
+    "bottom": 947
+  },
+  "alphaBounds": {
+    "x": 0.251302,
+    "y": 0.077148,
+    "width": 0.497396,
+    "height": 0.847656
+  },
+  "opticalCenter": {
+    "x": 0.5,
+    "y": 0.5
+  },
+  "alphaCoverage": 0.146932,
+  "cornersTransparent": true,
+  "transparentRgbClean": true,
+  "style": "single-color-vintage-woodcut-engraving",
+  "inkColor": "#6B310B",
+  "background": "transparent-rgba",
+  "textVerbatim": "15 kg",
+  "paperTexturePresent": false,
+  "threeDimensionalEffectsPresent": false,
+  "source": "tmp/pellets-v18-phase1-logo/source/pellets-logo-phase1-source-a-v18.png",
+  "sourceSha256": "d5997f4f4d7420e2a16c885f2a6345b636572bcbd2a4b5432bb4e66f64ad3898",
+  "sourceAlphaMethod": "deterministic-neutral-checkerboard-extraction",
+  "lockedUnitTile": "artwork-sources/pellets/pellets-bag-unit-tile-master-v17.png",
+  "lockedUnitTileSha256": "88bd6c89f2a665472c19d7fd041b42b815526d8bee2cbe8f165c5437b752ed36",
+  "promptSpec": "tmp/pellets-v18-phase1-logo/pellets-logo-phase1-candidate-a-v18.prompt.md",
+  "promptSpecSha256": "13384ca2bf13cefc8eeb3d279ce643e8f3bc2297f87f1fa87097b051d472b279",
+  "masterPngSha256": "590dbcd3773af5a9c82eecfe35f1316c68808b02f9f5a4f72c91c594e5fc87ed",
+  "masterWebpSha256": "f95c7ab15202dd6e3848dad1000f03ea85677d7b7f15e5233b7e90201338c6e5"
+}

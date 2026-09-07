@@ -1,0 +1,91 @@
+{
+  "candidateId": "pellets-blank-12-master-candidate-a-v18",
+  "tier": 12,
+  "quantity": 12,
+  "approvalStatus": "awaiting-visual-approval",
+  "runtimeActive": false,
+  "brandingPolicy": "zero-branding-all-surfaces",
+  "compositionMode": "4-byte-identical-locked-tier3-layers-no-resampling",
+  "geometry": {
+    "layers": 4,
+    "bagsPerLayer": 3,
+    "alignment": "direct-vertical-flush",
+    "zStepPixels": 128
+  },
+  "cameraLock": {
+    "projection": "orthographic",
+    "azimuthDegrees": 40,
+    "elevationDegrees": 27,
+    "zoomFactor": 1.0
+  },
+  "scaleLock": {
+    "instanceScalePercent": 100,
+    "zoomOutAllowed": false,
+    "canvasExpandedVertically": true
+  },
+  "lockedTier3PngSha256": "493875f22457dc37f95eda7f9a7ae9661d9aa68177c0911c3a2d124815f4f60a",
+  "layerPixelSha256": [
+    "39121f0b79e910f86cb1cb5c303cf9540cec5cab1daa4d275ea324c51a77a732",
+    "39121f0b79e910f86cb1cb5c303cf9540cec5cab1daa4d275ea324c51a77a732",
+    "39121f0b79e910f86cb1cb5c303cf9540cec5cab1daa4d275ea324c51a77a732",
+    "39121f0b79e910f86cb1cb5c303cf9540cec5cab1daa4d275ea324c51a77a732"
+  ],
+  "placementsTopToBottom": [
+    {
+      "layer": 1,
+      "x": 293,
+      "y": 145
+    },
+    {
+      "layer": 2,
+      "x": 293,
+      "y": 273
+    },
+    {
+      "layer": 3,
+      "x": 293,
+      "y": 401
+    },
+    {
+      "layer": 4,
+      "x": 293,
+      "y": 529
+    }
+  ],
+  "validation": {
+    "status": "pass",
+    "canvas": {
+      "width": 2048,
+      "height": 1536
+    },
+    "alphaBoundsPixels": {
+      "left": 293,
+      "top": 145,
+      "right": 1754,
+      "bottom": 1390
+    },
+    "marginsPixels": {
+      "left": 293,
+      "top": 145,
+      "right": 294,
+      "bottom": 146
+    },
+    "layerCount": 4,
+    "bagsPerLayer": 3,
+    "bagCount": 12,
+    "layerPixelSize": {
+      "width": 1461,
+      "height": 861
+    },
+    "layerZStepPixels": 128,
+    "horizontalLayerOffsetPixels": 0,
+    "instanceScalePercent": 100,
+    "sourceLayerResampling": "none",
+    "visibleInterlayerGapPixels": 0,
+    "transparentRgbClean": true,
+    "whiteOrBrightEdgePixels": 0,
+    "errors": []
+  },
+  "masterPngSha256": "6352bb8098674b8ba85ae458f1872aabf3801f0b2286ec090a9eb3033d55c863",
+  "masterWebpSha256": "0d8d352eca313579ecbf6d78d7b8ec7a5a9077ff14e60b2b6aeca4e04ad4f86c"
+}

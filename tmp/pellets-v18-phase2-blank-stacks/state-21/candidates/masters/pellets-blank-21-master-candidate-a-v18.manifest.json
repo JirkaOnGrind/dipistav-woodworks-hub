@@ -1,0 +1,111 @@
+{
+  "candidateId": "pellets-blank-21-master-candidate-a-v18",
+  "tier": 21,
+  "quantity": 21,
+  "approvalStatus": "rejected-by-user",
+  "runtimeActive": false,
+  "brandingPolicy": "zero-branding-all-surfaces",
+  "compositionMode": "7-byte-identical-locked-tier3-layers-no-resampling",
+  "geometry": {
+    "layers": 7,
+    "bagsPerLayer": 3,
+    "alignment": "direct-vertical-flush",
+    "zStepPixels": 128
+  },
+  "cameraLock": {
+    "projection": "orthographic",
+    "azimuthDegrees": 40,
+    "elevationDegrees": 27,
+    "zoomFactor": 1.0
+  },
+  "scaleLock": {
+    "instanceScalePercent": 100,
+    "zoomOutAllowed": false,
+    "canvasExpandedVertically": true
+  },
+  "lockedTier3PngSha256": "493875f22457dc37f95eda7f9a7ae9661d9aa68177c0911c3a2d124815f4f60a",
+  "layerPixelSha256": [
+    "39121f0b79e910f86cb1cb5c303cf9540cec5cab1daa4d275ea324c51a77a732",
+    "39121f0b79e910f86cb1cb5c303cf9540cec5cab1daa4d275ea324c51a77a732",
+    "39121f0b79e910f86cb1cb5c303cf9540cec5cab1daa4d275ea324c51a77a732",
+    "39121f0b79e910f86cb1cb5c303cf9540cec5cab1daa4d275ea324c51a77a732",
+    "39121f0b79e910f86cb1cb5c303cf9540cec5cab1daa4d275ea324c51a77a732",
+    "39121f0b79e910f86cb1cb5c303cf9540cec5cab1daa4d275ea324c51a77a732",
+    "39121f0b79e910f86cb1cb5c303cf9540cec5cab1daa4d275ea324c51a77a732"
+  ],
+  "placementsTopToBottom": [
+    {
+      "layer": 1,
+      "x": 293,
+      "y": 209
+    },
+    {
+      "layer": 2,
+      "x": 293,
+      "y": 337
+    },
+    {
+      "layer": 3,
+      "x": 293,
+      "y": 465
+    },
+    {
+      "layer": 4,
+      "x": 293,
+      "y": 593
+    },
+    {
+      "layer": 5,
+      "x": 293,
+      "y": 721
+    },
+    {
+      "layer": 6,
+      "x": 293,
+      "y": 849
+    },
+    {
+      "layer": 7,
+      "x": 293,
+      "y": 977
+    }
+  ],
+  "validation": {
+    "status": "pass",
+    "canvas": {
+      "width": 2048,
+      "height": 2048
+    },
+    "alphaBoundsPixels": {
+      "left": 293,
+      "top": 209,
+      "right": 1754,
+      "bottom": 1838
+    },
+    "marginsPixels": {
+      "left": 293,
+      "top": 209,
+      "right": 294,
+      "bottom": 210
+    },
+    "layerCount": 7,
+    "bagsPerLayer": 3,
+    "bagCount": 21,
+    "layerPixelSize": {
+      "width": 1461,
+      "height": 861
+    },
+    "layerZStepPixels": 128,
+    "horizontalLayerOffsetPixels": 0,
+    "instanceScalePercent": 100,
+    "sourceLayerResampling": "none",
+    "visibleInterlayerGapPixels": 0,
+    "transparentRgbClean": true,
+    "whiteOrBrightEdgePixels": 0,
+    "errors": []
+  },
+  "masterPngSha256": "274aa23e987d4d570ac7dcff091c02861ab466e9b3ebf15df5551cb6167d247f",
+  "masterWebpSha256": "2ac083188c2e4ef6bbdf794e4ce6c578a9522f37b15db3ce140a15ea6729da30",
+  "rejectionReason": "seven-layer three-bag footprint is too tall and narrow",
+  "supersededByGeometryPolicy": "four-bag-wide large-quantity footprint"
+}

@@ -26,8 +26,16 @@ You MUST strictly adhere to the following execution workflow for all tasks:
 3. **Session Continuation (`handoff`):**
    - **Manual execution only.** Invoke this skill when the user explicitly requests a handoff or types `@handoff`. Compact the current session into a handoff document for a fresh session.
 
-## Artwork Visual DNA
+4. **Skill Discovery (`find-skills`):**
+   - Use during task triage whenever a specialized workflow may exist but is not already covered by an available project skill.
 
-Before creating, editing, mapping, or approving any product illustration, read the sole canonical
-artwork specification in [`.agents/skills/dipistav-artwork/SKILL.md`](./.agents/skills/dipistav-artwork/SKILL.md).
-Archived artwork documents are historical only. Approved assets and hash locks must remain byte-identical.
+5. **React Quality (`react-best-practices`):**
+   - **MANDATORY for all React code creation, review, refactoring, and performance work in this project.**
+
+## Product detail viewport and gallery rules
+
+- On desktop (width >= 1024px), the complete product detail must fit inside the viewport: site header, product heading, gallery/illustration, all configuration fields, prices, and action buttons. Neither the page nor the configuration panel may require vertical scrolling. Do not achieve this by clipping controls or hiding required information; use compact responsive layout. Keep normal document scrolling on mobile.
+- Verify every product category at 1366x768 and 1024x600, including the additional plank modes and unavailable variants. Account for the site header and maintain visible space above the product heading.
+- Desktop product details use a focused viewport layout without the site footer; other pages and mobile details retain the footer.
+- The gallery and visualization must retain matching container dimensions. Illustrations use bounded height and contain sizing.
+- The lightbox is a centered white window, approximately 65% of the desktop viewport, with blurred surroundings, brown controls with strong hover feedback, and no visible image counter. Closing it preserves the last viewed image in the gallery.

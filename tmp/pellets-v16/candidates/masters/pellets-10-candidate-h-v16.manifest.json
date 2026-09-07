@@ -1,0 +1,68 @@
+{
+  "canvas": {
+    "width": 1536,
+    "height": 1024
+  },
+  "alphaBoundsPixels": {
+    "left": 184,
+    "top": 130,
+    "right": 1354,
+    "bottom": 894
+  },
+  "alphaBounds": {
+    "x": 0.119792,
+    "y": 0.126953,
+    "width": 0.761719,
+    "height": 0.746094
+  },
+  "opticalCenter": {
+    "x": 0.5,
+    "y": 0.5
+  },
+  "alphaCoverage": 0.451756,
+  "cornersTransparent": true,
+  "transparentRgbClean": true,
+  "safeInsetPixels": {
+    "x": 116,
+    "y": 80
+  },
+  "safeInsetPass": true,
+  "dimensionsPass": true,
+  "rgbaPass": true,
+  "losslessWebp": true,
+  "editMask": {
+    "left": 1266,
+    "top": 520,
+    "right": 1535,
+    "bottom": 790
+  },
+  "wallAxisX": 1272,
+  "changedRows": 250,
+  "changedPixels": 15559,
+  "outsideMaskChangedPixels": 0,
+  "outsideMaskByteIdentical": true,
+  "maxRightProtrusionBeforePx": 79,
+  "maxRightProtrusionAfterPx": 0,
+  "rightWallAlignedPass": true,
+  "id": "pellets-10-candidate-h-v16",
+  "styleVersion": "v16-final-r7-candidate",
+  "approvalStatus": "awaiting-final-visual-approval",
+  "runtimeActivation": "blocked-until-explicit-final-approval",
+  "representativeCount": 10,
+  "targetOpticalWidth": 0.76,
+  "source": "tmp/pellets-v16/candidates/masters/pellets-10-candidate-g-v16.webp",
+  "sourceSha256": "a84e490f265f81c8931e8ae21f3f851c8010c5350af94cfbd100387c2c9f5448",
+  "outputSha256": "0a97160612a3d4903f02d60edef9ec931fb15cb5a3022cd5286bbd650ec9d860",
+  "renderPipeline": "deterministic masked pixel surgery; original boundary pixels repositioned; lossless WebP",
+  "composition": "unchanged 3 + 3 + 3 + 1 ten-bag stack",
+  "editedObject": "right ground-row bag outer edge only",
+  "upperTierByteIdentical": true,
+  "centerByteIdentical": true,
+  "brandingByteIdenticalOutsideMask": true,
+  "bagCountUnchanged": true,
+  "topTierFullSizePass": true,
+  "layerSupportPass": true,
+  "parallelTierAxesPass": true,
+  "zeroShearPass": true,
+  "zeroTaperPass": true
+}

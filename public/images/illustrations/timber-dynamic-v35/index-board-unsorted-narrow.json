@@ -1,0 +1,2534 @@
+{
+  "version": "v35",
+  "piecesPerLayer": 5,
+  "maxPieces": 20,
+  "config": "scripts/timber_dynamic_config_v35.json",
+  "entries": [
+    {
+      "image": "board-unsorted-narrow-6-master-v35.webp",
+      "canvas": {
+        "width": 1536,
+        "height": 1024
+      },
+      "alphaBoundsPixels": {
+        "left": 113,
+        "top": 306,
+        "right": 1423,
+        "bottom": 718
+      },
+      "alphaBounds": {
+        "x": 0.073568,
+        "y": 0.298828,
+        "width": 0.852865,
+        "height": 0.402344
+      },
+      "opticalCenter": {
+        "x": 0.5,
+        "y": 0.5
+      },
+      "alphaCoverage": 0.187177,
+      "interiorAlphaMin": 248,
+      "margins": {
+        "left": 113,
+        "top": 306,
+        "right": 113,
+        "bottom": 306
+      },
+      "family": "board-unsorted-narrow",
+      "quantityBand": {
+        "min": 6,
+        "max": 6
+      },
+      "representativeCount": 6,
+      "layout": "5-wide-exact-6",
+      "expectedVisibleConstructionSeams": 18,
+      "camera": {
+        "projection": "orthographic",
+        "azimuthDegrees": 40,
+        "elevationDegrees": 27
+      },
+      "designVectors": {
+        "column": [
+          225.0,
+          -47.0
+        ],
+        "rowDown": [
+          0.0,
+          48.0
+        ],
+        "back": [
+          -380.0,
+          -187.0
+        ]
+      },
+      "autoFit": {
+        "policy": "adaptive-bounds",
+        "safeInset": 0.07,
+        "contourReservePixels": 8.0,
+        "maxScale": 2.0,
+        "renderScale": 0.86708306,
+        "translation": [
+          445.0116,
+          632.5245
+        ]
+      },
+      "lineWeights": {
+        "outer": 4.0,
+        "edge": 3.0,
+        "seam": 4.0,
+        "rings": 1.5,
+        "grain": 1.25
+      },
+      "palette": [
+        "#501801",
+        "#501801",
+        "#501801",
+        "#804015",
+        "#965622",
+        "#C5813B",
+        "#F0A242",
+        "#F4A847",
+        "#EEA847"
+      ],
+      "plankTopColor": null,
+      "plankTopColorPolicy": null,
+      "canonicalTextureSource": "artwork-sources/beams/beam-unit-tile-master-v1-4x.png",
+      "canonicalTextureSha256": "752db88a14866587604e271225b5c85f82d1974d96a62a2cd8ec57beadf3bec0",
+      "visualReference": "Obrázek Codex 12. 8. 2026 19_45_37.png",
+      "texturePolicy": "reference-face-transfer-with-clean-polygon-corners",
+      "cornerCleanup": "no-corner-discoloration-no-dirty-corner-shading-no-ao",
+      "edgePolicy": "dark-timber-edges-no-white-halo-no-bright-inner-fringe",
+      "textureCoverage": "full-face-to-contour",
+      "topFaceTextureLanes": 5,
+      "topFaceTexturePolicy": "canonical-unit-tile-multi-lane-no-procedural-grain",
+      "seamPainterOrder": "row-local-before-upper-row-occlusion",
+      "memberWidthsCm": [
+        8.0,
+        14.0,
+        10.0,
+        12.0
+      ],
+      "renderedMembers": [
+        {
+          "key": "r1c0",
+          "row": 1,
+          "widthCm": 14.0,
+          "normalizedWidthScale": 1.206897,
+          "topTextureLanes": 6
+        },
+        {
+          "key": "r1c1",
+          "row": 1,
+          "widthCm": 10.0,
+          "normalizedWidthScale": 0.862069,
+          "topTextureLanes": 4
+        },
+        {
+          "key": "r1c2",
+          "row": 1,
+          "widthCm": 12.0,
+          "normalizedWidthScale": 1.034483,
+          "topTextureLanes": 5
+        },
+        {
+          "key": "r1c3",
+          "row": 1,
+          "widthCm": 8.0,
+          "normalizedWidthScale": 0.689655,
+          "topTextureLanes": 3
+        },
+        {
+          "key": "r1c4",
+          "row": 1,
+          "widthCm": 14.0,
+          "normalizedWidthScale": 1.206897,
+          "topTextureLanes": 6
+        },
+        {
+          "key": "r0c0",
+          "row": 0,
+          "widthCm": 8.0,
+          "normalizedWidthScale": 1.0,
+          "topTextureLanes": 5
+        }
+      ],
+      "antiCloning": {
+        "policy": "deterministic-inset-source-sampling",
+        "maximumSourceOffsetPixels4x": [
+          14,
+          10
+        ],
+        "changesGeometryOrColor": false
+      },
+      "seed": 20260813,
+      "styleVersion": "v35",
+      "approvalStatus": "awaiting-approval",
+      "piecesPerLayer": 5,
+      "levelCount": 2,
+      "renderOrigin": "deterministic-v11-vector-renderer",
+      "outputSha256": "0c526a74c0ceb15875aca6b758a667f25fb44f857676b2cb472411b2aab7fc03",
+      "runtimePath": "/images/illustrations/timber-dynamic-v35/board-unsorted-narrow-6-master-v35.webp"
+    },
+    {
+      "image": "board-unsorted-narrow-7-master-v35.webp",
+      "canvas": {
+        "width": 1536,
+        "height": 1024
+      },
+      "alphaBoundsPixels": {
+        "left": 113,
+        "top": 306,
+        "right": 1423,
+        "bottom": 718
+      },
+      "alphaBounds": {
+        "x": 0.073568,
+        "y": 0.298828,
+        "width": 0.852865,
+        "height": 0.402344
+      },
+      "opticalCenter": {
+        "x": 0.5,
+        "y": 0.5
+      },
+      "alphaCoverage": 0.192331,
+      "interiorAlphaMin": 248,
+      "margins": {
+        "left": 113,
+        "top": 306,
+        "right": 113,
+        "bottom": 306
+      },
+      "family": "board-unsorted-narrow",
+      "quantityBand": {
+        "min": 7,
+        "max": 7
+      },
+      "representativeCount": 7,
+      "layout": "5-wide-exact-7",
+      "expectedVisibleConstructionSeams": 18,
+      "camera": {
+        "projection": "orthographic",
+        "azimuthDegrees": 40,
+        "elevationDegrees": 27
+      },
+      "designVectors": {
+        "column": [
+          225.0,
+          -47.0
+        ],
+        "rowDown": [
+          0.0,
+          48.0
+        ],
+        "back": [
+          -380.0,
+          -187.0
+        ]
+      },
+      "autoFit": {
+        "policy": "adaptive-bounds",
+        "safeInset": 0.07,
+        "contourReservePixels": 8.0,
+        "maxScale": 2.0,
+        "renderScale": 0.86708306,
+        "translation": [
+          445.0116,
+          632.5245
+        ]
+      },
+      "lineWeights": {
+        "outer": 4.0,
+        "edge": 3.0,
+        "seam": 4.0,
+        "rings": 1.5,
+        "grain": 1.25
+      },
+      "palette": [
+        "#501801",
+        "#501801",
+        "#501801",
+        "#804015",
+        "#965622",
+        "#C5813B",
+        "#F0A242",
+        "#F4A847",
+        "#EEA847"
+      ],
+      "plankTopColor": null,
+      "plankTopColorPolicy": null,
+      "canonicalTextureSource": "artwork-sources/beams/beam-unit-tile-master-v1-4x.png",
+      "canonicalTextureSha256": "752db88a14866587604e271225b5c85f82d1974d96a62a2cd8ec57beadf3bec0",
+      "visualReference": "Obrázek Codex 12. 8. 2026 19_45_37.png",
+      "texturePolicy": "reference-face-transfer-with-clean-polygon-corners",
+      "cornerCleanup": "no-corner-discoloration-no-dirty-corner-shading-no-ao",
+      "edgePolicy": "dark-timber-edges-no-white-halo-no-bright-inner-fringe",
+      "textureCoverage": "full-face-to-contour",
+      "topFaceTextureLanes": 5,
+      "topFaceTexturePolicy": "canonical-unit-tile-multi-lane-no-procedural-grain",
+      "seamPainterOrder": "row-local-before-upper-row-occlusion",
+      "memberWidthsCm": [
+        8.0,
+        14.0,
+        10.0,
+        12.0
+      ],
+      "renderedMembers": [
+        {
+          "key": "r1c0",
+          "row": 1,
+          "widthCm": 14.0,
+          "normalizedWidthScale": 1.206897,
+          "topTextureLanes": 6
+        },
+        {
+          "key": "r1c1",
+          "row": 1,
+          "widthCm": 10.0,
+          "normalizedWidthScale": 0.862069,
+          "topTextureLanes": 4
+        },
+        {
+          "key": "r1c2",
+          "row": 1,
+          "widthCm": 12.0,
+          "normalizedWidthScale": 1.034483,
+          "topTextureLanes": 5
+        },
+        {
+          "key": "r1c3",
+          "row": 1,
+          "widthCm": 8.0,
+          "normalizedWidthScale": 0.689655,
+          "topTextureLanes": 3
+        },
+        {
+          "key": "r1c4",
+          "row": 1,
+          "widthCm": 14.0,
+          "normalizedWidthScale": 1.206897,
+          "topTextureLanes": 6
+        },
+        {
+          "key": "r0c0",
+          "row": 0,
+          "widthCm": 8.0,
+          "normalizedWidthScale": 0.727273,
+          "topTextureLanes": 4
+        },
+        {
+          "key": "r0c1",
+          "row": 0,
+          "widthCm": 14.0,
+          "normalizedWidthScale": 1.272727,
+          "topTextureLanes": 6
+        }
+      ],
+      "antiCloning": {
+        "policy": "deterministic-inset-source-sampling",
+        "maximumSourceOffsetPixels4x": [
+          14,
+          10
+        ],
+        "changesGeometryOrColor": false
+      },
+      "seed": 20260813,
+      "styleVersion": "v35",
+      "approvalStatus": "awaiting-approval",
+      "piecesPerLayer": 5,
+      "levelCount": 2,
+      "renderOrigin": "deterministic-v11-vector-renderer",
+      "outputSha256": "99a98506f02b3430f675186307009ff09b0fb00f3309efef4c5510c49ee93c85",
+      "runtimePath": "/images/illustrations/timber-dynamic-v35/board-unsorted-narrow-7-master-v35.webp"
+    },
+    {
+      "image": "board-unsorted-narrow-8-master-v35.webp",
+      "canvas": {
+        "width": 1536,
+        "height": 1024
+      },
+      "alphaBoundsPixels": {
+        "left": 113,
+        "top": 306,
+        "right": 1423,
+        "bottom": 718
+      },
+      "alphaBounds": {
+        "x": 0.073568,
+        "y": 0.298828,
+        "width": 0.852865,
+        "height": 0.402344
+      },
+      "opticalCenter": {
+        "x": 0.5,
+        "y": 0.5
+      },
+      "alphaCoverage": 0.197458,
+      "interiorAlphaMin": 248,
+      "margins": {
+        "left": 113,
+        "top": 306,
+        "right": 113,
+        "bottom": 306
+      },
+      "family": "board-unsorted-narrow",
+      "quantityBand": {
+        "min": 8,
+        "max": 8
+      },
+      "representativeCount": 8,
+      "layout": "5-wide-exact-8",
+      "expectedVisibleConstructionSeams": 18,
+      "camera": {
+        "projection": "orthographic",
+        "azimuthDegrees": 40,
+        "elevationDegrees": 27
+      },
+      "designVectors": {
+        "column": [
+          225.0,
+          -47.0
+        ],
+        "rowDown": [
+          0.0,
+          48.0
+        ],
+        "back": [
+          -380.0,
+          -187.0
+        ]
+      },
+      "autoFit": {
+        "policy": "adaptive-bounds",
+        "safeInset": 0.07,
+        "contourReservePixels": 8.0,
+        "maxScale": 2.0,
+        "renderScale": 0.86708306,
+        "translation": [
+          445.0116,
+          632.9581
+        ]
+      },
+      "lineWeights": {
+        "outer": 4.0,
+        "edge": 3.0,
+        "seam": 4.0,
+        "rings": 1.5,
+        "grain": 1.25
+      },
+      "palette": [
+        "#501801",
+        "#501801",
+        "#501801",
+        "#804015",
+        "#965622",
+        "#C5813B",
+        "#F0A242",
+        "#F4A847",
+        "#EEA847"
+      ],
+      "plankTopColor": null,
+      "plankTopColorPolicy": null,
+      "canonicalTextureSource": "artwork-sources/beams/beam-unit-tile-master-v1-4x.png",
+      "canonicalTextureSha256": "752db88a14866587604e271225b5c85f82d1974d96a62a2cd8ec57beadf3bec0",
+      "visualReference": "Obrázek Codex 12. 8. 2026 19_45_37.png",
+      "texturePolicy": "reference-face-transfer-with-clean-polygon-corners",
+      "cornerCleanup": "no-corner-discoloration-no-dirty-corner-shading-no-ao",
+      "edgePolicy": "dark-timber-edges-no-white-halo-no-bright-inner-fringe",
+      "textureCoverage": "full-face-to-contour",
+      "topFaceTextureLanes": 5,
+      "topFaceTexturePolicy": "canonical-unit-tile-multi-lane-no-procedural-grain",
+      "seamPainterOrder": "row-local-before-upper-row-occlusion",
+      "memberWidthsCm": [
+        8.0,
+        14.0,
+        10.0,
+        12.0
+      ],
+      "renderedMembers": [
+        {
+          "key": "r1c0",
+          "row": 1,
+          "widthCm": 14.0,
+          "normalizedWidthScale": 1.206897,
+          "topTextureLanes": 6
+        },
+        {
+          "key": "r1c1",
+          "row": 1,
+          "widthCm": 10.0,
+          "normalizedWidthScale": 0.862069,
+          "topTextureLanes": 4
+        },
+        {
+          "key": "r1c2",
+          "row": 1,
+          "widthCm": 12.0,
+          "normalizedWidthScale": 1.034483,
+          "topTextureLanes": 5
+        },
+        {
+          "key": "r1c3",
+          "row": 1,
+          "widthCm": 8.0,
+          "normalizedWidthScale": 0.689655,
+          "topTextureLanes": 3
+        },
+        {
+          "key": "r1c4",
+          "row": 1,
+          "widthCm": 14.0,
+          "normalizedWidthScale": 1.206897,
+          "topTextureLanes": 6
+        },
+        {
+          "key": "r0c0",
+          "row": 0,
+          "widthCm": 8.0,
+          "normalizedWidthScale": 0.75,
+          "topTextureLanes": 4
+        },
+        {
+          "key": "r0c1",
+          "row": 0,
+          "widthCm": 14.0,
+          "normalizedWidthScale": 1.3125,
+          "topTextureLanes": 7
+        },
+        {
+          "key": "r0c2",
+          "row": 0,
+          "widthCm": 10.0,
+          "normalizedWidthScale": 0.9375,
+          "topTextureLanes": 5
+        }
+      ],
+      "antiCloning": {
+        "policy": "deterministic-inset-source-sampling",
+        "maximumSourceOffsetPixels4x": [
+          14,
+          10
+        ],
+        "changesGeometryOrColor": false
+      },
+      "seed": 20260813,
+      "styleVersion": "v35",
+      "approvalStatus": "awaiting-approval",
+      "piecesPerLayer": 5,
+      "levelCount": 2,
+      "renderOrigin": "deterministic-v11-vector-renderer",
+      "outputSha256": "88bc9728fbf6154729cf66ee58828ef9906544946346627e2f3602ebd37abd9b",
+      "runtimePath": "/images/illustrations/timber-dynamic-v35/board-unsorted-narrow-8-master-v35.webp"
+    },
+    {
+      "image": "board-unsorted-narrow-9-master-v35.webp",
+      "canvas": {
+        "width": 1536,
+        "height": 1024
+      },
+      "alphaBoundsPixels": {
+        "left": 113,
+        "top": 296,
+        "right": 1423,
+        "bottom": 728
+      },
+      "alphaBounds": {
+        "x": 0.073568,
+        "y": 0.289062,
+        "width": 0.852865,
+        "height": 0.421875
+      },
+      "opticalCenter": {
+        "x": 0.5,
+        "y": 0.5
+      },
+      "alphaCoverage": 0.202585,
+      "interiorAlphaMin": 248,
+      "margins": {
+        "left": 113,
+        "top": 296,
+        "right": 113,
+        "bottom": 296
+      },
+      "family": "board-unsorted-narrow",
+      "quantityBand": {
+        "min": 9,
+        "max": 9
+      },
+      "representativeCount": 9,
+      "layout": "5-wide-exact-9",
+      "expectedVisibleConstructionSeams": 18,
+      "camera": {
+        "projection": "orthographic",
+        "azimuthDegrees": 40,
+        "elevationDegrees": 27
+      },
+      "designVectors": {
+        "column": [
+          225.0,
+          -47.0
+        ],
+        "rowDown": [
+          0.0,
+          48.0
+        ],
+        "back": [
+          -380.0,
+          -187.0
+        ]
+      },
+      "autoFit": {
+        "policy": "adaptive-bounds",
+        "safeInset": 0.07,
+        "contourReservePixels": 8.0,
+        "maxScale": 2.0,
+        "renderScale": 0.86708306,
+        "translation": [
+          445.0116,
+          643.1463
+        ]
+      },
+      "lineWeights": {
+        "outer": 4.0,
+        "edge": 3.0,
+        "seam": 4.0,
+        "rings": 1.5,
+        "grain": 1.25
+      },
+      "palette": [
+        "#501801",
+        "#501801",
+        "#501801",
+        "#804015",
+        "#965622",
+        "#C5813B",
+        "#F0A242",
+        "#F4A847",
+        "#EEA847"
+      ],
+      "plankTopColor": null,
+      "plankTopColorPolicy": null,
+      "canonicalTextureSource": "artwork-sources/beams/beam-unit-tile-master-v1-4x.png",
+      "canonicalTextureSha256": "752db88a14866587604e271225b5c85f82d1974d96a62a2cd8ec57beadf3bec0",
+      "visualReference": "Obrázek Codex 12. 8. 2026 19_45_37.png",
+      "texturePolicy": "reference-face-transfer-with-clean-polygon-corners",
+      "cornerCleanup": "no-corner-discoloration-no-dirty-corner-shading-no-ao",
+      "edgePolicy": "dark-timber-edges-no-white-halo-no-bright-inner-fringe",
+      "textureCoverage": "full-face-to-contour",
+      "topFaceTextureLanes": 5,
+      "topFaceTexturePolicy": "canonical-unit-tile-multi-lane-no-procedural-grain",
+      "seamPainterOrder": "row-local-before-upper-row-occlusion",
+      "memberWidthsCm": [
+        8.0,
+        14.0,
+        10.0,
+        12.0
+      ],
+      "renderedMembers": [
+        {
+          "key": "r1c0",
+          "row": 1,
+          "widthCm": 14.0,
+          "normalizedWidthScale": 1.206897,
+          "topTextureLanes": 6
+        },
+        {
+          "key": "r1c1",
+          "row": 1,
+          "widthCm": 10.0,
+          "normalizedWidthScale": 0.862069,
+          "topTextureLanes": 4
+        },
+        {
+          "key": "r1c2",
+          "row": 1,
+          "widthCm": 12.0,
+          "normalizedWidthScale": 1.034483,
+          "topTextureLanes": 5
+        },
+        {
+          "key": "r1c3",
+          "row": 1,
+          "widthCm": 8.0,
+          "normalizedWidthScale": 0.689655,
+          "topTextureLanes": 3
+        },
+        {
+          "key": "r1c4",
+          "row": 1,
+          "widthCm": 14.0,
+          "normalizedWidthScale": 1.206897,
+          "topTextureLanes": 6
+        },
+        {
+          "key": "r0c0",
+          "row": 0,
+          "widthCm": 8.0,
+          "normalizedWidthScale": 0.727273,
+          "topTextureLanes": 4
+        },
+        {
+          "key": "r0c1",
+          "row": 0,
+          "widthCm": 14.0,
+          "normalizedWidthScale": 1.272727,
+          "topTextureLanes": 6
+        },
+        {
+          "key": "r0c2",
+          "row": 0,
+          "widthCm": 10.0,
+          "normalizedWidthScale": 0.909091,
+          "topTextureLanes": 5
+        },
+        {
+          "key": "r0c3",
+          "row": 0,
+          "widthCm": 12.0,
+          "normalizedWidthScale": 1.090909,
+          "topTextureLanes": 5
+        }
+      ],
+      "antiCloning": {
+        "policy": "deterministic-inset-source-sampling",
+        "maximumSourceOffsetPixels4x": [
+          14,
+          10
+        ],
+        "changesGeometryOrColor": false
+      },
+      "seed": 20260813,
+      "styleVersion": "v35",
+      "approvalStatus": "awaiting-approval",
+      "piecesPerLayer": 5,
+      "levelCount": 2,
+      "renderOrigin": "deterministic-v11-vector-renderer",
+      "outputSha256": "6db6aac8f53ed7dea31f43263f65b81df986cf73455a3d85d41303edc4a74673",
+      "runtimePath": "/images/illustrations/timber-dynamic-v35/board-unsorted-narrow-9-master-v35.webp"
+    },
+    {
+      "image": "board-unsorted-narrow-11-master-v35.webp",
+      "canvas": {
+        "width": 1536,
+        "height": 1024
+      },
+      "alphaBoundsPixels": {
+        "left": 113,
+        "top": 286,
+        "right": 1423,
+        "bottom": 739
+      },
+      "alphaBounds": {
+        "x": 0.073568,
+        "y": 0.279297,
+        "width": 0.852865,
+        "height": 0.442383
+      },
+      "opticalCenter": {
+        "x": 0.5,
+        "y": 0.500488
+      },
+      "alphaCoverage": 0.221817,
+      "interiorAlphaMin": 248,
+      "margins": {
+        "left": 113,
+        "top": 286,
+        "right": 113,
+        "bottom": 285
+      },
+      "family": "board-unsorted-narrow",
+      "quantityBand": {
+        "min": 11,
+        "max": 11
+      },
+      "representativeCount": 11,
+      "layout": "5-wide-exact-11",
+      "expectedVisibleConstructionSeams": 28,
+      "camera": {
+        "projection": "orthographic",
+        "azimuthDegrees": 40,
+        "elevationDegrees": 27
+      },
+      "designVectors": {
+        "column": [
+          225.0,
+          -47.0
+        ],
+        "rowDown": [
+          0.0,
+          48.0
+        ],
+        "back": [
+          -380.0,
+          -187.0
+        ]
+      },
+      "autoFit": {
+        "policy": "adaptive-bounds",
+        "safeInset": 0.07,
+        "contourReservePixels": 8.0,
+        "maxScale": 2.0,
+        "renderScale": 0.86708306,
+        "translation": [
+          445.0116,
+          611.7146
+        ]
+      },
+      "lineWeights": {
+        "outer": 4.0,
+        "edge": 3.0,
+        "seam": 4.0,
+        "rings": 1.5,
+        "grain": 1.25
+      },
+      "palette": [
+        "#501801",
+        "#501801",
+        "#501801",
+        "#804015",
+        "#965622",
+        "#C5813B",
+        "#F0A242",
+        "#F4A847",
+        "#EEA847"
+      ],
+      "plankTopColor": null,
+      "plankTopColorPolicy": null,
+      "canonicalTextureSource": "artwork-sources/beams/beam-unit-tile-master-v1-4x.png",
+      "canonicalTextureSha256": "752db88a14866587604e271225b5c85f82d1974d96a62a2cd8ec57beadf3bec0",
+      "visualReference": "Obrázek Codex 12. 8. 2026 19_45_37.png",
+      "texturePolicy": "reference-face-transfer-with-clean-polygon-corners",
+      "cornerCleanup": "no-corner-discoloration-no-dirty-corner-shading-no-ao",
+      "edgePolicy": "dark-timber-edges-no-white-halo-no-bright-inner-fringe",
+      "textureCoverage": "full-face-to-contour",
+      "topFaceTextureLanes": 5,
+      "topFaceTexturePolicy": "canonical-unit-tile-multi-lane-no-procedural-grain",
+      "seamPainterOrder": "row-local-before-upper-row-occlusion",
+      "memberWidthsCm": [
+        8.0,
+        14.0,
+        10.0,
+        12.0
+      ],
+      "renderedMembers": [
+        {
+          "key": "r2c0",
+          "row": 2,
+          "widthCm": 10.0,
+          "normalizedWidthScale": 0.925926,
+          "topTextureLanes": 5
+        },
+        {
+          "key": "r2c1",
+          "row": 2,
+          "widthCm": 12.0,
+          "normalizedWidthScale": 1.111111,
+          "topTextureLanes": 6
+        },
+        {
+          "key": "r2c2",
+          "row": 2,
+          "widthCm": 8.0,
+          "normalizedWidthScale": 0.740741,
+          "topTextureLanes": 4
+        },
+        {
+          "key": "r2c3",
+          "row": 2,
+          "widthCm": 14.0,
+          "normalizedWidthScale": 1.296296,
+          "topTextureLanes": 6
+        },
+        {
+          "key": "r2c4",
+          "row": 2,
+          "widthCm": 10.0,
+          "normalizedWidthScale": 0.925926,
+          "topTextureLanes": 5
+        },
+        {
+          "key": "r1c0",
+          "row": 1,
+          "widthCm": 14.0,
+          "normalizedWidthScale": 1.206897,
+          "topTextureLanes": 6
+        },
+        {
+          "key": "r1c1",
+          "row": 1,
+          "widthCm": 10.0,
+          "normalizedWidthScale": 0.862069,
+          "topTextureLanes": 4
+        },
+        {
+          "key": "r1c2",
+          "row": 1,
+          "widthCm": 12.0,
+          "normalizedWidthScale": 1.034483,
+          "topTextureLanes": 5
+        },
+        {
+          "key": "r1c3",
+          "row": 1,
+          "widthCm": 8.0,
+          "normalizedWidthScale": 0.689655,
+          "topTextureLanes": 3
+        },
+        {
+          "key": "r1c4",
+          "row": 1,
+          "widthCm": 14.0,
+          "normalizedWidthScale": 1.206897,
+          "topTextureLanes": 6
+        },
+        {
+          "key": "r0c0",
+          "row": 0,
+          "widthCm": 8.0,
+          "normalizedWidthScale": 1.0,
+          "topTextureLanes": 5
+        }
+      ],
+      "antiCloning": {
+        "policy": "deterministic-inset-source-sampling",
+        "maximumSourceOffsetPixels4x": [
+          14,
+          10
+        ],
+        "changesGeometryOrColor": false
+      },
+      "seed": 20260813,
+      "styleVersion": "v35",
+      "approvalStatus": "awaiting-approval",
+      "piecesPerLayer": 5,
+      "levelCount": 3,
+      "renderOrigin": "deterministic-v11-vector-renderer",
+      "outputSha256": "d8677093a65a07e40a708adaa96b6facee2936986c1d74fdb731a688aaefbe6c",
+      "runtimePath": "/images/illustrations/timber-dynamic-v35/board-unsorted-narrow-11-master-v35.webp"
+    },
+    {
+      "image": "board-unsorted-narrow-12-master-v35.webp",
+      "canvas": {
+        "width": 1536,
+        "height": 1024
+      },
+      "alphaBoundsPixels": {
+        "left": 113,
+        "top": 286,
+        "right": 1423,
+        "bottom": 739
+      },
+      "alphaBounds": {
+        "x": 0.073568,
+        "y": 0.279297,
+        "width": 0.852865,
+        "height": 0.442383
+      },
+      "opticalCenter": {
+        "x": 0.5,
+        "y": 0.500488
+      },
+      "alphaCoverage": 0.226975,
+      "interiorAlphaMin": 248,
+      "margins": {
+        "left": 113,
+        "top": 286,
+        "right": 113,
+        "bottom": 285
+      },
+      "family": "board-unsorted-narrow",
+      "quantityBand": {
+        "min": 12,
+        "max": 12
+      },
+      "representativeCount": 12,
+      "layout": "5-wide-exact-12",
+      "expectedVisibleConstructionSeams": 28,
+      "camera": {
+        "projection": "orthographic",
+        "azimuthDegrees": 40,
+        "elevationDegrees": 27
+      },
+      "designVectors": {
+        "column": [
+          225.0,
+          -47.0
+        ],
+        "rowDown": [
+          0.0,
+          48.0
+        ],
+        "back": [
+          -380.0,
+          -187.0
+        ]
+      },
+      "autoFit": {
+        "policy": "adaptive-bounds",
+        "safeInset": 0.07,
+        "contourReservePixels": 8.0,
+        "maxScale": 2.0,
+        "renderScale": 0.86708306,
+        "translation": [
+          445.0116,
+          611.7146
+        ]
+      },
+      "lineWeights": {
+        "outer": 4.0,
+        "edge": 3.0,
+        "seam": 4.0,
+        "rings": 1.5,
+        "grain": 1.25
+      },
+      "palette": [
+        "#501801",
+        "#501801",
+        "#501801",
+        "#804015",
+        "#965622",
+        "#C5813B",
+        "#F0A242",
+        "#F4A847",
+        "#EEA847"
+      ],
+      "plankTopColor": null,
+      "plankTopColorPolicy": null,
+      "canonicalTextureSource": "artwork-sources/beams/beam-unit-tile-master-v1-4x.png",
+      "canonicalTextureSha256": "752db88a14866587604e271225b5c85f82d1974d96a62a2cd8ec57beadf3bec0",
+      "visualReference": "Obrázek Codex 12. 8. 2026 19_45_37.png",
+      "texturePolicy": "reference-face-transfer-with-clean-polygon-corners",
+      "cornerCleanup": "no-corner-discoloration-no-dirty-corner-shading-no-ao",
+      "edgePolicy": "dark-timber-edges-no-white-halo-no-bright-inner-fringe",
+      "textureCoverage": "full-face-to-contour",
+      "topFaceTextureLanes": 5,
+      "topFaceTexturePolicy": "canonical-unit-tile-multi-lane-no-procedural-grain",
+      "seamPainterOrder": "row-local-before-upper-row-occlusion",
+      "memberWidthsCm": [
+        8.0,
+        14.0,
+        10.0,
+        12.0
+      ],
+      "renderedMembers": [
+        {
+          "key": "r2c0",
+          "row": 2,
+          "widthCm": 10.0,
+          "normalizedWidthScale": 0.925926,
+          "topTextureLanes": 5
+        },
+        {
+          "key": "r2c1",
+          "row": 2,
+          "widthCm": 12.0,
+          "normalizedWidthScale": 1.111111,
+          "topTextureLanes": 6
+        },
+        {
+          "key": "r2c2",
+          "row": 2,
+          "widthCm": 8.0,
+          "normalizedWidthScale": 0.740741,
+          "topTextureLanes": 4
+        },
+        {
+          "key": "r2c3",
+          "row": 2,
+          "widthCm": 14.0,
+          "normalizedWidthScale": 1.296296,
+          "topTextureLanes": 6
+        },
+        {
+          "key": "r2c4",
+          "row": 2,
+          "widthCm": 10.0,
+          "normalizedWidthScale": 0.925926,
+          "topTextureLanes": 5
+        },
+        {
+          "key": "r1c0",
+          "row": 1,
+          "widthCm": 14.0,
+          "normalizedWidthScale": 1.206897,
+          "topTextureLanes": 6
+        },
+        {
+          "key": "r1c1",
+          "row": 1,
+          "widthCm": 10.0,
+          "normalizedWidthScale": 0.862069,
+          "topTextureLanes": 4
+        },
+        {
+          "key": "r1c2",
+          "row": 1,
+          "widthCm": 12.0,
+          "normalizedWidthScale": 1.034483,
+          "topTextureLanes": 5
+        },
+        {
+          "key": "r1c3",
+          "row": 1,
+          "widthCm": 8.0,
+          "normalizedWidthScale": 0.689655,
+          "topTextureLanes": 3
+        },
+        {
+          "key": "r1c4",
+          "row": 1,
+          "widthCm": 14.0,
+          "normalizedWidthScale": 1.206897,
+          "topTextureLanes": 6
+        },
+        {
+          "key": "r0c0",
+          "row": 0,
+          "widthCm": 8.0,
+          "normalizedWidthScale": 0.727273,
+          "topTextureLanes": 4
+        },
+        {
+          "key": "r0c1",
+          "row": 0,
+          "widthCm": 14.0,
+          "normalizedWidthScale": 1.272727,
+          "topTextureLanes": 6
+        }
+      ],
+      "antiCloning": {
+        "policy": "deterministic-inset-source-sampling",
+        "maximumSourceOffsetPixels4x": [
+          14,
+          10
+        ],
+        "changesGeometryOrColor": false
+      },
+      "seed": 20260813,
+      "styleVersion": "v35",
+      "approvalStatus": "awaiting-approval",
+      "piecesPerLayer": 5,
+      "levelCount": 3,
+      "renderOrigin": "deterministic-v11-vector-renderer",
+      "outputSha256": "a4759870bf39bb82c6d4e7671b45b3945f3f4c9cc1e09c3b9ff66577b5b4d809",
+      "runtimePath": "/images/illustrations/timber-dynamic-v35/board-unsorted-narrow-12-master-v35.webp"
+    },
+    {
+      "image": "board-unsorted-narrow-13-master-v35.webp",
+      "canvas": {
+        "width": 1536,
+        "height": 1024
+      },
+      "alphaBoundsPixels": {
+        "left": 113,
+        "top": 285,
+        "right": 1423,
+        "bottom": 739
+      },
+      "alphaBounds": {
+        "x": 0.073568,
+        "y": 0.27832,
+        "width": 0.852865,
+        "height": 0.443359
+      },
+      "opticalCenter": {
+        "x": 0.5,
+        "y": 0.5
+      },
+      "alphaCoverage": 0.232147,
+      "interiorAlphaMin": 248,
+      "margins": {
+        "left": 113,
+        "top": 285,
+        "right": 113,
+        "bottom": 285
+      },
+      "family": "board-unsorted-narrow",
+      "quantityBand": {
+        "min": 13,
+        "max": 13
+      },
+      "representativeCount": 13,
+      "layout": "5-wide-exact-13",
+      "expectedVisibleConstructionSeams": 28,
+      "camera": {
+        "projection": "orthographic",
+        "azimuthDegrees": 40,
+        "elevationDegrees": 27
+      },
+      "designVectors": {
+        "column": [
+          225.0,
+          -47.0
+        ],
+        "rowDown": [
+          0.0,
+          48.0
+        ],
+        "back": [
+          -380.0,
+          -187.0
+        ]
+      },
+      "autoFit": {
+        "policy": "adaptive-bounds",
+        "safeInset": 0.07,
+        "contourReservePixels": 8.0,
+        "maxScale": 2.0,
+        "renderScale": 0.86708306,
+        "translation": [
+          445.0116,
+          612.1481
+        ]
+      },
+      "lineWeights": {
+        "outer": 4.0,
+        "edge": 3.0,
+        "seam": 4.0,
+        "rings": 1.5,
+        "grain": 1.25
+      },
+      "palette": [
+        "#501801",
+        "#501801",
+        "#501801",
+        "#804015",
+        "#965622",
+        "#C5813B",
+        "#F0A242",
+        "#F4A847",
+        "#EEA847"
+      ],
+      "plankTopColor": null,
+      "plankTopColorPolicy": null,
+      "canonicalTextureSource": "artwork-sources/beams/beam-unit-tile-master-v1-4x.png",
+      "canonicalTextureSha256": "752db88a14866587604e271225b5c85f82d1974d96a62a2cd8ec57beadf3bec0",
+      "visualReference": "Obrázek Codex 12. 8. 2026 19_45_37.png",
+      "texturePolicy": "reference-face-transfer-with-clean-polygon-corners",
+      "cornerCleanup": "no-corner-discoloration-no-dirty-corner-shading-no-ao",
+      "edgePolicy": "dark-timber-edges-no-white-halo-no-bright-inner-fringe",
+      "textureCoverage": "full-face-to-contour",
+      "topFaceTextureLanes": 5,
+      "topFaceTexturePolicy": "canonical-unit-tile-multi-lane-no-procedural-grain",
+      "seamPainterOrder": "row-local-before-upper-row-occlusion",
+      "memberWidthsCm": [
+        8.0,
+        14.0,
+        10.0,
+        12.0
+      ],
+      "renderedMembers": [
+        {
+          "key": "r2c0",
+          "row": 2,
+          "widthCm": 10.0,
+          "normalizedWidthScale": 0.925926,
+          "topTextureLanes": 5
+        },
+        {
+          "key": "r2c1",
+          "row": 2,
+          "widthCm": 12.0,
+          "normalizedWidthScale": 1.111111,
+          "topTextureLanes": 6
+        },
+        {
+          "key": "r2c2",
+          "row": 2,
+          "widthCm": 8.0,
+          "normalizedWidthScale": 0.740741,
+          "topTextureLanes": 4
+        },
+        {
+          "key": "r2c3",
+          "row": 2,
+          "widthCm": 14.0,
+          "normalizedWidthScale": 1.296296,
+          "topTextureLanes": 6
+        },
+        {
+          "key": "r2c4",
+          "row": 2,
+          "widthCm": 10.0,
+          "normalizedWidthScale": 0.925926,
+          "topTextureLanes": 5
+        },
+        {
+          "key": "r1c0",
+          "row": 1,
+          "widthCm": 14.0,
+          "normalizedWidthScale": 1.206897,
+          "topTextureLanes": 6
+        },
+        {
+          "key": "r1c1",
+          "row": 1,
+          "widthCm": 10.0,
+          "normalizedWidthScale": 0.862069,
+          "topTextureLanes": 4
+        },
+        {
+          "key": "r1c2",
+          "row": 1,
+          "widthCm": 12.0,
+          "normalizedWidthScale": 1.034483,
+          "topTextureLanes": 5
+        },
+        {
+          "key": "r1c3",
+          "row": 1,
+          "widthCm": 8.0,
+          "normalizedWidthScale": 0.689655,
+          "topTextureLanes": 3
+        },
+        {
+          "key": "r1c4",
+          "row": 1,
+          "widthCm": 14.0,
+          "normalizedWidthScale": 1.206897,
+          "topTextureLanes": 6
+        },
+        {
+          "key": "r0c0",
+          "row": 0,
+          "widthCm": 8.0,
+          "normalizedWidthScale": 0.75,
+          "topTextureLanes": 4
+        },
+        {
+          "key": "r0c1",
+          "row": 0,
+          "widthCm": 14.0,
+          "normalizedWidthScale": 1.3125,
+          "topTextureLanes": 7
+        },
+        {
+          "key": "r0c2",
+          "row": 0,
+          "widthCm": 10.0,
+          "normalizedWidthScale": 0.9375,
+          "topTextureLanes": 5
+        }
+      ],
+      "antiCloning": {
+        "policy": "deterministic-inset-source-sampling",
+        "maximumSourceOffsetPixels4x": [
+          14,
+          10
+        ],
+        "changesGeometryOrColor": false
+      },
+      "seed": 20260813,
+      "styleVersion": "v35",
+      "approvalStatus": "awaiting-approval",
+      "piecesPerLayer": 5,
+      "levelCount": 3,
+      "renderOrigin": "deterministic-v11-vector-renderer",
+      "outputSha256": "271ce36f698166eef0951a20956b8d426066d48ad13d350037b9e362708275df",
+      "runtimePath": "/images/illustrations/timber-dynamic-v35/board-unsorted-narrow-13-master-v35.webp"
+    },
+    {
+      "image": "board-unsorted-narrow-14-master-v35.webp",
+      "canvas": {
+        "width": 1536,
+        "height": 1024
+      },
+      "alphaBoundsPixels": {
+        "left": 113,
+        "top": 275,
+        "right": 1423,
+        "bottom": 749
+      },
+      "alphaBounds": {
+        "x": 0.073568,
+        "y": 0.268555,
+        "width": 0.852865,
+        "height": 0.462891
+      },
+      "opticalCenter": {
+        "x": 0.5,
+        "y": 0.5
+      },
+      "alphaCoverage": 0.237193,
+      "interiorAlphaMin": 248,
+      "margins": {
+        "left": 113,
+        "top": 275,
+        "right": 113,
+        "bottom": 275
+      },
+      "family": "board-unsorted-narrow",
+      "quantityBand": {
+        "min": 14,
+        "max": 14
+      },
+      "representativeCount": 14,
+      "layout": "5-wide-exact-14",
+      "expectedVisibleConstructionSeams": 28,
+      "camera": {
+        "projection": "orthographic",
+        "azimuthDegrees": 40,
+        "elevationDegrees": 27
+      },
+      "designVectors": {
+        "column": [
+          225.0,
+          -47.0
+        ],
+        "rowDown": [
+          0.0,
+          48.0
+        ],
+        "back": [
+          -380.0,
+          -187.0
+        ]
+      },
+      "autoFit": {
+        "policy": "adaptive-bounds",
+        "safeInset": 0.07,
+        "contourReservePixels": 8.0,
+        "maxScale": 2.0,
+        "renderScale": 0.86708306,
+        "translation": [
+          445.0116,
+          622.3363
+        ]
+      },
+      "lineWeights": {
+        "outer": 4.0,
+        "edge": 3.0,
+        "seam": 4.0,
+        "rings": 1.5,
+        "grain": 1.25
+      },
+      "palette": [
+        "#501801",
+        "#501801",
+        "#501801",
+        "#804015",
+        "#965622",
+        "#C5813B",
+        "#F0A242",
+        "#F4A847",
+        "#EEA847"
+      ],
+      "plankTopColor": null,
+      "plankTopColorPolicy": null,
+      "canonicalTextureSource": "artwork-sources/beams/beam-unit-tile-master-v1-4x.png",
+      "canonicalTextureSha256": "752db88a14866587604e271225b5c85f82d1974d96a62a2cd8ec57beadf3bec0",
+      "visualReference": "Obrázek Codex 12. 8. 2026 19_45_37.png",
+      "texturePolicy": "reference-face-transfer-with-clean-polygon-corners",
+      "cornerCleanup": "no-corner-discoloration-no-dirty-corner-shading-no-ao",
+      "edgePolicy": "dark-timber-edges-no-white-halo-no-bright-inner-fringe",
+      "textureCoverage": "full-face-to-contour",
+      "topFaceTextureLanes": 5,
+      "topFaceTexturePolicy": "canonical-unit-tile-multi-lane-no-procedural-grain",
+      "seamPainterOrder": "row-local-before-upper-row-occlusion",
+      "memberWidthsCm": [
+        8.0,
+        14.0,
+        10.0,
+        12.0
+      ],
+      "renderedMembers": [
+        {
+          "key": "r2c0",
+          "row": 2,
+          "widthCm": 10.0,
+          "normalizedWidthScale": 0.925926,
+          "topTextureLanes": 5
+        },
+        {
+          "key": "r2c1",
+          "row": 2,
+          "widthCm": 12.0,
+          "normalizedWidthScale": 1.111111,
+          "topTextureLanes": 6
+        },
+        {
+          "key": "r2c2",
+          "row": 2,
+          "widthCm": 8.0,
+          "normalizedWidthScale": 0.740741,
+          "topTextureLanes": 4
+        },
+        {
+          "key": "r2c3",
+          "row": 2,
+          "widthCm": 14.0,
+          "normalizedWidthScale": 1.296296,
+          "topTextureLanes": 6
+        },
+        {
+          "key": "r2c4",
+          "row": 2,
+          "widthCm": 10.0,
+          "normalizedWidthScale": 0.925926,
+          "topTextureLanes": 5
+        },
+        {
+          "key": "r1c0",
+          "row": 1,
+          "widthCm": 14.0,
+          "normalizedWidthScale": 1.206897,
+          "topTextureLanes": 6
+        },
+        {
+          "key": "r1c1",
+          "row": 1,
+          "widthCm": 10.0,
+          "normalizedWidthScale": 0.862069,
+          "topTextureLanes": 4
+        },
+        {
+          "key": "r1c2",
+          "row": 1,
+          "widthCm": 12.0,
+          "normalizedWidthScale": 1.034483,
+          "topTextureLanes": 5
+        },
+        {
+          "key": "r1c3",
+          "row": 1,
+          "widthCm": 8.0,
+          "normalizedWidthScale": 0.689655,
+          "topTextureLanes": 3
+        },
+        {
+          "key": "r1c4",
+          "row": 1,
+          "widthCm": 14.0,
+          "normalizedWidthScale": 1.206897,
+          "topTextureLanes": 6
+        },
+        {
+          "key": "r0c0",
+          "row": 0,
+          "widthCm": 8.0,
+          "normalizedWidthScale": 0.727273,
+          "topTextureLanes": 4
+        },
+        {
+          "key": "r0c1",
+          "row": 0,
+          "widthCm": 14.0,
+          "normalizedWidthScale": 1.272727,
+          "topTextureLanes": 6
+        },
+        {
+          "key": "r0c2",
+          "row": 0,
+          "widthCm": 10.0,
+          "normalizedWidthScale": 0.909091,
+          "topTextureLanes": 5
+        },
+        {
+          "key": "r0c3",
+          "row": 0,
+          "widthCm": 12.0,
+          "normalizedWidthScale": 1.090909,
+          "topTextureLanes": 5
+        }
+      ],
+      "antiCloning": {
+        "policy": "deterministic-inset-source-sampling",
+        "maximumSourceOffsetPixels4x": [
+          14,
+          10
+        ],
+        "changesGeometryOrColor": false
+      },
+      "seed": 20260813,
+      "styleVersion": "v35",
+      "approvalStatus": "awaiting-approval",
+      "piecesPerLayer": 5,
+      "levelCount": 3,
+      "renderOrigin": "deterministic-v11-vector-renderer",
+      "outputSha256": "b18fd715d5079843b9b98b6fbb1897534690212bd1e578509d8dbef174533c29",
+      "runtimePath": "/images/illustrations/timber-dynamic-v35/board-unsorted-narrow-14-master-v35.webp"
+    },
+    {
+      "image": "board-unsorted-narrow-16-master-v35.webp",
+      "canvas": {
+        "width": 1536,
+        "height": 1024
+      },
+      "alphaBoundsPixels": {
+        "left": 113,
+        "top": 265,
+        "right": 1423,
+        "bottom": 759
+      },
+      "alphaBounds": {
+        "x": 0.073568,
+        "y": 0.258789,
+        "width": 0.852865,
+        "height": 0.482422
+      },
+      "opticalCenter": {
+        "x": 0.5,
+        "y": 0.5
+      },
+      "alphaCoverage": 0.256426,
+      "interiorAlphaMin": 248,
+      "margins": {
+        "left": 113,
+        "top": 265,
+        "right": 113,
+        "bottom": 265
+      },
+      "family": "board-unsorted-narrow",
+      "quantityBand": {
+        "min": 16,
+        "max": 16
+      },
+      "representativeCount": 16,
+      "layout": "5-wide-exact-16",
+      "expectedVisibleConstructionSeams": 38,
+      "camera": {
+        "projection": "orthographic",
+        "azimuthDegrees": 40,
+        "elevationDegrees": 27
+      },
+      "designVectors": {
+        "column": [
+          225.0,
+          -47.0
+        ],
+        "rowDown": [
+          0.0,
+          48.0
+        ],
+        "back": [
+          -380.0,
+          -187.0
+        ]
+      },
+      "autoFit": {
+        "policy": "adaptive-bounds",
+        "safeInset": 0.07,
+        "contourReservePixels": 8.0,
+        "maxScale": 2.0,
+        "renderScale": 0.86708306,
+        "translation": [
+          445.0116,
+          590.9046
+        ]
+      },
+      "lineWeights": {
+        "outer": 4.0,
+        "edge": 3.0,
+        "seam": 4.0,
+        "rings": 1.5,
+        "grain": 1.25
+      },
+      "palette": [
+        "#501801",
+        "#501801",
+        "#501801",
+        "#804015",
+        "#965622",
+        "#C5813B",
+        "#F0A242",
+        "#F4A847",
+        "#EEA847"
+      ],
+      "plankTopColor": null,
+      "plankTopColorPolicy": null,
+      "canonicalTextureSource": "artwork-sources/beams/beam-unit-tile-master-v1-4x.png",
+      "canonicalTextureSha256": "752db88a14866587604e271225b5c85f82d1974d96a62a2cd8ec57beadf3bec0",
+      "visualReference": "Obrázek Codex 12. 8. 2026 19_45_37.png",
+      "texturePolicy": "reference-face-transfer-with-clean-polygon-corners",
+      "cornerCleanup": "no-corner-discoloration-no-dirty-corner-shading-no-ao",
+      "edgePolicy": "dark-timber-edges-no-white-halo-no-bright-inner-fringe",
+      "textureCoverage": "full-face-to-contour",
+      "topFaceTextureLanes": 5,
+      "topFaceTexturePolicy": "canonical-unit-tile-multi-lane-no-procedural-grain",
+      "seamPainterOrder": "row-local-before-upper-row-occlusion",
+      "memberWidthsCm": [
+        8.0,
+        14.0,
+        10.0,
+        12.0
+      ],
+      "renderedMembers": [
+        {
+          "key": "r3c0",
+          "row": 3,
+          "widthCm": 12.0,
+          "normalizedWidthScale": 1.071429,
+          "topTextureLanes": 5
+        },
+        {
+          "key": "r3c1",
+          "row": 3,
+          "widthCm": 8.0,
+          "normalizedWidthScale": 0.714286,
+          "topTextureLanes": 4
+        },
+        {
+          "key": "r3c2",
+          "row": 3,
+          "widthCm": 14.0,
+          "normalizedWidthScale": 1.25,
+          "topTextureLanes": 6
+        },
+        {
+          "key": "r3c3",
+          "row": 3,
+          "widthCm": 10.0,
+          "normalizedWidthScale": 0.892857,
+          "topTextureLanes": 4
+        },
+        {
+          "key": "r3c4",
+          "row": 3,
+          "widthCm": 12.0,
+          "normalizedWidthScale": 1.071429,
+          "topTextureLanes": 5
+        },
+        {
+          "key": "r2c0",
+          "row": 2,
+          "widthCm": 10.0,
+          "normalizedWidthScale": 0.925926,
+          "topTextureLanes": 5
+        },
+        {
+          "key": "r2c1",
+          "row": 2,
+          "widthCm": 12.0,
+          "normalizedWidthScale": 1.111111,
+          "topTextureLanes": 6
+        },
+        {
+          "key": "r2c2",
+          "row": 2,
+          "widthCm": 8.0,
+          "normalizedWidthScale": 0.740741,
+          "topTextureLanes": 4
+        },
+        {
+          "key": "r2c3",
+          "row": 2,
+          "widthCm": 14.0,
+          "normalizedWidthScale": 1.296296,
+          "topTextureLanes": 6
+        },
+        {
+          "key": "r2c4",
+          "row": 2,
+          "widthCm": 10.0,
+          "normalizedWidthScale": 0.925926,
+          "topTextureLanes": 5
+        },
+        {
+          "key": "r1c0",
+          "row": 1,
+          "widthCm": 14.0,
+          "normalizedWidthScale": 1.206897,
+          "topTextureLanes": 6
+        },
+        {
+          "key": "r1c1",
+          "row": 1,
+          "widthCm": 10.0,
+          "normalizedWidthScale": 0.862069,
+          "topTextureLanes": 4
+        },
+        {
+          "key": "r1c2",
+          "row": 1,
+          "widthCm": 12.0,
+          "normalizedWidthScale": 1.034483,
+          "topTextureLanes": 5
+        },
+        {
+          "key": "r1c3",
+          "row": 1,
+          "widthCm": 8.0,
+          "normalizedWidthScale": 0.689655,
+          "topTextureLanes": 3
+        },
+        {
+          "key": "r1c4",
+          "row": 1,
+          "widthCm": 14.0,
+          "normalizedWidthScale": 1.206897,
+          "topTextureLanes": 6
+        },
+        {
+          "key": "r0c0",
+          "row": 0,
+          "widthCm": 8.0,
+          "normalizedWidthScale": 1.0,
+          "topTextureLanes": 5
+        }
+      ],
+      "antiCloning": {
+        "policy": "deterministic-inset-source-sampling",
+        "maximumSourceOffsetPixels4x": [
+          14,
+          10
+        ],
+        "changesGeometryOrColor": false
+      },
+      "seed": 20260813,
+      "styleVersion": "v35",
+      "approvalStatus": "awaiting-approval",
+      "piecesPerLayer": 5,
+      "levelCount": 4,
+      "renderOrigin": "deterministic-v11-vector-renderer",
+      "outputSha256": "eb11504ba6418f56a0dc25b367e6b754f4cc8e9bec172d92a4c7cbfc9bfdf6d9",
+      "runtimePath": "/images/illustrations/timber-dynamic-v35/board-unsorted-narrow-16-master-v35.webp"
+    },
+    {
+      "image": "board-unsorted-narrow-17-master-v35.webp",
+      "canvas": {
+        "width": 1536,
+        "height": 1024
+      },
+      "alphaBoundsPixels": {
+        "left": 113,
+        "top": 265,
+        "right": 1423,
+        "bottom": 759
+      },
+      "alphaBounds": {
+        "x": 0.073568,
+        "y": 0.258789,
+        "width": 0.852865,
+        "height": 0.482422
+      },
+      "opticalCenter": {
+        "x": 0.5,
+        "y": 0.5
+      },
+      "alphaCoverage": 0.261609,
+      "interiorAlphaMin": 248,
+      "margins": {
+        "left": 113,
+        "top": 265,
+        "right": 113,
+        "bottom": 265
+      },
+      "family": "board-unsorted-narrow",
+      "quantityBand": {
+        "min": 17,
+        "max": 17
+      },
+      "representativeCount": 17,
+      "layout": "5-wide-exact-17",
+      "expectedVisibleConstructionSeams": 38,
+      "camera": {
+        "projection": "orthographic",
+        "azimuthDegrees": 40,
+        "elevationDegrees": 27
+      },
+      "designVectors": {
+        "column": [
+          225.0,
+          -47.0
+        ],
+        "rowDown": [
+          0.0,
+          48.0
+        ],
+        "back": [
+          -380.0,
+          -187.0
+        ]
+      },
+      "autoFit": {
+        "policy": "adaptive-bounds",
+        "safeInset": 0.07,
+        "contourReservePixels": 8.0,
+        "maxScale": 2.0,
+        "renderScale": 0.86708306,
+        "translation": [
+          445.0116,
+          590.9046
+        ]
+      },
+      "lineWeights": {
+        "outer": 4.0,
+        "edge": 3.0,
+        "seam": 4.0,
+        "rings": 1.5,
+        "grain": 1.25
+      },
+      "palette": [
+        "#501801",
+        "#501801",
+        "#501801",
+        "#804015",
+        "#965622",
+        "#C5813B",
+        "#F0A242",
+        "#F4A847",
+        "#EEA847"
+      ],
+      "plankTopColor": null,
+      "plankTopColorPolicy": null,
+      "canonicalTextureSource": "artwork-sources/beams/beam-unit-tile-master-v1-4x.png",
+      "canonicalTextureSha256": "752db88a14866587604e271225b5c85f82d1974d96a62a2cd8ec57beadf3bec0",
+      "visualReference": "Obrázek Codex 12. 8. 2026 19_45_37.png",
+      "texturePolicy": "reference-face-transfer-with-clean-polygon-corners",
+      "cornerCleanup": "no-corner-discoloration-no-dirty-corner-shading-no-ao",
+      "edgePolicy": "dark-timber-edges-no-white-halo-no-bright-inner-fringe",
+      "textureCoverage": "full-face-to-contour",
+      "topFaceTextureLanes": 5,
+      "topFaceTexturePolicy": "canonical-unit-tile-multi-lane-no-procedural-grain",
+      "seamPainterOrder": "row-local-before-upper-row-occlusion",
+      "memberWidthsCm": [
+        8.0,
+        14.0,
+        10.0,
+        12.0
+      ],
+      "renderedMembers": [
+        {
+          "key": "r3c0",
+          "row": 3,
+          "widthCm": 12.0,
+          "normalizedWidthScale": 1.071429,
+          "topTextureLanes": 5
+        },
+        {
+          "key": "r3c1",
+          "row": 3,
+          "widthCm": 8.0,
+          "normalizedWidthScale": 0.714286,
+          "topTextureLanes": 4
+        },
+        {
+          "key": "r3c2",
+          "row": 3,
+          "widthCm": 14.0,
+          "normalizedWidthScale": 1.25,
+          "topTextureLanes": 6
+        },
+        {
+          "key": "r3c3",
+          "row": 3,
+          "widthCm": 10.0,
+          "normalizedWidthScale": 0.892857,
+          "topTextureLanes": 4
+        },
+        {
+          "key": "r3c4",
+          "row": 3,
+          "widthCm": 12.0,
+          "normalizedWidthScale": 1.071429,
+          "topTextureLanes": 5
+        },
+        {
+          "key": "r2c0",
+          "row": 2,
+          "widthCm": 10.0,
+          "normalizedWidthScale": 0.925926,
+          "topTextureLanes": 5
+        },
+        {
+          "key": "r2c1",
+          "row": 2,
+          "widthCm": 12.0,
+          "normalizedWidthScale": 1.111111,
+          "topTextureLanes": 6
+        },
+        {
+          "key": "r2c2",
+          "row": 2,
+          "widthCm": 8.0,
+          "normalizedWidthScale": 0.740741,
+          "topTextureLanes": 4
+        },
+        {
+          "key": "r2c3",
+          "row": 2,
+          "widthCm": 14.0,
+          "normalizedWidthScale": 1.296296,
+          "topTextureLanes": 6
+        },
+        {
+          "key": "r2c4",
+          "row": 2,
+          "widthCm": 10.0,
+          "normalizedWidthScale": 0.925926,
+          "topTextureLanes": 5
+        },
+        {
+          "key": "r1c0",
+          "row": 1,
+          "widthCm": 14.0,
+          "normalizedWidthScale": 1.206897,
+          "topTextureLanes": 6
+        },
+        {
+          "key": "r1c1",
+          "row": 1,
+          "widthCm": 10.0,
+          "normalizedWidthScale": 0.862069,
+          "topTextureLanes": 4
+        },
+        {
+          "key": "r1c2",
+          "row": 1,
+          "widthCm": 12.0,
+          "normalizedWidthScale": 1.034483,
+          "topTextureLanes": 5
+        },
+        {
+          "key": "r1c3",
+          "row": 1,
+          "widthCm": 8.0,
+          "normalizedWidthScale": 0.689655,
+          "topTextureLanes": 3
+        },
+        {
+          "key": "r1c4",
+          "row": 1,
+          "widthCm": 14.0,
+          "normalizedWidthScale": 1.206897,
+          "topTextureLanes": 6
+        },
+        {
+          "key": "r0c0",
+          "row": 0,
+          "widthCm": 8.0,
+          "normalizedWidthScale": 0.727273,
+          "topTextureLanes": 4
+        },
+        {
+          "key": "r0c1",
+          "row": 0,
+          "widthCm": 14.0,
+          "normalizedWidthScale": 1.272727,
+          "topTextureLanes": 6
+        }
+      ],
+      "antiCloning": {
+        "policy": "deterministic-inset-source-sampling",
+        "maximumSourceOffsetPixels4x": [
+          14,
+          10
+        ],
+        "changesGeometryOrColor": false
+      },
+      "seed": 20260813,
+      "styleVersion": "v35",
+      "approvalStatus": "awaiting-approval",
+      "piecesPerLayer": 5,
+      "levelCount": 4,
+      "renderOrigin": "deterministic-v11-vector-renderer",
+      "outputSha256": "64650f9f2979e9c6bc3129fd7fea8346288433e6ce842931232b3d31fd9e1702",
+      "runtimePath": "/images/illustrations/timber-dynamic-v35/board-unsorted-narrow-17-master-v35.webp"
+    },
+    {
+      "image": "board-unsorted-narrow-18-master-v35.webp",
+      "canvas": {
+        "width": 1536,
+        "height": 1024
+      },
+      "alphaBoundsPixels": {
+        "left": 113,
+        "top": 264,
+        "right": 1423,
+        "bottom": 760
+      },
+      "alphaBounds": {
+        "x": 0.073568,
+        "y": 0.257812,
+        "width": 0.852865,
+        "height": 0.484375
+      },
+      "opticalCenter": {
+        "x": 0.5,
+        "y": 0.5
+      },
+      "alphaCoverage": 0.266809,
+      "interiorAlphaMin": 248,
+      "margins": {
+        "left": 113,
+        "top": 264,
+        "right": 113,
+        "bottom": 264
+      },
+      "family": "board-unsorted-narrow",
+      "quantityBand": {
+        "min": 18,
+        "max": 18
+      },
+      "representativeCount": 18,
+      "layout": "5-wide-exact-18",
+      "expectedVisibleConstructionSeams": 38,
+      "camera": {
+        "projection": "orthographic",
+        "azimuthDegrees": 40,
+        "elevationDegrees": 27
+      },
+      "designVectors": {
+        "column": [
+          225.0,
+          -47.0
+        ],
+        "rowDown": [
+          0.0,
+          48.0
+        ],
+        "back": [
+          -380.0,
+          -187.0
+        ]
+      },
+      "autoFit": {
+        "policy": "adaptive-bounds",
+        "safeInset": 0.07,
+        "contourReservePixels": 8.0,
+        "maxScale": 2.0,
+        "renderScale": 0.86708306,
+        "translation": [
+          445.0116,
+          591.3381
+        ]
+      },
+      "lineWeights": {
+        "outer": 4.0,
+        "edge": 3.0,
+        "seam": 4.0,
+        "rings": 1.5,
+        "grain": 1.25
+      },
+      "palette": [
+        "#501801",
+        "#501801",
+        "#501801",
+        "#804015",
+        "#965622",
+        "#C5813B",
+        "#F0A242",
+        "#F4A847",
+        "#EEA847"
+      ],
+      "plankTopColor": null,
+      "plankTopColorPolicy": null,
+      "canonicalTextureSource": "artwork-sources/beams/beam-unit-tile-master-v1-4x.png",
+      "canonicalTextureSha256": "752db88a14866587604e271225b5c85f82d1974d96a62a2cd8ec57beadf3bec0",
+      "visualReference": "Obrázek Codex 12. 8. 2026 19_45_37.png",
+      "texturePolicy": "reference-face-transfer-with-clean-polygon-corners",
+      "cornerCleanup": "no-corner-discoloration-no-dirty-corner-shading-no-ao",
+      "edgePolicy": "dark-timber-edges-no-white-halo-no-bright-inner-fringe",
+      "textureCoverage": "full-face-to-contour",
+      "topFaceTextureLanes": 5,
+      "topFaceTexturePolicy": "canonical-unit-tile-multi-lane-no-procedural-grain",
+      "seamPainterOrder": "row-local-before-upper-row-occlusion",
+      "memberWidthsCm": [
+        8.0,
+        14.0,
+        10.0,
+        12.0
+      ],
+      "renderedMembers": [
+        {
+          "key": "r3c0",
+          "row": 3,
+          "widthCm": 12.0,
+          "normalizedWidthScale": 1.071429,
+          "topTextureLanes": 5
+        },
+        {
+          "key": "r3c1",
+          "row": 3,
+          "widthCm": 8.0,
+          "normalizedWidthScale": 0.714286,
+          "topTextureLanes": 4
+        },
+        {
+          "key": "r3c2",
+          "row": 3,
+          "widthCm": 14.0,
+          "normalizedWidthScale": 1.25,
+          "topTextureLanes": 6
+        },
+        {
+          "key": "r3c3",
+          "row": 3,
+          "widthCm": 10.0,
+          "normalizedWidthScale": 0.892857,
+          "topTextureLanes": 4
+        },
+        {
+          "key": "r3c4",
+          "row": 3,
+          "widthCm": 12.0,
+          "normalizedWidthScale": 1.071429,
+          "topTextureLanes": 5
+        },
+        {
+          "key": "r2c0",
+          "row": 2,
+          "widthCm": 10.0,
+          "normalizedWidthScale": 0.925926,
+          "topTextureLanes": 5
+        },
+        {
+          "key": "r2c1",
+          "row": 2,
+          "widthCm": 12.0,
+          "normalizedWidthScale": 1.111111,
+          "topTextureLanes": 6
+        },
+        {
+          "key": "r2c2",
+          "row": 2,
+          "widthCm": 8.0,
+          "normalizedWidthScale": 0.740741,
+          "topTextureLanes": 4
+        },
+        {
+          "key": "r2c3",
+          "row": 2,
+          "widthCm": 14.0,
+          "normalizedWidthScale": 1.296296,
+          "topTextureLanes": 6
+        },
+        {
+          "key": "r2c4",
+          "row": 2,
+          "widthCm": 10.0,
+          "normalizedWidthScale": 0.925926,
+          "topTextureLanes": 5
+        },
+        {
+          "key": "r1c0",
+          "row": 1,
+          "widthCm": 14.0,
+          "normalizedWidthScale": 1.206897,
+          "topTextureLanes": 6
+        },
+        {
+          "key": "r1c1",
+          "row": 1,
+          "widthCm": 10.0,
+          "normalizedWidthScale": 0.862069,
+          "topTextureLanes": 4
+        },
+        {
+          "key": "r1c2",
+          "row": 1,
+          "widthCm": 12.0,
+          "normalizedWidthScale": 1.034483,
+          "topTextureLanes": 5
+        },
+        {
+          "key": "r1c3",
+          "row": 1,
+          "widthCm": 8.0,
+          "normalizedWidthScale": 0.689655,
+          "topTextureLanes": 3
+        },
+        {
+          "key": "r1c4",
+          "row": 1,
+          "widthCm": 14.0,
+          "normalizedWidthScale": 1.206897,
+          "topTextureLanes": 6
+        },
+        {
+          "key": "r0c0",
+          "row": 0,
+          "widthCm": 8.0,
+          "normalizedWidthScale": 0.75,
+          "topTextureLanes": 4
+        },
+        {
+          "key": "r0c1",
+          "row": 0,
+          "widthCm": 14.0,
+          "normalizedWidthScale": 1.3125,
+          "topTextureLanes": 7
+        },
+        {
+          "key": "r0c2",
+          "row": 0,
+          "widthCm": 10.0,
+          "normalizedWidthScale": 0.9375,
+          "topTextureLanes": 5
+        }
+      ],
+      "antiCloning": {
+        "policy": "deterministic-inset-source-sampling",
+        "maximumSourceOffsetPixels4x": [
+          14,
+          10
+        ],
+        "changesGeometryOrColor": false
+      },
+      "seed": 20260813,
+      "styleVersion": "v35",
+      "approvalStatus": "awaiting-approval",
+      "piecesPerLayer": 5,
+      "levelCount": 4,
+      "renderOrigin": "deterministic-v11-vector-renderer",
+      "outputSha256": "98a6a4b6859ef1167a149e3b29dc3b9a2db2ece2f1c4209264df4a987c3bd0b4",
+      "runtimePath": "/images/illustrations/timber-dynamic-v35/board-unsorted-narrow-18-master-v35.webp"
+    },
+    {
+      "image": "board-unsorted-narrow-19-master-v35.webp",
+      "canvas": {
+        "width": 1536,
+        "height": 1024
+      },
+      "alphaBoundsPixels": {
+        "left": 113,
+        "top": 254,
+        "right": 1423,
+        "bottom": 770
+      },
+      "alphaBounds": {
+        "x": 0.073568,
+        "y": 0.248047,
+        "width": 0.852865,
+        "height": 0.503906
+      },
+      "opticalCenter": {
+        "x": 0.5,
+        "y": 0.5
+      },
+      "alphaCoverage": 0.27199,
+      "interiorAlphaMin": 248,
+      "margins": {
+        "left": 113,
+        "top": 254,
+        "right": 113,
+        "bottom": 254
+      },
+      "family": "board-unsorted-narrow",
+      "quantityBand": {
+        "min": 19,
+        "max": 19
+      },
+      "representativeCount": 19,
+      "layout": "5-wide-exact-19",
+      "expectedVisibleConstructionSeams": 38,
+      "camera": {
+        "projection": "orthographic",
+        "azimuthDegrees": 40,
+        "elevationDegrees": 27
+      },
+      "designVectors": {
+        "column": [
+          225.0,
+          -47.0
+        ],
+        "rowDown": [
+          0.0,
+          48.0
+        ],
+        "back": [
+          -380.0,
+          -187.0
+        ]
+      },
+      "autoFit": {
+        "policy": "adaptive-bounds",
+        "safeInset": 0.07,
+        "contourReservePixels": 8.0,
+        "maxScale": 2.0,
+        "renderScale": 0.86708306,
+        "translation": [
+          445.0116,
+          601.5263
+        ]
+      },
+      "lineWeights": {
+        "outer": 4.0,
+        "edge": 3.0,
+        "seam": 4.0,
+        "rings": 1.5,
+        "grain": 1.25
+      },
+      "palette": [
+        "#501801",
+        "#501801",
+        "#501801",
+        "#804015",
+        "#965622",
+        "#C5813B",
+        "#F0A242",
+        "#F4A847",
+        "#EEA847"
+      ],
+      "plankTopColor": null,
+      "plankTopColorPolicy": null,
+      "canonicalTextureSource": "artwork-sources/beams/beam-unit-tile-master-v1-4x.png",
+      "canonicalTextureSha256": "752db88a14866587604e271225b5c85f82d1974d96a62a2cd8ec57beadf3bec0",
+      "visualReference": "Obrázek Codex 12. 8. 2026 19_45_37.png",
+      "texturePolicy": "reference-face-transfer-with-clean-polygon-corners",
+      "cornerCleanup": "no-corner-discoloration-no-dirty-corner-shading-no-ao",
+      "edgePolicy": "dark-timber-edges-no-white-halo-no-bright-inner-fringe",
+      "textureCoverage": "full-face-to-contour",
+      "topFaceTextureLanes": 5,
+      "topFaceTexturePolicy": "canonical-unit-tile-multi-lane-no-procedural-grain",
+      "seamPainterOrder": "row-local-before-upper-row-occlusion",
+      "memberWidthsCm": [
+        8.0,
+        14.0,
+        10.0,
+        12.0
+      ],
+      "renderedMembers": [
+        {
+          "key": "r3c0",
+          "row": 3,
+          "widthCm": 12.0,
+          "normalizedWidthScale": 1.071429,
+          "topTextureLanes": 5
+        },
+        {
+          "key": "r3c1",
+          "row": 3,
+          "widthCm": 8.0,
+          "normalizedWidthScale": 0.714286,
+          "topTextureLanes": 4
+        },
+        {
+          "key": "r3c2",
+          "row": 3,
+          "widthCm": 14.0,
+          "normalizedWidthScale": 1.25,
+          "topTextureLanes": 6
+        },
+        {
+          "key": "r3c3",
+          "row": 3,
+          "widthCm": 10.0,
+          "normalizedWidthScale": 0.892857,
+          "topTextureLanes": 4
+        },
+        {
+          "key": "r3c4",
+          "row": 3,
+          "widthCm": 12.0,
+          "normalizedWidthScale": 1.071429,
+          "topTextureLanes": 5
+        },
+        {
+          "key": "r2c0",
+          "row": 2,
+          "widthCm": 10.0,
+          "normalizedWidthScale": 0.925926,
+          "topTextureLanes": 5
+        },
+        {
+          "key": "r2c1",
+          "row": 2,
+          "widthCm": 12.0,
+          "normalizedWidthScale": 1.111111,
+          "topTextureLanes": 6
+        },
+        {
+          "key": "r2c2",
+          "row": 2,
+          "widthCm": 8.0,
+          "normalizedWidthScale": 0.740741,
+          "topTextureLanes": 4
+        },
+        {
+          "key": "r2c3",
+          "row": 2,
+          "widthCm": 14.0,
+          "normalizedWidthScale": 1.296296,
+          "topTextureLanes": 6
+        },
+        {
+          "key": "r2c4",
+          "row": 2,
+          "widthCm": 10.0,
+          "normalizedWidthScale": 0.925926,
+          "topTextureLanes": 5
+        },
+        {
+          "key": "r1c0",
+          "row": 1,
+          "widthCm": 14.0,
+          "normalizedWidthScale": 1.206897,
+          "topTextureLanes": 6
+        },
+        {
+          "key": "r1c1",
+          "row": 1,
+          "widthCm": 10.0,
+          "normalizedWidthScale": 0.862069,
+          "topTextureLanes": 4
+        },
+        {
+          "key": "r1c2",
+          "row": 1,
+          "widthCm": 12.0,
+          "normalizedWidthScale": 1.034483,
+          "topTextureLanes": 5
+        },
+        {
+          "key": "r1c3",
+          "row": 1,
+          "widthCm": 8.0,
+          "normalizedWidthScale": 0.689655,
+          "topTextureLanes": 3
+        },
+        {
+          "key": "r1c4",
+          "row": 1,
+          "widthCm": 14.0,
+          "normalizedWidthScale": 1.206897,
+          "topTextureLanes": 6
+        },
+        {
+          "key": "r0c0",
+          "row": 0,
+          "widthCm": 8.0,
+          "normalizedWidthScale": 0.727273,
+          "topTextureLanes": 4
+        },
+        {
+          "key": "r0c1",
+          "row": 0,
+          "widthCm": 14.0,
+          "normalizedWidthScale": 1.272727,
+          "topTextureLanes": 6
+        },
+        {
+          "key": "r0c2",
+          "row": 0,
+          "widthCm": 10.0,
+          "normalizedWidthScale": 0.909091,
+          "topTextureLanes": 5
+        },
+        {
+          "key": "r0c3",
+          "row": 0,
+          "widthCm": 12.0,
+          "normalizedWidthScale": 1.090909,
+          "topTextureLanes": 5
+        }
+      ],
+      "antiCloning": {
+        "policy": "deterministic-inset-source-sampling",
+        "maximumSourceOffsetPixels4x": [
+          14,
+          10
+        ],
+        "changesGeometryOrColor": false
+      },
+      "seed": 20260813,
+      "styleVersion": "v35",
+      "approvalStatus": "awaiting-approval",
+      "piecesPerLayer": 5,
+      "levelCount": 4,
+      "renderOrigin": "deterministic-v11-vector-renderer",
+      "outputSha256": "9dbbbff076d8e7ec8a8fbe4e2ad756fd91fed2e4ee3bdb5c7e1f8033d8b1e047",
+      "runtimePath": "/images/illustrations/timber-dynamic-v35/board-unsorted-narrow-19-master-v35.webp"
+    }
+  ]
+}

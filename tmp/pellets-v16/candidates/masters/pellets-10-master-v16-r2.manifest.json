@@ -1,0 +1,92 @@
+{
+  "canvas": {
+    "width": 1536,
+    "height": 1024
+  },
+  "alphaBoundsPixels": {
+    "left": 184,
+    "top": 130,
+    "right": 1274,
+    "bottom": 895
+  },
+  "alphaBounds": {
+    "x": 0.119792,
+    "y": 0.126953,
+    "width": 0.709635,
+    "height": 0.74707
+  },
+  "opticalCenter": {
+    "x": 0.5,
+    "y": 0.5
+  },
+  "alphaCoverage": 0.449018,
+  "cornersTransparent": true,
+  "transparentRgbClean": true,
+  "safeInsetPixels": {
+    "x": 116,
+    "y": 80
+  },
+  "safeInsetPass": true,
+  "dimensionsPass": true,
+  "rgbaPass": true,
+  "losslessWebp": true,
+  "editMask": {
+    "left": 1084,
+    "top": 801,
+    "right": 1160,
+    "bottom": 820
+  },
+  "editPolygon": [
+    [
+      1088,
+      805
+    ],
+    [
+      1156,
+      807
+    ],
+    [
+      1155,
+      817
+    ],
+    [
+      1088,
+      815
+    ]
+  ],
+  "workingScale": 4,
+  "cloneOffsetPixels": [],
+  "reconstruction": "vertical interpolation between clean kraft texture above and below",
+  "changedPixels": 1186,
+  "outsideMaskChangedPixels": 0,
+  "outsideMaskByteIdentical": true,
+  "alphaChannelByteIdentical": true,
+  "frontBrandingRegionsByteIdentical": true,
+  "falseFourthWedgeRemovedPass": true,
+  "rightSideLayerCount": 3,
+  "horizontalSeamStrengthBefore": 11.139394,
+  "horizontalSeamStrengthAfter": 9.854545,
+  "horizontalArtifactRemovedPass": true,
+  "rightOuterProfileByteIdentical": true,
+  "id": "pellets-10-master-v16-r2",
+  "styleVersion": "v16-approved-r2",
+  "approvalStatus": "approved-for-production",
+  "runtimeActivation": "authorized",
+  "representativeCount": 10,
+  "targetOpticalWidth": 0.76,
+  "source": "tmp/pellets-v16/candidates/masters/pellets-10-candidate-p-v16.webp",
+  "sourceSha256": "11cbc899c12b02b5e6b13c0477bcd0016e0e1303a4adbaf94920541adf50cb33",
+  "outputSha256": "b605180a67de66139c7e5014fa470e3e8fabe28aa774eb8f760e3d7408ed639f",
+  "renderPipeline": "4x masked kraft-texture reconstruction; one Lanczos downsample; lossless WebP",
+  "editedObject": "single horizontal artifact on bottom-right front panel",
+  "brandingByteIdentical": true,
+  "topSurfacesByteIdentical": true,
+  "leftAndCenterByteIdentical": true,
+  "bagCountUnchanged": true,
+  "lockedInvariants": [
+    "alpha silhouette",
+    "right side profile",
+    "all branding and 15 kg text",
+    "all other bags"
+  ]
+}

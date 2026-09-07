@@ -1,0 +1,61 @@
+{
+  "candidateId": "pellets-blank-03-master-candidate-e-v18",
+  "supersedesRejectedCandidate": "pellets-blank-03-master-candidate-d-v18",
+  "tier": 3,
+  "quantity": 3,
+  "approvalStatus": "awaiting-visual-approval",
+  "runtimeActive": false,
+  "brandingPolicy": "zero-branding-all-surfaces",
+  "materialStatus": "locked-from-user-approved-candidate-d",
+  "geometryMode": "coplanar-one-by-three-flush-foundation-layer",
+  "cameraLock": {
+    "projection": "orthographic",
+    "azimuthDegrees": 40,
+    "elevationDegrees": 27,
+    "zoomFactor": 1.0
+  },
+  "scaleLock": {
+    "proneLongProjectionPixels": 861,
+    "zoomOutAllowed": false,
+    "canvasExpanded": true
+  },
+  "sourceAlphaMethod": "deterministic-neutral-checkerboard-extraction",
+  "sourceSha256": "24d18e159e9ff9c1f3ae4a6e6cab07c8a8802745220d05805a3826e12b5e3ce6",
+  "approvedMaterialUnitSha256": "df81f9b593aafd76029333d9039b5f07d44b050fa0490a40149b0c030a4886fc",
+  "lockedUprightSha256": "46ec4ff49e6fd776529fb4ab428d18fe7811159591b4e41327a2e6a958f242f9",
+  "lockedTier2Sha256": "bb26792046bb4006cf1e0289dd442749037a3e05d8f15ba457710947414c7005",
+  "validation": {
+    "status": "pass",
+    "canvas": {
+      "width": 2048,
+      "height": 1280
+    },
+    "normalizedArtworkPixels": {
+      "width": 1462,
+      "height": 861
+    },
+    "alphaBoundsPixels": {
+      "left": 293,
+      "top": 209,
+      "right": 1754,
+      "bottom": 1070
+    },
+    "marginsPixels": {
+      "left": 293,
+      "top": 209,
+      "right": 294,
+      "bottom": 210
+    },
+    "bagCount": 3,
+    "groundPlaneCount": 1,
+    "zElevationLevels": 1,
+    "visibleEmptyGapBetweenBags": false,
+    "frontClosureBaselineAligned": true,
+    "rearClosureBaselineAligned": true,
+    "whiteOrBrightEdgePixels": 0,
+    "transparentRgbClean": true,
+    "errors": []
+  },
+  "masterPngSha256": "493875f22457dc37f95eda7f9a7ae9661d9aa68177c0911c3a2d124815f4f60a",
+  "masterWebpSha256": "56278342170ef40ce7fa0279b42143fcfed194c6ac7e2350d1ca1ada9a5add5a"
+}

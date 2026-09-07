@@ -1,0 +1,25 @@
+{
+  "input": "tmp\\pellets-v17-unit-tile\\candidates\\masters\\pellets-bag-1-unit-tile-candidate-a-v17.webp",
+  "canvas": {
+    "width": 1536,
+    "height": 1024
+  },
+  "alphaBoundsPixels": {
+    "left": 508,
+    "top": 80,
+    "right": 1028,
+    "bottom": 943
+  },
+  "alphaBoundsNormalized": {
+    "x": 0.330729,
+    "y": 0.078125,
+    "width": 0.338542,
+    "height": 0.842773
+  },
+  "alphaCoverage": 0.236039,
+  "paletteProximity": 0.98157,
+  "whiteOrBrightEdgePixels": 0,
+  "errors": [],
+  "warnings": [],
+  "status": "pass"
+}

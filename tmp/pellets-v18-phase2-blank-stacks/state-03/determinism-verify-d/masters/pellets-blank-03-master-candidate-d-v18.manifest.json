@@ -1,0 +1,92 @@
+{
+  "candidateId": "pellets-blank-03-master-candidate-d-v18",
+  "supersedesRejectedCandidate": "pellets-blank-03-master-candidate-c-v18",
+  "tier": 3,
+  "quantity": 3,
+  "approvalStatus": "awaiting-visual-approval",
+  "runtimeActive": false,
+  "brandingPolicy": "zero-branding-all-surfaces",
+  "styleLock": "approved-tier-1-and-tier-2-matte-2.5d-kraft-illustration",
+  "cameraLock": {
+    "projection": "orthographic",
+    "azimuthDegrees": 40,
+    "elevationDegrees": 27,
+    "zoomFactor": 1.0
+  },
+  "scaleLock": {
+    "proneUnitPixels": {
+      "width": 1060,
+      "height": 861
+    },
+    "instanceScalePercent": [
+      100,
+      100,
+      100
+    ],
+    "zoomOutAllowed": false
+  },
+  "layout": "three-heavy-prone-bags-flush-side-contact-with-crisp-visible-boundary-seams",
+  "rowVectorPixels": {
+    "x": 520,
+    "y": 170
+  },
+  "placements": [
+    {
+      "id": "prone-1",
+      "x": 230,
+      "y": 167,
+      "width": 1060,
+      "height": 861
+    },
+    {
+      "id": "prone-2",
+      "x": 750,
+      "y": 337,
+      "width": 1060,
+      "height": 861
+    },
+    {
+      "id": "prone-3",
+      "x": 1270,
+      "y": 507,
+      "width": 1060,
+      "height": 861
+    }
+  ],
+  "sourceAlphaMethod": "deterministic-neutral-checkerboard-extraction",
+  "sourceSha256": "d8d546cb6f2dfee55f7bd1a00730d06c29fe47b1e9d09adb1fdf9c89459044a0",
+  "unitSha256": "df81f9b593aafd76029333d9039b5f07d44b050fa0490a40149b0c030a4886fc",
+  "instancePixelSourceSha256": [
+    "99250346c93866c245b39bdac871da10abd42884c612f273da19e4a4d38312ae",
+    "99250346c93866c245b39bdac871da10abd42884c612f273da19e4a4d38312ae",
+    "99250346c93866c245b39bdac871da10abd42884c612f273da19e4a4d38312ae"
+  ],
+  "lockedUprightSha256": "46ec4ff49e6fd776529fb4ab428d18fe7811159591b4e41327a2e6a958f242f9",
+  "lockedTier2Sha256": "bb26792046bb4006cf1e0289dd442749037a3e05d8f15ba457710947414c7005",
+  "validation": {
+    "status": "pass",
+    "canvas": {
+      "width": 2560,
+      "height": 1536
+    },
+    "alphaBoundsPixels": {
+      "left": 231,
+      "top": 167,
+      "right": 2329,
+      "bottom": 1368
+    },
+    "marginsPixels": {
+      "left": 231,
+      "top": 167,
+      "right": 231,
+      "bottom": 168
+    },
+    "adjacentContactOverlapPixelsBeforeOcclusion": 93357,
+    "visibleEmptyGapPixels": 0,
+    "whiteOrBrightEdgePixels": 0,
+    "transparentRgbClean": true,
+    "errors": []
+  },
+  "masterPngSha256": "0e0f4017854b38c767835f025f22f6c37743d9a9cb4af68b323dd17d4f325343",
+  "masterWebpSha256": "ef705e66df07c227ad6b3114ff75d1894565f819b36f1921f268aeca4e00538e"
+}

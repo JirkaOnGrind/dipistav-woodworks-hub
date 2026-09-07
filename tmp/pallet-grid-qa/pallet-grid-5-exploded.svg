@@ -1,0 +1,36 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="840" height="700" viewBox="0 0 840 700">
+  <rect width="100%" height="100%" rx="24" fill="#fbf6eb"/>
+  <text x="40" y="52" font-family="system-ui, sans-serif" font-size="24" font-weight="800" fill="#18312a">Exploded support view — 5 palet</text>
+  <line x1="209" y1="172" x2="209" y2="250" stroke="#d86b38" stroke-width="3" stroke-dasharray="8 7"/>
+      <circle cx="209" cy="250" r="5" fill="#d86b38"/><g>
+    <polygon points="126,288 228,322 228,346 126,312" fill="#bb7627" stroke="#18312a" stroke-width="2"/>
+    <polygon points="292,284 228,322 228,346 292,308" fill="#bb7627" opacity="0.78" stroke="#18312a" stroke-width="2"/>
+    <polygon points="190,250 292,284 228,322 126,288" fill="#e9b867" stroke="#18312a" stroke-width="2"/>
+    <text x="209" y="293" text-anchor="middle" font-family="ui-monospace, monospace" font-size="13" font-weight="800" fill="#18312a">0,0,0</text>
+  </g>
+<g>
+    <polygon points="52,332 154,366 154,390 52,356" fill="#bb7627" stroke="#18312a" stroke-width="2"/>
+    <polygon points="218,328 154,366 154,390 218,352" fill="#bb7627" opacity="0.78" stroke="#18312a" stroke-width="2"/>
+    <polygon points="116,294 218,328 154,366 52,332" fill="#e9b867" stroke="#18312a" stroke-width="2"/>
+    <text x="135" y="337" text-anchor="middle" font-family="ui-monospace, monospace" font-size="13" font-weight="800" fill="#18312a">0,1,0</text>
+  </g>
+<g>
+    <polygon points="238,326 340,360 340,384 238,350" fill="#bb7627" stroke="#18312a" stroke-width="2"/>
+    <polygon points="404,322 340,360 340,384 404,346" fill="#bb7627" opacity="0.78" stroke="#18312a" stroke-width="2"/>
+    <polygon points="302,288 404,322 340,360 238,326" fill="#e9b867" stroke="#18312a" stroke-width="2"/>
+    <text x="321" y="331" text-anchor="middle" font-family="ui-monospace, monospace" font-size="13" font-weight="800" fill="#18312a">1,0,0</text>
+  </g>
+<g>
+    <polygon points="164,370 266,404 266,428 164,394" fill="#bb7627" stroke="#18312a" stroke-width="2"/>
+    <polygon points="330,366 266,404 266,428 330,390" fill="#bb7627" opacity="0.78" stroke="#18312a" stroke-width="2"/>
+    <polygon points="228,332 330,366 266,404 164,370" fill="#e9b867" stroke="#18312a" stroke-width="2"/>
+    <text x="247" y="375" text-anchor="middle" font-family="ui-monospace, monospace" font-size="13" font-weight="800" fill="#18312a">1,1,0</text>
+  </g>
+<g>
+    <polygon points="126,138 228,172 228,196 126,162" fill="#183f32" stroke="#18312a" stroke-width="2"/>
+    <polygon points="292,134 228,172 228,196 292,158" fill="#183f32" opacity="0.78" stroke="#18312a" stroke-width="2"/>
+    <polygon points="190,100 292,134 228,172 126,138" fill="#2f624e" stroke="#18312a" stroke-width="2"/>
+    <text x="209" y="143" text-anchor="middle" font-family="ui-monospace, monospace" font-size="13" font-weight="800" fill="#fff">0,0,1</text>
+  </g>
+    <text x="40" y="665" font-family="system-ui, sans-serif" font-size="15" fill="#18312a">Přerušované osy spojují shodné buňky (i,j) obou vrstev; přesah = 0.</text>
+</svg>

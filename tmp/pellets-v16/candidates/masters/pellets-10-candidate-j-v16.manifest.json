@@ -1,0 +1,73 @@
+{
+  "canvas": {
+    "width": 1536,
+    "height": 1024
+  },
+  "alphaBoundsPixels": {
+    "left": 184,
+    "top": 130,
+    "right": 1274,
+    "bottom": 893
+  },
+  "alphaBounds": {
+    "x": 0.119792,
+    "y": 0.126953,
+    "width": 0.709635,
+    "height": 0.745117
+  },
+  "opticalCenter": {
+    "x": 0.5,
+    "y": 0.5
+  },
+  "alphaCoverage": 0.448148,
+  "cornersTransparent": true,
+  "transparentRgbClean": true,
+  "safeInsetPixels": {
+    "x": 116,
+    "y": 80
+  },
+  "safeInsetPass": true,
+  "dimensionsPass": true,
+  "rgbaPass": true,
+  "losslessWebp": true,
+  "editMask": {
+    "left": 1180,
+    "top": 518,
+    "right": 1535,
+    "bottom": 901
+  },
+  "workingScale": 4,
+  "guideShiftXPixels": -87,
+  "changedPixels": 36678,
+  "outsideMaskChangedPixels": 0,
+  "outsideMaskByteIdentical": true,
+  "maxRightOverhangBeforePx": 96,
+  "maxRightOverhangAfterPx": 2,
+  "rightWallAlignedPass": true,
+  "alignmentCheckRows": {
+    "top": 540,
+    "bottom": 880
+  },
+  "alignmentTolerancePx": 2,
+  "id": "pellets-10-candidate-j-v16",
+  "styleVersion": "v16-final-r9-candidate",
+  "approvalStatus": "awaiting-final-visual-approval",
+  "runtimeActivation": "blocked-until-explicit-final-approval",
+  "representativeCount": 10,
+  "targetOpticalWidth": 0.76,
+  "source": "tmp/pellets-v16/candidates/masters/pellets-10-candidate-g-v16.webp",
+  "sourceSha256": "a84e490f265f81c8931e8ae21f3f851c8010c5350af94cfbd100387c2c9f5448",
+  "guide": "tmp/pellets-v16/source/pellets-10-surgical-ai-rejected-v16.png",
+  "guideSha256": "64623817f8622f0aebc395e44ffe54403dcc0a016e73fd27f18177b0cfb03258",
+  "outputSha256": "a436c998109c05e14fc1a83135d4cb1fd5fe16dfed5848efd820165cd19b5dd3",
+  "renderPipeline": "4x registered alpha/contour surgery; one Lanczos downsample; lossless WebP",
+  "composition": "unchanged 3 + 3 + 3 + 1 ten-bag stack",
+  "editedObject": "right ground-row bag outer wall only",
+  "upperTierByteIdentical": true,
+  "centerByteIdentical": true,
+  "brandingByteIdentical": true,
+  "bagCountUnchanged": true,
+  "topTierFullSizePass": true,
+  "layerSupportPass": true,
+  "parallelTierAxesPass": true
+}

@@ -1,0 +1,22 @@
+{
+  "version": "firewood-loose-9-15-v13",
+  "renderTechnique": "reference-guided-whole-pile-imagegen",
+  "styleReference": {
+    "path": "public/images/illustrations/stipane-v2.webp",
+    "role": "sole-style-palette-morphology-linework-lighting-reference",
+    "sha256": "8eb1bdd9115c41200e221064aff2c9a7ee819938391078acb671714d1c597da5"
+  },
+  "compositionReference": {
+    "path": "public/images/illustrations/configurator-v12/firewood-loose-5-8-master-v12.webp",
+    "role": "shape-and-footprint-only",
+    "sha256": "c56ad66c3dac847c9ae3107bc094fcc2de062342a8d6635c71e85396875f4536"
+  },
+  "selectedChromaSource": {
+    "path": "tmp/firewood-loose-9-15-v13/source/firewood-loose-9-15-v13-chroma.png",
+    "sha256": "3749e63e4499639e49526066dc76f98fc4aee6e5f6a79f1ba7ea126eab24da87"
+  },
+  "targetAlphaWidth": 0.82,
+  "canonicalDisplayScale": 0.96,
+  "generationPrompt": "Use case: stylized-concept. Asset type: transparent e-commerce configurator master illustration for loose split firewood, quantity band 9–15 prm. Image 1 is the ONLY style, palette, morphology, texture, linework and lighting reference. Image 2 is composition/footprint reference ONLY. Generate one complete coherent large loose mound of authentic split firewood, visibly more massive and broader than Image 2 but smaller than an enormous yard stockpile. Match Image 1 exactly: warm honey-gold and amber split faces, dark deeply wrinkled bark on curved outer surfaces, dense crisp vintage woodcut/lithographic ink hatching and dark-brown contours. Use a broad elliptical footprint, centered natural crest, gently sloping sides, consistent log scale, orthographic isometric three-quarter view at approximately 40-degree azimuth and 27-degree elevation. Genuinely transparent background with no floor or shadow. Avoid faded colors, photorealism, 3D, low-poly, vector cartoon, whole round trunks, cheese wedges, vertical spikes, tiling, cloned rows, hollow center, floating logs, text, logo or watermark.",
+  "backgroundCorrectionPrompt": "Change ONLY the background to a perfectly uniform solid pure chroma green #00FF00. Preserve the entire firewood pile in composition, silhouette, proportions, palette, bark, woodcut linework, log count, viewpoint and lighting. No checkerboard, texture, gradient, floor, contact shadow, cast shadow, green reflection, halo, text, logo or watermark."
+}

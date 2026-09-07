@@ -1,0 +1,23 @@
+{
+  "assetId": "pellets-blank-03-master-v18",
+  "approvalStatus": "approved-and-locked",
+  "approvedCandidate": "pellets-blank-03-master-candidate-e-v18",
+  "runtimeActive": false,
+  "quantity": 3,
+  "bagCount": 3,
+  "geometry": "one-coplanar-ground-layer-three-prone-bags-flush-side-by-side",
+  "camera": {
+    "projection": "orthographic",
+    "azimuthDegrees": 40,
+    "elevationDegrees": 27,
+    "zoomFactor": 1.0
+  },
+  "png": {
+    "path": "artwork-sources/pellets/pellets-blank-03-master-v18.png",
+    "sha256": "493875f22457dc37f95eda7f9a7ae9661d9aa68177c0911c3a2d124815f4f60a"
+  },
+  "webp": {
+    "path": "artwork-sources/pellets/pellets-blank-03-master-v18.webp",
+    "sha256": "56278342170ef40ce7fa0279b42143fcfed194c6ac7e2350d1ca1ada9a5add5a"
+  }
+}

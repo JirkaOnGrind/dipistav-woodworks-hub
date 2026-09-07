@@ -1,0 +1,71 @@
+{
+  "candidateId": "pellets-blank-01-master-candidate-a-v18",
+  "phase": 2,
+  "stateIndex": 1,
+  "quantity": 1,
+  "approvalStatus": "awaiting-visual-approval",
+  "runtimeActive": false,
+  "canvas": {
+    "width": 1536,
+    "height": 1024
+  },
+  "alphaBoundsPixels": {
+    "left": 508,
+    "top": 80,
+    "right": 1028,
+    "bottom": 943
+  },
+  "alphaBounds": {
+    "x": 0.330729,
+    "y": 0.078125,
+    "width": 0.338542,
+    "height": 0.842773
+  },
+  "opticalCenter": {
+    "x": 0.5,
+    "y": 0.5
+  },
+  "alphaCoverage": 0.237394,
+  "cornersTransparent": true,
+  "transparentRgbClean": true,
+  "brandingPolicy": "zero-branding-all-surfaces",
+  "cameraLock": {
+    "projection": "orthographic",
+    "azimuthDegrees": 40,
+    "elevationDegrees": 27,
+    "zoomFactor": 1.0,
+    "canvasMayExpand": true
+  },
+  "scaleLock": {
+    "anchorState": 1,
+    "uprightBagAlphaFootprintPixels": {
+      "width": 520,
+      "height": 863
+    },
+    "uprightBagAlphaBoundsPixels": {
+      "left": 508,
+      "top": 80,
+      "right": 1028,
+      "bottom": 943
+    },
+    "futureBagScalePercent": 100,
+    "futureZoomOutAllowed": false
+  },
+  "layout": "one-upright-bag",
+  "sourceGeneratedBoundsPixels": {
+    "left": 509,
+    "top": 80,
+    "right": 1029,
+    "bottom": 944
+  },
+  "sourceAlphaMethod": "deterministic-neutral-checkerboard-extraction",
+  "source": "tmp/pellets-v18-phase2-blank-stacks/state-01/source/pellets-blank-upright-source-a-v18.png",
+  "sourceSha256": "18f62a7692c370065055230c24ffe09c37818c9163a580868b5b565c7b7bc2b7",
+  "lockedUnitTileSha256": "88bd6c89f2a665472c19d7fd041b42b815526d8bee2cbe8f165c5437b752ed36",
+  "lockedLogoSha256": "590dbcd3773af5a9c82eecfe35f1316c68808b02f9f5a4f72c91c594e5fc87ed",
+  "layoutReferenceSha256": "eafa06688b5e0bd9d4bbcd9929a814d9816619a35b2ad7d2540f542c540b4afe",
+  "promptSpec": "tmp/pellets-v18-phase2-blank-stacks/state-01/pellets-blank-state-01-candidate-a-v18.prompt.md",
+  "promptSpecSha256": "1e14cf84af8a3dce830aa9387c931adeb2b95b8c248bac12a72a89ab490937ab",
+  "masterPngSha256": "4133e8a1f740ee445707d86437cc318d0d47073bbb4cb7a7521207264cc72ecd",
+  "masterWebpSha256": "4881ee9cf430308a0a0aa306d29e40da077b32e1257137b28cb39b4a3cfe3764"
+}

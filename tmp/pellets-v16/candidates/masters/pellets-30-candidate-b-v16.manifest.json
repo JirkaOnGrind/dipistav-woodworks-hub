@@ -1,0 +1,64 @@
+{
+  "canvas": {
+    "width": 1536,
+    "height": 1024
+  },
+  "alphaBoundsPixels": {
+    "left": 130,
+    "top": 242,
+    "right": 1408,
+    "bottom": 780
+  },
+  "alphaBounds": {
+    "x": 0.084635,
+    "y": 0.236328,
+    "width": 0.832031,
+    "height": 0.525391
+  },
+  "opticalCenter": {
+    "x": 0.5,
+    "y": 0.5
+  },
+  "alphaCoverage": 0.305525,
+  "cornersTransparent": true,
+  "transparentRgbClean": true,
+  "id": "pellets-30-candidate-b-v16",
+  "styleVersion": "v16-candidate",
+  "approvalStatus": "awaiting-visual-approval",
+  "runtimeActivation": "blocked-until-explicit-visual-approval",
+  "representativeCount": 30,
+  "visibleBagCountEstimate": 15,
+  "occludedBagsAllowed": true,
+  "targetOpticalWidth": 0.83,
+  "effectiveAlphaWidth": 0.832031,
+  "fitConstrainedByHeight": false,
+  "safeInsetPixels": {
+    "x": 116,
+    "y": 80
+  },
+  "safeInsetPass": true,
+  "dimensionsPass": true,
+  "rgbaPass": true,
+  "losslessWebp": true,
+  "selectedForQa": false,
+  "reference": "public/images/illustrations/configurator-v3/pelety-pytel-v3.webp",
+  "referenceSha256": "f8225c69fa6e6aaa3795dfb8fcfb0dcdd551cfaf5d532e6a2b122b1b81e1e418",
+  "source": "tmp/pellets-v16/source/pellets-30-source-b-v16.png",
+  "sourceSha256": "041ab38f2f17974bd3775a9c83b177c2ffaa9613a15186f328bdbb87f2571e06",
+  "outputSha256": "2becf1571edaf9ea1a5888a68e01746194f3729930dc23f6c3f0aef50ed78b27",
+  "alphaMethod": "deterministic-neutral-checkerboard-extraction-v16",
+  "renderPipeline": "built-in reference-guided ImageGen; deterministic neutral-background extraction; 4x fit; one Lanczos downsample; lossless WebP",
+  "prompt": "Artisanal vintage catalog illustration of standardized 15 kg kraft-paper pellet bags, using pelety-pytel-v3.webp as the sole visual reference. Soft warm sand-ochre matte paper, delicate warm-brown ink linework, fine cross-hatching, soft ambient upper-left illumination. Every bag has identical physical proportions and a native minimalist oval pinecone-and-pellets emblem. Fully visible top/front faces additionally carry exact text '15 kg'; angled or partly hidden faces carry the emblem without text. No blank bags, decals, forests, microtext, glossy 3D rendering, mini-bags, floating layers, wooden pallet, cast shadow, or background. Composition: three connected low ten-bag modules in a 2 + 1 footprint.",
+  "nativeBranding": true,
+  "decalApplied": false,
+  "brandingGrammar": "oval pinecone-and-pellets emblem; exact 15 kg on fully visible top/front faces; emblem-only on angled/covered faces",
+  "fullyVisibleLabelCount": 9,
+  "sizeDeviationEstimatePct": 7.0,
+  "sizeTolerancePct": 8.0,
+  "sizeTolerancePass": true,
+  "blankVisibleBagPass": true,
+  "forestMotifPass": true,
+  "layerSupportPass": true,
+  "composition": "three connected low ten-bag modules in a 2 + 1 footprint",
+  "review": "alternate: clean branding but insufficient optical mass"
+}

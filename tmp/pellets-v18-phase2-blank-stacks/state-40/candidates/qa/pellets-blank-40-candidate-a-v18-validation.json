@@ -1,0 +1,34 @@
+{
+  "status": "pass",
+  "canvas": {
+    "width": 3072,
+    "height": 2304
+  },
+  "alphaBoundsPixels": {
+    "left": 318,
+    "top": 273,
+    "right": 2752,
+    "bottom": 2030
+  },
+  "marginsPixels": {
+    "left": 318,
+    "top": 273,
+    "right": 320,
+    "bottom": 274
+  },
+  "layerCount": 8,
+  "bagsPerLayer": 5,
+  "bagCount": 40,
+  "layerPixelSize": {
+    "width": 2435,
+    "height": 861
+  },
+  "layerZStepPixels": 128,
+  "horizontalLayerOffsetPixels": 0,
+  "instanceScalePercent": 100,
+  "sourceLayerResampling": "none-after-module-normalization",
+  "visibleInterlayerGapPixels": 0,
+  "transparentRgbClean": true,
+  "whiteOrBrightEdgePixels": 0,
+  "errors": []
+}

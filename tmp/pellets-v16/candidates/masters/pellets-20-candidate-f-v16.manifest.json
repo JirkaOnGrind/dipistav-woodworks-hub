@@ -1,0 +1,76 @@
+{
+  "canvas": {
+    "width": 1536,
+    "height": 1024
+  },
+  "alphaBoundsPixels": {
+    "left": 153,
+    "top": 161,
+    "right": 1383,
+    "bottom": 862
+  },
+  "alphaBounds": {
+    "x": 0.099609,
+    "y": 0.157227,
+    "width": 0.800781,
+    "height": 0.68457
+  },
+  "opticalCenter": {
+    "x": 0.5,
+    "y": 0.5
+  },
+  "alphaCoverage": 0.440995,
+  "cornersTransparent": true,
+  "transparentRgbClean": true,
+  "safeInsetPixels": {
+    "x": 116,
+    "y": 80
+  },
+  "safeInsetPass": true,
+  "dimensionsPass": true,
+  "rgbaPass": true,
+  "losslessWebp": true,
+  "id": "pellets-20-candidate-f-v16",
+  "styleVersion": "v16-final-r5-candidate",
+  "approvalStatus": "awaiting-final-visual-approval",
+  "runtimeActivation": "blocked-until-explicit-final-approval",
+  "representativeCount": 20,
+  "targetOpticalWidth": 0.8,
+  "effectiveAlphaWidth": 0.800781,
+  "source": "tmp/pellets-v16/source/pellets-20-source-f-v16.png",
+  "sourceSha256": "7139c565badb4d871fa36e32cb07bc3eeab7981ddfc79bfcc392cb17fc250ed6",
+  "outputSha256": "87444606f5b3c9131df5512a0b220341177345c1e04259a6facfa8706e63894f",
+  "alphaMethod": "deterministic-neutral-checkerboard-extraction-v16",
+  "renderPipeline": "built-in precise-object ImageGen edit; deterministic neutral-background extraction; 4x fit; one Lanczos downsample; lossless WebP",
+  "editTarget": "tmp/pellets-v16/candidates/masters/pellets-20-candidate-e-v16.webp",
+  "editTargetSha256": "e5767a1ad3b393a15c3bf440becfb270f734207b38f2d52595ad280d0c266fbe",
+  "goldenScaleReference": {
+    "path": "tmp/pellets-v16/candidates/masters/pellets-50-candidate-b-v16.webp",
+    "sha256": "16cad2725c02ecf36f89717a0abd27fbc928ebb263337197d3285cb7c567895d"
+  },
+  "composition": "twenty full-size bags in four straight isometric tiers without taper or shear",
+  "promptSummary": "The block was reprojected to the 30/50 Golden geometry; all four tiers share parallel axes and uniform unit scale.",
+  "fullyVisibleLabelCount": 5,
+  "nativeBranding": true,
+  "decalApplied": false,
+  "blankVisibleBagPass": true,
+  "miniBagPass": true,
+  "manualScaleDeviationEstimatePct": 2.0,
+  "sizeTolerancePct": 8.0,
+  "sizeTolerancePass": true,
+  "topTierFullSizePass": true,
+  "topTierCenteredPass": true,
+  "layerSupportPass": true,
+  "unifiedPerspectivePass": true,
+  "projection": {
+    "type": "strict-parallel-isometric",
+    "azimuthDegrees": 40,
+    "elevationDegrees": 27,
+    "uniformUnitScaleAcrossTiers": true,
+    "perspectiveTapering": false,
+    "focalDistortion": false
+  },
+  "parallelTierAxesPass": true,
+  "zeroShearPass": true,
+  "zeroTaperPass": true
+}

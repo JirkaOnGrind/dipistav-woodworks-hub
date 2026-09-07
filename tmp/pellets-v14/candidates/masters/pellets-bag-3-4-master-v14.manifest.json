@@ -1,0 +1,49 @@
+{
+  "canvas": {
+    "width": 1536,
+    "height": 1024
+  },
+  "alphaBoundsPixels": {
+    "left": 328,
+    "top": 81,
+    "right": 1208,
+    "bottom": 943
+  },
+  "alphaBounds": {
+    "x": 0.213542,
+    "y": 0.079102,
+    "width": 0.572917,
+    "height": 0.841797
+  },
+  "opticalCenter": {
+    "x": 0.5,
+    "y": 0.5
+  },
+  "alphaCoverage": 0.283911,
+  "interiorAlphaMin": 248,
+  "margins": {
+    "left": 328,
+    "top": 81,
+    "right": 328,
+    "bottom": 81
+  },
+  "styleVersion": "v14-candidate",
+  "approvalStatus": "awaiting-visual-approval",
+  "runtimeActivation": "blocked-until-explicit-visual-approval",
+  "quantityBand": {
+    "min": 3,
+    "max": 4
+  },
+  "representativeCount": 3,
+  "targetAlphaWidth": 0.6,
+  "renderMode": "master",
+  "renderTechnique": "reference-guided-whole-scene-plus-deterministic-brand-decal",
+  "source": "tmp/pellets-v14/source/pellets-3-blank-source-v14.png",
+  "sourceSha256": "fa82aaee88c7ae4a3b966bc762bdca3b3420fb59c98224a10c4473de7b87b449",
+  "canonicalBag": "public/images/illustrations/configurator-v3/pelety-pytel-v3.webp",
+  "canonicalBagSha256": "f8225c69fa6e6aaa3795dfb8fcfb0dcdd551cfaf5d532e6a2b122b1b81e1e418",
+  "brandDecal": "tmp/pellets-v14/candidates/decal/pellets-brand-decal-v14.png",
+  "brandDecalSha256": "85be9f258f9c8c9346ddd7b70fd6e6d7a372f4968ae3f2cc08570b36835de651",
+  "brandPlacementCount": 3,
+  "outputSha256": "c38c65fa1599cc72150691e88ebc311702c44fe1d8c0d8700b3edf14e05ea1c7"
+}

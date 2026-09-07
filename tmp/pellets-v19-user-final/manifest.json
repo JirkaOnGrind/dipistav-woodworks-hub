@@ -1,0 +1,110 @@
+{
+  "approvalStatus": "approved",
+  "runtimeActive": true,
+  "approvedBy": "user",
+  "approvedDate": "2026-08-28",
+  "candidates": [
+    {
+      "candidateId": "pellets-bag-1-candidate-a-v19",
+      "quantity": 1,
+      "approvalStatus": "approved",
+      "runtimeActive": true,
+      "runtimePath": "public/images/illustrations/configurator-v19/pellets-bag-1-master-v19.webp",
+      "source": "FINAL1.webp",
+      "sourceSha256": "3c69a8c65b3eda6f6157e6a921c6704666bf5d8cf4fdfde5ac6743ed04646ce9",
+      "detectedBackgroundRgb": [
+        249,
+        241,
+        230
+      ],
+      "alphaMethod": "deterministic-connected-background-extraction-with-4x-lanczos-edge",
+      "workScale": 4,
+      "downsample": "single-lanczos",
+      "safeInset": 0.07,
+      "contourReservePixels": 8,
+      "canvas": {
+        "width": 1536,
+        "height": 1024
+      },
+      "alphaBoundsPixels": {
+        "left": 508,
+        "top": 81,
+        "right": 1027,
+        "bottom": 943
+      },
+      "alphaBounds": {
+        "x": 0.330729,
+        "y": 0.079102,
+        "width": 0.337891,
+        "height": 0.841797
+      },
+      "opticalCenter": {
+        "x": 0.499674,
+        "y": 0.5
+      },
+      "alphaCoverage": 0.235088,
+      "cornersTransparent": true,
+      "transparentRgbClean": true,
+      "brightSemiTransparentPixels": 0,
+      "safeInsetPass": true,
+      "masterPngSha256": "b840365dafca99bb3a0b3a6b2eedfc055f5ca6777f3abe7aec1696977c77e19e",
+      "masterWebp": "C:\\Users\\Utrh\\Documents\\Codex\\dipistav-woodworks-hub\\tmp\\pellets-v19-user-final\\candidates\\masters\\pellets-bag-1-candidate-a-v19.webp",
+      "masterWebpSha256": "5dbe89acd380057e769f9131e10c83afb379ccda98fc19551298cf01979d4ac2",
+      "masterWebpBytes": 345180
+    },
+    {
+      "candidateId": "pellets-bag-2-candidate-a-v19",
+      "quantity": 2,
+      "approvalStatus": "approved",
+      "runtimeActive": true,
+      "runtimePath": "public/images/illustrations/configurator-v19/pellets-bag-2-master-v19.webp",
+      "source": "FINAL2.webp",
+      "sourceSha256": "6addde00be5ab8f72a6f7f6d3f3798ea4ecec3512470ca782eee8ea44218f030",
+      "detectedBackgroundRgb": [
+        255,
+        255,
+        255
+      ],
+      "alphaMethod": "deterministic-connected-background-extraction-with-4x-lanczos-edge",
+      "workScale": 4,
+      "downsample": "single-lanczos",
+      "safeInset": 0.07,
+      "contourReservePixels": 8,
+      "canvas": {
+        "width": 1536,
+        "height": 1024
+      },
+      "alphaBoundsPixels": {
+        "left": 310,
+        "top": 80,
+        "right": 1228,
+        "bottom": 943
+      },
+      "alphaBounds": {
+        "x": 0.201823,
+        "y": 0.078125,
+        "width": 0.597656,
+        "height": 0.842773
+      },
+      "opticalCenter": {
+        "x": 0.500651,
+        "y": 0.499512
+      },
+      "alphaCoverage": 0.377824,
+      "cornersTransparent": true,
+      "transparentRgbClean": true,
+      "brightSemiTransparentPixels": 0,
+      "safeInsetPass": true,
+      "masterPngSha256": "7d666c47e39db71fc3f43c446e51486504c833d733c1970db5b29be7e9b384cb",
+      "masterWebp": "C:\\Users\\Utrh\\Documents\\Codex\\dipistav-woodworks-hub\\tmp\\pellets-v19-user-final\\candidates\\masters\\pellets-bag-2-candidate-a-v19.webp",
+      "masterWebpSha256": "33306fe4d83c997b43cf7ba83292bd459bff1327a3cd1b3f84cf01c9c65ab899",
+      "masterWebpBytes": 575080
+    }
+  ],
+  "qa": [
+    "tmp/pellets-v19-user-final/candidates/qa/pellets-v19-320px.png",
+    "tmp/pellets-v19-user-final/candidates/qa/pellets-v19-alpha.png",
+    "tmp/pellets-v19-user-final/candidates/qa/pellets-v19-dark.png",
+    "tmp/pellets-v19-user-final/candidates/qa/pellets-v19-light.png"
+  ]
+}

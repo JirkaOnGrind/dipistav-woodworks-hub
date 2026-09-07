@@ -1,0 +1,26 @@
+{
+  "canvas": {
+    "width": 3072,
+    "height": 1536
+  },
+  "alphaBoundsPixels": {
+    "left": 307,
+    "top": 121,
+    "right": 2765,
+    "bottom": 1415
+  },
+  "marginsPixels": {
+    "left": 307,
+    "top": 121,
+    "right": 307,
+    "bottom": 121
+  },
+  "safeInset": 0.07,
+  "adjacentAlphaOverlapPixels": 0,
+  "dilatedGapOverlapPixels": 0,
+  "verifiedMinimumMicroGapPixels": 8,
+  "whiteOrBrightEdgePixels": 0,
+  "transparentRgbClean": true,
+  "errors": [],
+  "status": "pass"
+}

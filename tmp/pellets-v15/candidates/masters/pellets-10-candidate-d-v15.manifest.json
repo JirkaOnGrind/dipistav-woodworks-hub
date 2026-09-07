@@ -1,0 +1,49 @@
+{
+  "canvas": {
+    "width": 1536,
+    "height": 1024
+  },
+  "alphaBoundsPixels": {
+    "left": 186,
+    "top": 131,
+    "right": 1351,
+    "bottom": 893
+  },
+  "alphaBounds": {
+    "x": 0.121094,
+    "y": 0.12793,
+    "width": 0.758464,
+    "height": 0.744141
+  },
+  "opticalCenter": {
+    "x": 0.5,
+    "y": 0.5
+  },
+  "alphaCoverage": 0.370651,
+  "cornersTransparent": true,
+  "transparentRgbClean": true,
+  "id": "pellets-10-candidate-d-v15",
+  "styleVersion": "v15-candidate",
+  "approvalStatus": "awaiting-visual-approval",
+  "runtimeActivation": "blocked-until-explicit-visual-approval",
+  "family": "pellets-bag",
+  "representativeCount": 10,
+  "targetAlphaWidth": 0.76,
+  "selectedForQa": true,
+  "reference": "public/images/illustrations/configurator-v3/pelety-pytel-v3.webp",
+  "referenceSha256": "f8225c69fa6e6aaa3795dfb8fcfb0dcdd551cfaf5d532e6a2b122b1b81e1e418",
+  "source": "tmp/pellets-v15/source/pellets-10-source-d-v15.png",
+  "sourceSha256": "d6fb05a8a126a26df6f755c0ab067cab79cc00172da5d175a6ec2be09bb6ba9f",
+  "outputSha256": "bba19128cef2bd5dba696a5167cc20c3453d26a6c5aec5f53278046da4abb21d",
+  "alphaMethod": "preserved-generated-alpha",
+  "renderPipeline": "built-in-reference-guided-imagegen; 4x compositing; one Lanczos downsample; lossless WebP",
+  "prompt": "Exactly ten lying sacks in a supported 4 + 4 + 2 cross-bond.",
+  "nativeBranding": true,
+  "decalApplied": false,
+  "fullyVisibleLabelCount": 5,
+  "exactLabelText": "15 kg",
+  "exactLabelPass": true,
+  "layerSupportPass": true,
+  "compositionPass": true,
+  "review": "selected: wide countable 4 + 4 + 2 with softer gravity deformation"
+}

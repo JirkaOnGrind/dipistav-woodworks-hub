@@ -1,0 +1,32 @@
+{
+  "status": "pass",
+  "canvas": {
+    "width": 2048,
+    "height": 1280
+  },
+  "normalizedArtworkPixels": {
+    "width": 1462,
+    "height": 861
+  },
+  "alphaBoundsPixels": {
+    "left": 293,
+    "top": 209,
+    "right": 1754,
+    "bottom": 1070
+  },
+  "marginsPixels": {
+    "left": 293,
+    "top": 209,
+    "right": 294,
+    "bottom": 210
+  },
+  "bagCount": 3,
+  "groundPlaneCount": 1,
+  "zElevationLevels": 1,
+  "visibleEmptyGapBetweenBags": false,
+  "frontClosureBaselineAligned": true,
+  "rearClosureBaselineAligned": true,
+  "whiteOrBrightEdgePixels": 0,
+  "transparentRgbClean": true,
+  "errors": []
+}

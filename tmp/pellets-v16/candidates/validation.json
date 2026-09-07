@@ -1,0 +1,68 @@
+{
+  "valid": true,
+  "styleVersion": "v16-candidate",
+  "approvalStatus": "awaiting-visual-approval",
+  "runtimeActivation": "blocked-until-explicit-visual-approval",
+  "referenceSha256": "f8225c69fa6e6aaa3795dfb8fcfb0dcdd551cfaf5d532e6a2b122b1b81e1e418",
+  "opticalWidths": [
+    0.4,
+    0.52,
+    0.6,
+    0.68,
+    0.76,
+    0.8,
+    0.83,
+    0.85
+  ],
+  "selected": [
+    {
+      "id": "pellets-1-candidate-a-v16",
+      "sha256": "abed47d8cbb97c452366acfd84bdbd7c770f4873c305985c6012778e441f9cde",
+      "review": "selected: reference-calibrated single bag"
+    },
+    {
+      "id": "pellets-2-candidate-a-v16",
+      "sha256": "7491e805062d29055383282090f69c1cde3aa57418b802fa73eb7e496c499f25",
+      "review": "selected: stable paired support and matching native print"
+    },
+    {
+      "id": "pellets-3-candidate-a-v16",
+      "sha256": "b740dfb57fa9ca38a12c9a5818e5558ae28b9305b43ed18ad167e294b89bb819",
+      "review": "selected: exact compact 2 + 1 ground bond"
+    },
+    {
+      "id": "pellets-5-candidate-a-v16",
+      "sha256": "2c7cdb340d467e2c8cd03fe80c45a9624824ebc6044e672fe9bcfbf6e52a38b7",
+      "review": "selected: exact low 3 + 2 supported bond"
+    },
+    {
+      "id": "pellets-10-candidate-a-v16",
+      "sha256": "3f79538222258f00e2a589738b1266c867b830dfdf21110007a07fd54da95b0b",
+      "review": "selected: cleanest branding and low supported silhouette; one rear bag is occluded"
+    },
+    {
+      "id": "pellets-20-candidate-b-v16",
+      "sha256": "47d829a3d9775954fca14480d3ece0e95c3a9430756cd13b2b600c27c849565f",
+      "review": "selected: consistent emblem and no forest motif; rear bags are occluded"
+    },
+    {
+      "id": "pellets-30-candidate-c-v16",
+      "sha256": "86e7eb762c65aea65c0fdae02f3b9a5ca0cbb05cde0870d915ce9a086c731c68",
+      "review": "selected: broad low stock block with unified native emblem and no forest motif"
+    },
+    {
+      "id": "pellets-50-candidate-b-v16",
+      "sha256": "16cad2725c02ecf36f89717a0abd27fbc928ebb263337197d3285cb7c567895d",
+      "review": "selected: widest clean rectangular stock block without a visible pallet"
+    }
+  ],
+  "qa": [
+    "tmp/pellets-v16/candidates/qa/pellets-v16-alpha-edge.png",
+    "tmp/pellets-v16/candidates/qa/pellets-v16-branding.png",
+    "tmp/pellets-v16/candidates/qa/pellets-v16-large-alternates-light.png",
+    "tmp/pellets-v16/candidates/qa/pellets-v16-selected-320.png",
+    "tmp/pellets-v16/candidates/qa/pellets-v16-selected-dark.png",
+    "tmp/pellets-v16/candidates/qa/pellets-v16-selected-light.png"
+  ],
+  "runtimeActivationNote": "No v16 pellet asset may enter runtime before explicit visual approval."
+}

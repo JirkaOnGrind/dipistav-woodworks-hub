@@ -13,9 +13,8 @@ type Method = {
 const METHODS: Method[] = [
   {
     icon: ConstructionIcon,
-    title: "Auto s hydraulickou rukou",
-    description:
-      "Složení trámů a těžkého řeziva přímo na pozemek nebo stavbu bez potřeby další techniky.",
+    title: "Doprava s hydraulickou rukou",
+    description: "Trámy a těžké řezivo složíme přímo na pozemku nebo stavbě bez další techniky.",
     badge: "Nejpopulárnější",
     badgeTone: "brown",
   },
@@ -28,7 +27,7 @@ const METHODS: Method[] = [
   },
   {
     icon: Ruler,
-    title: "Atypická doprava / Nadrozměr",
+    title: "Nadrozměrná doprava",
     description:
       "Pro trámy nad 8 metrů nebo kompletní krovy na míru domluvíme individuální dopravu.",
     badgeTone: "neutral",
@@ -70,21 +69,25 @@ export function ShippingWidget() {
                   </div>
                   {m.badge && <BadgePill tone={m.badgeTone}>{m.badge}</BadgePill>}
                 </div>
-                <h3 className="mt-4 text-lg font-black tracking-tight text-[#1E293B]">{m.title}</h3>
-                <p className="mt-1.5 text-sm leading-6 text-[#1E293B]/70">{m.description}</p>
+                <h3 className="mt-4 break-words text-balance text-lg font-black tracking-tight text-[#1E293B]">
+                  {m.title}
+                </h3>
+                <p className="mt-1.5 text-pretty text-sm leading-6 text-[#1E293B]/70">
+                  {m.description}
+                </p>
               </div>
             );
           })}
         </div>
 
         {/* Single secondary CTA */}
-        <div className="mt-6 flex justify-center sm:mt-8">
+        <div className="mt-6 hidden justify-center sm:mt-8 md:flex">
           <a
             href={COMPANY_PHONE_HREF}
             className="inline-flex items-center gap-2 rounded-2xl border border-[#234A33]/25 bg-white px-5 py-3 text-sm font-bold text-[#234A33] transition hover:bg-[#F1F5EE]"
           >
             <PhoneCall className="h-4 w-4" />
-            Mám dotaz k dopravě → Zavolat {COMPANY_PHONE}
+            Zavolat a probrat dopravu: {COMPANY_PHONE}
           </a>
         </div>
       </div>

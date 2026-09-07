@@ -65,8 +65,8 @@ export function QuantitySelector({
   };
 
   return (
-    <div className="space-y-3">
-      <div className="flex items-end justify-between gap-4">
+    <div data-quantity-selector className="flex flex-col gap-3">
+      <div className="grid grid-cols-[minmax(0,1fr)_auto] items-center gap-3 sm:flex sm:items-end sm:justify-between sm:gap-4">
         <label
           htmlFor={inputId}
           className="block text-xs font-semibold uppercase tracking-[0.2em] text-muted-foreground"
@@ -78,7 +78,7 @@ export function QuantitySelector({
             id={inputId}
             aria-label={`${label} přesně`}
             type="text"
-            inputMode="numeric"
+            inputMode={Number.isInteger(step) ? "numeric" : "decimal"}
             value={draftValue}
             onChange={(event) => setDraftValue(event.currentTarget.value)}
             onBlur={commitDraft}
@@ -101,7 +101,7 @@ export function QuantitySelector({
       <div className="grid grid-cols-[48px_minmax(0,1fr)_48px] items-center gap-3 rounded-[1.5rem] border border-[#234A33]/10 bg-[#FCFAF5] p-3 shadow-[inset_0_1px_0_rgba(255,255,255,0.72)] sm:gap-4 sm:p-4">
         <button
           type="button"
-          onClick={() => updateQuantity(quantityRef.current - 1)}
+          onClick={() => updateQuantity(quantityRef.current - step)}
           disabled={quantity <= min}
           className="flex h-12 w-12 items-center justify-center rounded-2xl border border-[#1E3A2B]/12 bg-white text-[#1E3A2B] shadow-sm transition hover:border-[#1E3A2B]/24 hover:bg-[#FFFDF8] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#1E3A2B]/20 disabled:cursor-default disabled:opacity-35"
           aria-label={`Snížit: ${label}`}
@@ -129,7 +129,7 @@ export function QuantitySelector({
 
         <button
           type="button"
-          onClick={() => updateQuantity(quantityRef.current + 1)}
+          onClick={() => updateQuantity(quantityRef.current + step)}
           disabled={quantity >= max}
           className="flex h-12 w-12 items-center justify-center rounded-2xl border border-[#1E3A2B]/12 bg-white text-[#1E3A2B] shadow-sm transition hover:border-[#1E3A2B]/24 hover:bg-[#FFFDF8] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#1E3A2B]/20 disabled:cursor-default disabled:opacity-35"
           aria-label={`Zvýšit: ${label}`}
@@ -138,16 +138,6 @@ export function QuantitySelector({
         </button>
       </div>
 
-      <div className="flex h-4 items-center justify-end" aria-live="polite">
-        <p
-          aria-hidden={quantity <= effectiveSliderMax}
-          className={`text-right text-xs font-medium text-muted-foreground transition-opacity duration-200 ${
-            quantity > effectiveSliderMax ? "opacity-100" : "pointer-events-none opacity-0"
-          }`}
-        >
-          Posuvník je do {effectiveSliderMax} {unitLabel}, vyšší počet zadejte přesně.
-        </p>
-      </div>
     </div>
   );
 }

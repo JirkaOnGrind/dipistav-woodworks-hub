@@ -1,0 +1,153 @@
+{
+  "candidateId": "pellets-blank-60-master-candidate-b-v18",
+  "supersedesRejectedCandidate": "pellets-blank-60-master-candidate-a-v18",
+  "tier": 60,
+  "quantity": 60,
+  "approvalStatus": "abandoned-by-user",
+  "runtimeActive": false,
+  "brandingPolicy": "zero-branding-all-surfaces",
+  "compositionMode": "10-byte-identical-uniform-6-bag-layers-with-contact-occlusion",
+  "geometry": {
+    "layers": 10,
+    "bagsPerLayer": 6,
+    "uniformCellWidthPixels": 487,
+    "alignment": "direct-vertical-compressed-contact",
+    "zStepPixels": 108
+  },
+  "cameraLock": {
+    "projection": "orthographic",
+    "azimuthDegrees": 40,
+    "elevationDegrees": 27,
+    "zoomFactor": 1.0
+  },
+  "scaleLock": {
+    "instanceScalePercent": 100,
+    "zoomOutAllowed": false,
+    "canvasExpanded": true
+  },
+  "gravityTreatment": {
+    "contactOffsetPixels": 8,
+    "contactBlurPixels": 5,
+    "contactShadowStrengthPercent": 48,
+    "contactShadowPixels": 496449
+  },
+  "lockedSourceHashes": {
+    "tier3PngSha256": "493875f22457dc37f95eda7f9a7ae9661d9aa68177c0911c3a2d124815f4f60a",
+    "tier24PngSha256": "03d3154916d0c9cf47a9da90285458284b3f3a06bb595b1757746cf1c07c5710"
+  },
+  "sourceAlphaMethod": "deterministic-neutral-checkerboard-extraction",
+  "moduleSourceSha256": "7b66937ffdb569caf8ab07a0d0f53ea1e942419b855950fec5edf501c0b6fcb0",
+  "normalizedModuleFileSha256": "52b6e52b0f6d1ea83f7aba62374dff53240993cb8ab31d49fccc4521bdf62681",
+  "layerPixelSha256": [
+    "e84b5b4870151b4eb1cd4d149e9dc29d6b9dcdb78ac273e1cea3fcf5790ce991",
+    "e84b5b4870151b4eb1cd4d149e9dc29d6b9dcdb78ac273e1cea3fcf5790ce991",
+    "e84b5b4870151b4eb1cd4d149e9dc29d6b9dcdb78ac273e1cea3fcf5790ce991",
+    "e84b5b4870151b4eb1cd4d149e9dc29d6b9dcdb78ac273e1cea3fcf5790ce991",
+    "e84b5b4870151b4eb1cd4d149e9dc29d6b9dcdb78ac273e1cea3fcf5790ce991",
+    "e84b5b4870151b4eb1cd4d149e9dc29d6b9dcdb78ac273e1cea3fcf5790ce991",
+    "e84b5b4870151b4eb1cd4d149e9dc29d6b9dcdb78ac273e1cea3fcf5790ce991",
+    "e84b5b4870151b4eb1cd4d149e9dc29d6b9dcdb78ac273e1cea3fcf5790ce991",
+    "e84b5b4870151b4eb1cd4d149e9dc29d6b9dcdb78ac273e1cea3fcf5790ce991",
+    "e84b5b4870151b4eb1cd4d149e9dc29d6b9dcdb78ac273e1cea3fcf5790ce991"
+  ],
+  "placementsTopToBottom": [
+    {
+      "layer": 1,
+      "x": 331,
+      "y": 363
+    },
+    {
+      "layer": 2,
+      "x": 331,
+      "y": 471
+    },
+    {
+      "layer": 3,
+      "x": 331,
+      "y": 579
+    },
+    {
+      "layer": 4,
+      "x": 331,
+      "y": 687
+    },
+    {
+      "layer": 5,
+      "x": 331,
+      "y": 795
+    },
+    {
+      "layer": 6,
+      "x": 331,
+      "y": 903
+    },
+    {
+      "layer": 7,
+      "x": 331,
+      "y": 1011
+    },
+    {
+      "layer": 8,
+      "x": 331,
+      "y": 1119
+    },
+    {
+      "layer": 9,
+      "x": 331,
+      "y": 1227
+    },
+    {
+      "layer": 10,
+      "x": 331,
+      "y": 1335
+    }
+  ],
+  "validation": {
+    "status": "pass",
+    "canvas": {
+      "width": 3584,
+      "height": 2560
+    },
+    "alphaBoundsPixels": {
+      "left": 331,
+      "top": 363,
+      "right": 3253,
+      "bottom": 2195
+    },
+    "marginsPixels": {
+      "left": 331,
+      "top": 363,
+      "right": 331,
+      "bottom": 365
+    },
+    "layerCount": 10,
+    "bagsPerLayer": 6,
+    "bagCount": 60,
+    "uniformCellWidthPixels": 487,
+    "uniformCellWidthsPixels": [
+      487,
+      487,
+      487,
+      487,
+      487,
+      487
+    ],
+    "layerPixelSize": {
+      "width": 2922,
+      "height": 861
+    },
+    "layerZStepPixels": 108,
+    "horizontalLayerOffsetPixels": 0,
+    "contactShadowPixels": 496449,
+    "contactShadowStrengthPercent": 48,
+    "instanceScalePercent": 100,
+    "sourceLayerResampling": "none-after-one-module-normalization",
+    "transparentRgbClean": true,
+    "whiteOrBrightEdgePixels": 0,
+    "errors": []
+  },
+  "masterPngSha256": "30d407250e4aa8fda1f86cf98c222d82f554fa1581eaa713eac7745eac4f5db3",
+  "masterWebpSha256": "6f0a113e6f7a549409cd519c217349bb96ff97943bd40d5ff4eca2974d74b479",
+  "abandonmentReason": "extreme-height grid integrity abandoned in favor of final 28-bag 7x4 pallet block",
+  "supersededByCandidate": "pellets-blank-28-master-candidate-a-v18"
+}

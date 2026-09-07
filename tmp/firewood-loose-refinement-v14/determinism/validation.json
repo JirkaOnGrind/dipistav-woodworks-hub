@@ -1,0 +1,29 @@
+{
+  "valid": true,
+  "approvalStatus": "awaiting-visual-approval",
+  "runtimeActivation": "blocked-until-explicit-visual-approval",
+  "opticalWidths": [
+    0.62,
+    0.66,
+    0.79,
+    0.82,
+    0.86
+  ],
+  "masters": [
+    {
+      "image": "tmp\\firewood-loose-refinement-v14\\determinism\\masters\\firewood-loose-3-4-master-v14.webp",
+      "manifest": "tmp\\firewood-loose-refinement-v14\\determinism\\masters\\firewood-loose-3-4-master-v14.manifest.json",
+      "sha256": "b43b97128246d2fb22a5125253d9eb51bead6945bd7b8b742d59fe474ebf43c7"
+    },
+    {
+      "image": "tmp\\firewood-loose-refinement-v14\\determinism\\masters\\firewood-loose-9-15-master-v14.webp",
+      "manifest": "tmp\\firewood-loose-refinement-v14\\determinism\\masters\\firewood-loose-9-15-master-v14.manifest.json",
+      "sha256": "9183ac0fdd39feab786b4e711794fc50be52203e8b1b128734fdb19c94aafb8b"
+    }
+  ],
+  "qa": [
+    "tmp\\firewood-loose-refinement-v14\\determinism\\qa\\firewood-loose-v14-comparison-light.png",
+    "tmp\\firewood-loose-refinement-v14\\determinism\\qa\\firewood-loose-v14-comparison-dark.png",
+    "tmp\\firewood-loose-refinement-v14\\determinism\\qa\\firewood-loose-v14-comparison-320.png"
+  ]
+}

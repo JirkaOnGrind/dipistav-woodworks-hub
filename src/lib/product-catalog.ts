@@ -1,4 +1,5 @@
 import type { Availability, PriceDefinition, VariantDimensions } from "@/lib/pricing";
+import { VISUALIZATION_LIMITS } from "@/lib/visualization-limits";
 
 export type SelectOption = {
   value: string;
@@ -76,7 +77,7 @@ const TIMBER_SECTION = {
   anchorId: "kategorie",
   title: "Řezivo",
   description:
-    "Vyberte si přesně takové řezivo, jaké vaše stavba potřebuje, a přehledně porovnejte vhodné varianty.",
+    "Trámy, fošny, prkna a latě pro stavbu i další zpracování. Vyberte profil, délku a množství.",
 } as const;
 
 const FUEL_SECTION = {
@@ -84,7 +85,7 @@ const FUEL_SECTION = {
   anchorId: "paliva",
   title: "Paliva",
   description:
-    "Praktická paliva pro domů, na chalupu i do provozu. Vyberte si balení, které se vám bude dobře skladovat i používat.",
+    "Palivové dřevo, pelety a krajinky pro dům, chalupu i provoz. Zvolte balení podle spotřeby a prostoru pro skladování.",
 } as const;
 
 const DEFAULT_QUANTITY_POLICY: QuantityPolicy = {
@@ -93,6 +94,30 @@ const DEFAULT_QUANTITY_POLICY: QuantityPolicy = {
   step: 1,
   sliderMax: 20,
 };
+
+const PALLET_QUANTITY_POLICY: QuantityPolicy = {
+  min: 1,
+  max: 500,
+  step: 1,
+  sliderMax: 12,
+};
+
+const UNSORTED_VOLUME_QUANTITY_POLICY: QuantityPolicy = {
+  min: 1,
+  max: 20,
+  step: 1,
+  sliderMax: 10,
+};
+
+const PALLET_ILLUSTRATION_VARIANTS = new Set([
+  "firewood-pallet",
+  "pallet-16",
+  "pallet-25",
+  "pallet-33",
+  "pallet-25-16",
+  "pallet-33-16",
+  "pellets-pallet",
+]);
 
 const piecePrice = (
   rate: number,
@@ -105,10 +130,14 @@ const linearMeterPrice = (rate: number): PriceDefinition => ({
   displayUnit: "bm",
 });
 
-const cubicMeterPrice = (rate: number): PriceDefinition => ({
+const cubicMeterPrice = (
+  rate: number,
+  quantityMode: Extract<PriceDefinition, { basis: "cubic-meter" }>["quantityMode"] = "pieces",
+): PriceDefinition => ({
   basis: "cubic-meter",
   rate,
   displayUnit: "m³",
+  quantityMode,
 });
 
 function pricedVariant(
@@ -196,10 +225,9 @@ const tramy: ProductCategory = {
   title: "Stavební trámy",
   name: "Stavební trámy",
   shortName: "Trámy",
-  subtitle: "Masivní nosné trámy pro krovy, stropy, pergoly i další konstrukce.",
-  description:
-    "Poctivé stavební trámy v osvědčených profilech a délkách. Snadno si vyberete variantu, která bude sedět vašemu projektu i způsobu montáže.",
-  imageSrc: "/images/illustrations/homepage-v11/tramy-icon-occlusion-v3-master-v11.webp",
+  subtitle: "Pro krovy, stropy a pergoly.",
+  description: "Vyberte osvědčený profil a délku pro konstrukci, která dobře sedí a dlouho vydrží.",
+  imageSrc: "/images/illustrations/homepage-v41/tramy-single.webp",
   thumbnailAlt: "Ilustrace stavebních trámů DIPISTAV",
   illustrationPrompt:
     "DIPISTAV comic-engraving product illustration of square structural timber beams in a neat isometric stack.",
@@ -228,10 +256,10 @@ const fosny: ProductCategory = {
   title: "Stavební fošny",
   name: "Stavební fošny",
   shortName: "Fošny",
-  subtitle: "Široké stavební fošny pro bednění, podlahy i konstrukční detaily.",
+  subtitle: "Pro bednění a pevné podlahy.",
   description:
-    "Masivní fošny pro stavbu i truhlářské využití. Skladová varianta má poctivý profil 4 × 14 cm a délku 4 metry.",
-  imageSrc: "/images/illustrations/homepage-v11/fosny-icon-family-match-v6-master-v11.webp",
+    "Poctivý profil 4 × 14 cm a délka 4 metry jsou připravené pro stavbu i další zpracování.",
+  imageSrc: "/images/illustrations/homepage-v41/fosny-single.webp",
   thumbnailAlt: "Ilustrace stavebních fošen DIPISTAV",
   illustrationPrompt: "DIPISTAV comic-engraving illustration of thick broad construction boards.",
   ctaLabel: "Přidat fošny do košíku",
@@ -312,7 +340,7 @@ const unsortedBoardVariants = UNSORTED_BOARD_GROUPS.flatMap((group) =>
     ...pricedVariant(
       `board-unsorted-${group.id}-${lengthCm}`,
       { width: group.id, length: lengthCm },
-      cubicMeterPrice(group.ratePerM3),
+      cubicMeterPrice(group.ratePerM3, "volume"),
       { thicknessMm: 25, widthMm: group.averageWidthMm, lengthMm: Number(lengthCm) * 10 },
       group.illustrationVariant,
       "unsorted",
@@ -333,10 +361,10 @@ const prkna: ProductCategory = {
   title: "Stavební prkna",
   name: "Stavební prkna",
   shortName: "Prkna",
-  subtitle: "Tříděná i netříděná coulová prkna pro střechy, obklady a běžnou stavbu.",
+  subtitle: "Pro střechy, obklady i stavbu.",
   description:
-    "Vyberte si přesná tříděná prkna s cenou za kus nebo čistě omítaná netříděná prkna účtovaná podle objemu vypočteného z průměrné šířky zvolené skupiny.",
-  imageSrc: "/images/illustrations/homepage-v11/prkna-icon-occlusion-v3-master-v11.webp",
+    "Zvolte tříděnou variantu pro přesnou práci nebo netříděná prkna pro univerzální využití.",
+  imageSrc: "/images/illustrations/homepage-v41/prkna-single.webp",
   thumbnailAlt: "Ilustrace stavebních prken DIPISTAV",
   illustrationPrompt: "DIPISTAV comic-engraving illustration of thin construction boards.",
   ctaLabel: "Přidat prkna do košíku",
@@ -383,10 +411,9 @@ const late: ProductCategory = {
   title: "Střešní latě",
   name: "Střešní latě",
   shortName: "Latě",
-  subtitle: "Tři skladové profily v délkách 4 a 5 metrů, účtované za běžný metr.",
-  description:
-    "Střešní latě pro spolehlivou montáž střech, podbití i lehkých konstrukcí. Cena se automaticky počítá z délky a počtu kusů.",
-  imageSrc: "/images/illustrations/homepage-v11/late-icon-production-v2-master-v11.webp",
+  subtitle: "Pro pevnou střechu a podbití.",
+  description: "Skladové profily v délkách 4 a 5 metrů vám usnadní rychlou a jistou montáž.",
+  imageSrc: "/images/illustrations/homepage-v41/late-single.webp",
   thumbnailAlt: "Ilustrace střešních latí DIPISTAV",
   illustrationPrompt: "DIPISTAV comic-engraving illustration of rectangular roofing battens.",
   ctaLabel: "Přidat latě do košíku",
@@ -446,8 +473,9 @@ function optionCategory(config: {
 const stipaneDrevo = optionCategory({
   id: "stipane-drevo",
   name: "Štípané dřevo",
-  subtitle: "Poctivě štípané palivové dřevo v balení podle vašich skladovacích možností.",
-  description: "Vyberte si volně ložené dřevo, praktický big bag nebo úhledně složenou paletu.",
+  subtitle: "Teplo pro domov i chalupu.",
+  description:
+    "Volně ložené, v big bagu nebo na paletě — zvolte balení, které vám nejlépe vyhovuje.",
   imageSrc: "/images/illustrations/stipane-v2.webp",
   thumbnailAlt: "Ilustrace štípaného dřeva",
   ctaLabel: "Přidat dřevo do košíku",
@@ -480,9 +508,8 @@ const stipaneDrevo = optionCategory({
 const pelety = optionCategory({
   id: "pelety",
   name: "Pelety",
-  subtitle: "Čisté dřevní pelety od jednoho pytle až po celou paletu.",
-  description:
-    "Vyberte si samostatný pytel, výhodný set deseti pytlů nebo paletu pro celou topnou sezónu.",
+  subtitle: "Čisté a spolehlivé vytápění.",
+  description: "Pytel 15 kg, výhodný set nebo celá paleta pokryjí malou zásobu i topnou sezónu.",
   imageSrc: "/images/illustrations/pelety-v2.webp",
   thumbnailAlt: "Ilustrace dřevních pelet",
   ctaLabel: "Přidat pelety do košíku",
@@ -510,8 +537,9 @@ const pelety = optionCategory({
 const krajinky = optionCategory({
   id: "krajinky",
   name: "Krajinky",
-  subtitle: "Svázané balíky nepravidelných krajinek v délkách 2, 3 a 4 metry.",
-  description: "Úsporné palivo z omítaných boků kulatiny pro topení, zátop i hospodářské provozy.",
+  subtitle: "Výhodné dřevo na topení.",
+  description:
+    "Dřevěné odřezky z omítaných boků kulatiny jsou dostupnou zásobou paliva na topnou sezónu.",
   imageSrc: "/images/illustrations/krajinky-v2.webp",
   thumbnailAlt: "Ilustrace svázaného balíku krajinek",
   ctaLabel: "Přidat krajinky do košíku",
@@ -526,39 +554,56 @@ const krajinky = optionCategory({
   ],
 });
 
-const driviNaPaletach = optionCategory({
+const FIREWOOD_PALLET_PRICE_MATRIX = {
+  "33-1": 2190,
+  "33-1.6": 3190,
+  "25-1": 2290,
+  "25-1.6": 3290,
+} as const;
+
+export const FIREWOOD_PALLET_VARIANTS = [
+  { logLength: "25", volume: "1", illustrationVariant: "pallet-25" },
+  { logLength: "25", volume: "1.6", illustrationVariant: "pallet-25-16" },
+  { logLength: "33", volume: "1", illustrationVariant: "pallet-33" },
+  { logLength: "33", volume: "1.6", illustrationVariant: "pallet-33-16" },
+] as const;
+
+const driviNaPaletach: ProductCategory = {
   id: "drivi-na-paletach",
+  sectionId: FUEL_SECTION.id,
+  sectionTitle: FUEL_SECTION.title,
+  sectionAnchorId: FUEL_SECTION.anchorId,
+  title: "Dříví na paletách",
   name: "Dříví na paletách",
-  subtitle: "Přehledně složené palety palivového dřeva pro čisté skladování.",
-  description: "Vyberte délku polen nebo větší paletu 1,6 prm podle prostoru a očekávané spotřeby.",
-  imageSrc: "/images/illustrations/palety-v2.webp",
+  shortName: "Dříví na paletách",
+  subtitle: "Dřevo úhledně na paletě.",
+  description: "Poctivě vyskládaná paleta usnadní manipulaci, uložení i průběžné doplňování dřeva.",
+  imageSrc: "/images/illustrations/configurator-v30/firewood-pallet-33cm-1prm-final-v30.webp",
   thumbnailAlt: "Ilustrace paletovaného dříví",
+  illustrationPrompt:
+    "Isometric e-shop illustration of split hardwood stacked longitudinally in a wooden pallet crate.",
   ctaLabel: "Přidat paletu do košíku",
   quantityLabel: "Počet palet",
   quantityUnitLabel: "palet",
-  optionLabel: "Typ palety",
-  displayUnit: "paleta",
-  options: [
-    {
-      value: "paleta-33cm",
-      label: "Paleta 33 cm / 1 prm",
-      price: 2190,
-      illustrationVariant: "pallet-33",
-    },
-    {
-      value: "paleta-25cm",
-      label: "Paleta 25 cm / 1 prm",
-      price: 2290,
-      illustrationVariant: "pallet-25",
-    },
-    {
-      value: "paleta-16prm",
-      label: "Paleta 1,6 prm",
-      price: 3190,
-      illustrationVariant: "pallet-16",
-    },
+  quantityPolicy: PALLET_QUANTITY_POLICY,
+  selectors: [
+    { key: "logLength", label: "Délka polen" },
+    { key: "volume", label: "Objem palety" },
   ],
-});
+  selectionLabels: {
+    logLength: { "33": "33 cm", "25": "25 cm" },
+    volume: { "1": "1 prm", "1.6": "1,6 prm" },
+  },
+  variants: FIREWOOD_PALLET_VARIANTS.map(({ logLength, volume, illustrationVariant }) =>
+    pricedVariant(
+      `pallet-${logLength}cm-${volume.replace(".", "-")}prm`,
+      { logLength, volume },
+      piecePrice(FIREWOOD_PALLET_PRICE_MATRIX[`${logLength}-${volume}`], "paleta"),
+      undefined,
+      illustrationVariant,
+    ),
+  ),
+};
 
 export const PRODUCT_CATEGORY_SECTIONS: ProductCategorySection[] = [
   { ...TIMBER_SECTION, categories: [tramy, fosny, prkna, late] },
@@ -571,6 +616,22 @@ export const PRODUCT_CATEGORIES = PRODUCT_CATEGORY_SECTIONS.flatMap(
 
 export function getProductCategory(categoryId: string) {
   return PRODUCT_CATEGORIES.find((category) => category.id === categoryId);
+}
+
+export function getEffectiveQuantityPolicy(category: ProductCategory, variant?: ProductVariant) {
+  if (variant?.modeId === "unsorted") return UNSORTED_VOLUME_QUANTITY_POLICY;
+  if (category.sectionId === TIMBER_SECTION.id) {
+    return { ...category.quantityPolicy, sliderMax: 30 };
+  }
+  if (variant?.illustrationVariant.startsWith("slabs-")) {
+    return { ...category.quantityPolicy, sliderMax: VISUALIZATION_LIMITS.slabs };
+  }
+  if (variant?.illustrationVariant === "firewood-bag" || variant?.illustrationVariant === "firewood-loose") {
+    return { ...category.quantityPolicy, sliderMax: VISUALIZATION_LIMITS.firewood };
+  }
+  return variant && PALLET_ILLUSTRATION_VARIANTS.has(variant.illustrationVariant)
+    ? PALLET_QUANTITY_POLICY
+    : category.quantityPolicy;
 }
 
 export function getDefaultModeId(category: ProductCategory) {
@@ -665,6 +726,9 @@ export function getVariantTitle(category: ProductCategory, variant: ProductVaria
     const modeLabel = category.modes?.find((mode) => mode.id === variant.modeId)?.label ?? "Prkna";
     return `${modeLabel} ${getSelectionLabel(category, "width", variant.selection.width)} × ${getSelectionLabel(category, "length", variant.selection.length)}`;
   }
+  if (category.id === "drivi-na-paletach") {
+    return `${category.name} / ${getSelectionLabel(category, "logLength", variant.selection.logLength)} / ${getSelectionLabel(category, "volume", variant.selection.volume)}`;
+  }
   return `${category.name} / ${getSelectionLabel(category, "option", variant.selection.option)}`;
 }
 
@@ -694,6 +758,12 @@ export function getVariantDetails(category: ProductCategory, variant: ProductVar
       );
     }
     return details;
+  }
+  if (category.id === "drivi-na-paletach") {
+    return [
+      `Délka polen: ${getSelectionLabel(category, "logLength", variant.selection.logLength)}`,
+      `Objem palety: ${getSelectionLabel(category, "volume", variant.selection.volume)}`,
+    ];
   }
   return [`Varianta: ${getSelectionLabel(category, "option", variant.selection.option)}`];
 }

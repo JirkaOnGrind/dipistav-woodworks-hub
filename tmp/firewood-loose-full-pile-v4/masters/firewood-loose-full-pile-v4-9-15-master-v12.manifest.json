@@ -1,0 +1,43 @@
+{
+  "canvas": {
+    "width": 1536,
+    "height": 1024
+  },
+  "alphaBoundsPixels": {
+    "left": 143,
+    "top": 171,
+    "right": 1394,
+    "bottom": 854
+  },
+  "alphaBounds": {
+    "x": 0.093099,
+    "y": 0.166992,
+    "width": 0.814453,
+    "height": 0.666992
+  },
+  "opticalCenter": {
+    "x": 0.500326,
+    "y": 0.500488
+  },
+  "alphaCoverage": 0.353553,
+  "interiorAlphaMin": 255,
+  "margins": {
+    "left": 143,
+    "top": 171,
+    "right": 142,
+    "bottom": 170
+  },
+  "styleVersion": "v12",
+  "approvalStatus": "awaiting-visual-approval",
+  "runtimeActivation": "blocked-until-explicit-visual-approval",
+  "quantityBand": "9-15",
+  "displayScale": 0.96,
+  "renderTechnique": "reference-guided-whole-pile-imagegen",
+  "wholePileSource": "tmp/firewood-loose-full-pile-v4/source/firewood-full-pile-9-15-alpha.png",
+  "wholePileSourceSha256": "b9170f1e317b1daf5b92c798c0d25645db4f082506486a071ee2b1e2b283d9f1",
+  "soleStyleReference": "public/images/illustrations/stipane-v2.webp",
+  "soleStyleReferenceSha256": "8eb1bdd9115c41200e221064aff2c9a7ee819938391078acb671714d1c597da5",
+  "promptSpec": "C:/Users/Utrh/Documents/Codex/dipistav-woodworks-hub/scripts/firewood_full_pile_prompt_v4.json",
+  "promptSpecSha256": "759a5e9d669f00c95cc4e9dec115049c6060371a32b57887fabf82e804b1e0ef",
+  "outputSha256": "6885a7663e397e895cb9c3e552ce5211313dde54cc3d4a8c1600f35b26741c4f"
+}

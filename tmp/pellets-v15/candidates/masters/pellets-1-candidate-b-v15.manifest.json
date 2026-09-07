@@ -1,0 +1,49 @@
+{
+  "canvas": {
+    "width": 1536,
+    "height": 1024
+  },
+  "alphaBoundsPixels": {
+    "left": 502,
+    "top": 80,
+    "right": 1033,
+    "bottom": 944
+  },
+  "alphaBounds": {
+    "x": 0.326823,
+    "y": 0.078125,
+    "width": 0.345703,
+    "height": 0.84375
+  },
+  "opticalCenter": {
+    "x": 0.5,
+    "y": 0.5
+  },
+  "alphaCoverage": 0.230081,
+  "cornersTransparent": true,
+  "transparentRgbClean": true,
+  "id": "pellets-1-candidate-b-v15",
+  "styleVersion": "v15-candidate",
+  "approvalStatus": "awaiting-visual-approval",
+  "runtimeActivation": "blocked-until-explicit-visual-approval",
+  "family": "pellets-bag",
+  "representativeCount": 1,
+  "targetAlphaWidth": 0.4,
+  "selectedForQa": true,
+  "reference": "public/images/illustrations/configurator-v3/pelety-pytel-v3.webp",
+  "referenceSha256": "f8225c69fa6e6aaa3795dfb8fcfb0dcdd551cfaf5d532e6a2b122b1b81e1e418",
+  "source": "tmp/pellets-v15/source/pellets-1-source-b-v15.png",
+  "sourceSha256": "93dd6165c6bf2731f711eafd9285b09d536b7891baf020f6b04da1316693bbc3",
+  "outputSha256": "e44e7cdea0a7fccedd68bf2aef1bcad44f226d736797f101dfb603c5bd080fca",
+  "alphaMethod": "preserved-generated-alpha",
+  "renderPipeline": "built-in-reference-guided-imagegen; 4x compositing; one Lanczos downsample; lossless WebP",
+  "prompt": "One standing, slightly leaning heavy sack with a soft bulging base.",
+  "nativeBranding": true,
+  "decalApplied": false,
+  "fullyVisibleLabelCount": 1,
+  "exactLabelText": "15 kg",
+  "exactLabelPass": true,
+  "layerSupportPass": true,
+  "compositionPass": true,
+  "review": "selected: softer granular deformation and native print"
+}

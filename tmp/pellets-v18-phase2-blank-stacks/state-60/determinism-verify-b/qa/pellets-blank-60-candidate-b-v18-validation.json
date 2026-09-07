@@ -1,0 +1,44 @@
+{
+  "status": "pass",
+  "canvas": {
+    "width": 3584,
+    "height": 2560
+  },
+  "alphaBoundsPixels": {
+    "left": 331,
+    "top": 363,
+    "right": 3253,
+    "bottom": 2195
+  },
+  "marginsPixels": {
+    "left": 331,
+    "top": 363,
+    "right": 331,
+    "bottom": 365
+  },
+  "layerCount": 10,
+  "bagsPerLayer": 6,
+  "bagCount": 60,
+  "uniformCellWidthPixels": 487,
+  "uniformCellWidthsPixels": [
+    487,
+    487,
+    487,
+    487,
+    487,
+    487
+  ],
+  "layerPixelSize": {
+    "width": 2922,
+    "height": 861
+  },
+  "layerZStepPixels": 108,
+  "horizontalLayerOffsetPixels": 0,
+  "contactShadowPixels": 496449,
+  "contactShadowStrengthPercent": 48,
+  "instanceScalePercent": 100,
+  "sourceLayerResampling": "none-after-one-module-normalization",
+  "transparentRgbClean": true,
+  "whiteOrBrightEdgePixels": 0,
+  "errors": []
+}

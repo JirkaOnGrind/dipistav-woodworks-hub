@@ -1,0 +1,35 @@
+{
+  "candidateId": "pellets-blank-01-master-candidate-b-v18",
+  "approvalStatus": "approved-locked-unit",
+  "approvedBy": "user",
+  "approvedDate": "2026-08-27",
+  "runtimeActive": false,
+  "png": {
+    "path": "artwork-sources/pellets/pellets-blank-upright-unit-master-v18.png",
+    "sha256": "46ec4ff49e6fd776529fb4ab428d18fe7811159591b4e41327a2e6a958f242f9"
+  },
+  "webp": {
+    "path": "artwork-sources/pellets/pellets-blank-upright-unit-master-v18.webp",
+    "sha256": "c9767faa0a2718cb54f70259e665c914e9aae7c398645ab7d1e45c03fa3449b9"
+  },
+  "scaleLock": {
+    "projection": "orthographic",
+    "azimuthDegrees": 40,
+    "elevationDegrees": 27,
+    "zoomFactor": 1.0,
+    "uprightAlphaFootprintPixels": {
+      "width": 520,
+      "height": 863
+    },
+    "futureScalePercent": 100,
+    "zoomOutAllowed": false,
+    "canvasExpansionAllowed": true
+  },
+  "invariants": {
+    "branding": "none",
+    "surfaces": "blank-kraft-paper-only",
+    "lighting": "upper-left",
+    "camera": "locked",
+    "paperAnatomy": "approved-soft-upright-unit"
+  }
+}

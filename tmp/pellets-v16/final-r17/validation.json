@@ -1,0 +1,96 @@
+{
+  "valid": true,
+  "styleVersion": "v16-approved-r2",
+  "approvalStatus": "approved-for-production",
+  "runtimeActivation": "authorized",
+  "lockedGoldenMasters": [
+    {
+      "count": 1,
+      "sha256": "abed47d8cbb97c452366acfd84bdbd7c770f4873c305985c6012778e441f9cde"
+    },
+    {
+      "count": 2,
+      "sha256": "7491e805062d29055383282090f69c1cde3aa57418b802fa73eb7e496c499f25"
+    },
+    {
+      "count": 3,
+      "sha256": "b740dfb57fa9ca38a12c9a5818e5558ae28b9305b43ed18ad167e294b89bb819"
+    },
+    {
+      "count": 5,
+      "sha256": "1a7813d569e9a323d7ab322e919c3caa60964c47f552fa09479b6d9540d014fc"
+    },
+    {
+      "count": 20,
+      "sha256": "87444606f5b3c9131df5512a0b220341177345c1e04259a6facfa8706e63894f"
+    },
+    {
+      "count": 30,
+      "sha256": "d6c46c8b2c1c373575c380a9b54ccdc221928abef80c3896037f87e7bcf027af"
+    },
+    {
+      "count": 50,
+      "sha256": "16cad2725c02ecf36f89717a0abd27fbc928ebb263337197d3285cb7c567895d"
+    }
+  ],
+  "newCandidate": {
+    "count": 10,
+    "path": "tmp/pellets-v16/candidates/masters/pellets-10-master-v16-r2.webp",
+    "sha256": "b605180a67de66139c7e5014fa470e3e8fabe28aa774eb8f760e3d7408ed639f"
+  },
+  "surgicalDiff": {
+    "editMask": {
+      "left": 1084,
+      "top": 801,
+      "right": 1160,
+      "bottom": 820
+    },
+    "editPolygon": [
+      [
+        1088,
+        805
+      ],
+      [
+        1156,
+        807
+      ],
+      [
+        1155,
+        817
+      ],
+      [
+        1088,
+        815
+      ]
+    ],
+    "workingScale": 4,
+    "cloneOffsetPixels": [],
+    "changedPixels": 1186,
+    "outsideMaskChangedPixels": 0,
+    "outsideMaskByteIdentical": true,
+    "alphaChannelByteIdentical": true,
+    "frontBrandingRegionsByteIdentical": true,
+    "horizontalSeamStrengthBefore": 11.139394,
+    "horizontalSeamStrengthAfter": 9.854545,
+    "horizontalArtifactRemovedPass": true,
+    "rightOuterProfileByteIdentical": true
+  },
+  "opticalWidths": [
+    0.4,
+    0.52,
+    0.6,
+    0.68,
+    0.76,
+    0.8,
+    0.83,
+    0.85
+  ],
+  "qa": [
+    "tmp/pellets-v16/final-r17/qa/pellets-v16-approved-r2-320.png",
+    "tmp/pellets-v16/final-r17/qa/pellets-v16-approved-r2-alpha-edge.png",
+    "tmp/pellets-v16/final-r17/qa/pellets-v16-approved-r2-before-after.png",
+    "tmp/pellets-v16/final-r17/qa/pellets-v16-approved-r2-branding.png",
+    "tmp/pellets-v16/final-r17/qa/pellets-v16-approved-r2-dark.png",
+    "tmp/pellets-v16/final-r17/qa/pellets-v16-approved-r2-light.png"
+  ]
+}

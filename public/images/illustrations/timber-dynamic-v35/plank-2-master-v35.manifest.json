@@ -1,0 +1,57 @@
+{
+  "canvas": {
+    "width": 1536,
+    "height": 1024
+  },
+  "alphaBoundsPixels": {
+    "left": 113,
+    "top": 217,
+    "right": 1423,
+    "bottom": 807
+  },
+  "alphaBounds": {
+    "x": 0.073568,
+    "y": 0.211914,
+    "width": 0.852865,
+    "height": 0.576172
+  },
+  "opticalCenter": {
+    "x": 0.5,
+    "y": 0.5
+  },
+  "alphaCoverage": 0.323453,
+  "interiorAlphaMin": 248,
+  "margins": {
+    "left": 113,
+    "top": 217,
+    "right": 113,
+    "bottom": 217
+  },
+  "family": "plank",
+  "quantityBand": {
+    "min": 2,
+    "max": 2
+  },
+  "representativeCount": 2,
+  "layout": "5-wide-exact-2",
+  "piecesPerLayer": 5,
+  "levelCount": 1,
+  "renderOrigin": "approved-v11-byte-copy",
+  "designVectors": {
+    "column": [
+      280.0,
+      -58.0
+    ],
+    "rowDown": [
+      0.0,
+      119.0
+    ],
+    "back": [
+      -372.0,
+      -183.0
+    ]
+  },
+  "outputSha256": "b6f2ea21857833505c18d532a4b4aef02312cee5cd0c2c596c3eab788d2b601b",
+  "runtimePath": "/images/illustrations/timber-dynamic-v35/plank-2-master-v35.webp",
+  "styleVersion": "v35"
+}

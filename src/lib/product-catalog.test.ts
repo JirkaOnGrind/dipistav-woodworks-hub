@@ -1,6 +1,9 @@
 import { describe, expect, it } from "vitest";
 import {
   BEAM_PRICE_MAP,
+  getEffectiveQuantityPolicy,
+  getVariantDetails,
+  getVariantTitle,
   getProductCategory,
   normalizeSelection,
   resolveProductVariant,
@@ -29,14 +32,18 @@ describe("produktový katalog", () => {
       length: "500",
     })!;
 
-    expect(wideBoard.pricing).toMatchObject({ basis: "cubic-meter", rate: 8900 });
+    expect(wideBoard.pricing).toMatchObject({
+      basis: "cubic-meter",
+      rate: 8900,
+      quantityMode: "volume",
+    });
     expect(wideBoard.volumeCalculation).toEqual({
       basis: "group-average-width",
       averageWidthMm: 180,
       memberWidthsCm: [16, 18, 20],
     });
-    expect(calculateVariantQuote(wideBoard, 1)?.totalVolumeM3).toBeCloseTo(0.0225);
-    expect(calculateVariantQuote(wideBoard, 1)?.totalPrice).toBe(200.25);
+    expect(calculateVariantQuote(wideBoard, 1)?.totalVolumeM3).toBe(1);
+    expect(calculateVariantQuote(wideBoard, 1)?.totalPrice).toBe(8900);
   });
 
   it("účtuje užší skupinu podle průměrné šířky 11 cm", () => {
@@ -47,8 +54,8 @@ describe("produktový katalog", () => {
     })!;
 
     expect(narrowBoard.pricing).toMatchObject({ basis: "cubic-meter", rate: 7200 });
-    expect(calculateVariantQuote(narrowBoard, 10)?.totalVolumeM3).toBeCloseTo(0.1375);
-    expect(calculateVariantQuote(narrowBoard, 10)?.totalPrice).toBe(990);
+    expect(calculateVariantQuote(narrowBoard, 10)?.totalVolumeM3).toBe(10);
+    expect(calculateVariantQuote(narrowBoard, 10)?.totalPrice).toBe(72000);
   });
 
   it("definuje skupiny netříděných prken bez překryvu", () => {
@@ -120,7 +127,6 @@ describe("produktový katalog", () => {
       "stipane-drevo",
       "pelety",
       "krajinky",
-      "drivi-na-paletach",
     ]) {
       expect(getProductCategory(categoryId)?.quantityPolicy).toEqual({
         min: 1,
@@ -129,18 +135,95 @@ describe("produktový katalog", () => {
         sliderMax: 20,
       });
     }
+    expect(getProductCategory("drivi-na-paletach")?.quantityPolicy).toEqual({
+      min: 1,
+      max: 500,
+      step: 1,
+      sliderMax: 12,
+    });
   });
 
-  it("maps only the four approved timber homepage icons to v11", () => {
+  it("omezuje na 12 jen ovládání skutečných paletových variant", () => {
+    const firewood = getProductCategory("stipane-drevo")!;
+    const pellets = getProductCategory("pelety")!;
+    const loose = firewood.variants.find(
+      (variant) => variant.illustrationVariant === "firewood-loose",
+    );
+    const firewoodPallet = firewood.variants.find(
+      (variant) => variant.illustrationVariant === "firewood-pallet",
+    );
+    const pelletPallet = pellets.variants.find(
+      (variant) => variant.illustrationVariant === "pellets-pallet",
+    );
+
+    expect(getEffectiveQuantityPolicy(firewood, loose).max).toBe(500);
+    expect(getEffectiveQuantityPolicy(firewood, firewoodPallet)).toMatchObject({
+      max: 500,
+      sliderMax: 12,
+    });
+    expect(getEffectiveQuantityPolicy(pellets, pelletPallet)).toMatchObject({
+      max: 500,
+      sliderMax: 12,
+    });
+  });
+
+  it("používá pro netříděná prkna množství přímo v m³", () => {
+    const boards = getProductCategory("prkna")!;
+    const unsorted = boards.variants.find((variant) => variant.modeId === "unsorted");
+
+    expect(getEffectiveQuantityPolicy(boards, unsorted)).toEqual({
+      min: 1,
+      max: 20,
+      step: 1,
+      sliderMax: 10,
+    });
+    expect(unsorted?.pricing).toMatchObject({
+      basis: "cubic-meter",
+      displayUnit: "m³",
+      quantityMode: "volume",
+    });
+  });
+
+  it("modeluje délku a objem palet jako nezávislou cenovou matici", () => {
+    const pallets = getProductCategory("drivi-na-paletach")!;
+    expect(pallets.selectors).toEqual([
+      { key: "logLength", label: "Délka polen" },
+      { key: "volume", label: "Objem palety" },
+    ]);
+    expect(normalizeSelection(pallets, undefined)).toEqual({ logLength: "25", volume: "1" });
+
+    const expectedRates = {
+      "33-1": 2190,
+      "33-1.6": 3190,
+      "25-1": 2290,
+      "25-1.6": 3290,
+    };
+
+    for (const [combination, rate] of Object.entries(expectedRates)) {
+      const [logLength, volume] = combination.split("-");
+      const selection = normalizeSelection(pallets, undefined, { logLength, volume });
+      const variant = resolveProductVariant(pallets, undefined, selection);
+      expect(selection).toEqual({ logLength, volume });
+      expect(variant?.pricing).toMatchObject({ basis: "piece", rate, displayUnit: "paleta" });
+      expect(calculateVariantQuote(variant!, 3)?.totalPrice).toBe(rate * 3);
+      expect(getVariantTitle(pallets, variant!)).not.toContain("undefined");
+      expect(getVariantDetails(pallets, variant!)).toEqual([
+        `Délka polen: ${logLength} cm`,
+        `Objem palety: ${volume === "1.6" ? "1,6" : volume} prm`,
+      ]);
+    }
+  });
+
+  it("maps the four timber homepage icons to cropped single pieces", () => {
     const expectedIcons = {
-      tramy: "tramy-icon-occlusion-v3-master-v11.webp",
-      fosny: "fosny-icon-family-match-v6-master-v11.webp",
-      prkna: "prkna-icon-occlusion-v3-master-v11.webp",
-      late: "late-icon-production-v2-master-v11.webp",
+      tramy: "tramy-single.webp",
+      fosny: "fosny-single.webp",
+      prkna: "prkna-single.webp",
+      late: "late-single.webp",
     } as const;
     for (const [categoryId, filename] of Object.entries(expectedIcons)) {
       expect(getProductCategory(categoryId)?.imageSrc).toBe(
-        `/images/illustrations/homepage-v11/${filename}`,
+        `/images/illustrations/homepage-v41/${filename}`,
       );
     }
     for (const categoryId of ["stipane-drevo", "pelety", "krajinky", "drivi-na-paletach"]) {

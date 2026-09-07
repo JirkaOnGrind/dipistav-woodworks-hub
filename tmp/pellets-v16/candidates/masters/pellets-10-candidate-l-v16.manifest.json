@@ -1,0 +1,86 @@
+{
+  "canvas": {
+    "width": 1536,
+    "height": 1024
+  },
+  "alphaBoundsPixels": {
+    "left": 184,
+    "top": 130,
+    "right": 1274,
+    "bottom": 893
+  },
+  "alphaBounds": {
+    "x": 0.119792,
+    "y": 0.126953,
+    "width": 0.709635,
+    "height": 0.745117
+  },
+  "opticalCenter": {
+    "x": 0.5,
+    "y": 0.5
+  },
+  "alphaCoverage": 0.448148,
+  "cornersTransparent": true,
+  "transparentRgbClean": true,
+  "safeInsetPixels": {
+    "x": 116,
+    "y": 80
+  },
+  "safeInsetPass": true,
+  "dimensionsPass": true,
+  "rgbaPass": true,
+  "losslessWebp": true,
+  "editMaskPolygon": [
+    [
+      1135,
+      817
+    ],
+    [
+      1153,
+      817
+    ],
+    [
+      1187,
+      858
+    ],
+    [
+      1186,
+      879
+    ],
+    [
+      1172,
+      880
+    ],
+    [
+      1131,
+      875
+    ]
+  ],
+  "workingScale": 4,
+  "cloneOffsetPixels": [
+    -42,
+    -10
+  ],
+  "changedPixels": 2617,
+  "outsideMaskChangedPixels": 0,
+  "outsideMaskByteIdentical": true,
+  "alphaChannelByteIdentical": true,
+  "frontBrandingRegionsByteIdentical": true,
+  "falseFourthWedgeRemovedPass": true,
+  "rightSideLayerCount": 3,
+  "id": "pellets-10-candidate-l-v16",
+  "styleVersion": "v16-final-r11-candidate",
+  "approvalStatus": "awaiting-final-visual-approval",
+  "runtimeActivation": "blocked-until-explicit-final-approval",
+  "representativeCount": 10,
+  "targetOpticalWidth": 0.76,
+  "source": "tmp/pellets-v16/candidates/masters/pellets-10-candidate-j-v16.webp",
+  "sourceSha256": "a436c998109c05e14fc1a83135d4cb1fd5fe16dfed5848efd820165cd19b5dd3",
+  "outputSha256": "0c4082349947636a97eea0bce84a9dd6e2f8a8f2df17f820d88a33dbb21b27c0",
+  "renderPipeline": "4x local texture reconstruction; one Lanczos downsample; lossless WebP",
+  "editedObject": "false fourth-layer triangular seam on lower-right side only",
+  "brandingByteIdentical": true,
+  "topSurfacesByteIdentical": true,
+  "leftAndCenterByteIdentical": true,
+  "bagCountUnchanged": true
+}

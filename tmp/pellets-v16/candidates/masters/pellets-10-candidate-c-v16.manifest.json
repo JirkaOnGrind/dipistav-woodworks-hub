@@ -1,0 +1,67 @@
+{
+  "canvas": {
+    "width": 1536,
+    "height": 1024
+  },
+  "alphaBoundsPixels": {
+    "left": 184,
+    "top": 178,
+    "right": 1354,
+    "bottom": 846
+  },
+  "alphaBounds": {
+    "x": 0.119792,
+    "y": 0.173828,
+    "width": 0.761719,
+    "height": 0.652344
+  },
+  "opticalCenter": {
+    "x": 0.5,
+    "y": 0.5
+  },
+  "alphaCoverage": 0.374073,
+  "cornersTransparent": true,
+  "transparentRgbClean": true,
+  "safeInsetPixels": {
+    "x": 116,
+    "y": 80
+  },
+  "safeInsetPass": true,
+  "dimensionsPass": true,
+  "rgbaPass": true,
+  "losslessWebp": true,
+  "id": "pellets-10-candidate-c-v16",
+  "styleVersion": "v16-selective-r2-candidate",
+  "approvalStatus": "awaiting-visual-approval",
+  "runtimeActivation": "blocked-until-explicit-visual-approval",
+  "representativeCount": 10,
+  "visibleBagCountEstimate": 10,
+  "targetOpticalWidth": 0.76,
+  "effectiveAlphaWidth": 0.761719,
+  "source": "tmp/pellets-v16/source/pellets-10-source-c-v16.png",
+  "sourceSha256": "cc63ee918258daafa91764948f50fa647e3cb4b03a5c3643436950e9f90e3da7",
+  "outputSha256": "a5ffd91c55a8ac99a38cdb5fadce4e94ed6e70d8d69c14d585237c46e41c8788",
+  "alphaMethod": "deterministic-neutral-checkerboard-extraction-v16",
+  "renderPipeline": "built-in reference-guided ImageGen; deterministic neutral-background extraction; 4x fit; one Lanczos downsample; lossless WebP",
+  "goldenReferences": [
+    {
+      "count": 3,
+      "sha256": "b740dfb57fa9ca38a12c9a5818e5558ae28b9305b43ed18ad167e294b89bb819"
+    },
+    {
+      "count": 50,
+      "sha256": "16cad2725c02ecf36f89717a0abd27fbc928ebb263337197d3285cb7c567895d"
+    }
+  ],
+  "composition": "compact three-tier parallel warehouse bond with one consistent perspective",
+  "fullyVisibleLabelCount": 6,
+  "nativeBranding": true,
+  "decalApplied": false,
+  "blankVisibleBagPass": true,
+  "miniBagPass": true,
+  "manualScaleDeviationEstimatePct": 6.0,
+  "sizeTolerancePct": 8.0,
+  "sizeTolerancePass": true,
+  "layerSupportPass": true,
+  "unifiedPerspectivePass": true
+}

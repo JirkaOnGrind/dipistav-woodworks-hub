@@ -1,0 +1,25 @@
+{
+  "input": "tmp\\pellets-v17-tier2-3\\candidates\\masters\\pellets-bag-2-master-candidate-a-v17.webp",
+  "canvas": {
+    "width": 1536,
+    "height": 1024
+  },
+  "alphaBoundsPixels": {
+    "left": 369,
+    "top": 191,
+    "right": 1167,
+    "bottom": 833
+  },
+  "alphaBoundsNormalized": {
+    "x": 0.240234,
+    "y": 0.186523,
+    "width": 0.519531,
+    "height": 0.626953
+  },
+  "alphaCoverage": 0.261806,
+  "paletteProximity": 0.982642,
+  "whiteOrBrightEdgePixels": 0,
+  "errors": [],
+  "warnings": [],
+  "status": "pass"
+}

@@ -1,0 +1,126 @@
+{
+  "canvas": {
+    "width": 1536,
+    "height": 1024
+  },
+  "alphaBoundsPixels": {
+    "left": 116,
+    "top": 167,
+    "right": 1420,
+    "bottom": 857
+  },
+  "alphaBounds": {
+    "x": 0.075521,
+    "y": 0.163086,
+    "width": 0.848958,
+    "height": 0.673828
+  },
+  "opticalCenter": {
+    "x": 0.5,
+    "y": 0.5
+  },
+  "alphaCoverage": 0.368615,
+  "margins": {
+    "left": 116,
+    "top": 167,
+    "right": 116,
+    "bottom": 167
+  },
+  "id": "firewood-loose-5-8-candidate-a-v15",
+  "styleVersion": "v15-candidate",
+  "approvalStatus": "awaiting-visual-approval",
+  "runtimeActivation": "blocked-until-explicit-visual-approval",
+  "renderMode": "master",
+  "renderTechnique": "golden-master-reference-guided-whole-pile-edit",
+  "quantityBand": {
+    "min": 5,
+    "max": 8
+  },
+  "representativeCount": 6,
+  "targetAlphaWidth": 0.76,
+  "variant": "a",
+  "selectedForQa": false,
+  "visualReview": "rejected: footprint increase over the selected 3-4 state is too modest",
+  "technicalPass": false,
+  "technicalFailures": [
+    "bright-neutral-alpha-halo"
+  ],
+  "source": "tmp/firewood-loose-refinement-v15/source/firewood-loose-5-8-source-a-v15.png",
+  "sourceMode": "RGB",
+  "sourceSha256": "b018f3de1fb718a58a6ad7877e960e6f9ce08b1e1ca0510311cb3a360486307a",
+  "goldenMaster": "public/images/illustrations/configurator-v12/firewood-loose-16plus-master-v12.webp",
+  "goldenMasterSha256": "993a4d12bbb2f0f511d74ab70d2d1738f88492f640602e8cfeb4805a919c3a9f",
+  "colorSpace": "implicit-sRGB-no-embedded-ICC",
+  "positivePrompt": "Artisan architectural woodcut engraving of a loose pile of authentic split firewood, matching exactly the style, line weight, and color palette of reference image 16-plus-approved. Precise triangular wedge logs, quarter-split timber with visible wood grain and growth rings on warm honey-gold cleaved faces. Natural rough brown bark on curved outer edges. Clean ink hatching lines, soft ambient illumination, no crushed blacks. Perfectly isolated on transparent background, professional master catalog quality.",
+  "bandModifier": "Wide trailer-dumped heap with a broader and deeper footprint, moderate natural summit and full-size readable logs; visibly larger than 3-4 and smaller than a truck load.",
+  "negativePrompt": "crushed black shadows, pitch black edges, muddy textures, oversaturated dark brown, burned wood, charcoal, round logs, cylindrical ends, pebble shapes, smooth plastic, low poly, 3D render, cartoon vector, inconsistent line weight, noisy background, halo artifacts, harsh black outlines.",
+  "rawColorMetrics": {
+    "labQuantiles": {
+      "p05": 4.0246,
+      "p25": 23.0841,
+      "p50": 54.9387,
+      "p75": 79.2904,
+      "p95": 90.6889
+    },
+    "darkFractions": {
+      "lStarLt5": 0.063828,
+      "lStarLt10": 0.121542,
+      "lStarLt25": 0.266992
+    },
+    "medianA": 14.0501,
+    "medianB": 46.8606
+  },
+  "colorNormalization": {
+    "applied": true,
+    "correctionAllowed": true,
+    "maximumLightnessShift": 6.3193,
+    "maximumChromaShift": 2.9789,
+    "lightnessShifts": [
+      2.0125,
+      2.3754,
+      -6.3193,
+      -6.0794,
+      -2.9622
+    ],
+    "chromaShifts": [
+      [
+        -0.2912,
+        -0.1926
+      ],
+      [
+        -1.1035,
+        -2.1972
+      ],
+      [
+        -2.6126,
+        -2.9789
+      ],
+      [
+        0.5177,
+        -0.5281
+      ]
+    ]
+  },
+  "finalColorMetrics": {
+    "labQuantiles": {
+      "p05": 5.6601,
+      "p25": 24.8423,
+      "p50": 49.7043,
+      "p75": 73.2022,
+      "p95": 87.6725
+    },
+    "darkFractions": {
+      "lStarLt5": 0.04315,
+      "lStarLt10": 0.095049,
+      "lStarLt25": 0.251776
+    },
+    "medianA": 12.9919,
+    "medianB": 45.0966
+  },
+  "edgeMetrics": {
+    "semiTransparentPixels": 5901,
+    "brightNeutralFraction": 0.00203355,
+    "transparentRgbNonzeroFraction": 0.0
+  },
+  "outputSha256": "1b783b51304ec874ae6cf6d7c5c4c986333edd02db6aecb96a0766cde2203a3b"
+}

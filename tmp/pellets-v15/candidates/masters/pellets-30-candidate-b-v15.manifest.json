@@ -1,0 +1,49 @@
+{
+  "canvas": {
+    "width": 1536,
+    "height": 1024
+  },
+  "alphaBoundsPixels": {
+    "left": 131,
+    "top": 83,
+    "right": 1404,
+    "bottom": 942
+  },
+  "alphaBounds": {
+    "x": 0.085286,
+    "y": 0.081055,
+    "width": 0.828776,
+    "height": 0.838867
+  },
+  "opticalCenter": {
+    "x": 0.5,
+    "y": 0.5
+  },
+  "alphaCoverage": 0.481789,
+  "cornersTransparent": true,
+  "transparentRgbClean": true,
+  "id": "pellets-30-candidate-b-v15",
+  "styleVersion": "v15-candidate",
+  "approvalStatus": "awaiting-visual-approval",
+  "runtimeActivation": "blocked-until-explicit-visual-approval",
+  "family": "pellets-set",
+  "representativeCount": 30,
+  "targetAlphaWidth": 0.83,
+  "selectedForQa": false,
+  "reference": "public/images/illustrations/configurator-v3/pelety-pytel-v3.webp",
+  "referenceSha256": "f8225c69fa6e6aaa3795dfb8fcfb0dcdd551cfaf5d532e6a2b122b1b81e1e418",
+  "source": "tmp/pellets-v15/source/pellets-30-source-b-v15.png",
+  "sourceSha256": "a76d222f7070691f2ec5bbec6a1ec00cf3e900200c8385e8dbf25d17f7950498",
+  "outputSha256": "e9b3846fef04a0702ef33818968f01c0f4b3f08e23cc4f5d9bdc37a3f3bd6cb1",
+  "alphaMethod": "preserved-generated-alpha",
+  "renderPipeline": "built-in-reference-guided-imagegen; 4x compositing; one Lanczos downsample; lossless WebP",
+  "prompt": "Thirty lying sacks in three interlocked ten-sack strata.",
+  "nativeBranding": true,
+  "decalApplied": false,
+  "fullyVisibleLabelCount": 9,
+  "exactLabelText": "15 kg",
+  "exactLabelPass": true,
+  "layerSupportPass": true,
+  "compositionPass": false,
+  "review": "rejected: broad but visually flat raster"
+}

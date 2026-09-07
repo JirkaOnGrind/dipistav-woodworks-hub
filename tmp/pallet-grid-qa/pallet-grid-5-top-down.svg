@@ -1,0 +1,28 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="380" height="372" viewBox="0 0 380 372">
+  <rect width="100%" height="100%" rx="24" fill="#fbf6eb"/>
+  <text x="40" y="52" font-family="system-ui, sans-serif" font-size="24" font-weight="800" fill="#18312a">Top-down grid — 5 palet</text>
+  <g>
+        <rect x="62" y="92" width="128" height="92" fill="#e9b867" stroke="#18312a" stroke-width="3"/>
+        <rect x="71" y="101" width="110" height="74" rx="8" fill="#2f624e" stroke="#fff" stroke-width="3"/>
+        <text x="126" y="144" text-anchor="middle" font-family="ui-monospace, monospace" font-size="16" font-weight="700" fill="#fff">(0,0) ×2</text>
+      </g>
+<g>
+        <rect x="62" y="184" width="128" height="92" fill="#e9b867" stroke="#18312a" stroke-width="3"/>
+        
+        <text x="126" y="236" text-anchor="middle" font-family="ui-monospace, monospace" font-size="16" font-weight="700" fill="#18312a">(0,1)</text>
+      </g>
+<g>
+        <rect x="190" y="92" width="128" height="92" fill="#e9b867" stroke="#18312a" stroke-width="3"/>
+        
+        <text x="254" y="144" text-anchor="middle" font-family="ui-monospace, monospace" font-size="16" font-weight="700" fill="#18312a">(1,0)</text>
+      </g>
+<g>
+        <rect x="190" y="184" width="128" height="92" fill="#e9b867" stroke="#18312a" stroke-width="3"/>
+        
+        <text x="254" y="236" text-anchor="middle" font-family="ui-monospace, monospace" font-size="16" font-weight="700" fill="#18312a">(1,1)</text>
+      </g>
+    <rect x="62" y="314" width="18" height="18" fill="#e9b867" stroke="#18312a"/>
+    <text x="90" y="329" font-family="system-ui, sans-serif" font-size="14" fill="#18312a">spodní vrstva</text>
+    <rect x="212" y="314" width="18" height="18" fill="#2f624e"/>
+    <text x="240" y="329" font-family="system-ui, sans-serif" font-size="14" fill="#18312a">přímá horní podpora</text>
+</svg>

@@ -1,0 +1,19 @@
+{
+  "assetId": "pellets-blank-15-master-v18",
+  "approvalStatus": "approved-and-locked",
+  "approvedCandidate": "pellets-blank-15-master-candidate-a-v18",
+  "runtimeActive": false,
+  "quantity": 15,
+  "layers": 5,
+  "bagsPerLayer": 3,
+  "zStepPixels": 128,
+  "lockedTier3PngSha256": "493875f22457dc37f95eda7f9a7ae9661d9aa68177c0911c3a2d124815f4f60a",
+  "png": {
+    "path": "artwork-sources/pellets/pellets-blank-15-master-v18.png",
+    "sha256": "489e8ee29d8313b2350886bd8367e5682bdef334be33257f912fbfebc174af4f"
+  },
+  "webp": {
+    "path": "artwork-sources/pellets/pellets-blank-15-master-v18.webp",
+    "sha256": "b3e3971d372ed3233e16651bab0bd094ac3638cedde9744c963653d18da45dd4"
+  }
+}

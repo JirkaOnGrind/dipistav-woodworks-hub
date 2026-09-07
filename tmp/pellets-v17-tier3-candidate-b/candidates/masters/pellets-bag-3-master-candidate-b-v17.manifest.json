@@ -1,0 +1,233 @@
+{
+  "candidateId": "pellets-bag-3-master-candidate-b-v17",
+  "supersedesRejectedCandidate": "pellets-bag-3-master-candidate-a-v17",
+  "styleVersion": "v17-candidate",
+  "approvalStatus": "awaiting-visual-approval",
+  "runtimeActive": false,
+  "family": "pellets-bag",
+  "quantity": 3,
+  "representativeCount": 3,
+  "canvas": {
+    "width": 1536,
+    "height": 1024
+  },
+  "alphaBoundsPixels": {
+    "left": 306,
+    "top": 182,
+    "right": 1230,
+    "bottom": 843
+  },
+  "alphaBounds": {
+    "x": 0.199219,
+    "y": 0.177734,
+    "width": 0.601562,
+    "height": 0.645508
+  },
+  "opticalCenter": {
+    "x": 0.5,
+    "y": 0.5
+  },
+  "alphaCoverage": 0.276397,
+  "cornersTransparent": true,
+  "transparentRgbClean": true,
+  "safeInset": 0.07,
+  "contourReservePixels": 8,
+  "workScale": 4,
+  "downsample": "single-lanczos",
+  "camera": {
+    "projection": "orthographic",
+    "azimuthDegrees": 40,
+    "elevationDegrees": 27
+  },
+  "lighting": "upper-left-object-lighting-no-cast-shadow",
+  "layout": "three-soft-prone-bags-two-bottom-plus-one-centered-rearward-bridge",
+  "printFaceOrientation": "all-three-upward",
+  "forbiddenPrintSurfaces": [
+    "front-thickness",
+    "bottom-edge",
+    "side-gussets",
+    "rolled-closures",
+    "seams",
+    "rear-surfaces"
+  ],
+  "lockedBase": "artwork-sources/pellets/pellets-bag-unit-tile-master-v17.png",
+  "lockedBaseSha256": "88bd6c89f2a665472c19d7fd041b42b815526d8bee2cbe8f165c5437b752ed36",
+  "decalSource": "tmp/pellets-v17-tier3-candidate-b/source/pellets-locked-print-decal-v17.png",
+  "decalSourceSha256": "fce9642d499af7e045fab772badaf774a075f9ac99d15f559ed5721c6e1f3a40",
+  "decalInstanceSourceSha256": [
+    "fce9642d499af7e045fab772badaf774a075f9ac99d15f559ed5721c6e1f3a40",
+    "fce9642d499af7e045fab772badaf774a075f9ac99d15f559ed5721c6e1f3a40",
+    "fce9642d499af7e045fab772badaf774a075f9ac99d15f559ed5721c6e1f3a40"
+  ],
+  "blankGeometrySource": "tmp/pellets-v17-tier3-candidate-b/source/pellets-tier3-blank-soft-geometry-source-b-v17.png",
+  "blankGeometrySourceSha256": "9dde9ced0b4414280fd3cf606fd0d98274ea22f76803ad501cf5d27102f480b7",
+  "geometryAlphaMethod": "deterministic-neutral-checkerboard-extraction",
+  "layoutReference": "tmp/pellets-v17-tier3-candidate-b/reference/tier3-layout-reference-crop.png",
+  "layoutReferenceSha256": "8f0dd1de0dfdd06aa0fd43ed6e034c2bdf9eae744ddb84484aef1eb7f8c05183",
+  "promptSpec": "tmp/pellets-v17-tier3-candidate-b/pellets-tier3-candidate-b-v17.prompt.md",
+  "promptSpecSha256": "6b55380b1b6b9f2994e1223e1fae07b05147ee95aa7f52e1d537fd854b8da3b1",
+  "placements": {
+    "bottomLeft": {
+      "facePolygon": [
+        [
+          470,
+          270
+        ],
+        [
+          820,
+          325
+        ],
+        [
+          670,
+          735
+        ],
+        [
+          220,
+          655
+        ]
+      ],
+      "decalQuad": [
+        [
+          503,
+          340
+        ],
+        [
+          723,
+          375
+        ],
+        [
+          603,
+          665
+        ],
+        [
+          353,
+          620
+        ]
+      ],
+      "faceCenter": {
+        "x": 545.0,
+        "y": 496.25
+      },
+      "decalCenter": {
+        "x": 545.5,
+        "y": 500.0
+      },
+      "centerOffsetPixels": {
+        "x": 0.5,
+        "y": 3.75
+      },
+      "decalPixelsOutsidePrintFaceBeforeClip": 0,
+      "decalPixelsOutsidePrintFaceAfterClip": 0,
+      "visibleDecalPixels": 9818
+    },
+    "bottomRight": {
+      "facePolygon": [
+        [
+          1050,
+          310
+        ],
+        [
+          1320,
+          350
+        ],
+        [
+          1175,
+          785
+        ],
+        [
+          700,
+          700
+        ]
+      ],
+      "decalQuad": [
+        [
+          1019,
+          370
+        ],
+        [
+          1239,
+          400
+        ],
+        [
+          1124,
+          725
+        ],
+        [
+          864,
+          680
+        ]
+      ],
+      "faceCenter": {
+        "x": 1061.25,
+        "y": 536.25
+      },
+      "decalCenter": {
+        "x": 1061.5,
+        "y": 543.75
+      },
+      "centerOffsetPixels": {
+        "x": 0.25,
+        "y": 7.5
+      },
+      "decalPixelsOutsidePrintFaceBeforeClip": 0,
+      "decalPixelsOutsidePrintFaceAfterClip": 0,
+      "visibleDecalPixels": 33959
+    },
+    "topBridge": {
+      "facePolygon": [
+        [
+          650,
+          125
+        ],
+        [
+          1115,
+          195
+        ],
+        [
+          930,
+          480
+        ],
+        [
+          430,
+          370
+        ]
+      ],
+      "decalQuad": [
+        [
+          761,
+          186
+        ],
+        [
+          981,
+          216
+        ],
+        [
+          816,
+          406
+        ],
+        [
+          566,
+          361
+        ]
+      ],
+      "faceCenter": {
+        "x": 781.25,
+        "y": 292.5
+      },
+      "decalCenter": {
+        "x": 781.0,
+        "y": 292.25
+      },
+      "centerOffsetPixels": {
+        "x": -0.25,
+        "y": -0.25
+      },
+      "decalPixelsOutsidePrintFaceBeforeClip": 0,
+      "decalPixelsOutsidePrintFaceAfterClip": 0,
+      "visibleDecalPixels": 24153
+    }
+  },
+  "totalDecalPixelsOutsidePrintFacesAfterClip": 0,
+  "masterPngSha256": "ee3a174df8097759feb7774bf62ab8704ba1b7cfea1c46e612f81f7bc366c3e3",
+  "masterWebpSha256": "78402b7bfcf91899a91674d9b053562f77f569510d027cac319409d4f06a841b"
+}

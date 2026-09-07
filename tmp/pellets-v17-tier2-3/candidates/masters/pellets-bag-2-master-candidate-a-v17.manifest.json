@@ -1,0 +1,76 @@
+{
+  "candidateId": "pellets-bag-2-master-candidate-a-v17",
+  "styleVersion": "v17-candidate",
+  "approvalStatus": "awaiting-visual-approval",
+  "runtimeActive": false,
+  "family": "pellets-bag",
+  "quantity": 2,
+  "representativeCount": 2,
+  "canvas": {
+    "width": 1536,
+    "height": 1024
+  },
+  "alphaBoundsPixels": {
+    "left": 369,
+    "top": 191,
+    "right": 1167,
+    "bottom": 833
+  },
+  "alphaBounds": {
+    "x": 0.240234,
+    "y": 0.186523,
+    "width": 0.519531,
+    "height": 0.626953
+  },
+  "opticalCenter": {
+    "x": 0.5,
+    "y": 0.5
+  },
+  "alphaCoverage": 0.261806,
+  "cornersTransparent": true,
+  "transparentRgbClean": true,
+  "safeInset": 0.07,
+  "contourReservePixels": 8,
+  "workScale": 4,
+  "downsample": "single-lanczos",
+  "camera": {
+    "projection": "orthographic",
+    "azimuthDegrees": 40,
+    "elevationDegrees": 27
+  },
+  "lighting": "upper-left-object-lighting-no-cast-shadow",
+  "lockedBase": "artwork-sources/pellets/pellets-bag-unit-tile-master-v17.png",
+  "lockedBaseSha256": "88bd6c89f2a665472c19d7fd041b42b815526d8bee2cbe8f165c5437b752ed36",
+  "promptSpec": "tmp/pellets-v17-tier2-3/pellets-tier2-3-v17.prompt.md",
+  "promptSpecSha256": "3d0dc6716e58d52505535c06105dd9cefb46c2434a5c3c1295c6c9be08b87236",
+  "sources": {
+    "composition": "two-byte-locked-unit-copies"
+  },
+  "scene": {
+    "layout": "two-upright-parallel",
+    "surfacePolicy": "two-front-print-faces",
+    "gapPixels": 24,
+    "placements": [
+      {
+        "bagId": "upright-1",
+        "x": 368,
+        "y": 191,
+        "width": 387,
+        "height": 642,
+        "orientationDegrees": 0,
+        "printFace": "front-visible"
+      },
+      {
+        "bagId": "upright-2",
+        "x": 779,
+        "y": 191,
+        "width": 387,
+        "height": 642,
+        "orientationDegrees": 0,
+        "printFace": "front-visible"
+      }
+    ]
+  },
+  "masterPngSha256": "362ebaba7eb0ec75d73ce69b7d839d65520e81c5d8e5cf1f0960f10011eb4c84",
+  "masterWebpSha256": "d33cb789c56e6a73aca65c53bca066b20dbdbb241aac1bfca2f06e29aaf0a675"
+}

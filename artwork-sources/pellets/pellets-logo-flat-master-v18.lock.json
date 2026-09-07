@@ -1,0 +1,23 @@
+{
+  "candidateId": "pellets-logo-flat-master-candidate-b-v18",
+  "approvalStatus": "approved-locked-base",
+  "approvedBy": "user",
+  "approvedDate": "2026-08-27",
+  "runtimeActive": false,
+  "png": {
+    "path": "artwork-sources/pellets/pellets-logo-flat-master-v18.png",
+    "sha256": "590dbcd3773af5a9c82eecfe35f1316c68808b02f9f5a4f72c91c594e5fc87ed"
+  },
+  "webp": {
+    "path": "artwork-sources/pellets/pellets-logo-flat-master-v18.webp",
+    "sha256": "f95c7ab15202dd6e3848dad1000f03ea85677d7b7f15e5233b7e90201338c6e5"
+  },
+  "invariants": {
+    "inkColor": "#6B310B",
+    "background": "transparent-rgba",
+    "exactText": "15 kg",
+    "emblem": "double-oval-pinecone-two-sprigs-five-pellets-two-rules",
+    "paperTexture": "none",
+    "threeDimensionalEffects": "none"
+  }
+}

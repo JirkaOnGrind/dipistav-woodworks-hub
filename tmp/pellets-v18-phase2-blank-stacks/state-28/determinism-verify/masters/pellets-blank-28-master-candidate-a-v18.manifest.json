@@ -1,0 +1,139 @@
+{
+  "candidateId": "pellets-blank-28-master-candidate-a-v18",
+  "tier": 28,
+  "quantity": 28,
+  "approvalStatus": "awaiting-visual-approval",
+  "runtimeActive": false,
+  "replacesAbandonedTiers": [
+    30,
+    40,
+    60
+  ],
+  "brandingPolicy": "zero-branding-all-surfaces",
+  "compositionMode": "7-byte-identical-approved-four-bag-layers-with-tight-contact-occlusion",
+  "geometry": {
+    "layers": 7,
+    "bagsPerLayer": 4,
+    "bagCount": 28,
+    "uniformCellWidthPixels": 487,
+    "uniformCellWidthsPixels": [
+      487,
+      487,
+      487,
+      487
+    ],
+    "alignment": "direct-vertical-compressed-contact",
+    "zStepPixels": 108
+  },
+  "cameraLock": {
+    "projection": "orthographic",
+    "azimuthDegrees": 40,
+    "elevationDegrees": 27,
+    "zoomFactor": 1.0
+  },
+  "scaleLock": {
+    "instanceScalePercent": 100,
+    "zoomOutAllowed": false,
+    "canvasExpanded": true
+  },
+  "gravityTreatment": {
+    "contactOffsetPixels": 8,
+    "contactBlurPixels": 5,
+    "contactShadowStrengthPercent": 48,
+    "contactShadowPixels": 228258
+  },
+  "sourceHashes": {
+    "tier24PngSha256": "03d3154916d0c9cf47a9da90285458284b3f3a06bb595b1757746cf1c07c5710",
+    "fourBagModuleSha256": "138f58cf506bf15b333c743bc256c28045cff4e2be509cc21a30782411233f8c"
+  },
+  "layerPixelSha256": [
+    "172e31f37cc6c190124d60d653477990f1614f596bb1b2932978b612df63a9c1",
+    "172e31f37cc6c190124d60d653477990f1614f596bb1b2932978b612df63a9c1",
+    "172e31f37cc6c190124d60d653477990f1614f596bb1b2932978b612df63a9c1",
+    "172e31f37cc6c190124d60d653477990f1614f596bb1b2932978b612df63a9c1",
+    "172e31f37cc6c190124d60d653477990f1614f596bb1b2932978b612df63a9c1",
+    "172e31f37cc6c190124d60d653477990f1614f596bb1b2932978b612df63a9c1",
+    "172e31f37cc6c190124d60d653477990f1614f596bb1b2932978b612df63a9c1"
+  ],
+  "placementsTopToBottom": [
+    {
+      "layer": 1,
+      "x": 306,
+      "y": 269
+    },
+    {
+      "layer": 2,
+      "x": 306,
+      "y": 377
+    },
+    {
+      "layer": 3,
+      "x": 306,
+      "y": 485
+    },
+    {
+      "layer": 4,
+      "x": 306,
+      "y": 593
+    },
+    {
+      "layer": 5,
+      "x": 306,
+      "y": 701
+    },
+    {
+      "layer": 6,
+      "x": 306,
+      "y": 809
+    },
+    {
+      "layer": 7,
+      "x": 306,
+      "y": 917
+    }
+  ],
+  "validation": {
+    "status": "pass",
+    "canvas": {
+      "width": 2560,
+      "height": 2048
+    },
+    "alphaBoundsPixels": {
+      "left": 306,
+      "top": 270,
+      "right": 2254,
+      "bottom": 1778
+    },
+    "marginsPixels": {
+      "left": 306,
+      "top": 270,
+      "right": 306,
+      "bottom": 270
+    },
+    "layerCount": 7,
+    "bagsPerLayer": 4,
+    "bagCount": 28,
+    "uniformCellWidthPixels": 487,
+    "uniformCellWidthsPixels": [
+      487,
+      487,
+      487,
+      487
+    ],
+    "layerPixelSize": {
+      "width": 1948,
+      "height": 861
+    },
+    "layerZStepPixels": 108,
+    "horizontalLayerOffsetPixels": 0,
+    "contactShadowPixels": 228258,
+    "contactShadowStrengthPercent": 48,
+    "instanceScalePercent": 100,
+    "sourceLayerResampling": "none-after-one-module-normalization",
+    "transparentRgbClean": true,
+    "whiteOrBrightEdgePixels": 0,
+    "errors": []
+  },
+  "masterPngSha256": "c138f2ea0710c467a1d40e76e1b79477fb826dc1abf3bf5abe26d4b708764f97",
+  "masterWebpSha256": "8a14f8e3fab77c97bf58c9bbe17e76036acfb295db58a5fc1e84b2505bad616a"
+}

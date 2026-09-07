@@ -1,0 +1,737 @@
+{
+  "version": 21,
+  "backgroundRemoval": "exterior-connected-neutral-segmentation",
+  "cropPadding": 4,
+  "entries": [
+    {
+      "quantity": 1,
+      "source": "FINAL1.webp",
+      "sourceSha256": "5a76c0b3f85d95200a6bf801892a538fec285c6ec0f2a8787b5bd20c4d229047",
+      "sourceCanvas": {
+        "width": 1536,
+        "height": 1024
+      },
+      "cropCanvas": {
+        "width": 527,
+        "height": 870
+      },
+      "derivatives": [
+        {
+          "width": 768,
+          "height": 1268,
+          "source": "/images/illustrations/configurator-v21/pellets-1-v21-768.webp",
+          "bytes": 115844,
+          "budget": 120000,
+          "budgetPass": true,
+          "quality": 90,
+          "sha256": "cfaa9d578a2d776c791b11c6cfe25a9e31ddbb2959ecc3546b3fc1c0904bb608",
+          "canvas": {
+            "width": 768,
+            "height": 1268
+          },
+          "alphaBounds": {
+            "x": 0.002604,
+            "y": 0.001577,
+            "width": 0.994792,
+            "height": 0.996845
+          },
+          "opticalCenter": {
+            "x": 0.5,
+            "y": 0.5
+          },
+          "bottomAnchor": {
+            "x": 0.5,
+            "y": 0.998423
+          },
+          "alphaCoverage": 0.81592
+        },
+        {
+          "width": 1536,
+          "height": 2536,
+          "source": "/images/illustrations/configurator-v21/pellets-1-v21-1536.webp",
+          "bytes": 274200,
+          "budget": 300000,
+          "budgetPass": true,
+          "quality": 90,
+          "sha256": "eb00b822da87db14b958cde9c62f53e2a2035df3919b586ecd1deeadf101c273",
+          "canvas": {
+            "width": 1536,
+            "height": 2536
+          },
+          "alphaBounds": {
+            "x": 0.003255,
+            "y": 0.001972,
+            "width": 0.99349,
+            "height": 0.996057
+          },
+          "opticalCenter": {
+            "x": 0.5,
+            "y": 0.5
+          },
+          "bottomAnchor": {
+            "x": 0.5,
+            "y": 0.998028
+          },
+          "alphaCoverage": 0.816054
+        }
+      ]
+    },
+    {
+      "quantity": 2,
+      "source": "FINAL2.webp",
+      "sourceSha256": "bacc0c42dceb25b438bda576496ab4712a9dcc5ceabf4ef2b3df0e27e9f9406a",
+      "sourceCanvas": {
+        "width": 1536,
+        "height": 1024
+      },
+      "cropCanvas": {
+        "width": 1029,
+        "height": 978
+      },
+      "derivatives": [
+        {
+          "width": 768,
+          "height": 730,
+          "source": "/images/illustrations/configurator-v21/pellets-2-v21-768.webp",
+          "bytes": 94764,
+          "budget": 120000,
+          "budgetPass": true,
+          "quality": 90,
+          "sha256": "408517ec7c06b9d8558f3814f7f066c641aaff3576322d535f41c191391281e5",
+          "canvas": {
+            "width": 768,
+            "height": 730
+          },
+          "alphaBounds": {
+            "x": 0.001302,
+            "y": 0.00137,
+            "width": 0.997396,
+            "height": 0.99726
+          },
+          "opticalCenter": {
+            "x": 0.5,
+            "y": 0.5
+          },
+          "bottomAnchor": {
+            "x": 0.5,
+            "y": 0.99863
+          },
+          "alphaCoverage": 0.749998
+        },
+        {
+          "width": 1536,
+          "height": 1460,
+          "source": "/images/illustrations/configurator-v21/pellets-2-v21-1536.webp",
+          "bytes": 228046,
+          "budget": 300000,
+          "budgetPass": true,
+          "quality": 90,
+          "sha256": "b2d75d89d59410cc7a228eaebda53c2e657d4e8865763e576e4990cb985a8eed",
+          "canvas": {
+            "width": 1536,
+            "height": 1460
+          },
+          "alphaBounds": {
+            "x": 0.001302,
+            "y": 0.00137,
+            "width": 0.997396,
+            "height": 0.99726
+          },
+          "opticalCenter": {
+            "x": 0.5,
+            "y": 0.5
+          },
+          "bottomAnchor": {
+            "x": 0.5,
+            "y": 0.99863
+          },
+          "alphaCoverage": 0.74674
+        }
+      ]
+    },
+    {
+      "quantity": 3,
+      "source": "FINAL3.webp",
+      "sourceSha256": "e44e683b249bd00ad6b945ca786d087694a1b70d10e373861566dd5a74a1e47d",
+      "sourceCanvas": {
+        "width": 2048,
+        "height": 1280
+      },
+      "cropCanvas": {
+        "width": 1469,
+        "height": 869
+      },
+      "derivatives": [
+        {
+          "width": 768,
+          "height": 454,
+          "source": "/images/illustrations/configurator-v21/pellets-3-v21-768.webp",
+          "bytes": 67396,
+          "budget": 120000,
+          "budgetPass": true,
+          "quality": 90,
+          "sha256": "ae76a2e4ae67d80363d98f78ac0245d5719f647f12205bb9375dc3422aa989e9",
+          "canvas": {
+            "width": 768,
+            "height": 454
+          },
+          "alphaBounds": {
+            "x": 0.0,
+            "y": 0.0,
+            "width": 1.0,
+            "height": 1.0
+          },
+          "opticalCenter": {
+            "x": 0.5,
+            "y": 0.5
+          },
+          "bottomAnchor": {
+            "x": 0.5,
+            "y": 1.0
+          },
+          "alphaCoverage": 0.598084
+        },
+        {
+          "width": 1536,
+          "height": 909,
+          "source": "/images/illustrations/configurator-v21/pellets-3-v21-1536.webp",
+          "bytes": 177004,
+          "budget": 300000,
+          "budgetPass": true,
+          "quality": 90,
+          "sha256": "24eab093f539bf2b3643bcbbb893ce86dcbf8a2ad74c11aaa8e762cb56e92b39",
+          "canvas": {
+            "width": 1536,
+            "height": 909
+          },
+          "alphaBounds": {
+            "x": 0.001302,
+            "y": 0.0022,
+            "width": 0.997396,
+            "height": 0.9956
+          },
+          "opticalCenter": {
+            "x": 0.5,
+            "y": 0.5
+          },
+          "bottomAnchor": {
+            "x": 0.5,
+            "y": 0.9978
+          },
+          "alphaCoverage": 0.593797
+        }
+      ]
+    },
+    {
+      "quantity": 6,
+      "source": "FINAL6.webp",
+      "sourceSha256": "304003c7d505bcbc91c8ec8318f8d149508febf1d51eb88be52cac0b57b93995",
+      "sourceCanvas": {
+        "width": 2048,
+        "height": 1536
+      },
+      "cropCanvas": {
+        "width": 1469,
+        "height": 1003
+      },
+      "derivatives": [
+        {
+          "width": 768,
+          "height": 524,
+          "source": "/images/illustrations/configurator-v21/pellets-6-v21-768.webp",
+          "bytes": 78290,
+          "budget": 120000,
+          "budgetPass": true,
+          "quality": 90,
+          "sha256": "07c9e03619dc2128c8afe5508bb59faaf27d562f699fb8c2e921bd1922e7a6c2",
+          "canvas": {
+            "width": 768,
+            "height": 524
+          },
+          "alphaBounds": {
+            "x": 0.0,
+            "y": 0.0,
+            "width": 1.0,
+            "height": 1.0
+          },
+          "opticalCenter": {
+            "x": 0.5,
+            "y": 0.5
+          },
+          "bottomAnchor": {
+            "x": 0.5,
+            "y": 1.0
+          },
+          "alphaCoverage": 0.650411
+        },
+        {
+          "width": 1536,
+          "height": 1049,
+          "source": "/images/illustrations/configurator-v21/pellets-6-v21-1536.webp",
+          "bytes": 201410,
+          "budget": 300000,
+          "budgetPass": true,
+          "quality": 90,
+          "sha256": "431ca94c56770fa5350aba8d0ddbea8509d4483f7849d27e1f4c47ec1cea1816",
+          "canvas": {
+            "width": 1536,
+            "height": 1049
+          },
+          "alphaBounds": {
+            "x": 0.001302,
+            "y": 0.001907,
+            "width": 0.997396,
+            "height": 0.996187
+          },
+          "opticalCenter": {
+            "x": 0.5,
+            "y": 0.5
+          },
+          "bottomAnchor": {
+            "x": 0.5,
+            "y": 0.998093
+          },
+          "alphaCoverage": 0.646555
+        }
+      ]
+    },
+    {
+      "quantity": 9,
+      "source": "FINAL9.webp",
+      "sourceSha256": "642c7bd1cc689d54661f36a51064b70e4377b4535f8f9547fdf00835ae6672b3",
+      "sourceCanvas": {
+        "width": 2048,
+        "height": 1536
+      },
+      "cropCanvas": {
+        "width": 1469,
+        "height": 1133
+      },
+      "derivatives": [
+        {
+          "width": 768,
+          "height": 592,
+          "source": "/images/illustrations/configurator-v21/pellets-9-v21-768.webp",
+          "bytes": 96352,
+          "budget": 120000,
+          "budgetPass": true,
+          "quality": 90,
+          "sha256": "86478445794a326a0f5a80d20a36fcc76012831f4f74d6cc0084d96718d7ec12",
+          "canvas": {
+            "width": 768,
+            "height": 592
+          },
+          "alphaBounds": {
+            "x": 0.0,
+            "y": 0.0,
+            "width": 1.0,
+            "height": 1.0
+          },
+          "opticalCenter": {
+            "x": 0.5,
+            "y": 0.5
+          },
+          "bottomAnchor": {
+            "x": 0.5,
+            "y": 1.0
+          },
+          "alphaCoverage": 0.689299
+        },
+        {
+          "width": 1536,
+          "height": 1185,
+          "source": "/images/illustrations/configurator-v21/pellets-9-v21-1536.webp",
+          "bytes": 244192,
+          "budget": 300000,
+          "budgetPass": true,
+          "quality": 90,
+          "sha256": "64a5b30486570930a2f0c03f271fd1e66cd2e292ab916caaaea75936f6c6113f",
+          "canvas": {
+            "width": 1536,
+            "height": 1185
+          },
+          "alphaBounds": {
+            "x": 0.001302,
+            "y": 0.001688,
+            "width": 0.997396,
+            "height": 0.996624
+          },
+          "opticalCenter": {
+            "x": 0.5,
+            "y": 0.5
+          },
+          "bottomAnchor": {
+            "x": 0.5,
+            "y": 0.998312
+          },
+          "alphaCoverage": 0.685711
+        }
+      ]
+    },
+    {
+      "quantity": 12,
+      "source": "FINAL12.webp",
+      "sourceSha256": "f03f9d45bc5ed67cd92fc373e586e2ba1f0548748fc2b952c99e4d04cfaacd6a",
+      "sourceCanvas": {
+        "width": 2048,
+        "height": 1536
+      },
+      "cropCanvas": {
+        "width": 1478,
+        "height": 1253
+      },
+      "derivatives": [
+        {
+          "width": 768,
+          "height": 651,
+          "source": "/images/illustrations/configurator-v21/pellets-12-v21-768.webp",
+          "bytes": 104768,
+          "budget": 120000,
+          "budgetPass": true,
+          "quality": 90,
+          "sha256": "6e450b5a8db7440f4cb6340eb2b378df43f2a08d56356f910bc2ace2827074c0",
+          "canvas": {
+            "width": 768,
+            "height": 651
+          },
+          "alphaBounds": {
+            "x": 0.0,
+            "y": 0.0,
+            "width": 1.0,
+            "height": 1.0
+          },
+          "opticalCenter": {
+            "x": 0.5,
+            "y": 0.5
+          },
+          "bottomAnchor": {
+            "x": 0.5,
+            "y": 1.0
+          },
+          "alphaCoverage": 0.715674
+        },
+        {
+          "width": 1536,
+          "height": 1302,
+          "source": "/images/illustrations/configurator-v21/pellets-12-v21-1536.webp",
+          "bytes": 253098,
+          "budget": 300000,
+          "budgetPass": true,
+          "quality": 90,
+          "sha256": "b2c8954f12b9ae3ddbe4e4f6304153c5075a8b983f0a1cfabf522472d8cbc412",
+          "canvas": {
+            "width": 1536,
+            "height": 1302
+          },
+          "alphaBounds": {
+            "x": 0.001302,
+            "y": 0.001536,
+            "width": 0.997396,
+            "height": 0.996928
+          },
+          "opticalCenter": {
+            "x": 0.5,
+            "y": 0.5
+          },
+          "bottomAnchor": {
+            "x": 0.5,
+            "y": 0.998464
+          },
+          "alphaCoverage": 0.711966
+        }
+      ]
+    },
+    {
+      "quantity": 15,
+      "source": "FINAL15.webp",
+      "sourceSha256": "e6e41b229c9122851d3f004c63f862b6a879266e6d745d03222a19c9b804784c",
+      "sourceCanvas": {
+        "width": 2048,
+        "height": 1792
+      },
+      "cropCanvas": {
+        "width": 1469,
+        "height": 1381
+      },
+      "derivatives": [
+        {
+          "width": 768,
+          "height": 722,
+          "source": "/images/illustrations/configurator-v21/pellets-15-v21-768.webp",
+          "bytes": 116042,
+          "budget": 120000,
+          "budgetPass": true,
+          "quality": 89,
+          "sha256": "e0593e4cfdbe450807a169e63fbcce19e8691854264d55211d15087fefdea643",
+          "canvas": {
+            "width": 768,
+            "height": 722
+          },
+          "alphaBounds": {
+            "x": 0.0,
+            "y": 0.0,
+            "width": 1.0,
+            "height": 1.0
+          },
+          "opticalCenter": {
+            "x": 0.5,
+            "y": 0.5
+          },
+          "bottomAnchor": {
+            "x": 0.5,
+            "y": 1.0
+          },
+          "alphaCoverage": 0.742658
+        },
+        {
+          "width": 1536,
+          "height": 1444,
+          "source": "/images/illustrations/configurator-v21/pellets-15-v21-1536.webp",
+          "bytes": 291452,
+          "budget": 300000,
+          "budgetPass": true,
+          "quality": 89,
+          "sha256": "4193a3a0d71e82dc7ef6512c5df1d88067304babb33ac006e97826f92bcfa212",
+          "canvas": {
+            "width": 1536,
+            "height": 1444
+          },
+          "alphaBounds": {
+            "x": 0.001302,
+            "y": 0.001385,
+            "width": 0.997396,
+            "height": 0.99723
+          },
+          "opticalCenter": {
+            "x": 0.5,
+            "y": 0.5
+          },
+          "bottomAnchor": {
+            "x": 0.5,
+            "y": 0.998615
+          },
+          "alphaCoverage": 0.739438
+        }
+      ]
+    },
+    {
+      "quantity": 21,
+      "source": "FINAL21.webp",
+      "sourceSha256": "db6e2358c8b0eef45c4902d0fea77ba24e3ced3fbabecd1309bd75cf24efc8a5",
+      "sourceCanvas": {
+        "width": 2048,
+        "height": 2048
+      },
+      "cropCanvas": {
+        "width": 1469,
+        "height": 1653
+      },
+      "derivatives": [
+        {
+          "width": 768,
+          "height": 864,
+          "source": "/images/illustrations/configurator-v21/pellets-21-v21-768.webp",
+          "bytes": 125216,
+          "budget": 120000,
+          "budgetPass": false,
+          "quality": 86,
+          "sha256": "afe00c9c9ba2142c57097bf9f2206fffa6907560fe6c8c4dbe5f2ae2182625d7",
+          "canvas": {
+            "width": 768,
+            "height": 864
+          },
+          "alphaBounds": {
+            "x": 0.0,
+            "y": 0.0,
+            "width": 1.0,
+            "height": 1.0
+          },
+          "opticalCenter": {
+            "x": 0.5,
+            "y": 0.5
+          },
+          "bottomAnchor": {
+            "x": 0.5,
+            "y": 1.0
+          },
+          "alphaCoverage": 0.783762
+        },
+        {
+          "width": 1536,
+          "height": 1728,
+          "source": "/images/illustrations/configurator-v21/pellets-21-v21-1536.webp",
+          "bytes": 306340,
+          "budget": 300000,
+          "budgetPass": false,
+          "quality": 86,
+          "sha256": "da1da38b535f8d4de0f627f69f500c884885ad10974345e02e947d5972d26f41",
+          "canvas": {
+            "width": 1536,
+            "height": 1728
+          },
+          "alphaBounds": {
+            "x": 0.001302,
+            "y": 0.001157,
+            "width": 0.997396,
+            "height": 0.997685
+          },
+          "opticalCenter": {
+            "x": 0.5,
+            "y": 0.5
+          },
+          "bottomAnchor": {
+            "x": 0.5,
+            "y": 0.998843
+          },
+          "alphaCoverage": 0.780773
+        }
+      ]
+    },
+    {
+      "quantity": 24,
+      "source": "FINAL24.webp",
+      "sourceSha256": "d8b2c3ba278bb27216c7d102d232c516d0d3bf5f1a55086f1458c0fe1b5f9084",
+      "sourceCanvas": {
+        "width": 2560,
+        "height": 2048
+      },
+      "cropCanvas": {
+        "width": 1955,
+        "height": 1508
+      },
+      "derivatives": [
+        {
+          "width": 768,
+          "height": 592,
+          "source": "/images/illustrations/configurator-v21/pellets-24-v21-768.webp",
+          "bytes": 107362,
+          "budget": 120000,
+          "budgetPass": true,
+          "quality": 90,
+          "sha256": "79fb4550ef92e5d65b8f3780c14416d797d756ce2058a9fa3c57fd4a9aaa27ad",
+          "canvas": {
+            "width": 768,
+            "height": 592
+          },
+          "alphaBounds": {
+            "x": 0.0,
+            "y": 0.0,
+            "width": 1.0,
+            "height": 1.0
+          },
+          "opticalCenter": {
+            "x": 0.5,
+            "y": 0.5
+          },
+          "bottomAnchor": {
+            "x": 0.5,
+            "y": 1.0
+          },
+          "alphaCoverage": 0.743857
+        },
+        {
+          "width": 1536,
+          "height": 1185,
+          "source": "/images/illustrations/configurator-v21/pellets-24-v21-1536.webp",
+          "bytes": 283616,
+          "budget": 300000,
+          "budgetPass": true,
+          "quality": 90,
+          "sha256": "3f0f6e18abe74327f25a7a845d2b7d11940a51a74280ad8b07c4d858b68f4b2f",
+          "canvas": {
+            "width": 1536,
+            "height": 1185
+          },
+          "alphaBounds": {
+            "x": 0.000651,
+            "y": 0.000844,
+            "width": 0.998698,
+            "height": 0.998312
+          },
+          "opticalCenter": {
+            "x": 0.5,
+            "y": 0.5
+          },
+          "bottomAnchor": {
+            "x": 0.5,
+            "y": 0.999156
+          },
+          "alphaCoverage": 0.740083
+        }
+      ]
+    },
+    {
+      "quantity": 28,
+      "source": "FINAL28.webp",
+      "sourceSha256": "b5cf5e6608da475fff3ac956894b6ba86a78cf840996623a29e7be83ed45a929",
+      "sourceCanvas": {
+        "width": 2560,
+        "height": 2048
+      },
+      "cropCanvas": {
+        "width": 1977,
+        "height": 1622
+      },
+      "derivatives": [
+        {
+          "width": 768,
+          "height": 630,
+          "source": "/images/illustrations/configurator-v21/pellets-28-v21-768.webp",
+          "bytes": 107980,
+          "budget": 120000,
+          "budgetPass": true,
+          "quality": 90,
+          "sha256": "4cdac626122ffaaa0b8cc1a830ef9014ad8bb9474944f28fad500e2fbcfafe91",
+          "canvas": {
+            "width": 768,
+            "height": 630
+          },
+          "alphaBounds": {
+            "x": 0.0,
+            "y": 0.0,
+            "width": 1.0,
+            "height": 1.0
+          },
+          "opticalCenter": {
+            "x": 0.5,
+            "y": 0.5
+          },
+          "bottomAnchor": {
+            "x": 0.5,
+            "y": 1.0
+          },
+          "alphaCoverage": 0.771098
+        },
+        {
+          "width": 1536,
+          "height": 1260,
+          "source": "/images/illustrations/configurator-v21/pellets-28-v21-1536.webp",
+          "bytes": 265734,
+          "budget": 300000,
+          "budgetPass": true,
+          "quality": 90,
+          "sha256": "f0ed3f7b85a6926ce34167e3360404504e1aa24b708347cf989da6c0bb8e13e8",
+          "canvas": {
+            "width": 1536,
+            "height": 1260
+          },
+          "alphaBounds": {
+            "x": 0.000651,
+            "y": 0.000794,
+            "width": 0.998698,
+            "height": 0.998413
+          },
+          "opticalCenter": {
+            "x": 0.5,
+            "y": 0.5
+          },
+          "bottomAnchor": {
+            "x": 0.5,
+            "y": 0.999206
+          },
+          "alphaCoverage": 0.767113
+        }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,122 @@
+{
+  "canvas": {
+    "width": 1536,
+    "height": 1024
+  },
+  "alphaBoundsPixels": {
+    "left": 184,
+    "top": 130,
+    "right": 1274,
+    "bottom": 894
+  },
+  "alphaBounds": {
+    "x": 0.119792,
+    "y": 0.126953,
+    "width": 0.709635,
+    "height": 0.746094
+  },
+  "opticalCenter": {
+    "x": 0.5,
+    "y": 0.5
+  },
+  "alphaCoverage": 0.448265,
+  "cornersTransparent": true,
+  "transparentRgbClean": true,
+  "safeInsetPixels": {
+    "x": 116,
+    "y": 80
+  },
+  "safeInsetPass": true,
+  "dimensionsPass": true,
+  "rgbaPass": true,
+  "losslessWebp": true,
+  "editMask": {
+    "left": 1150,
+    "top": 732,
+    "right": 1283,
+    "bottom": 899
+  },
+  "workingScale": 4,
+  "donor": "tmp/pellets-v16/candidates/masters/pellets-20-candidate-f-v16.webp",
+  "donorSha256": "87444606f5b3c9131df5512a0b220341177345c1e04259a6facfa8706e63894f",
+  "donorReferenceSegment": {
+    "top": [
+      1334,
+      720
+    ],
+    "bottom": [
+      1266,
+      860
+    ]
+  },
+  "targetSegment": {
+    "top": [
+      1261,
+      740
+    ],
+    "bottom": [
+      1179,
+      892
+    ]
+  },
+  "reconstruction": "affine donor-edge transplant from locked 20-bag lower-right sack; hard exterior silhouette and feathered interior join",
+  "colorMatch": {
+    "rgbGain": [
+      1.06,
+      1.06,
+      1.06
+    ],
+    "rgbOffset": [
+      -10.0,
+      -10.0,
+      -9.442985
+    ]
+  },
+  "changedPixels": 7662,
+  "outsideMaskChangedPixels": 0,
+  "outsideMaskByteIdentical": true,
+  "leftCenterAndBrandingByteIdentical": true,
+  "frontBrandingRegionsByteIdentical": true,
+  "upperStackByteIdentical": true,
+  "sourceHashLockedPass": true,
+  "donorHashLockedPass": true,
+  "rightLowerProfileBefore": {
+    "profileRows": 152,
+    "profileResidualRmsPx": 3.265824,
+    "profileMaxPositiveStepPx": 1,
+    "profileMonotonicPass": true
+  },
+  "rightLowerProfileAfter": {
+    "profileRows": 153,
+    "profileResidualRmsPx": 0.841109,
+    "profileMaxPositiveStepPx": 0,
+    "profileMonotonicPass": true
+  },
+  "rightLowerProfileMonotonicPass": true,
+  "rightLowerCornerSmoothPass": true,
+  "falseFourthWedgeRemovedPass": true,
+  "rightSideLayerCount": 3,
+  "bagCountUnchanged": true,
+  "id": "pellets-10-master-v16-r5",
+  "styleVersion": "v16-approved-r5",
+  "approvalStatus": "approved-for-production",
+  "runtimeActivation": "authorized",
+  "representativeCount": 10,
+  "targetOpticalWidth": 0.76,
+  "source": "tmp/pellets-v16/candidates/masters/pellets-10-master-v16-r4.webp",
+  "sourceSha256": "729d325b98830bfc946f776427359c94b6a1c4d9822cce6d617446eb624adeee",
+  "outputSha256": "88da6917224fe2684bdb727deea3968889c727f09e05964b5e93acc331dd02fd",
+  "renderPipeline": "4x deterministic affine donor-edge transplant; one Lanczos downsample; lossless WebP",
+  "editedObject": "lower-right exterior side edge and rounded ground corner only",
+  "brandingByteIdentical": true,
+  "topSurfacesByteIdentical": true,
+  "leftAndCenterByteIdentical": true,
+  "cleanBaseSource": "tmp/pellets-v16/candidates/masters/pellets-10-master-v16-r4.webp",
+  "cleanBaseSha256": "729d325b98830bfc946f776427359c94b6a1c4d9822cce6d617446eb624adeee",
+  "lockedInvariants": [
+    "all front branding and 15 kg text",
+    "top surfaces and upper tiers",
+    "left and center of the stack",
+    "all seven other Golden Masters"
+  ]
+}

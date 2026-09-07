@@ -1,0 +1,79 @@
+{
+  "candidateId": "pellets-blank-06-master-candidate-a-v18",
+  "tier": 6,
+  "quantity": 6,
+  "approvalStatus": "awaiting-visual-approval",
+  "runtimeActive": false,
+  "brandingPolicy": "zero-branding-all-surfaces",
+  "compositionMode": "2-byte-identical-locked-tier3-layers-no-resampling",
+  "geometry": {
+    "layers": 2,
+    "bagsPerLayer": 3,
+    "alignment": "direct-vertical-flush",
+    "zStepPixels": 128
+  },
+  "cameraLock": {
+    "projection": "orthographic",
+    "azimuthDegrees": 40,
+    "elevationDegrees": 27,
+    "zoomFactor": 1.0
+  },
+  "scaleLock": {
+    "instanceScalePercent": 100,
+    "zoomOutAllowed": false,
+    "canvasExpanded": true
+  },
+  "lockedTier3PngSha256": "493875f22457dc37f95eda7f9a7ae9661d9aa68177c0911c3a2d124815f4f60a",
+  "layerPixelSha256": [
+    "39121f0b79e910f86cb1cb5c303cf9540cec5cab1daa4d275ea324c51a77a732",
+    "39121f0b79e910f86cb1cb5c303cf9540cec5cab1daa4d275ea324c51a77a732"
+  ],
+  "placementsTopToBottom": [
+    {
+      "layer": 1,
+      "x": 293,
+      "y": 273
+    },
+    {
+      "layer": 2,
+      "x": 293,
+      "y": 401
+    }
+  ],
+  "validation": {
+    "status": "pass",
+    "canvas": {
+      "width": 2048,
+      "height": 1536
+    },
+    "alphaBoundsPixels": {
+      "left": 293,
+      "top": 273,
+      "right": 1754,
+      "bottom": 1262
+    },
+    "marginsPixels": {
+      "left": 293,
+      "top": 273,
+      "right": 294,
+      "bottom": 274
+    },
+    "layerCount": 2,
+    "bagsPerLayer": 3,
+    "bagCount": 6,
+    "layerPixelSize": {
+      "width": 1461,
+      "height": 861
+    },
+    "layerZStepPixels": 128,
+    "horizontalLayerOffsetPixels": 0,
+    "instanceScalePercent": 100,
+    "sourceLayerResampling": "none",
+    "visibleInterlayerGapPixels": 0,
+    "transparentRgbClean": true,
+    "whiteOrBrightEdgePixels": 0,
+    "errors": []
+  },
+  "masterPngSha256": "04316fe518ae500c6095cbe346d7cdfbfab8b9434020dde0cd8e55e9d16d3bc9",
+  "masterWebpSha256": "7fcca312206f5889d0ea0ded312b859c3a21929ed322b56b6fe33c68c64cf3ef"
+}

@@ -1,0 +1,49 @@
+{
+  "canvas": {
+    "width": 1536,
+    "height": 1024
+  },
+  "alphaBoundsPixels": {
+    "left": 113,
+    "top": 189,
+    "right": 1421,
+    "bottom": 835
+  },
+  "alphaBounds": {
+    "x": 0.073568,
+    "y": 0.18457,
+    "width": 0.851562,
+    "height": 0.630859
+  },
+  "opticalCenter": {
+    "x": 0.5,
+    "y": 0.5
+  },
+  "alphaCoverage": 0.378778,
+  "cornersTransparent": true,
+  "transparentRgbClean": true,
+  "id": "pellets-50-candidate-f-v15",
+  "styleVersion": "v15-candidate",
+  "approvalStatus": "awaiting-visual-approval",
+  "runtimeActivation": "blocked-until-explicit-visual-approval",
+  "family": "pellets-set",
+  "representativeCount": 50,
+  "targetAlphaWidth": 0.85,
+  "selectedForQa": true,
+  "reference": "public/images/illustrations/configurator-v3/pelety-pytel-v3.webp",
+  "referenceSha256": "f8225c69fa6e6aaa3795dfb8fcfb0dcdd551cfaf5d532e6a2b122b1b81e1e418",
+  "source": "tmp/pellets-v15/source/pellets-50-source-f-v15.png",
+  "sourceSha256": "7a121e1f7d603a957c61c1425732ff35b754985bd63abac4323fe088b75c8c77",
+  "outputSha256": "a2aafc9fba8db0fe18d7dc9f288c4632cc88cc7999f8694d07eef72b2c01d48b",
+  "alphaMethod": "deterministic-neutral-checkerboard-extraction",
+  "renderPipeline": "built-in-reference-guided-imagegen; 4x compositing; one Lanczos downsample; lossless WebP",
+  "prompt": "Fifty lying sacks in four to five broad alternating supported layers.",
+  "nativeBranding": true,
+  "decalApplied": false,
+  "fullyVisibleLabelCount": 20,
+  "exactLabelText": "15 kg",
+  "exactLabelPass": true,
+  "layerSupportPass": true,
+  "compositionPass": true,
+  "review": "selected: widest natural gravity-settled mound with readable native print"
+}

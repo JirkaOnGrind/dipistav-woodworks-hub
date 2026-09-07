@@ -1,0 +1,68 @@
+{
+  "canvas": {
+    "width": 1536,
+    "height": 1024
+  },
+  "alphaBoundsPixels": {
+    "left": 184,
+    "top": 130,
+    "right": 1275,
+    "bottom": 893
+  },
+  "alphaBounds": {
+    "x": 0.119792,
+    "y": 0.126953,
+    "width": 0.710286,
+    "height": 0.745117
+  },
+  "opticalCenter": {
+    "x": 0.5,
+    "y": 0.5
+  },
+  "alphaCoverage": 0.450148,
+  "cornersTransparent": true,
+  "transparentRgbClean": true,
+  "safeInsetPixels": {
+    "x": 116,
+    "y": 80
+  },
+  "safeInsetPass": true,
+  "dimensionsPass": true,
+  "rgbaPass": true,
+  "losslessWebp": true,
+  "editMask": {
+    "left": 1180,
+    "top": 518,
+    "right": 1535,
+    "bottom": 901
+  },
+  "workingScale": 4,
+  "guideShiftXPixels": -78,
+  "changedPixels": 35393,
+  "outsideMaskChangedPixels": 0,
+  "outsideMaskByteIdentical": true,
+  "maxRightOverhangBeforePx": 87,
+  "maxRightOverhangAfterPx": 9,
+  "rightWallAlignedPass": false,
+  "id": "pellets-10-candidate-i-v16",
+  "styleVersion": "v16-final-r8-candidate",
+  "approvalStatus": "awaiting-final-visual-approval",
+  "runtimeActivation": "blocked-until-explicit-final-approval",
+  "representativeCount": 10,
+  "targetOpticalWidth": 0.76,
+  "source": "tmp/pellets-v16/candidates/masters/pellets-10-candidate-g-v16.webp",
+  "sourceSha256": "a84e490f265f81c8931e8ae21f3f851c8010c5350af94cfbd100387c2c9f5448",
+  "guide": "tmp/pellets-v16/source/pellets-10-surgical-ai-rejected-v16.png",
+  "guideSha256": "64623817f8622f0aebc395e44ffe54403dcc0a016e73fd27f18177b0cfb03258",
+  "outputSha256": "48b29d146c568f8dd046f0c0ba44b73d47c966ced5d9606a60fc9b17bac03062",
+  "renderPipeline": "4x registered alpha/contour surgery; one Lanczos downsample; lossless WebP",
+  "composition": "unchanged 3 + 3 + 3 + 1 ten-bag stack",
+  "editedObject": "right ground-row bag outer wall only",
+  "upperTierByteIdentical": true,
+  "centerByteIdentical": true,
+  "brandingByteIdentical": true,
+  "bagCountUnchanged": true,
+  "topTierFullSizePass": true,
+  "layerSupportPass": true,
+  "parallelTierAxesPass": true
+}

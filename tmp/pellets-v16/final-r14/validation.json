@@ -1,0 +1,161 @@
+{
+  "valid": true,
+  "styleVersion": "v16-final-r14-candidate",
+  "approvalStatus": "awaiting-final-visual-approval",
+  "runtimeActivation": "blocked-until-explicit-final-approval",
+  "lockedGoldenMasters": [
+    {
+      "count": 1,
+      "sha256": "abed47d8cbb97c452366acfd84bdbd7c770f4873c305985c6012778e441f9cde"
+    },
+    {
+      "count": 2,
+      "sha256": "7491e805062d29055383282090f69c1cde3aa57418b802fa73eb7e496c499f25"
+    },
+    {
+      "count": 3,
+      "sha256": "b740dfb57fa9ca38a12c9a5818e5558ae28b9305b43ed18ad167e294b89bb819"
+    },
+    {
+      "count": 5,
+      "sha256": "1a7813d569e9a323d7ab322e919c3caa60964c47f552fa09479b6d9540d014fc"
+    },
+    {
+      "count": 20,
+      "sha256": "87444606f5b3c9131df5512a0b220341177345c1e04259a6facfa8706e63894f"
+    },
+    {
+      "count": 30,
+      "sha256": "d6c46c8b2c1c373575c380a9b54ccdc221928abef80c3896037f87e7bcf027af"
+    },
+    {
+      "count": 50,
+      "sha256": "16cad2725c02ecf36f89717a0abd27fbc928ebb263337197d3285cb7c567895d"
+    }
+  ],
+  "newCandidate": {
+    "count": 10,
+    "path": "tmp/pellets-v16/candidates/masters/pellets-10-candidate-o-v16.webp",
+    "sha256": "ba5583fdf749a5420ca07f2db2b81190979c653a26cc232e54392939d08ac587"
+  },
+  "surgicalDiff": {
+    "editMask": {
+      "left": 1138,
+      "top": 716,
+      "right": 1291,
+      "bottom": 897
+    },
+    "workingScale": 4,
+    "profileAnchors": [
+      [
+        720,
+        1262
+      ],
+      [
+        740,
+        1262
+      ],
+      [
+        760,
+        1260
+      ],
+      [
+        780,
+        1254
+      ],
+      [
+        800,
+        1245
+      ],
+      [
+        820,
+        1234
+      ],
+      [
+        840,
+        1222
+      ],
+      [
+        860,
+        1208
+      ],
+      [
+        875,
+        1196
+      ],
+      [
+        885,
+        1188
+      ],
+      [
+        892,
+        1179
+      ]
+    ],
+    "outerContourWidthPx": 3.5,
+    "interiorCleanupPolygon": [
+      [
+        1166,
+        811
+      ],
+      [
+        1198,
+        815
+      ],
+      [
+        1218,
+        839
+      ],
+      [
+        1210,
+        865
+      ],
+      [
+        1186,
+        877
+      ],
+      [
+        1159,
+        854
+      ]
+    ],
+    "cleanTextureBox": [
+      1200,
+      760,
+      1240,
+      800
+    ],
+    "cleanupDestinationBox": [
+      1155,
+      810,
+      1219,
+      879
+    ],
+    "changedPixels": 13972,
+    "outsideMaskChangedPixels": 0,
+    "outsideMaskByteIdentical": true,
+    "frontBrandingRegionsByteIdentical": true,
+    "rightSideLayerCount": 3,
+    "rightLowerCornerSmoothPass": true,
+    "rightLowerCornerFullVolumePass": true,
+    "monotonicOuterProfilePass": true
+  },
+  "opticalWidths": [
+    0.4,
+    0.52,
+    0.6,
+    0.68,
+    0.76,
+    0.8,
+    0.83,
+    0.85
+  ],
+  "qa": [
+    "tmp/pellets-v16/final-r14/qa/pellets-v16-final-r14-320.png",
+    "tmp/pellets-v16/final-r14/qa/pellets-v16-final-r14-alpha-edge.png",
+    "tmp/pellets-v16/final-r14/qa/pellets-v16-final-r14-before-after.png",
+    "tmp/pellets-v16/final-r14/qa/pellets-v16-final-r14-branding.png",
+    "tmp/pellets-v16/final-r14/qa/pellets-v16-final-r14-dark.png",
+    "tmp/pellets-v16/final-r14/qa/pellets-v16-final-r14-light.png"
+  ]
+}

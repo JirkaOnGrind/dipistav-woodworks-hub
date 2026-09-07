@@ -1,0 +1,22 @@
+{
+  "valid": true,
+  "approvalStatus": "awaiting-visual-approval",
+  "runtimeActivation": "blocked-until-explicit-visual-approval",
+  "candidate": {
+    "image": "tmp/firewood-loose-9-15-v13/masters/firewood-loose-9-15-master-v13.webp",
+    "manifest": "tmp/firewood-loose-9-15-v13/masters/firewood-loose-9-15-master-v13.manifest.json",
+    "sha256": "f30e1e7ab1a60b9a4fa77c552d7faa9323590a4ba3611ea0d78869de8942116d",
+    "alphaBoundsPixels": {
+      "left": 142,
+      "top": 223,
+      "right": 1394,
+      "bottom": 801
+    },
+    "alphaCoverage": 0.309555
+  },
+  "qa": [
+    "tmp/firewood-loose-9-15-v13/qa/firewood-loose-9-15-v13-light.png",
+    "tmp/firewood-loose-9-15-v13/qa/firewood-loose-9-15-v13-dark.png",
+    "tmp/firewood-loose-9-15-v13/qa/firewood-loose-9-15-v13-320.png"
+  ]
+}

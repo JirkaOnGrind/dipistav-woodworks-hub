@@ -1,0 +1,48 @@
+{
+  "canvas": {
+    "width": 1536,
+    "height": 1024
+  },
+  "alphaBoundsPixels": {
+    "left": 121,
+    "top": 148,
+    "right": 1414,
+    "bottom": 875
+  },
+  "alphaBounds": {
+    "x": 0.078776,
+    "y": 0.144531,
+    "width": 0.841797,
+    "height": 0.709961
+  },
+  "opticalCenter": {
+    "x": 0.499674,
+    "y": 0.499512
+  },
+  "alphaCoverage": 0.374479,
+  "margins": {
+    "left": 121,
+    "top": 148,
+    "right": 122,
+    "bottom": 149
+  },
+  "id": "firewood-loose-9-15-master-v14",
+  "styleVersion": "v14-candidate",
+  "approvalStatus": "awaiting-visual-approval",
+  "runtimeActivation": "blocked-until-explicit-visual-approval",
+  "renderMode": "master",
+  "renderTechnique": "reference-guided-whole-pile-edit",
+  "quantityBand": {
+    "min": 9,
+    "max": 15
+  },
+  "representativeCount": 9,
+  "targetAlphaWidth": 0.82,
+  "source": "tmp/firewood-loose-refinement-v14/source/firewood-loose-9-15-source-v14.png",
+  "sourceSha256": "61e06507a19e7d1a192e4bed244f5370cd960891308e30942457cb3d39d4b146",
+  "canonicalStyle": "public/images/illustrations/configurator-v12/firewood-loose-1-2-master-v12.webp",
+  "canonicalStyleSha256": "8eb1bdd9115c41200e221064aff2c9a7ee819938391078acb671714d1c597da5",
+  "approvedFiveReference": "public/images/illustrations/configurator-v12/firewood-loose-5-8-master-v12.webp",
+  "approvedFiveReferenceSha256": "c56ad66c3dac847c9ae3107bc094fcc2de062342a8d6635c71e85396875f4536",
+  "outputSha256": "9183ac0fdd39feab786b4e711794fc50be52203e8b1b128734fdb19c94aafb8b"
+}

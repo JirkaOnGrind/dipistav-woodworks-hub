@@ -1,0 +1,61 @@
+{
+  "valid": true,
+  "approvalStatus": "awaiting-visual-approval",
+  "runtimeActivation": "blocked-until-explicit-visual-approval",
+  "renderTechnique": "reference-guided-whole-pile-imagegen",
+  "reference": {
+    "image": "public/images/illustrations/stipane-v2.webp",
+    "sha256": "8eb1bdd9115c41200e221064aff2c9a7ee819938391078acb671714d1c597da5"
+  },
+  "promptSpecSha256": "759a5e9d669f00c95cc4e9dec115049c6060371a32b57887fabf82e804b1e0ef",
+  "candidates": [
+    {
+      "image": "tmp/firewood-loose-full-pile-v4-determinism/masters/firewood-loose-full-pile-v4-3-4-master-v12.webp",
+      "manifest": "tmp/firewood-loose-full-pile-v4-determinism/masters/firewood-loose-full-pile-v4-3-4-master-v12.manifest.json",
+      "outputSha256": "41772a982014feef7fe215271e774cf11413b5c75b25687d234daf201d3881b7",
+      "alphaBoundsPixels": {
+        "left": 259,
+        "top": 201,
+        "right": 1276,
+        "bottom": 823
+      },
+      "alphaCoverage": 0.263062
+    },
+    {
+      "image": "tmp/firewood-loose-full-pile-v4-determinism/masters/firewood-loose-full-pile-v4-5-8-master-v12.webp",
+      "manifest": "tmp/firewood-loose-full-pile-v4-determinism/masters/firewood-loose-full-pile-v4-5-8-master-v12.manifest.json",
+      "outputSha256": "c56ad66c3dac847c9ae3107bc094fcc2de062342a8d6635c71e85396875f4536",
+      "alphaBoundsPixels": {
+        "left": 194,
+        "top": 167,
+        "right": 1341,
+        "bottom": 857
+      },
+      "alphaCoverage": 0.330823
+    },
+    {
+      "image": "tmp/firewood-loose-full-pile-v4-determinism/masters/firewood-loose-full-pile-v4-9-15-master-v12.webp",
+      "manifest": "tmp/firewood-loose-full-pile-v4-determinism/masters/firewood-loose-full-pile-v4-9-15-master-v12.manifest.json",
+      "outputSha256": "6885a7663e397e895cb9c3e552ce5211313dde54cc3d4a8c1600f35b26741c4f",
+      "alphaBoundsPixels": {
+        "left": 143,
+        "top": 171,
+        "right": 1394,
+        "bottom": 854
+      },
+      "alphaCoverage": 0.353553
+    },
+    {
+      "image": "tmp/firewood-loose-full-pile-v4-determinism/masters/firewood-loose-full-pile-v4-16plus-master-v12.webp",
+      "manifest": "tmp/firewood-loose-full-pile-v4-determinism/masters/firewood-loose-full-pile-v4-16plus-master-v12.manifest.json",
+      "outputSha256": "993a4d12bbb2f0f511d74ab70d2d1738f88492f640602e8cfeb4805a919c3a9f",
+      "alphaBoundsPixels": {
+        "left": 116,
+        "top": 117,
+        "right": 1420,
+        "bottom": 906
+      },
+      "alphaCoverage": 0.443385
+    }
+  ]
+}

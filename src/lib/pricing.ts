@@ -7,7 +7,12 @@ export type PriceDefinition =
       displayUnit: "ks" | "balení" | "balík" | "paleta";
     }
   | { basis: "linear-meter"; rate: number; displayUnit: "bm" }
-  | { basis: "cubic-meter"; rate: number; displayUnit: "m³" };
+  | {
+      basis: "cubic-meter";
+      rate: number;
+      displayUnit: "m³";
+      quantityMode?: "pieces" | "volume";
+    };
 
 export type VariantDimensions = {
   thicknessMm?: number;
@@ -44,8 +49,11 @@ export function calculateVariantQuote(
     return null;
   }
 
-  const quantity = Math.max(1, Math.trunc(requestedQuantity));
   const { pricing } = variant;
+  const quantity =
+    pricing.basis === "cubic-meter" && pricing.quantityMode === "volume"
+      ? Math.max(0, requestedQuantity)
+      : Math.max(1, Math.trunc(requestedQuantity));
 
   if (pricing.basis === "piece") {
     return {
@@ -72,6 +80,17 @@ export function calculateVariantQuote(
       rate: pricing.rate,
       totalLinearMeters,
       totalPrice: roundMoney(pricing.rate * totalLinearMeters),
+    };
+  }
+
+  if (pricing.quantityMode === "volume") {
+    return {
+      billableAmount: quantity,
+      billableUnit: pricing.displayUnit,
+      quantity,
+      rate: pricing.rate,
+      totalPrice: roundMoney(pricing.rate * quantity),
+      totalVolumeM3: quantity,
     };
   }
 

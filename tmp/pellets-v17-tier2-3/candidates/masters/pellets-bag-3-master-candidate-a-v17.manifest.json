@@ -1,0 +1,104 @@
+{
+  "candidateId": "pellets-bag-3-master-candidate-a-v17",
+  "styleVersion": "v17-candidate",
+  "approvalStatus": "rejected-by-user",
+  "rejectionReasons": [
+    "lost-soft-bag-anatomy",
+    "misaligned-top-branding",
+    "bottom-print-faces-required-upward"
+  ],
+  "runtimeActive": false,
+  "family": "pellets-bag",
+  "quantity": 3,
+  "representativeCount": 3,
+  "canvas": {
+    "width": 1536,
+    "height": 1024
+  },
+  "alphaBoundsPixels": {
+    "left": 307,
+    "top": 261,
+    "right": 1229,
+    "bottom": 763
+  },
+  "alphaBounds": {
+    "x": 0.19987,
+    "y": 0.254883,
+    "width": 0.60026,
+    "height": 0.490234
+  },
+  "opticalCenter": {
+    "x": 0.5,
+    "y": 0.5
+  },
+  "alphaCoverage": 0.18208,
+  "cornersTransparent": true,
+  "transparentRgbClean": true,
+  "safeInset": 0.07,
+  "contourReservePixels": 8,
+  "workScale": 4,
+  "downsample": "single-lanczos",
+  "camera": {
+    "projection": "orthographic",
+    "azimuthDegrees": 40,
+    "elevationDegrees": 27
+  },
+  "lighting": "upper-left-object-lighting-no-cast-shadow",
+  "lockedBase": "artwork-sources/pellets/pellets-bag-unit-tile-master-v17.png",
+  "lockedBaseSha256": "88bd6c89f2a665472c19d7fd041b42b815526d8bee2cbe8f165c5437b752ed36",
+  "promptSpec": "tmp/pellets-v17-tier2-3/pellets-tier2-3-v17.prompt.md",
+  "promptSpecSha256": "3d0dc6716e58d52505535c06105dd9cefb46c2434a5c3c1295c6c9be08b87236",
+  "sources": {
+    "blankGeometry": "tmp/pellets-v17-tier2-3/source/pellets-tier3-blank-geometry-source-a-v17.png",
+    "blankGeometrySha256": "abe8cf64dbb074e273d2017865ed402f4c7783e1112c577a7b1c75388b501be7",
+    "lockedDecal": "tmp/pellets-v17-tier2-3/source/pellets-locked-print-decal-v17.png",
+    "lockedDecalSha256": "fce9642d499af7e045fab772badaf774a075f9ac99d15f559ed5721c6e1f3a40"
+  },
+  "scene": {
+    "layout": "two-prone-parallel-supports-plus-one-perpendicular-prone-bridge",
+    "surfacePolicy": "top-bridge-print-face-only; bottom-visible-rear-faces-blank",
+    "bottomPrintOrientation": "downward-or-inward",
+    "bridgePrintOrientation": "upward",
+    "geometryAlphaMethod": "deterministic-neutral-checkerboard-extraction",
+    "printFacePolygon": [
+      [
+        570,
+        190
+      ],
+      [
+        1195,
+        310
+      ],
+      [
+        1000,
+        565
+      ],
+      [
+        370,
+        450
+      ]
+    ],
+    "decalQuad": [
+      [
+        1010,
+        330
+      ],
+      [
+        900,
+        470
+      ],
+      [
+        575,
+        405
+      ],
+      [
+        675,
+        275
+      ]
+    ],
+    "decalPixelsOutsidePrintFaceBeforeClip": 0,
+    "decalPixelsOutsidePrintFaceAfterClip": 0
+  },
+  "masterPngSha256": "90e5ad5070233f00e7d41f5af11247c63cea2b36431f0ae88b87b65e956ee855",
+  "masterWebpSha256": "1b57852bafa111c26a496eea173004f1b64eaf683fd7d9558ca3581dfa614d70"
+}

@@ -29,7 +29,6 @@ export const Route = createFileRoute("/")({
   component: Index,
 });
 
-
 function Index() {
   return (
     <SiteShell>
@@ -38,7 +37,7 @@ function Index() {
           aria-hidden
           className="absolute inset-0 scale-[1.04] bg-center bg-no-repeat opacity-[0.32] sm:scale-[1.18] sm:opacity-40 sm:blur-[3px]"
           style={{
-            backgroundImage: "url('/images/woodpatern.jpg')",
+            backgroundImage: "url('/images/woodpatern.webp')",
             backgroundRepeat: "no-repeat",
             backgroundSize: "cover",
           }}
@@ -56,13 +55,17 @@ function Index() {
           className="pointer-events-none absolute inset-x-0 bottom-0 h-56 bg-gradient-to-b from-transparent via-[#F5F2E9] via-40% to-[#F5F2E9]"
         />
 
-        <div className="relative mx-auto max-w-5xl px-4 py-8 text-center sm:py-20 lg:py-28">
-          <h1 className="text-[28px] font-bold leading-[1.15] tracking-tight text-[#1E293B] sm:text-5xl sm:font-black sm:leading-[1.05] lg:text-6xl">
-            Stavební řezivo doručené
-            <span className="text-[#A86D38]"> až na vaši stavbu</span>
+        <div
+          data-home-hero
+          className="relative mx-auto max-w-5xl px-4 py-8 text-center sm:py-12 lg:py-14"
+        >
+          <h1 className="text-balance text-[28px] font-bold leading-[1.15] tracking-tight text-[#1E293B] sm:text-5xl sm:font-black sm:leading-[1.05] lg:text-6xl">
+            Řezivo pro stavbu.
+            <span className="block text-[#A86D38] sm:inline"> Palivo pro domov.</span>
           </h1>
-          <p className="mx-auto mt-3 max-w-xl text-sm leading-6 text-[#1E293B]/70 sm:mt-5 sm:text-lg">
-            Vyberte si rozměr, délku i množství přesně podle své stavby a hned uvidíte, co pro vás dává smysl.
+          <p className="mx-auto mt-3 max-w-2xl text-pretty text-sm leading-6 text-[#1E293B]/70 sm:mt-5 sm:text-lg">
+            Stavební řezivo, palivové dřevo a pelety přímo z pily. Vyberte skladový sortiment nebo
+            si zadejte rozměry na míru.
           </p>
 
           <div className="mx-auto mt-5 flex max-w-md flex-col items-center gap-3 sm:mt-8">
@@ -97,7 +100,7 @@ function Index() {
           <path d="M 0,100 C 30,64 70,40 110,54 C 146,66 160,106 146,140 C 134,170 84,174 46,160" />
           <path d="M 10,100 C 35,76 65,55 95,66 C 124,74 135,104 124,130 C 116,155 76,156 44,145" />
         </svg>
-        <div className="relative mx-auto max-w-7xl space-y-12 px-4 py-8 sm:space-y-14 sm:py-14">
+        <div className="relative mx-auto max-w-7xl space-y-12 px-4 pt-0 pb-8 sm:space-y-14 sm:pb-14">
           {PRODUCT_CATEGORY_SECTIONS.map((section) => (
             <ProductCategorySection key={section.id} section={section} />
           ))}
@@ -106,17 +109,17 @@ function Index() {
 
       <CustomConfigurator />
 
-
       <ShippingWidget />
 
       <section id="kontakt" className="bg-[color:var(--forest)] text-white">
         <div className="mx-auto grid max-w-7xl gap-6 px-4 py-10 sm:py-14 md:grid-cols-[1fr_auto] md:items-center">
           <div>
-            <h2 className="text-2xl font-black tracking-tight sm:text-3xl">
+            <h2 className="text-balance text-2xl font-black tracking-tight sm:text-3xl">
               Potřebujete poradit s výběrem nebo dopravou?
             </h2>
-            <p className="mt-2 text-white/80">
-              Ozvěte se nám. Doporučíme vhodné řezivo, ověříme dostupnost a připravíme řešení, které bude na stavbě opravdu fungovat.
+            <p className="mt-2 max-w-3xl text-pretty text-white/80">
+              Řekněte nám, co stavíte nebo čím topíte. Doporučíme vhodný materiál, ověříme
+              dostupnost a navrhneme dopravu.
             </p>
           </div>
           <div className="flex flex-col gap-3 sm:flex-row md:flex-col lg:flex-row">

@@ -1,0 +1,57 @@
+{
+  "canvas": {
+    "width": 1536,
+    "height": 1024
+  },
+  "alphaBoundsPixels": {
+    "left": 246,
+    "top": 213,
+    "right": 1290,
+    "bottom": 811
+  },
+  "alphaBounds": {
+    "x": 0.160156,
+    "y": 0.208008,
+    "width": 0.679688,
+    "height": 0.583984
+  },
+  "opticalCenter": {
+    "x": 0.5,
+    "y": 0.5
+  },
+  "alphaCoverage": 0.160643,
+  "interiorAlphaMin": 248,
+  "margins": {
+    "left": 246,
+    "top": 213,
+    "right": 246,
+    "bottom": 213
+  },
+  "family": "lath",
+  "quantityBand": {
+    "min": 1,
+    "max": 1
+  },
+  "representativeCount": 1,
+  "layout": "5-wide-exact-1",
+  "piecesPerLayer": 5,
+  "levelCount": 1,
+  "renderOrigin": "approved-v11-byte-copy",
+  "designVectors": {
+    "column": [
+      90.0,
+      -19.0
+    ],
+    "rowDown": [
+      0.0,
+      67.0
+    ],
+    "back": [
+      -430.0,
+      -211.0
+    ]
+  },
+  "outputSha256": "561e89b5c4f2d8250cfd0ea9f9fe1326615c4f191616300ad59b83186fd6b624",
+  "runtimePath": "/images/illustrations/timber-dynamic-v35/lath-1-master-v35.webp",
+  "styleVersion": "v35"
+}

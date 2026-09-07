@@ -1,0 +1,27 @@
+{
+  "input": "tmp\\pellets-v18-phase1-logo\\candidates\\masters\\pellets-logo-flat-master-candidate-a-v18.webp",
+  "canvas": {
+    "width": 1536,
+    "height": 1024
+  },
+  "alphaBoundsPixels": {
+    "left": 386,
+    "top": 77,
+    "right": 1150,
+    "bottom": 947
+  },
+  "alphaBoundsNormalized": {
+    "x": 0.251302,
+    "y": 0.075195,
+    "width": 0.497396,
+    "height": 0.849609
+  },
+  "alphaCoverage": 0.146932,
+  "paletteProximity": 1.0,
+  "whiteOrBrightEdgePixels": 0,
+  "errors": [
+    "green-dominant semi-transparent edge pixels: 10"
+  ],
+  "warnings": [],
+  "status": "fail"
+}

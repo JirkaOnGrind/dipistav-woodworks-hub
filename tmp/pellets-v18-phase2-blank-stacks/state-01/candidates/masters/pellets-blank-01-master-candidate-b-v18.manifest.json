@@ -1,0 +1,74 @@
+{
+  "candidateId": "pellets-blank-01-master-candidate-b-v18",
+  "supersedesTechnicalCandidate": "pellets-blank-01-master-candidate-a-v18",
+  "phase": 2,
+  "stateIndex": 1,
+  "quantity": 1,
+  "approvalStatus": "approved-locked-unit",
+  "approvedBy": "user",
+  "approvedDate": "2026-08-27",
+  "runtimeActive": false,
+  "canvas": {
+    "width": 1536,
+    "height": 1024
+  },
+  "alphaBoundsPixels": {
+    "left": 508,
+    "top": 80,
+    "right": 1028,
+    "bottom": 943
+  },
+  "alphaBounds": {
+    "x": 0.330729,
+    "y": 0.078125,
+    "width": 0.338542,
+    "height": 0.842773
+  },
+  "opticalCenter": {
+    "x": 0.5,
+    "y": 0.5
+  },
+  "alphaCoverage": 0.236907,
+  "cornersTransparent": true,
+  "transparentRgbClean": true,
+  "brandingPolicy": "zero-branding-all-surfaces",
+  "cameraLock": {
+    "projection": "orthographic",
+    "azimuthDegrees": 40,
+    "elevationDegrees": 27,
+    "zoomFactor": 1.0,
+    "canvasMayExpand": true
+  },
+  "scaleLock": {
+    "anchorState": 1,
+    "uprightBagAlphaFootprintPixels": {
+      "width": 520,
+      "height": 863
+    },
+    "uprightBagAlphaBoundsPixels": {
+      "left": 508,
+      "top": 80,
+      "right": 1028,
+      "bottom": 943
+    },
+    "futureBagScalePercent": 100,
+    "futureZoomOutAllowed": false
+  },
+  "layout": "one-upright-bag",
+  "sourceGeneratedBoundsPixels": {
+    "left": 509,
+    "top": 80,
+    "right": 1029,
+    "bottom": 944
+  },
+  "sourceAlphaMethod": "deterministic-neutral-checkerboard-extraction",
+  "source": "tmp/pellets-v18-phase2-blank-stacks/state-01/source/pellets-blank-upright-source-a-v18.png",
+  "sourceSha256": "18f62a7692c370065055230c24ffe09c37818c9163a580868b5b565c7b7bc2b7",
+  "lockedUnitTileSha256": "88bd6c89f2a665472c19d7fd041b42b815526d8bee2cbe8f165c5437b752ed36",
+  "lockedLogoSha256": "590dbcd3773af5a9c82eecfe35f1316c68808b02f9f5a4f72c91c594e5fc87ed",
+  "layoutReferenceSha256": "eafa06688b5e0bd9d4bbcd9929a814d9816619a35b2ad7d2540f542c540b4afe",
+  "promptSpec": "tmp/pellets-v18-phase2-blank-stacks/state-01/pellets-blank-state-01-candidate-a-v18.prompt.md",
+  "promptSpecSha256": "0ffb61d26440d59b6a986414c8d65353e1766810eae329a5b746d15b835f1cb2",
+  "masterPngSha256": "46ec4ff49e6fd776529fb4ab428d18fe7811159591b4e41327a2e6a958f242f9",
+  "masterWebpSha256": "c9767faa0a2718cb54f70259e665c914e9aae7c398645ab7d1e45c03fa3449b9"
+}

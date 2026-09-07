@@ -1,0 +1,230 @@
+{
+  "lumberCrops": [
+    {
+      "source": "public/images/illustrations/timber-dynamic-v35/beam-1-master-v35.webp",
+      "output": "public/images/illustrations/homepage-v41/tramy-single.webp",
+      "crop": [
+        113,
+        103,
+        1423,
+        921
+      ],
+      "bytes": 64726
+    },
+    {
+      "source": "public/images/illustrations/plank-v39/plank-1-master-v39.webp",
+      "output": "public/images/illustrations/homepage-v41/fosny-single.webp",
+      "crop": [
+        114,
+        150,
+        1422,
+        874
+      ],
+      "bytes": 80774
+    },
+    {
+      "source": "public/images/illustrations/timber-dynamic-v35/board-sorted-1-master-v35.webp",
+      "output": "public/images/illustrations/homepage-v41/prkna-single.webp",
+      "crop": [
+        161,
+        228,
+        1375,
+        796
+      ],
+      "bytes": 59136
+    },
+    {
+      "source": "public/images/illustrations/timber-dynamic-v35/lath-1-master-v35.webp",
+      "output": "public/images/illustrations/homepage-v41/late-single.webp",
+      "crop": [
+        246,
+        213,
+        1290,
+        811
+      ],
+      "bytes": 56238
+    }
+  ],
+  "losslessConversions": [
+    {
+      "source": "public/images/illustrations/configurator-v22/firewood-pallet-16-strict-v22.png",
+      "output": "public/images/illustrations/configurator-v22/firewood-pallet-16-strict-v22.webp",
+      "beforeBytes": 2403646,
+      "afterBytes": 1747258
+    },
+    {
+      "source": "public/images/illustrations/configurator-v22/firewood-pallet-16prm-25-fallback-v22.png",
+      "output": "public/images/illustrations/configurator-v22/firewood-pallet-16prm-25-fallback-v22.webp",
+      "beforeBytes": 2403646,
+      "afterBytes": 1747258
+    },
+    {
+      "source": "public/images/illustrations/configurator-v22/firewood-pallet-16prm-33-fallback-v22.png",
+      "output": "public/images/illustrations/configurator-v22/firewood-pallet-16prm-33-fallback-v22.webp",
+      "beforeBytes": 2403646,
+      "afterBytes": 1747258
+    },
+    {
+      "source": "public/images/illustrations/configurator-v22/firewood-pallet-1prm-25-strict-v22.png",
+      "output": "public/images/illustrations/configurator-v22/firewood-pallet-1prm-25-strict-v22.webp",
+      "beforeBytes": 2270518,
+      "afterBytes": 1642146
+    },
+    {
+      "source": "public/images/illustrations/configurator-v22/firewood-pallet-1prm-33-strict-v22.png",
+      "output": "public/images/illustrations/configurator-v22/firewood-pallet-1prm-33-strict-v22.webp",
+      "beforeBytes": 2373873,
+      "afterBytes": 1718286
+    },
+    {
+      "source": "public/images/illustrations/configurator-v27/drevo1-25cm.png",
+      "output": "public/images/illustrations/configurator-v27/drevo1-25cm.webp",
+      "beforeBytes": 2700417,
+      "afterBytes": 2041132
+    },
+    {
+      "source": "public/images/illustrations/configurator-v27/drevo1.png",
+      "output": "public/images/illustrations/configurator-v27/drevo1.webp",
+      "beforeBytes": 1723533,
+      "afterBytes": 1179444
+    },
+    {
+      "source": "public/images/illustrations/configurator-v33/pellets-pallet-975-crisp-v33.png",
+      "output": "public/images/illustrations/configurator-v33/pellets-pallet-975-crisp-v33.webp",
+      "beforeBytes": 1880403,
+      "afterBytes": 1290874
+    },
+    {
+      "source": "public/images/doprava.jpeg",
+      "output": "public/images/doprava.webp",
+      "beforeBytes": 285023,
+      "afterBytes": 1327836
+    },
+    {
+      "source": "public/images/illustrations/configurator-v33/firewood-loose-2-v33.png",
+      "output": "public/images/illustrations/configurator-v33/firewood-loose-2-v33.webp",
+      "beforeBytes": 2656768,
+      "afterBytes": 1939992
+    },
+    {
+      "source": "public/images/illustrations/configurator-v33/firewood-loose-4-v33.png",
+      "output": "public/images/illustrations/configurator-v33/firewood-loose-4-v33.webp",
+      "beforeBytes": 2395579,
+      "afterBytes": 1740160
+    },
+    {
+      "source": "public/images/illustrations/configurator-v33/slabwood-dense-pile-v33.png",
+      "output": "public/images/illustrations/configurator-v33/slabwood-dense-pile-v33.webp",
+      "beforeBytes": 3360741,
+      "afterBytes": 2450582
+    },
+    {
+      "source": "public/images/illustrations/configurator-v34/firewood-loose-2-v34.png",
+      "output": "public/images/illustrations/configurator-v34/firewood-loose-2-v34.webp",
+      "beforeBytes": 2164005,
+      "afterBytes": 1517938
+    },
+    {
+      "source": "public/images/illustrations/configurator-v34/firewood-loose-3-v34.png",
+      "output": "public/images/illustrations/configurator-v34/firewood-loose-3-v34.webp",
+      "beforeBytes": 2677500,
+      "afterBytes": 1886580
+    },
+    {
+      "source": "public/images/illustrations/configurator-v34/firewood-loose-4-v34.png",
+      "output": "public/images/illustrations/configurator-v34/firewood-loose-4-v34.webp",
+      "beforeBytes": 2327913,
+      "afterBytes": 1617556
+    },
+    {
+      "source": "public/images/illustrations/firewood-v36/firewood-1.png",
+      "output": "public/images/illustrations/firewood-v36/firewood-1.webp",
+      "beforeBytes": 2259486,
+      "afterBytes": 1380740
+    },
+    {
+      "source": "public/images/illustrations/firewood-v36/firewood-10.png",
+      "output": "public/images/illustrations/firewood-v36/firewood-10.webp",
+      "beforeBytes": 2758445,
+      "afterBytes": 1820820
+    },
+    {
+      "source": "public/images/illustrations/firewood-v36/firewood-16.png",
+      "output": "public/images/illustrations/firewood-v36/firewood-16.webp",
+      "beforeBytes": 3281556,
+      "afterBytes": 2119268
+    },
+    {
+      "source": "public/images/illustrations/firewood-v36/firewood-2.png",
+      "output": "public/images/illustrations/firewood-v36/firewood-2.webp",
+      "beforeBytes": 2368536,
+      "afterBytes": 1434952
+    },
+    {
+      "source": "public/images/illustrations/firewood-v36/firewood-3.png",
+      "output": "public/images/illustrations/firewood-v36/firewood-3.webp",
+      "beforeBytes": 2722573,
+      "afterBytes": 1738070
+    },
+    {
+      "source": "public/images/illustrations/firewood-v36/firewood-4.png",
+      "output": "public/images/illustrations/firewood-v36/firewood-4.webp",
+      "beforeBytes": 2401252,
+      "afterBytes": 1544464
+    },
+    {
+      "source": "public/images/illustrations/firewood-v36/firewood-5.png",
+      "output": "public/images/illustrations/firewood-v36/firewood-5.webp",
+      "beforeBytes": 2775586,
+      "afterBytes": 1757292
+    },
+    {
+      "source": "public/images/illustrations/firewood-v36/firewood-6.png",
+      "output": "public/images/illustrations/firewood-v36/firewood-6.webp",
+      "beforeBytes": 2403048,
+      "afterBytes": 1548474
+    },
+    {
+      "source": "public/images/illustrations/firewood-v36/firewood-7.png",
+      "output": "public/images/illustrations/firewood-v36/firewood-7.webp",
+      "beforeBytes": 2595224,
+      "afterBytes": 1717550
+    },
+    {
+      "source": "public/images/illustrations/firewood-v36/firewood-8.png",
+      "output": "public/images/illustrations/firewood-v36/firewood-8.webp",
+      "beforeBytes": 2862862,
+      "afterBytes": 1859336
+    },
+    {
+      "source": "public/images/illustrations/firewood-v36/firewood-9.png",
+      "output": "public/images/illustrations/firewood-v36/firewood-9.webp",
+      "beforeBytes": 2859239,
+      "afterBytes": 1875126
+    },
+    {
+      "source": "public/images/logo-dipi.png",
+      "output": "public/images/logo-dipi.webp",
+      "beforeBytes": 138015,
+      "afterBytes": 87468
+    },
+    {
+      "source": "public/images/onas1.jpeg",
+      "output": "public/images/onas1.webp",
+      "beforeBytes": 351959,
+      "afterBytes": 1558316
+    },
+    {
+      "source": "public/images/onas2.jpeg",
+      "output": "public/images/onas2.webp",
+      "beforeBytes": 306745,
+      "afterBytes": 1395254
+    },
+    {
+      "source": "public/images/woodpatern.jpg",
+      "output": "public/images/woodpatern.webp",
+      "beforeBytes": 536461,
+      "afterBytes": 1030338
+    }
+  ]
+}

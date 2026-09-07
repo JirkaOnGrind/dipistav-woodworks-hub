@@ -1,0 +1,85 @@
+{
+  "candidateId": "pellets-blank-09-master-candidate-a-v18",
+  "tier": 9,
+  "quantity": 9,
+  "approvalStatus": "awaiting-visual-approval",
+  "runtimeActive": false,
+  "brandingPolicy": "zero-branding-all-surfaces",
+  "compositionMode": "3-byte-identical-locked-tier3-layers-no-resampling",
+  "geometry": {
+    "layers": 3,
+    "bagsPerLayer": 3,
+    "alignment": "direct-vertical-flush",
+    "zStepPixels": 128
+  },
+  "cameraLock": {
+    "projection": "orthographic",
+    "azimuthDegrees": 40,
+    "elevationDegrees": 27,
+    "zoomFactor": 1.0
+  },
+  "scaleLock": {
+    "instanceScalePercent": 100,
+    "zoomOutAllowed": false,
+    "canvasExpanded": true
+  },
+  "lockedTier3PngSha256": "493875f22457dc37f95eda7f9a7ae9661d9aa68177c0911c3a2d124815f4f60a",
+  "layerPixelSha256": [
+    "39121f0b79e910f86cb1cb5c303cf9540cec5cab1daa4d275ea324c51a77a732",
+    "39121f0b79e910f86cb1cb5c303cf9540cec5cab1daa4d275ea324c51a77a732",
+    "39121f0b79e910f86cb1cb5c303cf9540cec5cab1daa4d275ea324c51a77a732"
+  ],
+  "placementsTopToBottom": [
+    {
+      "layer": 1,
+      "x": 293,
+      "y": 209
+    },
+    {
+      "layer": 2,
+      "x": 293,
+      "y": 337
+    },
+    {
+      "layer": 3,
+      "x": 293,
+      "y": 465
+    }
+  ],
+  "validation": {
+    "status": "pass",
+    "canvas": {
+      "width": 2048,
+      "height": 1536
+    },
+    "alphaBoundsPixels": {
+      "left": 293,
+      "top": 209,
+      "right": 1754,
+      "bottom": 1326
+    },
+    "marginsPixels": {
+      "left": 293,
+      "top": 209,
+      "right": 294,
+      "bottom": 210
+    },
+    "layerCount": 3,
+    "bagsPerLayer": 3,
+    "bagCount": 9,
+    "layerPixelSize": {
+      "width": 1461,
+      "height": 861
+    },
+    "layerZStepPixels": 128,
+    "horizontalLayerOffsetPixels": 0,
+    "instanceScalePercent": 100,
+    "sourceLayerResampling": "none",
+    "visibleInterlayerGapPixels": 0,
+    "transparentRgbClean": true,
+    "whiteOrBrightEdgePixels": 0,
+    "errors": []
+  },
+  "masterPngSha256": "44a3b6e8b9f5bd4fdbf87c589195e77cebe98f5a0f9f2a9f5dce6605292e9242",
+  "masterWebpSha256": "3c276040f77508142279c09772191fddf9700e8200a8bb564a4c0e281fb85ab5"
+}

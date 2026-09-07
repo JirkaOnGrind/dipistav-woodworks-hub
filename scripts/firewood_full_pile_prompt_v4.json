@@ -1,0 +1,44 @@
+{
+  "version": "full-pile-v4",
+  "renderTechnique": "reference-guided-whole-pile-imagegen",
+  "soleStyleReference": "public/images/illustrations/stipane-v2.webp",
+  "soleStyleReferenceSha256": "8eb1bdd9115c41200e221064aff2c9a7ee819938391078acb671714d1c597da5",
+  "sharedPrompt": "Generate one complete coherent loose firewood mound directly as a single illustration. Match stipane-v2.webp exactly: vintage woodcut/lithographic ink linework, warm honey-amber split faces, deeply wrinkled dark-brown bark only on curved outer surfaces, organic quarter-split and half-split pieces, isometric three-quarter view. Natural gravity-settled conical/elliptical heap with a centered crest; never a wall, bench, row, ribbon, staircase, rectangular stack or flat top. No tiling, cloning, repeated modules, floating pieces, whole round trunks, geometric cheese wedges, low-poly, 3D, vector, cartoon, plastic, photography, text, logo or watermark.",
+  "backgroundPrompt": "Perfectly uniform pure #00FF00 chroma background without floor, shadow, gradient, checkerboard, glow or green inside the wood; removed deterministically after generation.",
+  "states": [
+    {
+      "band": "1-2",
+      "source": "public/images/illustrations/stipane-v2.webp",
+      "status": "approved-byte-identical-reference",
+      "promptModifier": "Use the existing approved compact mini mound unchanged."
+    },
+    {
+      "band": "3-4",
+      "displayScale": 0.78,
+      "source": "tmp/firewood-loose-full-pile-v4/source/firewood-full-pile-3-4-alpha.png",
+      "sourceSha256": "6cd064422dd721e6941ed8ae2b544717634e42e030654ff36f4599a554556706",
+      "promptModifier": "A small natural mound, visibly broader and fuller than the reference, with an elliptical base and one compact central apex."
+    },
+    {
+      "band": "5-8",
+      "displayScale": 0.88,
+      "source": "tmp/firewood-loose-full-pile-v4/source/firewood-full-pile-5-8-alpha.png",
+      "sourceSha256": "d7c92e5ad83ae847408760deb42965bf34ba47ef8f17001d843cd8a4ac92b503",
+      "promptModifier": "A medium irregular heap just dumped from a utility trailer, with a broad base, real depth and a natural central crest."
+    },
+    {
+      "band": "9-15",
+      "displayScale": 0.96,
+      "source": "tmp/firewood-loose-full-pile-v4/source/firewood-full-pile-9-15-alpha.png",
+      "sourceSha256": "b9170f1e317b1daf5b92c798c0d25645db4f082506486a071ee2b1e2b283d9f1",
+      "promptModifier": "A large substantial truck-dumped heap with irregular sloping sides, broad ground contact and a strong central crest."
+    },
+    {
+      "band": "16plus",
+      "displayScale": 1.0,
+      "source": "tmp/firewood-loose-full-pile-v4/source/firewood-full-pile-16plus-alpha.png",
+      "sourceSha256": "87a3004fc7cff2bc7a107cd3bb47949c2ed3252543b0aa07e286b37662aa78ba",
+      "promptModifier": "A giant expansive yard mound with a very broad deep footprint, sloping sides and a clearly raised central crest."
+    }
+  ]
+}

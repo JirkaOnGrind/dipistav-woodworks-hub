@@ -1,0 +1,67 @@
+{
+  "valid": true,
+  "styleVersion": "v16-final-r4-candidate",
+  "approvalStatus": "awaiting-final-visual-approval",
+  "runtimeActivation": "blocked-until-explicit-final-approval",
+  "lockedGoldenMasters": [
+    {
+      "count": 1,
+      "sha256": "abed47d8cbb97c452366acfd84bdbd7c770f4873c305985c6012778e441f9cde"
+    },
+    {
+      "count": 2,
+      "sha256": "7491e805062d29055383282090f69c1cde3aa57418b802fa73eb7e496c499f25"
+    },
+    {
+      "count": 3,
+      "sha256": "b740dfb57fa9ca38a12c9a5818e5558ae28b9305b43ed18ad167e294b89bb819"
+    },
+    {
+      "count": 5,
+      "sha256": "1a7813d569e9a323d7ab322e919c3caa60964c47f552fa09479b6d9540d014fc"
+    },
+    {
+      "count": 50,
+      "sha256": "16cad2725c02ecf36f89717a0abd27fbc928ebb263337197d3285cb7c567895d"
+    }
+  ],
+  "fallback20": {
+    "path": "tmp/pellets-v16/candidates/masters/pellets-20-candidate-c-v16.webp",
+    "sha256": "4573e2abb388a8fa769b4a57ae6e12fda7b65fed1df00bd92d92cb8447efd9c3"
+  },
+  "newCandidates": [
+    {
+      "count": 10,
+      "sha256": "0f4548ffe39cd0d6463301314df9e75efca3fbeed4ac9b9fc96fd8ea219f4d61",
+      "path": "tmp/pellets-v16/candidates/masters/pellets-10-candidate-e-v16.webp"
+    },
+    {
+      "count": 20,
+      "sha256": "e5767a1ad3b393a15c3bf440becfb270f734207b38f2d52595ad280d0c266fbe",
+      "path": "tmp/pellets-v16/candidates/masters/pellets-20-candidate-e-v16.webp"
+    },
+    {
+      "count": 30,
+      "sha256": "70520edbc3cf88626713c8aaab84162a683769d4161503e7295d65a76adb93a3",
+      "path": "tmp/pellets-v16/candidates/masters/pellets-30-candidate-f-v16.webp"
+    }
+  ],
+  "opticalWidths": [
+    0.4,
+    0.52,
+    0.6,
+    0.68,
+    0.76,
+    0.8,
+    0.83,
+    0.85
+  ],
+  "qa": [
+    "tmp/pellets-v16/final-r4/qa/pellets-v16-final-r4-320.png",
+    "tmp/pellets-v16/final-r4/qa/pellets-v16-final-r4-alpha-edge.png",
+    "tmp/pellets-v16/final-r4/qa/pellets-v16-final-r4-before-after.png",
+    "tmp/pellets-v16/final-r4/qa/pellets-v16-final-r4-branding.png",
+    "tmp/pellets-v16/final-r4/qa/pellets-v16-final-r4-dark.png",
+    "tmp/pellets-v16/final-r4/qa/pellets-v16-final-r4-light.png"
+  ]
+}

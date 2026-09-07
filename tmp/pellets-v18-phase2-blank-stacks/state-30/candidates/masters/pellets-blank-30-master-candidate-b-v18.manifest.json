@@ -1,0 +1,128 @@
+{
+  "candidateId": "pellets-blank-30-master-candidate-b-v18",
+  "supersedesRejectedCandidate": "pellets-blank-30-master-candidate-a-v18",
+  "tier": 30,
+  "quantity": 30,
+  "approvalStatus": "abandoned-by-user",
+  "runtimeActive": false,
+  "brandingPolicy": "zero-branding-all-surfaces",
+  "compositionMode": "6-byte-identical-uniform-5-bag-layers-with-contact-occlusion",
+  "geometry": {
+    "layers": 6,
+    "bagsPerLayer": 5,
+    "uniformCellWidthPixels": 487,
+    "alignment": "direct-vertical-compressed-contact",
+    "zStepPixels": 108
+  },
+  "cameraLock": {
+    "projection": "orthographic",
+    "azimuthDegrees": 40,
+    "elevationDegrees": 27,
+    "zoomFactor": 1.0
+  },
+  "scaleLock": {
+    "instanceScalePercent": 100,
+    "zoomOutAllowed": false,
+    "canvasExpanded": true
+  },
+  "gravityTreatment": {
+    "contactOffsetPixels": 8,
+    "contactBlurPixels": 5,
+    "contactShadowStrengthPercent": 48,
+    "contactShadowPixels": 232980
+  },
+  "lockedSourceHashes": {
+    "tier3PngSha256": "493875f22457dc37f95eda7f9a7ae9661d9aa68177c0911c3a2d124815f4f60a",
+    "tier24PngSha256": "03d3154916d0c9cf47a9da90285458284b3f3a06bb595b1757746cf1c07c5710"
+  },
+  "sourceAlphaMethod": "deterministic-neutral-checkerboard-extraction",
+  "moduleSourceSha256": "888292e60b73d498b11fac6b3e4723630903c5f63deefcdd4670fa8139a82360",
+  "normalizedModuleFileSha256": "b6e8f11dcaeb8a95cfcf4d2a3630dd5adcbfeebc1990d278265d866c4aef6864",
+  "layerPixelSha256": [
+    "605d4b253d9b03359d297ff483de29c022969b8264c9aac9ba38a4bfd12b5921",
+    "605d4b253d9b03359d297ff483de29c022969b8264c9aac9ba38a4bfd12b5921",
+    "605d4b253d9b03359d297ff483de29c022969b8264c9aac9ba38a4bfd12b5921",
+    "605d4b253d9b03359d297ff483de29c022969b8264c9aac9ba38a4bfd12b5921",
+    "605d4b253d9b03359d297ff483de29c022969b8264c9aac9ba38a4bfd12b5921",
+    "605d4b253d9b03359d297ff483de29c022969b8264c9aac9ba38a4bfd12b5921"
+  ],
+  "placementsTopToBottom": [
+    {
+      "layer": 1,
+      "x": 318,
+      "y": 323
+    },
+    {
+      "layer": 2,
+      "x": 318,
+      "y": 431
+    },
+    {
+      "layer": 3,
+      "x": 318,
+      "y": 539
+    },
+    {
+      "layer": 4,
+      "x": 318,
+      "y": 647
+    },
+    {
+      "layer": 5,
+      "x": 318,
+      "y": 755
+    },
+    {
+      "layer": 6,
+      "x": 318,
+      "y": 863
+    }
+  ],
+  "validation": {
+    "status": "pass",
+    "canvas": {
+      "width": 3072,
+      "height": 2048
+    },
+    "alphaBoundsPixels": {
+      "left": 318,
+      "top": 323,
+      "right": 2753,
+      "bottom": 1724
+    },
+    "marginsPixels": {
+      "left": 318,
+      "top": 323,
+      "right": 319,
+      "bottom": 324
+    },
+    "layerCount": 6,
+    "bagsPerLayer": 5,
+    "bagCount": 30,
+    "uniformCellWidthPixels": 487,
+    "uniformCellWidthsPixels": [
+      487,
+      487,
+      487,
+      487,
+      487
+    ],
+    "layerPixelSize": {
+      "width": 2435,
+      "height": 861
+    },
+    "layerZStepPixels": 108,
+    "horizontalLayerOffsetPixels": 0,
+    "contactShadowPixels": 232980,
+    "contactShadowStrengthPercent": 48,
+    "instanceScalePercent": 100,
+    "sourceLayerResampling": "none-after-one-module-normalization",
+    "transparentRgbClean": true,
+    "whiteOrBrightEdgePixels": 0,
+    "errors": []
+  },
+  "masterPngSha256": "768fe27393376c1972b5016394458b12ca31bdaccbb00e110d0f9a55186a6885",
+  "masterWebpSha256": "94acea57a15b8ede9321b2e266ff657fb36ba39e8358892c252f2349494df46c",
+  "abandonmentReason": "extreme-height grid integrity abandoned in favor of final 28-bag 7x4 pallet block",
+  "supersededByCandidate": "pellets-blank-28-master-candidate-a-v18"
+}

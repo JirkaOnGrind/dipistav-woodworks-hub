@@ -1,0 +1,88 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="636" height="556" viewBox="0 0 636 556">
+  <rect width="100%" height="100%" rx="24" fill="#fbf6eb"/>
+  <text x="40" y="52" font-family="system-ui, sans-serif" font-size="24" font-weight="800" fill="#18312a">Top-down grid — 20 palet</text>
+  <g>
+        <rect x="62" y="92" width="128" height="92" fill="#e9b867" stroke="#18312a" stroke-width="3"/>
+        
+        <text x="126" y="144" text-anchor="middle" font-family="ui-monospace, monospace" font-size="16" font-weight="700" fill="#18312a">(0,0)</text>
+      </g>
+<g>
+        <rect x="62" y="184" width="128" height="92" fill="#e9b867" stroke="#18312a" stroke-width="3"/>
+        
+        <text x="126" y="236" text-anchor="middle" font-family="ui-monospace, monospace" font-size="16" font-weight="700" fill="#18312a">(0,1)</text>
+      </g>
+<g>
+        <rect x="62" y="276" width="128" height="92" fill="#e9b867" stroke="#18312a" stroke-width="3"/>
+        
+        <text x="126" y="328" text-anchor="middle" font-family="ui-monospace, monospace" font-size="16" font-weight="700" fill="#18312a">(0,2)</text>
+      </g>
+<g>
+        <rect x="62" y="368" width="128" height="92" fill="#e9b867" stroke="#18312a" stroke-width="3"/>
+        
+        <text x="126" y="420" text-anchor="middle" font-family="ui-monospace, monospace" font-size="16" font-weight="700" fill="#18312a">(0,3)</text>
+      </g>
+<g>
+        <rect x="190" y="92" width="128" height="92" fill="#e9b867" stroke="#18312a" stroke-width="3"/>
+        
+        <text x="254" y="144" text-anchor="middle" font-family="ui-monospace, monospace" font-size="16" font-weight="700" fill="#18312a">(1,0)</text>
+      </g>
+<g>
+        <rect x="190" y="184" width="128" height="92" fill="#e9b867" stroke="#18312a" stroke-width="3"/>
+        <rect x="199" y="193" width="110" height="74" rx="8" fill="#2f624e" stroke="#fff" stroke-width="3"/>
+        <text x="254" y="236" text-anchor="middle" font-family="ui-monospace, monospace" font-size="16" font-weight="700" fill="#fff">(1,1) ×2</text>
+      </g>
+<g>
+        <rect x="190" y="276" width="128" height="92" fill="#e9b867" stroke="#18312a" stroke-width="3"/>
+        <rect x="199" y="285" width="110" height="74" rx="8" fill="#2f624e" stroke="#fff" stroke-width="3"/>
+        <text x="254" y="328" text-anchor="middle" font-family="ui-monospace, monospace" font-size="16" font-weight="700" fill="#fff">(1,2) ×2</text>
+      </g>
+<g>
+        <rect x="190" y="368" width="128" height="92" fill="#e9b867" stroke="#18312a" stroke-width="3"/>
+        
+        <text x="254" y="420" text-anchor="middle" font-family="ui-monospace, monospace" font-size="16" font-weight="700" fill="#18312a">(1,3)</text>
+      </g>
+<g>
+        <rect x="318" y="92" width="128" height="92" fill="#e9b867" stroke="#18312a" stroke-width="3"/>
+        
+        <text x="382" y="144" text-anchor="middle" font-family="ui-monospace, monospace" font-size="16" font-weight="700" fill="#18312a">(2,0)</text>
+      </g>
+<g>
+        <rect x="318" y="184" width="128" height="92" fill="#e9b867" stroke="#18312a" stroke-width="3"/>
+        <rect x="327" y="193" width="110" height="74" rx="8" fill="#2f624e" stroke="#fff" stroke-width="3"/>
+        <text x="382" y="236" text-anchor="middle" font-family="ui-monospace, monospace" font-size="16" font-weight="700" fill="#fff">(2,1) ×2</text>
+      </g>
+<g>
+        <rect x="318" y="276" width="128" height="92" fill="#e9b867" stroke="#18312a" stroke-width="3"/>
+        <rect x="327" y="285" width="110" height="74" rx="8" fill="#2f624e" stroke="#fff" stroke-width="3"/>
+        <text x="382" y="328" text-anchor="middle" font-family="ui-monospace, monospace" font-size="16" font-weight="700" fill="#fff">(2,2) ×2</text>
+      </g>
+<g>
+        <rect x="318" y="368" width="128" height="92" fill="#e9b867" stroke="#18312a" stroke-width="3"/>
+        
+        <text x="382" y="420" text-anchor="middle" font-family="ui-monospace, monospace" font-size="16" font-weight="700" fill="#18312a">(2,3)</text>
+      </g>
+<g>
+        <rect x="446" y="92" width="128" height="92" fill="#e9b867" stroke="#18312a" stroke-width="3"/>
+        
+        <text x="510" y="144" text-anchor="middle" font-family="ui-monospace, monospace" font-size="16" font-weight="700" fill="#18312a">(3,0)</text>
+      </g>
+<g>
+        <rect x="446" y="184" width="128" height="92" fill="#e9b867" stroke="#18312a" stroke-width="3"/>
+        
+        <text x="510" y="236" text-anchor="middle" font-family="ui-monospace, monospace" font-size="16" font-weight="700" fill="#18312a">(3,1)</text>
+      </g>
+<g>
+        <rect x="446" y="276" width="128" height="92" fill="#e9b867" stroke="#18312a" stroke-width="3"/>
+        
+        <text x="510" y="328" text-anchor="middle" font-family="ui-monospace, monospace" font-size="16" font-weight="700" fill="#18312a">(3,2)</text>
+      </g>
+<g>
+        <rect x="446" y="368" width="128" height="92" fill="#e9b867" stroke="#18312a" stroke-width="3"/>
+        
+        <text x="510" y="420" text-anchor="middle" font-family="ui-monospace, monospace" font-size="16" font-weight="700" fill="#18312a">(3,3)</text>
+      </g>
+    <rect x="62" y="498" width="18" height="18" fill="#e9b867" stroke="#18312a"/>
+    <text x="90" y="513" font-family="system-ui, sans-serif" font-size="14" fill="#18312a">spodní vrstva</text>
+    <rect x="212" y="498" width="18" height="18" fill="#2f624e"/>
+    <text x="240" y="513" font-family="system-ui, sans-serif" font-size="14" fill="#18312a">přímá horní podpora</text>
+</svg>

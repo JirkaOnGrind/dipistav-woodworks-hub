@@ -1,0 +1,316 @@
+{
+  "canvas": {
+    "width": 1536,
+    "height": 1024
+  },
+  "alphaBoundsPixels": {
+    "left": 113,
+    "top": 223,
+    "right": 1423,
+    "bottom": 801
+  },
+  "alphaBounds": {
+    "x": 0.073568,
+    "y": 0.217773,
+    "width": 0.852865,
+    "height": 0.564453
+  },
+  "opticalCenter": {
+    "x": 0.5,
+    "y": 0.5
+  },
+  "alphaCoverage": 0.336089,
+  "interiorAlphaMin": 248,
+  "margins": {
+    "left": 113,
+    "top": 223,
+    "right": 113,
+    "bottom": 223
+  },
+  "family": "board-unsorted-narrow",
+  "quantityBand": {
+    "min": 28,
+    "max": 28
+  },
+  "representativeCount": 28,
+  "layout": "5-wide-exact-28",
+  "expectedVisibleConstructionSeams": 58,
+  "camera": {
+    "projection": "orthographic",
+    "azimuthDegrees": 40,
+    "elevationDegrees": 27
+  },
+  "designVectors": {
+    "column": [
+      225.0,
+      -47.0
+    ],
+    "rowDown": [
+      0.0,
+      48.0
+    ],
+    "back": [
+      -380.0,
+      -187.0
+    ]
+  },
+  "autoFit": {
+    "policy": "adaptive-bounds",
+    "safeInset": 0.07,
+    "contourReservePixels": 8.0,
+    "maxScale": 2.0,
+    "renderScale": 0.86708306,
+    "translation": [
+      445.0116,
+      549.7181
+    ]
+  },
+  "lineWeights": {
+    "outer": 4.0,
+    "edge": 3.0,
+    "seam": 4.0,
+    "rings": 1.5,
+    "grain": 1.25
+  },
+  "palette": [
+    "#501801",
+    "#501801",
+    "#501801",
+    "#804015",
+    "#965622",
+    "#C5813B",
+    "#F0A242",
+    "#F4A847",
+    "#EEA847"
+  ],
+  "plankTopColor": null,
+  "plankTopColorPolicy": null,
+  "canonicalTextureSource": "artwork-sources/beams/beam-unit-tile-master-v1-4x.png",
+  "canonicalTextureSha256": "752db88a14866587604e271225b5c85f82d1974d96a62a2cd8ec57beadf3bec0",
+  "visualReference": "Obrázek Codex 12. 8. 2026 19_45_37.png",
+  "texturePolicy": "reference-face-transfer-with-clean-polygon-corners",
+  "cornerCleanup": "no-corner-discoloration-no-dirty-corner-shading-no-ao",
+  "edgePolicy": "dark-timber-edges-no-white-halo-no-bright-inner-fringe",
+  "textureCoverage": "full-face-to-contour",
+  "topFaceTextureLanes": 5,
+  "topFaceTexturePolicy": "canonical-unit-tile-multi-lane-no-procedural-grain",
+  "seamPainterOrder": "row-local-before-upper-row-occlusion",
+  "memberWidthsCm": [
+    8.0,
+    14.0,
+    10.0,
+    12.0
+  ],
+  "renderedMembers": [
+    {
+      "key": "r5c0",
+      "row": 5,
+      "widthCm": 14.0,
+      "normalizedWidthScale": 1.206897,
+      "topTextureLanes": 6
+    },
+    {
+      "key": "r5c1",
+      "row": 5,
+      "widthCm": 10.0,
+      "normalizedWidthScale": 0.862069,
+      "topTextureLanes": 4
+    },
+    {
+      "key": "r5c2",
+      "row": 5,
+      "widthCm": 12.0,
+      "normalizedWidthScale": 1.034483,
+      "topTextureLanes": 5
+    },
+    {
+      "key": "r5c3",
+      "row": 5,
+      "widthCm": 8.0,
+      "normalizedWidthScale": 0.689655,
+      "topTextureLanes": 3
+    },
+    {
+      "key": "r5c4",
+      "row": 5,
+      "widthCm": 14.0,
+      "normalizedWidthScale": 1.206897,
+      "topTextureLanes": 6
+    },
+    {
+      "key": "r4c0",
+      "row": 4,
+      "widthCm": 8.0,
+      "normalizedWidthScale": 0.769231,
+      "topTextureLanes": 4
+    },
+    {
+      "key": "r4c1",
+      "row": 4,
+      "widthCm": 14.0,
+      "normalizedWidthScale": 1.346154,
+      "topTextureLanes": 7
+    },
+    {
+      "key": "r4c2",
+      "row": 4,
+      "widthCm": 10.0,
+      "normalizedWidthScale": 0.961538,
+      "topTextureLanes": 5
+    },
+    {
+      "key": "r4c3",
+      "row": 4,
+      "widthCm": 12.0,
+      "normalizedWidthScale": 1.153846,
+      "topTextureLanes": 6
+    },
+    {
+      "key": "r4c4",
+      "row": 4,
+      "widthCm": 8.0,
+      "normalizedWidthScale": 0.769231,
+      "topTextureLanes": 4
+    },
+    {
+      "key": "r3c0",
+      "row": 3,
+      "widthCm": 12.0,
+      "normalizedWidthScale": 1.071429,
+      "topTextureLanes": 5
+    },
+    {
+      "key": "r3c1",
+      "row": 3,
+      "widthCm": 8.0,
+      "normalizedWidthScale": 0.714286,
+      "topTextureLanes": 4
+    },
+    {
+      "key": "r3c2",
+      "row": 3,
+      "widthCm": 14.0,
+      "normalizedWidthScale": 1.25,
+      "topTextureLanes": 6
+    },
+    {
+      "key": "r3c3",
+      "row": 3,
+      "widthCm": 10.0,
+      "normalizedWidthScale": 0.892857,
+      "topTextureLanes": 4
+    },
+    {
+      "key": "r3c4",
+      "row": 3,
+      "widthCm": 12.0,
+      "normalizedWidthScale": 1.071429,
+      "topTextureLanes": 5
+    },
+    {
+      "key": "r2c0",
+      "row": 2,
+      "widthCm": 10.0,
+      "normalizedWidthScale": 0.925926,
+      "topTextureLanes": 5
+    },
+    {
+      "key": "r2c1",
+      "row": 2,
+      "widthCm": 12.0,
+      "normalizedWidthScale": 1.111111,
+      "topTextureLanes": 6
+    },
+    {
+      "key": "r2c2",
+      "row": 2,
+      "widthCm": 8.0,
+      "normalizedWidthScale": 0.740741,
+      "topTextureLanes": 4
+    },
+    {
+      "key": "r2c3",
+      "row": 2,
+      "widthCm": 14.0,
+      "normalizedWidthScale": 1.296296,
+      "topTextureLanes": 6
+    },
+    {
+      "key": "r2c4",
+      "row": 2,
+      "widthCm": 10.0,
+      "normalizedWidthScale": 0.925926,
+      "topTextureLanes": 5
+    },
+    {
+      "key": "r1c0",
+      "row": 1,
+      "widthCm": 14.0,
+      "normalizedWidthScale": 1.206897,
+      "topTextureLanes": 6
+    },
+    {
+      "key": "r1c1",
+      "row": 1,
+      "widthCm": 10.0,
+      "normalizedWidthScale": 0.862069,
+      "topTextureLanes": 4
+    },
+    {
+      "key": "r1c2",
+      "row": 1,
+      "widthCm": 12.0,
+      "normalizedWidthScale": 1.034483,
+      "topTextureLanes": 5
+    },
+    {
+      "key": "r1c3",
+      "row": 1,
+      "widthCm": 8.0,
+      "normalizedWidthScale": 0.689655,
+      "topTextureLanes": 3
+    },
+    {
+      "key": "r1c4",
+      "row": 1,
+      "widthCm": 14.0,
+      "normalizedWidthScale": 1.206897,
+      "topTextureLanes": 6
+    },
+    {
+      "key": "r0c0",
+      "row": 0,
+      "widthCm": 8.0,
+      "normalizedWidthScale": 0.75,
+      "topTextureLanes": 4
+    },
+    {
+      "key": "r0c1",
+      "row": 0,
+      "widthCm": 14.0,
+      "normalizedWidthScale": 1.3125,
+      "topTextureLanes": 7
+    },
+    {
+      "key": "r0c2",
+      "row": 0,
+      "widthCm": 10.0,
+      "normalizedWidthScale": 0.9375,
+      "topTextureLanes": 5
+    }
+  ],
+  "antiCloning": {
+    "policy": "deterministic-inset-source-sampling",
+    "maximumSourceOffsetPixels4x": [
+      14,
+      10
+    ],
+    "changesGeometryOrColor": false
+  },
+  "seed": 20260813,
+  "styleVersion": "v40",
+  "approvalStatus": "awaiting-approval",
+  "piecesPerLayer": 5,
+  "levelCount": 6,
+  "outputSha256": "013484e36348c0dc722af59e38aa59785ae38fcf9a16e2a5a69f0e55f990a914"
+}

@@ -1,15 +1,29 @@
 import type { ProductVariant } from "@/lib/product-catalog";
-import { getPalletRepresentativeCount } from "@/lib/pallet-composition";
+import {
+  getPalletDisplayCount,
+  PALLET_SOURCE_PROFILES,
+  type PalletSourceProfileId,
+} from "@/lib/pallet-composition";
 import { V9_ARTWORK_CANDIDATES } from "@/lib/product-artwork-v9-candidates";
 import { V10_ARTWORK_CANDIDATES } from "@/lib/product-artwork-v10-candidates";
 import { V11_ARTWORK_CANDIDATES } from "@/lib/product-artwork-v11-candidates";
+import { V12_ARTWORK_CANDIDATES } from "@/lib/product-artwork-v12-candidates";
+import { V13_ARTWORK_CANDIDATES } from "@/lib/product-artwork-v13-candidates";
+import { V15_ARTWORK_CANDIDATES } from "@/lib/product-artwork-v15-candidates";
+import { V16_ARTWORK_CANDIDATES } from "@/lib/product-artwork-v16-candidates";
+import { V19_ARTWORK_CANDIDATES } from "@/lib/product-artwork-v19-candidates";
+import { V20_ARTWORK_CANDIDATES } from "@/lib/product-artwork-v20-candidates";
+import { V21_ARTWORK_CANDIDATES } from "@/lib/product-artwork-v21-candidates";
+import { V33_ARTWORK_CANDIDATES } from "@/lib/product-artwork-v33-candidates";
+import { getTimberDisplayCount, getTimberDynamicFamily } from "@/lib/timber-dynamic-artwork";
+import { SLAB_BUNDLE_ARTWORK } from "@/lib/slab-bundle-artwork";
+import { FIREWOOD_ARTWORK } from "@/lib/firewood-artwork";
 
 const CONFIGURATOR_ROOT = "/images/illustrations/configurator-v3";
 const CONFIGURATOR_V4_ROOT = "/images/illustrations/configurator-v4";
 const CONFIGURATOR_V5_ROOT = "/images/illustrations/configurator-v5";
 const CONFIGURATOR_V6_ROOT = "/images/illustrations/configurator-v6";
 const CONFIGURATOR_V7_ROOT = "/images/illustrations/configurator-v7";
-const CONFIGURATOR_V10_ROOT = "/images/illustrations/configurator-v10";
 const GOLDEN_MASTERS_ROOT = "/images/illustrations/golden-masters";
 const HOMEPAGE_ROOT = "/images/illustrations";
 const BEAMS_ROOT = "/images/illustrations/beams";
@@ -20,6 +34,7 @@ export type SellingUnitCount = 1 | 2 | 3 | 4 | 5 | 8 | 12 | 16 | 20 | 30;
 export type NormalizedPoint = { x: number; y: number };
 export type NormalizedBounds = NormalizedPoint & { width: number; height: number };
 export type QuantityBand = { min: number; max?: number };
+export type ResponsiveArtworkSource = { source: string; width: number };
 
 export type ArtworkSceneDefinition = {
   id: string;
@@ -29,9 +44,13 @@ export type ArtworkSceneDefinition = {
   quantityBand: QuantityBand;
   visualMassRank: number;
   source: string;
+  responsiveSources?: readonly ResponsiveArtworkSource[];
+  responsiveSizes?: string;
   canvas: { width: number; height: number };
   alphaBounds: NormalizedBounds;
   opticalCenter: NormalizedPoint;
+  bottomAnchor?: NormalizedPoint;
+  previewScale?: number;
   safeInset: number;
   transformPolicy: "beam" | "timber" | "none";
   transformStrength?: number;
@@ -40,12 +59,32 @@ export type ArtworkSceneDefinition = {
   maxScaleX?: number;
   maxScaleY?: number;
   preloadNeighbors: readonly string[];
+  preloadPolicy?: "neighbors" | "active-only";
   renderMode: "master" | "legacy-units" | "modular-pallet";
+  palletProfile?: PalletSourceProfileId;
   legacyUnitCount?: SellingUnitCount;
   filter?: string;
   representativeCount?: number;
-  styleVersion?: "legacy" | "v9" | "v10" | "v11";
+  styleVersion?:
+    | "legacy"
+    | "v9"
+    | "v10"
+    | "v11"
+    | "v12"
+    | "v13"
+    | "v14"
+    | "v15"
+    | "v16"
+    | "v19"
+    | "v20"
+    | "v21"
+    | "v33"
+    | "v34"
+    | "v35"
+    | "v36"
+    | "v37";
   fitPolicy?: "alpha-safe" | "adaptive-bounds";
+  targetAlphaWidth?: number;
 };
 
 export type ResolvedArtworkScene = {
@@ -167,7 +206,6 @@ const SELLING_UNIT_ARTWORK: Record<string, string> = {
   "pallet-16": `${CONFIGURATOR_V4_ROOT}/paleta-drevo-16-v4.webp`,
 };
 
-const MODULAR_PALLET_SOURCE = `${CONFIGURATOR_V10_ROOT}/firewood-pallet-1-master-v10.webp`;
 const MODULAR_PALLET_BANDS = [
   { suffix: "1", quantityBand: { min: 1, max: 1 }, artworkKey: "one" },
   { suffix: "2", quantityBand: { min: 2, max: 2 }, artworkKey: "two" },
@@ -179,9 +217,20 @@ const MODULAR_PALLET_BANDS = [
 ] as const;
 
 function modularPalletFamily(
-  categoryId: "stipane-drevo" | "drivi-na-paletach",
-  illustrationVariant: "firewood-pallet" | "pallet-16",
+  categoryId: "stipane-drevo" | "drivi-na-paletach" | "pelety",
+  illustrationVariant:
+    | "firewood-pallet"
+    | "pallet-16"
+    | "pallet-25"
+    | "pallet-33"
+    | "pallet-25-16"
+    | "pallet-33-16"
+    | "pellets-pallet",
+  palletProfile: PalletSourceProfileId,
 ) {
+  const profile = PALLET_SOURCE_PROFILES[palletProfile];
+  const alphaWidth = profile.alphaBounds.right - profile.alphaBounds.left;
+  const alphaHeight = profile.alphaBounds.bottom - profile.alphaBounds.top;
   return addPreloadNeighbors(
     MODULAR_PALLET_BANDS.map((band, index) => ({
       id: `${illustrationVariant}-modular-${band.suffix}`,
@@ -190,26 +239,35 @@ function modularPalletFamily(
       artworkKey: band.artworkKey,
       quantityBand: band.quantityBand,
       visualMassRank: index + 1,
-      source: MODULAR_PALLET_SOURCE,
-      canvas: { width: 1254, height: 1254 },
+      source: profile.source,
+      canvas: profile.canvas,
       alphaBounds: {
-        x: 142 / 1254,
-        y: 83 / 1254,
-        width: 970 / 1254,
-        height: 1089 / 1254,
+        x: profile.alphaBounds.left / profile.canvas.width,
+        y: profile.alphaBounds.top / profile.canvas.height,
+        width: alphaWidth / profile.canvas.width,
+        height: alphaHeight / profile.canvas.height,
       },
-      opticalCenter: { x: 627 / 1254, y: 627.5 / 1254 },
+      opticalCenter: {
+        x: (profile.alphaBounds.left + profile.alphaBounds.right) / 2 / profile.canvas.width,
+        y: (profile.alphaBounds.top + profile.alphaBounds.bottom) / 2 / profile.canvas.height,
+      },
       safeInset: 0.07,
       transformPolicy: "none" as const,
       renderMode: "modular-pallet" as const,
-      representativeCount: getPalletRepresentativeCount(band.quantityBand.min),
+      palletProfile,
+      representativeCount: getPalletDisplayCount(band.quantityBand.min),
     })),
   );
 }
 
 const MODULAR_PALLET_FAMILIES = {
-  "firewood-pallet": modularPalletFamily("stipane-drevo", "firewood-pallet"),
-  "pallet-16": modularPalletFamily("drivi-na-paletach", "pallet-16"),
+  "firewood-pallet": modularPalletFamily("stipane-drevo", "firewood-pallet", "firewood-drevo1"),
+  "pallet-16": modularPalletFamily("drivi-na-paletach", "pallet-16", "firewood-16"),
+  "pallet-25": modularPalletFamily("drivi-na-paletach", "pallet-25", "firewood-25"),
+  "pallet-33": modularPalletFamily("drivi-na-paletach", "pallet-33", "firewood-33-1prm"),
+  "pallet-25-16": modularPalletFamily("drivi-na-paletach", "pallet-25-16", "firewood-25-16"),
+  "pallet-33-16": modularPalletFamily("drivi-na-paletach", "pallet-33-16", "firewood-33-16prm"),
+  "pellets-pallet": modularPalletFamily("pelety", "pellets-pallet", "pellets-975"),
 } as const;
 
 const BAND_BY_KEY: Record<ProductArtworkKey, QuantityBand> = {
@@ -339,6 +397,70 @@ function withV11Overrides(
   illustrationVariant: string,
 ) {
   return withArtworkOverrides(baseFamily, categoryId, illustrationVariant, V11_ARTWORK_CANDIDATES);
+}
+
+function withV12Overrides(
+  baseFamily: readonly ArtworkSceneDefinition[],
+  categoryId: string,
+  illustrationVariant: string,
+) {
+  return withArtworkOverrides(baseFamily, categoryId, illustrationVariant, V12_ARTWORK_CANDIDATES);
+}
+
+function withV13Overrides(
+  baseFamily: readonly ArtworkSceneDefinition[],
+  categoryId: string,
+  illustrationVariant: string,
+) {
+  return withArtworkOverrides(baseFamily, categoryId, illustrationVariant, V13_ARTWORK_CANDIDATES);
+}
+
+function withV15Overrides(
+  baseFamily: readonly ArtworkSceneDefinition[],
+  categoryId: string,
+  illustrationVariant: string,
+) {
+  return withArtworkOverrides(baseFamily, categoryId, illustrationVariant, V15_ARTWORK_CANDIDATES);
+}
+
+function withV16Overrides(
+  baseFamily: readonly ArtworkSceneDefinition[],
+  categoryId: string,
+  illustrationVariant: string,
+) {
+  return withArtworkOverrides(baseFamily, categoryId, illustrationVariant, V16_ARTWORK_CANDIDATES);
+}
+
+function withV19Overrides(
+  baseFamily: readonly ArtworkSceneDefinition[],
+  categoryId: string,
+  illustrationVariant: string,
+) {
+  return withArtworkOverrides(baseFamily, categoryId, illustrationVariant, V19_ARTWORK_CANDIDATES);
+}
+
+function withV20Overrides(
+  baseFamily: readonly ArtworkSceneDefinition[],
+  categoryId: string,
+  illustrationVariant: string,
+) {
+  return withArtworkOverrides(baseFamily, categoryId, illustrationVariant, V20_ARTWORK_CANDIDATES);
+}
+
+function withV21Overrides(
+  baseFamily: readonly ArtworkSceneDefinition[],
+  categoryId: string,
+  illustrationVariant: string,
+) {
+  return withArtworkOverrides(baseFamily, categoryId, illustrationVariant, V21_ARTWORK_CANDIDATES);
+}
+
+function withV33Overrides(
+  baseFamily: readonly ArtworkSceneDefinition[],
+  categoryId: string,
+  illustrationVariant: string,
+) {
+  return withArtworkOverrides(baseFamily, categoryId, illustrationVariant, V33_ARTWORK_CANDIDATES);
 }
 
 function timberFamily(
@@ -732,10 +854,7 @@ export function getSellingUnitCount(
     return 8;
   }
   if (illustrationVariant?.startsWith("slabs-")) {
-    if (quantity <= 1) return 1;
-    if (quantity === 2) return 2;
-    if (quantity === 3) return 3;
-    return 4;
+    return Math.min(5, Math.max(1, Math.trunc(quantity))) as SellingUnitCount;
   }
   if (illustrationVariant === "pellets-bag") {
     if (quantity <= 1) return 1;
@@ -827,17 +946,55 @@ export function getArtworkSceneFamily(
   categoryId: string,
   variant: ProductVariant,
 ): readonly ArtworkSceneDefinition[] {
-  if (variant.illustrationVariant === "firewood-pallet") {
-    return MODULAR_PALLET_FAMILIES["firewood-pallet"];
+  if (categoryId === "krajinky" && variant.illustrationVariant.startsWith("slabs-")) {
+    return SLAB_BUNDLE_ARTWORK;
   }
-  if (variant.illustrationVariant === "pallet-16") {
-    return MODULAR_PALLET_FAMILIES["pallet-16"];
+  if (categoryId === "stipane-drevo" && variant.illustrationVariant === "firewood-loose") {
+    return FIREWOOD_ARTWORK;
   }
+  const timberDynamicFamily = getTimberDynamicFamily(categoryId, variant);
+  if (timberDynamicFamily) return timberDynamicFamily;
 
-  return withV11Overrides(
-    withV10Overrides(
-      withV9Overrides(
-        getLegacyArtworkSceneFamily(categoryId, variant),
+  const modularPalletFamily =
+    MODULAR_PALLET_FAMILIES[variant.illustrationVariant as keyof typeof MODULAR_PALLET_FAMILIES];
+  if (modularPalletFamily) return modularPalletFamily;
+
+  return withV33Overrides(
+    withV21Overrides(
+      withV20Overrides(
+        withV19Overrides(
+          withV16Overrides(
+            withV15Overrides(
+              withV13Overrides(
+                withV12Overrides(
+                  withV11Overrides(
+                    withV10Overrides(
+                      withV9Overrides(
+                        getLegacyArtworkSceneFamily(categoryId, variant),
+                        categoryId,
+                        variant.illustrationVariant,
+                      ),
+                      categoryId,
+                      variant.illustrationVariant,
+                    ),
+                    categoryId,
+                    variant.illustrationVariant,
+                  ),
+                  categoryId,
+                  variant.illustrationVariant,
+                ),
+                categoryId,
+                variant.illustrationVariant,
+              ),
+              categoryId,
+              variant.illustrationVariant,
+            ),
+            categoryId,
+            variant.illustrationVariant,
+          ),
+          categoryId,
+          variant.illustrationVariant,
+        ),
         categoryId,
         variant.illustrationVariant,
       ),
@@ -861,8 +1018,11 @@ export function resolveArtworkScene(
   quantity: number,
 ): ResolvedArtworkScene {
   const family = getArtworkSceneFamily(categoryId, variant);
+  const sceneQuantity = getTimberDynamicFamily(categoryId, variant)
+    ? getTimberDisplayCount(variant, quantity)
+    : quantity;
   const scene =
-    family.find((candidate) => inBand(quantity, candidate.quantityBand)) ?? family.at(-1)!;
+    family.find((candidate) => inBand(sceneQuantity, candidate.quantityBand)) ?? family.at(-1)!;
 
   if (scene.renderMode === "legacy-units" && scene.legacyUnitCount === undefined) {
     const source =
@@ -889,6 +1049,7 @@ export function getArtworkPreloadSources(
   quantity: number,
 ) {
   const { scene } = resolveArtworkScene(categoryId, variant, quantity);
+  if (scene.preloadPolicy === "active-only") return [scene.source];
   return [...new Set([scene.source, ...scene.preloadNeighbors])];
 }
 
@@ -966,8 +1127,11 @@ export function calculateSafeArtworkTransform(
   const maxSafeScaleX = halfSafeWidth / horizontalSpan;
   const maxSafeScaleY = halfSafeHeight / verticalSpan;
   const strength = scene.transformStrength ?? 1;
-  const dynamicScaleX = 1 + (requestedScale.x - 1) * strength;
-  const dynamicScaleY = 1 + (requestedScale.y - 1) * strength;
+  const targetScale = scene.targetAlphaWidth
+    ? scene.targetAlphaWidth / scene.alphaBounds.width
+    : undefined;
+  const dynamicScaleX = targetScale ?? 1 + (requestedScale.x - 1) * strength;
+  const dynamicScaleY = targetScale ?? 1 + (requestedScale.y - 1) * strength;
   const requestedX = clamp(
     dynamicScaleX,
     scene.minScaleX ?? 0,

@@ -1,0 +1,81 @@
+{
+  "candidateId": "pellets-blank-02-master-candidate-a-v18",
+  "phase": 2,
+  "stateIndex": 2,
+  "quantity": 2,
+  "approvalStatus": "awaiting-visual-approval",
+  "runtimeActive": false,
+  "canvas": {
+    "width": 1536,
+    "height": 1024
+  },
+  "alphaBoundsPixels": {
+    "left": 240,
+    "top": 80,
+    "right": 1296,
+    "bottom": 943
+  },
+  "alphaBounds": {
+    "x": 0.15625,
+    "y": 0.078125,
+    "width": 0.6875,
+    "height": 0.842773
+  },
+  "opticalCenter": {
+    "x": 0.5,
+    "y": 0.5
+  },
+  "alphaCoverage": 0.473815,
+  "cornersTransparent": true,
+  "transparentRgbClean": true,
+  "brandingPolicy": "zero-branding-all-surfaces",
+  "compositionMode": "byte-identical-unit-composite-no-resampling",
+  "cameraLock": {
+    "projection": "orthographic",
+    "azimuthDegrees": 40,
+    "elevationDegrees": 27,
+    "zoomFactor": 1.0,
+    "canvasMayExpand": true
+  },
+  "scaleLock": {
+    "unitAlphaFootprintPixels": {
+      "width": 520,
+      "height": 863
+    },
+    "instanceScalePercent": [
+      100,
+      100
+    ],
+    "zoomOutAllowed": false
+  },
+  "layout": "two-upright-parallel-side-by-side",
+  "gapPixels": 16,
+  "placements": [
+    {
+      "id": "upright-1",
+      "x": 240,
+      "y": 80,
+      "width": 520,
+      "height": 863
+    },
+    {
+      "id": "upright-2",
+      "x": 776,
+      "y": 80,
+      "width": 520,
+      "height": 863
+    }
+  ],
+  "unitSource": "artwork-sources/pellets/pellets-blank-upright-unit-master-v18.png",
+  "unitSourceSha256": "46ec4ff49e6fd776529fb4ab428d18fe7811159591b4e41327a2e6a958f242f9",
+  "instancePixelSourceSha256": [
+    "c8b292e8100cbdd7a7e6c8e6901257b0ffb695e5669492344565f36c1b28378e",
+    "c8b292e8100cbdd7a7e6c8e6901257b0ffb695e5669492344565f36c1b28378e"
+  ],
+  "lockedLogoSha256": "590dbcd3773af5a9c82eecfe35f1316c68808b02f9f5a4f72c91c594e5fc87ed",
+  "layoutReferenceSha256": "eafa06688b5e0bd9d4bbcd9929a814d9816619a35b2ad7d2540f542c540b4afe",
+  "promptSpec": "tmp/pellets-v18-phase2-blank-stacks/state-02/pellets-blank-state-02-candidate-a-v18.prompt.md",
+  "promptSpecSha256": "e1eb51e814f900657a03b229b9602964e6475aabef0e0ae8f086e408df3389ce",
+  "masterPngSha256": "bb26792046bb4006cf1e0289dd442749037a3e05d8f15ba457710947414c7005",
+  "masterWebpSha256": "2224ca9780302587cc2a6c57009509a6df1ddadc0807241b634259972459f59d"
+}

@@ -1,0 +1,67 @@
+{
+  "canvas": {
+    "width": 1536,
+    "height": 1024
+  },
+  "alphaBoundsPixels": {
+    "left": 153,
+    "top": 199,
+    "right": 1383,
+    "bottom": 825
+  },
+  "alphaBounds": {
+    "x": 0.099609,
+    "y": 0.194336,
+    "width": 0.800781,
+    "height": 0.611328
+  },
+  "opticalCenter": {
+    "x": 0.5,
+    "y": 0.5
+  },
+  "alphaCoverage": 0.399588,
+  "cornersTransparent": true,
+  "transparentRgbClean": true,
+  "safeInsetPixels": {
+    "x": 116,
+    "y": 80
+  },
+  "safeInsetPass": true,
+  "dimensionsPass": true,
+  "rgbaPass": true,
+  "losslessWebp": true,
+  "id": "pellets-20-candidate-c-v16",
+  "styleVersion": "v16-selective-r2-candidate",
+  "approvalStatus": "awaiting-visual-approval",
+  "runtimeActivation": "blocked-until-explicit-visual-approval",
+  "representativeCount": 20,
+  "visibleBagCountEstimate": 20,
+  "targetOpticalWidth": 0.8,
+  "effectiveAlphaWidth": 0.800781,
+  "source": "tmp/pellets-v16/source/pellets-20-source-c-v16.png",
+  "sourceSha256": "71b67a547c2ec4fcefc9970f1c29c65f25fa466c285503d2cd11b25e0fd0e8ef",
+  "outputSha256": "4573e2abb388a8fa769b4a57ae6e12fda7b65fed1df00bd92d92cb8447efd9c3",
+  "alphaMethod": "deterministic-neutral-checkerboard-extraction-v16",
+  "renderPipeline": "built-in reference-guided ImageGen; deterministic neutral-background extraction; 4x fit; one Lanczos downsample; lossless WebP",
+  "goldenReferences": [
+    {
+      "count": 3,
+      "sha256": "b740dfb57fa9ca38a12c9a5818e5558ae28b9305b43ed18ad167e294b89bb819"
+    },
+    {
+      "count": 50,
+      "sha256": "16cad2725c02ecf36f89717a0abd27fbc928ebb263337197d3285cb7c567895d"
+    }
+  ],
+  "composition": "reduced Golden-50 rectangular block with four full-size columns and rear depth",
+  "fullyVisibleLabelCount": 4,
+  "nativeBranding": true,
+  "decalApplied": false,
+  "blankVisibleBagPass": true,
+  "miniBagPass": true,
+  "manualScaleDeviationEstimatePct": 6.0,
+  "sizeTolerancePct": 8.0,
+  "sizeTolerancePass": true,
+  "layerSupportPass": true,
+  "unifiedPerspectivePass": true
+}

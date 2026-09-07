@@ -1,6 +1,6 @@
 /* eslint-disable react-refresh/only-export-components */
 
-import { createContext, useContext, useState, type ReactNode } from "react";
+import { createContext, useContext, useEffect, useState, type ReactNode } from "react";
 import {
   calculateVariantQuote,
   type Availability,
@@ -82,6 +82,47 @@ type CartContextValue = {
 };
 
 const CartContext = createContext<CartContextValue | null>(null);
+const CART_STORAGE_KEY = "dipistav-cart-v1";
+let cartMemory: CartItem[] | undefined;
+
+function isCartItem(value: unknown): value is CartItem {
+  if (!value || typeof value !== "object") return false;
+  const item = value as Partial<CartItem>;
+  return (
+    typeof item.id === "string" &&
+    (item.kind === "catalog" || item.kind === "custom") &&
+    typeof item.title === "string" &&
+    typeof item.quantity === "number" &&
+    typeof item.quantityUnitLabel === "string" &&
+    Array.isArray(item.details) &&
+    item.details.every((detail) => typeof detail === "string") &&
+    typeof item.totalPrice === "number"
+  );
+}
+
+function readStoredItems() {
+  if (typeof window === "undefined") return [];
+  try {
+    const stored = JSON.parse(window.localStorage.getItem(CART_STORAGE_KEY) ?? "null") as unknown;
+    if (!stored || typeof stored !== "object") return [];
+    const payload = stored as { version?: unknown; items?: unknown };
+    return payload.version === 1 && Array.isArray(payload.items) && payload.items.every(isCartItem)
+      ? payload.items
+      : [];
+  } catch {
+    return [];
+  }
+}
+
+function persistItems(items: CartItem[]) {
+  cartMemory = items;
+  if (typeof window === "undefined") return;
+  try {
+    window.localStorage.setItem(CART_STORAGE_KEY, JSON.stringify({ version: 1, items }));
+  } catch {
+    // The in-memory store still keeps the cart alive when storage is unavailable.
+  }
+}
 
 function createCartId() {
   if (typeof crypto !== "undefined" && "randomUUID" in crypto) {
@@ -101,6 +142,53 @@ function customDetails(item: CustomCartInput) {
     `Dřevina: ${item.species}`,
     `Objem: ${formatDecimal(item.volumeM3, 4)} m³`,
   ];
+}
+
+function normalizedText(value: string) {
+  return value
+    .toLocaleLowerCase("cs-CZ")
+    .replace(/[^a-z0-9á-ž]+/gi, " ")
+    .trim();
+}
+
+export function uniqueCartDetails(title: string, details: string[], quantity: number) {
+  const titleText = normalizedText(title);
+  const titleParts = title.split("/").map(normalizedText);
+  const quantityText = String(quantity);
+  const seen = new Set<string>();
+
+  return details.filter((detail) => {
+    const [label, ...valueParts] = detail.split(":");
+    const normalizedLabel = normalizedText(label);
+    const value = normalizedText(valueParts.length > 0 ? valueParts.join(":") : label);
+    const normalizedDetail = normalizedText(detail);
+    const isDimensionAlreadyInTitle =
+      ["profil", "délka", "šířka", "tloušťka", "rozměr"].includes(normalizedLabel) &&
+      titleText.includes(value);
+    const isDuplicate =
+      !value ||
+      titleText === value ||
+      titleParts.includes(value) ||
+      isDimensionAlreadyInTitle ||
+      (/^počet\b/i.test(detail) && normalizedDetail.includes(quantityText)) ||
+      seen.has(normalizedDetail);
+    seen.add(normalizedDetail);
+    return !isDuplicate;
+  });
+}
+
+const VISIBLE_VARIANT_DETAIL_LABELS = new Set(["typ", "tloušťka", "délka", "profil"]);
+const HIDDEN_VARIANT_DETAIL_TEXT = ["výpočtová šířka", "průměr skupiny"];
+
+export function visibleVariantDetails(title: string, details: string[], quantity: number) {
+  return uniqueCartDetails(title, details, quantity).filter((detail) => {
+    const [label = ""] = detail.split(":");
+    const normalizedDetail = normalizedText(detail);
+    return (
+      VISIBLE_VARIANT_DETAIL_LABELS.has(normalizedText(label)) &&
+      !HIDDEN_VARIANT_DETAIL_TEXT.some((hiddenText) => normalizedDetail.includes(hiddenText))
+    );
+  });
 }
 
 export function upsertCatalogItem(
@@ -162,16 +250,31 @@ export function upsertCatalogItem(
 }
 
 export function CartProvider({ children }: { children: ReactNode }) {
-  const [items, setItems] = useState<CartItem[]>([]);
+  const [items, setItems] = useState<CartItem[]>(() => cartMemory ?? []);
   const [isOpen, setIsOpen] = useState(false);
 
+  useEffect(() => {
+    if (cartMemory) return;
+    const storedItems = readStoredItems();
+    cartMemory = storedItems;
+    setItems(storedItems);
+  }, []);
+
+  const updateItems = (updater: (currentItems: CartItem[]) => CartItem[]) => {
+    setItems((currentItems) => {
+      const nextItems = updater(currentItems);
+      persistItems(nextItems);
+      return nextItems;
+    });
+  };
+
   const addCatalogItem = (input: CatalogCartInput) => {
-    setItems((currentItems) => upsertCatalogItem(currentItems, input));
+    updateItems((currentItems) => upsertCatalogItem(currentItems, input));
     setIsOpen(true);
   };
 
   const addCustomItem = (item: CustomCartInput) => {
-    setItems((currentItems) => [
+    updateItems((currentItems) => [
       ...currentItems,
       {
         id: createCartId(),
@@ -193,7 +296,7 @@ export function CartProvider({ children }: { children: ReactNode }) {
 
   const value: CartContextValue = {
     items,
-    itemCount: items.reduce((total, item) => total + item.quantity, 0),
+    itemCount: items.length,
     estimatedTotal: items.reduce((total, item) => total + item.totalPrice, 0),
     isOpen,
     setIsOpen,
@@ -201,8 +304,8 @@ export function CartProvider({ children }: { children: ReactNode }) {
     addCatalogItem,
     addCustomItem,
     removeItem: (itemId) =>
-      setItems((currentItems) => currentItems.filter((item) => item.id !== itemId)),
-    clearCart: () => setItems([]),
+      updateItems((currentItems) => currentItems.filter((item) => item.id !== itemId)),
+    clearCart: () => updateItems(() => []),
   };
 
   return <CartContext.Provider value={value}>{children}</CartContext.Provider>;

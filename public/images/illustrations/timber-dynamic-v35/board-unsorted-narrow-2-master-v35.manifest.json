@@ -1,0 +1,57 @@
+{
+  "canvas": {
+    "width": 1536,
+    "height": 1024
+  },
+  "alphaBoundsPixels": {
+    "left": 113,
+    "top": 251,
+    "right": 1423,
+    "bottom": 773
+  },
+  "alphaBounds": {
+    "x": 0.073568,
+    "y": 0.245117,
+    "width": 0.852865,
+    "height": 0.509766
+  },
+  "opticalCenter": {
+    "x": 0.5,
+    "y": 0.5
+  },
+  "alphaCoverage": 0.254486,
+  "interiorAlphaMin": 248,
+  "margins": {
+    "left": 113,
+    "top": 251,
+    "right": 113,
+    "bottom": 251
+  },
+  "family": "board-unsorted-narrow",
+  "quantityBand": {
+    "min": 2,
+    "max": 2
+  },
+  "representativeCount": 2,
+  "layout": "5-wide-exact-2",
+  "piecesPerLayer": 5,
+  "levelCount": 1,
+  "renderOrigin": "approved-v11-byte-copy",
+  "designVectors": {
+    "column": [
+      225.0,
+      -47.0
+    ],
+    "rowDown": [
+      0.0,
+      48.0
+    ],
+    "back": [
+      -380.0,
+      -187.0
+    ]
+  },
+  "outputSha256": "4727acb78f7b58a283b8fda046a862f4b6db44550f2ae4d8dda821b822db455d",
+  "runtimePath": "/images/illustrations/timber-dynamic-v35/board-unsorted-narrow-2-master-v35.webp",
+  "styleVersion": "v35"
+}

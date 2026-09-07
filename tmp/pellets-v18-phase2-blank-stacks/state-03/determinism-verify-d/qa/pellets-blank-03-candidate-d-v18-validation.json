@@ -1,0 +1,24 @@
+{
+  "status": "pass",
+  "canvas": {
+    "width": 2560,
+    "height": 1536
+  },
+  "alphaBoundsPixels": {
+    "left": 231,
+    "top": 167,
+    "right": 2329,
+    "bottom": 1368
+  },
+  "marginsPixels": {
+    "left": 231,
+    "top": 167,
+    "right": 231,
+    "bottom": 168
+  },
+  "adjacentContactOverlapPixelsBeforeOcclusion": 93357,
+  "visibleEmptyGapPixels": 0,
+  "whiteOrBrightEdgePixels": 0,
+  "transparentRgbClean": true,
+  "errors": []
+}

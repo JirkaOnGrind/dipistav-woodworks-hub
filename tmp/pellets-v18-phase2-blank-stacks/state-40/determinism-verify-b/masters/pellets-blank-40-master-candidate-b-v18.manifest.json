@@ -1,0 +1,138 @@
+{
+  "candidateId": "pellets-blank-40-master-candidate-b-v18",
+  "supersedesRejectedCandidate": "pellets-blank-40-master-candidate-a-v18",
+  "tier": 40,
+  "quantity": 40,
+  "approvalStatus": "awaiting-visual-approval",
+  "runtimeActive": false,
+  "brandingPolicy": "zero-branding-all-surfaces",
+  "compositionMode": "8-byte-identical-uniform-5-bag-layers-with-contact-occlusion",
+  "geometry": {
+    "layers": 8,
+    "bagsPerLayer": 5,
+    "uniformCellWidthPixels": 487,
+    "alignment": "direct-vertical-compressed-contact",
+    "zStepPixels": 108
+  },
+  "cameraLock": {
+    "projection": "orthographic",
+    "azimuthDegrees": 40,
+    "elevationDegrees": 27,
+    "zoomFactor": 1.0
+  },
+  "scaleLock": {
+    "instanceScalePercent": 100,
+    "zoomOutAllowed": false,
+    "canvasExpanded": true
+  },
+  "gravityTreatment": {
+    "contactOffsetPixels": 8,
+    "contactBlurPixels": 5,
+    "contactShadowStrengthPercent": 48,
+    "contactShadowPixels": 326172
+  },
+  "lockedSourceHashes": {
+    "tier3PngSha256": "493875f22457dc37f95eda7f9a7ae9661d9aa68177c0911c3a2d124815f4f60a",
+    "tier24PngSha256": "03d3154916d0c9cf47a9da90285458284b3f3a06bb595b1757746cf1c07c5710"
+  },
+  "sourceAlphaMethod": "deterministic-neutral-checkerboard-extraction",
+  "moduleSourceSha256": "888292e60b73d498b11fac6b3e4723630903c5f63deefcdd4670fa8139a82360",
+  "normalizedModuleFileSha256": "b6e8f11dcaeb8a95cfcf4d2a3630dd5adcbfeebc1990d278265d866c4aef6864",
+  "layerPixelSha256": [
+    "605d4b253d9b03359d297ff483de29c022969b8264c9aac9ba38a4bfd12b5921",
+    "605d4b253d9b03359d297ff483de29c022969b8264c9aac9ba38a4bfd12b5921",
+    "605d4b253d9b03359d297ff483de29c022969b8264c9aac9ba38a4bfd12b5921",
+    "605d4b253d9b03359d297ff483de29c022969b8264c9aac9ba38a4bfd12b5921",
+    "605d4b253d9b03359d297ff483de29c022969b8264c9aac9ba38a4bfd12b5921",
+    "605d4b253d9b03359d297ff483de29c022969b8264c9aac9ba38a4bfd12b5921",
+    "605d4b253d9b03359d297ff483de29c022969b8264c9aac9ba38a4bfd12b5921",
+    "605d4b253d9b03359d297ff483de29c022969b8264c9aac9ba38a4bfd12b5921"
+  ],
+  "placementsTopToBottom": [
+    {
+      "layer": 1,
+      "x": 318,
+      "y": 343
+    },
+    {
+      "layer": 2,
+      "x": 318,
+      "y": 451
+    },
+    {
+      "layer": 3,
+      "x": 318,
+      "y": 559
+    },
+    {
+      "layer": 4,
+      "x": 318,
+      "y": 667
+    },
+    {
+      "layer": 5,
+      "x": 318,
+      "y": 775
+    },
+    {
+      "layer": 6,
+      "x": 318,
+      "y": 883
+    },
+    {
+      "layer": 7,
+      "x": 318,
+      "y": 991
+    },
+    {
+      "layer": 8,
+      "x": 318,
+      "y": 1099
+    }
+  ],
+  "validation": {
+    "status": "pass",
+    "canvas": {
+      "width": 3072,
+      "height": 2304
+    },
+    "alphaBoundsPixels": {
+      "left": 318,
+      "top": 343,
+      "right": 2753,
+      "bottom": 1960
+    },
+    "marginsPixels": {
+      "left": 318,
+      "top": 343,
+      "right": 319,
+      "bottom": 344
+    },
+    "layerCount": 8,
+    "bagsPerLayer": 5,
+    "bagCount": 40,
+    "uniformCellWidthPixels": 487,
+    "uniformCellWidthsPixels": [
+      487,
+      487,
+      487,
+      487,
+      487
+    ],
+    "layerPixelSize": {
+      "width": 2435,
+      "height": 861
+    },
+    "layerZStepPixels": 108,
+    "horizontalLayerOffsetPixels": 0,
+    "contactShadowPixels": 326172,
+    "contactShadowStrengthPercent": 48,
+    "instanceScalePercent": 100,
+    "sourceLayerResampling": "none-after-one-module-normalization",
+    "transparentRgbClean": true,
+    "whiteOrBrightEdgePixels": 0,
+    "errors": []
+  },
+  "masterPngSha256": "4417c9c9639f34c3a66324437c02c8a8695ddde86ea0fa37a5c9c945d03af9fa",
+  "masterWebpSha256": "d4139800e44e82884d72d9f78905e8b255eddcd09718f2b16fa0c578a5fabe34"
+}
