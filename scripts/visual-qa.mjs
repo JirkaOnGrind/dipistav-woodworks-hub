@@ -113,10 +113,13 @@ try {
   ) {
     errors.push("mobile-390: not all eight lazy homepage category images loaded after scrolling");
   }
+  const homepageScreenshot = path.join(screenshotDir, "mobile-390-homepage-scrolled.png");
+  await mobilePage.screenshot({ path: homepageScreenshot, fullPage: true });
   results.push({
     viewport: { name: "mobile-390", width: 390, height: 844 },
     route: "/",
     homepageCategoryImages,
+    screenshot: homepageScreenshot,
   });
 
   await mobilePage.goto(`${baseUrl}/category/tramy`, { waitUntil: "networkidle" });

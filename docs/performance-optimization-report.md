@@ -122,7 +122,7 @@ Košík je oddělen do odložených chunků (loader přibližně 14,56 kB, UI p�
 - Mobil zachovává běžný dokumentový scroll. Slider reaguje na touch/myš i klávesnici;
   kontrola `ArrowRight` změnila množství na 2 a cenu na 604 Kč.
 - Lightbox je přístupný dialog, zavření vrací focus a poslední obrázek zůstává v galerii.
-- Finální vizuální QA: 17 screenshotů, 0 console/page/HTTP chyb. Homepage byla navíc
+- Finální vizuální QA: 18 screenshotů, 0 console/page/HTTP chyb. Homepage byla navíc
   ověřena skutečným postupným scrollováním; všech 8 obrázků se načetlo.
 
 ## Nasazení na Český hosting / THINline
