@@ -34,8 +34,12 @@ describe("dynamic timber artwork v35", () => {
     for (let count = 1; count <= 20; count += 1) {
       const scene = resolveArtworkScene(category.id, category.variants[0], count).scene;
       const image = readFileSync(`public${scene.source}`);
-      const updated = JSON.parse(readFileSync(`public${scene.source.replace(/\.webp$/, ".manifest.json")}`, "utf8"));
-      const original = JSON.parse(readFileSync(`${ASSET_ROOT}/plank-${count}-master-v35.manifest.json`, "utf8"));
+      const updated = JSON.parse(
+        readFileSync(`public${scene.source.replace(/\.webp$/, ".manifest.json")}`, "utf8"),
+      );
+      const original = JSON.parse(
+        readFileSync(`${ASSET_ROOT}/plank-${count}-master-v35.manifest.json`, "utf8"),
+      );
       expect(updated.designVectors).toEqual(original.designVectors);
       expect(updated.alphaBoundsPixels).toEqual(original.alphaBoundsPixels);
       expect(updated.representativeCount).toBe(count);

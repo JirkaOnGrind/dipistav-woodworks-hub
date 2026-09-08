@@ -164,7 +164,9 @@ describe("ArtworkSceneDefinition production registry", () => {
     const variant = category.variants[0];
     for (let quantity = 1; quantity <= 30; quantity += 1) {
       const scene = resolveArtworkScene(category.id, variant, quantity).scene;
-      expect(scene.source).toContain(`/beam-${quantity}-master-${quantity > 20 ? "v40" : "v35"}.webp`);
+      expect(scene.source).toContain(
+        `/beam-${quantity}-master-${quantity > 20 ? "v40" : "v35"}.webp`,
+      );
       expect(scene.quantityBand).toEqual({ min: quantity, max: quantity });
       expect(scene.representativeCount).toBe(quantity);
     }
@@ -309,14 +311,32 @@ describe("v9 production registry", () => {
           );
           const resolved = resolveArtworkScene(category.id, variant, quantity).scene;
           if (getTimberDynamicFamily(category.id, variant)) {
-            expect(resolved.styleVersion).toBe(getTimberDisplayCount(variant, quantity) > 20 ? "v40" : variant.illustrationVariant === "plank" ? "v39" : "v35");
+            expect(resolved.styleVersion).toBe(
+              getTimberDisplayCount(variant, quantity) > 20
+                ? "v40"
+                : variant.illustrationVariant === "plank"
+                  ? "v39"
+                  : "v35",
+            );
             expect(resolved.representativeCount).toBe(getTimberDisplayCount(variant, quantity));
           } else if (resolved.renderMode === "modular-pallet") {
             expect(resolved.palletProfile).toBeDefined();
             expect(resolved.source).toBe(PALLET_SOURCE_PROFILES[resolved.palletProfile!].source);
           } else {
             expect(resolved.source).toBe(
-              matchingOverride(SLAB_BUNDLE_ARTWORK, category.id, variant.illustrationVariant, quantity)?.source ?? matchingOverride(FIREWOOD_ARTWORK, category.id, variant.illustrationVariant, quantity)?.source ?? v33Override?.source ??
+              matchingOverride(
+                SLAB_BUNDLE_ARTWORK,
+                category.id,
+                variant.illustrationVariant,
+                quantity,
+              )?.source ??
+                matchingOverride(
+                  FIREWOOD_ARTWORK,
+                  category.id,
+                  variant.illustrationVariant,
+                  quantity,
+                )?.source ??
+                v33Override?.source ??
                 v21Override?.source ??
                 v20Override?.source ??
                 v19Override?.source ??
@@ -469,14 +489,32 @@ describe("v10 production registry", () => {
           );
           const resolved = resolveArtworkScene(category.id, variant, quantity).scene;
           if (getTimberDynamicFamily(category.id, variant)) {
-            expect(resolved.styleVersion).toBe(getTimberDisplayCount(variant, quantity) > 20 ? "v40" : variant.illustrationVariant === "plank" ? "v39" : "v35");
+            expect(resolved.styleVersion).toBe(
+              getTimberDisplayCount(variant, quantity) > 20
+                ? "v40"
+                : variant.illustrationVariant === "plank"
+                  ? "v39"
+                  : "v35",
+            );
             expect(resolved.representativeCount).toBe(getTimberDisplayCount(variant, quantity));
           } else if (resolved.renderMode === "modular-pallet") {
             expect(resolved.palletProfile).toBeDefined();
             expect(resolved.source).toBe(PALLET_SOURCE_PROFILES[resolved.palletProfile!].source);
           } else {
             expect(resolved.source).toBe(
-              matchingOverride(SLAB_BUNDLE_ARTWORK, category.id, variant.illustrationVariant, quantity)?.source ?? matchingOverride(FIREWOOD_ARTWORK, category.id, variant.illustrationVariant, quantity)?.source ?? v33Override?.source ??
+              matchingOverride(
+                SLAB_BUNDLE_ARTWORK,
+                category.id,
+                variant.illustrationVariant,
+                quantity,
+              )?.source ??
+                matchingOverride(
+                  FIREWOOD_ARTWORK,
+                  category.id,
+                  variant.illustrationVariant,
+                  quantity,
+                )?.source ??
+                v33Override?.source ??
                 v21Override?.source ??
                 v20Override?.source ??
                 v19Override?.source ??
@@ -588,7 +626,9 @@ describe("v12 loose-firewood production registry", () => {
       expect(scene.renderMode).toBe("master");
       expect(scene.styleVersion).toBe("v36");
       const imageQuantity = Math.min(quantity, 10);
-      expect(scene.source).toBe(`/images/illustrations/firewood-v36/firewood-${imageQuantity}.webp`);
+      expect(scene.source).toBe(
+        `/images/illustrations/firewood-v36/firewood-${imageQuantity}.webp`,
+      );
     }
   });
 
@@ -608,7 +648,7 @@ describe("v12 loose-firewood production registry", () => {
     }
   });
 
-  it("uses distinct full-resolution PNGs for every generated loose-firewood quantity", () => {
+  it("keeps distinct loose-firewood masters and adds production-responsive sources", () => {
     const category = PRODUCT_CATEGORIES.find((item) => item.id === "stipane-drevo")!;
     const variant = category.variants.find(
       (item) => item.illustrationVariant === "firewood-loose",
@@ -620,14 +660,19 @@ describe("v12 loose-firewood production registry", () => {
     for (const scene of runtimeScenes) {
       const path = filePath(scene.source);
       expect(readArtworkCanvas(path)).toEqual({ width: 1536, height: 1024 });
-      expect(scene.responsiveSources).toBeUndefined();
+      expect(scene.responsiveSources).toEqual([
+        { source: scene.source.replace(/\.webp$/, ".640w.webp"), width: 640 },
+        { source: scene.source, width: 1280 },
+      ]);
       hashes.add(createHash("sha256").update(readFileSync(path)).digest("hex"));
     }
     expect(hashes.size).toBe(runtimeScenes.length);
     for (const quantity of [2, 4, 6, 7, 10]) {
-      const digest = (path: string) => createHash("sha256").update(readFileSync(path)).digest("hex");
-      expect(digest(filePath(`/images/illustrations/firewood-v36/firewood-${quantity}.png`)))
-        .toBe(digest(`artifacts/firewood-steps-2026-09-06/firewood-${quantity}-packages.png`));
+      const digest = (path: string) =>
+        createHash("sha256").update(readFileSync(path)).digest("hex");
+      expect(digest(filePath(`/images/illustrations/firewood-v36/firewood-${quantity}.png`))).toBe(
+        digest(`artifacts/firewood-steps-2026-09-06/firewood-${quantity}-packages.png`),
+      );
     }
   });
 });
@@ -686,8 +731,9 @@ describe("v15 loose-firewood production override", () => {
 
   it("preloads only distinct adjacent loose-firewood images", () => {
     for (const [index, scene] of FIREWOOD_ARTWORK.entries()) {
-      const expected = [...new Set([FIREWOOD_ARTWORK[index - 1]?.source, FIREWOOD_ARTWORK[index + 1]?.source])]
-        .filter((source) => Boolean(source) && source !== scene.source);
+      const expected = [
+        ...new Set([FIREWOOD_ARTWORK[index - 1]?.source, FIREWOOD_ARTWORK[index + 1]?.source]),
+      ].filter((source) => Boolean(source) && source !== scene.source);
       const category = PRODUCT_CATEGORIES.find((item) => item.id === "stipane-drevo")!;
       const variant = category.variants.find(
         (item) => item.illustrationVariant === "firewood-loose",

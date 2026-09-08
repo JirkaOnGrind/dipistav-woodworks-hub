@@ -1,6 +1,7 @@
 import { createFileRoute } from "@tanstack/react-router";
 import { ArrowRight } from "lucide-react";
 import { CustomConfigurator } from "@/components/custom-configurator";
+import { PerformanceProfiler } from "@/components/performance-profiler";
 import { ProductCategorySection } from "@/components/product-category-section";
 import { ShippingWidget } from "@/components/shipping-widget";
 import { SiteShell } from "@/components/site-shell";
@@ -33,14 +34,17 @@ function Index() {
   return (
     <SiteShell>
       <section className="relative overflow-hidden bg-[#F5F2E9]">
-        <div
+        <img
+          src="/images/woodpatern.webp"
+          srcSet="/images/woodpatern.640w.webp 640w, /images/woodpatern.webp 1136w"
+          sizes="100vw"
+          width="1136"
+          height="936"
+          alt=""
           aria-hidden
-          className="absolute inset-0 scale-[1.04] bg-center bg-no-repeat opacity-[0.32] sm:scale-[1.18] sm:opacity-40 sm:blur-[3px]"
-          style={{
-            backgroundImage: "url('/images/woodpatern.webp')",
-            backgroundRepeat: "no-repeat",
-            backgroundSize: "cover",
-          }}
+          decoding="async"
+          fetchPriority="high"
+          className="absolute inset-0 size-full scale-[1.04] object-cover object-center opacity-[0.32] sm:scale-[1.18] sm:opacity-40 sm:blur-[3px]"
         />
         <div
           aria-hidden
@@ -107,7 +111,9 @@ function Index() {
         </div>
       </section>
 
-      <CustomConfigurator />
+      <PerformanceProfiler id="custom-configurator">
+        <CustomConfigurator />
+      </PerformanceProfiler>
 
       <ShippingWidget />
 

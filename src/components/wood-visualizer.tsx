@@ -1,7 +1,6 @@
 import { useEffect, useLayoutEffect, useMemo, useRef, useState } from "react";
 import type { CSSProperties } from "react";
 import * as DialogPrimitive from "@radix-ui/react-dialog";
-import { AnimatePresence, motion } from "framer-motion";
 import { ChevronLeft, ChevronRight, X } from "lucide-react";
 import { ProductIllustration } from "@/components/product-illustrations";
 import { Button } from "@/components/ui/button";
@@ -9,7 +8,7 @@ import { ToggleGroup, ToggleGroupItem } from "@/components/ui/toggle-group";
 import { getArtworkInteractionMotion } from "@/lib/artwork-interaction-motion";
 import { getFirewoodBackground } from "@/lib/firewood-artwork";
 import { setMediaViewMode, useMediaViewMode, type MediaViewMode } from "@/lib/media-view-mode";
-import { getArtworkPreloadSources, resolveArtworkScene } from "@/lib/product-artwork";
+import { resolveArtworkScene } from "@/lib/product-artwork";
 import type { ResponsiveArtworkSource } from "@/lib/product-artwork";
 import type { ProductVariant } from "@/lib/product-catalog";
 import { cn } from "@/lib/utils";
@@ -41,6 +40,22 @@ type VisualLayers = {
 const decodedImages = new Map<string, Promise<boolean>>();
 const decodedSources = new Set<string>();
 const GALLERY_ITEMS = [1, 2, 3, 4] as const;
+const DESKTOP_VISUALIZATION_QUERY =
+  "(min-width: 1024px) and (hover: hover) and (pointer: fine) and (not (any-pointer: coarse))";
+
+function useDesktopVisualization() {
+  const [enabled, setEnabled] = useState(false);
+
+  useEffect(() => {
+    const media = window.matchMedia(DESKTOP_VISUALIZATION_QUERY);
+    const update = () => setEnabled(media.matches);
+    update();
+    media.addEventListener("change", update);
+    return () => media.removeEventListener("change", update);
+  }, []);
+
+  return enabled;
+}
 
 // Leave vertical gestures to the page; only horizontal gestures change photos.
 function useGallerySwipe(onNavigate: (direction: number) => void) {
@@ -125,104 +140,90 @@ function GalleryLightbox({
   const { offset, ...swipe } = useGallerySwipe(onNavigate);
   return (
     <DialogPrimitive.Root open={open} onOpenChange={onOpenChange}>
-      <AnimatePresence>
-        {open ? (
-          <DialogPrimitive.Portal forceMount>
-            <DialogPrimitive.Overlay asChild forceMount>
-              <motion.div
-                className="fixed inset-0 z-50 bg-[#1E293B]/35 backdrop-blur-md"
-                initial={{ opacity: 0 }}
-                animate={{ opacity: 1 }}
-                exit={{ opacity: 0 }}
-                transition={{ duration: 0.2, ease: "easeOut" }}
+      <DialogPrimitive.Portal>
+        <DialogPrimitive.Overlay
+          data-gallery-overlay
+          className="fixed inset-0 z-50 bg-[#1E293B]/35 backdrop-blur-sm [will-change:opacity]"
+        />
+
+        <DialogPrimitive.Content
+          data-gallery-modal
+          aria-describedby="product-gallery-lightbox-description"
+          className="fixed left-1/2 top-1/2 z-50 h-[65dvh] w-[92vw] -translate-x-1/2 -translate-y-1/2 overflow-hidden rounded-3xl bg-[#FFFFFF] shadow-[0_32px_100px_rgba(30,41,59,0.3)] [will-change:transform,opacity] focus:outline-none detail-desktop:w-[65vw]"
+          onCloseAutoFocus={onCloseAutoFocus}
+          onKeyDown={(event) => {
+            if (event.key === "ArrowLeft" || event.key === "ArrowRight") {
+              event.preventDefault();
+              onNavigate(event.key === "ArrowLeft" ? -1 : 1);
+            }
+          }}
+        >
+          <DialogPrimitive.Title className="sr-only">
+            Fotografie produktu {item}
+          </DialogPrimitive.Title>
+          <DialogPrimitive.Description
+            id="product-gallery-lightbox-description"
+            className="sr-only"
+          >
+            Zvětšený náhled vybrané fotografie produktu.
+          </DialogPrimitive.Description>
+
+          <div className="gallery-modal-image" {...swipe}>
+            <div className="size-full" style={{ transform: `translateX(${offset}px)` }}>
+              <GalleryPlaceholder
+                item={item}
+                className="bg-white px-16 text-base sm:px-24 sm:text-xl"
               />
-            </DialogPrimitive.Overlay>
-
-            <DialogPrimitive.Content asChild forceMount onCloseAutoFocus={onCloseAutoFocus}>
-              <motion.section
-                data-gallery-modal
-                aria-describedby="product-gallery-lightbox-description"
-                className="fixed left-1/2 top-1/2 z-50 h-[65dvh] w-[92vw] overflow-hidden rounded-3xl bg-[#FFFFFF] shadow-[0_32px_100px_rgba(30,41,59,0.3)] focus:outline-none detail-desktop:w-[65vw]"
-                onKeyDown={(event) => {
-                  if (event.key === "ArrowLeft" || event.key === "ArrowRight") {
-                    event.preventDefault();
-                    onNavigate(event.key === "ArrowLeft" ? -1 : 1);
-                  }
-                }}
-                initial={{ opacity: 0, scale: 0.94, x: "-50%", y: "-48%" }}
-                animate={{ opacity: 1, scale: 1, x: "-50%", y: "-50%" }}
-                exit={{ opacity: 0, scale: 0.96, x: "-50%", y: "-48%" }}
-                transition={{ duration: 0.26, ease: [0.22, 1, 0.36, 1] }}
+            </div>
+          </div>
+          <div className="gallery-modal-counter" aria-live="polite">
+            {item} / {GALLERY_ITEMS.length}
+          </div>
+          <div className="gallery-modal-thumbnails" aria-label="Fotografie produktu">
+            {GALLERY_ITEMS.map((photo) => (
+              <button
+                key={photo}
+                type="button"
+                aria-label={`Vybrat fotografii ${photo}`}
+                aria-pressed={item === photo}
+                onClick={() => onSelect(photo)}
+                className="size-20 shrink-0 overflow-hidden rounded-lg border-2 border-transparent aria-pressed:border-[#A86D38]"
               >
-                <DialogPrimitive.Title className="sr-only">
-                  Fotografie produktu {item}
-                </DialogPrimitive.Title>
-                <DialogPrimitive.Description
-                  id="product-gallery-lightbox-description"
-                  className="sr-only"
-                >
-                  Zvětšený náhled vybrané fotografie produktu.
-                </DialogPrimitive.Description>
+                <GalleryPlaceholder item={photo} className="text-[10px]" />
+              </button>
+            ))}
+          </div>
 
-                <div className="gallery-modal-image" {...swipe}>
-                  <div className="size-full" style={{ transform: `translateX(${offset}px)` }}>
-                    <GalleryPlaceholder
-                      item={item}
-                      className="bg-white px-16 text-base sm:px-24 sm:text-xl"
-                    />
-                  </div>
-                </div>
-                <div className="gallery-modal-counter" aria-live="polite">
-                  {item} / {GALLERY_ITEMS.length}
-                </div>
-                <div className="gallery-modal-thumbnails" aria-label="Fotografie produktu">
-                  {GALLERY_ITEMS.map((photo) => (
-                    <button
-                      key={photo}
-                      type="button"
-                      aria-label={`Vybrat fotografii ${photo}`}
-                      aria-pressed={item === photo}
-                      onClick={() => onSelect(photo)}
-                      className="size-20 shrink-0 overflow-hidden rounded-lg border-2 border-transparent aria-pressed:border-[#A86D38]"
-                    >
-                      <GalleryPlaceholder item={photo} className="text-[10px]" />
-                    </button>
-                  ))}
-                </div>
+          {([-1, 1] as const).map((direction) => (
+            <Button
+              key={direction}
+              type="button"
+              variant="ghost"
+              size="icon"
+              aria-label={direction === -1 ? "Předchozí fotografie" : "Další fotografie"}
+              onClick={() => onNavigate(direction)}
+              className={cn(
+                "absolute top-1/2 size-12 -translate-y-1/2 rounded-full border-2 border-[#A66B38]/60 bg-[#FFFFFF] text-[#A66B38] transition-all duration-150 hover:scale-110 hover:bg-[#A66B38] hover:text-white hover:shadow-lg active:scale-95 focus-visible:ring-[#A66B38]",
+                direction === -1 ? "left-3 sm:left-5" : "right-3 sm:right-5",
+              )}
+            >
+              {direction === -1 ? <ChevronLeft /> : <ChevronRight />}
+            </Button>
+          ))}
 
-                {([-1, 1] as const).map((direction) => (
-                  <Button
-                    key={direction}
-                    type="button"
-                    variant="ghost"
-                    size="icon"
-                    aria-label={direction === -1 ? "Předchozí fotografie" : "Další fotografie"}
-                    onClick={() => onNavigate(direction)}
-                    className={cn(
-                      "absolute top-1/2 size-12 -translate-y-1/2 rounded-full border-2 border-[#A66B38]/60 bg-[#FFFFFF] text-[#A66B38] transition-all duration-150 hover:scale-110 hover:bg-[#A66B38] hover:text-white hover:shadow-lg active:scale-95 focus-visible:ring-[#A66B38]",
-                      direction === -1 ? "left-3 sm:left-5" : "right-3 sm:right-5",
-                    )}
-                  >
-                    {direction === -1 ? <ChevronLeft /> : <ChevronRight />}
-                  </Button>
-                ))}
-
-                <DialogPrimitive.Close asChild>
-                  <Button
-                    type="button"
-                    variant="secondary"
-                    size="icon"
-                    aria-label="Zavřít zvětšenou fotografii"
-                    className="absolute right-3 top-3 size-12 rounded-full border-2 border-[#A66B38]/60 bg-[#FFFFFF] text-[#A66B38] transition-all duration-150 hover:scale-110 hover:bg-[#A66B38] hover:text-white hover:shadow-lg active:scale-95 focus-visible:ring-[#A66B38] sm:right-5 sm:top-5"
-                  >
-                    <X />
-                  </Button>
-                </DialogPrimitive.Close>
-              </motion.section>
-            </DialogPrimitive.Content>
-          </DialogPrimitive.Portal>
-        ) : null}
-      </AnimatePresence>
+          <DialogPrimitive.Close asChild>
+            <Button
+              type="button"
+              variant="secondary"
+              size="icon"
+              aria-label="Zavřít zvětšenou fotografii"
+              className="absolute right-3 top-3 size-12 rounded-full border-2 border-[#A66B38]/60 bg-[#FFFFFF] text-[#A66B38] transition-all duration-150 hover:scale-110 hover:bg-[#A66B38] hover:text-white hover:shadow-lg active:scale-95 focus-visible:ring-[#A66B38] sm:right-5 sm:top-5"
+            >
+              <X />
+            </Button>
+          </DialogPrimitive.Close>
+        </DialogPrimitive.Content>
+      </DialogPrimitive.Portal>
     </DialogPrimitive.Root>
   );
 }
@@ -392,6 +393,8 @@ export function WoodVisualizer({
   variant,
 }: WoodVisualizerProps) {
   const mediaViewMode = useMediaViewMode();
+  const desktopVisualization = useDesktopVisualization();
+  const shouldUpdateVisualization = desktopVisualization && mediaViewMode === "visualization";
   const limitMessage = getVisualizationLimitMessage(categoryId, variant, quantity);
   const interactionMotion = getArtworkInteractionMotion(categoryId, variant);
   const interactionStyle = {
@@ -414,15 +417,11 @@ export function WoodVisualizer({
   }, [layers]);
 
   useEffect(() => {
-    if (targetVisual.responsiveSources) {
-      void decodeImage(targetVisual);
-      return;
-    }
-    const sources = variant ? getArtworkPreloadSources(categoryId, variant, quantity) : [imageSrc];
-    for (const source of sources) void decodeImage(source);
-  }, [categoryId, imageSrc, quantity, targetVisual, variant]);
+    if (shouldUpdateVisualization) void decodeImage(targetVisual);
+  }, [shouldUpdateVisualization, targetVisual]);
 
   useLayoutEffect(() => {
+    if (!shouldUpdateVisualization) return;
     const active = layersRef.current.current;
     if (active.signature === targetVisual.signature) {
       if (active.quantity !== targetVisual.quantity || active.variant !== targetVisual.variant) {
@@ -457,7 +456,7 @@ export function WoodVisualizer({
     return () => {
       cancelled = true;
     };
-  }, [targetVisual]);
+  }, [shouldUpdateVisualization, targetVisual]);
 
   useEffect(
     () => () => {
@@ -497,8 +496,8 @@ export function WoodVisualizer({
           quantity={visual.quantity}
           variant={visual.variant}
           title={`${imageAlt}, ${visual.quantity} ${quantityUnitLabel}`}
-          imageLoading={state === "current" ? "eager" : "lazy"}
-          fetchPriority={state === "current" ? "high" : "low"}
+          imageLoading="lazy"
+          fetchPriority={state === "current" ? "auto" : "low"}
         />
       ) : (
         <img

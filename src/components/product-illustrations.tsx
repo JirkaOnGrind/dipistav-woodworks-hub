@@ -629,10 +629,13 @@ export function ProductIllustration({
             transform: `${safeTransform.transform} scale(${previewScale})`,
             transformOrigin: "center",
             filter: scene.filter,
-            ...(scene.styleVersion === "v36" ? {
-              maskImage: "linear-gradient(to right, transparent, black 8%, black 92%, transparent), linear-gradient(to bottom, transparent, black 8%, black 92%, transparent)",
-              maskComposite: "intersect",
-            } : {}),
+            ...(scene.styleVersion === "v36"
+              ? {
+                  maskImage:
+                    "linear-gradient(to right, transparent, black 8%, black 92%, transparent), linear-gradient(to bottom, transparent, black 8%, black 92%, transparent)",
+                  maskComposite: "intersect",
+                }
+              : {}),
           }}
         />
       </div>
@@ -661,9 +664,15 @@ export function ProductIllustration({
     if (responsiveFit) {
       const profile = getCalibratedBigBagProfile(unitCount)!;
       const centers = bigBagLayout.map((p) => ({
-        x: profile.originX + p.column * profile.columnX + p.depth * profile.depthX +
+        x:
+          profile.originX +
+          p.column * profile.columnX +
+          p.depth * profile.depthX +
           p.level * profile.secondLevelX,
-        y: profile.originY + p.column * profile.columnY + p.depth * profile.depthY -
+        y:
+          profile.originY +
+          p.column * profile.columnY +
+          p.depth * profile.depthY -
           p.level * profile.stackHeight,
       }));
       const left = Math.min(...centers.map((p) => p.x)) - profile.unitScale * 50;
@@ -772,7 +781,6 @@ export function ProductIllustration({
               draggable={false}
               decoding="async"
               className="h-full w-full select-none object-contain"
-
             />
           </div>
         );

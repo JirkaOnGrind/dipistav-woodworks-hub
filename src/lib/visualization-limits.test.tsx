@@ -16,8 +16,13 @@ describe("visualization limits are independent of purchasing", () => {
         expect(resolveArtworkScene(category.id, variant, 30).scene.representativeCount).toBe(30);
         for (const quantity of [30, 31]) {
           const markup = renderToStaticMarkup(
-            <WoodVisualizer categoryId={category.id} imageSrc={category.imageSrc}
-              imageAlt={category.name} quantity={quantity} variant={variant} />,
+            <WoodVisualizer
+              categoryId={category.id}
+              imageSrc={category.imageSrc}
+              imageAlt={category.name}
+              quantity={quantity}
+              variant={variant}
+            />,
           );
           expect(markup.includes("data-visualization-limit")).toBe(quantity > 30);
           if (quantity === 31) {

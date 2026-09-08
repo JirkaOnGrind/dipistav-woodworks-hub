@@ -100,7 +100,14 @@ export const V10_ARTWORK_PLAN: readonly V10ArtworkFamilyPlan[] = [
       ["2", 2, 2, 2, "dva kompletní trámy v mřížce 2×1", "beam-2-composed-master-v10.webp"],
       ["3-4", 3, 4, 3, "tři kompletní trámy v rozložení 2+1", "beam-3-4-composed-master-v11.webp"],
       ["5-8", 5, 8, 6, "šest kompletních trámů v mřížce 3×2", "beam-5-8-composed-master-v10.webp"],
-      ["9-11", 9, 11, 9, "devět kompletních trámů v matici 3×3", "beam-9-11-composed-master-v10.webp"],
+      [
+        "9-11",
+        9,
+        11,
+        9,
+        "devět kompletních trámů v matici 3×3",
+        "beam-9-11-composed-master-v10.webp",
+      ],
       [
         "12-15",
         12,

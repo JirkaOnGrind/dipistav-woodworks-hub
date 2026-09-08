@@ -2,7 +2,8 @@ import { useEffect, useId, useMemo, useRef, useState, type CSSProperties } from 
 import { Minus, Plus, ShoppingCart } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
-import { useCart } from "@/lib/cart";
+import { useCartActions } from "@/lib/cart";
+import { useRafValueChange } from "@/hooks/use-raf-value-change";
 import { formatCurrency, formatDecimal } from "@/lib/site";
 
 type Species = {
@@ -468,14 +469,16 @@ function NumericControl({
   const mobileInputId = useId();
   const rangeId = useId();
   const valueRef = useRef(value);
+  const [sliderDraft, setSliderDraft] = useState(value);
   const [draftValue, setDraftValue] = useState(() =>
     allowDecimal ? formatFlexibleValue(value) : formatControlValue(value, step),
   );
-  const progress = ((value - min) / Math.max(max - min, step)) * 100;
+  const progress = ((sliderDraft - min) / Math.max(max - min, step)) * 100;
   const sliderStyle = { "--beam-range-progress": `${progress}%` } as CSSProperties;
 
   useEffect(() => {
     valueRef.current = value;
+    setSliderDraft(value);
     setDraftValue(allowDecimal ? formatFlexibleValue(value) : formatControlValue(value, step));
   }, [allowDecimal, step, value]);
 
@@ -484,6 +487,7 @@ function NumericControl({
     valueRef.current = normalized;
     onChange(normalized);
   };
+  const sliderChange = useRafValueChange(commitValue);
 
   const commitDraft = () => {
     const parsed = parseLocalizedNumber(draftValue);
@@ -580,13 +584,27 @@ function NumericControl({
           min={min}
           max={max}
           step={step}
-          value={value}
-          onChange={(event) => commitValue(Number(event.currentTarget.value))}
+          value={sliderDraft}
+          onChange={(event) => {
+            const nextValue = clampToStep(Number(event.currentTarget.value), min, max, step);
+            valueRef.current = nextValue;
+            setSliderDraft(nextValue);
+            setDraftValue(
+              allowDecimal ? formatFlexibleValue(nextValue) : formatControlValue(nextValue, step),
+            );
+          }}
+          onPointerUp={(event) => {
+            sliderChange.flush(Number(event.currentTarget.value));
+          }}
+          onPointerCancel={(event) => {
+            sliderChange.flush(Number(event.currentTarget.value));
+          }}
+          onKeyUp={(event) => sliderChange.schedule(Number(event.currentTarget.value))}
           style={sliderStyle}
           className="block w-full cursor-grab bg-transparent active:cursor-grabbing"
           aria-valuemin={min}
           aria-valuemax={max}
-          aria-valuenow={value}
+          aria-valuenow={sliderDraft}
         />
       </div>
     </div>
@@ -594,7 +612,7 @@ function NumericControl({
 }
 
 export function CustomConfigurator() {
-  const { addCustomItem } = useCart();
+  const { addCustomItem } = useCartActions();
   const [width, setWidth] = useState(100);
   const [height, setHeight] = useState(100);
   const [length, setLength] = useState(100);

@@ -43,8 +43,12 @@ function createFamily(
 ): readonly ArtworkSceneDefinition[] {
   const sourceForCount = (count: number) => {
     const version = count > 20 ? "v40" : illustrationVariant === "plank" ? "v39" : "v35";
-    const root = count > 20 ? "/images/illustrations/timber-v40"
-      : illustrationVariant === "plank" ? "/images/illustrations/plank-v39" : ROOT;
+    const root =
+      count > 20
+        ? "/images/illustrations/timber-v40"
+        : illustrationVariant === "plank"
+          ? "/images/illustrations/plank-v39"
+          : ROOT;
     return { source: `${root}/${prefix}-${count}-master-${version}.webp`, version };
   };
   return Array.from({ length: MAX_TIMBER_DISPLAY_COUNT }, (_, index) => {
@@ -65,9 +69,7 @@ function createFamily(
       transformPolicy: "none",
       preloadNeighbors: [
         index > 0 ? sourceForCount(count - 1).source : undefined,
-        count < MAX_TIMBER_DISPLAY_COUNT
-          ? sourceForCount(count + 1).source
-          : undefined,
+        count < MAX_TIMBER_DISPLAY_COUNT ? sourceForCount(count + 1).source : undefined,
       ].filter((candidate): candidate is string => Boolean(candidate)),
       renderMode: "master",
       representativeCount: count,

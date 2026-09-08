@@ -490,7 +490,7 @@
     );
     outline: none;
     touch-action: pan-y;
-    transition: background 180ms ease;
+    transition: none;
   }
 
   [data-beam-configurator] [data-beam-range]::-webkit-slider-runnable-track {
@@ -619,6 +619,32 @@
 .gallery-modal-counter,
 .gallery-modal-thumbnails {
   display: none;
+}
+
+[data-gallery-overlay] {
+  animation: gallery-overlay-in 200ms ease-out;
+}
+
+[data-gallery-modal] {
+  animation: gallery-modal-in 260ms cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+@keyframes gallery-overlay-in {
+  from {
+    opacity: 0;
+  }
+}
+
+@keyframes gallery-modal-in {
+  from {
+    opacity: 0;
+    transform: translate(-50%, -48%) scale(0.94);
+  }
+
+  to {
+    opacity: 1;
+    transform: translate(-50%, -50%) scale(1);
+  }
 }
 
 @media (min-width: 1024px) and (hover: hover) and (pointer: fine) and (not (any-pointer: coarse)) {
@@ -769,7 +795,7 @@
     right: 16px;
   }
   .gallery-modal-counter {
-    display: block;
+    display: none;
     padding: 16px;
     text-align: center;
     color: var(--timber);
@@ -791,6 +817,10 @@
   }
   .gallery-modal-image > div {
     transition: transform 120ms ease-out;
+  }
+
+  [data-gallery-overlay] {
+    backdrop-filter: none;
   }
 
   #konfigurator .configurator-surface,
@@ -946,7 +976,10 @@
 }
 
 @media (prefers-reduced-motion: reduce) {
+  [data-gallery-overlay],
+  [data-gallery-modal],
   .gallery-modal-image > div {
+    animation: none;
     transition: none;
   }
 }

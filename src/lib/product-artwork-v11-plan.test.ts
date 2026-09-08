@@ -98,7 +98,13 @@ describe("artwork-system v11 production contract", () => {
         expect(
           getArtworkSceneFamily(category.id, variant).every((scene) =>
             isTimber
-              ? scene.source.includes(scene.representativeCount! > 20 ? "timber-v40" : category.id === "fosny" ? "plank-v39" : "timber-dynamic-v35")
+              ? scene.source.includes(
+                  scene.representativeCount! > 20
+                    ? "timber-v40"
+                    : category.id === "fosny"
+                      ? "plank-v39"
+                      : "timber-dynamic-v35",
+                )
               : !scene.source.includes("timber-dynamic-v35"),
           ),
         ).toBe(true);

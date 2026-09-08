@@ -1,10 +1,11 @@
 import { useEffect, useMemo, useState } from "react";
 import { Mail, ShoppingCart } from "lucide-react";
 import { QuantitySelector } from "@/components/quantity-selector";
+import { PerformanceProfiler } from "@/components/performance-profiler";
 import { SiteShell } from "@/components/site-shell";
 import { Button } from "@/components/ui/button";
 import { WoodVisualizer } from "@/components/wood-visualizer";
-import { useCart } from "@/lib/cart";
+import { useCartActions } from "@/lib/cart";
 import {
   getDefaultModeId,
   getEffectiveQuantityPolicy,
@@ -87,7 +88,7 @@ function palletUnitLabel(quantity: number) {
 }
 
 export function ProductDetailPage({ category }: { category: ProductCategory }) {
-  const { addCatalogItem } = useCart();
+  const { addCatalogItem } = useCartActions();
   const initialModeId = getDefaultModeId(category);
   const [modeId, setModeId] = useState<string | undefined>(initialModeId);
   const [selection, setSelection] = useState(() => normalizeSelection(category, initialModeId));
@@ -234,14 +235,16 @@ export function ProductDetailPage({ category }: { category: ProductCategory }) {
             </div>
 
             <div className="product-detail-media min-h-0 min-w-0">
-              <WoodVisualizer
-                categoryId={category.id}
-                imageSrc={category.imageSrc}
-                imageAlt={category.thumbnailAlt}
-                quantity={quantity}
-                quantityUnitLabel={quantityUnitLabel}
-                variant={variant}
-              />
+              <PerformanceProfiler id="product-media">
+                <WoodVisualizer
+                  categoryId={category.id}
+                  imageSrc={category.imageSrc}
+                  imageAlt={category.thumbnailAlt}
+                  quantity={quantity}
+                  quantityUnitLabel={quantityUnitLabel}
+                  variant={variant}
+                />
+              </PerformanceProfiler>
             </div>
           </div>
           <div
@@ -300,16 +303,18 @@ export function ProductDetailPage({ category }: { category: ProductCategory }) {
                 ))}
               </div>
 
-              <QuantitySelector
-                quantity={quantity}
-                onChange={setQuantity}
-                min={quantityPolicy.min}
-                max={quantityPolicy.max}
-                step={quantityPolicy.step}
-                sliderMax={quantityPolicy.sliderMax}
-                label={quantityLabel}
-                unitLabel={quantityUnitLabel}
-              />
+              <PerformanceProfiler id="product-quantity-control">
+                <QuantitySelector
+                  quantity={quantity}
+                  onChange={setQuantity}
+                  min={quantityPolicy.min}
+                  max={quantityPolicy.max}
+                  step={quantityPolicy.step}
+                  sliderMax={quantityPolicy.sliderMax}
+                  label={quantityLabel}
+                  unitLabel={quantityUnitLabel}
+                />
+              </PerformanceProfiler>
 
               <div className="product-detail-pricing flex flex-col gap-4">
                 <div className="product-detail-rate flex items-center justify-between gap-4 rounded-[1.75rem] border border-[#234A33]/10 bg-[#F6F4EE] px-5 py-4">

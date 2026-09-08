@@ -13,7 +13,9 @@ export function getVisualizationLimit(categoryId: string, variant?: ProductVaria
       max: VISUALIZATION_LIMITS.timber,
       genitive: "kusů",
       unitsPerQuantity:
-        variant.pricing?.basis === "cubic-meter" && variant.pricing.quantityMode === "volume" ? 5 : 1,
+        variant.pricing?.basis === "cubic-meter" && variant.pricing.quantityMode === "volume"
+          ? 5
+          : 1,
     };
   }
   if (name.includes("pallet"))

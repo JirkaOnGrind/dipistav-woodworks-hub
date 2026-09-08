@@ -1,6 +1,7 @@
 import { useEffect, useId, useRef, useState, type CSSProperties } from "react";
 import { Minus, Plus } from "lucide-react";
 import { Input } from "@/components/ui/input";
+import { useRafValueChange } from "@/hooks/use-raf-value-change";
 
 type QuantitySelectorProps = {
   quantity: number;
@@ -35,7 +36,8 @@ export function QuantitySelector({
   const sliderValue = Math.min(Math.max(quantity, min), effectiveSliderMax);
   const quantityRef = useRef(quantity);
   const [draftValue, setDraftValue] = useState(() => String(quantity));
-  const sliderProgress = ((sliderValue - min) / Math.max(effectiveSliderMax - min, 1)) * 100;
+  const [sliderDraft, setSliderDraft] = useState(sliderValue);
+  const sliderProgress = ((sliderDraft - min) / Math.max(effectiveSliderMax - min, 1)) * 100;
   const sliderStyle = {
     "--beam-range-progress": `${sliderProgress}%`,
   } as CSSProperties;
@@ -43,13 +45,15 @@ export function QuantitySelector({
   useEffect(() => {
     quantityRef.current = quantity;
     setDraftValue(String(quantity));
-  }, [quantity]);
+    setSliderDraft(Math.min(Math.max(quantity, min), effectiveSliderMax));
+  }, [effectiveSliderMax, min, quantity]);
 
   const updateQuantity = (value: number) => {
     const nextQuantity = clampQuantity(value, min, max, step);
     quantityRef.current = nextQuantity;
     onChange(nextQuantity);
   };
+  const sliderChange = useRafValueChange(updateQuantity);
   const commitDraft = () => {
     const parsed = Number(draftValue.trim());
 
@@ -114,15 +118,32 @@ export function QuantitySelector({
           aria-label={label}
           aria-valuemin={min}
           aria-valuemax={effectiveSliderMax}
-          aria-valuenow={sliderValue}
-          aria-valuetext={`${quantity} ${unitLabel}`}
+          aria-valuenow={sliderDraft}
+          aria-valuetext={`${sliderDraft} ${unitLabel}`}
           data-beam-range
           type="range"
           min={min}
           max={effectiveSliderMax}
           step={step}
-          value={sliderValue}
-          onChange={(event) => updateQuantity(Number(event.currentTarget.value))}
+          value={sliderDraft}
+          onChange={(event) => {
+            const nextValue = clampQuantity(
+              Number(event.currentTarget.value),
+              min,
+              effectiveSliderMax,
+              step,
+            );
+            quantityRef.current = nextValue;
+            setSliderDraft(nextValue);
+            setDraftValue(String(nextValue));
+          }}
+          onPointerUp={(event) => {
+            sliderChange.flush(Number(event.currentTarget.value));
+          }}
+          onPointerCancel={(event) => {
+            sliderChange.flush(Number(event.currentTarget.value));
+          }}
+          onKeyUp={(event) => sliderChange.schedule(Number(event.currentTarget.value))}
           style={sliderStyle}
           className="block w-full cursor-grab bg-transparent active:cursor-grabbing"
         />
@@ -137,7 +158,6 @@ export function QuantitySelector({
           <Plus className="h-4 w-4" />
         </button>
       </div>
-
     </div>
   );
 }

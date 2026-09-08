@@ -1,6 +1,14 @@
 /* eslint-disable react-refresh/only-export-components */
 
-import { createContext, useContext, useEffect, useState, type ReactNode } from "react";
+import {
+  createContext,
+  useCallback,
+  useContext,
+  useEffect,
+  useMemo,
+  useState,
+  type ReactNode,
+} from "react";
 import {
   calculateVariantQuote,
   type Availability,
@@ -82,6 +90,11 @@ type CartContextValue = {
 };
 
 const CartContext = createContext<CartContextValue | null>(null);
+type CartActions = Pick<
+  CartContextValue,
+  "setIsOpen" | "openCart" | "addCatalogItem" | "addCustomItem" | "removeItem" | "clearCart"
+>;
+const CartActionsContext = createContext<CartActions | null>(null);
 const CART_STORAGE_KEY = "dipistav-cart-v1";
 let cartMemory: CartItem[] | undefined;
 
@@ -260,59 +273,84 @@ export function CartProvider({ children }: { children: ReactNode }) {
     setItems(storedItems);
   }, []);
 
-  const updateItems = (updater: (currentItems: CartItem[]) => CartItem[]) => {
+  const updateItems = useCallback((updater: (currentItems: CartItem[]) => CartItem[]) => {
     setItems((currentItems) => {
       const nextItems = updater(currentItems);
       persistItems(nextItems);
       return nextItems;
     });
-  };
+  }, []);
 
-  const addCatalogItem = (input: CatalogCartInput) => {
-    updateItems((currentItems) => upsertCatalogItem(currentItems, input));
-    setIsOpen(true);
-  };
+  const addCatalogItem = useCallback(
+    (input: CatalogCartInput) => {
+      updateItems((currentItems) => upsertCatalogItem(currentItems, input));
+      setIsOpen(true);
+    },
+    [updateItems],
+  );
 
-  const addCustomItem = (item: CustomCartInput) => {
-    updateItems((currentItems) => [
-      ...currentItems,
-      {
-        id: createCartId(),
-        kind: "custom",
-        title: "Řezivo na míru",
-        quantity: item.quantity,
-        quantityUnitLabel: "ks",
-        details: customDetails(item),
-        widthMm: item.widthMm,
-        heightMm: item.heightMm,
-        lengthM: item.lengthM,
-        species: item.species,
-        volumeM3: item.volumeM3,
-        totalPrice: item.totalPrice,
-      },
-    ]);
-    setIsOpen(true);
-  };
+  const addCustomItem = useCallback(
+    (item: CustomCartInput) => {
+      updateItems((currentItems) => [
+        ...currentItems,
+        {
+          id: createCartId(),
+          kind: "custom",
+          title: "Řezivo na míru",
+          quantity: item.quantity,
+          quantityUnitLabel: "ks",
+          details: customDetails(item),
+          widthMm: item.widthMm,
+          heightMm: item.heightMm,
+          lengthM: item.lengthM,
+          species: item.species,
+          volumeM3: item.volumeM3,
+          totalPrice: item.totalPrice,
+        },
+      ]);
+      setIsOpen(true);
+    },
+    [updateItems],
+  );
 
-  const value: CartContextValue = {
-    items,
-    itemCount: items.length,
-    estimatedTotal: items.reduce((total, item) => total + item.totalPrice, 0),
-    isOpen,
-    setIsOpen,
-    openCart: () => setIsOpen(true),
-    addCatalogItem,
-    addCustomItem,
-    removeItem: (itemId) =>
-      updateItems((currentItems) => currentItems.filter((item) => item.id !== itemId)),
-    clearCart: () => updateItems(() => []),
-  };
+  const actions = useMemo<CartActions>(
+    () => ({
+      setIsOpen,
+      openCart: () => setIsOpen(true),
+      addCatalogItem,
+      addCustomItem,
+      removeItem: (itemId) =>
+        updateItems((currentItems) => currentItems.filter((item) => item.id !== itemId)),
+      clearCart: () => updateItems(() => []),
+    }),
+    [addCatalogItem, addCustomItem, updateItems],
+  );
+  const value = useMemo<CartContextValue>(
+    () => ({
+      items,
+      itemCount: items.length,
+      estimatedTotal: items.reduce((total, item) => total + item.totalPrice, 0),
+      isOpen,
+      ...actions,
+    }),
+    [actions, isOpen, items],
+  );
 
-  return <CartContext.Provider value={value}>{children}</CartContext.Provider>;
+  return (
+    <CartActionsContext.Provider value={actions}>
+      <CartContext.Provider value={value}>{children}</CartContext.Provider>
+    </CartActionsContext.Provider>
+  );
 }
 
 export function useCart() {
   const context = useContext(CartContext);
   if (!context) throw new Error("useCart musí být použit uvnitř CartProvider.");
+  return context;
+}
+
+export function useCartActions() {
+  const context = useContext(CartActionsContext);
+  if (!context) throw new Error("useCartActions musí být použit uvnitř CartProvider.");
   return context;
 }

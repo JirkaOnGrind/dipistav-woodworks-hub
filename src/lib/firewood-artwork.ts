@@ -4,10 +4,23 @@ import { VISUALIZATION_LIMITS } from "@/lib/visualization-limits";
 const ROOT = "/images/illustrations/firewood-v36";
 
 // Background colors sampled from the approved opaque source canvases.
-const BACKGROUNDS = ["#f8eddf", "#f9efe2", "#f9ecdd", "#f8efe0", "#f8ebda", "#fbf0de", "#f8efe0", "#f8ecdb", "#f8ecdc", "#fbf3e5"];
+const BACKGROUNDS = [
+  "#f8eddf",
+  "#f9efe2",
+  "#f9ecdd",
+  "#f8efe0",
+  "#f8ebda",
+  "#fbf0de",
+  "#f8efe0",
+  "#f8ecdb",
+  "#f8ecdc",
+  "#fbf3e5",
+];
 
 export function getFirewoodBackground(quantity: number) {
-  return BACKGROUNDS[Math.min(VISUALIZATION_LIMITS.firewood, Math.max(1, Math.floor(quantity))) - 1];
+  return BACKGROUNDS[
+    Math.min(VISUALIZATION_LIMITS.firewood, Math.max(1, Math.floor(quantity))) - 1
+  ];
 }
 
 // Lossless WebP copies preserve the full-resolution approved pixels; no thumbnail srcset.

@@ -8,6 +8,9 @@ import { defineConfig } from "@lovable.dev/vite-tanstack-config";
 
 export default defineConfig({
   nitro: false,
+  vite: {
+    publicDir: process.env.npm_lifecycle_event === "build" ? ".production-public" : "public",
+  },
   tanstackStart: {
     prerender: {
       enabled: true,

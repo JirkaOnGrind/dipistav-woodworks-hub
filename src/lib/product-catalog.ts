@@ -626,7 +626,10 @@ export function getEffectiveQuantityPolicy(category: ProductCategory, variant?: 
   if (variant?.illustrationVariant.startsWith("slabs-")) {
     return { ...category.quantityPolicy, sliderMax: VISUALIZATION_LIMITS.slabs };
   }
-  if (variant?.illustrationVariant === "firewood-bag" || variant?.illustrationVariant === "firewood-loose") {
+  if (
+    variant?.illustrationVariant === "firewood-bag" ||
+    variant?.illustrationVariant === "firewood-loose"
+  ) {
     return { ...category.quantityPolicy, sliderMax: VISUALIZATION_LIMITS.firewood };
   }
   return variant && PALLET_ILLUSTRATION_VARIANTS.has(variant.illustrationVariant)

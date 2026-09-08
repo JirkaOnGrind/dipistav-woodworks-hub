@@ -8,7 +8,7 @@ import {
   Scripts,
 } from "@tanstack/react-router";
 import { useEffect, type ReactNode } from "react";
-import { CartSheet } from "@/components/cart-sheet";
+import { CartSheetLoader } from "@/components/cart-sheet-loader";
 import { CartProvider } from "@/lib/cart";
 
 import appCss from "../styles.css?url";
@@ -133,7 +133,7 @@ function RootComponent() {
       <CartProvider>
         {/* Required: nested routes render here. Removing <Outlet /> breaks all child routes. */}
         <Outlet />
-        <CartSheet />
+        <CartSheetLoader />
       </CartProvider>
     </QueryClientProvider>
   );

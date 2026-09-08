@@ -2,6 +2,7 @@ import { useEffect, useState, type ReactNode } from "react";
 import { Menu, ShoppingCart, X } from "lucide-react";
 import { useRouterState } from "@tanstack/react-router";
 import { useCart } from "@/lib/cart";
+import { preloadCartSheet } from "@/components/cart-sheet-loader";
 import {
   COMPANY_ADDRESS,
   COMPANY_EMAIL,
@@ -62,6 +63,9 @@ function CartButton() {
     <button
       aria-label="Otevřít košík"
       onClick={openCart}
+      onPointerEnter={preloadCartSheet}
+      onPointerDown={preloadCartSheet}
+      onFocus={preloadCartSheet}
       className="relative inline-flex h-11 w-11 items-center justify-center rounded-full bg-[#A86D38] text-white shadow-sm transition hover:bg-[#8a5528]"
     >
       <ShoppingCart className="h-5 w-5" />
@@ -95,10 +99,20 @@ export function SiteShell({
   useEffect(() => {
     if (!productDetail) return;
 
-    const updateFooterVisibility = () => setProductFooterVisible(window.scrollY >= 1);
+    let frame: number | undefined;
+    const updateFooterVisibility = () => {
+      if (frame !== undefined) return;
+      frame = window.requestAnimationFrame(() => {
+        frame = undefined;
+        setProductFooterVisible(window.scrollY >= 1);
+      });
+    };
     updateFooterVisibility();
     window.addEventListener("scroll", updateFooterVisibility, { passive: true });
-    return () => window.removeEventListener("scroll", updateFooterVisibility);
+    return () => {
+      window.removeEventListener("scroll", updateFooterVisibility);
+      if (frame !== undefined) window.cancelAnimationFrame(frame);
+    };
   }, [productDetail]);
 
   return (
@@ -115,6 +129,10 @@ export function SiteShell({
               <img
                 src={logoSrc}
                 alt="DIPISTAV"
+                width="750"
+                height="388"
+                decoding="async"
+                fetchPriority="high"
                 className="h-12 w-auto shrink-0 object-contain sm:h-14 md:h-16"
               />
             </picture>
@@ -155,6 +173,9 @@ export function SiteShell({
               <img
                 src="/images/logo-dipimobil.webp"
                 alt="DIPISTAV"
+                width="295"
+                height="269"
+                decoding="async"
                 className="h-10 w-auto object-contain"
               />
               <button
@@ -202,7 +223,15 @@ export function SiteShell({
       <footer className="bg-[#1E293B] text-white/80">
         <div className="mx-auto grid max-w-7xl gap-8 px-4 py-12 sm:grid-cols-2 lg:grid-cols-4">
           <div>
-            <img src={logoSrc} alt="DIPISTAV" className="h-12 w-auto object-contain" />
+            <img
+              src={logoSrc}
+              alt="DIPISTAV"
+              width="750"
+              height="388"
+              loading="lazy"
+              decoding="async"
+              className="h-12 w-auto object-contain"
+            />
             <p className="mt-3 text-sm text-white/70">
               Stavební řezivo, palivové dřevo a pelety přímo z české pily. Skladové profily i řezivo
               na míru do 8 metrů.

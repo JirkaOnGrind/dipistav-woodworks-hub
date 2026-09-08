@@ -85,7 +85,13 @@ function DopravaPage() {
             <div className="rounded-2xl border-2 border-[#A86D38]/30 bg-[#FFFFFF] p-2 shadow-sm">
               <img
                 src="/images/doprava.webp"
+                srcSet="/images/doprava.640w.webp 640w, /images/doprava.webp 1200w"
+                sizes="(min-width: 1024px) 48vw, 100vw"
+                width="1200"
+                height="1600"
                 alt="Nákladní vůz DIPISTAV s hydraulickou rukou při rozvozu řeziva"
+                decoding="async"
+                fetchPriority="high"
                 className="h-full w-full rounded-[1rem] object-cover"
               />
             </div>
