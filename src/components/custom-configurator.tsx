@@ -3,7 +3,6 @@ import { Minus, Plus, ShoppingCart } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { useCartActions } from "@/lib/cart";
-import { useRafValueChange } from "@/hooks/use-raf-value-change";
 import { formatCurrency, formatDecimal } from "@/lib/site";
 
 type Species = {
@@ -469,16 +468,14 @@ function NumericControl({
   const mobileInputId = useId();
   const rangeId = useId();
   const valueRef = useRef(value);
-  const [sliderDraft, setSliderDraft] = useState(value);
   const [draftValue, setDraftValue] = useState(() =>
     allowDecimal ? formatFlexibleValue(value) : formatControlValue(value, step),
   );
-  const progress = ((sliderDraft - min) / Math.max(max - min, step)) * 100;
+  const progress = ((value - min) / Math.max(max - min, step)) * 100;
   const sliderStyle = { "--beam-range-progress": `${progress}%` } as CSSProperties;
 
   useEffect(() => {
     valueRef.current = value;
-    setSliderDraft(value);
     setDraftValue(allowDecimal ? formatFlexibleValue(value) : formatControlValue(value, step));
   }, [allowDecimal, step, value]);
 
@@ -487,8 +484,6 @@ function NumericControl({
     valueRef.current = normalized;
     onChange(normalized);
   };
-  const sliderChange = useRafValueChange(commitValue);
-
   const commitDraft = () => {
     const parsed = parseLocalizedNumber(draftValue);
 
@@ -584,27 +579,13 @@ function NumericControl({
           min={min}
           max={max}
           step={step}
-          value={sliderDraft}
-          onChange={(event) => {
-            const nextValue = clampToStep(Number(event.currentTarget.value), min, max, step);
-            valueRef.current = nextValue;
-            setSliderDraft(nextValue);
-            setDraftValue(
-              allowDecimal ? formatFlexibleValue(nextValue) : formatControlValue(nextValue, step),
-            );
-          }}
-          onPointerUp={(event) => {
-            sliderChange.flush(Number(event.currentTarget.value));
-          }}
-          onPointerCancel={(event) => {
-            sliderChange.flush(Number(event.currentTarget.value));
-          }}
-          onKeyUp={(event) => sliderChange.schedule(Number(event.currentTarget.value))}
+          value={value}
+          onChange={(event) => commitValue(Number(event.currentTarget.value))}
           style={sliderStyle}
           className="block w-full cursor-grab bg-transparent active:cursor-grabbing"
           aria-valuemin={min}
           aria-valuemax={max}
-          aria-valuenow={sliderDraft}
+          aria-valuenow={value}
         />
       </div>
     </div>
