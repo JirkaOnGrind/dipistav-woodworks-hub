@@ -40,6 +40,9 @@ for (const category of PRODUCT_CATEGORIES) {
     for (const quantity of sampleQuantities) {
       const { scene } = resolveArtworkScene(category.id, variant, quantity);
       if (scene.source) assetSources.add(scene.source);
+      for (const responsiveSource of scene.responsiveSources ?? []) {
+        assetSources.add(responsiveSource.source);
+      }
       if (scene.renderMode === "modular-pallet" && scene.palletProfile) {
         const profile = getPalletSourceProfile(scene.palletProfile);
         assetSources.add(profile.source);
@@ -53,22 +56,24 @@ function cleanAssetPath(source: string) {
   return source.split("?", 1)[0].replace(/^\/+/, "");
 }
 
-const categoryImagePaths = new Set(
-  PRODUCT_CATEGORIES.map((category) => cleanAssetPath(category.imageSrc)),
-);
-
 function maximumWidth(relativePath: string) {
   if (relativePath.includes("logo-dipi")) return 384;
-  if (relativePath.includes("homepage-v41")) return 768;
-  if (/images\/(stipane-v2|pelety-v2|krajinky-v2)\.webp$/.test(relativePath)) return 768;
+  if (/configurator-v21\/.*-1536\.webp$/.test(relativePath)) return 1536;
+  if (/configurator-v21\/.*-768\.webp$/.test(relativePath)) return 768;
+  if (relativePath.includes("homepage-v41")) return 384;
+  if (/images\/illustrations\/(stipane-v2|pelety-v2|krajinky-v2)\.webp$/.test(relativePath)) {
+    return 384;
+  }
+  if (
+    relativePath.includes("illustrations/timber-dynamic-v35") ||
+    relativePath.includes("illustrations/timber-v40") ||
+    relativePath.includes("illustrations/plank-v39")
+  ) {
+    return 640;
+  }
   if (relativePath.endsWith("woodpatern.webp")) return 1600;
   if (/images\/(doprava|onas[12])\.webp$/.test(relativePath)) return 1280;
   return 1280;
-}
-
-function responsivePath(relativePath: string, width: number) {
-  const extension = path.extname(relativePath);
-  return `${relativePath.slice(0, -extension.length)}.${width}w${extension}`;
 }
 
 async function writeWebp(sourcePath: string, destinationPath: string, width: number) {
@@ -104,12 +109,6 @@ for (const source of [...assetSources].sort()) {
   if (path.extname(relativePath).toLowerCase() === ".webp") {
     const width = maximumWidth(relativePath);
     await writeWebp(sourcePath, destinationPath, width);
-    if (width > 640) {
-      await writeWebp(sourcePath, path.join(stagingRoot, responsivePath(relativePath, 640)), 640);
-    }
-    if (categoryImagePaths.has(relativePath) && width > 384) {
-      await writeWebp(sourcePath, path.join(stagingRoot, responsivePath(relativePath, 384)), 384);
-    }
   } else {
     await fs.copyFile(sourcePath, destinationPath);
   }

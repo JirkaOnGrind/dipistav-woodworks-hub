@@ -367,10 +367,21 @@
 
   [data-beam-configurator] [data-artwork-visual-layer].is-current {
     opacity: 1;
+    animation: artwork-layer-reveal 90ms ease-out both;
   }
 
   [data-beam-configurator] [data-artwork-visual-layer].is-previous {
     opacity: 0;
+  }
+
+  @keyframes artwork-layer-reveal {
+    from {
+      opacity: 0.35;
+    }
+
+    to {
+      opacity: 1;
+    }
   }
 
   [data-beam-configurator] [data-beam-image] {

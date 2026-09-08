@@ -1,5 +1,13 @@
-import { useEffect, useLayoutEffect, useMemo, useRef, useState } from "react";
-import type { CSSProperties } from "react";
+import {
+  useCallback,
+  useEffect,
+  useImperativeHandle,
+  useLayoutEffect,
+  useMemo,
+  useRef,
+  useState,
+} from "react";
+import type { CSSProperties, Ref } from "react";
 import * as DialogPrimitive from "@radix-ui/react-dialog";
 import { ChevronLeft, ChevronRight, X } from "lucide-react";
 import { ProductIllustration } from "@/components/product-illustrations";
@@ -21,6 +29,12 @@ type WoodVisualizerProps = {
   quantity: number;
   quantityUnitLabel?: string;
   variant?: ProductVariant;
+  previewRef?: Ref<WoodVisualizerHandle>;
+  previewRange?: { min: number; max: number; step: number };
+};
+
+export type WoodVisualizerHandle = {
+  previewQuantity: (quantity: number) => void;
 };
 
 type VisualState = {
@@ -318,7 +332,7 @@ function getDecodeRequest(visual: VisualState | string) {
   };
 }
 
-function decodeImage(visual: VisualState | string) {
+function decodeImage(visual: VisualState | string, fetchPriority: "high" | "low" = "low") {
   const { src, srcSet, sizes, cacheKey } = getDecodeRequest(visual);
   if (typeof Image === "undefined" || !src) return Promise.resolve(true);
   if (decodedSources.has(cacheKey)) return Promise.resolve(true);
@@ -329,6 +343,7 @@ function decodeImage(visual: VisualState | string) {
   const promise = new Promise<boolean>((resolve) => {
     const image = new Image();
     image.decoding = "async";
+    image.fetchPriority = fetchPriority;
     let settled = false;
 
     const finish = (success: boolean) => {
@@ -391,19 +406,25 @@ export function WoodVisualizer({
   quantity,
   quantityUnitLabel = "ks",
   variant,
+  previewRef,
+  previewRange,
 }: WoodVisualizerProps) {
   const mediaViewMode = useMediaViewMode();
   const desktopVisualization = useDesktopVisualization();
   const shouldUpdateVisualization = desktopVisualization && mediaViewMode === "visualization";
-  const limitMessage = getVisualizationLimitMessage(categoryId, variant, quantity);
+  const [previewQuantity, setPreviewQuantity] = useState(quantity);
+  const displayedQuantityRef = useRef(quantity);
+  const requestedQuantityRef = useRef(quantity);
+  const previewFrameRef = useRef<number | null>(null);
+  const limitMessage = getVisualizationLimitMessage(categoryId, variant, previewQuantity);
   const interactionMotion = getArtworkInteractionMotion(categoryId, variant);
   const interactionStyle = {
     "--artwork-interaction-scale-x": interactionMotion.scaleX,
     "--artwork-interaction-scale-y": interactionMotion.scaleY,
   } as CSSProperties;
   const targetVisual = useMemo(
-    () => getVisualState(categoryId, imageSrc, quantity, variant),
-    [categoryId, imageSrc, quantity, variant],
+    () => getVisualState(categoryId, imageSrc, previewQuantity, variant),
+    [categoryId, imageSrc, previewQuantity, variant],
   );
   const [layers, setLayers] = useState<VisualLayers>({ current: targetVisual });
   const layersRef = useRef(layers);
@@ -411,13 +432,88 @@ export function WoodVisualizer({
   const transitionTimerRef = useRef<number | undefined>(undefined);
   const [isRecoiling, setIsRecoiling] = useState(false);
   const previousVariantRef = useRef(variant?.id);
+  const previewContextRef = useRef(`${categoryId}:${variant?.id ?? "fallback"}`);
+
+  const queuePreviewQuantity = useCallback(
+    (nextQuantity: number) => {
+      requestedQuantityRef.current = nextQuantity;
+      if (previewFrameRef.current !== null) return;
+
+      const advance = () => {
+        const current = displayedQuantityRef.current;
+        const target = requestedQuantityRef.current;
+        const step = Math.max(previewRange?.step ?? 1, Number.EPSILON);
+        const next =
+          Math.abs(target - current) <= step
+            ? target
+            : Number((current + Math.sign(target - current) * step).toFixed(6));
+
+        displayedQuantityRef.current = next;
+        setPreviewQuantity(next);
+
+        if (next === requestedQuantityRef.current) {
+          previewFrameRef.current = null;
+          return;
+        }
+        previewFrameRef.current = window.requestAnimationFrame(advance);
+      };
+
+      previewFrameRef.current = window.requestAnimationFrame(advance);
+    },
+    [previewRange?.step],
+  );
+
+  useImperativeHandle(
+    previewRef,
+    () => ({
+      previewQuantity: (nextQuantity) => {
+        if (shouldUpdateVisualization) queuePreviewQuantity(nextQuantity);
+      },
+    }),
+    [queuePreviewQuantity, shouldUpdateVisualization],
+  );
+
+  useEffect(() => {
+    const context = `${categoryId}:${variant?.id ?? "fallback"}`;
+    if (previewContextRef.current !== context) {
+      previewContextRef.current = context;
+      if (previewFrameRef.current !== null) window.cancelAnimationFrame(previewFrameRef.current);
+      previewFrameRef.current = null;
+      requestedQuantityRef.current = quantity;
+      displayedQuantityRef.current = quantity;
+      setPreviewQuantity(quantity);
+      return;
+    }
+    if (requestedQuantityRef.current !== quantity) queuePreviewQuantity(quantity);
+  }, [categoryId, quantity, queuePreviewQuantity, variant?.id]);
+
+  useEffect(() => {
+    if (!shouldUpdateVisualization || !variant) return;
+
+    const uniqueVisuals = new Map<string, VisualState>();
+    const range = previewRange ?? { min: previewQuantity, max: previewQuantity, step: 1 };
+    const maxSteps = 40;
+    for (
+      let nextQuantity = range.min, index = 0;
+      nextQuantity <= range.max && index < maxSteps;
+      nextQuantity += range.step, index += 1
+    ) {
+      const visual = getVisualState(categoryId, imageSrc, nextQuantity, variant);
+      uniqueVisuals.set(getDecodeRequest(visual).cacheKey, visual);
+    }
+    const prioritized = [...uniqueVisuals.values()].sort(
+      (left, right) =>
+        Math.abs(left.quantity - previewQuantity) - Math.abs(right.quantity - previewQuantity),
+    );
+    prioritized.forEach((visual) => void decodeImage(visual, "high"));
+  }, [categoryId, imageSrc, previewQuantity, previewRange, shouldUpdateVisualization, variant]);
 
   useEffect(() => {
     layersRef.current = layers;
   }, [layers]);
 
   useEffect(() => {
-    if (shouldUpdateVisualization) void decodeImage(targetVisual);
+    if (shouldUpdateVisualization) void decodeImage(targetVisual, "high");
   }, [shouldUpdateVisualization, targetVisual]);
 
   useLayoutEffect(() => {
@@ -451,7 +547,7 @@ export function WoodVisualizer({
     };
 
     if (decodedSources.has(getDecodeRequest(targetVisual).cacheKey)) commit();
-    else void decodeImage(targetVisual).then((success) => success && commit());
+    else void decodeImage(targetVisual, "high").then((success) => success && commit());
 
     return () => {
       cancelled = true;
@@ -461,6 +557,7 @@ export function WoodVisualizer({
   useEffect(
     () => () => {
       requestIdRef.current += 1;
+      if (previewFrameRef.current !== null) window.cancelAnimationFrame(previewFrameRef.current);
       if (transitionTimerRef.current !== undefined) {
         window.clearTimeout(transitionTimerRef.current);
       }
@@ -547,7 +644,7 @@ export function WoodVisualizer({
           data-media-quantity
           className="ml-auto shrink-0 rounded-full bg-[#F6F4EE] px-3 py-1.5 text-sm font-bold text-[#1E293B] tabular-nums"
         >
-          {quantity} {quantityUnitLabel}
+          {previewQuantity} {quantityUnitLabel}
         </div>
       </div>
 

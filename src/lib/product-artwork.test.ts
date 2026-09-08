@@ -648,7 +648,7 @@ describe("v12 loose-firewood production registry", () => {
     }
   });
 
-  it("keeps distinct loose-firewood masters and adds production-responsive sources", () => {
+  it("keeps distinct loose-firewood masters on stable production URLs", () => {
     const category = PRODUCT_CATEGORIES.find((item) => item.id === "stipane-drevo")!;
     const variant = category.variants.find(
       (item) => item.illustrationVariant === "firewood-loose",
@@ -660,10 +660,7 @@ describe("v12 loose-firewood production registry", () => {
     for (const scene of runtimeScenes) {
       const path = filePath(scene.source);
       expect(readArtworkCanvas(path)).toEqual({ width: 1536, height: 1024 });
-      expect(scene.responsiveSources).toEqual([
-        { source: scene.source.replace(/\.webp$/, ".640w.webp"), width: 640 },
-        { source: scene.source, width: 1280 },
-      ]);
+      expect(scene.responsiveSources).toBeUndefined();
       hashes.add(createHash("sha256").update(readFileSync(path)).digest("hex"));
     }
     expect(hashes.size).toBe(runtimeScenes.length);

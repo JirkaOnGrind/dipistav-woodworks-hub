@@ -36,8 +36,6 @@ function Index() {
       <section className="relative overflow-hidden bg-[#F5F2E9]">
         <img
           src="/images/woodpatern.webp"
-          srcSet="/images/woodpatern.640w.webp 640w, /images/woodpatern.webp 1136w"
-          sizes="100vw"
           width="1136"
           height="936"
           alt=""

@@ -73,12 +73,11 @@ function ONasPage() {
           <figure className="overflow-hidden rounded-[1.75rem] border border-[#A86D38]/10 bg-white shadow-sm">
             <img
               src="/images/onas2.webp"
-              srcSet="/images/onas2.640w.webp 640w, /images/onas2.webp 1280w"
-              sizes="(min-width: 1280px) 405px, (min-width: 768px) 48vw, 100vw"
               width="1600"
               height="1200"
               alt="Naložené fošny a prkna připravené k expedici"
-              loading="lazy"
+              loading="eager"
+              fetchPriority="high"
               decoding="async"
               className="h-72 w-full object-cover"
             />
@@ -90,12 +89,11 @@ function ONasPage() {
           <figure className="overflow-hidden rounded-[1.75rem] border border-[#A86D38]/10 bg-white shadow-sm">
             <img
               src="/images/onas1.webp"
-              srcSet="/images/onas1.640w.webp 640w, /images/onas1.webp 1200w"
-              sizes="(min-width: 1280px) 405px, (min-width: 768px) 48vw, 100vw"
               width="1200"
               height="1600"
               alt="Masivní stavební trámy na korbě nákladního vozu"
-              loading="lazy"
+              loading="eager"
+              fetchPriority="auto"
               decoding="async"
               className="h-72 w-full object-cover"
             />

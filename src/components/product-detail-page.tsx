@@ -1,10 +1,10 @@
-import { useEffect, useMemo, useState } from "react";
+import { useEffect, useMemo, useRef, useState } from "react";
 import { Mail, ShoppingCart } from "lucide-react";
 import { QuantitySelector } from "@/components/quantity-selector";
 import { PerformanceProfiler } from "@/components/performance-profiler";
 import { SiteShell } from "@/components/site-shell";
 import { Button } from "@/components/ui/button";
-import { WoodVisualizer } from "@/components/wood-visualizer";
+import { WoodVisualizer, type WoodVisualizerHandle } from "@/components/wood-visualizer";
 import { useCartActions } from "@/lib/cart";
 import {
   getDefaultModeId,
@@ -89,6 +89,7 @@ function palletUnitLabel(quantity: number) {
 
 export function ProductDetailPage({ category }: { category: ProductCategory }) {
   const { addCatalogItem } = useCartActions();
+  const visualizerRef = useRef<WoodVisualizerHandle>(null);
   const initialModeId = getDefaultModeId(category);
   const [modeId, setModeId] = useState<string | undefined>(initialModeId);
   const [selection, setSelection] = useState(() => normalizeSelection(category, initialModeId));
@@ -117,6 +118,14 @@ export function ProductDetailPage({ category }: { category: ProductCategory }) {
     [category, modeId, selection],
   );
   const quantityPolicy = getEffectiveQuantityPolicy(category, variant);
+  const previewRange = useMemo(
+    () => ({
+      min: quantityPolicy.min,
+      max: Math.min(quantityPolicy.max, quantityPolicy.sliderMax),
+      step: quantityPolicy.step,
+    }),
+    [quantityPolicy.max, quantityPolicy.min, quantityPolicy.sliderMax, quantityPolicy.step],
+  );
   const quote = useMemo(
     () => (variant ? calculateVariantQuote(variant, quantity) : null),
     [quantity, variant],
@@ -237,12 +246,14 @@ export function ProductDetailPage({ category }: { category: ProductCategory }) {
             <div className="product-detail-media min-h-0 min-w-0">
               <PerformanceProfiler id="product-media">
                 <WoodVisualizer
+                  previewRef={visualizerRef}
                   categoryId={category.id}
                   imageSrc={category.imageSrc}
                   imageAlt={category.thumbnailAlt}
                   quantity={quantity}
                   quantityUnitLabel={quantityUnitLabel}
                   variant={variant}
+                  previewRange={previewRange}
                 />
               </PerformanceProfiler>
             </div>
@@ -307,6 +318,9 @@ export function ProductDetailPage({ category }: { category: ProductCategory }) {
                 <QuantitySelector
                   quantity={quantity}
                   onChange={setQuantity}
+                  onPreviewChange={(nextQuantity) =>
+                    visualizerRef.current?.previewQuantity(nextQuantity)
+                  }
                   min={quantityPolicy.min}
                   max={quantityPolicy.max}
                   step={quantityPolicy.step}

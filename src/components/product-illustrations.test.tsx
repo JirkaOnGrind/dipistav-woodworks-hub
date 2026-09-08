@@ -563,8 +563,8 @@ describe("ProductIllustration", () => {
         expect(scene.renderMode).toBe("master");
         expect(markup).toContain(scene.source);
         expect(markup).toContain("srcSet=");
-        expect(markup).toContain("640w");
-        expect(markup).toContain("1280w");
+        expect(markup).toContain("768w");
+        expect(markup).toContain("1536w");
         expect(markup).toContain(`data-preview-scale="${scene.previewScale}"`);
         expect(markup).toContain('data-bottom-anchor="0.5,');
         expect(markup.match(/<img/g)).toHaveLength(1);

@@ -6,6 +6,7 @@ import { useRafValueChange } from "@/hooks/use-raf-value-change";
 type QuantitySelectorProps = {
   quantity: number;
   onChange: (quantity: number) => void;
+  onPreviewChange?: (quantity: number) => void;
   label?: string;
   min?: number;
   max?: number;
@@ -13,6 +14,8 @@ type QuantitySelectorProps = {
   sliderMax?: number;
   unitLabel?: string;
 };
+
+const ignorePreviewChange = () => undefined;
 
 function clampQuantity(value: number, min: number, max: number, step: number) {
   if (!Number.isFinite(value)) return min;
@@ -23,6 +26,7 @@ function clampQuantity(value: number, min: number, max: number, step: number) {
 export function QuantitySelector({
   quantity,
   onChange,
+  onPreviewChange,
   label = "Počet kusů",
   min = 1,
   max = 500,
@@ -54,6 +58,9 @@ export function QuantitySelector({
     onChange(nextQuantity);
   };
   const sliderChange = useRafValueChange(updateQuantity);
+  const previewChange = useRafValueChange(onPreviewChange ?? ignorePreviewChange, {
+    transition: false,
+  });
   const commitDraft = () => {
     const parsed = Number(draftValue.trim());
 
@@ -136,14 +143,20 @@ export function QuantitySelector({
             quantityRef.current = nextValue;
             setSliderDraft(nextValue);
             setDraftValue(String(nextValue));
+            previewChange.schedule(nextValue);
           }}
           onPointerUp={(event) => {
+            previewChange.flush(Number(event.currentTarget.value));
             sliderChange.flush(Number(event.currentTarget.value));
           }}
           onPointerCancel={(event) => {
+            previewChange.flush(Number(event.currentTarget.value));
             sliderChange.flush(Number(event.currentTarget.value));
           }}
-          onKeyUp={(event) => sliderChange.schedule(Number(event.currentTarget.value))}
+          onKeyUp={(event) => {
+            previewChange.flush(Number(event.currentTarget.value));
+            sliderChange.schedule(Number(event.currentTarget.value));
+          }}
           style={sliderStyle}
           className="block w-full cursor-grab bg-transparent active:cursor-grabbing"
         />

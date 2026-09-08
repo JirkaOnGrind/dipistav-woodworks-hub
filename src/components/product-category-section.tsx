@@ -17,11 +17,8 @@ function CategoryCard({
   subtitle: string;
 }) {
   const isTimberThumbnail = imageSrc.includes("/homepage-v41/");
-  const image384Src = imageSrc.replace(/\.webp$/, ".384w.webp");
-  const image640Src = imageSrc.replace(/\.webp$/, ".640w.webp");
-  const fullImageWidth = imageSrc.includes("/configurator-v30/") ? 1280 : 768;
-  const imageWidth = isTimberThumbnail ? 768 : 1254;
-  const imageHeight = isTimberThumbnail ? 480 : 1254;
+  const imageWidth = 384;
+  const imageHeight = isTimberThumbnail ? 240 : 384;
 
   return (
     <Card className="group h-full rounded-[1.75rem] border border-border bg-white shadow-sm transition hover:-translate-y-1 hover:border-[#A86D38]/40 hover:shadow-lg">
@@ -35,12 +32,11 @@ function CategoryCard({
           <img
             data-category-image
             src={imageSrc}
-            srcSet={`${image384Src} 384w, ${image640Src} 640w, ${imageSrc} ${fullImageWidth}w`}
-            sizes="(min-width: 1280px) 272px, (min-width: 640px) 44vw, 90vw"
             width={imageWidth}
             height={imageHeight}
             alt={imageAlt}
-            loading="lazy"
+            loading="eager"
+            fetchPriority="auto"
             decoding="async"
             draggable={false}
             className="max-h-full w-auto select-none object-contain transition duration-300 group-hover:scale-[1.03]"

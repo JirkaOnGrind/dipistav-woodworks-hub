@@ -92,19 +92,6 @@ export type ResolvedArtworkScene = {
   family: readonly ArtworkSceneDefinition[];
 };
 
-function withGeneratedResponsiveSources(scene: ArtworkSceneDefinition) {
-  if (scene.renderMode !== "master" || !scene.source.endsWith(".webp")) return scene;
-  const extensionIndex = scene.source.lastIndexOf(".");
-  return {
-    ...scene,
-    responsiveSources: [
-      { source: `${scene.source.slice(0, extensionIndex)}.640w.webp`, width: 640 },
-      { source: scene.source, width: 1280 },
-    ],
-    responsiveSizes: scene.responsiveSizes ?? "(min-width: 1024px) 48vw, 92vw",
-  } satisfies ArtworkSceneDefinition;
-}
-
 export type SafeArtworkTransform = {
   transform: string;
   translateXPercent: number;
@@ -1044,16 +1031,16 @@ export function resolveArtworkScene(
         : scene.source;
     return {
       family,
-      scene: withGeneratedResponsiveSources({
+      scene: {
         ...scene,
         source,
         artworkKey: getArtworkKey(quantity),
         legacyUnitCount: getSellingUnitCount(quantity, variant.illustrationVariant),
-      }),
+      },
     };
   }
 
-  return { scene: withGeneratedResponsiveSources(scene), family };
+  return { scene, family };
 }
 
 export function getArtworkPreloadSources(

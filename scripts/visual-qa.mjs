@@ -81,6 +81,31 @@ try {
       await page.screenshot({ path: screenshot, fullPage: false });
       results.push({ viewport, route, ...layout, disabledOptions, screenshot });
     }
+
+    await page.goto(`${baseUrl}/o-nas`, { waitUntil: "networkidle" });
+    await page.locator('img[src*="onas2"]').scrollIntoViewIfNeeded();
+    await page.waitForTimeout(300);
+    const aboutImages = await page.locator('img[src*="onas"]').evaluateAll((images) =>
+      images.map((image) => ({
+        src: new URL(image.currentSrc || image.src).pathname,
+        naturalWidth: image.naturalWidth,
+        naturalHeight: image.naturalHeight,
+      })),
+    );
+    if (
+      aboutImages.length !== 2 ||
+      aboutImages.some((image) => image.naturalWidth === 0 || image.naturalHeight === 0)
+    ) {
+      errors.push(`${viewport.name}: both O nás images must load`);
+    }
+    const aboutScreenshot = path.join(screenshotDir, `${viewport.name}-o-nas.png`);
+    await page.screenshot({ path: aboutScreenshot, fullPage: false });
+    results.push({
+      viewport,
+      route: "/o-nas",
+      aboutImages,
+      screenshot: aboutScreenshot,
+    });
     await context.close();
   }
 
@@ -109,9 +134,16 @@ try {
     );
   if (
     homepageCategoryImages.length !== 8 ||
-    homepageCategoryImages.some((image) => image.naturalWidth === 0 || image.naturalHeight === 0)
+    homepageCategoryImages.some(
+      (image) =>
+        image.naturalWidth === 0 ||
+        image.naturalHeight === 0 ||
+        /\.(384|640)w\.webp$/.test(image.src),
+    )
   ) {
-    errors.push("mobile-390: not all eight lazy homepage category images loaded after scrolling");
+    errors.push(
+      "mobile-390: all eight eager homepage images must load from stable production URLs",
+    );
   }
   const homepageScreenshot = path.join(screenshotDir, "mobile-390-homepage-scrolled.png");
   await mobilePage.screenshot({ path: homepageScreenshot, fullPage: true });
