@@ -1,7 +1,9 @@
 # Performance a bezpečný cleanup – výsledný report
 
-Datum měření: 8. září 2026  
-Větev: `main`  
+Datum měření: 8. září 2026
+
+Větev: `main`
+
 Testovaný výstup: produkční `dist/client` přes lokální Vite preview
 
 ## Shrnutí výsledku
