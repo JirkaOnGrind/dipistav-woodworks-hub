@@ -19,6 +19,7 @@ export const OPENING_HOURS = ["Po–Pá: 7:00 – 16:00", "Nakládka vysokozdvi�
 export const SITE_NAVIGATION: SiteNavigationItem[] = [
   { label: "Řezivo", href: "/#kategorie", route: "/" },
   { label: "Paliva", href: "/#paliva", route: "/" },
+  { label: "Pergoly", href: "/category/pergoly", route: "/category/pergoly" },
   { label: "Konfigurátor", href: "/#konfigurator", route: "/" },
   { label: "Doprava", href: "/doprava", route: "/doprava" },
   { label: "O nás", href: "/o-nas", route: "/o-nas" },

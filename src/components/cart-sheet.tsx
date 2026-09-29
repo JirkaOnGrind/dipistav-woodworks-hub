@@ -29,7 +29,7 @@ export function CartSheet() {
       "mám zájem o následující položky:",
       ...items.map(
         (item) =>
-          `- ${item.title}, ${item.quantity} ${item.quantityUnitLabel}, ${formatCurrency(item.totalPrice)}`,
+          `- ${item.title}, ${item.quantity} ${item.quantityUnitLabel}, ${formatCurrency(item.totalPrice)}${item.kind === "catalog" && item.productId === "pergoly" ? `\n  ${item.details.join("\n  ")}` : ""}`,
       ),
       "",
       `Cena celkem: ${estimatedTotal > 0 ? formatCurrency(estimatedTotal) : "Na dotaz"}`,
@@ -83,13 +83,14 @@ export function CartSheet() {
                     </div>
 
                     <div className="mt-3 flex flex-wrap gap-1 text-[11px] text-[#1E293B]/75 min-[381px]:mt-4">
-                      {visibleVariantDetails(item.title, item.details, item.quantity).map(
-                        (detail) => (
-                          <div key={detail} className="rounded-full bg-[#F5F2E9]/70 px-2 py-0.5">
-                            {detail}
-                          </div>
-                        ),
-                      )}
+                      {(item.kind === "catalog" && item.productId === "pergoly"
+                        ? item.details
+                        : visibleVariantDetails(item.title, item.details, item.quantity)
+                      ).map((detail) => (
+                        <div key={detail} className="rounded-full bg-[#F5F2E9]/70 px-2 py-0.5">
+                          {detail}
+                        </div>
+                      ))}
                       {item.kind === "catalog" && (
                         <div className="rounded-full border border-[#A86D38]/10 bg-[#FFF9EF] px-2 py-0.5 font-semibold text-[#70451F]">
                           {formatCurrency(item.rate)} / {item.billableUnit}

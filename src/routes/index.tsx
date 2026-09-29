@@ -106,6 +106,24 @@ function Index() {
           {PRODUCT_CATEGORY_SECTIONS.map((section) => (
             <ProductCategorySection key={section.id} section={section} />
           ))}
+          <a
+            id="pergoly"
+            href="/category/pergoly"
+            className="flex scroll-mt-24 flex-wrap items-center justify-between gap-4 rounded-3xl border border-border bg-white p-6 sm:p-8"
+          >
+            <div>
+              <p className="text-xs font-bold uppercase tracking-widest text-timber">
+                Pro vaši zahradu
+              </p>
+              <h2 className="mt-2 text-2xl font-black">Pergoly na míru</h2>
+              <p className="mt-2 text-sm text-muted-foreground">
+                Pultová střecha, poctivé dřevo a rozměry podle vás. Prohlédněte si svůj návrh ve 3D.
+              </p>
+            </div>
+            <span className="inline-flex items-center gap-2 font-bold text-primary">
+              Navrhnout pergolu <ArrowRight size={18} />
+            </span>
+          </a>
         </div>
       </section>
 

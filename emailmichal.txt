@@ -1,0 +1,23 @@
+Ahoj Míšo,
+
+ještě jednou se omlouvám za zdržení s designem. Vzalo si to víc času, než jsem původně čekal, pro příště už budu s termíny realističtější.
+
+Jak už jsem ti psal na instagramu tak nový design už běží na dipistav.cz. Teď píšu abychom si upřesnili jak na webu pokračovat.
+Nejdřív ale potřebuju, abychom dořešili pár věcí:
+
+1) Fotky - Jak sis asi všiml, u každého produktu je galerie. Zvládl bys mi ke každé kategorii dodat čtyři fotky?
+Za mě by se vyplatilo nechat produkty dobře nafotit, protože u objednávek za vyšší tisíce kvalitní fotky hodně pomůžou důvěryhodnosti webu.
+Pokud nikoho na focení nemáš, můžu doporučit Slávka (@slawq.raw na instagramu). Fotí fakt dobře a za bezkonkurenční cenu. Samozřejmě je můžete nafotit i telefonem, jen to bude znát na výsledku.
+
+2) Produkty - Prosím projdi si na webu jednotlivé produkty i konfigurátor řeziva na míru a zkontroluj, že sedí ceny, rozměry a možnosti, které reálně nabízíte.
+Když někde najdeš chybu, stačí mi napsat co tam má být jinak a já to obratem opravím.
+
+3) Doprava - Pošli mi prosím, jak chcete počítat dopravu podle PSČ. Stačí tabulka nebo rozepsané oblasti a ceny.
+Potřebuji také vědět kolik maximálně odvezete na jednom autě a co už se musí řešit individuálně nebo na více jízd.
+
+4) Platební brána - Až mi potvrdíš že na webu jsou předměty správně a dostanu ceník dopravy tak napojím web na platformu co se nám bude starat o eshop - (Woocommerce). Až to bude hotový tak bychom se potkali a přepli z testovacího na reálný účet.
+
+Já se zatím vrhnu na přípravu stránky pro pergoly. Ty si to v klidu projdi a dej mi pak vědět, jak to vidíš s těma fotkama (jestli zkusíme toho Slávka, nebo to pořešíš jinak) a pošli mi to rozpočítání dopravy. Jakmile tohle budu mít, začnu pracovat na té platební bráně.
+
+Díky,
+Jirka.

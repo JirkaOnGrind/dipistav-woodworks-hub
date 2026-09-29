@@ -1,0 +1,1 @@
+RULE 1 (3D CAMERA): The 3D model MUST ALWAYS be 100% visible within the canvas upon initial load. The camera position and FOV must dynamically adapt to the Bounding Box of the generated 3D mesh. Never hardcode static camera zoom levels.
