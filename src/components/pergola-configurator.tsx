@@ -1,4 +1,14 @@
-import { useEffect, useRef, useState, type CSSProperties, type FocusEvent } from "react";
+import {
+  useEffect,
+  useRef,
+  useState,
+  type CSSProperties,
+  type FocusEvent,
+  type ReactNode,
+} from "react";
+import { ChevronDown } from "lucide-react";
+import { useNavigate } from "@tanstack/react-router";
+import { ProductHeader } from "@/components/product-header";
 import { SiteShell } from "@/components/site-shell";
 import {
   AccessoryControls,
@@ -9,29 +19,53 @@ import {
 import { PergolaMobileSheet } from "@/components/pergola-mobile-sheet";
 import { PergolaViewer } from "@/components/pergola-viewer";
 import { usePergolaViewportLayout } from "@/components/pergola-viewport";
-import { useCartActions } from "@/lib/cart";
 import {
-  clearPergolaDraft,
   PERGOLA_DRAFT_SAVE_DELAY_MS,
   readPergolaDraft,
   writePergolaDraft,
 } from "@/lib/pergola-draft";
+import { savePergolaInquiry } from "@/lib/order-system";
 import {
   DEFAULT_PERGOLA,
   isValidPostalCode,
   PERGOLA_MODELS,
-  pergolaCartInput,
   quotePergola,
   type PergolaConfig,
   type PergolaModel,
 } from "@/lib/pergola";
 import "./pergola.css";
 
+function ConfiguratorAccordion({
+  title,
+  defaultOpen = false,
+  children,
+}: {
+  title: string;
+  defaultOpen?: boolean;
+  children: ReactNode;
+}) {
+  const [isOpen, setIsOpen] = useState(defaultOpen);
+
+  return (
+    <details
+      className="pergola-accordion"
+      open={isOpen}
+      onToggle={(event) => setIsOpen(event.currentTarget.open)}
+    >
+      <summary>
+        <span>{title}</span>
+        <ChevronDown aria-hidden />
+      </summary>
+      <div className="pergola-accordion-content">{children}</div>
+    </details>
+  );
+}
+
 export default function PergolaConfigurator({ model }: { model: PergolaModel }) {
   const [config, setConfig] = useState<PergolaConfig>(() => ({ ...DEFAULT_PERGOLA, model }));
   const [draftReady, setDraftReady] = useState(false);
   const saveTimeoutRef = useRef<number | null>(null);
-  const { addCatalogItem } = useCartActions();
+  const navigate = useNavigate();
   const quote = quotePergola(config);
   const viewport = usePergolaViewportLayout();
   const dockExpansion = Math.max(0, viewport.visualHeight - 650);
@@ -64,12 +98,12 @@ export default function PergolaConfigurator({ model }: { model: PergolaModel }) 
 
   function addToInquiry() {
     if (config.delivery && !isValidPostalCode(config.postalCode)) return;
-    addCatalogItem(pergolaCartInput(config));
+    savePergolaInquiry(config);
     if (saveTimeoutRef.current !== null) {
       window.clearTimeout(saveTimeoutRef.current);
       saveTimeoutRef.current = null;
     }
-    clearPergolaDraft(window.localStorage);
+    void navigate({ to: "/poptavka-pergoly" });
   }
 
   function keepFocusedInputVisible(event: FocusEvent<HTMLElement>) {
@@ -100,16 +134,15 @@ export default function PergolaConfigurator({ model }: { model: PergolaModel }) 
           }
           onFocusCapture={keepFocusedInputVisible}
         >
-          <header className="pergola-heading">
-            <h1 id="pergola-title">
-              <span className="pergola-title-desktop">
+          <ProductHeader
+            titleId="pergola-title"
+            title={
+              <>
                 Pergola <span className="pergola-title-accent">na míru.</span>
-              </span>
-              <span className="pergola-title-mobile">Pergoly</span>
-            </h1>
-            <p className="pergola-subtitle-desktop">{PERGOLA_MODELS[config.model].label}</p>
-            <p className="pergola-subtitle-mobile">{PERGOLA_MODELS[config.model].label}</p>
-          </header>
+              </>
+            }
+            description={PERGOLA_MODELS[config.model].label}
+          />
 
           <div className="pergola-layout">
             <div className="pergola-stage">
@@ -123,9 +156,18 @@ export default function PergolaConfigurator({ model }: { model: PergolaModel }) 
             </div>
 
             <aside className="pergola-panel" aria-label="Konfigurace pergoly">
-              <DimensionControls config={config} update={update} />
-              <MaterialSelectors config={config} update={update} />
-              <AccessoryControls config={config} update={update} />
+              <h2 className="pergola-panel-title">Konfigurace</h2>
+              <div className="pergola-panel-scroll">
+                <ConfiguratorAccordion title="Rozměry konstrukce" defaultOpen>
+                  <DimensionControls config={config} update={update} />
+                </ConfiguratorAccordion>
+                <ConfiguratorAccordion title="Materiál a povrchy">
+                  <MaterialSelectors config={config} update={update} />
+                </ConfiguratorAccordion>
+                <ConfiguratorAccordion title="Doplňky a služby">
+                  <AccessoryControls config={config} update={update} />
+                </ConfiguratorAccordion>
+              </div>
               <PriceSummary config={config} quote={quote} onSubmit={addToInquiry} />
             </aside>
 

@@ -120,7 +120,7 @@ function readStoredItems() {
     if (!stored || typeof stored !== "object") return [];
     const payload = stored as { version?: unknown; items?: unknown };
     return payload.version === 1 && Array.isArray(payload.items) && payload.items.every(isCartItem)
-      ? payload.items
+      ? payload.items.filter((item) => item.kind !== "catalog" || item.productId !== "pergoly")
       : [];
   } catch {
     return [];
@@ -283,6 +283,7 @@ export function CartProvider({ children }: { children: ReactNode }) {
 
   const addCatalogItem = useCallback(
     (input: CatalogCartInput) => {
+      if (input.productId === "pergoly") return;
       updateItems((currentItems) => upsertCatalogItem(currentItems, input));
       setIsOpen(true);
     },

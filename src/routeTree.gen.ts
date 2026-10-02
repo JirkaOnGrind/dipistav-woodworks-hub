@@ -10,14 +10,22 @@
 
 import { Route as rootRouteImport } from './routes/__root'
 import { Route as WidgetTramyRouteImport } from './routes/widget-tramy'
+import { Route as PoptavkaPergolyRouteImport } from './routes/poptavka-pergoly'
 import { Route as ONasRouteImport } from './routes/o-nas'
 import { Route as DopravaRouteImport } from './routes/doprava'
+import { Route as CheckoutRouteImport } from './routes/checkout'
+import { Route as AdministraceRouteImport } from './routes/administrace'
 import { Route as IndexRouteImport } from './routes/index'
 import { Route as CategoryIdRouteImport } from './routes/category.$id'
 
 const WidgetTramyRoute = WidgetTramyRouteImport.update({
   id: '/widget-tramy',
   path: '/widget-tramy',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const PoptavkaPergolyRoute = PoptavkaPergolyRouteImport.update({
+  id: '/poptavka-pergoly',
+  path: '/poptavka-pergoly',
   getParentRoute: () => rootRouteImport,
 } as any)
 const ONasRoute = ONasRouteImport.update({
@@ -28,6 +36,16 @@ const ONasRoute = ONasRouteImport.update({
 const DopravaRoute = DopravaRouteImport.update({
   id: '/doprava',
   path: '/doprava',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const CheckoutRoute = CheckoutRouteImport.update({
+  id: '/checkout',
+  path: '/checkout',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const AdministraceRoute = AdministraceRouteImport.update({
+  id: '/administrace',
+  path: '/administrace',
   getParentRoute: () => rootRouteImport,
 } as any)
 const IndexRoute = IndexRouteImport.update({
@@ -43,39 +61,75 @@ const CategoryIdRoute = CategoryIdRouteImport.update({
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
+  '/administrace': typeof AdministraceRoute
+  '/checkout': typeof CheckoutRoute
   '/doprava': typeof DopravaRoute
   '/o-nas': typeof ONasRoute
+  '/poptavka-pergoly': typeof PoptavkaPergolyRoute
   '/widget-tramy': typeof WidgetTramyRoute
   '/category/$id': typeof CategoryIdRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
+  '/administrace': typeof AdministraceRoute
+  '/checkout': typeof CheckoutRoute
   '/doprava': typeof DopravaRoute
   '/o-nas': typeof ONasRoute
+  '/poptavka-pergoly': typeof PoptavkaPergolyRoute
   '/widget-tramy': typeof WidgetTramyRoute
   '/category/$id': typeof CategoryIdRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
   '/': typeof IndexRoute
+  '/administrace': typeof AdministraceRoute
+  '/checkout': typeof CheckoutRoute
   '/doprava': typeof DopravaRoute
   '/o-nas': typeof ONasRoute
+  '/poptavka-pergoly': typeof PoptavkaPergolyRoute
   '/widget-tramy': typeof WidgetTramyRoute
   '/category/$id': typeof CategoryIdRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
-  fullPaths: '/' | '/doprava' | '/o-nas' | '/widget-tramy' | '/category/$id'
+  fullPaths:
+    | '/'
+    | '/administrace'
+    | '/checkout'
+    | '/doprava'
+    | '/o-nas'
+    | '/poptavka-pergoly'
+    | '/widget-tramy'
+    | '/category/$id'
   fileRoutesByTo: FileRoutesByTo
-  to: '/' | '/doprava' | '/o-nas' | '/widget-tramy' | '/category/$id'
+  to:
+    | '/'
+    | '/administrace'
+    | '/checkout'
+    | '/doprava'
+    | '/o-nas'
+    | '/poptavka-pergoly'
+    | '/widget-tramy'
+    | '/category/$id'
   id:
-    '__root__' | '/' | '/doprava' | '/o-nas' | '/widget-tramy' | '/category/$id'
+    | '__root__'
+    | '/'
+    | '/administrace'
+    | '/checkout'
+    | '/doprava'
+    | '/o-nas'
+    | '/poptavka-pergoly'
+    | '/widget-tramy'
+    | '/category/$id'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
+  AdministraceRoute: typeof AdministraceRoute
+  CheckoutRoute: typeof CheckoutRoute
   DopravaRoute: typeof DopravaRoute
   ONasRoute: typeof ONasRoute
+  PoptavkaPergolyRoute: typeof PoptavkaPergolyRoute
   WidgetTramyRoute: typeof WidgetTramyRoute
   CategoryIdRoute: typeof CategoryIdRoute
 }
@@ -87,6 +141,13 @@ declare module '@tanstack/react-router' {
       path: '/widget-tramy'
       fullPath: '/widget-tramy'
       preLoaderRoute: typeof WidgetTramyRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/poptavka-pergoly': {
+      id: '/poptavka-pergoly'
+      path: '/poptavka-pergoly'
+      fullPath: '/poptavka-pergoly'
+      preLoaderRoute: typeof PoptavkaPergolyRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/o-nas': {
@@ -101,6 +162,20 @@ declare module '@tanstack/react-router' {
       path: '/doprava'
       fullPath: '/doprava'
       preLoaderRoute: typeof DopravaRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/checkout': {
+      id: '/checkout'
+      path: '/checkout'
+      fullPath: '/checkout'
+      preLoaderRoute: typeof CheckoutRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/administrace': {
+      id: '/administrace'
+      path: '/administrace'
+      fullPath: '/administrace'
+      preLoaderRoute: typeof AdministraceRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/': {
@@ -122,8 +197,11 @@ declare module '@tanstack/react-router' {
 
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
+  AdministraceRoute: AdministraceRoute,
+  CheckoutRoute: CheckoutRoute,
   DopravaRoute: DopravaRoute,
   ONasRoute: ONasRoute,
+  PoptavkaPergolyRoute: PoptavkaPergolyRoute,
   WidgetTramyRoute: WidgetTramyRoute,
   CategoryIdRoute: CategoryIdRoute,
 }

@@ -4,6 +4,7 @@ import { createFileRoute } from "@tanstack/react-router";
 import { PergolaCategoryPage } from "@/components/pergola-category-page";
 import { SiteShell } from "@/components/site-shell";
 import { ProductDetailPage } from "@/components/product-detail-page";
+import { ProductHeader } from "@/components/product-header";
 import { getProductCategory } from "@/lib/product-catalog";
 import { isPergolaModel, PERGOLA_MODELS } from "@/lib/pergola";
 import "@/components/pergola.css";
@@ -59,16 +60,14 @@ function CategoryRouteComponent() {
             <div className="pergola-surface">
               <div className="pergola-surface-texture" aria-hidden />
               <section className="pergola-page" aria-label="Načítání konfigurátoru pergoly">
-                <header className="pergola-heading">
-                  <h1>
-                    <span className="pergola-title-desktop">
+                <ProductHeader
+                  title={
+                    <>
                       Pergola <span className="pergola-title-accent">na míru.</span>
-                    </span>
-                    <span className="pergola-title-mobile">Pergoly</span>
-                  </h1>
-                  <p className="pergola-subtitle-desktop">{PERGOLA_MODELS[model].label}</p>
-                  <p className="pergola-subtitle-mobile">{PERGOLA_MODELS[model].label}</p>
-                </header>
+                    </>
+                  }
+                  description={PERGOLA_MODELS[model].label}
+                />
                 <div className="pergola-layout">
                   <div className="pergola-stage">
                     <div className="pergola-viewer" data-viewer-status="loading">

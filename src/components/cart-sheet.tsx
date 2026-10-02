@@ -1,4 +1,6 @@
+import { Link } from "@tanstack/react-router";
 import { ScrollArea } from "@/components/ui/scroll-area";
+import { FreeShippingProgress } from "@/components/free-shipping-progress";
 import {
   Sheet,
   SheetContent,
@@ -7,7 +9,7 @@ import {
   SheetTitle,
 } from "@/components/ui/sheet";
 import { visibleVariantDetails, useCart } from "@/lib/cart";
-import { COMPANY_EMAIL, formatCurrency } from "@/lib/site";
+import { formatCurrency } from "@/lib/site";
 
 function billableUnitLabel(unit: string, amount: number) {
   if (unit !== "paleta") return unit;
@@ -22,19 +24,6 @@ function formatBillableAmount(amount: number) {
 
 export function CartSheet() {
   const { items, estimatedTotal, isOpen, setIsOpen, removeItem, clearCart } = useCart();
-  const inquiryHref = `mailto:${COMPANY_EMAIL}?subject=${encodeURIComponent("Poptávka z košíku DIPISTAV")}&body=${encodeURIComponent(
-    [
-      "Dobrý den,",
-      "",
-      "mám zájem o následující položky:",
-      ...items.map(
-        (item) =>
-          `- ${item.title}, ${item.quantity} ${item.quantityUnitLabel}, ${formatCurrency(item.totalPrice)}${item.kind === "catalog" && item.productId === "pergoly" ? `\n  ${item.details.join("\n  ")}` : ""}`,
-      ),
-      "",
-      `Cena celkem: ${estimatedTotal > 0 ? formatCurrency(estimatedTotal) : "Na dotaz"}`,
-    ].join("\n"),
-  )}`;
 
   return (
     <Sheet open={isOpen} onOpenChange={setIsOpen}>
@@ -45,7 +34,7 @@ export function CartSheet() {
         <div className="flex h-full flex-col">
           <SheetHeader className="border-b border-[#A86D38]/10 px-4 py-4 text-left min-[381px]:px-6 min-[381px]:py-5">
             <SheetTitle className="text-2xl font-black tracking-tight text-[#1E293B]">
-              Košík a poptávka
+              Košík
             </SheetTitle>
             <SheetDescription className="text-sm text-[#1E293B]/70">
               V košíku máte {items.length} položek
@@ -60,8 +49,7 @@ export function CartSheet() {
                     Košík je zatím prázdný
                   </div>
                   <p className="mt-2 text-sm text-[#1E293B]/70">
-                    Přidejte stavební řezivo nebo vlastní poptávku z konfigurátoru a vše se sem
-                    ihned propíše.
+                    Přidejte stavební řezivo nebo palivo. Pergoly mají vlastní poptávkový formulář.
                   </p>
                 </div>
               ) : (
@@ -124,6 +112,7 @@ export function CartSheet() {
           </ScrollArea>
 
           <div className="shrink-0 border-t border-[#A86D38]/10 bg-white px-3 py-3 min-[381px]:px-6 min-[381px]:py-5">
+            {items.length > 0 && <FreeShippingProgress cartValue={estimatedTotal} />}
             <div className="flex items-end justify-between gap-4">
               <div>
                 <div className="text-xs font-semibold uppercase tracking-[0.16em] text-[#1E293B]/55">
@@ -143,12 +132,13 @@ export function CartSheet() {
               )}
             </div>
 
-            <a
-              href={inquiryHref}
+            <Link
+              to="/checkout"
+              onClick={() => setIsOpen(false)}
               className="mt-3 inline-flex w-full items-center justify-center rounded-2xl bg-[#A86D38] px-6 py-4 text-base font-black text-white shadow-lg shadow-[#A86D38]/20 transition hover:bg-[#8A5528] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#234A33] focus-visible:ring-offset-2 min-[381px]:mt-4 min-[381px]:text-lg"
             >
-              Přejít k poptávce
-            </a>
+              Přejít k objednávce
+            </Link>
           </div>
         </div>
       </SheetContent>

@@ -33,7 +33,7 @@ describe("artwork interaction motion", () => {
       expect(markup).toContain("data-visualization-limit");
     }
   });
-  it("renders the persisted desktop modes and exactly four numbered gallery choices", () => {
+  it("renders the desktop modes and exactly four numbered gallery choices", () => {
     const markup = renderToStaticMarkup(
       <WoodVisualizer
         categoryId="test-product"
@@ -45,18 +45,19 @@ describe("artwork interaction motion", () => {
 
     expect(markup).toContain("Vizualizace");
     expect(markup).toContain("Galerie");
+    expect(markup.indexOf(">Galerie<")).toBeLessThan(markup.indexOf(">Vizualizace<"));
     expect(markup.match(/aria-pressed=/g)).toHaveLength(4);
     for (const item of [1, 2, 3, 4]) {
       expect(markup).toContain(`${item}: sem bude přidaná fotka`);
     }
   });
 
-  it("keeps the view preference in versioned local storage", () => {
+  it("opens each product in gallery mode without restoring an older preference", () => {
     const store = readFileSync("src/lib/media-view-mode.ts", "utf8");
 
-    expect(store).toContain('"dipistav:product-media-view:v1"');
-    expect(store).toContain("window.localStorage.getItem");
-    expect(store).toContain("window.localStorage.setItem");
+    expect(store).toContain('const DEFAULT_MODE: MediaViewMode = "gallery"');
+    expect(store).toContain("selection.scopeKey === scopeKey");
+    expect(store).not.toContain("localStorage");
   });
 
   it("expands the current non-lath length amplitude by an additional 10 percent", () => {

@@ -77,7 +77,7 @@ export function QuantitySelector({
 
   return (
     <div data-quantity-selector className="flex flex-col gap-3">
-      <div className="grid grid-cols-[minmax(0,1fr)_auto] items-center gap-3 sm:flex sm:items-end sm:justify-between sm:gap-4">
+      <div className="grid grid-cols-[minmax(0,1fr)_auto] items-center gap-3 sm:flex sm:items-center sm:justify-between sm:gap-4">
         <label
           htmlFor={inputId}
           className="block text-xs font-semibold uppercase tracking-[0.2em] text-muted-foreground"

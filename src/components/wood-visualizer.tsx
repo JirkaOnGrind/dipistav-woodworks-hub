@@ -15,7 +15,7 @@ import { Button } from "@/components/ui/button";
 import { ToggleGroup, ToggleGroupItem } from "@/components/ui/toggle-group";
 import { getArtworkInteractionMotion } from "@/lib/artwork-interaction-motion";
 import { getFirewoodBackground } from "@/lib/firewood-artwork";
-import { setMediaViewMode, useMediaViewMode, type MediaViewMode } from "@/lib/media-view-mode";
+import { useMediaViewMode, type MediaViewMode } from "@/lib/media-view-mode";
 import { resolveArtworkScene } from "@/lib/product-artwork";
 import type { ResponsiveArtworkSource } from "@/lib/product-artwork";
 import type { ProductVariant } from "@/lib/product-catalog";
@@ -409,7 +409,7 @@ export function WoodVisualizer({
   previewRef,
   previewRange,
 }: WoodVisualizerProps) {
-  const mediaViewMode = useMediaViewMode();
+  const [mediaViewMode, setMediaViewMode] = useMediaViewMode(categoryId);
   const desktopVisualization = useDesktopVisualization();
   const shouldUpdateVisualization = desktopVisualization && mediaViewMode === "visualization";
   const [previewQuantity, setPreviewQuantity] = useState(quantity);
@@ -628,16 +628,16 @@ export function WoodVisualizer({
           className="hidden grid-cols-2 rounded-full bg-muted p-1 detail-desktop:grid"
         >
           <ToggleGroupItem
-            value="visualization"
-            className="h-10 min-w-28 rounded-full px-4 text-sm font-bold text-muted-foreground data-[state=on]:bg-primary data-[state=on]:text-primary-foreground"
-          >
-            Vizualizace
-          </ToggleGroupItem>
-          <ToggleGroupItem
             value="gallery"
             className="h-10 min-w-28 rounded-full px-4 text-sm font-bold text-muted-foreground data-[state=on]:bg-primary data-[state=on]:text-primary-foreground"
           >
             Galerie
+          </ToggleGroupItem>
+          <ToggleGroupItem
+            value="visualization"
+            className="h-10 min-w-28 rounded-full px-4 text-sm font-bold text-muted-foreground data-[state=on]:bg-primary data-[state=on]:text-primary-foreground"
+          >
+            Vizualizace
           </ToggleGroupItem>
         </ToggleGroup>
         <div

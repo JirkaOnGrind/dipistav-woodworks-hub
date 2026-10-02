@@ -477,7 +477,7 @@ export function PriceSummary({
         disabled={config.delivery && !isValidPostalCode(config.postalCode)}
         onClick={onSubmit}
       >
-        Přidat do poptávky <ArrowRight data-icon="inline-end" />
+        Přejít k poptávce <ArrowRight data-icon="inline-end" />
       </Button>
       <p className="pergola-hint">Konečnou cenu potvrdíme v nabídce.</p>
     </section>
